@@ -1,0 +1,46 @@
+package sdk
+
+import (
+	"context"
+	"net/http"
+)
+
+type Client struct {
+	api    *APIClient
+	region Region
+}
+
+func New(opts ...ConfigOption) *Client {
+	cfg := NewConfiguration()
+	c := &Client{
+		api:    NewAPIClient(cfg),
+		region: RegionUS,
+	}
+
+	for _, opt := range opts {
+		opt(c)
+	}
+
+	return c
+}
+
+func (c *Client) withRegion(ctx context.Context) context.Context {
+	if ctx.Value(ContextServerIndex) != nil {
+		return ctx
+	}
+	return WithRegionContext(ctx, c.api.cfg, c.region)
+}
+
+func (c *Client) GetEvent(ctx context.Context, eventId string) (*Event, *http.Response, error) {
+	ctx = c.withRegion(ctx)
+	return c.api.FingerprintAPI.GetEvent(ctx, eventId).Execute()
+}
+
+func (c *Client) CreateSearchEventsRequest(ctx context.Context) ApiSearchEventsRequest {
+	ctx = c.withRegion(ctx)
+	return c.api.FingerprintAPI.SearchEvents(ctx)
+}
+
+func (c *Client) SearchEvents(req ApiSearchEventsRequest) (*EventSearch, *http.Response, error) {
+	return req.Execute()
+}
