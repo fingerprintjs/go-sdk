@@ -1,4 +1,4 @@
-package sdk
+package fingerprint
 
 import (
 	"context"
@@ -43,4 +43,14 @@ func (c *Client) CreateSearchEventsRequest(ctx context.Context) ApiSearchEventsR
 
 func (c *Client) SearchEvents(req ApiSearchEventsRequest) (*EventSearch, *http.Response, error) {
 	return req.Execute()
+}
+
+func (c *Client) UpdateEvent(ctx context.Context, eventId string, eventUpdateReq EventUpdate) (*http.Response, error) {
+	ctx = c.withRegion(ctx)
+	return c.api.FingerprintAPI.UpdateEvent(ctx, eventId).EventUpdate(eventUpdateReq).Execute()
+}
+
+func (c *Client) DeleteVisitorData(ctx context.Context, visitorId string) (*http.Response, error) {
+	ctx = c.withRegion(ctx)
+	return c.api.FingerprintAPI.DeleteVisitorData(ctx, visitorId).Execute()
 }

@@ -1,3 +1,6 @@
-module github.com/fingerprintjs/fingerprint-pro-server-api-go-sdk/v7
+module github.com/GIT_USER_ID/GIT_REPO_ID
 
-go 1.21
+go 1.23
+
+require (
+)

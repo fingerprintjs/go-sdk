@@ -1,17 +1,211 @@
 # Velocity
-Sums key data points for a specific `visitorId`, `ipAddress` and `linkedId` at three distinct time intervals: 5 minutes, 1 hour, and 24 hours as follows:   - Number of distinct IP addresses associated to the visitor ID. - Number of distinct linked IDs associated with the visitor ID. - Number of distinct countries associated with the visitor ID. - Number of identification events associated with the visitor ID. - Number of identification events associated with the detected IP address. - Number of distinct IP addresses associated with the provided linked ID. - Number of distinct visitor IDs associated with the provided linked ID.  The `24h` interval of `distinctIp`, `distinctLinkedId`, `distinctCountry`, `distinctIpByLinkedId` and `distinctVisitorIdByLinkedId` will be omitted  if the number of `events` for the visitor ID in the last 24 hours (`events.intervals.['24h']`) is higher than 20.000. 
 
+    ## Properties
 
-## Properties
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**DistinctIp** | [***VelocityData**](VelocityData.md) |  | [default to null]
-**DistinctLinkedId** | [***VelocityData**](VelocityData.md) |  | [default to null]
-**DistinctCountry** | [***VelocityData**](VelocityData.md) |  | [default to null]
-**Events** | [***VelocityData**](VelocityData.md) |  | [default to null]
-**IpEvents** | [***VelocityData**](VelocityData.md) |  | [default to null]
-**DistinctIpByLinkedId** | [***VelocityData**](VelocityData.md) |  | [default to null]
-**DistinctVisitorIdByLinkedId** | [***VelocityData**](VelocityData.md) |  | [default to null]
+    Name | Type | Description | Notes
+    ------------ | ------------- | ------------- | -------------
+        **DistinctIp** | Pointer to [**VelocityData**](VelocityData.md) |  | [optional] 
+**DistinctLinkedId** | Pointer to [**VelocityData**](VelocityData.md) |  | [optional] 
+**DistinctCountry** | Pointer to [**VelocityData**](VelocityData.md) |  | [optional] 
+**Events** | Pointer to [**VelocityData**](VelocityData.md) |  | [optional] 
+**IpEvents** | Pointer to [**VelocityData**](VelocityData.md) |  | [optional] 
+**DistinctIpByLinkedId** | Pointer to [**VelocityData**](VelocityData.md) |  | [optional] 
+**DistinctVisitorIdByLinkedId** | Pointer to [**VelocityData**](VelocityData.md) |  | [optional] 
+
+    ## Methods
+
+        ### NewVelocity
+
+        `func NewVelocity() *Velocity`
+
+        NewVelocity instantiates a new Velocity object
+        This constructor will assign default values to properties that have it defined,
+        and makes sure properties required by API are set, but the set of arguments
+        will change when the set of required properties is changed
+
+        ### NewVelocityWithDefaults
+
+        `func NewVelocityWithDefaults() *Velocity`
+
+        NewVelocityWithDefaults instantiates a new Velocity object
+        This constructor will only assign default values to properties that have it defined,
+        but it doesn't guarantee that properties required by API are set
+
+            ### GetDistinctIp
+
+            `func (o *Velocity) GetDistinctIp() VelocityData`
+
+            GetDistinctIp returns the DistinctIp field if non-nil, zero value otherwise.
+
+            ### GetDistinctIpOk
+
+            `func (o *Velocity) GetDistinctIpOk() (*VelocityData, bool)`
+
+            GetDistinctIpOk returns a tuple with the DistinctIp field if it's non-nil, zero value otherwise
+            and a boolean to check if the value has been set.
+
+            ### SetDistinctIp
+
+            `func (o *Velocity) SetDistinctIp(v VelocityData)`
+
+            SetDistinctIp sets DistinctIp field to given value.
+
+                ### HasDistinctIp
+
+                `func (o *Velocity) HasDistinctIp() bool`
+
+                HasDistinctIp returns a boolean if a field has been set.
+
+            ### GetDistinctLinkedId
+
+            `func (o *Velocity) GetDistinctLinkedId() VelocityData`
+
+            GetDistinctLinkedId returns the DistinctLinkedId field if non-nil, zero value otherwise.
+
+            ### GetDistinctLinkedIdOk
+
+            `func (o *Velocity) GetDistinctLinkedIdOk() (*VelocityData, bool)`
+
+            GetDistinctLinkedIdOk returns a tuple with the DistinctLinkedId field if it's non-nil, zero value otherwise
+            and a boolean to check if the value has been set.
+
+            ### SetDistinctLinkedId
+
+            `func (o *Velocity) SetDistinctLinkedId(v VelocityData)`
+
+            SetDistinctLinkedId sets DistinctLinkedId field to given value.
+
+                ### HasDistinctLinkedId
+
+                `func (o *Velocity) HasDistinctLinkedId() bool`
+
+                HasDistinctLinkedId returns a boolean if a field has been set.
+
+            ### GetDistinctCountry
+
+            `func (o *Velocity) GetDistinctCountry() VelocityData`
+
+            GetDistinctCountry returns the DistinctCountry field if non-nil, zero value otherwise.
+
+            ### GetDistinctCountryOk
+
+            `func (o *Velocity) GetDistinctCountryOk() (*VelocityData, bool)`
+
+            GetDistinctCountryOk returns a tuple with the DistinctCountry field if it's non-nil, zero value otherwise
+            and a boolean to check if the value has been set.
+
+            ### SetDistinctCountry
+
+            `func (o *Velocity) SetDistinctCountry(v VelocityData)`
+
+            SetDistinctCountry sets DistinctCountry field to given value.
+
+                ### HasDistinctCountry
+
+                `func (o *Velocity) HasDistinctCountry() bool`
+
+                HasDistinctCountry returns a boolean if a field has been set.
+
+            ### GetEvents
+
+            `func (o *Velocity) GetEvents() VelocityData`
+
+            GetEvents returns the Events field if non-nil, zero value otherwise.
+
+            ### GetEventsOk
+
+            `func (o *Velocity) GetEventsOk() (*VelocityData, bool)`
+
+            GetEventsOk returns a tuple with the Events field if it's non-nil, zero value otherwise
+            and a boolean to check if the value has been set.
+
+            ### SetEvents
+
+            `func (o *Velocity) SetEvents(v VelocityData)`
+
+            SetEvents sets Events field to given value.
+
+                ### HasEvents
+
+                `func (o *Velocity) HasEvents() bool`
+
+                HasEvents returns a boolean if a field has been set.
+
+            ### GetIpEvents
+
+            `func (o *Velocity) GetIpEvents() VelocityData`
+
+            GetIpEvents returns the IpEvents field if non-nil, zero value otherwise.
+
+            ### GetIpEventsOk
+
+            `func (o *Velocity) GetIpEventsOk() (*VelocityData, bool)`
+
+            GetIpEventsOk returns a tuple with the IpEvents field if it's non-nil, zero value otherwise
+            and a boolean to check if the value has been set.
+
+            ### SetIpEvents
+
+            `func (o *Velocity) SetIpEvents(v VelocityData)`
+
+            SetIpEvents sets IpEvents field to given value.
+
+                ### HasIpEvents
+
+                `func (o *Velocity) HasIpEvents() bool`
+
+                HasIpEvents returns a boolean if a field has been set.
+
+            ### GetDistinctIpByLinkedId
+
+            `func (o *Velocity) GetDistinctIpByLinkedId() VelocityData`
+
+            GetDistinctIpByLinkedId returns the DistinctIpByLinkedId field if non-nil, zero value otherwise.
+
+            ### GetDistinctIpByLinkedIdOk
+
+            `func (o *Velocity) GetDistinctIpByLinkedIdOk() (*VelocityData, bool)`
+
+            GetDistinctIpByLinkedIdOk returns a tuple with the DistinctIpByLinkedId field if it's non-nil, zero value otherwise
+            and a boolean to check if the value has been set.
+
+            ### SetDistinctIpByLinkedId
+
+            `func (o *Velocity) SetDistinctIpByLinkedId(v VelocityData)`
+
+            SetDistinctIpByLinkedId sets DistinctIpByLinkedId field to given value.
+
+                ### HasDistinctIpByLinkedId
+
+                `func (o *Velocity) HasDistinctIpByLinkedId() bool`
+
+                HasDistinctIpByLinkedId returns a boolean if a field has been set.
+
+            ### GetDistinctVisitorIdByLinkedId
+
+            `func (o *Velocity) GetDistinctVisitorIdByLinkedId() VelocityData`
+
+            GetDistinctVisitorIdByLinkedId returns the DistinctVisitorIdByLinkedId field if non-nil, zero value otherwise.
+
+            ### GetDistinctVisitorIdByLinkedIdOk
+
+            `func (o *Velocity) GetDistinctVisitorIdByLinkedIdOk() (*VelocityData, bool)`
+
+            GetDistinctVisitorIdByLinkedIdOk returns a tuple with the DistinctVisitorIdByLinkedId field if it's non-nil, zero value otherwise
+            and a boolean to check if the value has been set.
+
+            ### SetDistinctVisitorIdByLinkedId
+
+            `func (o *Velocity) SetDistinctVisitorIdByLinkedId(v VelocityData)`
+
+            SetDistinctVisitorIdByLinkedId sets DistinctVisitorIdByLinkedId field to given value.
+
+                ### HasDistinctVisitorIdByLinkedId
+
+                `func (o *Velocity) HasDistinctVisitorIdByLinkedId() bool`
+
+                HasDistinctVisitorIdByLinkedId returns a boolean if a field has been set.
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -1,4 +1,4 @@
-package sdk
+package fingerprint
 
 type ConfigOption func(*Client)
 
