@@ -7,6 +7,7 @@ import (
 	"os"
 
 	"github.com/fingerprintjs/fingerprint-server-sdk-go"
+
 	"github.com/joho/godotenv"
 )
 
@@ -20,22 +21,15 @@ func main() {
 	auth := context.WithValue(context.Background(), fingerprint.ContextAccessToken, os.Getenv("FINGERPRINT_API_KEY"))
 
 	// Usually this data will come from your frontend app
-	tags := map[string]interface{}{
-		"key": "value",
-	}
-	suspect := false
-	linkedId := "new_linked_id"
-	req := fingerprint.EventUpdate{
-		Suspect:  &suspect,
-		LinkedId: &linkedId,
-		Tags:     tags,
-	}
+	visitorId := os.Getenv("VISITOR_ID")
 
-	httpRes, err := client.UpdateEvent(auth, os.Getenv("EVENT_ID"), req)
+	// Delete visitor data. If you are interested in using this API, please contact our support team (https://fingerprint.com/support/) to activate it for you
+	httpRes, err := client.DeleteVisitorData(auth, visitorId)
 
 	fmt.Printf("%+v\n", httpRes)
 
 	if err != nil {
 		log.Fatalf("Error: %s", err.Error())
 	}
+
 }
