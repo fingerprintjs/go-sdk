@@ -1,97 +1,98 @@
 # SDK
 
-    ## Properties
+## Properties
 
-    Name | Type | Description | Notes
-    ------------ | ------------- | ------------- | -------------
-        **Platform** | **string** | Platform of the SDK used for the identification request. | 
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**Platform** | **string** | Platform of the SDK used for the identification request. | 
 **Version** | **string** | Version string of the SDK used for the identification request. For example: &#x60;\&quot;3.12.1\&quot;&#x60;  | 
 **Integrations** | Pointer to [**[]Integration**](Integration.md) |  | [optional] 
 
-    ## Methods
+## Methods
 
-        ### NewSDK
+### NewSDK
 
-        `func NewSDK(platform string, version string, ) *SDK`
+`func NewSDK(platform string, version string, ) *SDK`
 
-        NewSDK instantiates a new SDK object
-        This constructor will assign default values to properties that have it defined,
-        and makes sure properties required by API are set, but the set of arguments
-        will change when the set of required properties is changed
+NewSDK instantiates a new SDK object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
 
-        ### NewSDKWithDefaults
+### NewSDKWithDefaults
 
-        `func NewSDKWithDefaults() *SDK`
+`func NewSDKWithDefaults() *SDK`
 
-        NewSDKWithDefaults instantiates a new SDK object
-        This constructor will only assign default values to properties that have it defined,
-        but it doesn't guarantee that properties required by API are set
+NewSDKWithDefaults instantiates a new SDK object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
 
-            ### GetPlatform
+### GetPlatform
 
-            `func (o *SDK) GetPlatform() string`
+`func (o *SDK) GetPlatform() string`
 
-            GetPlatform returns the Platform field if non-nil, zero value otherwise.
+GetPlatform returns the Platform field if non-nil, zero value otherwise.
 
-            ### GetPlatformOk
+### GetPlatformOk
 
-            `func (o *SDK) GetPlatformOk() (*string, bool)`
+`func (o *SDK) GetPlatformOk() (*string, bool)`
 
-            GetPlatformOk returns a tuple with the Platform field if it's non-nil, zero value otherwise
-            and a boolean to check if the value has been set.
+GetPlatformOk returns a tuple with the Platform field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
 
-            ### SetPlatform
+### SetPlatform
 
-            `func (o *SDK) SetPlatform(v string)`
+`func (o *SDK) SetPlatform(v string)`
 
-            SetPlatform sets Platform field to given value.
-
-
-            ### GetVersion
-
-            `func (o *SDK) GetVersion() string`
-
-            GetVersion returns the Version field if non-nil, zero value otherwise.
-
-            ### GetVersionOk
-
-            `func (o *SDK) GetVersionOk() (*string, bool)`
-
-            GetVersionOk returns a tuple with the Version field if it's non-nil, zero value otherwise
-            and a boolean to check if the value has been set.
-
-            ### SetVersion
-
-            `func (o *SDK) SetVersion(v string)`
-
-            SetVersion sets Version field to given value.
+SetPlatform sets Platform field to given value.
 
 
-            ### GetIntegrations
+### GetVersion
 
-            `func (o *SDK) GetIntegrations() []Integration`
+`func (o *SDK) GetVersion() string`
 
-            GetIntegrations returns the Integrations field if non-nil, zero value otherwise.
+GetVersion returns the Version field if non-nil, zero value otherwise.
 
-            ### GetIntegrationsOk
+### GetVersionOk
 
-            `func (o *SDK) GetIntegrationsOk() (*[]Integration, bool)`
+`func (o *SDK) GetVersionOk() (*string, bool)`
 
-            GetIntegrationsOk returns a tuple with the Integrations field if it's non-nil, zero value otherwise
-            and a boolean to check if the value has been set.
+GetVersionOk returns a tuple with the Version field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
 
-            ### SetIntegrations
+### SetVersion
 
-            `func (o *SDK) SetIntegrations(v []Integration)`
+`func (o *SDK) SetVersion(v string)`
 
-            SetIntegrations sets Integrations field to given value.
+SetVersion sets Version field to given value.
 
-                ### HasIntegrations
 
-                `func (o *SDK) HasIntegrations() bool`
+### GetIntegrations
 
-                HasIntegrations returns a boolean if a field has been set.
+`func (o *SDK) GetIntegrations() []Integration`
+
+GetIntegrations returns the Integrations field if non-nil, zero value otherwise.
+
+### GetIntegrationsOk
+
+`func (o *SDK) GetIntegrationsOk() (*[]Integration, bool)`
+
+GetIntegrationsOk returns a tuple with the Integrations field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIntegrations
+
+`func (o *SDK) SetIntegrations(v []Integration)`
+
+SetIntegrations sets Integrations field to given value.
+
+### HasIntegrations
+
+`func (o *SDK) HasIntegrations() bool`
+
+HasIntegrations returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
 

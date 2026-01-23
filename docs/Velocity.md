@@ -1,10 +1,10 @@
 # Velocity
 
-    ## Properties
+## Properties
 
-    Name | Type | Description | Notes
-    ------------ | ------------- | ------------- | -------------
-        **DistinctIp** | Pointer to [**VelocityData**](VelocityData.md) |  | [optional] 
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**DistinctIp** | Pointer to [**VelocityData**](VelocityData.md) |  | [optional] 
 **DistinctLinkedId** | Pointer to [**VelocityData**](VelocityData.md) |  | [optional] 
 **DistinctCountry** | Pointer to [**VelocityData**](VelocityData.md) |  | [optional] 
 **Events** | Pointer to [**VelocityData**](VelocityData.md) |  | [optional] 
@@ -12,200 +12,201 @@
 **DistinctIpByLinkedId** | Pointer to [**VelocityData**](VelocityData.md) |  | [optional] 
 **DistinctVisitorIdByLinkedId** | Pointer to [**VelocityData**](VelocityData.md) |  | [optional] 
 
-    ## Methods
+## Methods
 
-        ### NewVelocity
+### NewVelocity
 
-        `func NewVelocity() *Velocity`
+`func NewVelocity() *Velocity`
 
-        NewVelocity instantiates a new Velocity object
-        This constructor will assign default values to properties that have it defined,
-        and makes sure properties required by API are set, but the set of arguments
-        will change when the set of required properties is changed
+NewVelocity instantiates a new Velocity object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
 
-        ### NewVelocityWithDefaults
+### NewVelocityWithDefaults
 
-        `func NewVelocityWithDefaults() *Velocity`
+`func NewVelocityWithDefaults() *Velocity`
 
-        NewVelocityWithDefaults instantiates a new Velocity object
-        This constructor will only assign default values to properties that have it defined,
-        but it doesn't guarantee that properties required by API are set
+NewVelocityWithDefaults instantiates a new Velocity object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
 
-            ### GetDistinctIp
+### GetDistinctIp
 
-            `func (o *Velocity) GetDistinctIp() VelocityData`
+`func (o *Velocity) GetDistinctIp() VelocityData`
 
-            GetDistinctIp returns the DistinctIp field if non-nil, zero value otherwise.
+GetDistinctIp returns the DistinctIp field if non-nil, zero value otherwise.
 
-            ### GetDistinctIpOk
+### GetDistinctIpOk
 
-            `func (o *Velocity) GetDistinctIpOk() (*VelocityData, bool)`
+`func (o *Velocity) GetDistinctIpOk() (*VelocityData, bool)`
 
-            GetDistinctIpOk returns a tuple with the DistinctIp field if it's non-nil, zero value otherwise
-            and a boolean to check if the value has been set.
+GetDistinctIpOk returns a tuple with the DistinctIp field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
 
-            ### SetDistinctIp
+### SetDistinctIp
 
-            `func (o *Velocity) SetDistinctIp(v VelocityData)`
+`func (o *Velocity) SetDistinctIp(v VelocityData)`
 
-            SetDistinctIp sets DistinctIp field to given value.
+SetDistinctIp sets DistinctIp field to given value.
 
-                ### HasDistinctIp
+### HasDistinctIp
 
-                `func (o *Velocity) HasDistinctIp() bool`
+`func (o *Velocity) HasDistinctIp() bool`
 
-                HasDistinctIp returns a boolean if a field has been set.
+HasDistinctIp returns a boolean if a field has been set.
 
-            ### GetDistinctLinkedId
+### GetDistinctLinkedId
 
-            `func (o *Velocity) GetDistinctLinkedId() VelocityData`
+`func (o *Velocity) GetDistinctLinkedId() VelocityData`
 
-            GetDistinctLinkedId returns the DistinctLinkedId field if non-nil, zero value otherwise.
+GetDistinctLinkedId returns the DistinctLinkedId field if non-nil, zero value otherwise.
 
-            ### GetDistinctLinkedIdOk
+### GetDistinctLinkedIdOk
 
-            `func (o *Velocity) GetDistinctLinkedIdOk() (*VelocityData, bool)`
+`func (o *Velocity) GetDistinctLinkedIdOk() (*VelocityData, bool)`
 
-            GetDistinctLinkedIdOk returns a tuple with the DistinctLinkedId field if it's non-nil, zero value otherwise
-            and a boolean to check if the value has been set.
+GetDistinctLinkedIdOk returns a tuple with the DistinctLinkedId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
 
-            ### SetDistinctLinkedId
+### SetDistinctLinkedId
 
-            `func (o *Velocity) SetDistinctLinkedId(v VelocityData)`
+`func (o *Velocity) SetDistinctLinkedId(v VelocityData)`
 
-            SetDistinctLinkedId sets DistinctLinkedId field to given value.
+SetDistinctLinkedId sets DistinctLinkedId field to given value.
 
-                ### HasDistinctLinkedId
+### HasDistinctLinkedId
 
-                `func (o *Velocity) HasDistinctLinkedId() bool`
+`func (o *Velocity) HasDistinctLinkedId() bool`
 
-                HasDistinctLinkedId returns a boolean if a field has been set.
+HasDistinctLinkedId returns a boolean if a field has been set.
 
-            ### GetDistinctCountry
+### GetDistinctCountry
 
-            `func (o *Velocity) GetDistinctCountry() VelocityData`
+`func (o *Velocity) GetDistinctCountry() VelocityData`
 
-            GetDistinctCountry returns the DistinctCountry field if non-nil, zero value otherwise.
+GetDistinctCountry returns the DistinctCountry field if non-nil, zero value otherwise.
 
-            ### GetDistinctCountryOk
+### GetDistinctCountryOk
 
-            `func (o *Velocity) GetDistinctCountryOk() (*VelocityData, bool)`
+`func (o *Velocity) GetDistinctCountryOk() (*VelocityData, bool)`
 
-            GetDistinctCountryOk returns a tuple with the DistinctCountry field if it's non-nil, zero value otherwise
-            and a boolean to check if the value has been set.
+GetDistinctCountryOk returns a tuple with the DistinctCountry field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
 
-            ### SetDistinctCountry
+### SetDistinctCountry
 
-            `func (o *Velocity) SetDistinctCountry(v VelocityData)`
+`func (o *Velocity) SetDistinctCountry(v VelocityData)`
 
-            SetDistinctCountry sets DistinctCountry field to given value.
+SetDistinctCountry sets DistinctCountry field to given value.
 
-                ### HasDistinctCountry
+### HasDistinctCountry
 
-                `func (o *Velocity) HasDistinctCountry() bool`
+`func (o *Velocity) HasDistinctCountry() bool`
 
-                HasDistinctCountry returns a boolean if a field has been set.
+HasDistinctCountry returns a boolean if a field has been set.
 
-            ### GetEvents
+### GetEvents
 
-            `func (o *Velocity) GetEvents() VelocityData`
+`func (o *Velocity) GetEvents() VelocityData`
 
-            GetEvents returns the Events field if non-nil, zero value otherwise.
+GetEvents returns the Events field if non-nil, zero value otherwise.
 
-            ### GetEventsOk
+### GetEventsOk
 
-            `func (o *Velocity) GetEventsOk() (*VelocityData, bool)`
+`func (o *Velocity) GetEventsOk() (*VelocityData, bool)`
 
-            GetEventsOk returns a tuple with the Events field if it's non-nil, zero value otherwise
-            and a boolean to check if the value has been set.
+GetEventsOk returns a tuple with the Events field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
 
-            ### SetEvents
+### SetEvents
 
-            `func (o *Velocity) SetEvents(v VelocityData)`
+`func (o *Velocity) SetEvents(v VelocityData)`
 
-            SetEvents sets Events field to given value.
+SetEvents sets Events field to given value.
 
-                ### HasEvents
+### HasEvents
 
-                `func (o *Velocity) HasEvents() bool`
+`func (o *Velocity) HasEvents() bool`
 
-                HasEvents returns a boolean if a field has been set.
+HasEvents returns a boolean if a field has been set.
 
-            ### GetIpEvents
+### GetIpEvents
 
-            `func (o *Velocity) GetIpEvents() VelocityData`
+`func (o *Velocity) GetIpEvents() VelocityData`
 
-            GetIpEvents returns the IpEvents field if non-nil, zero value otherwise.
+GetIpEvents returns the IpEvents field if non-nil, zero value otherwise.
 
-            ### GetIpEventsOk
+### GetIpEventsOk
 
-            `func (o *Velocity) GetIpEventsOk() (*VelocityData, bool)`
+`func (o *Velocity) GetIpEventsOk() (*VelocityData, bool)`
 
-            GetIpEventsOk returns a tuple with the IpEvents field if it's non-nil, zero value otherwise
-            and a boolean to check if the value has been set.
+GetIpEventsOk returns a tuple with the IpEvents field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
 
-            ### SetIpEvents
+### SetIpEvents
 
-            `func (o *Velocity) SetIpEvents(v VelocityData)`
+`func (o *Velocity) SetIpEvents(v VelocityData)`
 
-            SetIpEvents sets IpEvents field to given value.
+SetIpEvents sets IpEvents field to given value.
 
-                ### HasIpEvents
+### HasIpEvents
 
-                `func (o *Velocity) HasIpEvents() bool`
+`func (o *Velocity) HasIpEvents() bool`
 
-                HasIpEvents returns a boolean if a field has been set.
+HasIpEvents returns a boolean if a field has been set.
 
-            ### GetDistinctIpByLinkedId
+### GetDistinctIpByLinkedId
 
-            `func (o *Velocity) GetDistinctIpByLinkedId() VelocityData`
+`func (o *Velocity) GetDistinctIpByLinkedId() VelocityData`
 
-            GetDistinctIpByLinkedId returns the DistinctIpByLinkedId field if non-nil, zero value otherwise.
+GetDistinctIpByLinkedId returns the DistinctIpByLinkedId field if non-nil, zero value otherwise.
 
-            ### GetDistinctIpByLinkedIdOk
+### GetDistinctIpByLinkedIdOk
 
-            `func (o *Velocity) GetDistinctIpByLinkedIdOk() (*VelocityData, bool)`
+`func (o *Velocity) GetDistinctIpByLinkedIdOk() (*VelocityData, bool)`
 
-            GetDistinctIpByLinkedIdOk returns a tuple with the DistinctIpByLinkedId field if it's non-nil, zero value otherwise
-            and a boolean to check if the value has been set.
+GetDistinctIpByLinkedIdOk returns a tuple with the DistinctIpByLinkedId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
 
-            ### SetDistinctIpByLinkedId
+### SetDistinctIpByLinkedId
 
-            `func (o *Velocity) SetDistinctIpByLinkedId(v VelocityData)`
+`func (o *Velocity) SetDistinctIpByLinkedId(v VelocityData)`
 
-            SetDistinctIpByLinkedId sets DistinctIpByLinkedId field to given value.
+SetDistinctIpByLinkedId sets DistinctIpByLinkedId field to given value.
 
-                ### HasDistinctIpByLinkedId
+### HasDistinctIpByLinkedId
 
-                `func (o *Velocity) HasDistinctIpByLinkedId() bool`
+`func (o *Velocity) HasDistinctIpByLinkedId() bool`
 
-                HasDistinctIpByLinkedId returns a boolean if a field has been set.
+HasDistinctIpByLinkedId returns a boolean if a field has been set.
 
-            ### GetDistinctVisitorIdByLinkedId
+### GetDistinctVisitorIdByLinkedId
 
-            `func (o *Velocity) GetDistinctVisitorIdByLinkedId() VelocityData`
+`func (o *Velocity) GetDistinctVisitorIdByLinkedId() VelocityData`
 
-            GetDistinctVisitorIdByLinkedId returns the DistinctVisitorIdByLinkedId field if non-nil, zero value otherwise.
+GetDistinctVisitorIdByLinkedId returns the DistinctVisitorIdByLinkedId field if non-nil, zero value otherwise.
 
-            ### GetDistinctVisitorIdByLinkedIdOk
+### GetDistinctVisitorIdByLinkedIdOk
 
-            `func (o *Velocity) GetDistinctVisitorIdByLinkedIdOk() (*VelocityData, bool)`
+`func (o *Velocity) GetDistinctVisitorIdByLinkedIdOk() (*VelocityData, bool)`
 
-            GetDistinctVisitorIdByLinkedIdOk returns a tuple with the DistinctVisitorIdByLinkedId field if it's non-nil, zero value otherwise
-            and a boolean to check if the value has been set.
+GetDistinctVisitorIdByLinkedIdOk returns a tuple with the DistinctVisitorIdByLinkedId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
 
-            ### SetDistinctVisitorIdByLinkedId
+### SetDistinctVisitorIdByLinkedId
 
-            `func (o *Velocity) SetDistinctVisitorIdByLinkedId(v VelocityData)`
+`func (o *Velocity) SetDistinctVisitorIdByLinkedId(v VelocityData)`
 
-            SetDistinctVisitorIdByLinkedId sets DistinctVisitorIdByLinkedId field to given value.
+SetDistinctVisitorIdByLinkedId sets DistinctVisitorIdByLinkedId field to given value.
 
-                ### HasDistinctVisitorIdByLinkedId
+### HasDistinctVisitorIdByLinkedId
 
-                `func (o *Velocity) HasDistinctVisitorIdByLinkedId() bool`
+`func (o *Velocity) HasDistinctVisitorIdByLinkedId() bool`
 
-                HasDistinctVisitorIdByLinkedId returns a boolean if a field has been set.
+HasDistinctVisitorIdByLinkedId returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
 

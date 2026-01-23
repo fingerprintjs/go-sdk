@@ -22,11 +22,10 @@
 # Then explicitly reverse the ignore rule for a single file:
 #!docs/README.md
 
-// Ignore gitignore
+// Ignore .gitignore
 .gitignore
 
-// Ignore manually created files
-README.md
+// Ignore manually created files (except README.md)
 client_wrapper.go
 options.go
 region.go

@@ -1,10 +1,10 @@
 # Geolocation
 
-    ## Properties
+## Properties
 
-    Name | Type | Description | Notes
-    ------------ | ------------- | ------------- | -------------
-        **AccuracyRadius** | Pointer to **int32** | The IP address is likely to be within this radius (in km) of the specified location. | [optional] 
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**AccuracyRadius** | Pointer to **int32** | The IP address is likely to be within this radius (in km) of the specified location. | [optional] 
 **Latitude** | Pointer to **float64** |  | [optional] 
 **Longitude** | Pointer to **float64** |  | [optional] 
 **PostalCode** | Pointer to **string** |  | [optional] 
@@ -16,300 +16,301 @@
 **ContinentName** | Pointer to **string** |  | [optional] 
 **Subdivisions** | Pointer to [**[]GeolocationSubdivisionsInner**](GeolocationSubdivisionsInner.md) |  | [optional] 
 
-    ## Methods
+## Methods
 
-        ### NewGeolocation
+### NewGeolocation
 
-        `func NewGeolocation() *Geolocation`
+`func NewGeolocation() *Geolocation`
 
-        NewGeolocation instantiates a new Geolocation object
-        This constructor will assign default values to properties that have it defined,
-        and makes sure properties required by API are set, but the set of arguments
-        will change when the set of required properties is changed
+NewGeolocation instantiates a new Geolocation object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
 
-        ### NewGeolocationWithDefaults
+### NewGeolocationWithDefaults
 
-        `func NewGeolocationWithDefaults() *Geolocation`
+`func NewGeolocationWithDefaults() *Geolocation`
 
-        NewGeolocationWithDefaults instantiates a new Geolocation object
-        This constructor will only assign default values to properties that have it defined,
-        but it doesn't guarantee that properties required by API are set
+NewGeolocationWithDefaults instantiates a new Geolocation object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
 
-            ### GetAccuracyRadius
+### GetAccuracyRadius
 
-            `func (o *Geolocation) GetAccuracyRadius() int32`
+`func (o *Geolocation) GetAccuracyRadius() int32`
 
-            GetAccuracyRadius returns the AccuracyRadius field if non-nil, zero value otherwise.
+GetAccuracyRadius returns the AccuracyRadius field if non-nil, zero value otherwise.
 
-            ### GetAccuracyRadiusOk
+### GetAccuracyRadiusOk
 
-            `func (o *Geolocation) GetAccuracyRadiusOk() (*int32, bool)`
+`func (o *Geolocation) GetAccuracyRadiusOk() (*int32, bool)`
 
-            GetAccuracyRadiusOk returns a tuple with the AccuracyRadius field if it's non-nil, zero value otherwise
-            and a boolean to check if the value has been set.
+GetAccuracyRadiusOk returns a tuple with the AccuracyRadius field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
 
-            ### SetAccuracyRadius
+### SetAccuracyRadius
 
-            `func (o *Geolocation) SetAccuracyRadius(v int32)`
+`func (o *Geolocation) SetAccuracyRadius(v int32)`
 
-            SetAccuracyRadius sets AccuracyRadius field to given value.
+SetAccuracyRadius sets AccuracyRadius field to given value.
 
-                ### HasAccuracyRadius
+### HasAccuracyRadius
 
-                `func (o *Geolocation) HasAccuracyRadius() bool`
+`func (o *Geolocation) HasAccuracyRadius() bool`
 
-                HasAccuracyRadius returns a boolean if a field has been set.
+HasAccuracyRadius returns a boolean if a field has been set.
 
-            ### GetLatitude
+### GetLatitude
 
-            `func (o *Geolocation) GetLatitude() float64`
+`func (o *Geolocation) GetLatitude() float64`
 
-            GetLatitude returns the Latitude field if non-nil, zero value otherwise.
+GetLatitude returns the Latitude field if non-nil, zero value otherwise.
 
-            ### GetLatitudeOk
+### GetLatitudeOk
 
-            `func (o *Geolocation) GetLatitudeOk() (*float64, bool)`
+`func (o *Geolocation) GetLatitudeOk() (*float64, bool)`
 
-            GetLatitudeOk returns a tuple with the Latitude field if it's non-nil, zero value otherwise
-            and a boolean to check if the value has been set.
+GetLatitudeOk returns a tuple with the Latitude field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
 
-            ### SetLatitude
+### SetLatitude
 
-            `func (o *Geolocation) SetLatitude(v float64)`
+`func (o *Geolocation) SetLatitude(v float64)`
 
-            SetLatitude sets Latitude field to given value.
+SetLatitude sets Latitude field to given value.
 
-                ### HasLatitude
+### HasLatitude
 
-                `func (o *Geolocation) HasLatitude() bool`
+`func (o *Geolocation) HasLatitude() bool`
 
-                HasLatitude returns a boolean if a field has been set.
+HasLatitude returns a boolean if a field has been set.
 
-            ### GetLongitude
+### GetLongitude
 
-            `func (o *Geolocation) GetLongitude() float64`
+`func (o *Geolocation) GetLongitude() float64`
 
-            GetLongitude returns the Longitude field if non-nil, zero value otherwise.
+GetLongitude returns the Longitude field if non-nil, zero value otherwise.
 
-            ### GetLongitudeOk
+### GetLongitudeOk
 
-            `func (o *Geolocation) GetLongitudeOk() (*float64, bool)`
+`func (o *Geolocation) GetLongitudeOk() (*float64, bool)`
 
-            GetLongitudeOk returns a tuple with the Longitude field if it's non-nil, zero value otherwise
-            and a boolean to check if the value has been set.
+GetLongitudeOk returns a tuple with the Longitude field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
 
-            ### SetLongitude
+### SetLongitude
 
-            `func (o *Geolocation) SetLongitude(v float64)`
+`func (o *Geolocation) SetLongitude(v float64)`
 
-            SetLongitude sets Longitude field to given value.
+SetLongitude sets Longitude field to given value.
 
-                ### HasLongitude
+### HasLongitude
 
-                `func (o *Geolocation) HasLongitude() bool`
+`func (o *Geolocation) HasLongitude() bool`
 
-                HasLongitude returns a boolean if a field has been set.
+HasLongitude returns a boolean if a field has been set.
 
-            ### GetPostalCode
+### GetPostalCode
 
-            `func (o *Geolocation) GetPostalCode() string`
+`func (o *Geolocation) GetPostalCode() string`
 
-            GetPostalCode returns the PostalCode field if non-nil, zero value otherwise.
+GetPostalCode returns the PostalCode field if non-nil, zero value otherwise.
 
-            ### GetPostalCodeOk
+### GetPostalCodeOk
 
-            `func (o *Geolocation) GetPostalCodeOk() (*string, bool)`
+`func (o *Geolocation) GetPostalCodeOk() (*string, bool)`
 
-            GetPostalCodeOk returns a tuple with the PostalCode field if it's non-nil, zero value otherwise
-            and a boolean to check if the value has been set.
+GetPostalCodeOk returns a tuple with the PostalCode field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
 
-            ### SetPostalCode
+### SetPostalCode
 
-            `func (o *Geolocation) SetPostalCode(v string)`
+`func (o *Geolocation) SetPostalCode(v string)`
 
-            SetPostalCode sets PostalCode field to given value.
+SetPostalCode sets PostalCode field to given value.
 
-                ### HasPostalCode
+### HasPostalCode
 
-                `func (o *Geolocation) HasPostalCode() bool`
+`func (o *Geolocation) HasPostalCode() bool`
 
-                HasPostalCode returns a boolean if a field has been set.
+HasPostalCode returns a boolean if a field has been set.
 
-            ### GetTimezone
+### GetTimezone
 
-            `func (o *Geolocation) GetTimezone() string`
+`func (o *Geolocation) GetTimezone() string`
 
-            GetTimezone returns the Timezone field if non-nil, zero value otherwise.
+GetTimezone returns the Timezone field if non-nil, zero value otherwise.
 
-            ### GetTimezoneOk
+### GetTimezoneOk
 
-            `func (o *Geolocation) GetTimezoneOk() (*string, bool)`
+`func (o *Geolocation) GetTimezoneOk() (*string, bool)`
 
-            GetTimezoneOk returns a tuple with the Timezone field if it's non-nil, zero value otherwise
-            and a boolean to check if the value has been set.
+GetTimezoneOk returns a tuple with the Timezone field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
 
-            ### SetTimezone
+### SetTimezone
 
-            `func (o *Geolocation) SetTimezone(v string)`
+`func (o *Geolocation) SetTimezone(v string)`
 
-            SetTimezone sets Timezone field to given value.
+SetTimezone sets Timezone field to given value.
 
-                ### HasTimezone
+### HasTimezone
 
-                `func (o *Geolocation) HasTimezone() bool`
+`func (o *Geolocation) HasTimezone() bool`
 
-                HasTimezone returns a boolean if a field has been set.
+HasTimezone returns a boolean if a field has been set.
 
-            ### GetCityName
+### GetCityName
 
-            `func (o *Geolocation) GetCityName() string`
+`func (o *Geolocation) GetCityName() string`
 
-            GetCityName returns the CityName field if non-nil, zero value otherwise.
+GetCityName returns the CityName field if non-nil, zero value otherwise.
 
-            ### GetCityNameOk
+### GetCityNameOk
 
-            `func (o *Geolocation) GetCityNameOk() (*string, bool)`
+`func (o *Geolocation) GetCityNameOk() (*string, bool)`
 
-            GetCityNameOk returns a tuple with the CityName field if it's non-nil, zero value otherwise
-            and a boolean to check if the value has been set.
+GetCityNameOk returns a tuple with the CityName field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
 
-            ### SetCityName
+### SetCityName
 
-            `func (o *Geolocation) SetCityName(v string)`
+`func (o *Geolocation) SetCityName(v string)`
 
-            SetCityName sets CityName field to given value.
+SetCityName sets CityName field to given value.
 
-                ### HasCityName
+### HasCityName
 
-                `func (o *Geolocation) HasCityName() bool`
+`func (o *Geolocation) HasCityName() bool`
 
-                HasCityName returns a boolean if a field has been set.
+HasCityName returns a boolean if a field has been set.
 
-            ### GetCountryCode
+### GetCountryCode
 
-            `func (o *Geolocation) GetCountryCode() string`
+`func (o *Geolocation) GetCountryCode() string`
 
-            GetCountryCode returns the CountryCode field if non-nil, zero value otherwise.
+GetCountryCode returns the CountryCode field if non-nil, zero value otherwise.
 
-            ### GetCountryCodeOk
+### GetCountryCodeOk
 
-            `func (o *Geolocation) GetCountryCodeOk() (*string, bool)`
+`func (o *Geolocation) GetCountryCodeOk() (*string, bool)`
 
-            GetCountryCodeOk returns a tuple with the CountryCode field if it's non-nil, zero value otherwise
-            and a boolean to check if the value has been set.
+GetCountryCodeOk returns a tuple with the CountryCode field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
 
-            ### SetCountryCode
+### SetCountryCode
 
-            `func (o *Geolocation) SetCountryCode(v string)`
+`func (o *Geolocation) SetCountryCode(v string)`
 
-            SetCountryCode sets CountryCode field to given value.
+SetCountryCode sets CountryCode field to given value.
 
-                ### HasCountryCode
+### HasCountryCode
 
-                `func (o *Geolocation) HasCountryCode() bool`
+`func (o *Geolocation) HasCountryCode() bool`
 
-                HasCountryCode returns a boolean if a field has been set.
+HasCountryCode returns a boolean if a field has been set.
 
-            ### GetCountryName
+### GetCountryName
 
-            `func (o *Geolocation) GetCountryName() string`
+`func (o *Geolocation) GetCountryName() string`
 
-            GetCountryName returns the CountryName field if non-nil, zero value otherwise.
+GetCountryName returns the CountryName field if non-nil, zero value otherwise.
 
-            ### GetCountryNameOk
+### GetCountryNameOk
 
-            `func (o *Geolocation) GetCountryNameOk() (*string, bool)`
+`func (o *Geolocation) GetCountryNameOk() (*string, bool)`
 
-            GetCountryNameOk returns a tuple with the CountryName field if it's non-nil, zero value otherwise
-            and a boolean to check if the value has been set.
+GetCountryNameOk returns a tuple with the CountryName field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
 
-            ### SetCountryName
+### SetCountryName
 
-            `func (o *Geolocation) SetCountryName(v string)`
+`func (o *Geolocation) SetCountryName(v string)`
 
-            SetCountryName sets CountryName field to given value.
+SetCountryName sets CountryName field to given value.
 
-                ### HasCountryName
+### HasCountryName
 
-                `func (o *Geolocation) HasCountryName() bool`
+`func (o *Geolocation) HasCountryName() bool`
 
-                HasCountryName returns a boolean if a field has been set.
+HasCountryName returns a boolean if a field has been set.
 
-            ### GetContinentCode
+### GetContinentCode
 
-            `func (o *Geolocation) GetContinentCode() string`
+`func (o *Geolocation) GetContinentCode() string`
 
-            GetContinentCode returns the ContinentCode field if non-nil, zero value otherwise.
+GetContinentCode returns the ContinentCode field if non-nil, zero value otherwise.
 
-            ### GetContinentCodeOk
+### GetContinentCodeOk
 
-            `func (o *Geolocation) GetContinentCodeOk() (*string, bool)`
+`func (o *Geolocation) GetContinentCodeOk() (*string, bool)`
 
-            GetContinentCodeOk returns a tuple with the ContinentCode field if it's non-nil, zero value otherwise
-            and a boolean to check if the value has been set.
+GetContinentCodeOk returns a tuple with the ContinentCode field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
 
-            ### SetContinentCode
+### SetContinentCode
 
-            `func (o *Geolocation) SetContinentCode(v string)`
+`func (o *Geolocation) SetContinentCode(v string)`
 
-            SetContinentCode sets ContinentCode field to given value.
+SetContinentCode sets ContinentCode field to given value.
 
-                ### HasContinentCode
+### HasContinentCode
 
-                `func (o *Geolocation) HasContinentCode() bool`
+`func (o *Geolocation) HasContinentCode() bool`
 
-                HasContinentCode returns a boolean if a field has been set.
+HasContinentCode returns a boolean if a field has been set.
 
-            ### GetContinentName
+### GetContinentName
 
-            `func (o *Geolocation) GetContinentName() string`
+`func (o *Geolocation) GetContinentName() string`
 
-            GetContinentName returns the ContinentName field if non-nil, zero value otherwise.
+GetContinentName returns the ContinentName field if non-nil, zero value otherwise.
 
-            ### GetContinentNameOk
+### GetContinentNameOk
 
-            `func (o *Geolocation) GetContinentNameOk() (*string, bool)`
+`func (o *Geolocation) GetContinentNameOk() (*string, bool)`
 
-            GetContinentNameOk returns a tuple with the ContinentName field if it's non-nil, zero value otherwise
-            and a boolean to check if the value has been set.
+GetContinentNameOk returns a tuple with the ContinentName field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
 
-            ### SetContinentName
+### SetContinentName
 
-            `func (o *Geolocation) SetContinentName(v string)`
+`func (o *Geolocation) SetContinentName(v string)`
 
-            SetContinentName sets ContinentName field to given value.
+SetContinentName sets ContinentName field to given value.
 
-                ### HasContinentName
+### HasContinentName
 
-                `func (o *Geolocation) HasContinentName() bool`
+`func (o *Geolocation) HasContinentName() bool`
 
-                HasContinentName returns a boolean if a field has been set.
+HasContinentName returns a boolean if a field has been set.
 
-            ### GetSubdivisions
+### GetSubdivisions
 
-            `func (o *Geolocation) GetSubdivisions() []GeolocationSubdivisionsInner`
+`func (o *Geolocation) GetSubdivisions() []GeolocationSubdivisionsInner`
 
-            GetSubdivisions returns the Subdivisions field if non-nil, zero value otherwise.
+GetSubdivisions returns the Subdivisions field if non-nil, zero value otherwise.
 
-            ### GetSubdivisionsOk
+### GetSubdivisionsOk
 
-            `func (o *Geolocation) GetSubdivisionsOk() (*[]GeolocationSubdivisionsInner, bool)`
+`func (o *Geolocation) GetSubdivisionsOk() (*[]GeolocationSubdivisionsInner, bool)`
 
-            GetSubdivisionsOk returns a tuple with the Subdivisions field if it's non-nil, zero value otherwise
-            and a boolean to check if the value has been set.
+GetSubdivisionsOk returns a tuple with the Subdivisions field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
 
-            ### SetSubdivisions
+### SetSubdivisions
 
-            `func (o *Geolocation) SetSubdivisions(v []GeolocationSubdivisionsInner)`
+`func (o *Geolocation) SetSubdivisions(v []GeolocationSubdivisionsInner)`
 
-            SetSubdivisions sets Subdivisions field to given value.
+SetSubdivisions sets Subdivisions field to given value.
 
-                ### HasSubdivisions
+### HasSubdivisions
 
-                `func (o *Geolocation) HasSubdivisions() bool`
+`func (o *Geolocation) HasSubdivisions() bool`
 
-                HasSubdivisions returns a boolean if a field has been set.
+HasSubdivisions returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
 

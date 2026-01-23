@@ -90,9 +90,8 @@ type Configuration struct {
 func NewConfiguration() *Configuration {
 	cfg := &Configuration{
 		DefaultHeader: make(map[string]string),
-		// todo user agent???
-		UserAgent: "OpenAPI-Generator/1.0.0/go",
-		Debug:     false,
+		UserAgent:     "OpenAPI-Generator/1.0.0/go",
+		Debug:         false,
 		Servers: ServerConfigurations{
 			{
 				URL:         "https://api.fpjs.io/v4",

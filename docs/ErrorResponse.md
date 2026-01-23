@@ -1,50 +1,51 @@
 # ErrorResponse
 
-    ## Properties
+## Properties
 
-    Name | Type | Description | Notes
-    ------------ | ------------- | ------------- | -------------
-        **Error** | [**Error**](Error.md) |  | 
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**Error** | [**Error**](Error.md) |  | 
 
-    ## Methods
+## Methods
 
-        ### NewErrorResponse
+### NewErrorResponse
 
-        `func NewErrorResponse(error_ Error, ) *ErrorResponse`
+`func NewErrorResponse(error_ Error, ) *ErrorResponse`
 
-        NewErrorResponse instantiates a new ErrorResponse object
-        This constructor will assign default values to properties that have it defined,
-        and makes sure properties required by API are set, but the set of arguments
-        will change when the set of required properties is changed
+NewErrorResponse instantiates a new ErrorResponse object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
 
-        ### NewErrorResponseWithDefaults
+### NewErrorResponseWithDefaults
 
-        `func NewErrorResponseWithDefaults() *ErrorResponse`
+`func NewErrorResponseWithDefaults() *ErrorResponse`
 
-        NewErrorResponseWithDefaults instantiates a new ErrorResponse object
-        This constructor will only assign default values to properties that have it defined,
-        but it doesn't guarantee that properties required by API are set
+NewErrorResponseWithDefaults instantiates a new ErrorResponse object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
 
-            ### GetError
+### GetError
 
-            `func (o *ErrorResponse) GetError() Error`
+`func (o *ErrorResponse) GetError() Error`
 
-            GetError returns the Error field if non-nil, zero value otherwise.
+GetError returns the Error field if non-nil, zero value otherwise.
 
-            ### GetErrorOk
+### GetErrorOk
 
-            `func (o *ErrorResponse) GetErrorOk() (*Error, bool)`
+`func (o *ErrorResponse) GetErrorOk() (*Error, bool)`
 
-            GetErrorOk returns a tuple with the Error field if it's non-nil, zero value otherwise
-            and a boolean to check if the value has been set.
+GetErrorOk returns a tuple with the Error field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
 
-            ### SetError
+### SetError
 
-            `func (o *ErrorResponse) SetError(v Error)`
+`func (o *ErrorResponse) SetError(v Error)`
 
-            SetError sets Error field to given value.
+SetError sets Error field to given value.
 
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
 

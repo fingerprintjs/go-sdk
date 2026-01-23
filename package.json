@@ -1,5 +1,5 @@
 {
-  "name": "fingerprint-pro-server-api-go-sdk",
+  "name": "fingerprint-server-go-sdk",
   "version": "8.0.0",
   "private": true,
   "devDependencies": {

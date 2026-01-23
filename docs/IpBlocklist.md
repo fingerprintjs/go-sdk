@@ -1,107 +1,108 @@
 # IPBlockList
 
-    ## Properties
+## Properties
 
-    Name | Type | Description | Notes
-    ------------ | ------------- | ------------- | -------------
-        **EmailSpam** | Pointer to **bool** | IP address was part of a known email spam attack (SMTP). | [optional] 
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**EmailSpam** | Pointer to **bool** | IP address was part of a known email spam attack (SMTP). | [optional] 
 **AttackSource** | Pointer to **bool** | IP address was part of a known network attack (SSH/HTTPS). | [optional] 
 **TorNode** | Pointer to **bool** | IP address was part of known TOR network activity. | [optional] 
 
-    ## Methods
+## Methods
 
-        ### NewIPBlockList
+### NewIPBlockList
 
-        `func NewIPBlockList() *IPBlockList`
+`func NewIPBlockList() *IPBlockList`
 
-        NewIPBlockList instantiates a new IPBlockList object
-        This constructor will assign default values to properties that have it defined,
-        and makes sure properties required by API are set, but the set of arguments
-        will change when the set of required properties is changed
+NewIPBlockList instantiates a new IPBlockList object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
 
-        ### NewIPBlockListWithDefaults
+### NewIPBlockListWithDefaults
 
-        `func NewIPBlockListWithDefaults() *IPBlockList`
+`func NewIPBlockListWithDefaults() *IPBlockList`
 
-        NewIPBlockListWithDefaults instantiates a new IPBlockList object
-        This constructor will only assign default values to properties that have it defined,
-        but it doesn't guarantee that properties required by API are set
+NewIPBlockListWithDefaults instantiates a new IPBlockList object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
 
-            ### GetEmailSpam
+### GetEmailSpam
 
-            `func (o *IPBlockList) GetEmailSpam() bool`
+`func (o *IPBlockList) GetEmailSpam() bool`
 
-            GetEmailSpam returns the EmailSpam field if non-nil, zero value otherwise.
+GetEmailSpam returns the EmailSpam field if non-nil, zero value otherwise.
 
-            ### GetEmailSpamOk
+### GetEmailSpamOk
 
-            `func (o *IPBlockList) GetEmailSpamOk() (*bool, bool)`
+`func (o *IPBlockList) GetEmailSpamOk() (*bool, bool)`
 
-            GetEmailSpamOk returns a tuple with the EmailSpam field if it's non-nil, zero value otherwise
-            and a boolean to check if the value has been set.
+GetEmailSpamOk returns a tuple with the EmailSpam field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
 
-            ### SetEmailSpam
+### SetEmailSpam
 
-            `func (o *IPBlockList) SetEmailSpam(v bool)`
+`func (o *IPBlockList) SetEmailSpam(v bool)`
 
-            SetEmailSpam sets EmailSpam field to given value.
+SetEmailSpam sets EmailSpam field to given value.
 
-                ### HasEmailSpam
+### HasEmailSpam
 
-                `func (o *IPBlockList) HasEmailSpam() bool`
+`func (o *IPBlockList) HasEmailSpam() bool`
 
-                HasEmailSpam returns a boolean if a field has been set.
+HasEmailSpam returns a boolean if a field has been set.
 
-            ### GetAttackSource
+### GetAttackSource
 
-            `func (o *IPBlockList) GetAttackSource() bool`
+`func (o *IPBlockList) GetAttackSource() bool`
 
-            GetAttackSource returns the AttackSource field if non-nil, zero value otherwise.
+GetAttackSource returns the AttackSource field if non-nil, zero value otherwise.
 
-            ### GetAttackSourceOk
+### GetAttackSourceOk
 
-            `func (o *IPBlockList) GetAttackSourceOk() (*bool, bool)`
+`func (o *IPBlockList) GetAttackSourceOk() (*bool, bool)`
 
-            GetAttackSourceOk returns a tuple with the AttackSource field if it's non-nil, zero value otherwise
-            and a boolean to check if the value has been set.
+GetAttackSourceOk returns a tuple with the AttackSource field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
 
-            ### SetAttackSource
+### SetAttackSource
 
-            `func (o *IPBlockList) SetAttackSource(v bool)`
+`func (o *IPBlockList) SetAttackSource(v bool)`
 
-            SetAttackSource sets AttackSource field to given value.
+SetAttackSource sets AttackSource field to given value.
 
-                ### HasAttackSource
+### HasAttackSource
 
-                `func (o *IPBlockList) HasAttackSource() bool`
+`func (o *IPBlockList) HasAttackSource() bool`
 
-                HasAttackSource returns a boolean if a field has been set.
+HasAttackSource returns a boolean if a field has been set.
 
-            ### GetTorNode
+### GetTorNode
 
-            `func (o *IPBlockList) GetTorNode() bool`
+`func (o *IPBlockList) GetTorNode() bool`
 
-            GetTorNode returns the TorNode field if non-nil, zero value otherwise.
+GetTorNode returns the TorNode field if non-nil, zero value otherwise.
 
-            ### GetTorNodeOk
+### GetTorNodeOk
 
-            `func (o *IPBlockList) GetTorNodeOk() (*bool, bool)`
+`func (o *IPBlockList) GetTorNodeOk() (*bool, bool)`
 
-            GetTorNodeOk returns a tuple with the TorNode field if it's non-nil, zero value otherwise
-            and a boolean to check if the value has been set.
+GetTorNodeOk returns a tuple with the TorNode field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
 
-            ### SetTorNode
+### SetTorNode
 
-            `func (o *IPBlockList) SetTorNode(v bool)`
+`func (o *IPBlockList) SetTorNode(v bool)`
 
-            SetTorNode sets TorNode field to given value.
+SetTorNode sets TorNode field to given value.
 
-                ### HasTorNode
+### HasTorNode
 
-                `func (o *IPBlockList) HasTorNode() bool`
+`func (o *IPBlockList) HasTorNode() bool`
 
-                HasTorNode returns a boolean if a field has been set.
+HasTorNode returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
 

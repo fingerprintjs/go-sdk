@@ -1,10 +1,10 @@
 # IPInfoV6
 
-    ## Properties
+## Properties
 
-    Name | Type | Description | Notes
-    ------------ | ------------- | ------------- | -------------
-        **Address** | **string** |  | 
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**Address** | **string** |  | 
 **Geolocation** | Pointer to [**Geolocation**](Geolocation.md) |  | [optional] 
 **Asn** | Pointer to **string** |  | [optional] 
 **AsnName** | Pointer to **string** |  | [optional] 
@@ -13,220 +13,221 @@
 **DatacenterResult** | Pointer to **bool** |  | [optional] 
 **DatacenterName** | Pointer to **string** |  | [optional] 
 
-    ## Methods
+## Methods
 
-        ### NewIPInfoV6
+### NewIPInfoV6
 
-        `func NewIPInfoV6(address string, ) *IPInfoV6`
+`func NewIPInfoV6(address string, ) *IPInfoV6`
 
-        NewIPInfoV6 instantiates a new IPInfoV6 object
-        This constructor will assign default values to properties that have it defined,
-        and makes sure properties required by API are set, but the set of arguments
-        will change when the set of required properties is changed
+NewIPInfoV6 instantiates a new IPInfoV6 object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
 
-        ### NewIPInfoV6WithDefaults
+### NewIPInfoV6WithDefaults
 
-        `func NewIPInfoV6WithDefaults() *IPInfoV6`
+`func NewIPInfoV6WithDefaults() *IPInfoV6`
 
-        NewIPInfoV6WithDefaults instantiates a new IPInfoV6 object
-        This constructor will only assign default values to properties that have it defined,
-        but it doesn't guarantee that properties required by API are set
+NewIPInfoV6WithDefaults instantiates a new IPInfoV6 object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
 
-            ### GetAddress
+### GetAddress
 
-            `func (o *IPInfoV6) GetAddress() string`
+`func (o *IPInfoV6) GetAddress() string`
 
-            GetAddress returns the Address field if non-nil, zero value otherwise.
+GetAddress returns the Address field if non-nil, zero value otherwise.
 
-            ### GetAddressOk
+### GetAddressOk
 
-            `func (o *IPInfoV6) GetAddressOk() (*string, bool)`
+`func (o *IPInfoV6) GetAddressOk() (*string, bool)`
 
-            GetAddressOk returns a tuple with the Address field if it's non-nil, zero value otherwise
-            and a boolean to check if the value has been set.
+GetAddressOk returns a tuple with the Address field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
 
-            ### SetAddress
+### SetAddress
 
-            `func (o *IPInfoV6) SetAddress(v string)`
+`func (o *IPInfoV6) SetAddress(v string)`
 
-            SetAddress sets Address field to given value.
+SetAddress sets Address field to given value.
 
 
-            ### GetGeolocation
+### GetGeolocation
 
-            `func (o *IPInfoV6) GetGeolocation() Geolocation`
+`func (o *IPInfoV6) GetGeolocation() Geolocation`
 
-            GetGeolocation returns the Geolocation field if non-nil, zero value otherwise.
+GetGeolocation returns the Geolocation field if non-nil, zero value otherwise.
 
-            ### GetGeolocationOk
+### GetGeolocationOk
 
-            `func (o *IPInfoV6) GetGeolocationOk() (*Geolocation, bool)`
+`func (o *IPInfoV6) GetGeolocationOk() (*Geolocation, bool)`
 
-            GetGeolocationOk returns a tuple with the Geolocation field if it's non-nil, zero value otherwise
-            and a boolean to check if the value has been set.
+GetGeolocationOk returns a tuple with the Geolocation field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
 
-            ### SetGeolocation
+### SetGeolocation
 
-            `func (o *IPInfoV6) SetGeolocation(v Geolocation)`
+`func (o *IPInfoV6) SetGeolocation(v Geolocation)`
 
-            SetGeolocation sets Geolocation field to given value.
+SetGeolocation sets Geolocation field to given value.
 
-                ### HasGeolocation
+### HasGeolocation
 
-                `func (o *IPInfoV6) HasGeolocation() bool`
+`func (o *IPInfoV6) HasGeolocation() bool`
 
-                HasGeolocation returns a boolean if a field has been set.
+HasGeolocation returns a boolean if a field has been set.
 
-            ### GetAsn
+### GetAsn
 
-            `func (o *IPInfoV6) GetAsn() string`
+`func (o *IPInfoV6) GetAsn() string`
 
-            GetAsn returns the Asn field if non-nil, zero value otherwise.
+GetAsn returns the Asn field if non-nil, zero value otherwise.
 
-            ### GetAsnOk
+### GetAsnOk
 
-            `func (o *IPInfoV6) GetAsnOk() (*string, bool)`
+`func (o *IPInfoV6) GetAsnOk() (*string, bool)`
 
-            GetAsnOk returns a tuple with the Asn field if it's non-nil, zero value otherwise
-            and a boolean to check if the value has been set.
+GetAsnOk returns a tuple with the Asn field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
 
-            ### SetAsn
+### SetAsn
 
-            `func (o *IPInfoV6) SetAsn(v string)`
+`func (o *IPInfoV6) SetAsn(v string)`
 
-            SetAsn sets Asn field to given value.
+SetAsn sets Asn field to given value.
 
-                ### HasAsn
+### HasAsn
 
-                `func (o *IPInfoV6) HasAsn() bool`
+`func (o *IPInfoV6) HasAsn() bool`
 
-                HasAsn returns a boolean if a field has been set.
+HasAsn returns a boolean if a field has been set.
 
-            ### GetAsnName
+### GetAsnName
 
-            `func (o *IPInfoV6) GetAsnName() string`
+`func (o *IPInfoV6) GetAsnName() string`
 
-            GetAsnName returns the AsnName field if non-nil, zero value otherwise.
+GetAsnName returns the AsnName field if non-nil, zero value otherwise.
 
-            ### GetAsnNameOk
+### GetAsnNameOk
 
-            `func (o *IPInfoV6) GetAsnNameOk() (*string, bool)`
+`func (o *IPInfoV6) GetAsnNameOk() (*string, bool)`
 
-            GetAsnNameOk returns a tuple with the AsnName field if it's non-nil, zero value otherwise
-            and a boolean to check if the value has been set.
+GetAsnNameOk returns a tuple with the AsnName field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
 
-            ### SetAsnName
+### SetAsnName
 
-            `func (o *IPInfoV6) SetAsnName(v string)`
+`func (o *IPInfoV6) SetAsnName(v string)`
 
-            SetAsnName sets AsnName field to given value.
+SetAsnName sets AsnName field to given value.
 
-                ### HasAsnName
+### HasAsnName
 
-                `func (o *IPInfoV6) HasAsnName() bool`
+`func (o *IPInfoV6) HasAsnName() bool`
 
-                HasAsnName returns a boolean if a field has been set.
+HasAsnName returns a boolean if a field has been set.
 
-            ### GetAsnNetwork
+### GetAsnNetwork
 
-            `func (o *IPInfoV6) GetAsnNetwork() string`
+`func (o *IPInfoV6) GetAsnNetwork() string`
 
-            GetAsnNetwork returns the AsnNetwork field if non-nil, zero value otherwise.
+GetAsnNetwork returns the AsnNetwork field if non-nil, zero value otherwise.
 
-            ### GetAsnNetworkOk
+### GetAsnNetworkOk
 
-            `func (o *IPInfoV6) GetAsnNetworkOk() (*string, bool)`
+`func (o *IPInfoV6) GetAsnNetworkOk() (*string, bool)`
 
-            GetAsnNetworkOk returns a tuple with the AsnNetwork field if it's non-nil, zero value otherwise
-            and a boolean to check if the value has been set.
+GetAsnNetworkOk returns a tuple with the AsnNetwork field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
 
-            ### SetAsnNetwork
+### SetAsnNetwork
 
-            `func (o *IPInfoV6) SetAsnNetwork(v string)`
+`func (o *IPInfoV6) SetAsnNetwork(v string)`
 
-            SetAsnNetwork sets AsnNetwork field to given value.
+SetAsnNetwork sets AsnNetwork field to given value.
 
-                ### HasAsnNetwork
+### HasAsnNetwork
 
-                `func (o *IPInfoV6) HasAsnNetwork() bool`
+`func (o *IPInfoV6) HasAsnNetwork() bool`
 
-                HasAsnNetwork returns a boolean if a field has been set.
+HasAsnNetwork returns a boolean if a field has been set.
 
-            ### GetAsnType
+### GetAsnType
 
-            `func (o *IPInfoV6) GetAsnType() string`
+`func (o *IPInfoV6) GetAsnType() string`
 
-            GetAsnType returns the AsnType field if non-nil, zero value otherwise.
+GetAsnType returns the AsnType field if non-nil, zero value otherwise.
 
-            ### GetAsnTypeOk
+### GetAsnTypeOk
 
-            `func (o *IPInfoV6) GetAsnTypeOk() (*string, bool)`
+`func (o *IPInfoV6) GetAsnTypeOk() (*string, bool)`
 
-            GetAsnTypeOk returns a tuple with the AsnType field if it's non-nil, zero value otherwise
-            and a boolean to check if the value has been set.
+GetAsnTypeOk returns a tuple with the AsnType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
 
-            ### SetAsnType
+### SetAsnType
 
-            `func (o *IPInfoV6) SetAsnType(v string)`
+`func (o *IPInfoV6) SetAsnType(v string)`
 
-            SetAsnType sets AsnType field to given value.
+SetAsnType sets AsnType field to given value.
 
-                ### HasAsnType
+### HasAsnType
 
-                `func (o *IPInfoV6) HasAsnType() bool`
+`func (o *IPInfoV6) HasAsnType() bool`
 
-                HasAsnType returns a boolean if a field has been set.
+HasAsnType returns a boolean if a field has been set.
 
-            ### GetDatacenterResult
+### GetDatacenterResult
 
-            `func (o *IPInfoV6) GetDatacenterResult() bool`
+`func (o *IPInfoV6) GetDatacenterResult() bool`
 
-            GetDatacenterResult returns the DatacenterResult field if non-nil, zero value otherwise.
+GetDatacenterResult returns the DatacenterResult field if non-nil, zero value otherwise.
 
-            ### GetDatacenterResultOk
+### GetDatacenterResultOk
 
-            `func (o *IPInfoV6) GetDatacenterResultOk() (*bool, bool)`
+`func (o *IPInfoV6) GetDatacenterResultOk() (*bool, bool)`
 
-            GetDatacenterResultOk returns a tuple with the DatacenterResult field if it's non-nil, zero value otherwise
-            and a boolean to check if the value has been set.
+GetDatacenterResultOk returns a tuple with the DatacenterResult field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
 
-            ### SetDatacenterResult
+### SetDatacenterResult
 
-            `func (o *IPInfoV6) SetDatacenterResult(v bool)`
+`func (o *IPInfoV6) SetDatacenterResult(v bool)`
 
-            SetDatacenterResult sets DatacenterResult field to given value.
+SetDatacenterResult sets DatacenterResult field to given value.
 
-                ### HasDatacenterResult
+### HasDatacenterResult
 
-                `func (o *IPInfoV6) HasDatacenterResult() bool`
+`func (o *IPInfoV6) HasDatacenterResult() bool`
 
-                HasDatacenterResult returns a boolean if a field has been set.
+HasDatacenterResult returns a boolean if a field has been set.
 
-            ### GetDatacenterName
+### GetDatacenterName
 
-            `func (o *IPInfoV6) GetDatacenterName() string`
+`func (o *IPInfoV6) GetDatacenterName() string`
 
-            GetDatacenterName returns the DatacenterName field if non-nil, zero value otherwise.
+GetDatacenterName returns the DatacenterName field if non-nil, zero value otherwise.
 
-            ### GetDatacenterNameOk
+### GetDatacenterNameOk
 
-            `func (o *IPInfoV6) GetDatacenterNameOk() (*string, bool)`
+`func (o *IPInfoV6) GetDatacenterNameOk() (*string, bool)`
 
-            GetDatacenterNameOk returns a tuple with the DatacenterName field if it's non-nil, zero value otherwise
-            and a boolean to check if the value has been set.
+GetDatacenterNameOk returns a tuple with the DatacenterName field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
 
-            ### SetDatacenterName
+### SetDatacenterName
 
-            `func (o *IPInfoV6) SetDatacenterName(v string)`
+`func (o *IPInfoV6) SetDatacenterName(v string)`
 
-            SetDatacenterName sets DatacenterName field to given value.
+SetDatacenterName sets DatacenterName field to given value.
 
-                ### HasDatacenterName
+### HasDatacenterName
 
-                `func (o *IPInfoV6) HasDatacenterName() bool`
+`func (o *IPInfoV6) HasDatacenterName() bool`
 
-                HasDatacenterName returns a boolean if a field has been set.
+HasDatacenterName returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
 

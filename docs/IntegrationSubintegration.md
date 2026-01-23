@@ -1,81 +1,82 @@
 # IntegrationSubintegration
 
-    ## Properties
+## Properties
 
-    Name | Type | Description | Notes
-    ------------ | ------------- | ------------- | -------------
-        **Name** | Pointer to **string** | The name of the specific subintegration, e.g. \&quot;preact\&quot;. | [optional] 
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**Name** | Pointer to **string** | The name of the specific subintegration, e.g. \&quot;preact\&quot;. | [optional] 
 **Version** | Pointer to **string** | The version of the specific subintegration, e.g. \&quot;10.21.0\&quot;. | [optional] 
 
-    ## Methods
+## Methods
 
-        ### NewIntegrationSubintegration
+### NewIntegrationSubintegration
 
-        `func NewIntegrationSubintegration() *IntegrationSubintegration`
+`func NewIntegrationSubintegration() *IntegrationSubintegration`
 
-        NewIntegrationSubintegration instantiates a new IntegrationSubintegration object
-        This constructor will assign default values to properties that have it defined,
-        and makes sure properties required by API are set, but the set of arguments
-        will change when the set of required properties is changed
+NewIntegrationSubintegration instantiates a new IntegrationSubintegration object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
 
-        ### NewIntegrationSubintegrationWithDefaults
+### NewIntegrationSubintegrationWithDefaults
 
-        `func NewIntegrationSubintegrationWithDefaults() *IntegrationSubintegration`
+`func NewIntegrationSubintegrationWithDefaults() *IntegrationSubintegration`
 
-        NewIntegrationSubintegrationWithDefaults instantiates a new IntegrationSubintegration object
-        This constructor will only assign default values to properties that have it defined,
-        but it doesn't guarantee that properties required by API are set
+NewIntegrationSubintegrationWithDefaults instantiates a new IntegrationSubintegration object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
 
-            ### GetName
+### GetName
 
-            `func (o *IntegrationSubintegration) GetName() string`
+`func (o *IntegrationSubintegration) GetName() string`
 
-            GetName returns the Name field if non-nil, zero value otherwise.
+GetName returns the Name field if non-nil, zero value otherwise.
 
-            ### GetNameOk
+### GetNameOk
 
-            `func (o *IntegrationSubintegration) GetNameOk() (*string, bool)`
+`func (o *IntegrationSubintegration) GetNameOk() (*string, bool)`
 
-            GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
-            and a boolean to check if the value has been set.
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
 
-            ### SetName
+### SetName
 
-            `func (o *IntegrationSubintegration) SetName(v string)`
+`func (o *IntegrationSubintegration) SetName(v string)`
 
-            SetName sets Name field to given value.
+SetName sets Name field to given value.
 
-                ### HasName
+### HasName
 
-                `func (o *IntegrationSubintegration) HasName() bool`
+`func (o *IntegrationSubintegration) HasName() bool`
 
-                HasName returns a boolean if a field has been set.
+HasName returns a boolean if a field has been set.
 
-            ### GetVersion
+### GetVersion
 
-            `func (o *IntegrationSubintegration) GetVersion() string`
+`func (o *IntegrationSubintegration) GetVersion() string`
 
-            GetVersion returns the Version field if non-nil, zero value otherwise.
+GetVersion returns the Version field if non-nil, zero value otherwise.
 
-            ### GetVersionOk
+### GetVersionOk
 
-            `func (o *IntegrationSubintegration) GetVersionOk() (*string, bool)`
+`func (o *IntegrationSubintegration) GetVersionOk() (*string, bool)`
 
-            GetVersionOk returns a tuple with the Version field if it's non-nil, zero value otherwise
-            and a boolean to check if the value has been set.
+GetVersionOk returns a tuple with the Version field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
 
-            ### SetVersion
+### SetVersion
 
-            `func (o *IntegrationSubintegration) SetVersion(v string)`
+`func (o *IntegrationSubintegration) SetVersion(v string)`
 
-            SetVersion sets Version field to given value.
+SetVersion sets Version field to given value.
 
-                ### HasVersion
+### HasVersion
 
-                `func (o *IntegrationSubintegration) HasVersion() bool`
+`func (o *IntegrationSubintegration) HasVersion() bool`
 
-                HasVersion returns a boolean if a field has been set.
+HasVersion returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
 

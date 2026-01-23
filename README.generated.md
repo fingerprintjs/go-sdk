@@ -1,6 +1,6 @@
 # Go API client for fingerprint
 
-    # Overview Fingerprint Server API allows you to get, search, and update Events in a server environment. It can be used for data exports, decision-making, and data analysis scenarios.
+# Overview Fingerprint Server API allows you to get, search, and update Events in a server environment. It can be used for data exports, decision-making, and data analysis scenarios.
 Server API is intended for server-side usage, it's not intended to be used from the client side, whether it's a browser or a mobile device.
 
 
@@ -51,7 +51,7 @@ Templated server URL is formatted using default variables from configuration or 
 
 ```go
 ctx := context.WithValue(context.Background(), fingerprint.ContextServerVariables, map[string]string{
-"basePath": "v2",
+	"basePath": "v2",
 })
 ```
 
@@ -65,12 +65,12 @@ Similar rules for overriding default operation server index and variables applie
 
 ```go
 ctx := context.WithValue(context.Background(), fingerprint.ContextOperationServerIndices, map[string]int{
-"{classname}Service.{nickname}": 2,
+	"{classname}Service.{nickname}": 2,
 })
 ctx = context.WithValue(context.Background(), fingerprint.ContextOperationServerVariables, map[string]map[string]string{
-"{classname}Service.{nickname}": {
-"port": "8443",
-},
+	"{classname}Service.{nickname}": {
+		"port": "8443",
+	},
 })
 ```
 
@@ -123,16 +123,16 @@ Class | Method | HTTP request | Description
 
 
 Authentication schemes defined for the API:
-    ### bearerAuth
+### bearerAuth
 
-            - **Type**: HTTP Bearer token authentication
+- **Type**: HTTP Bearer token authentication
 
-            Example
+Example
 
-            ```go
-            auth := context.WithValue(context.Background(), fingerprint.ContextAccessToken, "BEARER_TOKEN_STRING")
-            r, err := client.Service.Operation(auth, args)
-            ```
+```go
+auth := context.WithValue(context.Background(), fingerprint.ContextAccessToken, "BEARER_TOKEN_STRING")
+r, err := client.Service.Operation(auth, args)
+```
 
 
 ## Documentation for Utility Methods
@@ -154,3 +154,4 @@ Each of these functions takes a value of the given basic type and returns a poin
 ## Author
 
 support@fingerprint.com
+

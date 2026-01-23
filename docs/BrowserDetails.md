@@ -1,155 +1,156 @@
 # BrowserDetails
 
-    ## Properties
+## Properties
 
-    Name | Type | Description | Notes
-    ------------ | ------------- | ------------- | -------------
-        **BrowserName** | **string** |  | 
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**BrowserName** | **string** |  | 
 **BrowserMajorVersion** | **string** |  | 
 **BrowserFullVersion** | **string** |  | 
 **Os** | **string** |  | 
 **OsVersion** | **string** |  | 
 **Device** | **string** |  | 
 
-    ## Methods
+## Methods
 
-        ### NewBrowserDetails
+### NewBrowserDetails
 
-        `func NewBrowserDetails(browserName string, browserMajorVersion string, browserFullVersion string, os string, osVersion string, device string, ) *BrowserDetails`
+`func NewBrowserDetails(browserName string, browserMajorVersion string, browserFullVersion string, os string, osVersion string, device string, ) *BrowserDetails`
 
-        NewBrowserDetails instantiates a new BrowserDetails object
-        This constructor will assign default values to properties that have it defined,
-        and makes sure properties required by API are set, but the set of arguments
-        will change when the set of required properties is changed
+NewBrowserDetails instantiates a new BrowserDetails object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
 
-        ### NewBrowserDetailsWithDefaults
+### NewBrowserDetailsWithDefaults
 
-        `func NewBrowserDetailsWithDefaults() *BrowserDetails`
+`func NewBrowserDetailsWithDefaults() *BrowserDetails`
 
-        NewBrowserDetailsWithDefaults instantiates a new BrowserDetails object
-        This constructor will only assign default values to properties that have it defined,
-        but it doesn't guarantee that properties required by API are set
+NewBrowserDetailsWithDefaults instantiates a new BrowserDetails object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
 
-            ### GetBrowserName
+### GetBrowserName
 
-            `func (o *BrowserDetails) GetBrowserName() string`
+`func (o *BrowserDetails) GetBrowserName() string`
 
-            GetBrowserName returns the BrowserName field if non-nil, zero value otherwise.
+GetBrowserName returns the BrowserName field if non-nil, zero value otherwise.
 
-            ### GetBrowserNameOk
+### GetBrowserNameOk
 
-            `func (o *BrowserDetails) GetBrowserNameOk() (*string, bool)`
+`func (o *BrowserDetails) GetBrowserNameOk() (*string, bool)`
 
-            GetBrowserNameOk returns a tuple with the BrowserName field if it's non-nil, zero value otherwise
-            and a boolean to check if the value has been set.
+GetBrowserNameOk returns a tuple with the BrowserName field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
 
-            ### SetBrowserName
+### SetBrowserName
 
-            `func (o *BrowserDetails) SetBrowserName(v string)`
+`func (o *BrowserDetails) SetBrowserName(v string)`
 
-            SetBrowserName sets BrowserName field to given value.
+SetBrowserName sets BrowserName field to given value.
 
 
-            ### GetBrowserMajorVersion
+### GetBrowserMajorVersion
 
-            `func (o *BrowserDetails) GetBrowserMajorVersion() string`
+`func (o *BrowserDetails) GetBrowserMajorVersion() string`
 
-            GetBrowserMajorVersion returns the BrowserMajorVersion field if non-nil, zero value otherwise.
+GetBrowserMajorVersion returns the BrowserMajorVersion field if non-nil, zero value otherwise.
 
-            ### GetBrowserMajorVersionOk
+### GetBrowserMajorVersionOk
 
-            `func (o *BrowserDetails) GetBrowserMajorVersionOk() (*string, bool)`
+`func (o *BrowserDetails) GetBrowserMajorVersionOk() (*string, bool)`
 
-            GetBrowserMajorVersionOk returns a tuple with the BrowserMajorVersion field if it's non-nil, zero value otherwise
-            and a boolean to check if the value has been set.
+GetBrowserMajorVersionOk returns a tuple with the BrowserMajorVersion field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
 
-            ### SetBrowserMajorVersion
+### SetBrowserMajorVersion
 
-            `func (o *BrowserDetails) SetBrowserMajorVersion(v string)`
+`func (o *BrowserDetails) SetBrowserMajorVersion(v string)`
 
-            SetBrowserMajorVersion sets BrowserMajorVersion field to given value.
+SetBrowserMajorVersion sets BrowserMajorVersion field to given value.
 
 
-            ### GetBrowserFullVersion
+### GetBrowserFullVersion
 
-            `func (o *BrowserDetails) GetBrowserFullVersion() string`
+`func (o *BrowserDetails) GetBrowserFullVersion() string`
 
-            GetBrowserFullVersion returns the BrowserFullVersion field if non-nil, zero value otherwise.
+GetBrowserFullVersion returns the BrowserFullVersion field if non-nil, zero value otherwise.
 
-            ### GetBrowserFullVersionOk
+### GetBrowserFullVersionOk
 
-            `func (o *BrowserDetails) GetBrowserFullVersionOk() (*string, bool)`
+`func (o *BrowserDetails) GetBrowserFullVersionOk() (*string, bool)`
 
-            GetBrowserFullVersionOk returns a tuple with the BrowserFullVersion field if it's non-nil, zero value otherwise
-            and a boolean to check if the value has been set.
+GetBrowserFullVersionOk returns a tuple with the BrowserFullVersion field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
 
-            ### SetBrowserFullVersion
+### SetBrowserFullVersion
 
-            `func (o *BrowserDetails) SetBrowserFullVersion(v string)`
+`func (o *BrowserDetails) SetBrowserFullVersion(v string)`
 
-            SetBrowserFullVersion sets BrowserFullVersion field to given value.
+SetBrowserFullVersion sets BrowserFullVersion field to given value.
 
 
-            ### GetOs
+### GetOs
 
-            `func (o *BrowserDetails) GetOs() string`
+`func (o *BrowserDetails) GetOs() string`
 
-            GetOs returns the Os field if non-nil, zero value otherwise.
+GetOs returns the Os field if non-nil, zero value otherwise.
 
-            ### GetOsOk
+### GetOsOk
 
-            `func (o *BrowserDetails) GetOsOk() (*string, bool)`
+`func (o *BrowserDetails) GetOsOk() (*string, bool)`
 
-            GetOsOk returns a tuple with the Os field if it's non-nil, zero value otherwise
-            and a boolean to check if the value has been set.
+GetOsOk returns a tuple with the Os field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
 
-            ### SetOs
+### SetOs
 
-            `func (o *BrowserDetails) SetOs(v string)`
+`func (o *BrowserDetails) SetOs(v string)`
 
-            SetOs sets Os field to given value.
+SetOs sets Os field to given value.
 
 
-            ### GetOsVersion
+### GetOsVersion
 
-            `func (o *BrowserDetails) GetOsVersion() string`
+`func (o *BrowserDetails) GetOsVersion() string`
 
-            GetOsVersion returns the OsVersion field if non-nil, zero value otherwise.
+GetOsVersion returns the OsVersion field if non-nil, zero value otherwise.
 
-            ### GetOsVersionOk
+### GetOsVersionOk
 
-            `func (o *BrowserDetails) GetOsVersionOk() (*string, bool)`
+`func (o *BrowserDetails) GetOsVersionOk() (*string, bool)`
 
-            GetOsVersionOk returns a tuple with the OsVersion field if it's non-nil, zero value otherwise
-            and a boolean to check if the value has been set.
+GetOsVersionOk returns a tuple with the OsVersion field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
 
-            ### SetOsVersion
+### SetOsVersion
 
-            `func (o *BrowserDetails) SetOsVersion(v string)`
+`func (o *BrowserDetails) SetOsVersion(v string)`
 
-            SetOsVersion sets OsVersion field to given value.
+SetOsVersion sets OsVersion field to given value.
 
 
-            ### GetDevice
+### GetDevice
 
-            `func (o *BrowserDetails) GetDevice() string`
+`func (o *BrowserDetails) GetDevice() string`
 
-            GetDevice returns the Device field if non-nil, zero value otherwise.
+GetDevice returns the Device field if non-nil, zero value otherwise.
 
-            ### GetDeviceOk
+### GetDeviceOk
 
-            `func (o *BrowserDetails) GetDeviceOk() (*string, bool)`
+`func (o *BrowserDetails) GetDeviceOk() (*string, bool)`
 
-            GetDeviceOk returns a tuple with the Device field if it's non-nil, zero value otherwise
-            and a boolean to check if the value has been set.
+GetDeviceOk returns a tuple with the Device field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
 
-            ### SetDevice
+### SetDevice
 
-            `func (o *BrowserDetails) SetDevice(v string)`
+`func (o *BrowserDetails) SetDevice(v string)`
 
-            SetDevice sets Device field to given value.
+SetDevice sets Device field to given value.
 
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
 

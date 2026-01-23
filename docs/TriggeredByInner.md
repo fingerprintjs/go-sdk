@@ -1,92 +1,93 @@
 # TriggeredByInner
 
-    ## Properties
+## Properties
 
-    Name | Type | Description | Notes
-    ------------ | ------------- | ------------- | -------------
-        **Id** | **string** |  | 
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**Id** | **string** |  | 
 **Name** | **string** |  | 
 **Description** | **string** |  | 
 
-    ## Methods
+## Methods
 
-        ### NewTriggeredByInner
+### NewTriggeredByInner
 
-        `func NewTriggeredByInner(id string, name string, description string, ) *TriggeredByInner`
+`func NewTriggeredByInner(id string, name string, description string, ) *TriggeredByInner`
 
-        NewTriggeredByInner instantiates a new TriggeredByInner object
-        This constructor will assign default values to properties that have it defined,
-        and makes sure properties required by API are set, but the set of arguments
-        will change when the set of required properties is changed
+NewTriggeredByInner instantiates a new TriggeredByInner object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
 
-        ### NewTriggeredByInnerWithDefaults
+### NewTriggeredByInnerWithDefaults
 
-        `func NewTriggeredByInnerWithDefaults() *TriggeredByInner`
+`func NewTriggeredByInnerWithDefaults() *TriggeredByInner`
 
-        NewTriggeredByInnerWithDefaults instantiates a new TriggeredByInner object
-        This constructor will only assign default values to properties that have it defined,
-        but it doesn't guarantee that properties required by API are set
+NewTriggeredByInnerWithDefaults instantiates a new TriggeredByInner object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
 
-            ### GetId
+### GetId
 
-            `func (o *TriggeredByInner) GetId() string`
+`func (o *TriggeredByInner) GetId() string`
 
-            GetId returns the Id field if non-nil, zero value otherwise.
+GetId returns the Id field if non-nil, zero value otherwise.
 
-            ### GetIdOk
+### GetIdOk
 
-            `func (o *TriggeredByInner) GetIdOk() (*string, bool)`
+`func (o *TriggeredByInner) GetIdOk() (*string, bool)`
 
-            GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
-            and a boolean to check if the value has been set.
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
 
-            ### SetId
+### SetId
 
-            `func (o *TriggeredByInner) SetId(v string)`
+`func (o *TriggeredByInner) SetId(v string)`
 
-            SetId sets Id field to given value.
-
-
-            ### GetName
-
-            `func (o *TriggeredByInner) GetName() string`
-
-            GetName returns the Name field if non-nil, zero value otherwise.
-
-            ### GetNameOk
-
-            `func (o *TriggeredByInner) GetNameOk() (*string, bool)`
-
-            GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
-            and a boolean to check if the value has been set.
-
-            ### SetName
-
-            `func (o *TriggeredByInner) SetName(v string)`
-
-            SetName sets Name field to given value.
+SetId sets Id field to given value.
 
 
-            ### GetDescription
+### GetName
 
-            `func (o *TriggeredByInner) GetDescription() string`
+`func (o *TriggeredByInner) GetName() string`
 
-            GetDescription returns the Description field if non-nil, zero value otherwise.
+GetName returns the Name field if non-nil, zero value otherwise.
 
-            ### GetDescriptionOk
+### GetNameOk
 
-            `func (o *TriggeredByInner) GetDescriptionOk() (*string, bool)`
+`func (o *TriggeredByInner) GetNameOk() (*string, bool)`
 
-            GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
-            and a boolean to check if the value has been set.
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
 
-            ### SetDescription
+### SetName
 
-            `func (o *TriggeredByInner) SetDescription(v string)`
+`func (o *TriggeredByInner) SetName(v string)`
 
-            SetDescription sets Description field to given value.
+SetName sets Name field to given value.
+
+
+### GetDescription
+
+`func (o *TriggeredByInner) GetDescription() string`
+
+GetDescription returns the Description field if non-nil, zero value otherwise.
+
+### GetDescriptionOk
+
+`func (o *TriggeredByInner) GetDescriptionOk() (*string, bool)`
+
+GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDescription
+
+`func (o *TriggeredByInner) SetDescription(v string)`
+
+SetDescription sets Description field to given value.
 
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
 

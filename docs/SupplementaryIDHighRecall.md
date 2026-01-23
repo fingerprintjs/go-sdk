@@ -1,149 +1,150 @@
 # SupplementaryIDHighRecall
 
-    ## Properties
+## Properties
 
-    Name | Type | Description | Notes
-    ------------ | ------------- | ------------- | -------------
-        **VisitorId** | **string** | String of 20 characters that uniquely identifies the visitor&#39;s browser or mobile device. | 
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**VisitorId** | **string** | String of 20 characters that uniquely identifies the visitor&#39;s browser or mobile device. | 
 **VisitorFound** | **bool** | Attribute represents if a visitor had been identified before. | 
 **Confidence** | Pointer to [**IdentificationConfidence**](IdentificationConfidence.md) |  | [optional] 
 **FirstSeenAt** | Pointer to **int64** | Unix epoch time milliseconds timestamp indicating the time at which this ID was first seen. example: &#x60;1758069706642&#x60; - Corresponding to Wed Sep 17 2025 00:41:46 GMT+0000  | [optional] 
 **LastSeenAt** | Pointer to **int64** | Unix epoch time milliseconds timestamp indicating the time at which this ID was last seen. example: &#x60;1758069706642&#x60; - Corresponding to Wed Sep 17 2025 00:41:46 GMT+0000  | [optional] 
 
-    ## Methods
+## Methods
 
-        ### NewSupplementaryIDHighRecall
+### NewSupplementaryIDHighRecall
 
-        `func NewSupplementaryIDHighRecall(visitorId string, visitorFound bool, ) *SupplementaryIDHighRecall`
+`func NewSupplementaryIDHighRecall(visitorId string, visitorFound bool, ) *SupplementaryIDHighRecall`
 
-        NewSupplementaryIDHighRecall instantiates a new SupplementaryIDHighRecall object
-        This constructor will assign default values to properties that have it defined,
-        and makes sure properties required by API are set, but the set of arguments
-        will change when the set of required properties is changed
+NewSupplementaryIDHighRecall instantiates a new SupplementaryIDHighRecall object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
 
-        ### NewSupplementaryIDHighRecallWithDefaults
+### NewSupplementaryIDHighRecallWithDefaults
 
-        `func NewSupplementaryIDHighRecallWithDefaults() *SupplementaryIDHighRecall`
+`func NewSupplementaryIDHighRecallWithDefaults() *SupplementaryIDHighRecall`
 
-        NewSupplementaryIDHighRecallWithDefaults instantiates a new SupplementaryIDHighRecall object
-        This constructor will only assign default values to properties that have it defined,
-        but it doesn't guarantee that properties required by API are set
+NewSupplementaryIDHighRecallWithDefaults instantiates a new SupplementaryIDHighRecall object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
 
-            ### GetVisitorId
+### GetVisitorId
 
-            `func (o *SupplementaryIDHighRecall) GetVisitorId() string`
+`func (o *SupplementaryIDHighRecall) GetVisitorId() string`
 
-            GetVisitorId returns the VisitorId field if non-nil, zero value otherwise.
+GetVisitorId returns the VisitorId field if non-nil, zero value otherwise.
 
-            ### GetVisitorIdOk
+### GetVisitorIdOk
 
-            `func (o *SupplementaryIDHighRecall) GetVisitorIdOk() (*string, bool)`
+`func (o *SupplementaryIDHighRecall) GetVisitorIdOk() (*string, bool)`
 
-            GetVisitorIdOk returns a tuple with the VisitorId field if it's non-nil, zero value otherwise
-            and a boolean to check if the value has been set.
+GetVisitorIdOk returns a tuple with the VisitorId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
 
-            ### SetVisitorId
+### SetVisitorId
 
-            `func (o *SupplementaryIDHighRecall) SetVisitorId(v string)`
+`func (o *SupplementaryIDHighRecall) SetVisitorId(v string)`
 
-            SetVisitorId sets VisitorId field to given value.
-
-
-            ### GetVisitorFound
-
-            `func (o *SupplementaryIDHighRecall) GetVisitorFound() bool`
-
-            GetVisitorFound returns the VisitorFound field if non-nil, zero value otherwise.
-
-            ### GetVisitorFoundOk
-
-            `func (o *SupplementaryIDHighRecall) GetVisitorFoundOk() (*bool, bool)`
-
-            GetVisitorFoundOk returns a tuple with the VisitorFound field if it's non-nil, zero value otherwise
-            and a boolean to check if the value has been set.
-
-            ### SetVisitorFound
-
-            `func (o *SupplementaryIDHighRecall) SetVisitorFound(v bool)`
-
-            SetVisitorFound sets VisitorFound field to given value.
+SetVisitorId sets VisitorId field to given value.
 
 
-            ### GetConfidence
+### GetVisitorFound
 
-            `func (o *SupplementaryIDHighRecall) GetConfidence() IdentificationConfidence`
+`func (o *SupplementaryIDHighRecall) GetVisitorFound() bool`
 
-            GetConfidence returns the Confidence field if non-nil, zero value otherwise.
+GetVisitorFound returns the VisitorFound field if non-nil, zero value otherwise.
 
-            ### GetConfidenceOk
+### GetVisitorFoundOk
 
-            `func (o *SupplementaryIDHighRecall) GetConfidenceOk() (*IdentificationConfidence, bool)`
+`func (o *SupplementaryIDHighRecall) GetVisitorFoundOk() (*bool, bool)`
 
-            GetConfidenceOk returns a tuple with the Confidence field if it's non-nil, zero value otherwise
-            and a boolean to check if the value has been set.
+GetVisitorFoundOk returns a tuple with the VisitorFound field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
 
-            ### SetConfidence
+### SetVisitorFound
 
-            `func (o *SupplementaryIDHighRecall) SetConfidence(v IdentificationConfidence)`
+`func (o *SupplementaryIDHighRecall) SetVisitorFound(v bool)`
 
-            SetConfidence sets Confidence field to given value.
+SetVisitorFound sets VisitorFound field to given value.
 
-                ### HasConfidence
 
-                `func (o *SupplementaryIDHighRecall) HasConfidence() bool`
+### GetConfidence
 
-                HasConfidence returns a boolean if a field has been set.
+`func (o *SupplementaryIDHighRecall) GetConfidence() IdentificationConfidence`
 
-            ### GetFirstSeenAt
+GetConfidence returns the Confidence field if non-nil, zero value otherwise.
 
-            `func (o *SupplementaryIDHighRecall) GetFirstSeenAt() int64`
+### GetConfidenceOk
 
-            GetFirstSeenAt returns the FirstSeenAt field if non-nil, zero value otherwise.
+`func (o *SupplementaryIDHighRecall) GetConfidenceOk() (*IdentificationConfidence, bool)`
 
-            ### GetFirstSeenAtOk
+GetConfidenceOk returns a tuple with the Confidence field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
 
-            `func (o *SupplementaryIDHighRecall) GetFirstSeenAtOk() (*int64, bool)`
+### SetConfidence
 
-            GetFirstSeenAtOk returns a tuple with the FirstSeenAt field if it's non-nil, zero value otherwise
-            and a boolean to check if the value has been set.
+`func (o *SupplementaryIDHighRecall) SetConfidence(v IdentificationConfidence)`
 
-            ### SetFirstSeenAt
+SetConfidence sets Confidence field to given value.
 
-            `func (o *SupplementaryIDHighRecall) SetFirstSeenAt(v int64)`
+### HasConfidence
 
-            SetFirstSeenAt sets FirstSeenAt field to given value.
+`func (o *SupplementaryIDHighRecall) HasConfidence() bool`
 
-                ### HasFirstSeenAt
+HasConfidence returns a boolean if a field has been set.
 
-                `func (o *SupplementaryIDHighRecall) HasFirstSeenAt() bool`
+### GetFirstSeenAt
 
-                HasFirstSeenAt returns a boolean if a field has been set.
+`func (o *SupplementaryIDHighRecall) GetFirstSeenAt() int64`
 
-            ### GetLastSeenAt
+GetFirstSeenAt returns the FirstSeenAt field if non-nil, zero value otherwise.
 
-            `func (o *SupplementaryIDHighRecall) GetLastSeenAt() int64`
+### GetFirstSeenAtOk
 
-            GetLastSeenAt returns the LastSeenAt field if non-nil, zero value otherwise.
+`func (o *SupplementaryIDHighRecall) GetFirstSeenAtOk() (*int64, bool)`
 
-            ### GetLastSeenAtOk
+GetFirstSeenAtOk returns a tuple with the FirstSeenAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
 
-            `func (o *SupplementaryIDHighRecall) GetLastSeenAtOk() (*int64, bool)`
+### SetFirstSeenAt
 
-            GetLastSeenAtOk returns a tuple with the LastSeenAt field if it's non-nil, zero value otherwise
-            and a boolean to check if the value has been set.
+`func (o *SupplementaryIDHighRecall) SetFirstSeenAt(v int64)`
 
-            ### SetLastSeenAt
+SetFirstSeenAt sets FirstSeenAt field to given value.
 
-            `func (o *SupplementaryIDHighRecall) SetLastSeenAt(v int64)`
+### HasFirstSeenAt
 
-            SetLastSeenAt sets LastSeenAt field to given value.
+`func (o *SupplementaryIDHighRecall) HasFirstSeenAt() bool`
 
-                ### HasLastSeenAt
+HasFirstSeenAt returns a boolean if a field has been set.
 
-                `func (o *SupplementaryIDHighRecall) HasLastSeenAt() bool`
+### GetLastSeenAt
 
-                HasLastSeenAt returns a boolean if a field has been set.
+`func (o *SupplementaryIDHighRecall) GetLastSeenAt() int64`
+
+GetLastSeenAt returns the LastSeenAt field if non-nil, zero value otherwise.
+
+### GetLastSeenAtOk
+
+`func (o *SupplementaryIDHighRecall) GetLastSeenAtOk() (*int64, bool)`
+
+GetLastSeenAtOk returns a tuple with the LastSeenAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLastSeenAt
+
+`func (o *SupplementaryIDHighRecall) SetLastSeenAt(v int64)`
+
+SetLastSeenAt sets LastSeenAt field to given value.
+
+### HasLastSeenAt
+
+`func (o *SupplementaryIDHighRecall) HasLastSeenAt() bool`
+
+HasLastSeenAt returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
 

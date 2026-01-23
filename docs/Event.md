@@ -1,10 +1,10 @@
 # Event
 
-    ## Properties
+## Properties
 
-    Name | Type | Description | Notes
-    ------------ | ------------- | ------------- | -------------
-        **EventId** | **string** | Unique identifier of the user&#39;s request. The first portion of the event_id is a unix epoch milliseconds timestamp For example: &#x60;1758130560902.8tRtrH&#x60;  | 
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**EventId** | **string** | Unique identifier of the user&#39;s request. The first portion of the event_id is a unix epoch milliseconds timestamp For example: &#x60;1758130560902.8tRtrH&#x60;  | 
 **Timestamp** | **int64** | Timestamp of the event with millisecond precision in Unix time. | 
 **LinkedId** | Pointer to **string** | A customer-provided id that was sent with the request. | [optional] 
 **EnvironmentId** | Pointer to **string** | Environment Id of the event. For example: &#x60;ae_47abaca3db2c7c43&#x60;  | [optional] 
@@ -52,1190 +52,1191 @@
 **VpnMethods** | Pointer to [**VpnMethods**](VpnMethods.md) |  | [optional] 
 **HighActivityDevice** | Pointer to **bool** | Flag indicating if the request came from a high-activity visitor. | [optional] 
 
-    ## Methods
+## Methods
 
-        ### NewEvent
+### NewEvent
 
-        `func NewEvent(eventId string, timestamp int64, ) *Event`
+`func NewEvent(eventId string, timestamp int64, ) *Event`
 
-        NewEvent instantiates a new Event object
-        This constructor will assign default values to properties that have it defined,
-        and makes sure properties required by API are set, but the set of arguments
-        will change when the set of required properties is changed
+NewEvent instantiates a new Event object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
 
-        ### NewEventWithDefaults
+### NewEventWithDefaults
 
-        `func NewEventWithDefaults() *Event`
+`func NewEventWithDefaults() *Event`
 
-        NewEventWithDefaults instantiates a new Event object
-        This constructor will only assign default values to properties that have it defined,
-        but it doesn't guarantee that properties required by API are set
+NewEventWithDefaults instantiates a new Event object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
 
-            ### GetEventId
+### GetEventId
 
-            `func (o *Event) GetEventId() string`
+`func (o *Event) GetEventId() string`
 
-            GetEventId returns the EventId field if non-nil, zero value otherwise.
+GetEventId returns the EventId field if non-nil, zero value otherwise.
 
-            ### GetEventIdOk
+### GetEventIdOk
 
-            `func (o *Event) GetEventIdOk() (*string, bool)`
+`func (o *Event) GetEventIdOk() (*string, bool)`
 
-            GetEventIdOk returns a tuple with the EventId field if it's non-nil, zero value otherwise
-            and a boolean to check if the value has been set.
+GetEventIdOk returns a tuple with the EventId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
 
-            ### SetEventId
+### SetEventId
 
-            `func (o *Event) SetEventId(v string)`
+`func (o *Event) SetEventId(v string)`
 
-            SetEventId sets EventId field to given value.
+SetEventId sets EventId field to given value.
 
 
-            ### GetTimestamp
+### GetTimestamp
 
-            `func (o *Event) GetTimestamp() int64`
+`func (o *Event) GetTimestamp() int64`
 
-            GetTimestamp returns the Timestamp field if non-nil, zero value otherwise.
+GetTimestamp returns the Timestamp field if non-nil, zero value otherwise.
 
-            ### GetTimestampOk
+### GetTimestampOk
 
-            `func (o *Event) GetTimestampOk() (*int64, bool)`
+`func (o *Event) GetTimestampOk() (*int64, bool)`
 
-            GetTimestampOk returns a tuple with the Timestamp field if it's non-nil, zero value otherwise
-            and a boolean to check if the value has been set.
+GetTimestampOk returns a tuple with the Timestamp field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
 
-            ### SetTimestamp
+### SetTimestamp
 
-            `func (o *Event) SetTimestamp(v int64)`
+`func (o *Event) SetTimestamp(v int64)`
 
-            SetTimestamp sets Timestamp field to given value.
+SetTimestamp sets Timestamp field to given value.
 
 
-            ### GetLinkedId
+### GetLinkedId
 
-            `func (o *Event) GetLinkedId() string`
+`func (o *Event) GetLinkedId() string`
 
-            GetLinkedId returns the LinkedId field if non-nil, zero value otherwise.
+GetLinkedId returns the LinkedId field if non-nil, zero value otherwise.
 
-            ### GetLinkedIdOk
+### GetLinkedIdOk
 
-            `func (o *Event) GetLinkedIdOk() (*string, bool)`
+`func (o *Event) GetLinkedIdOk() (*string, bool)`
 
-            GetLinkedIdOk returns a tuple with the LinkedId field if it's non-nil, zero value otherwise
-            and a boolean to check if the value has been set.
+GetLinkedIdOk returns a tuple with the LinkedId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
 
-            ### SetLinkedId
+### SetLinkedId
 
-            `func (o *Event) SetLinkedId(v string)`
+`func (o *Event) SetLinkedId(v string)`
 
-            SetLinkedId sets LinkedId field to given value.
+SetLinkedId sets LinkedId field to given value.
 
-                ### HasLinkedId
+### HasLinkedId
 
-                `func (o *Event) HasLinkedId() bool`
+`func (o *Event) HasLinkedId() bool`
 
-                HasLinkedId returns a boolean if a field has been set.
+HasLinkedId returns a boolean if a field has been set.
 
-            ### GetEnvironmentId
+### GetEnvironmentId
 
-            `func (o *Event) GetEnvironmentId() string`
+`func (o *Event) GetEnvironmentId() string`
 
-            GetEnvironmentId returns the EnvironmentId field if non-nil, zero value otherwise.
+GetEnvironmentId returns the EnvironmentId field if non-nil, zero value otherwise.
 
-            ### GetEnvironmentIdOk
+### GetEnvironmentIdOk
 
-            `func (o *Event) GetEnvironmentIdOk() (*string, bool)`
+`func (o *Event) GetEnvironmentIdOk() (*string, bool)`
 
-            GetEnvironmentIdOk returns a tuple with the EnvironmentId field if it's non-nil, zero value otherwise
-            and a boolean to check if the value has been set.
+GetEnvironmentIdOk returns a tuple with the EnvironmentId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
 
-            ### SetEnvironmentId
+### SetEnvironmentId
 
-            `func (o *Event) SetEnvironmentId(v string)`
+`func (o *Event) SetEnvironmentId(v string)`
 
-            SetEnvironmentId sets EnvironmentId field to given value.
+SetEnvironmentId sets EnvironmentId field to given value.
 
-                ### HasEnvironmentId
+### HasEnvironmentId
 
-                `func (o *Event) HasEnvironmentId() bool`
+`func (o *Event) HasEnvironmentId() bool`
 
-                HasEnvironmentId returns a boolean if a field has been set.
+HasEnvironmentId returns a boolean if a field has been set.
 
-            ### GetSuspect
+### GetSuspect
 
-            `func (o *Event) GetSuspect() bool`
+`func (o *Event) GetSuspect() bool`
 
-            GetSuspect returns the Suspect field if non-nil, zero value otherwise.
+GetSuspect returns the Suspect field if non-nil, zero value otherwise.
 
-            ### GetSuspectOk
+### GetSuspectOk
 
-            `func (o *Event) GetSuspectOk() (*bool, bool)`
+`func (o *Event) GetSuspectOk() (*bool, bool)`
 
-            GetSuspectOk returns a tuple with the Suspect field if it's non-nil, zero value otherwise
-            and a boolean to check if the value has been set.
+GetSuspectOk returns a tuple with the Suspect field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
 
-            ### SetSuspect
+### SetSuspect
 
-            `func (o *Event) SetSuspect(v bool)`
+`func (o *Event) SetSuspect(v bool)`
 
-            SetSuspect sets Suspect field to given value.
+SetSuspect sets Suspect field to given value.
 
-                ### HasSuspect
+### HasSuspect
 
-                `func (o *Event) HasSuspect() bool`
+`func (o *Event) HasSuspect() bool`
 
-                HasSuspect returns a boolean if a field has been set.
+HasSuspect returns a boolean if a field has been set.
 
-            ### GetSdk
+### GetSdk
 
-            `func (o *Event) GetSdk() SDK`
+`func (o *Event) GetSdk() SDK`
 
-            GetSdk returns the Sdk field if non-nil, zero value otherwise.
+GetSdk returns the Sdk field if non-nil, zero value otherwise.
 
-            ### GetSdkOk
+### GetSdkOk
 
-            `func (o *Event) GetSdkOk() (*SDK, bool)`
+`func (o *Event) GetSdkOk() (*SDK, bool)`
 
-            GetSdkOk returns a tuple with the Sdk field if it's non-nil, zero value otherwise
-            and a boolean to check if the value has been set.
+GetSdkOk returns a tuple with the Sdk field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
 
-            ### SetSdk
+### SetSdk
 
-            `func (o *Event) SetSdk(v SDK)`
+`func (o *Event) SetSdk(v SDK)`
 
-            SetSdk sets Sdk field to given value.
+SetSdk sets Sdk field to given value.
 
-                ### HasSdk
+### HasSdk
 
-                `func (o *Event) HasSdk() bool`
+`func (o *Event) HasSdk() bool`
 
-                HasSdk returns a boolean if a field has been set.
+HasSdk returns a boolean if a field has been set.
 
-            ### GetReplayed
+### GetReplayed
 
-            `func (o *Event) GetReplayed() bool`
+`func (o *Event) GetReplayed() bool`
 
-            GetReplayed returns the Replayed field if non-nil, zero value otherwise.
+GetReplayed returns the Replayed field if non-nil, zero value otherwise.
 
-            ### GetReplayedOk
+### GetReplayedOk
 
-            `func (o *Event) GetReplayedOk() (*bool, bool)`
+`func (o *Event) GetReplayedOk() (*bool, bool)`
 
-            GetReplayedOk returns a tuple with the Replayed field if it's non-nil, zero value otherwise
-            and a boolean to check if the value has been set.
+GetReplayedOk returns a tuple with the Replayed field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
 
-            ### SetReplayed
+### SetReplayed
 
-            `func (o *Event) SetReplayed(v bool)`
+`func (o *Event) SetReplayed(v bool)`
 
-            SetReplayed sets Replayed field to given value.
+SetReplayed sets Replayed field to given value.
 
-                ### HasReplayed
+### HasReplayed
 
-                `func (o *Event) HasReplayed() bool`
+`func (o *Event) HasReplayed() bool`
 
-                HasReplayed returns a boolean if a field has been set.
+HasReplayed returns a boolean if a field has been set.
 
-            ### GetIdentification
+### GetIdentification
 
-            `func (o *Event) GetIdentification() Identification`
+`func (o *Event) GetIdentification() Identification`
 
-            GetIdentification returns the Identification field if non-nil, zero value otherwise.
+GetIdentification returns the Identification field if non-nil, zero value otherwise.
 
-            ### GetIdentificationOk
+### GetIdentificationOk
 
-            `func (o *Event) GetIdentificationOk() (*Identification, bool)`
+`func (o *Event) GetIdentificationOk() (*Identification, bool)`
 
-            GetIdentificationOk returns a tuple with the Identification field if it's non-nil, zero value otherwise
-            and a boolean to check if the value has been set.
+GetIdentificationOk returns a tuple with the Identification field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
 
-            ### SetIdentification
+### SetIdentification
 
-            `func (o *Event) SetIdentification(v Identification)`
+`func (o *Event) SetIdentification(v Identification)`
 
-            SetIdentification sets Identification field to given value.
+SetIdentification sets Identification field to given value.
 
-                ### HasIdentification
+### HasIdentification
 
-                `func (o *Event) HasIdentification() bool`
+`func (o *Event) HasIdentification() bool`
 
-                HasIdentification returns a boolean if a field has been set.
+HasIdentification returns a boolean if a field has been set.
 
-            ### GetSupplementaryIdHighRecall
+### GetSupplementaryIdHighRecall
 
-            `func (o *Event) GetSupplementaryIdHighRecall() SupplementaryIDHighRecall`
+`func (o *Event) GetSupplementaryIdHighRecall() SupplementaryIDHighRecall`
 
-            GetSupplementaryIdHighRecall returns the SupplementaryIdHighRecall field if non-nil, zero value otherwise.
+GetSupplementaryIdHighRecall returns the SupplementaryIdHighRecall field if non-nil, zero value otherwise.
 
-            ### GetSupplementaryIdHighRecallOk
+### GetSupplementaryIdHighRecallOk
 
-            `func (o *Event) GetSupplementaryIdHighRecallOk() (*SupplementaryIDHighRecall, bool)`
+`func (o *Event) GetSupplementaryIdHighRecallOk() (*SupplementaryIDHighRecall, bool)`
 
-            GetSupplementaryIdHighRecallOk returns a tuple with the SupplementaryIdHighRecall field if it's non-nil, zero value otherwise
-            and a boolean to check if the value has been set.
+GetSupplementaryIdHighRecallOk returns a tuple with the SupplementaryIdHighRecall field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
 
-            ### SetSupplementaryIdHighRecall
+### SetSupplementaryIdHighRecall
 
-            `func (o *Event) SetSupplementaryIdHighRecall(v SupplementaryIDHighRecall)`
+`func (o *Event) SetSupplementaryIdHighRecall(v SupplementaryIDHighRecall)`
 
-            SetSupplementaryIdHighRecall sets SupplementaryIdHighRecall field to given value.
+SetSupplementaryIdHighRecall sets SupplementaryIdHighRecall field to given value.
 
-                ### HasSupplementaryIdHighRecall
+### HasSupplementaryIdHighRecall
 
-                `func (o *Event) HasSupplementaryIdHighRecall() bool`
+`func (o *Event) HasSupplementaryIdHighRecall() bool`
 
-                HasSupplementaryIdHighRecall returns a boolean if a field has been set.
+HasSupplementaryIdHighRecall returns a boolean if a field has been set.
 
-            ### GetTags
+### GetTags
 
-            `func (o *Event) GetTags() map[string]interface{}`
+`func (o *Event) GetTags() map[string]interface{}`
 
-            GetTags returns the Tags field if non-nil, zero value otherwise.
+GetTags returns the Tags field if non-nil, zero value otherwise.
 
-            ### GetTagsOk
+### GetTagsOk
 
-            `func (o *Event) GetTagsOk() (*map[string]interface{}, bool)`
+`func (o *Event) GetTagsOk() (*map[string]interface{}, bool)`
 
-            GetTagsOk returns a tuple with the Tags field if it's non-nil, zero value otherwise
-            and a boolean to check if the value has been set.
+GetTagsOk returns a tuple with the Tags field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
 
-            ### SetTags
+### SetTags
 
-            `func (o *Event) SetTags(v map[string]interface{})`
+`func (o *Event) SetTags(v map[string]interface{})`
 
-            SetTags sets Tags field to given value.
+SetTags sets Tags field to given value.
 
-                ### HasTags
+### HasTags
 
-                `func (o *Event) HasTags() bool`
+`func (o *Event) HasTags() bool`
 
-                HasTags returns a boolean if a field has been set.
+HasTags returns a boolean if a field has been set.
 
-            ### GetUrl
+### GetUrl
 
-            `func (o *Event) GetUrl() string`
+`func (o *Event) GetUrl() string`
 
-            GetUrl returns the Url field if non-nil, zero value otherwise.
+GetUrl returns the Url field if non-nil, zero value otherwise.
 
-            ### GetUrlOk
+### GetUrlOk
 
-            `func (o *Event) GetUrlOk() (*string, bool)`
+`func (o *Event) GetUrlOk() (*string, bool)`
 
-            GetUrlOk returns a tuple with the Url field if it's non-nil, zero value otherwise
-            and a boolean to check if the value has been set.
+GetUrlOk returns a tuple with the Url field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
 
-            ### SetUrl
+### SetUrl
 
-            `func (o *Event) SetUrl(v string)`
+`func (o *Event) SetUrl(v string)`
 
-            SetUrl sets Url field to given value.
+SetUrl sets Url field to given value.
 
-                ### HasUrl
+### HasUrl
 
-                `func (o *Event) HasUrl() bool`
+`func (o *Event) HasUrl() bool`
 
-                HasUrl returns a boolean if a field has been set.
+HasUrl returns a boolean if a field has been set.
 
-            ### GetBundleId
+### GetBundleId
 
-            `func (o *Event) GetBundleId() string`
+`func (o *Event) GetBundleId() string`
 
-            GetBundleId returns the BundleId field if non-nil, zero value otherwise.
+GetBundleId returns the BundleId field if non-nil, zero value otherwise.
 
-            ### GetBundleIdOk
+### GetBundleIdOk
 
-            `func (o *Event) GetBundleIdOk() (*string, bool)`
+`func (o *Event) GetBundleIdOk() (*string, bool)`
 
-            GetBundleIdOk returns a tuple with the BundleId field if it's non-nil, zero value otherwise
-            and a boolean to check if the value has been set.
+GetBundleIdOk returns a tuple with the BundleId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
 
-            ### SetBundleId
+### SetBundleId
 
-            `func (o *Event) SetBundleId(v string)`
+`func (o *Event) SetBundleId(v string)`
 
-            SetBundleId sets BundleId field to given value.
+SetBundleId sets BundleId field to given value.
 
-                ### HasBundleId
+### HasBundleId
 
-                `func (o *Event) HasBundleId() bool`
+`func (o *Event) HasBundleId() bool`
 
-                HasBundleId returns a boolean if a field has been set.
+HasBundleId returns a boolean if a field has been set.
 
-            ### GetPackageName
+### GetPackageName
 
-            `func (o *Event) GetPackageName() string`
+`func (o *Event) GetPackageName() string`
 
-            GetPackageName returns the PackageName field if non-nil, zero value otherwise.
+GetPackageName returns the PackageName field if non-nil, zero value otherwise.
 
-            ### GetPackageNameOk
+### GetPackageNameOk
 
-            `func (o *Event) GetPackageNameOk() (*string, bool)`
+`func (o *Event) GetPackageNameOk() (*string, bool)`
 
-            GetPackageNameOk returns a tuple with the PackageName field if it's non-nil, zero value otherwise
-            and a boolean to check if the value has been set.
+GetPackageNameOk returns a tuple with the PackageName field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
 
-            ### SetPackageName
+### SetPackageName
 
-            `func (o *Event) SetPackageName(v string)`
+`func (o *Event) SetPackageName(v string)`
 
-            SetPackageName sets PackageName field to given value.
+SetPackageName sets PackageName field to given value.
 
-                ### HasPackageName
+### HasPackageName
 
-                `func (o *Event) HasPackageName() bool`
+`func (o *Event) HasPackageName() bool`
 
-                HasPackageName returns a boolean if a field has been set.
+HasPackageName returns a boolean if a field has been set.
 
-            ### GetIpAddress
+### GetIpAddress
 
-            `func (o *Event) GetIpAddress() string`
+`func (o *Event) GetIpAddress() string`
 
-            GetIpAddress returns the IpAddress field if non-nil, zero value otherwise.
+GetIpAddress returns the IpAddress field if non-nil, zero value otherwise.
 
-            ### GetIpAddressOk
+### GetIpAddressOk
 
-            `func (o *Event) GetIpAddressOk() (*string, bool)`
+`func (o *Event) GetIpAddressOk() (*string, bool)`
 
-            GetIpAddressOk returns a tuple with the IpAddress field if it's non-nil, zero value otherwise
-            and a boolean to check if the value has been set.
+GetIpAddressOk returns a tuple with the IpAddress field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
 
-            ### SetIpAddress
+### SetIpAddress
 
-            `func (o *Event) SetIpAddress(v string)`
+`func (o *Event) SetIpAddress(v string)`
 
-            SetIpAddress sets IpAddress field to given value.
+SetIpAddress sets IpAddress field to given value.
 
-                ### HasIpAddress
+### HasIpAddress
 
-                `func (o *Event) HasIpAddress() bool`
+`func (o *Event) HasIpAddress() bool`
 
-                HasIpAddress returns a boolean if a field has been set.
+HasIpAddress returns a boolean if a field has been set.
 
-            ### GetUserAgent
+### GetUserAgent
 
-            `func (o *Event) GetUserAgent() string`
+`func (o *Event) GetUserAgent() string`
 
-            GetUserAgent returns the UserAgent field if non-nil, zero value otherwise.
+GetUserAgent returns the UserAgent field if non-nil, zero value otherwise.
 
-            ### GetUserAgentOk
+### GetUserAgentOk
 
-            `func (o *Event) GetUserAgentOk() (*string, bool)`
+`func (o *Event) GetUserAgentOk() (*string, bool)`
 
-            GetUserAgentOk returns a tuple with the UserAgent field if it's non-nil, zero value otherwise
-            and a boolean to check if the value has been set.
+GetUserAgentOk returns a tuple with the UserAgent field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
 
-            ### SetUserAgent
+### SetUserAgent
 
-            `func (o *Event) SetUserAgent(v string)`
+`func (o *Event) SetUserAgent(v string)`
 
-            SetUserAgent sets UserAgent field to given value.
+SetUserAgent sets UserAgent field to given value.
 
-                ### HasUserAgent
+### HasUserAgent
 
-                `func (o *Event) HasUserAgent() bool`
+`func (o *Event) HasUserAgent() bool`
 
-                HasUserAgent returns a boolean if a field has been set.
+HasUserAgent returns a boolean if a field has been set.
 
-            ### GetClientReferrer
+### GetClientReferrer
 
-            `func (o *Event) GetClientReferrer() string`
+`func (o *Event) GetClientReferrer() string`
 
-            GetClientReferrer returns the ClientReferrer field if non-nil, zero value otherwise.
+GetClientReferrer returns the ClientReferrer field if non-nil, zero value otherwise.
 
-            ### GetClientReferrerOk
+### GetClientReferrerOk
 
-            `func (o *Event) GetClientReferrerOk() (*string, bool)`
+`func (o *Event) GetClientReferrerOk() (*string, bool)`
 
-            GetClientReferrerOk returns a tuple with the ClientReferrer field if it's non-nil, zero value otherwise
-            and a boolean to check if the value has been set.
+GetClientReferrerOk returns a tuple with the ClientReferrer field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
 
-            ### SetClientReferrer
+### SetClientReferrer
 
-            `func (o *Event) SetClientReferrer(v string)`
+`func (o *Event) SetClientReferrer(v string)`
 
-            SetClientReferrer sets ClientReferrer field to given value.
+SetClientReferrer sets ClientReferrer field to given value.
 
-                ### HasClientReferrer
+### HasClientReferrer
 
-                `func (o *Event) HasClientReferrer() bool`
+`func (o *Event) HasClientReferrer() bool`
 
-                HasClientReferrer returns a boolean if a field has been set.
+HasClientReferrer returns a boolean if a field has been set.
 
-            ### GetBrowserDetails
+### GetBrowserDetails
 
-            `func (o *Event) GetBrowserDetails() BrowserDetails`
+`func (o *Event) GetBrowserDetails() BrowserDetails`
 
-            GetBrowserDetails returns the BrowserDetails field if non-nil, zero value otherwise.
+GetBrowserDetails returns the BrowserDetails field if non-nil, zero value otherwise.
 
-            ### GetBrowserDetailsOk
+### GetBrowserDetailsOk
 
-            `func (o *Event) GetBrowserDetailsOk() (*BrowserDetails, bool)`
+`func (o *Event) GetBrowserDetailsOk() (*BrowserDetails, bool)`
 
-            GetBrowserDetailsOk returns a tuple with the BrowserDetails field if it's non-nil, zero value otherwise
-            and a boolean to check if the value has been set.
+GetBrowserDetailsOk returns a tuple with the BrowserDetails field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
 
-            ### SetBrowserDetails
+### SetBrowserDetails
 
-            `func (o *Event) SetBrowserDetails(v BrowserDetails)`
+`func (o *Event) SetBrowserDetails(v BrowserDetails)`
 
-            SetBrowserDetails sets BrowserDetails field to given value.
+SetBrowserDetails sets BrowserDetails field to given value.
 
-                ### HasBrowserDetails
+### HasBrowserDetails
 
-                `func (o *Event) HasBrowserDetails() bool`
+`func (o *Event) HasBrowserDetails() bool`
 
-                HasBrowserDetails returns a boolean if a field has been set.
+HasBrowserDetails returns a boolean if a field has been set.
 
-            ### GetProximity
+### GetProximity
 
-            `func (o *Event) GetProximity() Proximity`
+`func (o *Event) GetProximity() Proximity`
 
-            GetProximity returns the Proximity field if non-nil, zero value otherwise.
+GetProximity returns the Proximity field if non-nil, zero value otherwise.
 
-            ### GetProximityOk
+### GetProximityOk
 
-            `func (o *Event) GetProximityOk() (*Proximity, bool)`
+`func (o *Event) GetProximityOk() (*Proximity, bool)`
 
-            GetProximityOk returns a tuple with the Proximity field if it's non-nil, zero value otherwise
-            and a boolean to check if the value has been set.
+GetProximityOk returns a tuple with the Proximity field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
 
-            ### SetProximity
+### SetProximity
 
-            `func (o *Event) SetProximity(v Proximity)`
+`func (o *Event) SetProximity(v Proximity)`
 
-            SetProximity sets Proximity field to given value.
+SetProximity sets Proximity field to given value.
 
-                ### HasProximity
+### HasProximity
 
-                `func (o *Event) HasProximity() bool`
+`func (o *Event) HasProximity() bool`
 
-                HasProximity returns a boolean if a field has been set.
+HasProximity returns a boolean if a field has been set.
 
-            ### GetBot
+### GetBot
 
-            `func (o *Event) GetBot() BotResult`
+`func (o *Event) GetBot() BotResult`
 
-            GetBot returns the Bot field if non-nil, zero value otherwise.
+GetBot returns the Bot field if non-nil, zero value otherwise.
 
-            ### GetBotOk
+### GetBotOk
 
-            `func (o *Event) GetBotOk() (*BotResult, bool)`
+`func (o *Event) GetBotOk() (*BotResult, bool)`
 
-            GetBotOk returns a tuple with the Bot field if it's non-nil, zero value otherwise
-            and a boolean to check if the value has been set.
+GetBotOk returns a tuple with the Bot field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
 
-            ### SetBot
+### SetBot
 
-            `func (o *Event) SetBot(v BotResult)`
+`func (o *Event) SetBot(v BotResult)`
 
-            SetBot sets Bot field to given value.
+SetBot sets Bot field to given value.
 
-                ### HasBot
+### HasBot
 
-                `func (o *Event) HasBot() bool`
+`func (o *Event) HasBot() bool`
 
-                HasBot returns a boolean if a field has been set.
+HasBot returns a boolean if a field has been set.
 
-            ### GetBotType
+### GetBotType
 
-            `func (o *Event) GetBotType() string`
+`func (o *Event) GetBotType() string`
 
-            GetBotType returns the BotType field if non-nil, zero value otherwise.
+GetBotType returns the BotType field if non-nil, zero value otherwise.
 
-            ### GetBotTypeOk
+### GetBotTypeOk
 
-            `func (o *Event) GetBotTypeOk() (*string, bool)`
+`func (o *Event) GetBotTypeOk() (*string, bool)`
 
-            GetBotTypeOk returns a tuple with the BotType field if it's non-nil, zero value otherwise
-            and a boolean to check if the value has been set.
+GetBotTypeOk returns a tuple with the BotType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
 
-            ### SetBotType
+### SetBotType
 
-            `func (o *Event) SetBotType(v string)`
+`func (o *Event) SetBotType(v string)`
 
-            SetBotType sets BotType field to given value.
+SetBotType sets BotType field to given value.
 
-                ### HasBotType
+### HasBotType
 
-                `func (o *Event) HasBotType() bool`
+`func (o *Event) HasBotType() bool`
 
-                HasBotType returns a boolean if a field has been set.
+HasBotType returns a boolean if a field has been set.
 
-            ### GetClonedApp
+### GetClonedApp
 
-            `func (o *Event) GetClonedApp() bool`
+`func (o *Event) GetClonedApp() bool`
 
-            GetClonedApp returns the ClonedApp field if non-nil, zero value otherwise.
+GetClonedApp returns the ClonedApp field if non-nil, zero value otherwise.
 
-            ### GetClonedAppOk
+### GetClonedAppOk
 
-            `func (o *Event) GetClonedAppOk() (*bool, bool)`
+`func (o *Event) GetClonedAppOk() (*bool, bool)`
 
-            GetClonedAppOk returns a tuple with the ClonedApp field if it's non-nil, zero value otherwise
-            and a boolean to check if the value has been set.
+GetClonedAppOk returns a tuple with the ClonedApp field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
 
-            ### SetClonedApp
+### SetClonedApp
 
-            `func (o *Event) SetClonedApp(v bool)`
+`func (o *Event) SetClonedApp(v bool)`
 
-            SetClonedApp sets ClonedApp field to given value.
+SetClonedApp sets ClonedApp field to given value.
 
-                ### HasClonedApp
+### HasClonedApp
 
-                `func (o *Event) HasClonedApp() bool`
+`func (o *Event) HasClonedApp() bool`
 
-                HasClonedApp returns a boolean if a field has been set.
+HasClonedApp returns a boolean if a field has been set.
 
-            ### GetDeveloperTools
+### GetDeveloperTools
 
-            `func (o *Event) GetDeveloperTools() bool`
+`func (o *Event) GetDeveloperTools() bool`
 
-            GetDeveloperTools returns the DeveloperTools field if non-nil, zero value otherwise.
+GetDeveloperTools returns the DeveloperTools field if non-nil, zero value otherwise.
 
-            ### GetDeveloperToolsOk
+### GetDeveloperToolsOk
 
-            `func (o *Event) GetDeveloperToolsOk() (*bool, bool)`
+`func (o *Event) GetDeveloperToolsOk() (*bool, bool)`
 
-            GetDeveloperToolsOk returns a tuple with the DeveloperTools field if it's non-nil, zero value otherwise
-            and a boolean to check if the value has been set.
+GetDeveloperToolsOk returns a tuple with the DeveloperTools field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
 
-            ### SetDeveloperTools
+### SetDeveloperTools
 
-            `func (o *Event) SetDeveloperTools(v bool)`
+`func (o *Event) SetDeveloperTools(v bool)`
 
-            SetDeveloperTools sets DeveloperTools field to given value.
+SetDeveloperTools sets DeveloperTools field to given value.
 
-                ### HasDeveloperTools
+### HasDeveloperTools
 
-                `func (o *Event) HasDeveloperTools() bool`
+`func (o *Event) HasDeveloperTools() bool`
 
-                HasDeveloperTools returns a boolean if a field has been set.
+HasDeveloperTools returns a boolean if a field has been set.
 
-            ### GetEmulator
+### GetEmulator
 
-            `func (o *Event) GetEmulator() bool`
+`func (o *Event) GetEmulator() bool`
 
-            GetEmulator returns the Emulator field if non-nil, zero value otherwise.
+GetEmulator returns the Emulator field if non-nil, zero value otherwise.
 
-            ### GetEmulatorOk
+### GetEmulatorOk
 
-            `func (o *Event) GetEmulatorOk() (*bool, bool)`
+`func (o *Event) GetEmulatorOk() (*bool, bool)`
 
-            GetEmulatorOk returns a tuple with the Emulator field if it's non-nil, zero value otherwise
-            and a boolean to check if the value has been set.
+GetEmulatorOk returns a tuple with the Emulator field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
 
-            ### SetEmulator
+### SetEmulator
 
-            `func (o *Event) SetEmulator(v bool)`
+`func (o *Event) SetEmulator(v bool)`
 
-            SetEmulator sets Emulator field to given value.
+SetEmulator sets Emulator field to given value.
 
-                ### HasEmulator
+### HasEmulator
 
-                `func (o *Event) HasEmulator() bool`
+`func (o *Event) HasEmulator() bool`
 
-                HasEmulator returns a boolean if a field has been set.
+HasEmulator returns a boolean if a field has been set.
 
-            ### GetFactoryResetTimestamp
+### GetFactoryResetTimestamp
 
-            `func (o *Event) GetFactoryResetTimestamp() int64`
+`func (o *Event) GetFactoryResetTimestamp() int64`
 
-            GetFactoryResetTimestamp returns the FactoryResetTimestamp field if non-nil, zero value otherwise.
+GetFactoryResetTimestamp returns the FactoryResetTimestamp field if non-nil, zero value otherwise.
 
-            ### GetFactoryResetTimestampOk
+### GetFactoryResetTimestampOk
 
-            `func (o *Event) GetFactoryResetTimestampOk() (*int64, bool)`
+`func (o *Event) GetFactoryResetTimestampOk() (*int64, bool)`
 
-            GetFactoryResetTimestampOk returns a tuple with the FactoryResetTimestamp field if it's non-nil, zero value otherwise
-            and a boolean to check if the value has been set.
+GetFactoryResetTimestampOk returns a tuple with the FactoryResetTimestamp field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
 
-            ### SetFactoryResetTimestamp
+### SetFactoryResetTimestamp
 
-            `func (o *Event) SetFactoryResetTimestamp(v int64)`
+`func (o *Event) SetFactoryResetTimestamp(v int64)`
 
-            SetFactoryResetTimestamp sets FactoryResetTimestamp field to given value.
+SetFactoryResetTimestamp sets FactoryResetTimestamp field to given value.
 
-                ### HasFactoryResetTimestamp
+### HasFactoryResetTimestamp
 
-                `func (o *Event) HasFactoryResetTimestamp() bool`
+`func (o *Event) HasFactoryResetTimestamp() bool`
 
-                HasFactoryResetTimestamp returns a boolean if a field has been set.
+HasFactoryResetTimestamp returns a boolean if a field has been set.
 
-            ### GetFrida
+### GetFrida
 
-            `func (o *Event) GetFrida() bool`
+`func (o *Event) GetFrida() bool`
 
-            GetFrida returns the Frida field if non-nil, zero value otherwise.
+GetFrida returns the Frida field if non-nil, zero value otherwise.
 
-            ### GetFridaOk
+### GetFridaOk
 
-            `func (o *Event) GetFridaOk() (*bool, bool)`
+`func (o *Event) GetFridaOk() (*bool, bool)`
 
-            GetFridaOk returns a tuple with the Frida field if it's non-nil, zero value otherwise
-            and a boolean to check if the value has been set.
+GetFridaOk returns a tuple with the Frida field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
 
-            ### SetFrida
+### SetFrida
 
-            `func (o *Event) SetFrida(v bool)`
+`func (o *Event) SetFrida(v bool)`
 
-            SetFrida sets Frida field to given value.
+SetFrida sets Frida field to given value.
 
-                ### HasFrida
+### HasFrida
 
-                `func (o *Event) HasFrida() bool`
+`func (o *Event) HasFrida() bool`
 
-                HasFrida returns a boolean if a field has been set.
+HasFrida returns a boolean if a field has been set.
 
-            ### GetIpBlocklist
+### GetIpBlocklist
 
-            `func (o *Event) GetIpBlocklist() IPBlockList`
+`func (o *Event) GetIpBlocklist() IPBlockList`
 
-            GetIpBlocklist returns the IpBlocklist field if non-nil, zero value otherwise.
+GetIpBlocklist returns the IpBlocklist field if non-nil, zero value otherwise.
 
-            ### GetIpBlocklistOk
+### GetIpBlocklistOk
 
-            `func (o *Event) GetIpBlocklistOk() (*IPBlockList, bool)`
+`func (o *Event) GetIpBlocklistOk() (*IPBlockList, bool)`
 
-            GetIpBlocklistOk returns a tuple with the IpBlocklist field if it's non-nil, zero value otherwise
-            and a boolean to check if the value has been set.
+GetIpBlocklistOk returns a tuple with the IpBlocklist field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
 
-            ### SetIpBlocklist
+### SetIpBlocklist
 
-            `func (o *Event) SetIpBlocklist(v IPBlockList)`
+`func (o *Event) SetIpBlocklist(v IPBlockList)`
 
-            SetIpBlocklist sets IpBlocklist field to given value.
+SetIpBlocklist sets IpBlocklist field to given value.
 
-                ### HasIpBlocklist
+### HasIpBlocklist
 
-                `func (o *Event) HasIpBlocklist() bool`
+`func (o *Event) HasIpBlocklist() bool`
 
-                HasIpBlocklist returns a boolean if a field has been set.
+HasIpBlocklist returns a boolean if a field has been set.
 
-            ### GetIpInfo
+### GetIpInfo
 
-            `func (o *Event) GetIpInfo() IPInfo`
+`func (o *Event) GetIpInfo() IPInfo`
 
-            GetIpInfo returns the IpInfo field if non-nil, zero value otherwise.
+GetIpInfo returns the IpInfo field if non-nil, zero value otherwise.
 
-            ### GetIpInfoOk
+### GetIpInfoOk
 
-            `func (o *Event) GetIpInfoOk() (*IPInfo, bool)`
+`func (o *Event) GetIpInfoOk() (*IPInfo, bool)`
 
-            GetIpInfoOk returns a tuple with the IpInfo field if it's non-nil, zero value otherwise
-            and a boolean to check if the value has been set.
+GetIpInfoOk returns a tuple with the IpInfo field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
 
-            ### SetIpInfo
+### SetIpInfo
 
-            `func (o *Event) SetIpInfo(v IPInfo)`
+`func (o *Event) SetIpInfo(v IPInfo)`
 
-            SetIpInfo sets IpInfo field to given value.
+SetIpInfo sets IpInfo field to given value.
 
-                ### HasIpInfo
+### HasIpInfo
 
-                `func (o *Event) HasIpInfo() bool`
+`func (o *Event) HasIpInfo() bool`
 
-                HasIpInfo returns a boolean if a field has been set.
+HasIpInfo returns a boolean if a field has been set.
 
-            ### GetProxy
+### GetProxy
 
-            `func (o *Event) GetProxy() bool`
+`func (o *Event) GetProxy() bool`
 
-            GetProxy returns the Proxy field if non-nil, zero value otherwise.
+GetProxy returns the Proxy field if non-nil, zero value otherwise.
 
-            ### GetProxyOk
+### GetProxyOk
 
-            `func (o *Event) GetProxyOk() (*bool, bool)`
+`func (o *Event) GetProxyOk() (*bool, bool)`
 
-            GetProxyOk returns a tuple with the Proxy field if it's non-nil, zero value otherwise
-            and a boolean to check if the value has been set.
+GetProxyOk returns a tuple with the Proxy field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
 
-            ### SetProxy
+### SetProxy
 
-            `func (o *Event) SetProxy(v bool)`
+`func (o *Event) SetProxy(v bool)`
 
-            SetProxy sets Proxy field to given value.
+SetProxy sets Proxy field to given value.
 
-                ### HasProxy
+### HasProxy
 
-                `func (o *Event) HasProxy() bool`
+`func (o *Event) HasProxy() bool`
 
-                HasProxy returns a boolean if a field has been set.
+HasProxy returns a boolean if a field has been set.
 
-            ### GetProxyConfidence
+### GetProxyConfidence
 
-            `func (o *Event) GetProxyConfidence() ProxyConfidence`
+`func (o *Event) GetProxyConfidence() ProxyConfidence`
 
-            GetProxyConfidence returns the ProxyConfidence field if non-nil, zero value otherwise.
+GetProxyConfidence returns the ProxyConfidence field if non-nil, zero value otherwise.
 
-            ### GetProxyConfidenceOk
+### GetProxyConfidenceOk
 
-            `func (o *Event) GetProxyConfidenceOk() (*ProxyConfidence, bool)`
+`func (o *Event) GetProxyConfidenceOk() (*ProxyConfidence, bool)`
 
-            GetProxyConfidenceOk returns a tuple with the ProxyConfidence field if it's non-nil, zero value otherwise
-            and a boolean to check if the value has been set.
+GetProxyConfidenceOk returns a tuple with the ProxyConfidence field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
 
-            ### SetProxyConfidence
+### SetProxyConfidence
 
-            `func (o *Event) SetProxyConfidence(v ProxyConfidence)`
+`func (o *Event) SetProxyConfidence(v ProxyConfidence)`
 
-            SetProxyConfidence sets ProxyConfidence field to given value.
+SetProxyConfidence sets ProxyConfidence field to given value.
 
-                ### HasProxyConfidence
+### HasProxyConfidence
 
-                `func (o *Event) HasProxyConfidence() bool`
+`func (o *Event) HasProxyConfidence() bool`
 
-                HasProxyConfidence returns a boolean if a field has been set.
+HasProxyConfidence returns a boolean if a field has been set.
 
-            ### GetProxyDetails
+### GetProxyDetails
 
-            `func (o *Event) GetProxyDetails() ProxyDetails`
+`func (o *Event) GetProxyDetails() ProxyDetails`
 
-            GetProxyDetails returns the ProxyDetails field if non-nil, zero value otherwise.
+GetProxyDetails returns the ProxyDetails field if non-nil, zero value otherwise.
 
-            ### GetProxyDetailsOk
+### GetProxyDetailsOk
 
-            `func (o *Event) GetProxyDetailsOk() (*ProxyDetails, bool)`
+`func (o *Event) GetProxyDetailsOk() (*ProxyDetails, bool)`
 
-            GetProxyDetailsOk returns a tuple with the ProxyDetails field if it's non-nil, zero value otherwise
-            and a boolean to check if the value has been set.
+GetProxyDetailsOk returns a tuple with the ProxyDetails field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
 
-            ### SetProxyDetails
+### SetProxyDetails
 
-            `func (o *Event) SetProxyDetails(v ProxyDetails)`
+`func (o *Event) SetProxyDetails(v ProxyDetails)`
 
-            SetProxyDetails sets ProxyDetails field to given value.
+SetProxyDetails sets ProxyDetails field to given value.
 
-                ### HasProxyDetails
+### HasProxyDetails
 
-                `func (o *Event) HasProxyDetails() bool`
+`func (o *Event) HasProxyDetails() bool`
 
-                HasProxyDetails returns a boolean if a field has been set.
+HasProxyDetails returns a boolean if a field has been set.
 
-            ### GetIncognito
+### GetIncognito
 
-            `func (o *Event) GetIncognito() bool`
+`func (o *Event) GetIncognito() bool`
 
-            GetIncognito returns the Incognito field if non-nil, zero value otherwise.
+GetIncognito returns the Incognito field if non-nil, zero value otherwise.
 
-            ### GetIncognitoOk
+### GetIncognitoOk
 
-            `func (o *Event) GetIncognitoOk() (*bool, bool)`
+`func (o *Event) GetIncognitoOk() (*bool, bool)`
 
-            GetIncognitoOk returns a tuple with the Incognito field if it's non-nil, zero value otherwise
-            and a boolean to check if the value has been set.
+GetIncognitoOk returns a tuple with the Incognito field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
 
-            ### SetIncognito
+### SetIncognito
 
-            `func (o *Event) SetIncognito(v bool)`
+`func (o *Event) SetIncognito(v bool)`
 
-            SetIncognito sets Incognito field to given value.
+SetIncognito sets Incognito field to given value.
 
-                ### HasIncognito
+### HasIncognito
 
-                `func (o *Event) HasIncognito() bool`
+`func (o *Event) HasIncognito() bool`
 
-                HasIncognito returns a boolean if a field has been set.
+HasIncognito returns a boolean if a field has been set.
 
-            ### GetJailbroken
+### GetJailbroken
 
-            `func (o *Event) GetJailbroken() bool`
+`func (o *Event) GetJailbroken() bool`
 
-            GetJailbroken returns the Jailbroken field if non-nil, zero value otherwise.
+GetJailbroken returns the Jailbroken field if non-nil, zero value otherwise.
 
-            ### GetJailbrokenOk
+### GetJailbrokenOk
 
-            `func (o *Event) GetJailbrokenOk() (*bool, bool)`
+`func (o *Event) GetJailbrokenOk() (*bool, bool)`
 
-            GetJailbrokenOk returns a tuple with the Jailbroken field if it's non-nil, zero value otherwise
-            and a boolean to check if the value has been set.
+GetJailbrokenOk returns a tuple with the Jailbroken field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
 
-            ### SetJailbroken
+### SetJailbroken
 
-            `func (o *Event) SetJailbroken(v bool)`
+`func (o *Event) SetJailbroken(v bool)`
 
-            SetJailbroken sets Jailbroken field to given value.
+SetJailbroken sets Jailbroken field to given value.
 
-                ### HasJailbroken
+### HasJailbroken
 
-                `func (o *Event) HasJailbroken() bool`
+`func (o *Event) HasJailbroken() bool`
 
-                HasJailbroken returns a boolean if a field has been set.
+HasJailbroken returns a boolean if a field has been set.
 
-            ### GetLocationSpoofing
+### GetLocationSpoofing
 
-            `func (o *Event) GetLocationSpoofing() bool`
+`func (o *Event) GetLocationSpoofing() bool`
 
-            GetLocationSpoofing returns the LocationSpoofing field if non-nil, zero value otherwise.
+GetLocationSpoofing returns the LocationSpoofing field if non-nil, zero value otherwise.
 
-            ### GetLocationSpoofingOk
+### GetLocationSpoofingOk
 
-            `func (o *Event) GetLocationSpoofingOk() (*bool, bool)`
+`func (o *Event) GetLocationSpoofingOk() (*bool, bool)`
 
-            GetLocationSpoofingOk returns a tuple with the LocationSpoofing field if it's non-nil, zero value otherwise
-            and a boolean to check if the value has been set.
+GetLocationSpoofingOk returns a tuple with the LocationSpoofing field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
 
-            ### SetLocationSpoofing
+### SetLocationSpoofing
 
-            `func (o *Event) SetLocationSpoofing(v bool)`
+`func (o *Event) SetLocationSpoofing(v bool)`
 
-            SetLocationSpoofing sets LocationSpoofing field to given value.
+SetLocationSpoofing sets LocationSpoofing field to given value.
 
-                ### HasLocationSpoofing
+### HasLocationSpoofing
 
-                `func (o *Event) HasLocationSpoofing() bool`
+`func (o *Event) HasLocationSpoofing() bool`
 
-                HasLocationSpoofing returns a boolean if a field has been set.
+HasLocationSpoofing returns a boolean if a field has been set.
 
-            ### GetMitmAttack
+### GetMitmAttack
 
-            `func (o *Event) GetMitmAttack() bool`
+`func (o *Event) GetMitmAttack() bool`
 
-            GetMitmAttack returns the MitmAttack field if non-nil, zero value otherwise.
+GetMitmAttack returns the MitmAttack field if non-nil, zero value otherwise.
 
-            ### GetMitmAttackOk
+### GetMitmAttackOk
 
-            `func (o *Event) GetMitmAttackOk() (*bool, bool)`
+`func (o *Event) GetMitmAttackOk() (*bool, bool)`
 
-            GetMitmAttackOk returns a tuple with the MitmAttack field if it's non-nil, zero value otherwise
-            and a boolean to check if the value has been set.
+GetMitmAttackOk returns a tuple with the MitmAttack field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
 
-            ### SetMitmAttack
+### SetMitmAttack
 
-            `func (o *Event) SetMitmAttack(v bool)`
+`func (o *Event) SetMitmAttack(v bool)`
 
-            SetMitmAttack sets MitmAttack field to given value.
+SetMitmAttack sets MitmAttack field to given value.
 
-                ### HasMitmAttack
+### HasMitmAttack
 
-                `func (o *Event) HasMitmAttack() bool`
+`func (o *Event) HasMitmAttack() bool`
 
-                HasMitmAttack returns a boolean if a field has been set.
+HasMitmAttack returns a boolean if a field has been set.
 
-            ### GetPrivacySettings
+### GetPrivacySettings
 
-            `func (o *Event) GetPrivacySettings() bool`
+`func (o *Event) GetPrivacySettings() bool`
 
-            GetPrivacySettings returns the PrivacySettings field if non-nil, zero value otherwise.
+GetPrivacySettings returns the PrivacySettings field if non-nil, zero value otherwise.
 
-            ### GetPrivacySettingsOk
+### GetPrivacySettingsOk
 
-            `func (o *Event) GetPrivacySettingsOk() (*bool, bool)`
+`func (o *Event) GetPrivacySettingsOk() (*bool, bool)`
 
-            GetPrivacySettingsOk returns a tuple with the PrivacySettings field if it's non-nil, zero value otherwise
-            and a boolean to check if the value has been set.
+GetPrivacySettingsOk returns a tuple with the PrivacySettings field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
 
-            ### SetPrivacySettings
+### SetPrivacySettings
 
-            `func (o *Event) SetPrivacySettings(v bool)`
+`func (o *Event) SetPrivacySettings(v bool)`
 
-            SetPrivacySettings sets PrivacySettings field to given value.
+SetPrivacySettings sets PrivacySettings field to given value.
 
-                ### HasPrivacySettings
+### HasPrivacySettings
 
-                `func (o *Event) HasPrivacySettings() bool`
+`func (o *Event) HasPrivacySettings() bool`
 
-                HasPrivacySettings returns a boolean if a field has been set.
+HasPrivacySettings returns a boolean if a field has been set.
 
-            ### GetRootApps
+### GetRootApps
 
-            `func (o *Event) GetRootApps() bool`
+`func (o *Event) GetRootApps() bool`
 
-            GetRootApps returns the RootApps field if non-nil, zero value otherwise.
+GetRootApps returns the RootApps field if non-nil, zero value otherwise.
 
-            ### GetRootAppsOk
+### GetRootAppsOk
 
-            `func (o *Event) GetRootAppsOk() (*bool, bool)`
+`func (o *Event) GetRootAppsOk() (*bool, bool)`
 
-            GetRootAppsOk returns a tuple with the RootApps field if it's non-nil, zero value otherwise
-            and a boolean to check if the value has been set.
+GetRootAppsOk returns a tuple with the RootApps field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
 
-            ### SetRootApps
+### SetRootApps
 
-            `func (o *Event) SetRootApps(v bool)`
+`func (o *Event) SetRootApps(v bool)`
 
-            SetRootApps sets RootApps field to given value.
+SetRootApps sets RootApps field to given value.
 
-                ### HasRootApps
+### HasRootApps
 
-                `func (o *Event) HasRootApps() bool`
+`func (o *Event) HasRootApps() bool`
 
-                HasRootApps returns a boolean if a field has been set.
+HasRootApps returns a boolean if a field has been set.
 
-            ### GetSuspectScore
+### GetSuspectScore
 
-            `func (o *Event) GetSuspectScore() int32`
+`func (o *Event) GetSuspectScore() int32`
 
-            GetSuspectScore returns the SuspectScore field if non-nil, zero value otherwise.
+GetSuspectScore returns the SuspectScore field if non-nil, zero value otherwise.
 
-            ### GetSuspectScoreOk
+### GetSuspectScoreOk
 
-            `func (o *Event) GetSuspectScoreOk() (*int32, bool)`
+`func (o *Event) GetSuspectScoreOk() (*int32, bool)`
 
-            GetSuspectScoreOk returns a tuple with the SuspectScore field if it's non-nil, zero value otherwise
-            and a boolean to check if the value has been set.
+GetSuspectScoreOk returns a tuple with the SuspectScore field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
 
-            ### SetSuspectScore
+### SetSuspectScore
 
-            `func (o *Event) SetSuspectScore(v int32)`
+`func (o *Event) SetSuspectScore(v int32)`
 
-            SetSuspectScore sets SuspectScore field to given value.
+SetSuspectScore sets SuspectScore field to given value.
 
-                ### HasSuspectScore
+### HasSuspectScore
 
-                `func (o *Event) HasSuspectScore() bool`
+`func (o *Event) HasSuspectScore() bool`
 
-                HasSuspectScore returns a boolean if a field has been set.
+HasSuspectScore returns a boolean if a field has been set.
 
-            ### GetTampering
+### GetTampering
 
-            `func (o *Event) GetTampering() bool`
+`func (o *Event) GetTampering() bool`
 
-            GetTampering returns the Tampering field if non-nil, zero value otherwise.
+GetTampering returns the Tampering field if non-nil, zero value otherwise.
 
-            ### GetTamperingOk
+### GetTamperingOk
 
-            `func (o *Event) GetTamperingOk() (*bool, bool)`
+`func (o *Event) GetTamperingOk() (*bool, bool)`
 
-            GetTamperingOk returns a tuple with the Tampering field if it's non-nil, zero value otherwise
-            and a boolean to check if the value has been set.
+GetTamperingOk returns a tuple with the Tampering field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
 
-            ### SetTampering
+### SetTampering
 
-            `func (o *Event) SetTampering(v bool)`
+`func (o *Event) SetTampering(v bool)`
 
-            SetTampering sets Tampering field to given value.
+SetTampering sets Tampering field to given value.
 
-                ### HasTampering
+### HasTampering
 
-                `func (o *Event) HasTampering() bool`
+`func (o *Event) HasTampering() bool`
 
-                HasTampering returns a boolean if a field has been set.
+HasTampering returns a boolean if a field has been set.
 
-            ### GetTamperingDetails
+### GetTamperingDetails
 
-            `func (o *Event) GetTamperingDetails() TamperingDetails`
+`func (o *Event) GetTamperingDetails() TamperingDetails`
 
-            GetTamperingDetails returns the TamperingDetails field if non-nil, zero value otherwise.
+GetTamperingDetails returns the TamperingDetails field if non-nil, zero value otherwise.
 
-            ### GetTamperingDetailsOk
+### GetTamperingDetailsOk
 
-            `func (o *Event) GetTamperingDetailsOk() (*TamperingDetails, bool)`
+`func (o *Event) GetTamperingDetailsOk() (*TamperingDetails, bool)`
 
-            GetTamperingDetailsOk returns a tuple with the TamperingDetails field if it's non-nil, zero value otherwise
-            and a boolean to check if the value has been set.
+GetTamperingDetailsOk returns a tuple with the TamperingDetails field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
 
-            ### SetTamperingDetails
+### SetTamperingDetails
 
-            `func (o *Event) SetTamperingDetails(v TamperingDetails)`
+`func (o *Event) SetTamperingDetails(v TamperingDetails)`
 
-            SetTamperingDetails sets TamperingDetails field to given value.
+SetTamperingDetails sets TamperingDetails field to given value.
 
-                ### HasTamperingDetails
+### HasTamperingDetails
 
-                `func (o *Event) HasTamperingDetails() bool`
+`func (o *Event) HasTamperingDetails() bool`
 
-                HasTamperingDetails returns a boolean if a field has been set.
+HasTamperingDetails returns a boolean if a field has been set.
 
-            ### GetVelocity
+### GetVelocity
 
-            `func (o *Event) GetVelocity() Velocity`
+`func (o *Event) GetVelocity() Velocity`
 
-            GetVelocity returns the Velocity field if non-nil, zero value otherwise.
+GetVelocity returns the Velocity field if non-nil, zero value otherwise.
 
-            ### GetVelocityOk
+### GetVelocityOk
 
-            `func (o *Event) GetVelocityOk() (*Velocity, bool)`
+`func (o *Event) GetVelocityOk() (*Velocity, bool)`
 
-            GetVelocityOk returns a tuple with the Velocity field if it's non-nil, zero value otherwise
-            and a boolean to check if the value has been set.
+GetVelocityOk returns a tuple with the Velocity field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
 
-            ### SetVelocity
+### SetVelocity
 
-            `func (o *Event) SetVelocity(v Velocity)`
+`func (o *Event) SetVelocity(v Velocity)`
 
-            SetVelocity sets Velocity field to given value.
+SetVelocity sets Velocity field to given value.
 
-                ### HasVelocity
+### HasVelocity
 
-                `func (o *Event) HasVelocity() bool`
+`func (o *Event) HasVelocity() bool`
 
-                HasVelocity returns a boolean if a field has been set.
+HasVelocity returns a boolean if a field has been set.
 
-            ### GetVirtualMachine
+### GetVirtualMachine
 
-            `func (o *Event) GetVirtualMachine() bool`
+`func (o *Event) GetVirtualMachine() bool`
 
-            GetVirtualMachine returns the VirtualMachine field if non-nil, zero value otherwise.
+GetVirtualMachine returns the VirtualMachine field if non-nil, zero value otherwise.
 
-            ### GetVirtualMachineOk
+### GetVirtualMachineOk
 
-            `func (o *Event) GetVirtualMachineOk() (*bool, bool)`
+`func (o *Event) GetVirtualMachineOk() (*bool, bool)`
 
-            GetVirtualMachineOk returns a tuple with the VirtualMachine field if it's non-nil, zero value otherwise
-            and a boolean to check if the value has been set.
+GetVirtualMachineOk returns a tuple with the VirtualMachine field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
 
-            ### SetVirtualMachine
+### SetVirtualMachine
 
-            `func (o *Event) SetVirtualMachine(v bool)`
+`func (o *Event) SetVirtualMachine(v bool)`
 
-            SetVirtualMachine sets VirtualMachine field to given value.
+SetVirtualMachine sets VirtualMachine field to given value.
 
-                ### HasVirtualMachine
+### HasVirtualMachine
 
-                `func (o *Event) HasVirtualMachine() bool`
+`func (o *Event) HasVirtualMachine() bool`
 
-                HasVirtualMachine returns a boolean if a field has been set.
+HasVirtualMachine returns a boolean if a field has been set.
 
-            ### GetVpn
+### GetVpn
 
-            `func (o *Event) GetVpn() bool`
+`func (o *Event) GetVpn() bool`
 
-            GetVpn returns the Vpn field if non-nil, zero value otherwise.
+GetVpn returns the Vpn field if non-nil, zero value otherwise.
 
-            ### GetVpnOk
+### GetVpnOk
 
-            `func (o *Event) GetVpnOk() (*bool, bool)`
+`func (o *Event) GetVpnOk() (*bool, bool)`
 
-            GetVpnOk returns a tuple with the Vpn field if it's non-nil, zero value otherwise
-            and a boolean to check if the value has been set.
+GetVpnOk returns a tuple with the Vpn field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
 
-            ### SetVpn
+### SetVpn
 
-            `func (o *Event) SetVpn(v bool)`
+`func (o *Event) SetVpn(v bool)`
 
-            SetVpn sets Vpn field to given value.
+SetVpn sets Vpn field to given value.
 
-                ### HasVpn
+### HasVpn
 
-                `func (o *Event) HasVpn() bool`
+`func (o *Event) HasVpn() bool`
 
-                HasVpn returns a boolean if a field has been set.
+HasVpn returns a boolean if a field has been set.
 
-            ### GetVpnConfidence
+### GetVpnConfidence
 
-            `func (o *Event) GetVpnConfidence() VpnConfidence`
+`func (o *Event) GetVpnConfidence() VpnConfidence`
 
-            GetVpnConfidence returns the VpnConfidence field if non-nil, zero value otherwise.
+GetVpnConfidence returns the VpnConfidence field if non-nil, zero value otherwise.
 
-            ### GetVpnConfidenceOk
+### GetVpnConfidenceOk
 
-            `func (o *Event) GetVpnConfidenceOk() (*VpnConfidence, bool)`
+`func (o *Event) GetVpnConfidenceOk() (*VpnConfidence, bool)`
 
-            GetVpnConfidenceOk returns a tuple with the VpnConfidence field if it's non-nil, zero value otherwise
-            and a boolean to check if the value has been set.
+GetVpnConfidenceOk returns a tuple with the VpnConfidence field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
 
-            ### SetVpnConfidence
+### SetVpnConfidence
 
-            `func (o *Event) SetVpnConfidence(v VpnConfidence)`
+`func (o *Event) SetVpnConfidence(v VpnConfidence)`
 
-            SetVpnConfidence sets VpnConfidence field to given value.
+SetVpnConfidence sets VpnConfidence field to given value.
 
-                ### HasVpnConfidence
+### HasVpnConfidence
 
-                `func (o *Event) HasVpnConfidence() bool`
+`func (o *Event) HasVpnConfidence() bool`
 
-                HasVpnConfidence returns a boolean if a field has been set.
+HasVpnConfidence returns a boolean if a field has been set.
 
-            ### GetVpnOriginTimezone
+### GetVpnOriginTimezone
 
-            `func (o *Event) GetVpnOriginTimezone() string`
+`func (o *Event) GetVpnOriginTimezone() string`
 
-            GetVpnOriginTimezone returns the VpnOriginTimezone field if non-nil, zero value otherwise.
+GetVpnOriginTimezone returns the VpnOriginTimezone field if non-nil, zero value otherwise.
 
-            ### GetVpnOriginTimezoneOk
+### GetVpnOriginTimezoneOk
 
-            `func (o *Event) GetVpnOriginTimezoneOk() (*string, bool)`
+`func (o *Event) GetVpnOriginTimezoneOk() (*string, bool)`
 
-            GetVpnOriginTimezoneOk returns a tuple with the VpnOriginTimezone field if it's non-nil, zero value otherwise
-            and a boolean to check if the value has been set.
+GetVpnOriginTimezoneOk returns a tuple with the VpnOriginTimezone field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
 
-            ### SetVpnOriginTimezone
+### SetVpnOriginTimezone
 
-            `func (o *Event) SetVpnOriginTimezone(v string)`
+`func (o *Event) SetVpnOriginTimezone(v string)`
 
-            SetVpnOriginTimezone sets VpnOriginTimezone field to given value.
+SetVpnOriginTimezone sets VpnOriginTimezone field to given value.
 
-                ### HasVpnOriginTimezone
+### HasVpnOriginTimezone
 
-                `func (o *Event) HasVpnOriginTimezone() bool`
+`func (o *Event) HasVpnOriginTimezone() bool`
 
-                HasVpnOriginTimezone returns a boolean if a field has been set.
+HasVpnOriginTimezone returns a boolean if a field has been set.
 
-            ### GetVpnOriginCountry
+### GetVpnOriginCountry
 
-            `func (o *Event) GetVpnOriginCountry() string`
+`func (o *Event) GetVpnOriginCountry() string`
 
-            GetVpnOriginCountry returns the VpnOriginCountry field if non-nil, zero value otherwise.
+GetVpnOriginCountry returns the VpnOriginCountry field if non-nil, zero value otherwise.
 
-            ### GetVpnOriginCountryOk
+### GetVpnOriginCountryOk
 
-            `func (o *Event) GetVpnOriginCountryOk() (*string, bool)`
+`func (o *Event) GetVpnOriginCountryOk() (*string, bool)`
 
-            GetVpnOriginCountryOk returns a tuple with the VpnOriginCountry field if it's non-nil, zero value otherwise
-            and a boolean to check if the value has been set.
+GetVpnOriginCountryOk returns a tuple with the VpnOriginCountry field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
 
-            ### SetVpnOriginCountry
+### SetVpnOriginCountry
 
-            `func (o *Event) SetVpnOriginCountry(v string)`
+`func (o *Event) SetVpnOriginCountry(v string)`
 
-            SetVpnOriginCountry sets VpnOriginCountry field to given value.
+SetVpnOriginCountry sets VpnOriginCountry field to given value.
 
-                ### HasVpnOriginCountry
+### HasVpnOriginCountry
 
-                `func (o *Event) HasVpnOriginCountry() bool`
+`func (o *Event) HasVpnOriginCountry() bool`
 
-                HasVpnOriginCountry returns a boolean if a field has been set.
+HasVpnOriginCountry returns a boolean if a field has been set.
 
-            ### GetVpnMethods
+### GetVpnMethods
 
-            `func (o *Event) GetVpnMethods() VpnMethods`
+`func (o *Event) GetVpnMethods() VpnMethods`
 
-            GetVpnMethods returns the VpnMethods field if non-nil, zero value otherwise.
+GetVpnMethods returns the VpnMethods field if non-nil, zero value otherwise.
 
-            ### GetVpnMethodsOk
+### GetVpnMethodsOk
 
-            `func (o *Event) GetVpnMethodsOk() (*VpnMethods, bool)`
+`func (o *Event) GetVpnMethodsOk() (*VpnMethods, bool)`
 
-            GetVpnMethodsOk returns a tuple with the VpnMethods field if it's non-nil, zero value otherwise
-            and a boolean to check if the value has been set.
+GetVpnMethodsOk returns a tuple with the VpnMethods field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
 
-            ### SetVpnMethods
+### SetVpnMethods
 
-            `func (o *Event) SetVpnMethods(v VpnMethods)`
+`func (o *Event) SetVpnMethods(v VpnMethods)`
 
-            SetVpnMethods sets VpnMethods field to given value.
+SetVpnMethods sets VpnMethods field to given value.
 
-                ### HasVpnMethods
+### HasVpnMethods
 
-                `func (o *Event) HasVpnMethods() bool`
+`func (o *Event) HasVpnMethods() bool`
 
-                HasVpnMethods returns a boolean if a field has been set.
+HasVpnMethods returns a boolean if a field has been set.
 
-            ### GetHighActivityDevice
+### GetHighActivityDevice
 
-            `func (o *Event) GetHighActivityDevice() bool`
+`func (o *Event) GetHighActivityDevice() bool`
 
-            GetHighActivityDevice returns the HighActivityDevice field if non-nil, zero value otherwise.
+GetHighActivityDevice returns the HighActivityDevice field if non-nil, zero value otherwise.
 
-            ### GetHighActivityDeviceOk
+### GetHighActivityDeviceOk
 
-            `func (o *Event) GetHighActivityDeviceOk() (*bool, bool)`
+`func (o *Event) GetHighActivityDeviceOk() (*bool, bool)`
 
-            GetHighActivityDeviceOk returns a tuple with the HighActivityDevice field if it's non-nil, zero value otherwise
-            and a boolean to check if the value has been set.
+GetHighActivityDeviceOk returns a tuple with the HighActivityDevice field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
 
-            ### SetHighActivityDevice
+### SetHighActivityDevice
 
-            `func (o *Event) SetHighActivityDevice(v bool)`
+`func (o *Event) SetHighActivityDevice(v bool)`
 
-            SetHighActivityDevice sets HighActivityDevice field to given value.
+SetHighActivityDevice sets HighActivityDevice field to given value.
 
-                ### HasHighActivityDevice
+### HasHighActivityDevice
 
-                `func (o *Event) HasHighActivityDevice() bool`
+`func (o *Event) HasHighActivityDevice() bool`
 
-                HasHighActivityDevice returns a boolean if a field has been set.
+HasHighActivityDevice returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
 
