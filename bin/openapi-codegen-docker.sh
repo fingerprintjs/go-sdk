@@ -7,7 +7,7 @@ docker run --rm -v "${PWD}:/local" openapitools/openapi-generator-cli generate \
     -g go \
     -o /local \
     -t /local/template \
-    -p packageName=sdk
+    -p packageName=fingerprint
 
 mv README.md README.generated.md
 mv temp.README.md README.md
