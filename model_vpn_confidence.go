@@ -1,7 +1,7 @@
 /*
 Server API
 
-# Overview Fingerprint Server API allows you to get, search, and update Events in a server environment. It can be used for data exports, decision-making, and data analysis scenarios. Server API is intended for server-side usage, it's not intended to be used from the client side, whether it's a browser or a mobile device.
+Fingerprint Server API allows you to get, search, and update Events in a server environment. It can be used for data exports, decision-making, and data analysis scenarios. Server API is intended for server-side usage, it's not intended to be used from the client side, whether it's a browser or a mobile device.
 
 API version: 4
 Contact: support@fingerprint.com

@@ -13,9 +13,6 @@ run_generator() {
       --git-repo-id=fingerprint-server-go-sdk
 }
 
-mv README.md temp.README.md # hide manual README
-trap 'mv -f temp.README.md README.md' EXIT # restore manual README
 run_generator
-mv README.md README.generated.md # move generated README
 
 gofmt -w .
