@@ -8,7 +8,9 @@ run_generator() {
       -g go \
       -o /local \
       -t /local/template \
-      -p packageName=fingerprint,gitUserId=fingerprintjs,gitRepoId=fingerprint-server-go-sdk
+      -p packageName=fingerprint \
+      --git-user-id=fingerprintjs \
+      --git-repo-id=fingerprint-server-go-sdk
 }
 
 mv README.md temp.README.md # hide manual README
