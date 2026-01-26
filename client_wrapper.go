@@ -66,9 +66,9 @@ func (c *Client) GetEvent(ctx context.Context, eventId string) (*sdk.Event, *htt
 }
 
 /*
-CreateSearchEventsRequest Create a search event request. See FingerprintAPIService.SearchEvents for details.
+NewSearchEventsRequest Create a search event request. See FingerprintAPIService.SearchEvents for details.
 */
-func (c *Client) CreateSearchEventsRequest(ctx context.Context) sdk.ApiSearchEventsRequest {
+func (c *Client) NewSearchEventsRequest(ctx context.Context) sdk.ApiSearchEventsRequest {
 	ctx = c.withRegion(ctx)
 	return c.api.FingerprintAPI.SearchEvents(ctx)
 }
