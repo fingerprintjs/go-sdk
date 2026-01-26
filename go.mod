@@ -1,4 +1,4 @@
-module github.com/fingerprintjs/fingerprint-server-go-sdk
+module github.com/fingerprintjs/go-sdk
 
 go 1.23
 

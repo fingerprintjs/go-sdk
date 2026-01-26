@@ -3,7 +3,7 @@ package main
 import (
 	"log"
 
-	"github.com/fingerprintjs/fingerprint-server-sdk-go"
+	"github.com/fingerprintjs/go-sdk"
 )
 
 func main() {
