@@ -9,6 +9,8 @@ import (
 
 var ContextAccessToken = sdk.ContextAccessToken
 
+type EventUpdate = sdk.EventUpdate
+
 // todo read from codegen or package.json
 const IntegrationInfo = "go-sdk/1"
 
