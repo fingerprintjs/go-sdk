@@ -6,7 +6,7 @@ run_generator() {
   rm -rf sdk/
   mkdir -p sdk/
   cp .openapi-generator-ignore sdk/
-  docker run --rm -v "${PWD}:/local" openapitools/openapi-generator-cli generate \
+  docker run --rm -v "${PWD}:/local" openapitools/openapi-generator-cli:v7.19.0 generate \
       -i /local/res/fingerprint-server-api-v4.yaml \
       -g go \
       -o /local/sdk \

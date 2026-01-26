@@ -36,7 +36,7 @@ func (c *Client) withRegion(ctx context.Context) context.Context {
 }
 
 /*
-GetEvent Get an event by event ID. See (FingerprintAPIService.GetEvent) for details.
+GetEvent Get an event by event ID. See FingerprintAPIService.GetEvent for details.
 */
 func (c *Client) GetEvent(ctx context.Context, eventId string) (*sdk.Event, *http.Response, error) {
 	ctx = c.withRegion(ctx)
