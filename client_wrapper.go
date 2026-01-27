@@ -12,7 +12,7 @@ var ContextAccessToken = sdk.ContextAccessToken
 type EventUpdate = sdk.EventUpdate
 
 // todo read from codegen or package.json
-const IntegrationInfo = "go-sdk/1"
+const IntegrationInfo = "fingerprint-pro-server-go-sdk/8.0.0"
 
 type sdkIdentTransport struct {
 	base http.RoundTripper
