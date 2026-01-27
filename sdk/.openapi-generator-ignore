@@ -33,3 +33,7 @@ sealed.go
 webhook.go
 go.mod
 go.sum
+
+// Ignore unwanted generated files
+.travis.yml
+git_push.sh
