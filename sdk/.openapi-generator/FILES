@@ -93,5 +93,4 @@ model_vpn_methods.go
 model_web_gl_basics.go
 model_web_gl_extensions.go
 response.go
-test/api_fingerprint_test.go
 utils.go
