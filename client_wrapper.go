@@ -30,6 +30,7 @@ func (t *sdkIdentTransport) RoundTrip(req *http.Request) (*http.Response, error)
 type Client struct {
 	api    *sdk.APIClient
 	region Region
+	apiKey string
 }
 
 func New(opts ...ConfigOption) *Client {
@@ -57,11 +58,20 @@ func (c *Client) withRegion(ctx context.Context) context.Context {
 	return WithRegionContext(ctx, c.api.GetConfig(), c.region)
 }
 
+func (c *Client) withAPIKey(ctx context.Context) context.Context {
+	if ctx.Value(sdk.ContextAccessToken) != nil {
+		return ctx
+	}
+
+	return context.WithValue(ctx, sdk.ContextAccessToken, c.apiKey)
+}
+
 /*
 GetEvent Get an event by event ID. See FingerprintAPIService.GetEvent for details.
 */
 func (c *Client) GetEvent(ctx context.Context, eventId string) (*sdk.Event, *http.Response, error) {
 	ctx = c.withRegion(ctx)
+	ctx = c.withAPIKey(ctx)
 	return c.api.FingerprintAPI.GetEvent(ctx, eventId).Execute()
 }
 
@@ -70,6 +80,7 @@ NewSearchEventsRequest Create a search event request. See FingerprintAPIService.
 */
 func (c *Client) NewSearchEventsRequest(ctx context.Context) sdk.ApiSearchEventsRequest {
 	ctx = c.withRegion(ctx)
+	ctx = c.withAPIKey(ctx)
 	return c.api.FingerprintAPI.SearchEvents(ctx)
 }
 
@@ -85,6 +96,7 @@ UpdateEvent Update an event. See FingerprintAPIService.UpdateEvent for details.
 */
 func (c *Client) UpdateEvent(ctx context.Context, eventId string, eventUpdateReq sdk.EventUpdate) (*http.Response, error) {
 	ctx = c.withRegion(ctx)
+	ctx = c.withAPIKey(ctx)
 	return c.api.FingerprintAPI.UpdateEvent(ctx, eventId).EventUpdate(eventUpdateReq).Execute()
 }
 
@@ -93,5 +105,6 @@ DeleteVisitorData Delete data by visitor ID. See FingerprintAPIService.DeleteVis
 */
 func (c *Client) DeleteVisitorData(ctx context.Context, visitorId string) (*http.Response, error) {
 	ctx = c.withRegion(ctx)
+	ctx = c.withAPIKey(ctx)
 	return c.api.FingerprintAPI.DeleteVisitorData(ctx, visitorId).Execute()
 }

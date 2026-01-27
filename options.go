@@ -7,3 +7,9 @@ func WithRegion(region Region) ConfigOption {
 		c.region = region
 	}
 }
+
+func WithAPIKey(apiKey string) ConfigOption {
+	return func(c *Client) {
+		c.apiKey = apiKey
+	}
+}

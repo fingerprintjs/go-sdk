@@ -11,15 +11,12 @@ import (
 )
 
 func main() {
-	client := fingerprint.New(fingerprint.WithRegion(fingerprint.RegionUS))
-
 	// Load environment variables
 	godotenv.Load()
 
-	// Configure authorization, in our case with API Key
-	auth := context.WithValue(context.Background(), fingerprint.ContextAccessToken, os.Getenv("FINGERPRINT_API_KEY"))
+	client := fingerprint.New(fingerprint.WithRegion(fingerprint.RegionUS), fingerprint.WithAPIKey(os.Getenv("FINGERPRINT_API_KEY")))
 
-	req := client.NewSearchEventsRequest(auth).Limit(5).Suspect(false).TotalHits(1000)
+	req := client.NewSearchEventsRequest(context.Background()).Limit(5).Suspect(false).TotalHits(1000)
 
 	response, httpRes, err := client.SearchEvents(req)
 

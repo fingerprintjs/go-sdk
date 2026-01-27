@@ -11,13 +11,10 @@ import (
 )
 
 func main() {
-	client := fingerprint.New(fingerprint.WithRegion(fingerprint.RegionUS))
-
 	// Load environment variables
 	godotenv.Load()
 
-	// Configure authorization, in our case with API Key
-	auth := context.WithValue(context.Background(), fingerprint.ContextAccessToken, os.Getenv("FINGERPRINT_API_KEY"))
+	client := fingerprint.New(fingerprint.WithRegion(fingerprint.RegionUS), fingerprint.WithAPIKey(os.Getenv("FINGERPRINT_API_KEY")))
 
 	// Usually this data will come from your frontend app
 	tags := map[string]interface{}{
@@ -31,7 +28,7 @@ func main() {
 		Tags:     tags,
 	}
 
-	httpRes, err := client.UpdateEvent(auth, os.Getenv("EVENT_ID"), req)
+	httpRes, err := client.UpdateEvent(context.Background(), os.Getenv("EVENT_ID"), req)
 
 	fmt.Printf("%+v\n", httpRes)
 
