@@ -13,3 +13,9 @@ func WithAPIKey(apiKey string) ConfigOption {
 		c.apiKey = apiKey
 	}
 }
+
+func WithBaseURL(baseURL string) ConfigOption {
+	return func(c *Client) {
+		c.baseURL = baseURL
+	}
+}

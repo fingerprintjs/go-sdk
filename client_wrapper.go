@@ -28,9 +28,10 @@ func (t *sdkIdentTransport) RoundTrip(req *http.Request) (*http.Response, error)
 }
 
 type Client struct {
-	api    *sdk.APIClient
-	region Region
-	apiKey string
+	api     *sdk.APIClient
+	region  Region
+	apiKey  string
+	baseURL string
 }
 
 func New(opts ...ConfigOption) *Client {
@@ -46,6 +47,12 @@ func New(opts ...ConfigOption) *Client {
 
 	for _, opt := range opts {
 		opt(c)
+	}
+
+	if c.baseURL != "" {
+		cfg.Servers = sdk.ServerConfigurations{
+			{URL: c.baseURL},
+		}
 	}
 
 	return c
