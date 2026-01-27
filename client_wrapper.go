@@ -2,6 +2,7 @@ package fingerprint
 
 import (
 	"context"
+	"fmt"
 	"net/http"
 
 	sdk "github.com/fingerprintjs/go-sdk/sdk"
@@ -11,8 +12,7 @@ var ContextAccessToken = sdk.ContextAccessToken
 
 type EventUpdate = sdk.EventUpdate
 
-// todo read from codegen or package.json
-const IntegrationInfo = "fingerprint-pro-server-go-sdk/8.0.0"
+var IntegrationInfo = fmt.Sprintf(`fingerprint-pro-server-go-sdk/%s`, Version)
 
 type sdkIdentTransport struct {
 	base http.RoundTripper
