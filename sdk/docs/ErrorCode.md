@@ -37,6 +37,8 @@
 
 * `SERVICE_UNAVAILABLE` (value: `"service_unavailable"`)
 
+* `RULESET_NOT_FOUND` (value: `"ruleset_not_found"`)
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

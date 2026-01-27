@@ -1,13 +1,11 @@
-# BotResult
+# RuleActionType
 
 ## Enum
 
 
-* `BAD` (value: `"bad"`)
+* `ALLOW` (value: `"allow"`)
 
-* `GOOD` (value: `"good"`)
-
-* `NOT_DETECTED` (value: `"not_detected"`)
+* `BLOCK` (value: `"block"`)
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

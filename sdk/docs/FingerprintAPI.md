@@ -81,7 +81,7 @@ Name | Type | Description  | Notes
 
 ## GetEvent
 
-> Event GetEvent(ctx, eventId).Execute()
+> Event GetEvent(ctx, eventId).RulesetId(rulesetId).Execute()
 
 Get an event by event ID
 
@@ -101,10 +101,11 @@ import (
 
 func main() {
 	eventId := "eventId_example" // string | The unique [identifier](https://dev.fingerprint.com/reference/get-function#requestid) of each identification request (`requestId` can be used in its place).
+	rulesetId := "rulesetId_example" // string | The ID of the ruleset to evaluate against the event, producing the action to take for this event. The resulting action is returned in the `rule_action` attribute of the response.  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.FingerprintAPI.GetEvent(context.Background(), eventId).Execute()
+	resp, r, err := apiClient.FingerprintAPI.GetEvent(context.Background(), eventId).RulesetId(rulesetId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `FingerprintAPI.GetEvent``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -130,6 +131,7 @@ Other parameters are passed through a pointer to a apiGetEventRequest struct via
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **rulesetId** | **string** | The ID of the ruleset to evaluate against the event, producing the action to take for this event. The resulting action is returned in the &#x60;rule_action&#x60; attribute of the response.  | 
 
 ### Return type
 
@@ -151,7 +153,7 @@ Name | Type | Description  | Notes
 
 ## SearchEvents
 
-> EventSearch SearchEvents(ctx).Limit(limit).PaginationKey(paginationKey).VisitorId(visitorId).Bot(bot).IpAddress(ipAddress).Asn(asn).LinkedId(linkedId).Url(url).Origin(origin).Start(start).End(end).Reverse(reverse).Suspect(suspect).Vpn(vpn).VirtualMachine(virtualMachine).Tampering(tampering).AntiDetectBrowser(antiDetectBrowser).Incognito(incognito).PrivacySettings(privacySettings).Jailbroken(jailbroken).Frida(frida).FactoryReset(factoryReset).ClonedApp(clonedApp).Emulator(emulator).RootApps(rootApps).VpnConfidence(vpnConfidence).MinSuspectScore(minSuspectScore).DeveloperTools(developerTools).LocationSpoofing(locationSpoofing).MitmAttack(mitmAttack).Proxy(proxy).SdkVersion(sdkVersion).SdkPlatform(sdkPlatform).Environment(environment).ProximityId(proximityId).TotalHits(totalHits).Execute()
+> EventSearch SearchEvents(ctx).Limit(limit).PaginationKey(paginationKey).VisitorId(visitorId).Bot(bot).IpAddress(ipAddress).Asn(asn).LinkedId(linkedId).Url(url).Origin(origin).Start(start).End(end).Reverse(reverse).Suspect(suspect).Vpn(vpn).VirtualMachine(virtualMachine).Tampering(tampering).AntiDetectBrowser(antiDetectBrowser).Incognito(incognito).PrivacySettings(privacySettings).Jailbroken(jailbroken).Frida(frida).FactoryReset(factoryReset).ClonedApp(clonedApp).Emulator(emulator).RootApps(rootApps).VpnConfidence(vpnConfidence).MinSuspectScore(minSuspectScore).DeveloperTools(developerTools).LocationSpoofing(locationSpoofing).MitmAttack(mitmAttack).Proxy(proxy).SdkVersion(sdkVersion).SdkPlatform(sdkPlatform).Environment(environment).ProximityId(proximityId).TotalHits(totalHits).TorNode(torNode).Execute()
 
 Search events
 
@@ -206,10 +208,11 @@ func main() {
 	environment := []string{"Inner_example"} // []string | Filter for events by providing one or more environment IDs (`environment_id` property).  (optional)
 	proximityId := "proximityId_example" // string | Filter events by the most precise Proximity ID provided by default. > Note: When using this parameter, only events with the `proximity.id` property matching the provided ID are returned. Events without a `proximity` result are left out of the response.  (optional)
 	totalHits := int64(789) // int64 | When set, the response will include a `total_hits` property with a count of total query matches across all pages, up to the specified limit.  (optional)
+	torNode := true // bool | Filter events by Tor Node detection result. > Note: When using this parameter, only events with the `tor_node` property set to `true` or `false` are returned. Events without a `tor_node` detection result are left out of the response.  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.FingerprintAPI.SearchEvents(context.Background()).Limit(limit).PaginationKey(paginationKey).VisitorId(visitorId).Bot(bot).IpAddress(ipAddress).Asn(asn).LinkedId(linkedId).Url(url).Origin(origin).Start(start).End(end).Reverse(reverse).Suspect(suspect).Vpn(vpn).VirtualMachine(virtualMachine).Tampering(tampering).AntiDetectBrowser(antiDetectBrowser).Incognito(incognito).PrivacySettings(privacySettings).Jailbroken(jailbroken).Frida(frida).FactoryReset(factoryReset).ClonedApp(clonedApp).Emulator(emulator).RootApps(rootApps).VpnConfidence(vpnConfidence).MinSuspectScore(minSuspectScore).DeveloperTools(developerTools).LocationSpoofing(locationSpoofing).MitmAttack(mitmAttack).Proxy(proxy).SdkVersion(sdkVersion).SdkPlatform(sdkPlatform).Environment(environment).ProximityId(proximityId).TotalHits(totalHits).Execute()
+	resp, r, err := apiClient.FingerprintAPI.SearchEvents(context.Background()).Limit(limit).PaginationKey(paginationKey).VisitorId(visitorId).Bot(bot).IpAddress(ipAddress).Asn(asn).LinkedId(linkedId).Url(url).Origin(origin).Start(start).End(end).Reverse(reverse).Suspect(suspect).Vpn(vpn).VirtualMachine(virtualMachine).Tampering(tampering).AntiDetectBrowser(antiDetectBrowser).Incognito(incognito).PrivacySettings(privacySettings).Jailbroken(jailbroken).Frida(frida).FactoryReset(factoryReset).ClonedApp(clonedApp).Emulator(emulator).RootApps(rootApps).VpnConfidence(vpnConfidence).MinSuspectScore(minSuspectScore).DeveloperTools(developerTools).LocationSpoofing(locationSpoofing).MitmAttack(mitmAttack).Proxy(proxy).SdkVersion(sdkVersion).SdkPlatform(sdkPlatform).Environment(environment).ProximityId(proximityId).TotalHits(totalHits).TorNode(torNode).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `FingerprintAPI.SearchEvents``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -266,6 +269,7 @@ Name | Type | Description  | Notes
  **environment** | **[]string** | Filter for events by providing one or more environment IDs (&#x60;environment_id&#x60; property).  | 
  **proximityId** | **string** | Filter events by the most precise Proximity ID provided by default. &gt; Note: When using this parameter, only events with the &#x60;proximity.id&#x60; property matching the provided ID are returned. Events without a &#x60;proximity&#x60; result are left out of the response.  | 
  **totalHits** | **int64** | When set, the response will include a &#x60;total_hits&#x60; property with a count of total query matches across all pages, up to the specified limit.  | 
+ **torNode** | **bool** | Filter events by Tor Node detection result. &gt; Note: When using this parameter, only events with the &#x60;tor_node&#x60; property set to &#x60;true&#x60; or &#x60;false&#x60; are returned. Events without a &#x60;tor_node&#x60; detection result are left out of the response.  | 
 
 ### Return type
 

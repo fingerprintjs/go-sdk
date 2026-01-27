@@ -185,6 +185,13 @@ type ApiGetEventRequest struct {
 	ctx        context.Context
 	ApiService *FingerprintAPIService
 	eventId    string
+	rulesetId  *string
+}
+
+// The ID of the ruleset to evaluate against the event, producing the action to take for this event. The resulting action is returned in the &#x60;rule_action&#x60; attribute of the response.
+func (r ApiGetEventRequest) RulesetId(rulesetId string) ApiGetEventRequest {
+	r.rulesetId = &rulesetId
+	return r
 }
 
 func (r ApiGetEventRequest) Execute() (*Event, *http.Response, error) {
@@ -233,6 +240,9 @@ func (a *FingerprintAPIService) GetEventExecute(r ApiGetEventRequest) (*Event, *
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.rulesetId != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "ruleset_id", r.rulesetId, "form", "")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -295,6 +305,17 @@ func (a *FingerprintAPIService) GetEventExecute(r ApiGetEventRequest) (*Event, *
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
 			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -369,6 +390,7 @@ type ApiSearchEventsRequest struct {
 	environment       *[]string
 	proximityId       *string
 	totalHits         *int64
+	torNode           *bool
 }
 
 // Limit the number of events returned.
@@ -586,6 +608,12 @@ func (r ApiSearchEventsRequest) TotalHits(totalHits int64) ApiSearchEventsReques
 	return r
 }
 
+// Filter events by Tor Node detection result. &gt; Note: When using this parameter, only events with the &#x60;tor_node&#x60; property set to &#x60;true&#x60; or &#x60;false&#x60; are returned. Events without a &#x60;tor_node&#x60; detection result are left out of the response.
+func (r ApiSearchEventsRequest) TorNode(torNode bool) ApiSearchEventsRequest {
+	r.torNode = &torNode
+	return r
+}
+
 func (r ApiSearchEventsRequest) Execute() (*EventSearch, *http.Response, error) {
 	return r.ApiService.SearchEventsExecute(r)
 }
@@ -766,6 +794,9 @@ func (a *FingerprintAPIService) SearchEventsExecute(r ApiSearchEventsRequest) (*
 	}
 	if r.totalHits != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "total_hits", r.totalHits, "form", "")
+	}
+	if r.torNode != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "tor_node", r.torNode, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

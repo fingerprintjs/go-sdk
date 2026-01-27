@@ -40,6 +40,7 @@ Name | Type | Description | Notes
 **MitmAttack** | Pointer to **bool** | * &#x60;true&#x60; - When requests made from your users&#39; mobile devices to Fingerprint servers have been intercepted and potentially modified.  * &#x60;false&#x60; - Otherwise or when the request originated from a browser. See [MitM Attack Detection](https://dev.fingerprint.com/docs/smart-signals-reference#mitm-attack-detection) to learn more about this Smart Signal.  | [optional] 
 **PrivacySettings** | Pointer to **bool** | &#x60;true&#x60; if the request is from a privacy aware browser (e.g. Tor) or from a browser in which fingerprinting is blocked. Otherwise &#x60;false&#x60;.  | [optional] 
 **RootApps** | Pointer to **bool** | Android specific root management apps detection. There are 2 values:  * &#x60;true&#x60; - Root Management Apps detected (e.g. Magisk). * &#x60;false&#x60; - No Root Management Apps detected or the client isn&#39;t Android.  | [optional] 
+**RuleAction** | Pointer to [**EventRuleAction**](EventRuleAction.md) |  | [optional] 
 **SuspectScore** | Pointer to **int32** | Suspect Score is an easy way to integrate Smart Signals into your fraud protection work flow.  It is a weighted representation of all Smart Signals present in the payload that helps identify suspicious activity. The value range is [0; S] where S is sum of all Smart Signals weights.  See more details here: https://dev.fingerprint.com/docs/suspect-score  | [optional] 
 **Tampering** | Pointer to **bool** | Flag indicating browser tampering was detected. This happens when either:   * There are inconsistencies in the browser configuration that cross internal tampering thresholds (see &#x60;tampering_details.anomaly_score&#x60;).   * The browser signature resembles an \&quot;anti-detect\&quot; browser specifically designed to evade fingerprinting (see &#x60;tampering_details.anti_detect_browser&#x60;).  | [optional] 
 **TamperingDetails** | Pointer to [**TamperingDetails**](TamperingDetails.md) |  | [optional] 
@@ -51,6 +52,7 @@ Name | Type | Description | Notes
 **VpnOriginCountry** | Pointer to **string** | Country of the request (only for Android SDK version &gt;&#x3D; 2.4.0, ISO 3166 format or unknown).  | [optional] 
 **VpnMethods** | Pointer to [**VpnMethods**](VpnMethods.md) |  | [optional] 
 **HighActivityDevice** | Pointer to **bool** | Flag indicating if the request came from a high-activity visitor. | [optional] 
+**RawDeviceAttributes** | Pointer to [**RawDeviceAttributes**](RawDeviceAttributes.md) |  | [optional] 
 
 ## Methods
 
@@ -961,6 +963,31 @@ SetRootApps sets RootApps field to given value.
 
 HasRootApps returns a boolean if a field has been set.
 
+### GetRuleAction
+
+`func (o *Event) GetRuleAction() EventRuleAction`
+
+GetRuleAction returns the RuleAction field if non-nil, zero value otherwise.
+
+### GetRuleActionOk
+
+`func (o *Event) GetRuleActionOk() (*EventRuleAction, bool)`
+
+GetRuleActionOk returns a tuple with the RuleAction field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRuleAction
+
+`func (o *Event) SetRuleAction(v EventRuleAction)`
+
+SetRuleAction sets RuleAction field to given value.
+
+### HasRuleAction
+
+`func (o *Event) HasRuleAction() bool`
+
+HasRuleAction returns a boolean if a field has been set.
+
 ### GetSuspectScore
 
 `func (o *Event) GetSuspectScore() int32`
@@ -1235,6 +1262,31 @@ SetHighActivityDevice sets HighActivityDevice field to given value.
 `func (o *Event) HasHighActivityDevice() bool`
 
 HasHighActivityDevice returns a boolean if a field has been set.
+
+### GetRawDeviceAttributes
+
+`func (o *Event) GetRawDeviceAttributes() RawDeviceAttributes`
+
+GetRawDeviceAttributes returns the RawDeviceAttributes field if non-nil, zero value otherwise.
+
+### GetRawDeviceAttributesOk
+
+`func (o *Event) GetRawDeviceAttributesOk() (*RawDeviceAttributes, bool)`
+
+GetRawDeviceAttributesOk returns a tuple with the RawDeviceAttributes field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRawDeviceAttributes
+
+`func (o *Event) SetRawDeviceAttributes(v RawDeviceAttributes)`
+
+SetRawDeviceAttributes sets RawDeviceAttributes field to given value.
+
+### HasRawDeviceAttributes
+
+`func (o *Event) HasRawDeviceAttributes() bool`
+
+HasRawDeviceAttributes returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

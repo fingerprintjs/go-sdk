@@ -83,7 +83,8 @@ type Event struct {
 	// `true` if the request is from a privacy aware browser (e.g. Tor) or from a browser in which fingerprinting is blocked. Otherwise `false`.
 	PrivacySettings *bool `json:"privacy_settings,omitempty"`
 	// Android specific root management apps detection. There are 2 values:  * `true` - Root Management Apps detected (e.g. Magisk). * `false` - No Root Management Apps detected or the client isn't Android.
-	RootApps *bool `json:"root_apps,omitempty"`
+	RootApps   *bool            `json:"root_apps,omitempty"`
+	RuleAction *EventRuleAction `json:"rule_action,omitempty"`
 	// Suspect Score is an easy way to integrate Smart Signals into your fraud protection work flow.  It is a weighted representation of all Smart Signals present in the payload that helps identify suspicious activity. The value range is [0; S] where S is sum of all Smart Signals weights.  See more details here: https://dev.fingerprint.com/docs/suspect-score
 	SuspectScore *int32 `json:"suspect_score,omitempty"`
 	// Flag indicating browser tampering was detected. This happens when either:   * There are inconsistencies in the browser configuration that cross internal tampering thresholds (see `tampering_details.anomaly_score`).   * The browser signature resembles an \"anti-detect\" browser specifically designed to evade fingerprinting (see `tampering_details.anti_detect_browser`).
@@ -101,7 +102,8 @@ type Event struct {
 	VpnOriginCountry *string     `json:"vpn_origin_country,omitempty"`
 	VpnMethods       *VpnMethods `json:"vpn_methods,omitempty"`
 	// Flag indicating if the request came from a high-activity visitor.
-	HighActivityDevice *bool `json:"high_activity_device,omitempty"`
+	HighActivityDevice  *bool                `json:"high_activity_device,omitempty"`
+	RawDeviceAttributes *RawDeviceAttributes `json:"raw_device_attributes,omitempty"`
 }
 
 type _Event Event
@@ -1261,6 +1263,38 @@ func (o *Event) SetRootApps(v bool) {
 	o.RootApps = &v
 }
 
+// GetRuleAction returns the RuleAction field value if set, zero value otherwise.
+func (o *Event) GetRuleAction() EventRuleAction {
+	if o == nil || IsNil(o.RuleAction) {
+		var ret EventRuleAction
+		return ret
+	}
+	return *o.RuleAction
+}
+
+// GetRuleActionOk returns a tuple with the RuleAction field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Event) GetRuleActionOk() (*EventRuleAction, bool) {
+	if o == nil || IsNil(o.RuleAction) {
+		return nil, false
+	}
+	return o.RuleAction, true
+}
+
+// HasRuleAction returns a boolean if a field has been set.
+func (o *Event) HasRuleAction() bool {
+	if o != nil && !IsNil(o.RuleAction) {
+		return true
+	}
+
+	return false
+}
+
+// SetRuleAction gets a reference to the given EventRuleAction and assigns it to the RuleAction field.
+func (o *Event) SetRuleAction(v EventRuleAction) {
+	o.RuleAction = &v
+}
+
 // GetSuspectScore returns the SuspectScore field value if set, zero value otherwise.
 func (o *Event) GetSuspectScore() int32 {
 	if o == nil || IsNil(o.SuspectScore) {
@@ -1613,6 +1647,38 @@ func (o *Event) SetHighActivityDevice(v bool) {
 	o.HighActivityDevice = &v
 }
 
+// GetRawDeviceAttributes returns the RawDeviceAttributes field value if set, zero value otherwise.
+func (o *Event) GetRawDeviceAttributes() RawDeviceAttributes {
+	if o == nil || IsNil(o.RawDeviceAttributes) {
+		var ret RawDeviceAttributes
+		return ret
+	}
+	return *o.RawDeviceAttributes
+}
+
+// GetRawDeviceAttributesOk returns a tuple with the RawDeviceAttributes field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Event) GetRawDeviceAttributesOk() (*RawDeviceAttributes, bool) {
+	if o == nil || IsNil(o.RawDeviceAttributes) {
+		return nil, false
+	}
+	return o.RawDeviceAttributes, true
+}
+
+// HasRawDeviceAttributes returns a boolean if a field has been set.
+func (o *Event) HasRawDeviceAttributes() bool {
+	if o != nil && !IsNil(o.RawDeviceAttributes) {
+		return true
+	}
+
+	return false
+}
+
+// SetRawDeviceAttributes gets a reference to the given RawDeviceAttributes and assigns it to the RawDeviceAttributes field.
+func (o *Event) SetRawDeviceAttributes(v RawDeviceAttributes) {
+	o.RawDeviceAttributes = &v
+}
+
 func (o Event) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -1727,6 +1793,9 @@ func (o Event) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.RootApps) {
 		toSerialize["root_apps"] = o.RootApps
 	}
+	if !IsNil(o.RuleAction) {
+		toSerialize["rule_action"] = o.RuleAction
+	}
 	if !IsNil(o.SuspectScore) {
 		toSerialize["suspect_score"] = o.SuspectScore
 	}
@@ -1759,6 +1828,9 @@ func (o Event) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.HighActivityDevice) {
 		toSerialize["high_activity_device"] = o.HighActivityDevice
+	}
+	if !IsNil(o.RawDeviceAttributes) {
+		toSerialize["raw_device_attributes"] = o.RawDeviceAttributes
 	}
 	return toSerialize, nil
 }
