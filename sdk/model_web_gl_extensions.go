@@ -26,7 +26,10 @@ type WebGlExtensions struct {
 	Extensions            *string  `json:"extensions,omitempty"`
 	ExtensionParameters   *string  `json:"extension_parameters,omitempty"`
 	UnsupportedExtensions []string `json:"unsupported_extensions,omitempty"`
+	AdditionalProperties  map[string]interface{}
 }
+
+type _WebGlExtensions WebGlExtensions
 
 // NewWebGlExtensions instantiates a new WebGlExtensions object
 // This constructor will assign default values to properties that have it defined,
@@ -265,7 +268,38 @@ func (o WebGlExtensions) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.UnsupportedExtensions) {
 		toSerialize["unsupported_extensions"] = o.UnsupportedExtensions
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *WebGlExtensions) UnmarshalJSON(data []byte) (err error) {
+	varWebGlExtensions := _WebGlExtensions{}
+
+	err = json.Unmarshal(data, &varWebGlExtensions)
+
+	if err != nil {
+		return err
+	}
+
+	*o = WebGlExtensions(varWebGlExtensions)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "context_attributes")
+		delete(additionalProperties, "parameters")
+		delete(additionalProperties, "shader_precisions")
+		delete(additionalProperties, "extensions")
+		delete(additionalProperties, "extension_parameters")
+		delete(additionalProperties, "unsupported_extensions")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableWebGlExtensions struct {

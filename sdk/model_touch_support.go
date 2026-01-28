@@ -20,10 +20,13 @@ var _ MappedNullable = &TouchSupport{}
 
 // TouchSupport Browser-reported touch capabilities.
 type TouchSupport struct {
-	TouchEvent     *bool  `json:"touch_event,omitempty"`
-	TouchStart     *bool  `json:"touch_start,omitempty"`
-	MaxTouchPoints *int64 `json:"max_touch_points,omitempty"`
+	TouchEvent           *bool  `json:"touch_event,omitempty"`
+	TouchStart           *bool  `json:"touch_start,omitempty"`
+	MaxTouchPoints       *int64 `json:"max_touch_points,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _TouchSupport TouchSupport
 
 // NewTouchSupport instantiates a new TouchSupport object
 // This constructor will assign default values to properties that have it defined,
@@ -157,7 +160,35 @@ func (o TouchSupport) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.MaxTouchPoints) {
 		toSerialize["max_touch_points"] = o.MaxTouchPoints
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *TouchSupport) UnmarshalJSON(data []byte) (err error) {
+	varTouchSupport := _TouchSupport{}
+
+	err = json.Unmarshal(data, &varTouchSupport)
+
+	if err != nil {
+		return err
+	}
+
+	*o = TouchSupport(varTouchSupport)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "touch_event")
+		delete(additionalProperties, "touch_start")
+		delete(additionalProperties, "max_touch_points")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableTouchSupport struct {

@@ -12,7 +12,6 @@ Contact: support@fingerprint.com
 package fingerprint
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,12 +21,13 @@ var _ MappedNullable = &BrowserDetails{}
 
 // BrowserDetails struct for BrowserDetails
 type BrowserDetails struct {
-	BrowserName         string `json:"browser_name"`
-	BrowserMajorVersion string `json:"browser_major_version"`
-	BrowserFullVersion  string `json:"browser_full_version"`
-	Os                  string `json:"os"`
-	OsVersion           string `json:"os_version"`
-	Device              string `json:"device"`
+	BrowserName          string `json:"browser_name"`
+	BrowserMajorVersion  string `json:"browser_major_version"`
+	BrowserFullVersion   string `json:"browser_full_version"`
+	Os                   string `json:"os"`
+	OsVersion            string `json:"os_version"`
+	Device               string `json:"device"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _BrowserDetails BrowserDetails
@@ -215,6 +215,11 @@ func (o BrowserDetails) ToMap() (map[string]interface{}, error) {
 	toSerialize["os"] = o.Os
 	toSerialize["os_version"] = o.OsVersion
 	toSerialize["device"] = o.Device
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -247,15 +252,25 @@ func (o *BrowserDetails) UnmarshalJSON(data []byte) (err error) {
 
 	varBrowserDetails := _BrowserDetails{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varBrowserDetails)
+	err = json.Unmarshal(data, &varBrowserDetails)
 
 	if err != nil {
 		return err
 	}
 
 	*o = BrowserDetails(varBrowserDetails)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "browser_name")
+		delete(additionalProperties, "browser_major_version")
+		delete(additionalProperties, "browser_full_version")
+		delete(additionalProperties, "os")
+		delete(additionalProperties, "os_version")
+		delete(additionalProperties, "device")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

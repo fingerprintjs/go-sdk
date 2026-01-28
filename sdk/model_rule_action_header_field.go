@@ -12,7 +12,6 @@ Contact: support@fingerprint.com
 package fingerprint
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -25,7 +24,8 @@ type RuleActionHeaderField struct {
 	// The header field name.
 	Name string `json:"name"`
 	// The value of the header field.
-	Value string `json:"value"`
+	Value                string `json:"value"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _RuleActionHeaderField RuleActionHeaderField
@@ -109,6 +109,11 @@ func (o RuleActionHeaderField) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["name"] = o.Name
 	toSerialize["value"] = o.Value
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -137,15 +142,21 @@ func (o *RuleActionHeaderField) UnmarshalJSON(data []byte) (err error) {
 
 	varRuleActionHeaderField := _RuleActionHeaderField{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varRuleActionHeaderField)
+	err = json.Unmarshal(data, &varRuleActionHeaderField)
 
 	if err != nil {
 		return err
 	}
 
 	*o = RuleActionHeaderField(varRuleActionHeaderField)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "value")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

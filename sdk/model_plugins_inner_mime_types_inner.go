@@ -20,10 +20,13 @@ var _ MappedNullable = &PluginsInnerMimeTypesInner{}
 
 // PluginsInnerMimeTypesInner struct for PluginsInnerMimeTypesInner
 type PluginsInnerMimeTypesInner struct {
-	Type        *string `json:"type,omitempty"`
-	Suffixes    *string `json:"suffixes,omitempty"`
-	Description *string `json:"description,omitempty"`
+	Type                 *string `json:"type,omitempty"`
+	Suffixes             *string `json:"suffixes,omitempty"`
+	Description          *string `json:"description,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _PluginsInnerMimeTypesInner PluginsInnerMimeTypesInner
 
 // NewPluginsInnerMimeTypesInner instantiates a new PluginsInnerMimeTypesInner object
 // This constructor will assign default values to properties that have it defined,
@@ -157,7 +160,35 @@ func (o PluginsInnerMimeTypesInner) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Description) {
 		toSerialize["description"] = o.Description
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *PluginsInnerMimeTypesInner) UnmarshalJSON(data []byte) (err error) {
+	varPluginsInnerMimeTypesInner := _PluginsInnerMimeTypesInner{}
+
+	err = json.Unmarshal(data, &varPluginsInnerMimeTypesInner)
+
+	if err != nil {
+		return err
+	}
+
+	*o = PluginsInnerMimeTypesInner(varPluginsInnerMimeTypesInner)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "type")
+		delete(additionalProperties, "suffixes")
+		delete(additionalProperties, "description")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullablePluginsInnerMimeTypesInner struct {

@@ -12,7 +12,6 @@ Contact: support@fingerprint.com
 package fingerprint
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -25,8 +24,9 @@ type SDK struct {
 	// Platform of the SDK used for the identification request.
 	Platform string `json:"platform"`
 	// Version string of the SDK used for the identification request. For example: `\"3.12.1\"`
-	Version      string        `json:"version"`
-	Integrations []Integration `json:"integrations,omitempty"`
+	Version              string        `json:"version"`
+	Integrations         []Integration `json:"integrations,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _SDK SDK
@@ -145,6 +145,11 @@ func (o SDK) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Integrations) {
 		toSerialize["integrations"] = o.Integrations
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -173,15 +178,22 @@ func (o *SDK) UnmarshalJSON(data []byte) (err error) {
 
 	varSDK := _SDK{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varSDK)
+	err = json.Unmarshal(data, &varSDK)
 
 	if err != nil {
 		return err
 	}
 
 	*o = SDK(varSDK)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "platform")
+		delete(additionalProperties, "version")
+		delete(additionalProperties, "integrations")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

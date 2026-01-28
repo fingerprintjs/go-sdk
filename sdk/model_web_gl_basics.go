@@ -26,7 +26,10 @@ type WebGlBasics struct {
 	Renderer               *string `json:"renderer,omitempty"`
 	RendererUnmasked       *string `json:"renderer_unmasked,omitempty"`
 	ShadingLanguageVersion *string `json:"shading_language_version,omitempty"`
+	AdditionalProperties   map[string]interface{}
 }
+
+type _WebGlBasics WebGlBasics
 
 // NewWebGlBasics instantiates a new WebGlBasics object
 // This constructor will assign default values to properties that have it defined,
@@ -265,7 +268,38 @@ func (o WebGlBasics) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.ShadingLanguageVersion) {
 		toSerialize["shading_language_version"] = o.ShadingLanguageVersion
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *WebGlBasics) UnmarshalJSON(data []byte) (err error) {
+	varWebGlBasics := _WebGlBasics{}
+
+	err = json.Unmarshal(data, &varWebGlBasics)
+
+	if err != nil {
+		return err
+	}
+
+	*o = WebGlBasics(varWebGlBasics)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "version")
+		delete(additionalProperties, "vendor")
+		delete(additionalProperties, "vendor_unmasked")
+		delete(additionalProperties, "renderer")
+		delete(additionalProperties, "renderer_unmasked")
+		delete(additionalProperties, "shading_language_version")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableWebGlBasics struct {

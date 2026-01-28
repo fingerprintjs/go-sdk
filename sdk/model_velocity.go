@@ -27,7 +27,10 @@ type Velocity struct {
 	IpEvents                    *VelocityData `json:"ip_events,omitempty"`
 	DistinctIpByLinkedId        *VelocityData `json:"distinct_ip_by_linked_id,omitempty"`
 	DistinctVisitorIdByLinkedId *VelocityData `json:"distinct_visitor_id_by_linked_id,omitempty"`
+	AdditionalProperties        map[string]interface{}
 }
+
+type _Velocity Velocity
 
 // NewVelocity instantiates a new Velocity object
 // This constructor will assign default values to properties that have it defined,
@@ -301,7 +304,39 @@ func (o Velocity) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.DistinctVisitorIdByLinkedId) {
 		toSerialize["distinct_visitor_id_by_linked_id"] = o.DistinctVisitorIdByLinkedId
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *Velocity) UnmarshalJSON(data []byte) (err error) {
+	varVelocity := _Velocity{}
+
+	err = json.Unmarshal(data, &varVelocity)
+
+	if err != nil {
+		return err
+	}
+
+	*o = Velocity(varVelocity)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "distinct_ip")
+		delete(additionalProperties, "distinct_linked_id")
+		delete(additionalProperties, "distinct_country")
+		delete(additionalProperties, "events")
+		delete(additionalProperties, "ip_events")
+		delete(additionalProperties, "distinct_ip_by_linked_id")
+		delete(additionalProperties, "distinct_visitor_id_by_linked_id")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableVelocity struct {

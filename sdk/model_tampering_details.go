@@ -23,8 +23,11 @@ type TamperingDetails struct {
 	// Confidence score (`0.0 - 1.0`) for tampering detection:   * Values above `0.5` indicate tampering.   * Values below `0.5` indicate genuine browsers.
 	AnomalyScore *float64 `json:"anomaly_score,omitempty"`
 	// True if the identified browser resembles an \"anti-detect\" browser, such as Incognition, which attempts to evade identification by manipulating its fingerprint.
-	AntiDetectBrowser *bool `json:"anti_detect_browser,omitempty"`
+	AntiDetectBrowser    *bool `json:"anti_detect_browser,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _TamperingDetails TamperingDetails
 
 // NewTamperingDetails instantiates a new TamperingDetails object
 // This constructor will assign default values to properties that have it defined,
@@ -123,7 +126,34 @@ func (o TamperingDetails) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.AntiDetectBrowser) {
 		toSerialize["anti_detect_browser"] = o.AntiDetectBrowser
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *TamperingDetails) UnmarshalJSON(data []byte) (err error) {
+	varTamperingDetails := _TamperingDetails{}
+
+	err = json.Unmarshal(data, &varTamperingDetails)
+
+	if err != nil {
+		return err
+	}
+
+	*o = TamperingDetails(varTamperingDetails)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "anomaly_score")
+		delete(additionalProperties, "anti_detect_browser")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableTamperingDetails struct {

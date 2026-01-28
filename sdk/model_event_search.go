@@ -12,7 +12,6 @@ Contact: support@fingerprint.com
 package fingerprint
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -26,7 +25,8 @@ type EventSearch struct {
 	// Use this value in the `pagination_key` parameter to request the next page of search results.
 	PaginationKey *string `json:"pagination_key,omitempty"`
 	// This value represents the total number of events matching the search query, up to the limit provided in the `total_hits` query parameter. Only present if the `total_hits` query parameter was provided.
-	TotalHits *int64 `json:"total_hits,omitempty"`
+	TotalHits            *int64 `json:"total_hits,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _EventSearch EventSearch
@@ -154,6 +154,11 @@ func (o EventSearch) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.TotalHits) {
 		toSerialize["total_hits"] = o.TotalHits
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -181,15 +186,22 @@ func (o *EventSearch) UnmarshalJSON(data []byte) (err error) {
 
 	varEventSearch := _EventSearch{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varEventSearch)
+	err = json.Unmarshal(data, &varEventSearch)
 
 	if err != nil {
 		return err
 	}
 
 	*o = EventSearch(varEventSearch)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "events")
+		delete(additionalProperties, "pagination_key")
+		delete(additionalProperties, "total_hits")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

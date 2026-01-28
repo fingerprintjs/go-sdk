@@ -12,7 +12,6 @@ Contact: support@fingerprint.com
 package fingerprint
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,14 +21,15 @@ var _ MappedNullable = &IPInfoV4{}
 
 // IPInfoV4 struct for IPInfoV4
 type IPInfoV4 struct {
-	Address          string       `json:"address"`
-	Geolocation      *Geolocation `json:"geolocation,omitempty"`
-	Asn              *string      `json:"asn,omitempty"`
-	AsnName          *string      `json:"asn_name,omitempty"`
-	AsnNetwork       *string      `json:"asn_network,omitempty"`
-	AsnType          *string      `json:"asn_type,omitempty"`
-	DatacenterResult *bool        `json:"datacenter_result,omitempty"`
-	DatacenterName   *string      `json:"datacenter_name,omitempty"`
+	Address              string       `json:"address"`
+	Geolocation          *Geolocation `json:"geolocation,omitempty"`
+	Asn                  *string      `json:"asn,omitempty"`
+	AsnName              *string      `json:"asn_name,omitempty"`
+	AsnNetwork           *string      `json:"asn_network,omitempty"`
+	AsnType              *string      `json:"asn_type,omitempty"`
+	DatacenterResult     *bool        `json:"datacenter_result,omitempty"`
+	DatacenterName       *string      `json:"datacenter_name,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _IPInfoV4 IPInfoV4
@@ -332,6 +332,11 @@ func (o IPInfoV4) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.DatacenterName) {
 		toSerialize["datacenter_name"] = o.DatacenterName
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -359,15 +364,27 @@ func (o *IPInfoV4) UnmarshalJSON(data []byte) (err error) {
 
 	varIPInfoV4 := _IPInfoV4{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varIPInfoV4)
+	err = json.Unmarshal(data, &varIPInfoV4)
 
 	if err != nil {
 		return err
 	}
 
 	*o = IPInfoV4(varIPInfoV4)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "address")
+		delete(additionalProperties, "geolocation")
+		delete(additionalProperties, "asn")
+		delete(additionalProperties, "asn_name")
+		delete(additionalProperties, "asn_network")
+		delete(additionalProperties, "asn_type")
+		delete(additionalProperties, "datacenter_result")
+		delete(additionalProperties, "datacenter_name")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

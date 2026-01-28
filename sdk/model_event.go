@@ -12,7 +12,6 @@ Contact: support@fingerprint.com
 package fingerprint
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -102,8 +101,9 @@ type Event struct {
 	VpnOriginCountry *string     `json:"vpn_origin_country,omitempty"`
 	VpnMethods       *VpnMethods `json:"vpn_methods,omitempty"`
 	// Flag indicating if the request came from a high-activity visitor.
-	HighActivityDevice  *bool                `json:"high_activity_device,omitempty"`
-	RawDeviceAttributes *RawDeviceAttributes `json:"raw_device_attributes,omitempty"`
+	HighActivityDevice   *bool                `json:"high_activity_device,omitempty"`
+	RawDeviceAttributes  *RawDeviceAttributes `json:"raw_device_attributes,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _Event Event
@@ -1832,6 +1832,11 @@ func (o Event) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.RawDeviceAttributes) {
 		toSerialize["raw_device_attributes"] = o.RawDeviceAttributes
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -1860,15 +1865,68 @@ func (o *Event) UnmarshalJSON(data []byte) (err error) {
 
 	varEvent := _Event{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varEvent)
+	err = json.Unmarshal(data, &varEvent)
 
 	if err != nil {
 		return err
 	}
 
 	*o = Event(varEvent)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "event_id")
+		delete(additionalProperties, "timestamp")
+		delete(additionalProperties, "linked_id")
+		delete(additionalProperties, "environment_id")
+		delete(additionalProperties, "suspect")
+		delete(additionalProperties, "sdk")
+		delete(additionalProperties, "replayed")
+		delete(additionalProperties, "identification")
+		delete(additionalProperties, "supplementary_id_high_recall")
+		delete(additionalProperties, "tags")
+		delete(additionalProperties, "url")
+		delete(additionalProperties, "bundle_id")
+		delete(additionalProperties, "package_name")
+		delete(additionalProperties, "ip_address")
+		delete(additionalProperties, "user_agent")
+		delete(additionalProperties, "client_referrer")
+		delete(additionalProperties, "browser_details")
+		delete(additionalProperties, "proximity")
+		delete(additionalProperties, "bot")
+		delete(additionalProperties, "bot_type")
+		delete(additionalProperties, "cloned_app")
+		delete(additionalProperties, "developer_tools")
+		delete(additionalProperties, "emulator")
+		delete(additionalProperties, "factory_reset_timestamp")
+		delete(additionalProperties, "frida")
+		delete(additionalProperties, "ip_blocklist")
+		delete(additionalProperties, "ip_info")
+		delete(additionalProperties, "proxy")
+		delete(additionalProperties, "proxy_confidence")
+		delete(additionalProperties, "proxy_details")
+		delete(additionalProperties, "incognito")
+		delete(additionalProperties, "jailbroken")
+		delete(additionalProperties, "location_spoofing")
+		delete(additionalProperties, "mitm_attack")
+		delete(additionalProperties, "privacy_settings")
+		delete(additionalProperties, "root_apps")
+		delete(additionalProperties, "rule_action")
+		delete(additionalProperties, "suspect_score")
+		delete(additionalProperties, "tampering")
+		delete(additionalProperties, "tampering_details")
+		delete(additionalProperties, "velocity")
+		delete(additionalProperties, "virtual_machine")
+		delete(additionalProperties, "vpn")
+		delete(additionalProperties, "vpn_confidence")
+		delete(additionalProperties, "vpn_origin_timezone")
+		delete(additionalProperties, "vpn_origin_country")
+		delete(additionalProperties, "vpn_methods")
+		delete(additionalProperties, "high_activity_device")
+		delete(additionalProperties, "raw_device_attributes")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

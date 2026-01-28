@@ -12,7 +12,6 @@ Contact: support@fingerprint.com
 package fingerprint
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,8 +21,9 @@ var _ MappedNullable = &GeolocationSubdivisionsInner{}
 
 // GeolocationSubdivisionsInner struct for GeolocationSubdivisionsInner
 type GeolocationSubdivisionsInner struct {
-	IsoCode string `json:"iso_code"`
-	Name    string `json:"name"`
+	IsoCode              string `json:"iso_code"`
+	Name                 string `json:"name"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _GeolocationSubdivisionsInner GeolocationSubdivisionsInner
@@ -107,6 +107,11 @@ func (o GeolocationSubdivisionsInner) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["iso_code"] = o.IsoCode
 	toSerialize["name"] = o.Name
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -135,15 +140,21 @@ func (o *GeolocationSubdivisionsInner) UnmarshalJSON(data []byte) (err error) {
 
 	varGeolocationSubdivisionsInner := _GeolocationSubdivisionsInner{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varGeolocationSubdivisionsInner)
+	err = json.Unmarshal(data, &varGeolocationSubdivisionsInner)
 
 	if err != nil {
 		return err
 	}
 
 	*o = GeolocationSubdivisionsInner(varGeolocationSubdivisionsInner)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "iso_code")
+		delete(additionalProperties, "name")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

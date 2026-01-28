@@ -12,7 +12,6 @@ Contact: support@fingerprint.com
 package fingerprint
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -28,7 +27,8 @@ type EventRuleActionBlock struct {
 	// A list of headers to send.
 	Headers []RuleActionHeaderField `json:"headers,omitempty"`
 	// The response body to send to the client.
-	Body *string `json:"body,omitempty"`
+	Body                 *string `json:"body,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _EventRuleActionBlock EventRuleActionBlock
@@ -191,6 +191,11 @@ func (o EventRuleActionBlock) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Body) {
 		toSerialize["body"] = o.Body
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -218,15 +223,23 @@ func (o *EventRuleActionBlock) UnmarshalJSON(data []byte) (err error) {
 
 	varEventRuleActionBlock := _EventRuleActionBlock{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varEventRuleActionBlock)
+	err = json.Unmarshal(data, &varEventRuleActionBlock)
 
 	if err != nil {
 		return err
 	}
 
 	*o = EventRuleActionBlock(varEventRuleActionBlock)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "type")
+		delete(additionalProperties, "status_code")
+		delete(additionalProperties, "headers")
+		delete(additionalProperties, "body")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

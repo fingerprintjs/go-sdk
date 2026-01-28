@@ -20,14 +20,17 @@ var _ MappedNullable = &FontPreferences{}
 
 // FontPreferences Baseline measurement of canonical fonts rendered on the device. Numeric width metrics, in CSS pixels, for the canonical fonts collected by the agent.
 type FontPreferences struct {
-	Default *float64 `json:"default,omitempty"`
-	Serif   *float64 `json:"serif,omitempty"`
-	Sans    *float64 `json:"sans,omitempty"`
-	Mono    *float64 `json:"mono,omitempty"`
-	Apple   *float64 `json:"apple,omitempty"`
-	Min     *float64 `json:"min,omitempty"`
-	System  *float64 `json:"system,omitempty"`
+	Default              *float64 `json:"default,omitempty"`
+	Serif                *float64 `json:"serif,omitempty"`
+	Sans                 *float64 `json:"sans,omitempty"`
+	Mono                 *float64 `json:"mono,omitempty"`
+	Apple                *float64 `json:"apple,omitempty"`
+	Min                  *float64 `json:"min,omitempty"`
+	System               *float64 `json:"system,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _FontPreferences FontPreferences
 
 // NewFontPreferences instantiates a new FontPreferences object
 // This constructor will assign default values to properties that have it defined,
@@ -301,7 +304,39 @@ func (o FontPreferences) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.System) {
 		toSerialize["system"] = o.System
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *FontPreferences) UnmarshalJSON(data []byte) (err error) {
+	varFontPreferences := _FontPreferences{}
+
+	err = json.Unmarshal(data, &varFontPreferences)
+
+	if err != nil {
+		return err
+	}
+
+	*o = FontPreferences(varFontPreferences)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "default")
+		delete(additionalProperties, "serif")
+		delete(additionalProperties, "sans")
+		delete(additionalProperties, "mono")
+		delete(additionalProperties, "apple")
+		delete(additionalProperties, "min")
+		delete(additionalProperties, "system")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableFontPreferences struct {

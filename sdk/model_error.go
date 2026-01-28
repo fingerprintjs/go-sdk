@@ -12,7 +12,6 @@ Contact: support@fingerprint.com
 package fingerprint
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,8 +21,9 @@ var _ MappedNullable = &Error{}
 
 // Error struct for Error
 type Error struct {
-	Code    ErrorCode `json:"code"`
-	Message string    `json:"message"`
+	Code                 ErrorCode `json:"code"`
+	Message              string    `json:"message"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _Error Error
@@ -107,6 +107,11 @@ func (o Error) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["code"] = o.Code
 	toSerialize["message"] = o.Message
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -135,15 +140,21 @@ func (o *Error) UnmarshalJSON(data []byte) (err error) {
 
 	varError := _Error{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varError)
+	err = json.Unmarshal(data, &varError)
 
 	if err != nil {
 		return err
 	}
 
 	*o = Error(varError)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "code")
+		delete(additionalProperties, "message")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

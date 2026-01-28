@@ -24,8 +24,11 @@ type Canvas struct {
 	// Hash of geometry rendering output or `unsupported` markers.
 	Geometry *string `json:"geometry,omitempty"`
 	// Hash of text rendering output or `unsupported` markers.
-	Text *string `json:"text,omitempty"`
+	Text                 *string `json:"text,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _Canvas Canvas
 
 // NewCanvas instantiates a new Canvas object
 // This constructor will assign default values to properties that have it defined,
@@ -159,7 +162,35 @@ func (o Canvas) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Text) {
 		toSerialize["text"] = o.Text
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *Canvas) UnmarshalJSON(data []byte) (err error) {
+	varCanvas := _Canvas{}
+
+	err = json.Unmarshal(data, &varCanvas)
+
+	if err != nil {
+		return err
+	}
+
+	*o = Canvas(varCanvas)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "winding")
+		delete(additionalProperties, "geometry")
+		delete(additionalProperties, "text")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableCanvas struct {

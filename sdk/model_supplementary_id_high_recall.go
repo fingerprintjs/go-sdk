@@ -12,7 +12,6 @@ Contact: support@fingerprint.com
 package fingerprint
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -30,7 +29,8 @@ type SupplementaryIDHighRecall struct {
 	// Unix epoch time milliseconds timestamp indicating the time at which this ID was first seen. example: `1758069706642` - Corresponding to Wed Sep 17 2025 00:41:46 GMT+0000
 	FirstSeenAt *int64 `json:"first_seen_at,omitempty"`
 	// Unix epoch time milliseconds timestamp indicating the time at which this ID was last seen. example: `1758069706642` - Corresponding to Wed Sep 17 2025 00:41:46 GMT+0000
-	LastSeenAt *int64 `json:"last_seen_at,omitempty"`
+	LastSeenAt           *int64 `json:"last_seen_at,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _SupplementaryIDHighRecall SupplementaryIDHighRecall
@@ -219,6 +219,11 @@ func (o SupplementaryIDHighRecall) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.LastSeenAt) {
 		toSerialize["last_seen_at"] = o.LastSeenAt
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -247,15 +252,24 @@ func (o *SupplementaryIDHighRecall) UnmarshalJSON(data []byte) (err error) {
 
 	varSupplementaryIDHighRecall := _SupplementaryIDHighRecall{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varSupplementaryIDHighRecall)
+	err = json.Unmarshal(data, &varSupplementaryIDHighRecall)
 
 	if err != nil {
 		return err
 	}
 
 	*o = SupplementaryIDHighRecall(varSupplementaryIDHighRecall)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "visitor_id")
+		delete(additionalProperties, "visitor_found")
+		delete(additionalProperties, "confidence")
+		delete(additionalProperties, "first_seen_at")
+		delete(additionalProperties, "last_seen_at")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

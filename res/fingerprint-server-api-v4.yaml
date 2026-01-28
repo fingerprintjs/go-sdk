@@ -792,7 +792,6 @@ components:
         endpoint](https://dev.fingerprint.com/reference/updateevent).
     Integration:
       type: object
-      additionalProperties: false
       properties:
         name:
           type: string
@@ -802,7 +801,6 @@ components:
           description: The version of the specific integration, e.g. "3.11.10".
         subintegration:
           type: object
-          additionalProperties: false
           properties:
             name:
               type: string
@@ -813,7 +811,6 @@ components:
     SDK:
       type: object
       description: Contains information about the SDK used to perform the request.
-      additionalProperties: false
       required:
         - platform
         - version
@@ -845,7 +842,6 @@ components:
       description: The rule(s) associated with triggering the webhook via rule engine.
       items:
         type: object
-        additionalProperties: false
         required:
           - id
           - name
@@ -859,7 +855,6 @@ components:
             type: string
     IdentificationConfidence:
       type: object
-      additionalProperties: false
       required:
         - score
       properties:
@@ -881,7 +876,6 @@ components:
           type: string
     Identification:
       type: object
-      additionalProperties: false
       required:
         - visitor_id
         - visitor_found
@@ -912,7 +906,6 @@ components:
             Corresponding to Wed Sep 17 2025 00:41:46 GMT+0000
     SupplementaryIDHighRecall:
       type: object
-      additionalProperties: false
       description: >-
         A supplementary browser identifier that prioritizes coverage over
         precision. The High Recall ID algorithm matches more generously, i.e.,
@@ -987,7 +980,6 @@ components:
         `https://example.com/blog/my-article`
     BrowserDetails:
       type: object
-      additionalProperties: false
       required:
         - browser_name
         - browser_full_version
@@ -1013,7 +1005,6 @@ components:
       description: >
         Proximity ID represents a fixed geographical zone in a discrete global
         grid within which the device is observed.
-      additionalProperties: false
       required:
         - id
         - precision_radius
@@ -1107,7 +1098,6 @@ components:
         * `false` - No signs of Frida or the client is not a mobile device.
     IPBlockList:
       type: object
-      additionalProperties: false
       properties:
         email_spam:
           type: boolean
@@ -1120,7 +1110,6 @@ components:
           description: IP address was part of known TOR network activity.
     Geolocation:
       type: object
-      additionalProperties: false
       properties:
         accuracy_radius:
           type: integer
@@ -1161,7 +1150,6 @@ components:
           type: array
           items:
             type: object
-            additionalProperties: false
             required:
               - iso_code
               - name
@@ -1172,7 +1160,6 @@ components:
                 type: string
     IPInfoV4:
       type: object
-      additionalProperties: false
       required:
         - address
       properties:
@@ -1195,7 +1182,6 @@ components:
           type: string
     IPInfoV6:
       type: object
-      additionalProperties: false
       required:
         - address
       properties:
@@ -1221,7 +1207,6 @@ components:
       description: >-
         Details about the request IP address. Has separate fields for v4 and v6
         IP address versions.
-      additionalProperties: false
       properties:
         v4:
           $ref: '#/components/schemas/IPInfoV4'
@@ -1244,7 +1229,6 @@ components:
         "high".
     ProxyDetails:
       type: object
-      additionalProperties: false
       description: Proxy detection details (present if `proxy` is `true`)
       required:
         - proxy_type
@@ -1428,7 +1412,6 @@ components:
           * The browser signature resembles an "anti-detect" browser specifically designed to evade fingerprinting (see `tampering_details.anti_detect_browser`).
     TamperingDetails:
       type: object
-      additionalProperties: false
       properties:
         anomaly_score:
           type: number
@@ -1456,7 +1439,6 @@ components:
       description: >
         Is absent if the velocity data could not be generated for the visitor
         Id.
-      additionalProperties: false
       required:
         - 5_minutes
         - 1_hour
@@ -1520,7 +1502,6 @@ components:
         if the 
 
         associated event does not have the required data, such as a linked_id.
-      additionalProperties: false
       properties:
         distinct_ip:
           $ref: '#/components/schemas/VelocityData'
@@ -1566,7 +1547,6 @@ components:
         format or unknown).
     VpnMethods:
       type: object
-      additionalProperties: false
       properties:
         timezone_mismatch:
           type: boolean
@@ -1632,7 +1612,6 @@ components:
         Baseline measurement of canonical fonts rendered on the device. Numeric
         width metrics, in CSS pixels, for the canonical fonts collected by the
         agent.
-      additionalProperties: false
       properties:
         default:
           type: number
@@ -1658,7 +1637,6 @@ components:
     Emoji:
       type: object
       description: Bounding box metrics describing how the emoji glyph renders.
-      additionalProperties: false
       properties:
         font:
           type: string
@@ -1709,7 +1687,6 @@ components:
     Canvas:
       type: object
       description: Canvas fingerprint containing winding flag plus geometry/text hashes.
-      additionalProperties: false
       properties:
         winding:
           type: boolean
@@ -1732,7 +1709,6 @@ components:
     WebGlExtensions:
       type: object
       description: Hashes of WebGL context attributes and extension support.
-      additionalProperties: false
       properties:
         context_attributes:
           type: string
@@ -1751,7 +1727,6 @@ components:
     WebGlBasics:
       type: object
       description: Render and vendor strings reported by the WebGL context.
-      additionalProperties: false
       properties:
         version:
           type: string
@@ -1776,7 +1751,6 @@ components:
     TouchSupport:
       type: object
       description: Browser-reported touch capabilities.
-      additionalProperties: false
       properties:
         touch_event:
           type: boolean
@@ -1839,7 +1813,6 @@ components:
       description: Browser plugins reported by `navigator.plugins`.
       items:
         type: object
-        additionalProperties: false
         properties:
           name:
             type: string
@@ -1849,7 +1822,6 @@ components:
             type: array
             items:
               type: object
-              additionalProperties: false
               properties:
                 type:
                   type: string
@@ -1871,7 +1843,6 @@ components:
         A curated subset of raw browser/device attributes that the API surface
         exposes. Each property contains a value or object with the data for the
         collected signal.
-      additionalProperties: false
       properties:
         font_preferences:
           $ref: '#/components/schemas/FontPreferences'
@@ -1928,7 +1899,6 @@ components:
       description: >-
         Contains results from Fingerprint Identification and all active Smart
         Signals.
-      additionalProperties: false
       required:
         - event_id
         - timestamp
@@ -2262,7 +2232,6 @@ components:
         existed or it has been deleted.
     Error:
       type: object
-      additionalProperties: false
       required:
         - code
         - message
@@ -2273,7 +2242,6 @@ components:
           type: string
     ErrorResponse:
       type: object
-      additionalProperties: false
       required:
         - error
       properties:
@@ -2300,7 +2268,6 @@ components:
       description: >-
         Contains a list of all identification events matching the specified
         search criteria.
-      additionalProperties: false
       required:
         - events
       properties:

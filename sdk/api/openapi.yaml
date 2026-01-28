@@ -701,7 +701,6 @@ components:
         \ for this event using the [Server API Update event endpoint](https://dev.fingerprint.com/reference/updateevent)."
       type: boolean
     Integration:
-      additionalProperties: {}
       properties:
         name:
           description: "The name of the specific integration, e.g. \"fingerprint-pro-react\"\
@@ -713,7 +712,6 @@ components:
         subintegration:
           $ref: "#/components/schemas/Integration_subintegration"
     SDK:
-      additionalProperties: false
       description: Contains information about the SDK used to perform the request.
       properties:
         platform:
@@ -745,7 +743,6 @@ components:
         $ref: "#/components/schemas/TriggeredBy_inner"
       type: array
     IdentificationConfidence:
-      additionalProperties: false
       properties:
         score:
           description: The confidence score is a floating-point number between 0 and
@@ -764,7 +761,6 @@ components:
       required:
       - score
     Identification:
-      additionalProperties: false
       properties:
         visitor_id:
           description: String of 20 characters that uniquely identifies the visitor's
@@ -789,7 +785,6 @@ components:
       - visitor_found
       - visitor_id
     SupplementaryIDHighRecall:
-      additionalProperties: false
       description: "A supplementary browser identifier that prioritizes coverage over\
         \ precision. The High Recall ID algorithm matches more generously, i.e., this\
         \ identifier will remain the same even when there are subtle differences between\
@@ -848,7 +843,6 @@ components:
         Client Referrer field corresponds to the `document.referrer` field gathered during an identification request. The value is an empty string if the user navigated to the page directly (not through a link, but, for example, by using a bookmark) For example: `https://example.com/blog/my-article`
       type: string
     BrowserDetails:
-      additionalProperties: false
       properties:
         browser_name:
           type: string
@@ -870,7 +864,6 @@ components:
       - os
       - os_version
     Proximity:
-      additionalProperties: false
       description: |
         Proximity ID represents a fixed geographical zone in a discrete global grid within which the device is observed.
       properties:
@@ -946,7 +939,6 @@ components:
         * `false` - No signs of Frida or the client is not a mobile device.
       type: boolean
     IPBlockList:
-      additionalProperties: false
       properties:
         email_spam:
           description: IP address was part of a known email spam attack (SMTP).
@@ -958,7 +950,6 @@ components:
           description: IP address was part of known TOR network activity.
           type: boolean
     Geolocation:
-      additionalProperties: {}
       properties:
         accuracy_radius:
           description: The IP address is likely to be within this radius (in km) of
@@ -999,7 +990,6 @@ components:
             $ref: "#/components/schemas/Geolocation_subdivisions_inner"
           type: array
     IPInfoV4:
-      additionalProperties: false
       properties:
         address:
           format: ipv4
@@ -1021,7 +1011,6 @@ components:
       required:
       - address
     IPInfoV6:
-      additionalProperties: false
       properties:
         address:
           format: ipv6
@@ -1043,7 +1032,6 @@ components:
       required:
       - address
     IPInfo:
-      additionalProperties: false
       description: Details about the request IP address. Has separate fields for v4
         and v6 IP address versions.
       properties:
@@ -1064,7 +1052,6 @@ components:
       - high
       type: string
     ProxyDetails:
-      additionalProperties: false
       description: Proxy detection details (present if `proxy` is `true`)
       properties:
         proxy_type:
@@ -1225,7 +1212,6 @@ components:
           * The browser signature resembles an "anti-detect" browser specifically designed to evade fingerprinting (see `tampering_details.anti_detect_browser`).
       type: boolean
     TamperingDetails:
-      additionalProperties: false
       properties:
         anomaly_score:
           description: |
@@ -1247,7 +1233,6 @@ components:
           x-platforms:
           - browser
     VelocityData:
-      additionalProperties: false
       description: |
         Is absent if the velocity data could not be generated for the visitor Id.
       properties:
@@ -1267,7 +1252,6 @@ components:
       - 1_hour
       - 5_minutes
     Velocity:
-      additionalProperties: false
       description: "Sums key data points for a specific `visitor_id`, `ip_address`\
         \ and `linked_id` at three distinct time\nintervals: 5 minutes, 1 hour, and\
         \ 24 hours as follows: \n\n- Number of distinct IP addresses associated to\
@@ -1324,7 +1308,6 @@ components:
         Country of the request (only for Android SDK version >= 2.4.0, ISO 3166 format or unknown).
       type: string
     VpnMethods:
-      additionalProperties: false
       properties:
         timezone_mismatch:
           description: The browser timezone doesn't match the timezone inferred from
@@ -1373,7 +1356,6 @@ components:
       description: Flag indicating if the request came from a high-activity visitor.
       type: boolean
     FontPreferences:
-      additionalProperties: false
       description: |
         Baseline measurement of canonical fonts rendered on the device. Numeric width metrics, in CSS pixels, for the canonical fonts collected by the agent.
       properties:
@@ -1399,7 +1381,6 @@ components:
           format: double
           type: number
     Emoji:
-      additionalProperties: false
       description: Bounding box metrics describing how the emoji glyph renders.
       properties:
         font:
@@ -1449,7 +1430,6 @@ components:
       description: Timezone identifier detected on the client.
       type: string
     Canvas:
-      additionalProperties: false
       description: Canvas fingerprint containing winding flag plus geometry/text hashes.
       properties:
         winding:
@@ -1469,7 +1449,6 @@ components:
         type: array
       type: array
     WebGlExtensions:
-      additionalProperties: false
       description: Hashes of WebGL context attributes and extension support.
       properties:
         context_attributes:
@@ -1487,7 +1466,6 @@ components:
             type: string
           type: array
     WebGlBasics:
-      additionalProperties: false
       description: Render and vendor strings reported by the WebGL context.
       properties:
         version:
@@ -1511,7 +1489,6 @@ components:
       minItems: 2
       type: array
     TouchSupport:
-      additionalProperties: false
       description: Browser-reported touch capabilities.
       properties:
         touch_event:
@@ -1573,7 +1550,6 @@ components:
       description: Hash of Math APIs used for entropy collection.
       type: string
     RawDeviceAttributes:
-      additionalProperties: false
       description: |
         A curated subset of raw browser/device attributes that the API surface exposes. Each property contains a value or object with the data for the collected signal.
       properties:
@@ -1676,7 +1652,6 @@ components:
           description: Hash of Math APIs used for entropy collection.
           type: string
     Event:
-      additionalProperties: false
       description: Contains results from Fingerprint Identification and all active
         Smart Signals.
       example:
@@ -2083,7 +2058,6 @@ components:
       - ruleset_not_found
       type: string
     Error:
-      additionalProperties: false
       example:
         code: request_cannot_be_parsed
         message: message
@@ -2096,7 +2070,6 @@ components:
       - code
       - message
     ErrorResponse:
-      additionalProperties: false
       example:
         error:
           code: request_cannot_be_parsed
@@ -2126,7 +2099,6 @@ components:
           type: boolean
           x-go-force-pointer: true
     EventSearch:
-      additionalProperties: false
       description: Contains a list of all identification events matching the specified
         search criteria.
       example:
@@ -2255,7 +2227,6 @@ components:
       required:
       - events
     Integration_subintegration:
-      additionalProperties: false
       properties:
         name:
           description: "The name of the specific subintegration, e.g. \"preact\"."
@@ -2265,7 +2236,6 @@ components:
             ."
           type: string
     TriggeredBy_inner:
-      additionalProperties: {}
       properties:
         id:
           type: string
@@ -2278,7 +2248,6 @@ components:
       - id
       - name
     Geolocation_subdivisions_inner:
-      additionalProperties: false
       properties:
         iso_code:
           type: string
@@ -2288,7 +2257,6 @@ components:
       - iso_code
       - name
     Plugins_inner_mimeTypes_inner:
-      additionalProperties: false
       properties:
         type:
           type: string
@@ -2297,7 +2265,6 @@ components:
         description:
           type: string
     Plugins_inner:
-      additionalProperties: false
       properties:
         name:
           type: string

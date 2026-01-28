@@ -29,8 +29,11 @@ type VpnMethods struct {
 	// The browser runs on a different operating system than the operating system inferred from the request network signature.
 	OsMismatch *bool `json:"os_mismatch,omitempty"`
 	// Request IP address belongs to a relay service provider, indicating the use of relay services like [Apple Private relay](https://support.apple.com/en-us/102602) or [Cloudflare Warp](https://developers.cloudflare.com/warp-client/).  * Like VPNs, relay services anonymize the visitor's true IP address. * Unlike traditional VPNs, relay services don't let visitors spoof their location by choosing an exit node in a different country.  This field allows you to differentiate VPN users and relay service users in your fraud prevention logic.
-	Relay *bool `json:"relay,omitempty"`
+	Relay                *bool `json:"relay,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _VpnMethods VpnMethods
 
 // NewVpnMethods instantiates a new VpnMethods object
 // This constructor will assign default values to properties that have it defined,
@@ -234,7 +237,37 @@ func (o VpnMethods) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Relay) {
 		toSerialize["relay"] = o.Relay
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *VpnMethods) UnmarshalJSON(data []byte) (err error) {
+	varVpnMethods := _VpnMethods{}
+
+	err = json.Unmarshal(data, &varVpnMethods)
+
+	if err != nil {
+		return err
+	}
+
+	*o = VpnMethods(varVpnMethods)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "timezone_mismatch")
+		delete(additionalProperties, "public_vpn")
+		delete(additionalProperties, "auxiliary_mobile")
+		delete(additionalProperties, "os_mismatch")
+		delete(additionalProperties, "relay")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableVpnMethods struct {

@@ -23,8 +23,11 @@ type IntegrationSubintegration struct {
 	// The name of the specific subintegration, e.g. \"preact\".
 	Name *string `json:"name,omitempty"`
 	// The version of the specific subintegration, e.g. \"10.21.0\".
-	Version *string `json:"version,omitempty"`
+	Version              *string `json:"version,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _IntegrationSubintegration IntegrationSubintegration
 
 // NewIntegrationSubintegration instantiates a new IntegrationSubintegration object
 // This constructor will assign default values to properties that have it defined,
@@ -123,7 +126,34 @@ func (o IntegrationSubintegration) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Version) {
 		toSerialize["version"] = o.Version
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *IntegrationSubintegration) UnmarshalJSON(data []byte) (err error) {
+	varIntegrationSubintegration := _IntegrationSubintegration{}
+
+	err = json.Unmarshal(data, &varIntegrationSubintegration)
+
+	if err != nil {
+		return err
+	}
+
+	*o = IntegrationSubintegration(varIntegrationSubintegration)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "version")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableIntegrationSubintegration struct {

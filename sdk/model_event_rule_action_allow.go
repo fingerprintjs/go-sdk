@@ -12,7 +12,6 @@ Contact: support@fingerprint.com
 package fingerprint
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -24,6 +23,7 @@ var _ MappedNullable = &EventRuleActionAllow{}
 type EventRuleActionAllow struct {
 	Type                       RuleActionType              `json:"type"`
 	RequestHeaderModifications *RequestHeaderModifications `json:"request_header_modifications,omitempty"`
+	AdditionalProperties       map[string]interface{}
 }
 
 type _EventRuleActionAllow EventRuleActionAllow
@@ -116,6 +116,11 @@ func (o EventRuleActionAllow) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.RequestHeaderModifications) {
 		toSerialize["request_header_modifications"] = o.RequestHeaderModifications
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -143,15 +148,21 @@ func (o *EventRuleActionAllow) UnmarshalJSON(data []byte) (err error) {
 
 	varEventRuleActionAllow := _EventRuleActionAllow{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varEventRuleActionAllow)
+	err = json.Unmarshal(data, &varEventRuleActionAllow)
 
 	if err != nil {
 		return err
 	}
 
 	*o = EventRuleActionAllow(varEventRuleActionAllow)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "type")
+		delete(additionalProperties, "request_header_modifications")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

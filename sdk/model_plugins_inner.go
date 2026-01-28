@@ -12,7 +12,6 @@ Contact: support@fingerprint.com
 package fingerprint
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,9 +21,10 @@ var _ MappedNullable = &PluginsInner{}
 
 // PluginsInner struct for PluginsInner
 type PluginsInner struct {
-	Name        string                       `json:"name"`
-	Description *string                      `json:"description,omitempty"`
-	MimeTypes   []PluginsInnerMimeTypesInner `json:"mimeTypes,omitempty"`
+	Name                 string                       `json:"name"`
+	Description          *string                      `json:"description,omitempty"`
+	MimeTypes            []PluginsInnerMimeTypesInner `json:"mimeTypes,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _PluginsInner PluginsInner
@@ -152,6 +152,11 @@ func (o PluginsInner) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.MimeTypes) {
 		toSerialize["mimeTypes"] = o.MimeTypes
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -179,15 +184,22 @@ func (o *PluginsInner) UnmarshalJSON(data []byte) (err error) {
 
 	varPluginsInner := _PluginsInner{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varPluginsInner)
+	err = json.Unmarshal(data, &varPluginsInner)
 
 	if err != nil {
 		return err
 	}
 
 	*o = PluginsInner(varPluginsInner)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "mimeTypes")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

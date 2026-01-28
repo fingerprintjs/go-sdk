@@ -12,7 +12,6 @@ Contact: support@fingerprint.com
 package fingerprint
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -25,8 +24,9 @@ type IdentificationConfidence struct {
 	// The confidence score is a floating-point number between 0 and 1 that represents the probability of accurate identification.
 	Score float64 `json:"score"`
 	// The version name of the method used to calculate the Confidence score. This field is only present for customers who opted in to an alternative calculation method.
-	Version *string `json:"version,omitempty"`
-	Comment *string `json:"comment,omitempty"`
+	Version              *string `json:"version,omitempty"`
+	Comment              *string `json:"comment,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _IdentificationConfidence IdentificationConfidence
@@ -154,6 +154,11 @@ func (o IdentificationConfidence) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Comment) {
 		toSerialize["comment"] = o.Comment
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -181,15 +186,22 @@ func (o *IdentificationConfidence) UnmarshalJSON(data []byte) (err error) {
 
 	varIdentificationConfidence := _IdentificationConfidence{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varIdentificationConfidence)
+	err = json.Unmarshal(data, &varIdentificationConfidence)
 
 	if err != nil {
 		return err
 	}
 
 	*o = IdentificationConfidence(varIdentificationConfidence)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "score")
+		delete(additionalProperties, "version")
+		delete(additionalProperties, "comment")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

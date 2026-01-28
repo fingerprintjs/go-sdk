@@ -15,7 +15,8 @@ run_generator() {
       --git-user-id=fingerprintjs \
       --git-repo-id=go-sdk \
       --global-property=skipGoMod=true \
-      --global-property apiTests=false,modelTests=false
+      --global-property apiTests=false,modelTests=false \
+      --additional-properties disallowAdditionalPropertiesIfNotPresent=false
 }
 
 run_generator

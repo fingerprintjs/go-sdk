@@ -12,7 +12,6 @@ Contact: support@fingerprint.com
 package fingerprint
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -27,7 +26,8 @@ type EventRuleAction struct {
 	// The ID of the rule that matched the identification event.
 	RuleId *string `json:"rule_id,omitempty"`
 	// The expression of the rule that matched the identification event.
-	RuleExpression *string `json:"rule_expression,omitempty"`
+	RuleExpression       *string `json:"rule_expression,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _EventRuleAction EventRuleAction
@@ -155,6 +155,11 @@ func (o EventRuleAction) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.RuleExpression) {
 		toSerialize["rule_expression"] = o.RuleExpression
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -182,15 +187,22 @@ func (o *EventRuleAction) UnmarshalJSON(data []byte) (err error) {
 
 	varEventRuleAction := _EventRuleAction{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varEventRuleAction)
+	err = json.Unmarshal(data, &varEventRuleAction)
 
 	if err != nil {
 		return err
 	}
 
 	*o = EventRuleAction(varEventRuleAction)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "ruleset_id")
+		delete(additionalProperties, "rule_id")
+		delete(additionalProperties, "rule_expression")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

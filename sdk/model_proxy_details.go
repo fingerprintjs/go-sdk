@@ -12,7 +12,6 @@ Contact: support@fingerprint.com
 package fingerprint
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -25,7 +24,8 @@ type ProxyDetails struct {
 	// Residential proxies use real user IP addresses to appear as legitimate traffic,  while data center proxies are public proxies hosted in data centers
 	ProxyType string `json:"proxy_type"`
 	// Unix millisecond timestamp with hourly resolution of when this IP was last seen as a proxy
-	LastSeenAt *int64 `json:"last_seen_at,omitempty"`
+	LastSeenAt           *int64 `json:"last_seen_at,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ProxyDetails ProxyDetails
@@ -118,6 +118,11 @@ func (o ProxyDetails) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.LastSeenAt) {
 		toSerialize["last_seen_at"] = o.LastSeenAt
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -145,15 +150,21 @@ func (o *ProxyDetails) UnmarshalJSON(data []byte) (err error) {
 
 	varProxyDetails := _ProxyDetails{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varProxyDetails)
+	err = json.Unmarshal(data, &varProxyDetails)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ProxyDetails(varProxyDetails)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "proxy_type")
+		delete(additionalProperties, "last_seen_at")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

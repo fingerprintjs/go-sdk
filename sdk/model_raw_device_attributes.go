@@ -63,8 +63,11 @@ type RawDeviceAttributes struct {
 	// Whether IndexedDB is available.
 	IndexedDb *bool `json:"indexed_db,omitempty"`
 	// Hash of Math APIs used for entropy collection.
-	Math *string `json:"math,omitempty"`
+	Math                 *string `json:"math,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _RawDeviceAttributes RawDeviceAttributes
 
 // NewRawDeviceAttributes instantiates a new RawDeviceAttributes object
 // This constructor will assign default values to properties that have it defined,
@@ -968,7 +971,57 @@ func (o RawDeviceAttributes) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Math) {
 		toSerialize["math"] = o.Math
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *RawDeviceAttributes) UnmarshalJSON(data []byte) (err error) {
+	varRawDeviceAttributes := _RawDeviceAttributes{}
+
+	err = json.Unmarshal(data, &varRawDeviceAttributes)
+
+	if err != nil {
+		return err
+	}
+
+	*o = RawDeviceAttributes(varRawDeviceAttributes)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "font_preferences")
+		delete(additionalProperties, "emoji")
+		delete(additionalProperties, "fonts")
+		delete(additionalProperties, "device_memory")
+		delete(additionalProperties, "timezone")
+		delete(additionalProperties, "canvas")
+		delete(additionalProperties, "languages")
+		delete(additionalProperties, "webgl_extensions")
+		delete(additionalProperties, "webgl_basics")
+		delete(additionalProperties, "screen_resolution")
+		delete(additionalProperties, "touch_support")
+		delete(additionalProperties, "oscpu")
+		delete(additionalProperties, "architecture")
+		delete(additionalProperties, "cookies_enabled")
+		delete(additionalProperties, "hardware_concurrency")
+		delete(additionalProperties, "date_time_locale")
+		delete(additionalProperties, "vendor")
+		delete(additionalProperties, "color_depth")
+		delete(additionalProperties, "platform")
+		delete(additionalProperties, "session_storage")
+		delete(additionalProperties, "local_storage")
+		delete(additionalProperties, "audio")
+		delete(additionalProperties, "plugins")
+		delete(additionalProperties, "indexed_db")
+		delete(additionalProperties, "math")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableRawDeviceAttributes struct {

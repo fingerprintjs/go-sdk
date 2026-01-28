@@ -25,8 +25,11 @@ type RequestHeaderModifications struct {
 	// The list of headers to set, overwriting any existing headers with the same name.
 	Set []RuleActionHeaderField `json:"set,omitempty"`
 	// The list of headers to append.
-	Append []RuleActionHeaderField `json:"append,omitempty"`
+	Append               []RuleActionHeaderField `json:"append,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _RequestHeaderModifications RequestHeaderModifications
 
 // NewRequestHeaderModifications instantiates a new RequestHeaderModifications object
 // This constructor will assign default values to properties that have it defined,
@@ -160,7 +163,35 @@ func (o RequestHeaderModifications) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Append) {
 		toSerialize["append"] = o.Append
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *RequestHeaderModifications) UnmarshalJSON(data []byte) (err error) {
+	varRequestHeaderModifications := _RequestHeaderModifications{}
+
+	err = json.Unmarshal(data, &varRequestHeaderModifications)
+
+	if err != nil {
+		return err
+	}
+
+	*o = RequestHeaderModifications(varRequestHeaderModifications)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "remove")
+		delete(additionalProperties, "set")
+		delete(additionalProperties, "append")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableRequestHeaderModifications struct {

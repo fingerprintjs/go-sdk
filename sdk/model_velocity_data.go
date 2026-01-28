@@ -12,7 +12,6 @@ Contact: support@fingerprint.com
 package fingerprint
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -27,7 +26,8 @@ type VelocityData struct {
 	// Count for the last 1 hour of velocity data, from the time of the event.
 	Var1Hour int32 `json:"1_hour"`
 	// The `24_hours` interval of `distinct_ip`, `distinct_linked_id`, `distinct_country`, `distinct_ip_by_linked_id` and `distinct_visitor_id_by_linked_id` will be omitted if the number of `events` for the visitor Id in the last 24 hours (`events.['24_hours']`) is higher than 20.000.
-	Var24Hours *int32 `json:"24_hours,omitempty"`
+	Var24Hours           *int32 `json:"24_hours,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _VelocityData VelocityData
@@ -146,6 +146,11 @@ func (o VelocityData) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Var24Hours) {
 		toSerialize["24_hours"] = o.Var24Hours
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -174,15 +179,22 @@ func (o *VelocityData) UnmarshalJSON(data []byte) (err error) {
 
 	varVelocityData := _VelocityData{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varVelocityData)
+	err = json.Unmarshal(data, &varVelocityData)
 
 	if err != nil {
 		return err
 	}
 
 	*o = VelocityData(varVelocityData)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "5_minutes")
+		delete(additionalProperties, "1_hour")
+		delete(additionalProperties, "24_hours")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

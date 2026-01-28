@@ -25,8 +25,11 @@ type EventUpdate struct {
 	// A customer-provided value or an object that was sent with the identification request or updated later.
 	Tags map[string]interface{} `json:"tags,omitempty"`
 	// Suspect flag indicating observed suspicious or fraudulent event
-	Suspect *bool `json:"suspect,omitempty"`
+	Suspect              *bool `json:"suspect,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _EventUpdate EventUpdate
 
 // NewEventUpdate instantiates a new EventUpdate object
 // This constructor will assign default values to properties that have it defined,
@@ -160,7 +163,35 @@ func (o EventUpdate) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Suspect) {
 		toSerialize["suspect"] = o.Suspect
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *EventUpdate) UnmarshalJSON(data []byte) (err error) {
+	varEventUpdate := _EventUpdate{}
+
+	err = json.Unmarshal(data, &varEventUpdate)
+
+	if err != nil {
+		return err
+	}
+
+	*o = EventUpdate(varEventUpdate)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "linked_id")
+		delete(additionalProperties, "tags")
+		delete(additionalProperties, "suspect")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableEventUpdate struct {

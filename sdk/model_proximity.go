@@ -12,7 +12,6 @@ Contact: support@fingerprint.com
 package fingerprint
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -27,7 +26,8 @@ type Proximity struct {
 	// The radius of the proximity zone’s precision level, in meters.
 	PrecisionRadius int32 `json:"precision_radius"`
 	// A value between `0` and `1` representing the likelihood that the true device location lies within the mapped proximity zone.   * Scores closer to `1` indicate high confidence that the location is inside the mapped proximity zone.   * Scores closer to `0` indicate lower confidence, suggesting the true location may fall in an adjacent zone.
-	Confidence float32 `json:"confidence"`
+	Confidence           float32 `json:"confidence"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _Proximity Proximity
@@ -137,6 +137,11 @@ func (o Proximity) ToMap() (map[string]interface{}, error) {
 	toSerialize["id"] = o.Id
 	toSerialize["precision_radius"] = o.PrecisionRadius
 	toSerialize["confidence"] = o.Confidence
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -166,15 +171,22 @@ func (o *Proximity) UnmarshalJSON(data []byte) (err error) {
 
 	varProximity := _Proximity{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varProximity)
+	err = json.Unmarshal(data, &varProximity)
 
 	if err != nil {
 		return err
 	}
 
 	*o = Proximity(varProximity)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "precision_radius")
+		delete(additionalProperties, "confidence")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

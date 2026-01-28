@@ -21,16 +21,19 @@ var _ MappedNullable = &Emoji{}
 // Emoji Bounding box metrics describing how the emoji glyph renders.
 type Emoji struct {
 	// Font family reported by the browser when drawing the emoji.
-	Font   *string  `json:"font,omitempty"`
-	Width  *float64 `json:"width,omitempty"`
-	Height *float64 `json:"height,omitempty"`
-	Top    *float64 `json:"top,omitempty"`
-	Bottom *float64 `json:"bottom,omitempty"`
-	Left   *float64 `json:"left,omitempty"`
-	Right  *float64 `json:"right,omitempty"`
-	X      *float64 `json:"x,omitempty"`
-	Y      *float64 `json:"y,omitempty"`
+	Font                 *string  `json:"font,omitempty"`
+	Width                *float64 `json:"width,omitempty"`
+	Height               *float64 `json:"height,omitempty"`
+	Top                  *float64 `json:"top,omitempty"`
+	Bottom               *float64 `json:"bottom,omitempty"`
+	Left                 *float64 `json:"left,omitempty"`
+	Right                *float64 `json:"right,omitempty"`
+	X                    *float64 `json:"x,omitempty"`
+	Y                    *float64 `json:"y,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _Emoji Emoji
 
 // NewEmoji instantiates a new Emoji object
 // This constructor will assign default values to properties that have it defined,
@@ -374,7 +377,41 @@ func (o Emoji) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Y) {
 		toSerialize["y"] = o.Y
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *Emoji) UnmarshalJSON(data []byte) (err error) {
+	varEmoji := _Emoji{}
+
+	err = json.Unmarshal(data, &varEmoji)
+
+	if err != nil {
+		return err
+	}
+
+	*o = Emoji(varEmoji)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "font")
+		delete(additionalProperties, "width")
+		delete(additionalProperties, "height")
+		delete(additionalProperties, "top")
+		delete(additionalProperties, "bottom")
+		delete(additionalProperties, "left")
+		delete(additionalProperties, "right")
+		delete(additionalProperties, "x")
+		delete(additionalProperties, "y")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableEmoji struct {

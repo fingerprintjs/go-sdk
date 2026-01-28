@@ -20,9 +20,12 @@ var _ MappedNullable = &IPInfo{}
 
 // IPInfo Details about the request IP address. Has separate fields for v4 and v6 IP address versions.
 type IPInfo struct {
-	V4 *IPInfoV4 `json:"v4,omitempty"`
-	V6 *IPInfoV6 `json:"v6,omitempty"`
+	V4                   *IPInfoV4 `json:"v4,omitempty"`
+	V6                   *IPInfoV6 `json:"v6,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _IPInfo IPInfo
 
 // NewIPInfo instantiates a new IPInfo object
 // This constructor will assign default values to properties that have it defined,
@@ -121,7 +124,34 @@ func (o IPInfo) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.V6) {
 		toSerialize["v6"] = o.V6
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *IPInfo) UnmarshalJSON(data []byte) (err error) {
+	varIPInfo := _IPInfo{}
+
+	err = json.Unmarshal(data, &varIPInfo)
+
+	if err != nil {
+		return err
+	}
+
+	*o = IPInfo(varIPInfo)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "v4")
+		delete(additionalProperties, "v6")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableIPInfo struct {

@@ -25,8 +25,11 @@ type IPBlockList struct {
 	// IP address was part of a known network attack (SSH/HTTPS).
 	AttackSource *bool `json:"attack_source,omitempty"`
 	// IP address was part of known TOR network activity.
-	TorNode *bool `json:"tor_node,omitempty"`
+	TorNode              *bool `json:"tor_node,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _IPBlockList IPBlockList
 
 // NewIPBlockList instantiates a new IPBlockList object
 // This constructor will assign default values to properties that have it defined,
@@ -160,7 +163,35 @@ func (o IPBlockList) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.TorNode) {
 		toSerialize["tor_node"] = o.TorNode
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *IPBlockList) UnmarshalJSON(data []byte) (err error) {
+	varIPBlockList := _IPBlockList{}
+
+	err = json.Unmarshal(data, &varIPBlockList)
+
+	if err != nil {
+		return err
+	}
+
+	*o = IPBlockList(varIPBlockList)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "email_spam")
+		delete(additionalProperties, "attack_source")
+		delete(additionalProperties, "tor_node")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableIPBlockList struct {
