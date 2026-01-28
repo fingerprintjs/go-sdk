@@ -43,10 +43,5 @@
     "os_version": "",
     "device": "Other"
   },
-  "new_flag": false,
-  "new_details": {
-    "detail_1": true,
-    "detail_2": "detail description",
-    "detail_3": 42
-  }
+  "incognito": 1
 }

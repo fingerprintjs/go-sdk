@@ -3,12 +3,14 @@ package test
 import (
 	"testing"
 
-	fingerprint "github.com/fingerprintjs/go-sdk"
+	fingerprint "github.com/fingerprintjs/go-sdk/sdk"
 	"github.com/stretchr/testify/assert"
 )
 
-const secret = "secret"
-const data = "data"
+const (
+	secret = "secret"
+	data   = "data"
+)
 
 //func TestWebhookModel(t *testing.T) {
 //	t.Run("Check if webhook response can be unmarshalled", func(t *testing.T) {

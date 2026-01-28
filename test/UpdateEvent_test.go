@@ -7,8 +7,7 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	fingerprint "github.com/fingerprintjs/go-sdk"
-	sdk "github.com/fingerprintjs/go-sdk/sdk"
+	fingerprint "github.com/fingerprintjs/go-sdk/sdk"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -36,7 +35,7 @@ func TestUpdateEvent(t *testing.T) {
 
 		client := fingerprint.New(fingerprint.WithAPIKey("api_key"), fingerprint.WithBaseURL(ts.URL))
 
-		res, err := client.UpdateEvent(context.Background(), "123", sdk.EventUpdate{
+		res, err := client.UpdateEvent(context.Background(), "123", fingerprint.EventUpdate{
 			LinkedId: &linkedIdValue,
 			Tags:     nil,
 			Suspect:  &trueValue,

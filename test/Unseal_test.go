@@ -5,7 +5,7 @@ import (
 	"errors"
 	"testing"
 
-	fingerprint "github.com/fingerprintjs/go-sdk"
+	fingerprint "github.com/fingerprintjs/go-sdk/sdk"
 	"github.com/stretchr/testify/assert"
 )
 
