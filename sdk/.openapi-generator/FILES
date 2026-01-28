@@ -1,5 +1,6 @@
 README.md
 api/openapi.yaml
+api_error.go
 api_fingerprint.go
 client.go
 client_wrapper.go

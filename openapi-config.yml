@@ -13,6 +13,8 @@ additionalProperties:
   disallowAdditionalPropertiesIfNotPresent: false
 
 files:
+  fingerprint_api_error.go.mustache:
+    destinationFilename: api_error.go
   fingerprint_client_wrapper.go.mustache:
     destinationFilename: client_wrapper.go
   fingerprint_options.go.mustache:
