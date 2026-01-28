@@ -153,7 +153,7 @@ Name | Type | Description  | Notes
 
 ## SearchEvents
 
-> EventSearch SearchEvents(ctx).Limit(limit).PaginationKey(paginationKey).VisitorId(visitorId).Bot(bot).IpAddress(ipAddress).Asn(asn).LinkedId(linkedId).Url(url).Origin(origin).Start(start).End(end).Reverse(reverse).Suspect(suspect).Vpn(vpn).VirtualMachine(virtualMachine).Tampering(tampering).AntiDetectBrowser(antiDetectBrowser).Incognito(incognito).PrivacySettings(privacySettings).Jailbroken(jailbroken).Frida(frida).FactoryReset(factoryReset).ClonedApp(clonedApp).Emulator(emulator).RootApps(rootApps).VpnConfidence(vpnConfidence).MinSuspectScore(minSuspectScore).DeveloperTools(developerTools).LocationSpoofing(locationSpoofing).MitmAttack(mitmAttack).Proxy(proxy).SdkVersion(sdkVersion).SdkPlatform(sdkPlatform).Environment(environment).ProximityId(proximityId).TotalHits(totalHits).TorNode(torNode).Execute()
+> EventSearch SearchEvents(ctx).Limit(limit).PaginationKey(paginationKey).VisitorId(visitorId).Bot(bot).IpAddress(ipAddress).Asn(asn).LinkedId(linkedId).Url(url).BundleId(bundleId).PackageName(packageName).Origin(origin).Start(start).End(end).Reverse(reverse).Suspect(suspect).Vpn(vpn).VirtualMachine(virtualMachine).Tampering(tampering).AntiDetectBrowser(antiDetectBrowser).Incognito(incognito).PrivacySettings(privacySettings).Jailbroken(jailbroken).Frida(frida).FactoryReset(factoryReset).ClonedApp(clonedApp).Emulator(emulator).RootApps(rootApps).VpnConfidence(vpnConfidence).MinSuspectScore(minSuspectScore).DeveloperTools(developerTools).LocationSpoofing(locationSpoofing).MitmAttack(mitmAttack).Proxy(proxy).SdkVersion(sdkVersion).SdkPlatform(sdkPlatform).Environment(environment).ProximityId(proximityId).TotalHits(totalHits).TorNode(torNode).Execute()
 
 Search events
 
@@ -180,7 +180,9 @@ func main() {
 	asn := "asn_example" // string |  (optional)
 	linkedId := "linkedId_example" // string | Filter events by your custom identifier.  You can use [linked Ids](https://dev.fingerprint.com/reference/get-function#linkedid) to associate identification requests with your own identifier, for example, session Id, purchase Id, or transaction Id. You can then use this `linked_id` parameter to retrieve all events associated with your custom identifier.  (optional)
 	url := "url_example" // string | Filter events by the URL (`url` property) associated with the event.  (optional)
-	origin := "origin_example" // string | Filter events by the origin field of the event. Origin could be the website domain or mobile app bundle ID (eg: com.foo.bar)  (optional)
+	bundleId := "bundleId_example" // string | Filter events by the Bundle ID (iOS) associated with the event.  (optional)
+	packageName := "packageName_example" // string | Filter events by the Package Name (Android) associated with the event.  (optional)
+	origin := "origin_example" // string | Filter events by the origin field of the event. This is applicable to web events only (e.g., https://example.com)  (optional)
 	start := int64(789) // int64 | Filter events with a timestamp greater than the start time, in Unix time (milliseconds).  (optional)
 	end := int64(789) // int64 | Filter events with a timestamp smaller than the end time, in Unix time (milliseconds).  (optional)
 	reverse := true // bool | Sort events in reverse timestamp order.  (optional)
@@ -212,7 +214,7 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.FingerprintAPI.SearchEvents(context.Background()).Limit(limit).PaginationKey(paginationKey).VisitorId(visitorId).Bot(bot).IpAddress(ipAddress).Asn(asn).LinkedId(linkedId).Url(url).Origin(origin).Start(start).End(end).Reverse(reverse).Suspect(suspect).Vpn(vpn).VirtualMachine(virtualMachine).Tampering(tampering).AntiDetectBrowser(antiDetectBrowser).Incognito(incognito).PrivacySettings(privacySettings).Jailbroken(jailbroken).Frida(frida).FactoryReset(factoryReset).ClonedApp(clonedApp).Emulator(emulator).RootApps(rootApps).VpnConfidence(vpnConfidence).MinSuspectScore(minSuspectScore).DeveloperTools(developerTools).LocationSpoofing(locationSpoofing).MitmAttack(mitmAttack).Proxy(proxy).SdkVersion(sdkVersion).SdkPlatform(sdkPlatform).Environment(environment).ProximityId(proximityId).TotalHits(totalHits).TorNode(torNode).Execute()
+	resp, r, err := apiClient.FingerprintAPI.SearchEvents(context.Background()).Limit(limit).PaginationKey(paginationKey).VisitorId(visitorId).Bot(bot).IpAddress(ipAddress).Asn(asn).LinkedId(linkedId).Url(url).BundleId(bundleId).PackageName(packageName).Origin(origin).Start(start).End(end).Reverse(reverse).Suspect(suspect).Vpn(vpn).VirtualMachine(virtualMachine).Tampering(tampering).AntiDetectBrowser(antiDetectBrowser).Incognito(incognito).PrivacySettings(privacySettings).Jailbroken(jailbroken).Frida(frida).FactoryReset(factoryReset).ClonedApp(clonedApp).Emulator(emulator).RootApps(rootApps).VpnConfidence(vpnConfidence).MinSuspectScore(minSuspectScore).DeveloperTools(developerTools).LocationSpoofing(locationSpoofing).MitmAttack(mitmAttack).Proxy(proxy).SdkVersion(sdkVersion).SdkPlatform(sdkPlatform).Environment(environment).ProximityId(proximityId).TotalHits(totalHits).TorNode(torNode).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `FingerprintAPI.SearchEvents``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -241,7 +243,9 @@ Name | Type | Description  | Notes
  **asn** | **string** |  | 
  **linkedId** | **string** | Filter events by your custom identifier.  You can use [linked Ids](https://dev.fingerprint.com/reference/get-function#linkedid) to associate identification requests with your own identifier, for example, session Id, purchase Id, or transaction Id. You can then use this &#x60;linked_id&#x60; parameter to retrieve all events associated with your custom identifier.  | 
  **url** | **string** | Filter events by the URL (&#x60;url&#x60; property) associated with the event.  | 
- **origin** | **string** | Filter events by the origin field of the event. Origin could be the website domain or mobile app bundle ID (eg: com.foo.bar)  | 
+ **bundleId** | **string** | Filter events by the Bundle ID (iOS) associated with the event.  | 
+ **packageName** | **string** | Filter events by the Package Name (Android) associated with the event.  | 
+ **origin** | **string** | Filter events by the origin field of the event. This is applicable to web events only (e.g., https://example.com)  | 
  **start** | **int64** | Filter events with a timestamp greater than the start time, in Unix time (milliseconds).  | 
  **end** | **int64** | Filter events with a timestamp smaller than the end time, in Unix time (milliseconds).  | 
  **reverse** | **bool** | Sort events in reverse timestamp order.  | 

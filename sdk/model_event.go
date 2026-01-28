@@ -54,7 +54,8 @@ type Event struct {
 	Proximity      *Proximity      `json:"proximity,omitempty"`
 	Bot            *BotResult      `json:"bot,omitempty"`
 	// Additional classification of the bot type if detected.
-	BotType *string `json:"bot_type,omitempty"`
+	BotType *string  `json:"bot_type,omitempty"`
+	BotInfo *BotInfo `json:"bot_info,omitempty"`
 	// Android specific cloned application detection. There are 2 values:  * `true` - Presence of app cloners work detected (e.g. fully cloned application found or launch of it inside of a not main working profile detected). * `false` - No signs of cloned application detected or the client is not Android.
 	ClonedApp *bool `json:"cloned_app,omitempty"`
 	// `true` if the browser is Chrome with DevTools open or Firefox with Developer Tools open, `false` otherwise.
@@ -749,6 +750,38 @@ func (o *Event) HasBotType() bool {
 // SetBotType gets a reference to the given string and assigns it to the BotType field.
 func (o *Event) SetBotType(v string) {
 	o.BotType = &v
+}
+
+// GetBotInfo returns the BotInfo field value if set, zero value otherwise.
+func (o *Event) GetBotInfo() BotInfo {
+	if o == nil || IsNil(o.BotInfo) {
+		var ret BotInfo
+		return ret
+	}
+	return *o.BotInfo
+}
+
+// GetBotInfoOk returns a tuple with the BotInfo field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Event) GetBotInfoOk() (*BotInfo, bool) {
+	if o == nil || IsNil(o.BotInfo) {
+		return nil, false
+	}
+	return o.BotInfo, true
+}
+
+// HasBotInfo returns a boolean if a field has been set.
+func (o *Event) HasBotInfo() bool {
+	if o != nil && !IsNil(o.BotInfo) {
+		return true
+	}
+
+	return false
+}
+
+// SetBotInfo gets a reference to the given BotInfo and assigns it to the BotInfo field.
+func (o *Event) SetBotInfo(v BotInfo) {
+	o.BotInfo = &v
 }
 
 // GetClonedApp returns the ClonedApp field value if set, zero value otherwise.
@@ -1745,6 +1778,9 @@ func (o Event) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.BotType) {
 		toSerialize["bot_type"] = o.BotType
 	}
+	if !IsNil(o.BotInfo) {
+		toSerialize["bot_info"] = o.BotInfo
+	}
 	if !IsNil(o.ClonedApp) {
 		toSerialize["cloned_app"] = o.ClonedApp
 	}
@@ -1896,6 +1932,7 @@ func (o *Event) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "proximity")
 		delete(additionalProperties, "bot")
 		delete(additionalProperties, "bot_type")
+		delete(additionalProperties, "bot_info")
 		delete(additionalProperties, "cloned_app")
 		delete(additionalProperties, "developer_tools")
 		delete(additionalProperties, "emulator")

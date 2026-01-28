@@ -24,6 +24,7 @@ Name | Type | Description | Notes
 **Proximity** | Pointer to [**Proximity**](Proximity.md) |  | [optional] 
 **Bot** | Pointer to [**BotResult**](BotResult.md) |  | [optional] 
 **BotType** | Pointer to **string** | Additional classification of the bot type if detected.  | [optional] 
+**BotInfo** | Pointer to [**BotInfo**](BotInfo.md) |  | [optional] 
 **ClonedApp** | Pointer to **bool** | Android specific cloned application detection. There are 2 values:  * &#x60;true&#x60; - Presence of app cloners work detected (e.g. fully cloned application found or launch of it inside of a not main working profile detected). * &#x60;false&#x60; - No signs of cloned application detected or the client is not Android.  | [optional] 
 **DeveloperTools** | Pointer to **bool** | &#x60;true&#x60; if the browser is Chrome with DevTools open or Firefox with Developer Tools open, &#x60;false&#x60; otherwise.  | [optional] 
 **Emulator** | Pointer to **bool** | Android specific emulator detection. There are 2 values:  * &#x60;true&#x60; - Emulated environment detected (e.g. launch inside of AVD).  * &#x60;false&#x60; - No signs of emulated environment detected or the client is not Android.  | [optional] 
@@ -562,6 +563,31 @@ SetBotType sets BotType field to given value.
 `func (o *Event) HasBotType() bool`
 
 HasBotType returns a boolean if a field has been set.
+
+### GetBotInfo
+
+`func (o *Event) GetBotInfo() BotInfo`
+
+GetBotInfo returns the BotInfo field if non-nil, zero value otherwise.
+
+### GetBotInfoOk
+
+`func (o *Event) GetBotInfoOk() (*BotInfo, bool)`
+
+GetBotInfoOk returns a tuple with the BotInfo field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBotInfo
+
+`func (o *Event) SetBotInfo(v BotInfo)`
+
+SetBotInfo sets BotInfo field to given value.
+
+### HasBotInfo
+
+`func (o *Event) HasBotInfo() bool`
+
+HasBotInfo returns a boolean if a field has been set.
 
 ### GetClonedApp
 

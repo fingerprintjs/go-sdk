@@ -24,7 +24,9 @@ type ProxyDetails struct {
 	// Residential proxies use real user IP addresses to appear as legitimate traffic,  while data center proxies are public proxies hosted in data centers
 	ProxyType string `json:"proxy_type"`
 	// Unix millisecond timestamp with hourly resolution of when this IP was last seen as a proxy
-	LastSeenAt           *int64 `json:"last_seen_at,omitempty"`
+	LastSeenAt *int64 `json:"last_seen_at,omitempty"`
+	// String representing the last proxy service provider detected when this IP was synced. An IP can be shared by multiple service providers.
+	Provider             *string `json:"provider,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -104,6 +106,38 @@ func (o *ProxyDetails) SetLastSeenAt(v int64) {
 	o.LastSeenAt = &v
 }
 
+// GetProvider returns the Provider field value if set, zero value otherwise.
+func (o *ProxyDetails) GetProvider() string {
+	if o == nil || IsNil(o.Provider) {
+		var ret string
+		return ret
+	}
+	return *o.Provider
+}
+
+// GetProviderOk returns a tuple with the Provider field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ProxyDetails) GetProviderOk() (*string, bool) {
+	if o == nil || IsNil(o.Provider) {
+		return nil, false
+	}
+	return o.Provider, true
+}
+
+// HasProvider returns a boolean if a field has been set.
+func (o *ProxyDetails) HasProvider() bool {
+	if o != nil && !IsNil(o.Provider) {
+		return true
+	}
+
+	return false
+}
+
+// SetProvider gets a reference to the given string and assigns it to the Provider field.
+func (o *ProxyDetails) SetProvider(v string) {
+	o.Provider = &v
+}
+
 func (o ProxyDetails) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -117,6 +151,9 @@ func (o ProxyDetails) ToMap() (map[string]interface{}, error) {
 	toSerialize["proxy_type"] = o.ProxyType
 	if !IsNil(o.LastSeenAt) {
 		toSerialize["last_seen_at"] = o.LastSeenAt
+	}
+	if !IsNil(o.Provider) {
+		toSerialize["provider"] = o.Provider
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -163,6 +200,7 @@ func (o *ProxyDetails) UnmarshalJSON(data []byte) (err error) {
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "proxy_type")
 		delete(additionalProperties, "last_seen_at")
+		delete(additionalProperties, "provider")
 		o.AdditionalProperties = additionalProperties
 	}
 

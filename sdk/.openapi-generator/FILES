@@ -4,6 +4,7 @@ api_fingerprint.go
 client.go
 client_wrapper.go
 configuration.go
+docs/BotInfo.md
 docs/BotResult.md
 docs/BrowserDetails.md
 docs/Canvas.md
@@ -51,6 +52,7 @@ docs/WebGlBasics.md
 docs/WebGlExtensions.md
 go.mod
 go.sum
+model_bot_info.go
 model_bot_result.go
 model_browser_details.go
 model_canvas.go

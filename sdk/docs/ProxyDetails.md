@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ProxyType** | **string** | Residential proxies use real user IP addresses to appear as legitimate traffic,  while data center proxies are public proxies hosted in data centers  | 
 **LastSeenAt** | Pointer to **int64** | Unix millisecond timestamp with hourly resolution of when this IP was last seen as a proxy  | [optional] 
+**Provider** | Pointer to **string** | String representing the last proxy service provider detected when this IP was synced. An IP can be shared by multiple service providers.  | [optional] 
 
 ## Methods
 
@@ -70,6 +71,31 @@ SetLastSeenAt sets LastSeenAt field to given value.
 `func (o *ProxyDetails) HasLastSeenAt() bool`
 
 HasLastSeenAt returns a boolean if a field has been set.
+
+### GetProvider
+
+`func (o *ProxyDetails) GetProvider() string`
+
+GetProvider returns the Provider field if non-nil, zero value otherwise.
+
+### GetProviderOk
+
+`func (o *ProxyDetails) GetProviderOk() (*string, bool)`
+
+GetProviderOk returns a tuple with the Provider field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProvider
+
+`func (o *ProxyDetails) SetProvider(v string)`
+
+SetProvider sets Provider field to given value.
+
+### HasProvider
+
+`func (o *ProxyDetails) HasProvider() bool`
+
+HasProvider returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -278,7 +278,25 @@ paths:
           type: string
         style: form
       - description: |
-          Filter events by the origin field of the event. Origin could be the website domain or mobile app bundle ID (eg: com.foo.bar)
+          Filter events by the Bundle ID (iOS) associated with the event.
+        explode: true
+        in: query
+        name: bundle_id
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: |
+          Filter events by the Package Name (Android) associated with the event.
+        explode: true
+        in: query
+        name: package_name
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: |
+          Filter events by the origin field of the event. This is applicable to web events only (e.g., https://example.com)
         explode: true
         in: query
         name: origin
@@ -914,6 +932,47 @@ components:
       description: |
         Additional classification of the bot type if detected.
       type: string
+    BotInfo:
+      description: Extended bot information.
+      properties:
+        category:
+          description: The type and purpose of the bot.
+          type: string
+        provider:
+          description: The organization or company operating the bot.
+          type: string
+        provider_url:
+          description: The URL of the bot provider's website.
+          type: string
+        name:
+          description: The specific name or identifier of the bot.
+          type: string
+        identity:
+          description: |
+            The verification status of the bot's identity:
+             * `verified` - well-known bot with publicly verifiable identity, directed by the bot provider.
+             * `signed` - bot that signs its platform via Web Bot Auth, directed by the bot provider’s customers.
+             * `spoofed` - bot that claims a public identity but fails verification.
+             * `unknown` - bot that does not publish a verifiable identity.
+          enum:
+          - verified
+          - signed
+          - spoofed
+          - unknown
+          type: string
+        confidence:
+          description: Confidence level of the bot identification.
+          enum:
+          - low
+          - medium
+          - high
+          type: string
+      required:
+      - category
+      - confidence
+      - identity
+      - name
+      - provider
     ClonedApp:
       description: |
         Android specific cloned application detection. There are 2 values:  * `true` - Presence of app cloners work detected (e.g. fully cloned application found or launch of it inside of a not main working profile detected). * `false` - No signs of cloned application detected or the client is not Android.
@@ -1067,6 +1126,11 @@ components:
             Unix millisecond timestamp with hourly resolution of when this IP was last seen as a proxy
           format: int64
           type: integer
+        provider:
+          description: |
+            String representing the last proxy service provider detected when this
+            IP was synced. An IP can be shared by multiple service providers.
+          type: string
       required:
       - proxy_type
     Incognito:
@@ -1684,6 +1748,7 @@ components:
         ip_info: ""
         location_spoofing: ""
         mitm_attack: ""
+        bot_info: ""
         bot: ""
         supplementary_id_high_recall: ""
         cloned_app: ""
@@ -1831,6 +1896,11 @@ components:
         bot_type:
           allOf:
           - $ref: "#/components/schemas/BotType"
+          x-platforms:
+          - browser
+        bot_info:
+          allOf:
+          - $ref: "#/components/schemas/BotInfo"
           x-platforms:
           - browser
         cloned_app:
@@ -2134,6 +2204,7 @@ components:
           ip_info: ""
           location_spoofing: ""
           mitm_attack: ""
+          bot_info: ""
           bot: ""
           supplementary_id_high_recall: ""
           cloned_app: ""
@@ -2186,6 +2257,7 @@ components:
           ip_info: ""
           location_spoofing: ""
           mitm_attack: ""
+          bot_info: ""
           bot: ""
           supplementary_id_high_recall: ""
           cloned_app: ""

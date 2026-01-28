@@ -103,6 +103,7 @@ Class | Method | HTTP request | Description
 
 ## Documentation For Models
 
+ - [BotInfo](docs/BotInfo.md)
  - [BotResult](docs/BotResult.md)
  - [BrowserDetails](docs/BrowserDetails.md)
  - [Canvas](docs/Canvas.md)

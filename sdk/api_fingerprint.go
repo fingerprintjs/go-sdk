@@ -362,6 +362,8 @@ type ApiSearchEventsRequest struct {
 	asn               *string
 	linkedId          *string
 	url               *string
+	bundleId          *string
+	packageName       *string
 	origin            *string
 	start             *int64
 	end               *int64
@@ -440,7 +442,19 @@ func (r ApiSearchEventsRequest) Url(url string) ApiSearchEventsRequest {
 	return r
 }
 
-// Filter events by the origin field of the event. Origin could be the website domain or mobile app bundle ID (eg: com.foo.bar)
+// Filter events by the Bundle ID (iOS) associated with the event.
+func (r ApiSearchEventsRequest) BundleId(bundleId string) ApiSearchEventsRequest {
+	r.bundleId = &bundleId
+	return r
+}
+
+// Filter events by the Package Name (Android) associated with the event.
+func (r ApiSearchEventsRequest) PackageName(packageName string) ApiSearchEventsRequest {
+	r.packageName = &packageName
+	return r
+}
+
+// Filter events by the origin field of the event. This is applicable to web events only (e.g., https://example.com)
 func (r ApiSearchEventsRequest) Origin(origin string) ApiSearchEventsRequest {
 	r.origin = &origin
 	return r
@@ -702,6 +716,12 @@ func (a *FingerprintAPIService) SearchEventsExecute(r ApiSearchEventsRequest) (*
 	}
 	if r.url != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "url", r.url, "form", "")
+	}
+	if r.bundleId != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "bundle_id", r.bundleId, "form", "")
+	}
+	if r.packageName != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "package_name", r.packageName, "form", "")
 	}
 	if r.origin != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "origin", r.origin, "form", "")
