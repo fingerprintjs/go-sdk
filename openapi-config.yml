@@ -13,15 +13,15 @@ additionalProperties:
   disallowAdditionalPropertiesIfNotPresent: false
 
 files:
-  fingerprint_client_wrapper.mustache:
+  fingerprint_client_wrapper.go.mustache:
     destinationFilename: client_wrapper.go
-  fingerprint_options.mustache:
+  fingerprint_options.go.mustache:
     destinationFilename: options.go
-  fingerprint_region.mustache:
+  fingerprint_region.go.mustache:
     destinationFilename: region.go
-  fingerprint_sealed.mustache:
+  fingerprint_sealed.go.mustache:
     destinationFilename: sealed.go
-  fingerprint_webhook.mustache:
+  fingerprint_webhook.go.mustache:
     destinationFilename: webhook.go
-  fingerprint_version.mustache:
+  fingerprint_version.go.mustache:
     destinationFilename: version.go
