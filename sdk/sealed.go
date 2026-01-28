@@ -10,8 +10,6 @@ import (
 	"fmt"
 	"io"
 	"strings"
-
-	sdk "github.com/fingerprintjs/go-sdk/sdk"
 )
 
 type Algorithm string
@@ -35,17 +33,17 @@ type DecryptionKey struct {
 }
 
 // UnsealEventsResponse decrypts the sealed response with the provided keys.
-// The SDK will try to decrypt the result with each key until it succeeds.
+// The will try to decrypt the result with each key until it succeeds.
 // In case if all keys fail, AggregatedUnsealError is returned with error details for each key.
 // To learn more about sealed results visit: https://dev.fingerprint.com/docs/sealed-client-results
-func UnsealEventsResponse(sealed []byte, keys []DecryptionKey) (*sdk.Event, error) {
+func UnsealEventsResponse(sealed []byte, keys []DecryptionKey) (*Event, error) {
 	unsealed, err := Unseal(sealed, keys)
 
 	if err != nil {
 		return nil, err
 	}
 
-	var eventResponse sdk.Event
+	var eventResponse Event
 	fmt.Printf("unsealed %v\n", string(unsealed))
 
 	err = json.Unmarshal(unsealed, &eventResponse)

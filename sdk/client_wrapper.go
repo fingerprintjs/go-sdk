@@ -4,13 +4,7 @@ import (
 	"context"
 	"fmt"
 	"net/http"
-
-	sdk "github.com/fingerprintjs/go-sdk/sdk"
 )
-
-var ContextAccessToken = sdk.ContextAccessToken
-
-type EventUpdate = sdk.EventUpdate
 
 var IntegrationInfo = fmt.Sprintf(`fingerprint-pro-server-go-sdk/%s`, Version)
 
@@ -28,20 +22,20 @@ func (t *sdkIdentTransport) RoundTrip(req *http.Request) (*http.Response, error)
 }
 
 type Client struct {
-	api     *sdk.APIClient
+	api     *APIClient
 	region  Region
 	apiKey  string
 	baseURL string
 }
 
 func New(opts ...ConfigOption) *Client {
-	cfg := sdk.NewConfiguration()
+	cfg := NewConfiguration()
 	httpClient := &http.Client{
 		Transport: &sdkIdentTransport{base: http.DefaultTransport},
 	}
 	cfg.HTTPClient = httpClient
 	c := &Client{
-		api:    sdk.NewAPIClient(cfg),
+		api:    NewAPIClient(cfg),
 		region: RegionUS,
 	}
 
@@ -50,7 +44,7 @@ func New(opts ...ConfigOption) *Client {
 	}
 
 	if c.baseURL != "" {
-		cfg.Servers = sdk.ServerConfigurations{
+		cfg.Servers = ServerConfigurations{
 			{URL: c.baseURL},
 		}
 	}
@@ -59,24 +53,24 @@ func New(opts ...ConfigOption) *Client {
 }
 
 func (c *Client) withRegion(ctx context.Context) context.Context {
-	if ctx.Value(sdk.ContextServerIndex) != nil {
+	if ctx.Value(ContextServerIndex) != nil {
 		return ctx
 	}
 	return WithRegionContext(ctx, c.api.GetConfig(), c.region)
 }
 
 func (c *Client) withAPIKey(ctx context.Context) context.Context {
-	if ctx.Value(sdk.ContextAccessToken) != nil {
+	if ctx.Value(ContextAccessToken) != nil {
 		return ctx
 	}
 
-	return context.WithValue(ctx, sdk.ContextAccessToken, c.apiKey)
+	return context.WithValue(ctx, ContextAccessToken, c.apiKey)
 }
 
 /*
 GetEvent Get an event by event ID. See FingerprintAPIService.GetEvent for details.
 */
-func (c *Client) GetEvent(ctx context.Context, eventId string) (*sdk.Event, *http.Response, error) {
+func (c *Client) GetEvent(ctx context.Context, eventId string) (*Event, *http.Response, error) {
 	ctx = c.withRegion(ctx)
 	ctx = c.withAPIKey(ctx)
 	return c.api.FingerprintAPI.GetEvent(ctx, eventId).Execute()
@@ -85,7 +79,7 @@ func (c *Client) GetEvent(ctx context.Context, eventId string) (*sdk.Event, *htt
 /*
 NewSearchEventsRequest Create a search event request. See FingerprintAPIService.SearchEvents for details.
 */
-func (c *Client) NewSearchEventsRequest(ctx context.Context) sdk.ApiSearchEventsRequest {
+func (c *Client) NewSearchEventsRequest(ctx context.Context) ApiSearchEventsRequest {
 	ctx = c.withRegion(ctx)
 	ctx = c.withAPIKey(ctx)
 	return c.api.FingerprintAPI.SearchEvents(ctx)
@@ -94,14 +88,14 @@ func (c *Client) NewSearchEventsRequest(ctx context.Context) sdk.ApiSearchEvents
 /*
 SearchEvents Send a search event request. See FingerprintAPIService.SearchEvents for details.
 */
-func (c *Client) SearchEvents(req sdk.ApiSearchEventsRequest) (*sdk.EventSearch, *http.Response, error) {
+func (c *Client) SearchEvents(req ApiSearchEventsRequest) (*EventSearch, *http.Response, error) {
 	return req.Execute()
 }
 
 /*
 UpdateEvent Update an event. See FingerprintAPIService.UpdateEvent for details.
 */
-func (c *Client) UpdateEvent(ctx context.Context, eventId string, eventUpdateReq sdk.EventUpdate) (*http.Response, error) {
+func (c *Client) UpdateEvent(ctx context.Context, eventId string, eventUpdateReq EventUpdate) (*http.Response, error) {
 	ctx = c.withRegion(ctx)
 	ctx = c.withAPIKey(ctx)
 	return c.api.FingerprintAPI.UpdateEvent(ctx, eventId).EventUpdate(eventUpdateReq).Execute()

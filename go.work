@@ -1,7 +1,7 @@
 go 1.23
 
 use (
-	.
+	./sdk
 	./example
 	./functional_test
 	./test

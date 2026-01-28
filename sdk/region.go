@@ -2,8 +2,6 @@ package fingerprint
 
 import (
 	"context"
-
-	sdk "github.com/fingerprintjs/go-sdk/sdk"
 )
 
 type Region string
@@ -20,7 +18,7 @@ var regionBaseURLs = map[Region]string{
 	RegionAsia: "https://ap.api.fpjs.io/v4",
 }
 
-func WithRegionContext(ctx context.Context, cfg *sdk.Configuration, region Region) context.Context {
+func WithRegionContext(ctx context.Context, cfg *Configuration, region Region) context.Context {
 	baseURL, ok := regionBaseURLs[region]
 	if !ok {
 		// invalid region is passed
@@ -29,7 +27,7 @@ func WithRegionContext(ctx context.Context, cfg *sdk.Configuration, region Regio
 
 	for i, server := range cfg.Servers {
 		if server.URL == baseURL {
-			return context.WithValue(ctx, sdk.ContextServerIndex, i)
+			return context.WithValue(ctx, ContextServerIndex, i)
 		}
 	}
 

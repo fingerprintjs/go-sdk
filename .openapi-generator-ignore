@@ -25,15 +25,6 @@
 // Ignore .gitignore
 .gitignore
 
-// Ignore manually created files (except README.md)
-client_wrapper.go
-options.go
-region.go
-sealed.go
-webhook.go
-go.mod
-go.sum
-
 // Ignore unwanted generated files
 .travis.yml
 git_push.sh
