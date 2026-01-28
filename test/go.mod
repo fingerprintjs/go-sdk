@@ -1,6 +1,6 @@
-module github.com/fingerprintjs/fingerprint-pro-server-api-go-sdk/test
+module github.com/fingerprintjs/go-sdk/test
 
-go 1.21
+go 1.23
 
 require (
 	github.com/stretchr/testify v1.9.0
