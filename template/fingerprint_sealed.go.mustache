@@ -44,12 +44,10 @@ func UnsealEventsResponse(sealed []byte, keys []DecryptionKey) (*Event, error) {
 	}
 
 	var eventResponse Event
-	fmt.Printf("unsealed %v\n", string(unsealed))
 
 	err = json.Unmarshal(unsealed, &eventResponse)
 
 	if err != nil {
-		fmt.Println("2")
 		return nil, err
 	}
 

@@ -1,3 +1,3 @@
 package fingerprint
 
-const Version = "8.0.0"
+const Version = "7.9.0"
