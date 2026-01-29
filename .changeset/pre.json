@@ -1,0 +1,8 @@
+{
+  "mode": "pre",
+  "tag": "test",
+  "initialVersions": {
+    "go-sdk": "7.9.0"
+  },
+  "changesets": []
+}
