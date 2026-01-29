@@ -3,20 +3,14 @@ package test
 import (
 	"testing"
 
-	fingerprint "github.com/fingerprintjs/go-sdk"
+	fingerprint "github.com/fingerprintjs/go-sdk/sdk"
 	"github.com/stretchr/testify/assert"
 )
 
-const secret = "secret"
-const data = "data"
-
-//func TestWebhookModel(t *testing.T) {
-//	t.Run("Check if webhook response can be unmarshalled", func(t *testing.T) {
-//		var mockResponse sdk.Webhook
-//		err := readFromFileAndUnmarshalWithError("../test/mocks/webhook.json", &mockResponse)
-//		assert.Nil(t, err)
-//	})
-//}
+const (
+	secret = "secret"
+	data   = "data"
+)
 
 func TestIsValidWebhookSignature(t *testing.T) {
 	const validHeader = "v1=1b2c16b75bd2a870c114153ccda5bcfca63314bc722fa160d690de133ccbb9db"
