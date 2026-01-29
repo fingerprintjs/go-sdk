@@ -1,0 +1,29 @@
+generatorName: go
+outputDir: /local/sdk
+
+gitUserId: fingerprintjs
+gitRepoId: go-sdk
+
+globalProperties:
+  apiTests: false
+  modelTests: false
+
+additionalProperties:
+  packageName: fingerprint
+  disallowAdditionalPropertiesIfNotPresent: false
+
+files:
+  fingerprint_api_error.go.mustache:
+    destinationFilename: api_error.go
+  fingerprint_client_wrapper.go.mustache:
+    destinationFilename: client_wrapper.go
+  fingerprint_options.go.mustache:
+    destinationFilename: options.go
+  fingerprint_region.go.mustache:
+    destinationFilename: region.go
+  fingerprint_sealed.go.mustache:
+    destinationFilename: sealed.go
+  fingerprint_webhook.go.mustache:
+    destinationFilename: webhook.go
+  fingerprint_version.go.mustache:
+    destinationFilename: version.go

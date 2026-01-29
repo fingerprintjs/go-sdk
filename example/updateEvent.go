@@ -6,47 +6,33 @@ import (
 	"log"
 	"os"
 
-	"github.com/fingerprintjs/fingerprint-pro-server-api-go-sdk/v7/sdk"
+	"github.com/fingerprintjs/go-sdk"
 	"github.com/joho/godotenv"
 )
 
 func main() {
-	cfg := sdk.NewConfiguration()
-	client := sdk.NewAPIClient(cfg)
-
 	// Load environment variables
 	godotenv.Load()
 
-	// Default region is sdk.RegionUS
-	if os.Getenv("REGION") == "eu" {
-		cfg.ChangeRegion(sdk.RegionEU)
-	}
-	if os.Getenv("REGION") == "ap" {
-		cfg.ChangeRegion(sdk.RegionAsia)
-	}
-
-	// Configure authorization, in our case with API Key
-	auth := context.WithValue(context.Background(), sdk.ContextAPIKey, sdk.APIKey{
-		Key: os.Getenv("FINGERPRINT_API_KEY"),
-	})
+	client := fingerprint.New(fingerprint.WithRegion(fingerprint.RegionUS), fingerprint.WithAPIKey(os.Getenv("FINGERPRINT_API_KEY")))
 
 	// Usually this data will come from your frontend app
-	requestId := os.Getenv("REQUEST_ID")
-	tag := sdk.ModelMap{
+	tags := map[string]interface{}{
 		"key": "value",
 	}
 	suspect := false
-	body := sdk.EventsUpdateRequest{
+	linkedId := "new_linked_id"
+	req := fingerprint.EventUpdate{
 		Suspect:  &suspect,
-		LinkedId: "new_linked_id",
-		Tag:      &tag,
+		LinkedId: &linkedId,
+		Tags:     tags,
 	}
 
-	httpRes, err := client.FingerprintApi.UpdateEvent(auth, body, requestId)
+	httpRes, err := client.UpdateEvent(context.Background(), os.Getenv("EVENT_ID"), req)
 
 	fmt.Printf("%+v\n", httpRes)
 
 	if err != nil {
-		log.Fatalf("Error: %s, %s", err.Code(), err.Error())
+		log.Fatalf("Error: %s", err.Error())
 	}
 }

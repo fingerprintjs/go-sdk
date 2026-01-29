@@ -1,8 +1,8 @@
-go 1.21
+go 1.23
 
 use (
+	./sdk
 	./example
-	./test
 	./functional_test
-	.
+	./test
 )

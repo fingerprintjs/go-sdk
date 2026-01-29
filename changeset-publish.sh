@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-go run generate.go && pnpm exec changeset publish
+bash ./bin/openapi-codegen-docker.sh && pnpm exec changeset publish

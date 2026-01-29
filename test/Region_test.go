@@ -1,21 +1,51 @@
 package test
 
 import (
-	"github.com/fingerprintjs/fingerprint-pro-server-api-go-sdk/v7/sdk"
-	"github.com/stretchr/testify/assert"
+	"context"
+	"io"
+	"net/http"
+	"net/url"
+	"strings"
 	"testing"
+
+	fingerprint "github.com/fingerprintjs/go-sdk/sdk"
+	"github.com/stretchr/testify/assert"
 )
 
+type roundTripperFunc func(*http.Request) (*http.Response, error)
+
+func (f roundTripperFunc) RoundTrip(req *http.Request) (*http.Response, error) {
+	return f(req)
+}
+
 func TestUsesCorrectEndpointForRegion(t *testing.T) {
-	regionsMap := make(map[sdk.Region]string)
-	regionsMap[sdk.RegionUS] = "https://api.fpjs.io"
-	regionsMap[sdk.RegionAsia] = "https://ap.api.fpjs.io"
-	regionsMap[sdk.RegionEU] = "https://eu.api.fpjs.io"
+	regionsMap := make(map[fingerprint.Region]string)
+	regionsMap[fingerprint.RegionUS] = "api.fpjs.io"
+	regionsMap[fingerprint.RegionAsia] = "ap.api.fpjs.io"
+	regionsMap[fingerprint.RegionEU] = "eu.api.fpjs.io"
 
 	for region, endpoint := range regionsMap {
-		cfg := sdk.NewConfiguration()
-		cfg.ChangeRegion(region)
+		var capturedURL *url.URL
 
-		assert.Equal(t, cfg.GetBasePath(), endpoint)
+		client := fingerprint.New(
+			fingerprint.WithRegion(region),
+			fingerprint.WithHTTPClient(&http.Client{
+				Transport: roundTripperFunc(func(req *http.Request) (*http.Response, error) {
+					capturedURL = req.URL
+
+					return &http.Response{
+						StatusCode: http.StatusOK,
+						Body:       io.NopCloser(strings.NewReader(`{}`)),
+						Header:     make(http.Header),
+						Request:    req}, nil
+				}),
+			}))
+		_, _, _ = client.GetEvent(context.Background(), "123")
+		assert.NotNil(t, capturedURL)
+		if capturedURL != nil {
+			assert.Equal(t, endpoint, capturedURL.Host)
+			assert.Equal(t, "/v4/events/123", capturedURL.Path)
+		}
 	}
+
 }

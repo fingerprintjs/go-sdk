@@ -3,46 +3,34 @@ package main
 import (
 	"context"
 	"fmt"
-	"github.com/fingerprintjs/fingerprint-pro-server-api-go-sdk/v7/sdk"
-	"github.com/joho/godotenv"
 	"log"
 	"os"
+
+	"github.com/fingerprintjs/go-sdk"
+	"github.com/joho/godotenv"
 )
 
 func main() {
-	cfg := sdk.NewConfiguration()
-	client := sdk.NewAPIClient(cfg)
-
 	// Load environment variables
 	godotenv.Load()
 
-	// Default region is sdk.RegionUS
-	if os.Getenv("REGION") == "eu" {
-		cfg.ChangeRegion(sdk.RegionEU)
-	}
-	if os.Getenv("REGION") == "ap" {
-		cfg.ChangeRegion(sdk.RegionAsia)
-	}
+	client := fingerprint.New(fingerprint.WithRegion(fingerprint.RegionUS), fingerprint.WithAPIKey(os.Getenv("FINGERPRINT_API_KEY")))
 
-	// Configure authorization, in our case with API Key
-	auth := context.WithValue(context.Background(), sdk.ContextAPIKey, sdk.APIKey{
-		Key: os.Getenv("FINGERPRINT_API_KEY"),
-	})
+	req := client.NewSearchEventsRequest(context.Background()).Limit(5).Suspect(false).TotalHits(1000)
 
-	//suspect := false
-	opts := sdk.FingerprintApiSearchEventsOpts{
-		//Suspect: &suspect,
-	}
-
-	response, httpRes, err := client.FingerprintApi.SearchEvents(auth, 10, &opts)
+	response, httpRes, err := client.SearchEvents(req)
 
 	fmt.Printf("%+v\n", httpRes)
 
 	if err != nil {
-		log.Fatalf("Error: %s, %s", err.Code(), err.Error())
+		log.Fatalf("Error: %s", err.Error())
 	}
 
+	fmt.Printf("Total hits: %d\n", *response.TotalHits)
+
 	if response.Events != nil {
-		fmt.Printf("Got response with Events: %v \n", response.Events)
+		for _, event := range response.Events {
+			fmt.Printf("Got response for event: %v \n", event.EventId)
+		}
 	}
 }
