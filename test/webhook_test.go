@@ -12,14 +12,6 @@ const (
 	data   = "data"
 )
 
-//func TestWebhookModel(t *testing.T) {
-//	t.Run("Check if webhook response can be unmarshalled", func(t *testing.T) {
-//		var mockResponse sdk.Webhook
-//		err := readFromFileAndUnmarshalWithError("../test/mocks/webhook.json", &mockResponse)
-//		assert.Nil(t, err)
-//	})
-//}
-
 func TestIsValidWebhookSignature(t *testing.T) {
 	const validHeader = "v1=1b2c16b75bd2a870c114153ccda5bcfca63314bc722fa160d690de133ccbb9db"
 
