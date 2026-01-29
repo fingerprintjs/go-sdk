@@ -10,7 +10,7 @@ import (
 	"strings"
 	"testing"
 
-	fingerprint "github.com/fingerprintjs/go-sdk/sdk"
+	fingerprint "github.com/fingerprintjs/go-sdk"
 	"github.com/stretchr/testify/assert"
 )
 

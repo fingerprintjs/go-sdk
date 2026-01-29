@@ -1,8 +1,8 @@
 go 1.21
 
 use (
-	./sdk
 	./example
 	./functional_test
+	./sdk
 	./test
 )

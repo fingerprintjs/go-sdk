@@ -8,7 +8,7 @@ import (
 	"strings"
 	"testing"
 
-	fingerprint "github.com/fingerprintjs/go-sdk/sdk"
+	"github.com/fingerprintjs/go-sdk"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -37,7 +37,8 @@ func TestUsesCorrectEndpointForRegion(t *testing.T) {
 						StatusCode: http.StatusOK,
 						Body:       io.NopCloser(strings.NewReader(`{}`)),
 						Header:     make(http.Header),
-						Request:    req}, nil
+						Request:    req,
+					}, nil
 				}),
 			}))
 		_, _, _ = client.GetEvent(context.Background(), "123")
@@ -47,5 +48,4 @@ func TestUsesCorrectEndpointForRegion(t *testing.T) {
 			assert.Equal(t, "/v4/events/123", capturedURL.Path)
 		}
 	}
-
 }
