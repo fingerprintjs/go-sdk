@@ -16,7 +16,7 @@ import (
 
 func TestGetEvent(t *testing.T) {
 	t.Run("Returns event", func(t *testing.T) {
-		mockResponse := GetMockResponse[fingerprint.Event]("../test/mocks/get_event_200.json")
+		mockResponse := GetMockResponse[fingerprint.Event]("mocks/get_event_200.json")
 
 		ts := httptest.NewServer(http.HandlerFunc(func(
 			w http.ResponseWriter,
@@ -48,7 +48,7 @@ func TestGetEvent(t *testing.T) {
 	})
 
 	t.Run("Returns event with unexpected fields", func(t *testing.T) {
-		mockResponse := GetMockResponse[fingerprint.Event]("../test/mocks/get_event_200_extra_fields.json")
+		mockResponse := GetMockResponse[fingerprint.Event]("mocks/get_event_200_extra_fields.json")
 
 		ts := httptest.NewServer(http.HandlerFunc(func(
 			w http.ResponseWriter,
@@ -80,7 +80,7 @@ func TestGetEvent(t *testing.T) {
 	})
 
 	t.Run("Returns ErrorResponse on 403 error", func(t *testing.T) {
-		mockResponse := GetMockResponse[fingerprint.ErrorResponse]("../test/mocks/errors/403_subscription_not_active.json")
+		mockResponse := GetMockResponse[fingerprint.ErrorResponse]("mocks/errors/403_subscription_not_active.json")
 
 		ts := httptest.NewServer(http.HandlerFunc(func(
 			w http.ResponseWriter,
@@ -119,7 +119,7 @@ func TestGetEvent(t *testing.T) {
 	})
 
 	t.Run("Returns response when JSON field type is not matching response schema", func(t *testing.T) {
-		mockMalformedResponse, err := os.ReadFile("../test/mocks/get_event_200_field_type_mismatch.json")
+		mockMalformedResponse, err := os.ReadFile("mocks/get_event_200_field_type_mismatch.json")
 		if err != nil {
 			log.Fatal(err)
 		}
