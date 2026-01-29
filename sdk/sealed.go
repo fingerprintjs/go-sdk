@@ -68,8 +68,6 @@ func Unseal(sealed []byte, keys []DecryptionKey) ([]byte, error) {
 
 			if err != nil {
 				aggregateError.Add(NewUnsealError(err, key))
-
-				break
 			} else {
 				return payload, nil
 			}
