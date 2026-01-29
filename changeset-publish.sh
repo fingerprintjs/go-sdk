@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-bash ./bin/openapi-codegen-docker.sh && pnpm exec changeset publish
+bash ./bin/openapi-codegen-docker.sh --no-gofmt && pnpm exec changeset publish
