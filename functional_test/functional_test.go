@@ -2,12 +2,14 @@ package functional_test
 
 import (
 	"context"
-	"github.com/fingerprintjs/fingerprint-pro-server-api-go-sdk/v7/sdk"
-	"github.com/joho/godotenv"
-	"github.com/stretchr/testify/assert"
 	"os"
 	"testing"
 	"time"
+
+	fingerprint "github.com/fingerprintjs/go-sdk"
+	"github.com/joho/godotenv"
+	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
 )
 
 func TestApiFunctional(t *testing.T) {
@@ -15,70 +17,41 @@ func TestApiFunctional(t *testing.T) {
 	godotenv.Load()
 
 	apiKey := os.Getenv("FINGERPRINT_API_KEY")
-	assert.NotEmpty(t, apiKey)
-	auth := context.WithValue(context.Background(), sdk.ContextAPIKey, sdk.APIKey{
-		Key: apiKey,
-	})
-	cfg := sdk.NewConfiguration()
-	client := sdk.NewAPIClient(cfg)
+	require.NotEmpty(t, apiKey)
+
+	client := fingerprint.New(fingerprint.WithAPIKey(apiKey))
 
 	end := time.Now().UnixMilli()
 	start := time.Now().AddDate(0, 0, -90).UnixMilli()
-	opts := sdk.FingerprintApiSearchEventsOpts{
-		Start: &start,
-		End:   &end,
-	}
-	events, _, err := client.FingerprintApi.SearchEvents(auth, 2, &opts)
+	opts := client.NewSearchEventsRequest(context.Background()).
+		Start(start).
+		End(end)
+	events, _, err := client.SearchEvents(opts)
 	assert.NoError(t, err)
 	assert.NotNil(t, events.Events)
 	testEvent := events.Events[0]
-	requestId := testEvent.Products.Identification.Data.RequestId
-	visitorId := testEvent.Products.Identification.Data.VisitorId
+	eventId := testEvent.EventId
+	visitorId := testEvent.Identification.VisitorId
 
 	t.Run("GetEvent", func(t *testing.T) {
 		t.Run("with valid event", func(t *testing.T) {
-			event, _, err := client.FingerprintApi.GetEvent(auth, requestId)
+			event, _, err := client.GetEvent(context.Background(), eventId)
 
 			assert.NoError(t, err)
-			assert.NotNil(t, event.Products)
-			assert.IsType(t, &sdk.Products{}, event.Products)
-			assert.IsType(t, &sdk.ProductIdentification{}, event.Products.Identification)
-			assert.Equal(t, requestId, event.Products.Identification.Data.RequestId)
-			assert.Equal(t, visitorId, event.Products.Identification.Data.VisitorId)
+			assert.Equal(t, eventId, event.EventId)
+			assert.Equal(t, visitorId, event.Identification.VisitorId)
 		})
 
 		t.Run("error 404", func(t *testing.T) {
-			event, _, err := client.FingerprintApi.GetEvent(auth, "1662542583652.pLBzes")
+			event, _, err := client.GetEvent(context.Background(), "1662542583652.pLBzes")
 
 			assert.Error(t, err)
-			assert.Nil(t, event.Products)
-			assert.Equal(t, sdk.REQUEST_NOT_FOUND, err.Code())
-			assert.IsType(t, &sdk.ErrorResponse{}, err.Model())
-		})
-	})
+			assert.Nil(t, event)
 
-	t.Run("GetVisits", func(t *testing.T) {
-		t.Run("without request id", func(t *testing.T) {
-			opts := sdk.FingerprintApiGetVisitsOpts{}
-			visit, _, err := client.FingerprintApi.GetVisits(auth, visitorId, &opts)
+			errorResponse, ok := fingerprint.AsErrorResponse(err)
+			require.True(t, ok)
 
-			assert.NoError(t, err)
-			assert.NotNil(t, visit)
-			assert.Equal(t, visitorId, visit.VisitorId)
-			assert.GreaterOrEqual(t, len(visit.Visits), 1)
-		})
-
-		t.Run("with request id", func(t *testing.T) {
-			opts := sdk.FingerprintApiGetVisitsOpts{
-				RequestId: requestId,
-			}
-			visit, _, err := client.FingerprintApi.GetVisits(auth, visitorId, &opts)
-
-			assert.NoError(t, err)
-			assert.NotNil(t, visit)
-			assert.Equal(t, visitorId, visit.VisitorId)
-			assert.Equal(t, requestId, visit.Visits[0].RequestId)
-			assert.Len(t, visit.Visits, 1)
+			assert.Equal(t, fingerprint.ErrorCodeEvent_not_found, errorResponse.Error.Code)
 		})
 	})
 
@@ -86,11 +59,11 @@ func TestApiFunctional(t *testing.T) {
 		t.Run("simple search", func(t *testing.T) {
 			end := time.Now().UnixMilli()
 			start := time.Now().AddDate(0, 0, -365).UnixMilli()
-			opts := sdk.FingerprintApiSearchEventsOpts{
-				Start: &start,
-				End:   &end,
-			}
-			events, _, err := client.FingerprintApi.SearchEvents(auth, 2, &opts)
+			opts := client.NewSearchEventsRequest(context.Background()).
+				Start(start).
+				End(end).
+				Limit(2)
+			events, _, err := client.SearchEvents(opts)
 			assert.NoError(t, err)
 			assert.NotNil(t, events.Events)
 			assert.Len(t, events.Events, 2)
@@ -99,36 +72,38 @@ func TestApiFunctional(t *testing.T) {
 		t.Run("with pagination", func(t *testing.T) {
 			end := time.Now().UnixMilli()
 			start := time.Now().AddDate(0, 0, -365).UnixMilli()
-			events, _, err := client.FingerprintApi.SearchEvents(auth, 2, &sdk.FingerprintApiSearchEventsOpts{
-				Start: &start,
-				End:   &end,
-			})
+			events, _, err := client.SearchEvents(
+				client.NewSearchEventsRequest(context.Background()).
+					Limit(2).
+					Start(start).
+					End(end))
 			assert.NoError(t, err)
 			assert.NotNil(t, events.Events)
 			assert.NotEmpty(t, events.PaginationKey)
 			assert.Len(t, events.Events, 2)
 
-			nextEvents, _, err := client.FingerprintApi.SearchEvents(auth, 2, &sdk.FingerprintApiSearchEventsOpts{
-				Start:         &start,
-				End:           &end,
-				PaginationKey: &events.PaginationKey,
-			})
+			nextEvents, _, err := client.SearchEvents(client.NewSearchEventsRequest(context.Background()).
+				Start(start).
+				End(end).
+				PaginationKey(*events.PaginationKey),
+			)
 			assert.NoError(t, err)
 			assert.NotNil(t, nextEvents)
 			assert.Len(t, nextEvents.Events, 2)
-			assert.NotEqual(t, events.Events[0].Products.Identification.Data.RequestId, nextEvents.Events[0].Products.Identification.Data.RequestId)
-			assert.NotEqual(t, events.Events[1].Products.Identification.Data.RequestId, nextEvents.Events[1].Products.Identification.Data.RequestId)
+			assert.NotEqual(t, events.Events[0].EventId, nextEvents.Events[0].EventId)
+			assert.NotEqual(t, events.Events[1].EventId, nextEvents.Events[1].EventId)
 		})
 
 		t.Run("with old events", func(t *testing.T) {
 			end := time.Now().UnixMilli()
 			start := time.Now().AddDate(0, 0, -365).UnixMilli()
-			reverse := true
-			events, _, err := client.FingerprintApi.SearchEvents(auth, 2, &sdk.FingerprintApiSearchEventsOpts{
-				Start:   &start,
-				End:     &end,
-				Reverse: &reverse,
-			})
+			events, _, err := client.SearchEvents(client.NewSearchEventsRequest(context.Background()).
+				Start(start).
+				End(end).
+				Limit(2).
+				Reverse(true),
+			)
+
 			assert.NoError(t, err)
 			assert.NotNil(t, events.Events)
 			assert.Len(t, events.Events, 2)
@@ -136,15 +111,10 @@ func TestApiFunctional(t *testing.T) {
 			oldEvent := events.Events[0]
 
 			// Try to get old events to check if they still could be deserialized
-			oldVisit, _, err := client.FingerprintApi.GetVisits(auth, oldEvent.Products.Identification.Data.RequestId, nil)
+			oldGetEvent, _, err := client.GetEvent(context.Background(), oldEvent.EventId)
 			assert.NoError(t, err)
-			assert.NotNil(t, oldEvent.Products)
-			assert.Equal(t, oldEvent.Products.Identification.Data.RequestId, oldVisit.VisitorId)
-
-			oldGetEvent, _, err := client.FingerprintApi.GetEvent(auth, oldEvent.Products.Identification.Data.RequestId)
-			assert.NoError(t, err)
-			assert.NotNil(t, oldGetEvent.Products)
-			assert.Equal(t, oldEvent.Products.Identification.Data.RequestId, oldGetEvent.Products.Identification.Data.RequestId)
+			assert.NotNil(t, oldGetEvent)
+			assert.Equal(t, oldEvent.EventId, oldGetEvent.EventId)
 		})
 	})
 }
