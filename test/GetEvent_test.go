@@ -26,8 +26,7 @@ func TestGetEvent(t *testing.T) {
 			assert.Equal(t, integrationInfo, fmt.Sprintf("fingerprint-pro-server-go-sdk/%s", fingerprint.Version))
 			assert.Equal(t, r.URL.Path, "/events/123")
 
-			apiKey := r.Header.Get("Authorization")
-			assert.Equal(t, apiKey, "Bearer api_key")
+			assertAuthorizationHeader(t, r, "api_key")
 
 			w.Header().Set("Content-Type", "application/json")
 
@@ -58,8 +57,7 @@ func TestGetEvent(t *testing.T) {
 			assert.Equal(t, integrationInfo, fmt.Sprintf("fingerprint-pro-server-go-sdk/%s", fingerprint.Version))
 			assert.Equal(t, r.URL.Path, "/events/123")
 
-			apiKey := r.Header.Get("Authorization")
-			assert.Equal(t, apiKey, "Bearer api_key")
+			assertAuthorizationHeader(t, r, "api_key")
 
 			w.Header().Set("Content-Type", "application/json")
 
@@ -90,8 +88,7 @@ func TestGetEvent(t *testing.T) {
 			assert.Equal(t, integrationInfo, fmt.Sprintf("fingerprint-pro-server-go-sdk/%s", fingerprint.Version))
 			assert.Equal(t, r.URL.Path, "/events/123")
 
-			apiKey := r.Header.Get("Authorization")
-			assert.Equal(t, apiKey, "Bearer api_key")
+			assertAuthorizationHeader(t, r, "api_key")
 
 			w.Header().Set("Content-Type", "application/json")
 
@@ -106,11 +103,12 @@ func TestGetEvent(t *testing.T) {
 
 		client := fingerprint.New(fingerprint.WithAPIKey("api_key"), fingerprint.WithBaseURL(ts.URL))
 
-		event, _, err := client.GetEvent(context.Background(), "123")
+		event, res, err := client.GetEvent(context.Background(), "123")
 
+		assert.Nil(t, event)
+		assertErrorResponse(t, 403, mockResponse, res, err)
 		assert.Error(t, err)
 		assert.IsType(t, &fingerprint.GenericOpenAPIError{}, err)
-		assert.Nil(t, event)
 
 		errorModel := err.(*fingerprint.GenericOpenAPIError).Model().(fingerprint.ErrorResponse)
 
@@ -128,8 +126,7 @@ func TestGetEvent(t *testing.T) {
 			parseErr := r.ParseForm()
 			assert.Nil(t, parseErr)
 
-			apiKey := r.Header.Get("Authorization")
-			assert.Equal(t, apiKey, "Bearer api_key")
+			assertAuthorizationHeader(t, r, "api_key")
 
 			w.Header().Set("Content-Type", "application/json")
 
