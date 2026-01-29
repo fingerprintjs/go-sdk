@@ -37,7 +37,13 @@ override_version_file() {
     return 1
   fi
 
-  sed -i '' 's/^const Version = "0.0.0"/const Version = "'"$version"'"/' $out_file
+  if sed --version >/dev/null 2>&1; then
+    # GNU sed (Linux or GitHub runners)
+    sed -i 's/^const Version = "0.0.0"/const Version = "'"$version"'"/' $out_file
+  else
+    # BSD sed (macOS)
+    sed -i '' 's/^const Version = "0.0.0"/const Version = "'"$version"'"/' $out_file
+  fi
 
   echo "Updated Version constant in ${out_file} to ${version}"
 }

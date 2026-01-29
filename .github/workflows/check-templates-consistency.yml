@@ -10,4 +10,4 @@ jobs:
   check-template-consistency:
     uses: fingerprintjs/dx-team-toolkit/.github/workflows/check-template-consistency.yml@v1
     with:
-      generate-command: 'go run ./generate.go'
+      generate-command: './bin/openapi-codegen-docker.sh'
