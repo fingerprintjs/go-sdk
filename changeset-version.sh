@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-pnpm exec changeset version && bash ./sync-version.sh && go run generate.go
+pnpm exec changeset version && bash ./bin/openapi-codegen-docker.sh
