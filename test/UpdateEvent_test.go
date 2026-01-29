@@ -27,7 +27,7 @@ func TestUpdateEvent(t *testing.T) {
 			body, err := io.ReadAll(r.Body)
 			assert.NoError(t, err)
 
-			assert.Equal(t, `{"linked_id":"linked_id","suspect":true}` + "\n", string(body))
+			assert.Equal(t, `{"linked_id":"linked_id","suspect":true}`+"\n", string(body))
 
 			integrationInfo := r.URL.Query().Get("ii")
 			assert.Equal(t, integrationInfo, fmt.Sprintf("fingerprint-pro-server-go-sdk/%s", fingerprint.Version))
@@ -126,7 +126,7 @@ func TestUpdateEvent(t *testing.T) {
 			body, err := io.ReadAll(r.Body)
 			assert.NoError(t, err)
 
-			assert.Equal(t, `{"tags":{}}` + "\n", string(body))
+			assert.Equal(t, `{"tags":{}}`+"\n", string(body))
 
 			integrationInfo := r.URL.Query().Get("ii")
 			assert.Equal(t, integrationInfo, fmt.Sprintf("fingerprint-pro-server-go-sdk/%s", fingerprint.Version))
@@ -150,7 +150,7 @@ func TestUpdateEvent(t *testing.T) {
 		assert.NotNil(t, res)
 		assert.Equal(t, 200, res.StatusCode)
 	})
-	
+
 	t.Run("Update with just suspect=false", func(t *testing.T) {
 		ts := httptest.NewServer(http.HandlerFunc(func(
 			w http.ResponseWriter,

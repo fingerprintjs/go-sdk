@@ -1,6 +1,6 @@
 module github.com/fingerprintjs/go-sdk
 
-go 1.23
+go 1.21
 
 require (
 )
