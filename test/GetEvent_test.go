@@ -107,13 +107,6 @@ func TestGetEvent(t *testing.T) {
 
 		assert.Nil(t, event)
 		assertErrorResponse(t, 403, mockResponse, res, err)
-		assert.Error(t, err)
-		assert.IsType(t, &fingerprint.GenericOpenAPIError{}, err)
-
-		errorModel := err.(*fingerprint.GenericOpenAPIError).Model().(fingerprint.ErrorResponse)
-
-		assert.IsType(t, errorModel, fingerprint.ErrorResponse{})
-		assert.Equal(t, mockResponse, errorModel)
 	})
 
 	t.Run("Returns response when JSON field type is not matching response schema", func(t *testing.T) {
