@@ -52,4 +52,6 @@ prepare_directory
 run_generator
 override_version_file
 
-gofmt -w .
+if [[ $1 != "--no-gofmt" ]]; then
+  gofmt -w .
+fi
