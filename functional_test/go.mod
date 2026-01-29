@@ -3,7 +3,6 @@ module github.com/fingerprintjs/fingerprint-pro-server-api-go-sdk/functionaltest
 go 1.21
 
 require (
-	github.com/fingerprintjs/fingerprint-pro-server-api-go-sdk/v7 v7.3.0
 	github.com/joho/godotenv v1.5.1
 	github.com/stretchr/testify v1.10.0
 )
