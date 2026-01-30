@@ -290,7 +290,7 @@ Class | Method | HTTP request | Description
 
 ## Documentation for webhooks
 
-- [DecryptionKey](docs/Webhook.md)
+- [Webhook](docs/Webhook.md)
 
 ## Author
 
