@@ -16,7 +16,7 @@ jobs:
       language: golang
       language-version: '1.21'
       prepare-command: |
-        go build ./sdk/...
+        go build ./v8/...
     secrets:
       APP_PRIVATE_KEY: ${{ secrets.APP_PRIVATE_KEY }}
       RUNNER_APP_PRIVATE_KEY: ${{ secrets.RUNNER_APP_PRIVATE_KEY }}
