@@ -1,5 +1,11 @@
 # Fingerprint Pro Server Go SDK
 
+## 8.0.0-test.2
+
+### Patch Changes
+
+- Use directory v8 as the module path ([81f829c](https://github.com/fingerprintjs/go-sdk/commit/81f829ced2c57119048db715a8bc4dd4fa2b7506))
+
 ## 8.0.0-test.1
 
 ### Patch Changes
