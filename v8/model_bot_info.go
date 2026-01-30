@@ -1,7 +1,7 @@
 /*
 Server API
 
-Fingerprint Server API allows you to get, search, and update Events in a server environment. It can be used for data exports, decision-making, and data analysis scenarios. Server API is intended for server-side usage, it's not intended to be used from the client side, whether it's a browser or a mobile device. 
+Fingerprint Server API allows you to get, search, and update Events in a server environment. It can be used for data exports, decision-making, and data analysis scenarios. Server API is intended for server-side usage, it's not intended to be used from the client side, whether it's a browser or a mobile device.
 
 API version: 4
 Contact: support@fingerprint.com
@@ -29,10 +29,10 @@ type BotInfo struct {
 	ProviderUrl *string `json:"provider_url,omitempty"`
 	// The specific name or identifier of the bot.
 	Name string `json:"name"`
-	// The verification status of the bot's identity:  * `verified` - well-known bot with publicly verifiable identity, directed by the bot provider.  * `signed` - bot that signs its platform via Web Bot Auth, directed by the bot provider’s customers.  * `spoofed` - bot that claims a public identity but fails verification.  * `unknown` - bot that does not publish a verifiable identity. 
+	// The verification status of the bot's identity:  * `verified` - well-known bot with publicly verifiable identity, directed by the bot provider.  * `signed` - bot that signs its platform via Web Bot Auth, directed by the bot provider’s customers.  * `spoofed` - bot that claims a public identity but fails verification.  * `unknown` - bot that does not publish a verifiable identity.
 	Identity string `json:"identity"`
 	// Confidence level of the bot identification.
-	Confidence string `json:"confidence"`
+	Confidence           string `json:"confidence"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -213,7 +213,7 @@ func (o *BotInfo) SetConfidence(v string) {
 }
 
 func (o BotInfo) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -255,10 +255,10 @@ func (o *BotInfo) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -324,5 +324,3 @@ func (v *NullableBotInfo) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

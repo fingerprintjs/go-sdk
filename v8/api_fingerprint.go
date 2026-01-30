@@ -1,7 +1,7 @@
 /*
 Server API
 
-Fingerprint Server API allows you to get, search, and update Events in a server environment. It can be used for data exports, decision-making, and data analysis scenarios. Server API is intended for server-side usage, it's not intended to be used from the client side, whether it's a browser or a mobile device. 
+Fingerprint Server API allows you to get, search, and update Events in a server environment. It can be used for data exports, decision-making, and data analysis scenarios. Server API is intended for server-side usage, it's not intended to be used from the client side, whether it's a browser or a mobile device.
 
 API version: 4
 Contact: support@fingerprint.com
@@ -17,18 +17,17 @@ import (
 	"io"
 	"net/http"
 	"net/url"
-	"strings"
 	"reflect"
+	"strings"
 )
-
 
 // FingerprintAPIService FingerprintAPI service
 type FingerprintAPIService service
 
 type ApiDeleteVisitorDataRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *FingerprintAPIService
-	visitorId string
+	visitorId  string
 }
 
 func (r ApiDeleteVisitorDataRequest) Execute() (*http.Response, error) {
@@ -62,25 +61,24 @@ After requesting to delete a visitor ID,
 ### Interested?
 Please [contact our support team](https://fingerprint.com/support/) to enable it for you. Otherwise, you will receive a 403.
 
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param visitorId The [visitor ID](https://dev.fingerprint.com/reference/get-function#visitorid) you want to delete.
- @return ApiDeleteVisitorDataRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param visitorId The [visitor ID](https://dev.fingerprint.com/reference/get-function#visitorid) you want to delete.
+	@return ApiDeleteVisitorDataRequest
 */
 func (a *FingerprintAPIService) DeleteVisitorData(ctx context.Context, visitorId string) ApiDeleteVisitorDataRequest {
 	return ApiDeleteVisitorDataRequest{
 		ApiService: a,
-		ctx: ctx,
-		visitorId: visitorId,
+		ctx:        ctx,
+		visitorId:  visitorId,
 	}
 }
 
 // Execute executes the request
 func (a *FingerprintAPIService) DeleteVisitorDataExecute(r ApiDeleteVisitorDataRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodDelete
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = http.MethodDelete
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FingerprintAPIService.DeleteVisitorData")
@@ -141,8 +139,8 @@ func (a *FingerprintAPIService) DeleteVisitorDataExecute(r ApiDeleteVisitorDataR
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -152,8 +150,8 @@ func (a *FingerprintAPIService) DeleteVisitorDataExecute(r ApiDeleteVisitorDataR
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -163,8 +161,8 @@ func (a *FingerprintAPIService) DeleteVisitorDataExecute(r ApiDeleteVisitorDataR
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
@@ -174,8 +172,8 @@ func (a *FingerprintAPIService) DeleteVisitorDataExecute(r ApiDeleteVisitorDataR
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarHTTPResponse, newErr
 	}
@@ -184,13 +182,13 @@ func (a *FingerprintAPIService) DeleteVisitorDataExecute(r ApiDeleteVisitorDataR
 }
 
 type ApiGetEventRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *FingerprintAPIService
-	eventId string
-	rulesetId *string
+	eventId    string
+	rulesetId  *string
 }
 
-// The ID of the ruleset to evaluate against the event, producing the action to take for this event. The resulting action is returned in the &#x60;rule_action&#x60; attribute of the response. 
+// The ID of the ruleset to evaluate against the event, producing the action to take for this event. The resulting action is returned in the &#x60;rule_action&#x60; attribute of the response.
 func (r ApiGetEventRequest) RulesetId(rulesetId string) ApiGetEventRequest {
 	r.rulesetId = &rulesetId
 	return r
@@ -207,27 +205,27 @@ Get a detailed analysis of an individual identification event, including Smart S
 
 Use `event_id` as the URL path parameter. This API method is scoped to a request, i.e. all returned information is by `event_id`.
 
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param eventId The unique [identifier](https://dev.fingerprint.com/reference/get-function#requestid) of each identification request (`requestId` can be used in its place).
- @return ApiGetEventRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param eventId The unique [identifier](https://dev.fingerprint.com/reference/get-function#requestid) of each identification request (`requestId` can be used in its place).
+	@return ApiGetEventRequest
 */
 func (a *FingerprintAPIService) GetEvent(ctx context.Context, eventId string) ApiGetEventRequest {
 	return ApiGetEventRequest{
 		ApiService: a,
-		ctx: ctx,
-		eventId: eventId,
+		ctx:        ctx,
+		eventId:    eventId,
 	}
 }
 
 // Execute executes the request
-//  @return Event
+//
+//	@return Event
 func (a *FingerprintAPIService) GetEventExecute(r ApiGetEventRequest) (*Event, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *Event
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *Event
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FingerprintAPIService.GetEvent")
@@ -291,8 +289,8 @@ func (a *FingerprintAPIService) GetEventExecute(r ApiGetEventRequest) (*Event, *
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -302,8 +300,8 @@ func (a *FingerprintAPIService) GetEventExecute(r ApiGetEventRequest) (*Event, *
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -313,8 +311,8 @@ func (a *FingerprintAPIService) GetEventExecute(r ApiGetEventRequest) (*Event, *
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
@@ -324,8 +322,8 @@ func (a *FingerprintAPIService) GetEventExecute(r ApiGetEventRequest) (*Event, *
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -335,8 +333,8 @@ func (a *FingerprintAPIService) GetEventExecute(r ApiGetEventRequest) (*Event, *
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -354,74 +352,74 @@ func (a *FingerprintAPIService) GetEventExecute(r ApiGetEventRequest) (*Event, *
 }
 
 type ApiSearchEventsRequest struct {
-	ctx context.Context
-	ApiService *FingerprintAPIService
-	limit *int32
-	paginationKey *string
-	visitorId *string
-	bot *string
-	ipAddress *string
-	asn *string
-	linkedId *string
-	url *string
-	bundleId *string
-	packageName *string
-	origin *string
-	start *int64
-	end *int64
-	reverse *bool
-	suspect *bool
-	vpn *bool
-	virtualMachine *bool
-	tampering *bool
+	ctx               context.Context
+	ApiService        *FingerprintAPIService
+	limit             *int32
+	paginationKey     *string
+	visitorId         *string
+	bot               *string
+	ipAddress         *string
+	asn               *string
+	linkedId          *string
+	url               *string
+	bundleId          *string
+	packageName       *string
+	origin            *string
+	start             *int64
+	end               *int64
+	reverse           *bool
+	suspect           *bool
+	vpn               *bool
+	virtualMachine    *bool
+	tampering         *bool
 	antiDetectBrowser *bool
-	incognito *bool
-	privacySettings *bool
-	jailbroken *bool
-	frida *bool
-	factoryReset *bool
-	clonedApp *bool
-	emulator *bool
-	rootApps *bool
-	vpnConfidence *string
-	minSuspectScore *float32
-	developerTools *bool
-	locationSpoofing *bool
-	mitmAttack *bool
-	proxy *bool
-	sdkVersion *string
-	sdkPlatform *string
-	environment *[]string
-	proximityId *string
-	totalHits *int64
-	torNode *bool
+	incognito         *bool
+	privacySettings   *bool
+	jailbroken        *bool
+	frida             *bool
+	factoryReset      *bool
+	clonedApp         *bool
+	emulator          *bool
+	rootApps          *bool
+	vpnConfidence     *string
+	minSuspectScore   *float32
+	developerTools    *bool
+	locationSpoofing  *bool
+	mitmAttack        *bool
+	proxy             *bool
+	sdkVersion        *string
+	sdkPlatform       *string
+	environment       *[]string
+	proximityId       *string
+	totalHits         *int64
+	torNode           *bool
 }
 
-// Limit the number of events returned. 
+// Limit the number of events returned.
 func (r ApiSearchEventsRequest) Limit(limit int32) ApiSearchEventsRequest {
 	r.limit = &limit
 	return r
 }
 
-// Use &#x60;pagination_key&#x60; to get the next page of results.  When more results are available (e.g., you requested up to 100 results for your query using &#x60;limit&#x60;, but there are more than 100 events total matching your request), the &#x60;pagination_key&#x60; field is added to the response. The key corresponds to the &#x60;timestamp&#x60; of the last returned event. In the following request, use that value in the &#x60;pagination_key&#x60; parameter to get the next page of results:  1. First request, returning most recent 200 events: &#x60;GET api-base-url/events?limit&#x3D;100&#x60; 2. Use &#x60;response.pagination_key&#x60; to get the next page of results: &#x60;GET api-base-url/events?limit&#x3D;100&amp;pagination_key&#x3D;1740815825085&#x60; 
+// Use &#x60;pagination_key&#x60; to get the next page of results.  When more results are available (e.g., you requested up to 100 results for your query using &#x60;limit&#x60;, but there are more than 100 events total matching your request), the &#x60;pagination_key&#x60; field is added to the response. The key corresponds to the &#x60;timestamp&#x60; of the last returned event. In the following request, use that value in the &#x60;pagination_key&#x60; parameter to get the next page of results:  1. First request, returning most recent 200 events: &#x60;GET api-base-url/events?limit&#x3D;100&#x60; 2. Use &#x60;response.pagination_key&#x60; to get the next page of results: &#x60;GET api-base-url/events?limit&#x3D;100&amp;pagination_key&#x3D;1740815825085&#x60;
 func (r ApiSearchEventsRequest) PaginationKey(paginationKey string) ApiSearchEventsRequest {
 	r.paginationKey = &paginationKey
 	return r
 }
 
-// Unique [visitor identifier](https://dev.fingerprint.com/reference/get-function#visitorid) issued by Fingerprint Identification and all active Smart Signals. Filter for events matching this &#x60;visitor_id&#x60;. 
+// Unique [visitor identifier](https://dev.fingerprint.com/reference/get-function#visitorid) issued by Fingerprint Identification and all active Smart Signals. Filter for events matching this &#x60;visitor_id&#x60;.
 func (r ApiSearchEventsRequest) VisitorId(visitorId string) ApiSearchEventsRequest {
 	r.visitorId = &visitorId
 	return r
 }
 
-// Filter events by the Bot Detection result, specifically:   &#x60;all&#x60; - events where any kind of bot was detected.   &#x60;good&#x60; - events where a good bot was detected.   &#x60;bad&#x60; - events where a bad bot was detected.   &#x60;none&#x60; - events where no bot was detected. &gt; Note: When using this parameter, only events with the &#x60;botd.bot&#x60; property set to a valid value are returned. Events without a &#x60;botd&#x60; Smart Signal result are left out of the response. 
+// Filter events by the Bot Detection result, specifically:   &#x60;all&#x60; - events where any kind of bot was detected.   &#x60;good&#x60; - events where a good bot was detected.   &#x60;bad&#x60; - events where a bad bot was detected.   &#x60;none&#x60; - events where no bot was detected. &gt; Note: When using this parameter, only events with the &#x60;botd.bot&#x60; property set to a valid value are returned. Events without a &#x60;botd&#x60; Smart Signal result are left out of the response.
 func (r ApiSearchEventsRequest) Bot(bot string) ApiSearchEventsRequest {
 	r.bot = &bot
 	return r
 }
 
-// Filter events by IP address or IP range (if CIDR notation is used). If CIDR notation is not used, a /32 for IPv4 or /128 for IPv6 is assumed. Examples of range based queries: 10.0.0.0/24, 192.168.0.1/32 
+// Filter events by IP address or IP range (if CIDR notation is used). If CIDR notation is not used, a /32 for IPv4 or /128 for IPv6 is assumed. Examples of range based queries: 10.0.0.0/24, 192.168.0.1/32
 func (r ApiSearchEventsRequest) IpAddress(ipAddress string) ApiSearchEventsRequest {
 	r.ipAddress = &ipAddress
 	return r
@@ -432,199 +430,199 @@ func (r ApiSearchEventsRequest) Asn(asn string) ApiSearchEventsRequest {
 	return r
 }
 
-// Filter events by your custom identifier.  You can use [linked Ids](https://dev.fingerprint.com/reference/get-function#linkedid) to associate identification requests with your own identifier, for example, session Id, purchase Id, or transaction Id. You can then use this &#x60;linked_id&#x60; parameter to retrieve all events associated with your custom identifier. 
+// Filter events by your custom identifier.  You can use [linked Ids](https://dev.fingerprint.com/reference/get-function#linkedid) to associate identification requests with your own identifier, for example, session Id, purchase Id, or transaction Id. You can then use this &#x60;linked_id&#x60; parameter to retrieve all events associated with your custom identifier.
 func (r ApiSearchEventsRequest) LinkedId(linkedId string) ApiSearchEventsRequest {
 	r.linkedId = &linkedId
 	return r
 }
 
-// Filter events by the URL (&#x60;url&#x60; property) associated with the event. 
+// Filter events by the URL (&#x60;url&#x60; property) associated with the event.
 func (r ApiSearchEventsRequest) Url(url string) ApiSearchEventsRequest {
 	r.url = &url
 	return r
 }
 
-// Filter events by the Bundle ID (iOS) associated with the event. 
+// Filter events by the Bundle ID (iOS) associated with the event.
 func (r ApiSearchEventsRequest) BundleId(bundleId string) ApiSearchEventsRequest {
 	r.bundleId = &bundleId
 	return r
 }
 
-// Filter events by the Package Name (Android) associated with the event. 
+// Filter events by the Package Name (Android) associated with the event.
 func (r ApiSearchEventsRequest) PackageName(packageName string) ApiSearchEventsRequest {
 	r.packageName = &packageName
 	return r
 }
 
-// Filter events by the origin field of the event. This is applicable to web events only (e.g., https://example.com) 
+// Filter events by the origin field of the event. This is applicable to web events only (e.g., https://example.com)
 func (r ApiSearchEventsRequest) Origin(origin string) ApiSearchEventsRequest {
 	r.origin = &origin
 	return r
 }
 
-// Filter events with a timestamp greater than the start time, in Unix time (milliseconds). 
+// Filter events with a timestamp greater than the start time, in Unix time (milliseconds).
 func (r ApiSearchEventsRequest) Start(start int64) ApiSearchEventsRequest {
 	r.start = &start
 	return r
 }
 
-// Filter events with a timestamp smaller than the end time, in Unix time (milliseconds). 
+// Filter events with a timestamp smaller than the end time, in Unix time (milliseconds).
 func (r ApiSearchEventsRequest) End(end int64) ApiSearchEventsRequest {
 	r.end = &end
 	return r
 }
 
-// Sort events in reverse timestamp order. 
+// Sort events in reverse timestamp order.
 func (r ApiSearchEventsRequest) Reverse(reverse bool) ApiSearchEventsRequest {
 	r.reverse = &reverse
 	return r
 }
 
-// Filter events previously tagged as suspicious via the [Update API](https://dev.fingerprint.com/reference/updateevent). &gt; Note: When using this parameter, only events with the &#x60;suspect&#x60; property explicitly set to &#x60;true&#x60; or &#x60;false&#x60; are returned. Events with undefined &#x60;suspect&#x60; property are left out of the response. 
+// Filter events previously tagged as suspicious via the [Update API](https://dev.fingerprint.com/reference/updateevent). &gt; Note: When using this parameter, only events with the &#x60;suspect&#x60; property explicitly set to &#x60;true&#x60; or &#x60;false&#x60; are returned. Events with undefined &#x60;suspect&#x60; property are left out of the response.
 func (r ApiSearchEventsRequest) Suspect(suspect bool) ApiSearchEventsRequest {
 	r.suspect = &suspect
 	return r
 }
 
-// Filter events by VPN Detection result. &gt; Note: When using this parameter, only events with the &#x60;vpn&#x60; property set to &#x60;true&#x60; or &#x60;false&#x60; are returned. Events without a &#x60;vpn&#x60; Smart Signal result are left out of the response. 
+// Filter events by VPN Detection result. &gt; Note: When using this parameter, only events with the &#x60;vpn&#x60; property set to &#x60;true&#x60; or &#x60;false&#x60; are returned. Events without a &#x60;vpn&#x60; Smart Signal result are left out of the response.
 func (r ApiSearchEventsRequest) Vpn(vpn bool) ApiSearchEventsRequest {
 	r.vpn = &vpn
 	return r
 }
 
-// Filter events by Virtual Machine Detection result. &gt; Note: When using this parameter, only events with the &#x60;virtual_machine&#x60; property set to &#x60;true&#x60; or &#x60;false&#x60; are returned. Events without a &#x60;virtual_machine&#x60; Smart Signal result are left out of the response. 
+// Filter events by Virtual Machine Detection result. &gt; Note: When using this parameter, only events with the &#x60;virtual_machine&#x60; property set to &#x60;true&#x60; or &#x60;false&#x60; are returned. Events without a &#x60;virtual_machine&#x60; Smart Signal result are left out of the response.
 func (r ApiSearchEventsRequest) VirtualMachine(virtualMachine bool) ApiSearchEventsRequest {
 	r.virtualMachine = &virtualMachine
 	return r
 }
 
-// Filter events by Browser Tampering Detection result. &gt; Note: When using this parameter, only events with the &#x60;tampering.result&#x60; property set to &#x60;true&#x60; or &#x60;false&#x60; are returned. Events without a &#x60;tampering&#x60; Smart Signal result are left out of the response. 
+// Filter events by Browser Tampering Detection result. &gt; Note: When using this parameter, only events with the &#x60;tampering.result&#x60; property set to &#x60;true&#x60; or &#x60;false&#x60; are returned. Events without a &#x60;tampering&#x60; Smart Signal result are left out of the response.
 func (r ApiSearchEventsRequest) Tampering(tampering bool) ApiSearchEventsRequest {
 	r.tampering = &tampering
 	return r
 }
 
-// Filter events by Anti-detect Browser Detection result. &gt; Note: When using this parameter, only events with the &#x60;tampering.anti_detect_browser&#x60; property set to &#x60;true&#x60; or &#x60;false&#x60; are returned. Events without a &#x60;tampering&#x60; Smart Signal result are left out of the response. 
+// Filter events by Anti-detect Browser Detection result. &gt; Note: When using this parameter, only events with the &#x60;tampering.anti_detect_browser&#x60; property set to &#x60;true&#x60; or &#x60;false&#x60; are returned. Events without a &#x60;tampering&#x60; Smart Signal result are left out of the response.
 func (r ApiSearchEventsRequest) AntiDetectBrowser(antiDetectBrowser bool) ApiSearchEventsRequest {
 	r.antiDetectBrowser = &antiDetectBrowser
 	return r
 }
 
-// Filter events by Browser Incognito Detection result. &gt; Note: When using this parameter, only events with the &#x60;incognito&#x60; property set to &#x60;true&#x60; or &#x60;false&#x60; are returned. Events without an &#x60;incognito&#x60; Smart Signal result are left out of the response. 
+// Filter events by Browser Incognito Detection result. &gt; Note: When using this parameter, only events with the &#x60;incognito&#x60; property set to &#x60;true&#x60; or &#x60;false&#x60; are returned. Events without an &#x60;incognito&#x60; Smart Signal result are left out of the response.
 func (r ApiSearchEventsRequest) Incognito(incognito bool) ApiSearchEventsRequest {
 	r.incognito = &incognito
 	return r
 }
 
-// Filter events by Privacy Settings Detection result. &gt; Note: When using this parameter, only events with the &#x60;privacy_settings&#x60; property set to &#x60;true&#x60; or &#x60;false&#x60; are returned. Events without a &#x60;privacy_settings&#x60; Smart Signal result are left out of the response. 
+// Filter events by Privacy Settings Detection result. &gt; Note: When using this parameter, only events with the &#x60;privacy_settings&#x60; property set to &#x60;true&#x60; or &#x60;false&#x60; are returned. Events without a &#x60;privacy_settings&#x60; Smart Signal result are left out of the response.
 func (r ApiSearchEventsRequest) PrivacySettings(privacySettings bool) ApiSearchEventsRequest {
 	r.privacySettings = &privacySettings
 	return r
 }
 
-// Filter events by Jailbroken Device Detection result. &gt; Note: When using this parameter, only events with the &#x60;jailbroken&#x60; property set to &#x60;true&#x60; or &#x60;false&#x60; are returned. Events without a &#x60;jailbroken&#x60; Smart Signal result are left out of the response. 
+// Filter events by Jailbroken Device Detection result. &gt; Note: When using this parameter, only events with the &#x60;jailbroken&#x60; property set to &#x60;true&#x60; or &#x60;false&#x60; are returned. Events without a &#x60;jailbroken&#x60; Smart Signal result are left out of the response.
 func (r ApiSearchEventsRequest) Jailbroken(jailbroken bool) ApiSearchEventsRequest {
 	r.jailbroken = &jailbroken
 	return r
 }
 
-// Filter events by Frida Detection result. &gt; Note: When using this parameter, only events with the &#x60;frida&#x60; property set to &#x60;true&#x60; or &#x60;false&#x60; are returned. Events without a &#x60;frida&#x60; Smart Signal result are left out of the response. 
+// Filter events by Frida Detection result. &gt; Note: When using this parameter, only events with the &#x60;frida&#x60; property set to &#x60;true&#x60; or &#x60;false&#x60; are returned. Events without a &#x60;frida&#x60; Smart Signal result are left out of the response.
 func (r ApiSearchEventsRequest) Frida(frida bool) ApiSearchEventsRequest {
 	r.frida = &frida
 	return r
 }
 
-// Filter events by Factory Reset Detection result. &gt; Note: When using this parameter, only events with a &#x60;factory_reset&#x60; time. Events without a &#x60;factory_reset&#x60; Smart Signal result are left out of the response. 
+// Filter events by Factory Reset Detection result. &gt; Note: When using this parameter, only events with a &#x60;factory_reset&#x60; time. Events without a &#x60;factory_reset&#x60; Smart Signal result are left out of the response.
 func (r ApiSearchEventsRequest) FactoryReset(factoryReset bool) ApiSearchEventsRequest {
 	r.factoryReset = &factoryReset
 	return r
 }
 
-// Filter events by Cloned App Detection result. &gt; Note: When using this parameter, only events with the &#x60;cloned_app&#x60; property set to &#x60;true&#x60; or &#x60;false&#x60; are returned. Events without a &#x60;cloned_app&#x60; Smart Signal result are left out of the response. 
+// Filter events by Cloned App Detection result. &gt; Note: When using this parameter, only events with the &#x60;cloned_app&#x60; property set to &#x60;true&#x60; or &#x60;false&#x60; are returned. Events without a &#x60;cloned_app&#x60; Smart Signal result are left out of the response.
 func (r ApiSearchEventsRequest) ClonedApp(clonedApp bool) ApiSearchEventsRequest {
 	r.clonedApp = &clonedApp
 	return r
 }
 
-// Filter events by Android Emulator Detection result. &gt; Note: When using this parameter, only events with the &#x60;emulator&#x60; property set to &#x60;true&#x60; or &#x60;false&#x60; are returned. Events without an &#x60;emulator&#x60; Smart Signal result are left out of the response. 
+// Filter events by Android Emulator Detection result. &gt; Note: When using this parameter, only events with the &#x60;emulator&#x60; property set to &#x60;true&#x60; or &#x60;false&#x60; are returned. Events without an &#x60;emulator&#x60; Smart Signal result are left out of the response.
 func (r ApiSearchEventsRequest) Emulator(emulator bool) ApiSearchEventsRequest {
 	r.emulator = &emulator
 	return r
 }
 
-// Filter events by Rooted Device Detection result. &gt; Note: When using this parameter, only events with the &#x60;root_apps&#x60; property set to &#x60;true&#x60; or &#x60;false&#x60; are returned. Events without a &#x60;root_apps&#x60; Smart Signal result are left out of the response. 
+// Filter events by Rooted Device Detection result. &gt; Note: When using this parameter, only events with the &#x60;root_apps&#x60; property set to &#x60;true&#x60; or &#x60;false&#x60; are returned. Events without a &#x60;root_apps&#x60; Smart Signal result are left out of the response.
 func (r ApiSearchEventsRequest) RootApps(rootApps bool) ApiSearchEventsRequest {
 	r.rootApps = &rootApps
 	return r
 }
 
-// Filter events by VPN Detection result confidence level. &#x60;high&#x60; - events with high VPN Detection confidence. &#x60;medium&#x60; - events with medium VPN Detection confidence. &#x60;low&#x60; - events with low VPN Detection confidence. &gt; Note: When using this parameter, only events with the &#x60;vpn.confidence&#x60; property set to a valid value are returned. Events without a &#x60;vpn&#x60; Smart Signal result are left out of the response. 
+// Filter events by VPN Detection result confidence level. &#x60;high&#x60; - events with high VPN Detection confidence. &#x60;medium&#x60; - events with medium VPN Detection confidence. &#x60;low&#x60; - events with low VPN Detection confidence. &gt; Note: When using this parameter, only events with the &#x60;vpn.confidence&#x60; property set to a valid value are returned. Events without a &#x60;vpn&#x60; Smart Signal result are left out of the response.
 func (r ApiSearchEventsRequest) VpnConfidence(vpnConfidence string) ApiSearchEventsRequest {
 	r.vpnConfidence = &vpnConfidence
 	return r
 }
 
-// Filter events with Suspect Score result above a provided minimum threshold. &gt; Note: When using this parameter, only events where the &#x60;suspect_score&#x60; property set to a value exceeding your threshold are returned. Events without a &#x60;suspect_score&#x60; Smart Signal result are left out of the response. 
+// Filter events with Suspect Score result above a provided minimum threshold. &gt; Note: When using this parameter, only events where the &#x60;suspect_score&#x60; property set to a value exceeding your threshold are returned. Events without a &#x60;suspect_score&#x60; Smart Signal result are left out of the response.
 func (r ApiSearchEventsRequest) MinSuspectScore(minSuspectScore float32) ApiSearchEventsRequest {
 	r.minSuspectScore = &minSuspectScore
 	return r
 }
 
-// Filter events by Developer Tools detection result. &gt; Note: When using this parameter, only events with the &#x60;developer_tools&#x60; property set to &#x60;true&#x60; or &#x60;false&#x60; are returned. Events without a &#x60;developer_tools&#x60; Smart Signal result are left out of the response. 
+// Filter events by Developer Tools detection result. &gt; Note: When using this parameter, only events with the &#x60;developer_tools&#x60; property set to &#x60;true&#x60; or &#x60;false&#x60; are returned. Events without a &#x60;developer_tools&#x60; Smart Signal result are left out of the response.
 func (r ApiSearchEventsRequest) DeveloperTools(developerTools bool) ApiSearchEventsRequest {
 	r.developerTools = &developerTools
 	return r
 }
 
-// Filter events by Location Spoofing detection result. &gt; Note: When using this parameter, only events with the &#x60;location_spoofing&#x60; property set to &#x60;true&#x60; or &#x60;false&#x60; are returned. Events without a &#x60;location_spoofing&#x60; Smart Signal result are left out of the response. 
+// Filter events by Location Spoofing detection result. &gt; Note: When using this parameter, only events with the &#x60;location_spoofing&#x60; property set to &#x60;true&#x60; or &#x60;false&#x60; are returned. Events without a &#x60;location_spoofing&#x60; Smart Signal result are left out of the response.
 func (r ApiSearchEventsRequest) LocationSpoofing(locationSpoofing bool) ApiSearchEventsRequest {
 	r.locationSpoofing = &locationSpoofing
 	return r
 }
 
-// Filter events by MITM (Man-in-the-Middle) Attack detection result. &gt; Note: When using this parameter, only events with the &#x60;mitm_attack&#x60; property set to &#x60;true&#x60; or &#x60;false&#x60; are returned. Events without a &#x60;mitm_attack&#x60; Smart Signal result are left out of the response. 
+// Filter events by MITM (Man-in-the-Middle) Attack detection result. &gt; Note: When using this parameter, only events with the &#x60;mitm_attack&#x60; property set to &#x60;true&#x60; or &#x60;false&#x60; are returned. Events without a &#x60;mitm_attack&#x60; Smart Signal result are left out of the response.
 func (r ApiSearchEventsRequest) MitmAttack(mitmAttack bool) ApiSearchEventsRequest {
 	r.mitmAttack = &mitmAttack
 	return r
 }
 
-// Filter events by Proxy detection result. &gt; Note: When using this parameter, only events with the &#x60;proxy&#x60; property set to &#x60;true&#x60; or &#x60;false&#x60; are returned. Events without a &#x60;proxy&#x60; Smart Signal result are left out of the response. 
+// Filter events by Proxy detection result. &gt; Note: When using this parameter, only events with the &#x60;proxy&#x60; property set to &#x60;true&#x60; or &#x60;false&#x60; are returned. Events without a &#x60;proxy&#x60; Smart Signal result are left out of the response.
 func (r ApiSearchEventsRequest) Proxy(proxy bool) ApiSearchEventsRequest {
 	r.proxy = &proxy
 	return r
 }
 
-// Filter events by a specific SDK version associated with the identification event (&#x60;sdk.version&#x60; property). Example: &#x60;3.11.14&#x60; 
+// Filter events by a specific SDK version associated with the identification event (&#x60;sdk.version&#x60; property). Example: &#x60;3.11.14&#x60;
 func (r ApiSearchEventsRequest) SdkVersion(sdkVersion string) ApiSearchEventsRequest {
 	r.sdkVersion = &sdkVersion
 	return r
 }
 
-// Filter events by the SDK Platform associated with the identification event (&#x60;sdk.platform&#x60; property) . &#x60;js&#x60; - Javascript agent (Web). &#x60;ios&#x60; - Apple iOS based devices. &#x60;android&#x60; - Android based devices. 
+// Filter events by the SDK Platform associated with the identification event (&#x60;sdk.platform&#x60; property) . &#x60;js&#x60; - Javascript agent (Web). &#x60;ios&#x60; - Apple iOS based devices. &#x60;android&#x60; - Android based devices.
 func (r ApiSearchEventsRequest) SdkPlatform(sdkPlatform string) ApiSearchEventsRequest {
 	r.sdkPlatform = &sdkPlatform
 	return r
 }
 
-// Filter for events by providing one or more environment IDs (&#x60;environment_id&#x60; property). 
+// Filter for events by providing one or more environment IDs (&#x60;environment_id&#x60; property).
 func (r ApiSearchEventsRequest) Environment(environment []string) ApiSearchEventsRequest {
 	r.environment = &environment
 	return r
 }
 
-// Filter events by the most precise Proximity ID provided by default. &gt; Note: When using this parameter, only events with the &#x60;proximity.id&#x60; property matching the provided ID are returned. Events without a &#x60;proximity&#x60; result are left out of the response. 
+// Filter events by the most precise Proximity ID provided by default. &gt; Note: When using this parameter, only events with the &#x60;proximity.id&#x60; property matching the provided ID are returned. Events without a &#x60;proximity&#x60; result are left out of the response.
 func (r ApiSearchEventsRequest) ProximityId(proximityId string) ApiSearchEventsRequest {
 	r.proximityId = &proximityId
 	return r
 }
 
-// When set, the response will include a &#x60;total_hits&#x60; property with a count of total query matches across all pages, up to the specified limit. 
+// When set, the response will include a &#x60;total_hits&#x60; property with a count of total query matches across all pages, up to the specified limit.
 func (r ApiSearchEventsRequest) TotalHits(totalHits int64) ApiSearchEventsRequest {
 	r.totalHits = &totalHits
 	return r
 }
 
-// Filter events by Tor Node detection result. &gt; Note: When using this parameter, only events with the &#x60;tor_node&#x60; property set to &#x60;true&#x60; or &#x60;false&#x60; are returned. Events without a &#x60;tor_node&#x60; detection result are left out of the response. 
+// Filter events by Tor Node detection result. &gt; Note: When using this parameter, only events with the &#x60;tor_node&#x60; property set to &#x60;true&#x60; or &#x60;false&#x60; are returned. Events without a &#x60;tor_node&#x60; detection result are left out of the response.
 func (r ApiSearchEventsRequest) TorNode(torNode bool) ApiSearchEventsRequest {
 	r.torNode = &torNode
 	return r
@@ -659,25 +657,25 @@ If you use a secret key that is scoped to an environment, you will only get even
 
 Smart Signals not activated for your workspace or are not included in the response.
 
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiSearchEventsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiSearchEventsRequest
 */
 func (a *FingerprintAPIService) SearchEvents(ctx context.Context) ApiSearchEventsRequest {
 	return ApiSearchEventsRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return EventSearch
+//
+//	@return EventSearch
 func (a *FingerprintAPIService) SearchEventsExecute(r ApiSearchEventsRequest) (*EventSearch, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *EventSearch
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *EventSearch
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FingerprintAPIService.SearchEvents")
@@ -866,8 +864,8 @@ func (a *FingerprintAPIService) SearchEventsExecute(r ApiSearchEventsRequest) (*
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -877,8 +875,8 @@ func (a *FingerprintAPIService) SearchEventsExecute(r ApiSearchEventsRequest) (*
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -888,8 +886,8 @@ func (a *FingerprintAPIService) SearchEventsExecute(r ApiSearchEventsRequest) (*
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -907,9 +905,9 @@ func (a *FingerprintAPIService) SearchEventsExecute(r ApiSearchEventsRequest) (*
 }
 
 type ApiUpdateEventRequest struct {
-	ctx context.Context
-	ApiService *FingerprintAPIService
-	eventId string
+	ctx         context.Context
+	ApiService  *FingerprintAPIService
+	eventId     string
 	eventUpdate *EventUpdate
 }
 
@@ -927,33 +925,32 @@ UpdateEvent Update an event
 
 Change information in existing events specified by `event_id` or *flag suspicious events*.
 
-When an event is created, it can be assigned `linked_id` and `tags` submitted through the JS agent parameters. 
+When an event is created, it can be assigned `linked_id` and `tags` submitted through the JS agent parameters.
 This information might not have been available on the client initially, so the Server API permits updating these attributes after the fact.
 
-**Warning** It's not possible to update events older than one month. 
+**Warning** It's not possible to update events older than one month.
 
-**Warning** Trying to update an event immediately after creation may temporarily result in an 
+**Warning** Trying to update an event immediately after creation may temporarily result in an
 error (HTTP 409 Conflict. The event is not mutable yet.) as the event is fully propagated across our systems. In such a case, simply retry the request.
 
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param eventId The unique event [identifier](https://dev.fingerprint.com/reference/get-function#event_id).
- @return ApiUpdateEventRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param eventId The unique event [identifier](https://dev.fingerprint.com/reference/get-function#event_id).
+	@return ApiUpdateEventRequest
 */
 func (a *FingerprintAPIService) UpdateEvent(ctx context.Context, eventId string) ApiUpdateEventRequest {
 	return ApiUpdateEventRequest{
 		ApiService: a,
-		ctx: ctx,
-		eventId: eventId,
+		ctx:        ctx,
+		eventId:    eventId,
 	}
 }
 
 // Execute executes the request
 func (a *FingerprintAPIService) UpdateEventExecute(r ApiUpdateEventRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPatch
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = http.MethodPatch
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FingerprintAPIService.UpdateEvent")
@@ -1019,8 +1016,8 @@ func (a *FingerprintAPIService) UpdateEventExecute(r ApiUpdateEventRequest) (*ht
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -1030,8 +1027,8 @@ func (a *FingerprintAPIService) UpdateEventExecute(r ApiUpdateEventRequest) (*ht
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -1041,8 +1038,8 @@ func (a *FingerprintAPIService) UpdateEventExecute(r ApiUpdateEventRequest) (*ht
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
@@ -1052,8 +1049,8 @@ func (a *FingerprintAPIService) UpdateEventExecute(r ApiUpdateEventRequest) (*ht
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarHTTPResponse, newErr
 	}

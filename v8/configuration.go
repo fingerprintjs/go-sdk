@@ -1,7 +1,7 @@
 /*
 Server API
 
-Fingerprint Server API allows you to get, search, and update Events in a server environment. It can be used for data exports, decision-making, and data analysis scenarios. Server API is intended for server-side usage, it's not intended to be used from the client side, whether it's a browser or a mobile device. 
+Fingerprint Server API allows you to get, search, and update Events in a server environment. It can be used for data exports, decision-making, and data analysis scenarios. Server API is intended for server-side usage, it's not intended to be used from the client side, whether it's a browser or a mobile device.
 
 API version: 4
 Contact: support@fingerprint.com
@@ -66,9 +66,9 @@ type ServerVariable struct {
 
 // ServerConfiguration stores the information about a server
 type ServerConfiguration struct {
-	URL string
+	URL         string
 	Description string
-	Variables map[string]ServerVariable
+	Variables   map[string]ServerVariable
 }
 
 // ServerConfigurations stores multiple ServerConfiguration items
@@ -89,25 +89,24 @@ type Configuration struct {
 // NewConfiguration returns a new Configuration object
 func NewConfiguration() *Configuration {
 	cfg := &Configuration{
-		DefaultHeader:    make(map[string]string),
-		UserAgent:        "OpenAPI-Generator/8.0.0-test.3/go",
-		Debug:            false,
-		Servers:          ServerConfigurations{
+		DefaultHeader: make(map[string]string),
+		UserAgent:     "OpenAPI-Generator/8.0.0-test.3/go",
+		Debug:         false,
+		Servers: ServerConfigurations{
 			{
-				URL: "https://api.fpjs.io/v4",
+				URL:         "https://api.fpjs.io/v4",
 				Description: "Global",
 			},
 			{
-				URL: "https://eu.api.fpjs.io/v4",
+				URL:         "https://eu.api.fpjs.io/v4",
 				Description: "EU",
 			},
 			{
-				URL: "https://ap.api.fpjs.io/v4",
+				URL:         "https://ap.api.fpjs.io/v4",
 				Description: "Asia (Mumbai)",
 			},
 		},
-		OperationServers: map[string]ServerConfigurations{
-		},
+		OperationServers: map[string]ServerConfigurations{},
 	}
 	return cfg
 }
