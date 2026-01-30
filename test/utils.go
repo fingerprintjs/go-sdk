@@ -13,7 +13,7 @@ import (
 
 func assertAuthorizationHeader(t *testing.T, r *http.Request, expectedKey string) {
 	apiKey := r.Header.Get("Authorization")
-	assert.Equal(t, apiKey, "Bearer api_key")
+	assert.Equal(t, apiKey, "Bearer " + expectedKey)
 }
 
 func assertErrorResponse(t *testing.T, expectedStatusCode int, expectedErrorResponse fingerprint.ErrorResponse, res *http.Response, err error) {
@@ -21,10 +21,10 @@ func assertErrorResponse(t *testing.T, expectedStatusCode int, expectedErrorResp
 	assert.NotNil(t, res)
 	assert.Equal(t, expectedStatusCode, res.StatusCode)
 
-	errorModel := err.(*fingerprint.GenericOpenAPIError).Model().(fingerprint.ErrorResponse)
-
-	assert.IsType(t, errorModel, fingerprint.ErrorResponse{})
-	assert.Equal(t, expectedErrorResponse, errorModel)
+	errorModel, ok := fingerprint.AsErrorResponse(err)
+	if assert.True(t, ok) && assert.NotNil(t, errorModel) {
+		assert.Equal(t, expectedErrorResponse, *errorModel)
+	}
 }
 
 func readFromFileAndUnmarshal(path string, i interface{}) {
