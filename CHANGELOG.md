@@ -1,5 +1,11 @@
 # Fingerprint Pro Server Go SDK
 
+## 8.0.0-test.3
+
+### Patch Changes
+
+- Updated docs and examples ([24f8b2b](https://github.com/fingerprintjs/go-sdk/commit/24f8b2b57f5190cbdfa0db4f31ae6649d108e143))
+
 ## 8.0.0-test.2
 
 ### Patch Changes
