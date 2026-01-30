@@ -6,6 +6,8 @@ import (
 	"net/http"
 )
 
+const Version = "8.0.0-test.2"
+
 var IntegrationInfo = fmt.Sprintf(`fingerprint-pro-server-go-sdk/%s`, Version)
 
 type sdkIdentTransport struct {

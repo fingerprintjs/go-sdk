@@ -25,4 +25,4 @@ go get github.com/fingerprintjs/go-sdk/v8
 ```
 
 ## SDK Reference
-Please refer to [`/sdk/README.md`](./sdk/README.md) for details.
+Please refer to [`/v8/README.md`](./v8/README.md) for details.
