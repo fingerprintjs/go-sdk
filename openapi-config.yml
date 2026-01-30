@@ -27,3 +27,9 @@ files:
     destinationFilename: webhook.go
   fingerprint_version.go.mustache:
     destinationFilename: version.go
+  fingerprint_SealedResults.md.mustache:
+    destinationFilename: docs/SealedResults.md
+  fingerprint_DecryptionKey.md.mustache:
+    destinationFilename: docs/DecryptionKey.md
+  fingerprint_Webhook.md.mustache:
+    destinationFilename: docs/Webhook.md

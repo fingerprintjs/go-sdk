@@ -9,6 +9,7 @@ docs/BotInfo.md
 docs/BotResult.md
 docs/BrowserDetails.md
 docs/Canvas.md
+docs/DecryptionKey.md
 docs/Emoji.md
 docs/Error.md
 docs/ErrorCode.md
@@ -41,6 +42,7 @@ docs/RequestHeaderModifications.md
 docs/RuleActionHeaderField.md
 docs/RuleActionType.md
 docs/SDK.md
+docs/SealedResults.md
 docs/SupplementaryIDHighRecall.md
 docs/TamperingDetails.md
 docs/TouchSupport.md
@@ -51,6 +53,7 @@ docs/VpnConfidence.md
 docs/VpnMethods.md
 docs/WebGlBasics.md
 docs/WebGlExtensions.md
+docs/Webhook.md
 go.mod
 go.sum
 model_bot_info.go
