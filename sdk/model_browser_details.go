@@ -1,7 +1,7 @@
 /*
 Server API
 
-Fingerprint Server API allows you to get, search, and update Events in a server environment. It can be used for data exports, decision-making, and data analysis scenarios. Server API is intended for server-side usage, it's not intended to be used from the client side, whether it's a browser or a mobile device.
+Fingerprint Server API allows you to get, search, and update Events in a server environment. It can be used for data exports, decision-making, and data analysis scenarios. Server API is intended for server-side usage, it's not intended to be used from the client side, whether it's a browser or a mobile device. 
 
 API version: 4
 Contact: support@fingerprint.com
@@ -21,12 +21,12 @@ var _ MappedNullable = &BrowserDetails{}
 
 // BrowserDetails struct for BrowserDetails
 type BrowserDetails struct {
-	BrowserName          string `json:"browser_name"`
-	BrowserMajorVersion  string `json:"browser_major_version"`
-	BrowserFullVersion   string `json:"browser_full_version"`
-	Os                   string `json:"os"`
-	OsVersion            string `json:"os_version"`
-	Device               string `json:"device"`
+	BrowserName string `json:"browser_name"`
+	BrowserMajorVersion string `json:"browser_major_version"`
+	BrowserFullVersion string `json:"browser_full_version"`
+	Os string `json:"os"`
+	OsVersion string `json:"os_version"`
+	Device string `json:"device"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -200,7 +200,7 @@ func (o *BrowserDetails) SetDevice(v string) {
 }
 
 func (o BrowserDetails) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -241,10 +241,10 @@ func (o *BrowserDetails) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err
+		return err;
 	}
 
-	for _, requiredProperty := range requiredProperties {
+	for _, requiredProperty := range(requiredProperties) {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -310,3 +310,5 @@ func (v *NullableBrowserDetails) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

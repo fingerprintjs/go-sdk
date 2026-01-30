@@ -4,5 +4,7 @@
   "initialVersions": {
     "go-sdk": "7.9.0"
   },
-  "changesets": []
+  "changesets": [
+    "wet-pigs-talk"
+  ]
 }

@@ -1,7 +1,7 @@
 /*
 Server API
 
-Fingerprint Server API allows you to get, search, and update Events in a server environment. It can be used for data exports, decision-making, and data analysis scenarios. Server API is intended for server-side usage, it's not intended to be used from the client side, whether it's a browser or a mobile device.
+Fingerprint Server API allows you to get, search, and update Events in a server environment. It can be used for data exports, decision-making, and data analysis scenarios. Server API is intended for server-side usage, it's not intended to be used from the client side, whether it's a browser or a mobile device. 
 
 API version: 4
 Contact: support@fingerprint.com
@@ -16,98 +16,99 @@ import (
 	"fmt"
 )
 
-// BotResult Bot detection result:  * `bad` - bad bot detected, such as Selenium, Puppeteer, Playwright, headless browsers, and so on  * `good` - good bot detected, such as Google bot, Baidu Spider, AlexaBot and so on  * `not_detected` - the visitor is not a bot
+// BotResult Bot detection result:  * `bad` - bad bot detected, such as Selenium, Puppeteer, Playwright, headless browsers, and so on  * `good` - good bot detected, such as Google bot, Baidu Spider, AlexaBot and so on  * `not_detected` - the visitor is not a bot 
 type BotResult string
 
 // List of BotResult
 const (
-	BotResultBad          BotResult = "bad"
-	BotResultGood         BotResult = "good"
-	BotResultNot_detected BotResult = "not_detected"
+    BotResultBad BotResult = "bad"
+    BotResultGood BotResult = "good"
+    BotResultNot_detected BotResult = "not_detected"
 )
 
 // All allowed values of BotResult enum
 var AllowedBotResultEnumValues = []BotResult{
-	BotResultBad,
-	BotResultGood,
-	BotResultNot_detected,
+        BotResultBad,
+        BotResultGood,
+        BotResultNot_detected,
 }
 
 func (v *BotResult) UnmarshalJSON(src []byte) error {
-	var value string
-	err := json.Unmarshal(src, &value)
-	if err != nil {
-		return err
-	}
-	enumTypeValue := BotResult(value)
-	for _, existing := range AllowedBotResultEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
+var value string
+err := json.Unmarshal(src, &value)
+if err != nil {
+return err
+}
+enumTypeValue := BotResult(value)
+for _, existing := range AllowedBotResultEnumValues {
+if existing == enumTypeValue {
+*v = enumTypeValue
+return nil
+}
+}
 
-	return fmt.Errorf("%+v is not a valid BotResult", value)
+return fmt.Errorf("%+v is not a valid BotResult", value)
 }
 
 // NewBotResultFromValue returns a pointer to a valid BotResult
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
 func NewBotResultFromValue(v string) (*BotResult, error) {
-	ev := BotResult(v)
-	if ev.IsValid() {
-		return &ev, nil
-	} else {
-		return nil, fmt.Errorf("invalid value '%v' for BotResult: valid values are %v", v, AllowedBotResultEnumValues)
-	}
+ev := BotResult(v)
+if ev.IsValid() {
+return &ev, nil
+} else {
+return nil, fmt.Errorf("invalid value '%v' for BotResult: valid values are %v", v, AllowedBotResultEnumValues)
+}
 }
 
 // IsValid return true if the value is valid for the enum, false otherwise
 func (v BotResult) IsValid() bool {
-	for _, existing := range AllowedBotResultEnumValues {
-		if existing == v {
-			return true
-		}
-	}
-	return false
+for _, existing := range AllowedBotResultEnumValues {
+if existing == v {
+return true
+}
+}
+return false
 }
 
 // Ptr returns reference to BotResult value
 func (v BotResult) Ptr() *BotResult {
-	return &v
+return &v
 }
 
 type NullableBotResult struct {
-	value *BotResult
-	isSet bool
+value *BotResult
+isSet bool
 }
 
 func (v NullableBotResult) Get() *BotResult {
-	return v.value
+return v.value
 }
 
 func (v *NullableBotResult) Set(val *BotResult) {
-	v.value = val
-	v.isSet = true
+v.value = val
+v.isSet = true
 }
 
 func (v NullableBotResult) IsSet() bool {
-	return v.isSet
+return v.isSet
 }
 
 func (v *NullableBotResult) Unset() {
-	v.value = nil
-	v.isSet = false
+v.value = nil
+v.isSet = false
 }
 
 func NewNullableBotResult(val *BotResult) *NullableBotResult {
-	return &NullableBotResult{value: val, isSet: true}
+return &NullableBotResult{value: val, isSet: true}
 }
 
 func (v NullableBotResult) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
+return json.Marshal(v.value)
 }
 
 func (v *NullableBotResult) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
+v.isSet = true
+return json.Unmarshal(src, &v.value)
 }
+

@@ -1,7 +1,7 @@
 /*
 Server API
 
-Fingerprint Server API allows you to get, search, and update Events in a server environment. It can be used for data exports, decision-making, and data analysis scenarios. Server API is intended for server-side usage, it's not intended to be used from the client side, whether it's a browser or a mobile device.
+Fingerprint Server API allows you to get, search, and update Events in a server environment. It can be used for data exports, decision-making, and data analysis scenarios. Server API is intended for server-side usage, it's not intended to be used from the client side, whether it's a browser or a mobile device. 
 
 API version: 4
 Contact: support@fingerprint.com
@@ -21,89 +21,89 @@ var _ MappedNullable = &Event{}
 
 // Event Contains results from Fingerprint Identification and all active Smart Signals.
 type Event struct {
-	// Unique identifier of the user's request. The first portion of the event_id is a unix epoch milliseconds timestamp For example: `1758130560902.8tRtrH`
+	// Unique identifier of the user's request. The first portion of the event_id is a unix epoch milliseconds timestamp For example: `1758130560902.8tRtrH` 
 	EventId string `json:"event_id"`
 	// Timestamp of the event with millisecond precision in Unix time.
 	Timestamp int64 `json:"timestamp"`
 	// A customer-provided id that was sent with the request.
 	LinkedId *string `json:"linked_id,omitempty"`
-	// Environment Id of the event. For example: `ae_47abaca3db2c7c43`
+	// Environment Id of the event. For example: `ae_47abaca3db2c7c43` 
 	EnvironmentId *string `json:"environment_id,omitempty"`
 	// Field is `true` if you have previously set the `suspect` flag for this event using the [Server API Update event endpoint](https://dev.fingerprint.com/reference/updateevent).
 	Suspect *bool `json:"suspect,omitempty"`
-	Sdk     *SDK  `json:"sdk,omitempty"`
-	// `true` if we determined that this payload was replayed, `false` otherwise.
-	Replayed                  *bool                      `json:"replayed,omitempty"`
-	Identification            *Identification            `json:"identification,omitempty"`
+	Sdk *SDK `json:"sdk,omitempty"`
+	// `true` if we determined that this payload was replayed, `false` otherwise. 
+	Replayed *bool `json:"replayed,omitempty"`
+	Identification *Identification `json:"identification,omitempty"`
 	SupplementaryIdHighRecall *SupplementaryIDHighRecall `json:"supplementary_id_high_recall,omitempty"`
 	// A customer-provided value or an object that was sent with the identification request or updated later.
 	Tags map[string]interface{} `json:"tags,omitempty"`
-	// Page URL from which the request was sent. For example `https://example.com/`
+	// Page URL from which the request was sent. For example `https://example.com/` 
 	Url *string `json:"url,omitempty"`
-	// Bundle Id of the iOS application integrated with the Fingerprint SDK for the event. For example: `com.foo.app`
+	// Bundle Id of the iOS application integrated with the Fingerprint SDK for the event. For example: `com.foo.app` 
 	BundleId *string `json:"bundle_id,omitempty"`
-	// Package name of the Android application integrated with the Fingerprint SDK for the event. For example: `com.foo.app`
+	// Package name of the Android application integrated with the Fingerprint SDK for the event. For example: `com.foo.app` 
 	PackageName *string `json:"package_name,omitempty"`
 	// IP address of the requesting browser or bot.
 	IpAddress *string `json:"ip_address,omitempty"`
-	// User Agent of the client, for example: `Mozilla/5.0 (Windows NT 6.1; Win64; x64) ....`
+	// User Agent of the client, for example: `Mozilla/5.0 (Windows NT 6.1; Win64; x64) ....` 
 	UserAgent *string `json:"user_agent,omitempty"`
-	// Client Referrer field corresponds to the `document.referrer` field gathered during an identification request. The value is an empty string if the user navigated to the page directly (not through a link, but, for example, by using a bookmark) For example: `https://example.com/blog/my-article`
-	ClientReferrer *string         `json:"client_referrer,omitempty"`
+	// Client Referrer field corresponds to the `document.referrer` field gathered during an identification request. The value is an empty string if the user navigated to the page directly (not through a link, but, for example, by using a bookmark) For example: `https://example.com/blog/my-article` 
+	ClientReferrer *string `json:"client_referrer,omitempty"`
 	BrowserDetails *BrowserDetails `json:"browser_details,omitempty"`
-	Proximity      *Proximity      `json:"proximity,omitempty"`
-	Bot            *BotResult      `json:"bot,omitempty"`
-	// Additional classification of the bot type if detected.
-	BotType *string  `json:"bot_type,omitempty"`
+	Proximity *Proximity `json:"proximity,omitempty"`
+	Bot *BotResult `json:"bot,omitempty"`
+	// Additional classification of the bot type if detected. 
+	BotType *string `json:"bot_type,omitempty"`
 	BotInfo *BotInfo `json:"bot_info,omitempty"`
-	// Android specific cloned application detection. There are 2 values:  * `true` - Presence of app cloners work detected (e.g. fully cloned application found or launch of it inside of a not main working profile detected). * `false` - No signs of cloned application detected or the client is not Android.
+	// Android specific cloned application detection. There are 2 values:  * `true` - Presence of app cloners work detected (e.g. fully cloned application found or launch of it inside of a not main working profile detected). * `false` - No signs of cloned application detected or the client is not Android. 
 	ClonedApp *bool `json:"cloned_app,omitempty"`
-	// `true` if the browser is Chrome with DevTools open or Firefox with Developer Tools open, `false` otherwise.
+	// `true` if the browser is Chrome with DevTools open or Firefox with Developer Tools open, `false` otherwise. 
 	DeveloperTools *bool `json:"developer_tools,omitempty"`
-	// Android specific emulator detection. There are 2 values:  * `true` - Emulated environment detected (e.g. launch inside of AVD).  * `false` - No signs of emulated environment detected or the client is not Android.
+	// Android specific emulator detection. There are 2 values:  * `true` - Emulated environment detected (e.g. launch inside of AVD).  * `false` - No signs of emulated environment detected or the client is not Android. 
 	Emulator *bool `json:"emulator,omitempty"`
-	// The time of the most recent factory reset that happened on the **mobile device** is expressed as Unix epoch time. When a factory reset cannot be detected on the mobile device or when the request is initiated from a browser,  this field will correspond to the *epoch* time (i.e 1 Jan 1970 UTC) as a value of 0. See [Factory Reset Detection](https://dev.fingerprint.com/docs/smart-signals-overview#factory-reset-detection) to learn more about this Smart Signal.
+	// The time of the most recent factory reset that happened on the **mobile device** is expressed as Unix epoch time. When a factory reset cannot be detected on the mobile device or when the request is initiated from a browser,  this field will correspond to the *epoch* time (i.e 1 Jan 1970 UTC) as a value of 0. See [Factory Reset Detection](https://dev.fingerprint.com/docs/smart-signals-overview#factory-reset-detection) to learn more about this Smart Signal. 
 	FactoryResetTimestamp *int64 `json:"factory_reset_timestamp,omitempty"`
-	// [Frida](https://frida.re/docs/) detection for Android and iOS devices. There are 2 values: * `true` - Frida detected * `false` - No signs of Frida or the client is not a mobile device.
-	Frida       *bool        `json:"frida,omitempty"`
+	// [Frida](https://frida.re/docs/) detection for Android and iOS devices. There are 2 values: * `true` - Frida detected * `false` - No signs of Frida or the client is not a mobile device. 
+	Frida *bool `json:"frida,omitempty"`
 	IpBlocklist *IPBlockList `json:"ip_blocklist,omitempty"`
-	IpInfo      *IPInfo      `json:"ip_info,omitempty"`
-	// IP address was used by a public proxy provider or belonged to a known recent residential proxy
-	Proxy           *bool            `json:"proxy,omitempty"`
+	IpInfo *IPInfo `json:"ip_info,omitempty"`
+	// IP address was used by a public proxy provider or belonged to a known recent residential proxy 
+	Proxy *bool `json:"proxy,omitempty"`
 	ProxyConfidence *ProxyConfidence `json:"proxy_confidence,omitempty"`
-	ProxyDetails    *ProxyDetails    `json:"proxy_details,omitempty"`
-	// `true` if we detected incognito mode used in the browser, `false` otherwise.
+	ProxyDetails *ProxyDetails `json:"proxy_details,omitempty"`
+	// `true` if we detected incognito mode used in the browser, `false` otherwise. 
 	Incognito *bool `json:"incognito,omitempty"`
-	// iOS specific jailbreak detection. There are 2 values:  * `true` - Jailbreak detected. * `false` - No signs of jailbreak or the client is not iOS.
+	// iOS specific jailbreak detection. There are 2 values:  * `true` - Jailbreak detected. * `false` - No signs of jailbreak or the client is not iOS. 
 	Jailbroken *bool `json:"jailbroken,omitempty"`
 	// Flag indicating whether the request came from a mobile device with location spoofing enabled.
 	LocationSpoofing *bool `json:"location_spoofing,omitempty"`
-	// * `true` - When requests made from your users' mobile devices to Fingerprint servers have been intercepted and potentially modified.  * `false` - Otherwise or when the request originated from a browser. See [MitM Attack Detection](https://dev.fingerprint.com/docs/smart-signals-reference#mitm-attack-detection) to learn more about this Smart Signal.
+	// * `true` - When requests made from your users' mobile devices to Fingerprint servers have been intercepted and potentially modified.  * `false` - Otherwise or when the request originated from a browser. See [MitM Attack Detection](https://dev.fingerprint.com/docs/smart-signals-reference#mitm-attack-detection) to learn more about this Smart Signal. 
 	MitmAttack *bool `json:"mitm_attack,omitempty"`
-	// `true` if the request is from a privacy aware browser (e.g. Tor) or from a browser in which fingerprinting is blocked. Otherwise `false`.
+	// `true` if the request is from a privacy aware browser (e.g. Tor) or from a browser in which fingerprinting is blocked. Otherwise `false`. 
 	PrivacySettings *bool `json:"privacy_settings,omitempty"`
-	// Android specific root management apps detection. There are 2 values:  * `true` - Root Management Apps detected (e.g. Magisk). * `false` - No Root Management Apps detected or the client isn't Android.
-	RootApps   *bool            `json:"root_apps,omitempty"`
+	// Android specific root management apps detection. There are 2 values:  * `true` - Root Management Apps detected (e.g. Magisk). * `false` - No Root Management Apps detected or the client isn't Android. 
+	RootApps *bool `json:"root_apps,omitempty"`
 	RuleAction *EventRuleAction `json:"rule_action,omitempty"`
-	// Suspect Score is an easy way to integrate Smart Signals into your fraud protection work flow.  It is a weighted representation of all Smart Signals present in the payload that helps identify suspicious activity. The value range is [0; S] where S is sum of all Smart Signals weights.  See more details here: https://dev.fingerprint.com/docs/suspect-score
+	// Suspect Score is an easy way to integrate Smart Signals into your fraud protection work flow.  It is a weighted representation of all Smart Signals present in the payload that helps identify suspicious activity. The value range is [0; S] where S is sum of all Smart Signals weights.  See more details here: https://dev.fingerprint.com/docs/suspect-score 
 	SuspectScore *int32 `json:"suspect_score,omitempty"`
-	// Flag indicating browser tampering was detected. This happens when either:   * There are inconsistencies in the browser configuration that cross internal tampering thresholds (see `tampering_details.anomaly_score`).   * The browser signature resembles an \"anti-detect\" browser specifically designed to evade fingerprinting (see `tampering_details.anti_detect_browser`).
-	Tampering        *bool             `json:"tampering,omitempty"`
+	// Flag indicating browser tampering was detected. This happens when either:   * There are inconsistencies in the browser configuration that cross internal tampering thresholds (see `tampering_details.anomaly_score`).   * The browser signature resembles an \"anti-detect\" browser specifically designed to evade fingerprinting (see `tampering_details.anti_detect_browser`). 
+	Tampering *bool `json:"tampering,omitempty"`
 	TamperingDetails *TamperingDetails `json:"tampering_details,omitempty"`
-	Velocity         *Velocity         `json:"velocity,omitempty"`
-	// `true` if the request came from a browser running inside a virtual machine (e.g. VMWare), `false` otherwise.
+	Velocity *Velocity `json:"velocity,omitempty"`
+	// `true` if the request came from a browser running inside a virtual machine (e.g. VMWare), `false` otherwise. 
 	VirtualMachine *bool `json:"virtual_machine,omitempty"`
-	// VPN or other anonymizing service has been used when sending the request.
-	Vpn           *bool          `json:"vpn,omitempty"`
+	// VPN or other anonymizing service has been used when sending the request. 
+	Vpn *bool `json:"vpn,omitempty"`
 	VpnConfidence *VpnConfidence `json:"vpn_confidence,omitempty"`
-	// Local timezone which is used in timezone_mismatch method.
+	// Local timezone which is used in timezone_mismatch method. 
 	VpnOriginTimezone *string `json:"vpn_origin_timezone,omitempty"`
-	// Country of the request (only for Android SDK version >= 2.4.0, ISO 3166 format or unknown).
-	VpnOriginCountry *string     `json:"vpn_origin_country,omitempty"`
-	VpnMethods       *VpnMethods `json:"vpn_methods,omitempty"`
+	// Country of the request (only for Android SDK version >= 2.4.0, ISO 3166 format or unknown). 
+	VpnOriginCountry *string `json:"vpn_origin_country,omitempty"`
+	VpnMethods *VpnMethods `json:"vpn_methods,omitempty"`
 	// Flag indicating if the request came from a high-activity visitor.
-	HighActivityDevice   *bool                `json:"high_activity_device,omitempty"`
-	RawDeviceAttributes  *RawDeviceAttributes `json:"raw_device_attributes,omitempty"`
+	HighActivityDevice *bool `json:"high_activity_device,omitempty"`
+	RawDeviceAttributes *RawDeviceAttributes `json:"raw_device_attributes,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -1713,7 +1713,7 @@ func (o *Event) SetRawDeviceAttributes(v RawDeviceAttributes) {
 }
 
 func (o Event) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -1890,10 +1890,10 @@ func (o *Event) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err
+		return err;
 	}
 
-	for _, requiredProperty := range requiredProperties {
+	for _, requiredProperty := range(requiredProperties) {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -2003,3 +2003,5 @@ func (v *NullableEvent) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

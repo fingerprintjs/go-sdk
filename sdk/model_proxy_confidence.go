@@ -1,7 +1,7 @@
 /*
 Server API
 
-Fingerprint Server API allows you to get, search, and update Events in a server environment. It can be used for data exports, decision-making, and data analysis scenarios. Server API is intended for server-side usage, it's not intended to be used from the client side, whether it's a browser or a mobile device.
+Fingerprint Server API allows you to get, search, and update Events in a server environment. It can be used for data exports, decision-making, and data analysis scenarios. Server API is intended for server-side usage, it's not intended to be used from the client side, whether it's a browser or a mobile device. 
 
 API version: 4
 Contact: support@fingerprint.com
@@ -16,98 +16,99 @@ import (
 	"fmt"
 )
 
-// ProxyConfidence Confidence level of the proxy detection. If a proxy is not detected, confidence is \"high\". If it's detected, can be \"low\", \"medium\", or \"high\".
+// ProxyConfidence Confidence level of the proxy detection. If a proxy is not detected, confidence is \"high\". If it's detected, can be \"low\", \"medium\", or \"high\". 
 type ProxyConfidence string
 
 // List of ProxyConfidence
 const (
-	ProxyConfidenceLow    ProxyConfidence = "low"
-	ProxyConfidenceMedium ProxyConfidence = "medium"
-	ProxyConfidenceHigh   ProxyConfidence = "high"
+    ProxyConfidenceLow ProxyConfidence = "low"
+    ProxyConfidenceMedium ProxyConfidence = "medium"
+    ProxyConfidenceHigh ProxyConfidence = "high"
 )
 
 // All allowed values of ProxyConfidence enum
 var AllowedProxyConfidenceEnumValues = []ProxyConfidence{
-	ProxyConfidenceLow,
-	ProxyConfidenceMedium,
-	ProxyConfidenceHigh,
+        ProxyConfidenceLow,
+        ProxyConfidenceMedium,
+        ProxyConfidenceHigh,
 }
 
 func (v *ProxyConfidence) UnmarshalJSON(src []byte) error {
-	var value string
-	err := json.Unmarshal(src, &value)
-	if err != nil {
-		return err
-	}
-	enumTypeValue := ProxyConfidence(value)
-	for _, existing := range AllowedProxyConfidenceEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
+var value string
+err := json.Unmarshal(src, &value)
+if err != nil {
+return err
+}
+enumTypeValue := ProxyConfidence(value)
+for _, existing := range AllowedProxyConfidenceEnumValues {
+if existing == enumTypeValue {
+*v = enumTypeValue
+return nil
+}
+}
 
-	return fmt.Errorf("%+v is not a valid ProxyConfidence", value)
+return fmt.Errorf("%+v is not a valid ProxyConfidence", value)
 }
 
 // NewProxyConfidenceFromValue returns a pointer to a valid ProxyConfidence
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
 func NewProxyConfidenceFromValue(v string) (*ProxyConfidence, error) {
-	ev := ProxyConfidence(v)
-	if ev.IsValid() {
-		return &ev, nil
-	} else {
-		return nil, fmt.Errorf("invalid value '%v' for ProxyConfidence: valid values are %v", v, AllowedProxyConfidenceEnumValues)
-	}
+ev := ProxyConfidence(v)
+if ev.IsValid() {
+return &ev, nil
+} else {
+return nil, fmt.Errorf("invalid value '%v' for ProxyConfidence: valid values are %v", v, AllowedProxyConfidenceEnumValues)
+}
 }
 
 // IsValid return true if the value is valid for the enum, false otherwise
 func (v ProxyConfidence) IsValid() bool {
-	for _, existing := range AllowedProxyConfidenceEnumValues {
-		if existing == v {
-			return true
-		}
-	}
-	return false
+for _, existing := range AllowedProxyConfidenceEnumValues {
+if existing == v {
+return true
+}
+}
+return false
 }
 
 // Ptr returns reference to ProxyConfidence value
 func (v ProxyConfidence) Ptr() *ProxyConfidence {
-	return &v
+return &v
 }
 
 type NullableProxyConfidence struct {
-	value *ProxyConfidence
-	isSet bool
+value *ProxyConfidence
+isSet bool
 }
 
 func (v NullableProxyConfidence) Get() *ProxyConfidence {
-	return v.value
+return v.value
 }
 
 func (v *NullableProxyConfidence) Set(val *ProxyConfidence) {
-	v.value = val
-	v.isSet = true
+v.value = val
+v.isSet = true
 }
 
 func (v NullableProxyConfidence) IsSet() bool {
-	return v.isSet
+return v.isSet
 }
 
 func (v *NullableProxyConfidence) Unset() {
-	v.value = nil
-	v.isSet = false
+v.value = nil
+v.isSet = false
 }
 
 func NewNullableProxyConfidence(val *ProxyConfidence) *NullableProxyConfidence {
-	return &NullableProxyConfidence{value: val, isSet: true}
+return &NullableProxyConfidence{value: val, isSet: true}
 }
 
 func (v NullableProxyConfidence) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
+return json.Marshal(v.value)
 }
 
 func (v *NullableProxyConfidence) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
+v.isSet = true
+return json.Unmarshal(src, &v.value)
 }
+

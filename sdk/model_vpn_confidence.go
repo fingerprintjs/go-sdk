@@ -1,7 +1,7 @@
 /*
 Server API
 
-Fingerprint Server API allows you to get, search, and update Events in a server environment. It can be used for data exports, decision-making, and data analysis scenarios. Server API is intended for server-side usage, it's not intended to be used from the client side, whether it's a browser or a mobile device.
+Fingerprint Server API allows you to get, search, and update Events in a server environment. It can be used for data exports, decision-making, and data analysis scenarios. Server API is intended for server-side usage, it's not intended to be used from the client side, whether it's a browser or a mobile device. 
 
 API version: 4
 Contact: support@fingerprint.com
@@ -21,93 +21,94 @@ type VpnConfidence string
 
 // List of VpnConfidence
 const (
-	VpnConfidenceLow    VpnConfidence = "low"
-	VpnConfidenceMedium VpnConfidence = "medium"
-	VpnConfidenceHigh   VpnConfidence = "high"
+    VpnConfidenceLow VpnConfidence = "low"
+    VpnConfidenceMedium VpnConfidence = "medium"
+    VpnConfidenceHigh VpnConfidence = "high"
 )
 
 // All allowed values of VpnConfidence enum
 var AllowedVpnConfidenceEnumValues = []VpnConfidence{
-	VpnConfidenceLow,
-	VpnConfidenceMedium,
-	VpnConfidenceHigh,
+        VpnConfidenceLow,
+        VpnConfidenceMedium,
+        VpnConfidenceHigh,
 }
 
 func (v *VpnConfidence) UnmarshalJSON(src []byte) error {
-	var value string
-	err := json.Unmarshal(src, &value)
-	if err != nil {
-		return err
-	}
-	enumTypeValue := VpnConfidence(value)
-	for _, existing := range AllowedVpnConfidenceEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
+var value string
+err := json.Unmarshal(src, &value)
+if err != nil {
+return err
+}
+enumTypeValue := VpnConfidence(value)
+for _, existing := range AllowedVpnConfidenceEnumValues {
+if existing == enumTypeValue {
+*v = enumTypeValue
+return nil
+}
+}
 
-	return fmt.Errorf("%+v is not a valid VpnConfidence", value)
+return fmt.Errorf("%+v is not a valid VpnConfidence", value)
 }
 
 // NewVpnConfidenceFromValue returns a pointer to a valid VpnConfidence
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
 func NewVpnConfidenceFromValue(v string) (*VpnConfidence, error) {
-	ev := VpnConfidence(v)
-	if ev.IsValid() {
-		return &ev, nil
-	} else {
-		return nil, fmt.Errorf("invalid value '%v' for VpnConfidence: valid values are %v", v, AllowedVpnConfidenceEnumValues)
-	}
+ev := VpnConfidence(v)
+if ev.IsValid() {
+return &ev, nil
+} else {
+return nil, fmt.Errorf("invalid value '%v' for VpnConfidence: valid values are %v", v, AllowedVpnConfidenceEnumValues)
+}
 }
 
 // IsValid return true if the value is valid for the enum, false otherwise
 func (v VpnConfidence) IsValid() bool {
-	for _, existing := range AllowedVpnConfidenceEnumValues {
-		if existing == v {
-			return true
-		}
-	}
-	return false
+for _, existing := range AllowedVpnConfidenceEnumValues {
+if existing == v {
+return true
+}
+}
+return false
 }
 
 // Ptr returns reference to VpnConfidence value
 func (v VpnConfidence) Ptr() *VpnConfidence {
-	return &v
+return &v
 }
 
 type NullableVpnConfidence struct {
-	value *VpnConfidence
-	isSet bool
+value *VpnConfidence
+isSet bool
 }
 
 func (v NullableVpnConfidence) Get() *VpnConfidence {
-	return v.value
+return v.value
 }
 
 func (v *NullableVpnConfidence) Set(val *VpnConfidence) {
-	v.value = val
-	v.isSet = true
+v.value = val
+v.isSet = true
 }
 
 func (v NullableVpnConfidence) IsSet() bool {
-	return v.isSet
+return v.isSet
 }
 
 func (v *NullableVpnConfidence) Unset() {
-	v.value = nil
-	v.isSet = false
+v.value = nil
+v.isSet = false
 }
 
 func NewNullableVpnConfidence(val *VpnConfidence) *NullableVpnConfidence {
-	return &NullableVpnConfidence{value: val, isSet: true}
+return &NullableVpnConfidence{value: val, isSet: true}
 }
 
 func (v NullableVpnConfidence) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
+return json.Marshal(v.value)
 }
 
 func (v *NullableVpnConfidence) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
+v.isSet = true
+return json.Unmarshal(src, &v.value)
 }
+
