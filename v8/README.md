@@ -88,7 +88,6 @@ func main() {
     req := client.NewSearchEventsRequest(context.Background()).
         // Suspect can be set by using `UpdateEvent` method
 		Suspect(true).
-		PaginationKey("1740815825085").
         Limit(10)
 
     // Search for 10 events with suspect=true
