@@ -2,7 +2,7 @@
 
 set -e
 
-SDK_DIR="sdk"
+SDK_DIR="v8"
 
 prepare_directory(){
   rm -rf $SDK_DIR
