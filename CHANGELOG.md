@@ -1,5 +1,13 @@
 # Fingerprint Pro Server Go SDK
 
+## 8.0.0-test.0
+
+### Major Changes
+
+- Added support for Fingerprint API v4 and removed support for v3 (breaking), along with stability and quality-of-life improvements. See the official migration guide for upgrading from v3 to v4.
+
+  Migration guide: https://docs.fingerprint.com/reference/migrating-from-server-api-v3-to-v4 ([6fc6bad](https://github.com/fingerprintjs/go-sdk/commit/6fc6bad6e8ad07b9ccd674b472ac9be3dcc01a76))
+
 ## 7.9.0
 
 ### Minor Changes
