@@ -3,7 +3,7 @@
 ## **UnsealEventsResponse**
 > EventResponse UnsealEventsResponse(sealed []byte, keys []DecryptionKey)
 
-Decrypts the sealed response with provided keys.
+Decrypts the sealed result response with the provided keys.
 ### Required Parameters
 
 | Name       | Type                | Description                                                                              | Notes |
