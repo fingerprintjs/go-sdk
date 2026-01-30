@@ -106,5 +106,4 @@ region.go
 response.go
 sealed.go
 utils.go
-version.go
 webhook.go
