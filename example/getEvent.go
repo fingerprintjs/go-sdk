@@ -15,7 +15,7 @@ func main() {
 	// Load environment variables
 	godotenv.Load()
 
-	client := fingerprint.New(fingerprint.WithRegion(fingerprint.RegionUS), fingerprint.WithAPIKey(os.Getenv("FINGERPRINT_API_KEY")))
+	client := fingerprint.New(fingerprint.WithRegion(fingerprint.Region(os.Getenv("REGION"))), fingerprint.WithAPIKey(os.Getenv("FINGERPRINT_API_KEY")))
 
 	// Usually this data will come from your frontend app
 	eventId := os.Getenv("EVENT_ID")

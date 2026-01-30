@@ -12,7 +12,7 @@ import (
 func exampleWrongAPIKey() {
 	fmt.Println("Running 'exampleWrongAPIKey'...")
 
-	client := fingerprint.New(fingerprint.WithRegion(fingerprint.RegionUS), fingerprint.WithAPIKey("apiKey"))
+	client := fingerprint.New(fingerprint.WithRegion(fingerprint.Region(os.Getenv("REGION"))), fingerprint.WithAPIKey("apiKey"))
 	_, _, err := client.GetEvent(context.Background(), "eventId")
 	if err != nil {
 		if errResp, ok := fingerprint.AsErrorResponse(err); ok {
@@ -35,7 +35,7 @@ func exampleWrongEventId() {
 	// Load environment variables
 	godotenv.Load()
 
-	client := fingerprint.New(fingerprint.WithRegion(fingerprint.RegionUS), fingerprint.WithAPIKey(os.Getenv("FINGERPRINT_API_KEY")))
+	client := fingerprint.New(fingerprint.WithRegion(fingerprint.Region(os.Getenv("REGION"))), fingerprint.WithAPIKey(os.Getenv("FINGERPRINT_API_KEY")))
 	eventId := "wrongEventId"
 
 	_, _, err := client.GetEvent(context.Background(), eventId)

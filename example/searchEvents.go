@@ -14,7 +14,7 @@ func main() {
 	// Load environment variables
 	godotenv.Load()
 
-	client := fingerprint.New(fingerprint.WithRegion(fingerprint.RegionUS), fingerprint.WithAPIKey(os.Getenv("FINGERPRINT_API_KEY")))
+	client := fingerprint.New(fingerprint.WithRegion(fingerprint.Region(os.Getenv("REGION"))), fingerprint.WithAPIKey(os.Getenv("FINGERPRINT_API_KEY")))
 
 	req := client.NewSearchEventsRequest(context.Background()).Limit(5).Suspect(false).TotalHits(1000)
 
@@ -26,7 +26,9 @@ func main() {
 		log.Fatalf("Error: %s", err.Error())
 	}
 
-	fmt.Printf("Total hits: %d\n", *response.TotalHits)
+	if response.TotalHits != nil {
+		fmt.Printf("Total hits: %d\n", *response.TotalHits)
+	}
 
 	if response.Events != nil {
 		for _, event := range response.Events {
