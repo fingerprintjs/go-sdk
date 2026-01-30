@@ -5,6 +5,7 @@
     "go-sdk": "7.9.0"
   },
   "changesets": [
+    "big-comics-grow",
     "wet-pigs-talk"
   ]
 }

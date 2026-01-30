@@ -1,7 +1,7 @@
 /*
 Server API
 
-Fingerprint Server API allows you to get, search, and update Events in a server environment. It can be used for data exports, decision-making, and data analysis scenarios. Server API is intended for server-side usage, it's not intended to be used from the client side, whether it's a browser or a mobile device.
+Fingerprint Server API allows you to get, search, and update Events in a server environment. It can be used for data exports, decision-making, and data analysis scenarios. Server API is intended for server-side usage, it's not intended to be used from the client side, whether it's a browser or a mobile device. 
 
 API version: 4
 Contact: support@fingerprint.com
@@ -20,8 +20,8 @@ var _ MappedNullable = &IPInfo{}
 
 // IPInfo Details about the request IP address. Has separate fields for v4 and v6 IP address versions.
 type IPInfo struct {
-	V4                   *IPInfoV4 `json:"v4,omitempty"`
-	V6                   *IPInfoV6 `json:"v6,omitempty"`
+	V4 *IPInfoV4 `json:"v4,omitempty"`
+	V6 *IPInfoV6 `json:"v6,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -109,7 +109,7 @@ func (o *IPInfo) SetV6(v IPInfoV6) {
 }
 
 func (o IPInfo) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -189,3 +189,5 @@ func (v *NullableIPInfo) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

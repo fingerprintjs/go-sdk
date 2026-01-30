@@ -1,7 +1,7 @@
 /*
 Server API
 
-Fingerprint Server API allows you to get, search, and update Events in a server environment. It can be used for data exports, decision-making, and data analysis scenarios. Server API is intended for server-side usage, it's not intended to be used from the client side, whether it's a browser or a mobile device.
+Fingerprint Server API allows you to get, search, and update Events in a server environment. It can be used for data exports, decision-making, and data analysis scenarios. Server API is intended for server-side usage, it's not intended to be used from the client side, whether it's a browser or a mobile device. 
 
 API version: 4
 Contact: support@fingerprint.com
@@ -24,8 +24,8 @@ type IdentificationConfidence struct {
 	// The confidence score is a floating-point number between 0 and 1 that represents the probability of accurate identification.
 	Score float64 `json:"score"`
 	// The version name of the method used to calculate the Confidence score. This field is only present for customers who opted in to an alternative calculation method.
-	Version              *string `json:"version,omitempty"`
-	Comment              *string `json:"comment,omitempty"`
+	Version *string `json:"version,omitempty"`
+	Comment *string `json:"comment,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -138,7 +138,7 @@ func (o *IdentificationConfidence) SetComment(v string) {
 }
 
 func (o IdentificationConfidence) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -175,10 +175,10 @@ func (o *IdentificationConfidence) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err
+		return err;
 	}
 
-	for _, requiredProperty := range requiredProperties {
+	for _, requiredProperty := range(requiredProperties) {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -241,3 +241,5 @@ func (v *NullableIdentificationConfidence) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+
