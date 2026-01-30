@@ -1,7 +1,7 @@
 /*
 Server API
 
-Fingerprint Server API allows you to get, search, and update Events in a server environment. It can be used for data exports, decision-making, and data analysis scenarios. Server API is intended for server-side usage, it's not intended to be used from the client side, whether it's a browser or a mobile device. 
+Fingerprint Server API allows you to get, search, and update Events in a server environment. It can be used for data exports, decision-making, and data analysis scenarios. Server API is intended for server-side usage, it's not intended to be used from the client side, whether it's a browser or a mobile device.
 
 API version: 4
 Contact: support@fingerprint.com
@@ -18,24 +18,24 @@ import (
 // checks if the RawDeviceAttributes type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &RawDeviceAttributes{}
 
-// RawDeviceAttributes A curated subset of raw browser/device attributes that the API surface exposes. Each property contains a value or object with the data for the collected signal. 
+// RawDeviceAttributes A curated subset of raw browser/device attributes that the API surface exposes. Each property contains a value or object with the data for the collected signal.
 type RawDeviceAttributes struct {
 	FontPreferences *FontPreferences `json:"font_preferences,omitempty"`
-	Emoji *Emoji `json:"emoji,omitempty"`
+	Emoji           *Emoji           `json:"emoji,omitempty"`
 	// List of fonts detected on the device.
 	Fonts []string `json:"fonts,omitempty"`
 	// Rounded amount of RAM (in gigabytes) reported by the browser.
 	DeviceMemory *int32 `json:"device_memory,omitempty"`
 	// Timezone identifier detected on the client.
 	Timezone *string `json:"timezone,omitempty"`
-	Canvas *Canvas `json:"canvas,omitempty"`
-	// Navigator languages reported by the agent including fallbacks. Each inner array represents ordered language preferences reported by different APIs. 
-	Languages [][]string `json:"languages,omitempty"`
+	Canvas   *Canvas `json:"canvas,omitempty"`
+	// Navigator languages reported by the agent including fallbacks. Each inner array represents ordered language preferences reported by different APIs.
+	Languages       [][]string       `json:"languages,omitempty"`
 	WebglExtensions *WebGlExtensions `json:"webgl_extensions,omitempty"`
-	WebglBasics *WebGlBasics `json:"webgl_basics,omitempty"`
+	WebglBasics     *WebGlBasics     `json:"webgl_basics,omitempty"`
 	// Current screen resolution.
-	ScreenResolution []int32 `json:"screen_resolution,omitempty"`
-	TouchSupport *TouchSupport `json:"touch_support,omitempty"`
+	ScreenResolution []int32       `json:"screen_resolution,omitempty"`
+	TouchSupport     *TouchSupport `json:"touch_support,omitempty"`
 	// Navigator `oscpu` string.
 	Oscpu *string `json:"oscpu,omitempty"`
 	// Integer representing the CPU architecture exposed by the browser.
@@ -44,7 +44,7 @@ type RawDeviceAttributes struct {
 	CookiesEnabled *bool `json:"cookies_enabled,omitempty"`
 	// Number of logical CPU cores reported by the browser.
 	HardwareConcurrency *int32 `json:"hardware_concurrency,omitempty"`
-	// Locale derived from the Intl.DateTimeFormat API. Negative values indicate known error states. The negative statuses can be: - \"-1\": A permanent status for browsers that don't support Intl API. - \"-2\": A permanent status for browsers that don't supportDateTimeFormat constructor. - \"-3\": A permanent status for browsers in which DateTimeFormat locale is undefined or null. 
+	// Locale derived from the Intl.DateTimeFormat API. Negative values indicate known error states. The negative statuses can be: - \"-1\": A permanent status for browsers that don't support Intl API. - \"-2\": A permanent status for browsers that don't supportDateTimeFormat constructor. - \"-3\": A permanent status for browsers in which DateTimeFormat locale is undefined or null.
 	DateTimeLocale *string `json:"date_time_locale,omitempty"`
 	// Navigator vendor string.
 	Vendor *string `json:"vendor,omitempty"`
@@ -56,14 +56,14 @@ type RawDeviceAttributes struct {
 	SessionStorage *bool `json:"session_storage,omitempty"`
 	// Whether localStorage is available.
 	LocalStorage *bool `json:"local_storage,omitempty"`
-	// AudioContext fingerprint or negative status when unavailable. The negative statuses can be: - -1: A permanent status for those browsers which are known to always suspend audio context - -2: A permanent status for browsers that don't support the signal - -3: A temporary status that means that an unexpected timeout has happened 
+	// AudioContext fingerprint or negative status when unavailable. The negative statuses can be: - -1: A permanent status for those browsers which are known to always suspend audio context - -2: A permanent status for browsers that don't support the signal - -3: A temporary status that means that an unexpected timeout has happened
 	Audio *float64 `json:"audio,omitempty"`
 	// Browser plugins reported by `navigator.plugins`.
 	Plugins []PluginsInner `json:"plugins,omitempty"`
 	// Whether IndexedDB is available.
 	IndexedDb *bool `json:"indexed_db,omitempty"`
 	// Hash of Math APIs used for entropy collection.
-	Math *string `json:"math,omitempty"`
+	Math                 *string `json:"math,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -887,7 +887,7 @@ func (o *RawDeviceAttributes) SetMath(v string) {
 }
 
 func (o RawDeviceAttributes) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -1059,5 +1059,3 @@ func (v *NullableRawDeviceAttributes) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

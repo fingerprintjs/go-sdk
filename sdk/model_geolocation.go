@@ -1,7 +1,7 @@
 /*
 Server API
 
-Fingerprint Server API allows you to get, search, and update Events in a server environment. It can be used for data exports, decision-making, and data analysis scenarios. Server API is intended for server-side usage, it's not intended to be used from the client side, whether it's a browser or a mobile device. 
+Fingerprint Server API allows you to get, search, and update Events in a server environment. It can be used for data exports, decision-making, and data analysis scenarios. Server API is intended for server-side usage, it's not intended to be used from the client side, whether it's a browser or a mobile device.
 
 API version: 4
 Contact: support@fingerprint.com
@@ -21,17 +21,17 @@ var _ MappedNullable = &Geolocation{}
 // Geolocation struct for Geolocation
 type Geolocation struct {
 	// The IP address is likely to be within this radius (in km) of the specified location.
-	AccuracyRadius *int32 `json:"accuracy_radius,omitempty"`
-	Latitude *float64 `json:"latitude,omitempty"`
-	Longitude *float64 `json:"longitude,omitempty"`
-	PostalCode *string `json:"postal_code,omitempty"`
-	Timezone *string `json:"timezone,omitempty"`
-	CityName *string `json:"city_name,omitempty"`
-	CountryCode *string `json:"country_code,omitempty"`
-	CountryName *string `json:"country_name,omitempty"`
-	ContinentCode *string `json:"continent_code,omitempty"`
-	ContinentName *string `json:"continent_name,omitempty"`
-	Subdivisions []GeolocationSubdivisionsInner `json:"subdivisions,omitempty"`
+	AccuracyRadius       *int32                         `json:"accuracy_radius,omitempty"`
+	Latitude             *float64                       `json:"latitude,omitempty"`
+	Longitude            *float64                       `json:"longitude,omitempty"`
+	PostalCode           *string                        `json:"postal_code,omitempty"`
+	Timezone             *string                        `json:"timezone,omitempty"`
+	CityName             *string                        `json:"city_name,omitempty"`
+	CountryCode          *string                        `json:"country_code,omitempty"`
+	CountryName          *string                        `json:"country_name,omitempty"`
+	ContinentCode        *string                        `json:"continent_code,omitempty"`
+	ContinentName        *string                        `json:"continent_name,omitempty"`
+	Subdivisions         []GeolocationSubdivisionsInner `json:"subdivisions,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -407,7 +407,7 @@ func (o *Geolocation) SetSubdivisions(v []GeolocationSubdivisionsInner) {
 }
 
 func (o Geolocation) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -523,5 +523,3 @@ func (v *NullableGeolocation) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

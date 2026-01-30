@@ -1,7 +1,7 @@
 /*
 Server API
 
-Fingerprint Server API allows you to get, search, and update Events in a server environment. It can be used for data exports, decision-making, and data analysis scenarios. Server API is intended for server-side usage, it's not intended to be used from the client side, whether it's a browser or a mobile device. 
+Fingerprint Server API allows you to get, search, and update Events in a server environment. It can be used for data exports, decision-making, and data analysis scenarios. Server API is intended for server-side usage, it's not intended to be used from the client side, whether it's a browser or a mobile device.
 
 API version: 4
 Contact: support@fingerprint.com
@@ -20,9 +20,9 @@ var _ MappedNullable = &PluginsInnerMimeTypesInner{}
 
 // PluginsInnerMimeTypesInner struct for PluginsInnerMimeTypesInner
 type PluginsInnerMimeTypesInner struct {
-	Type *string `json:"type,omitempty"`
-	Suffixes *string `json:"suffixes,omitempty"`
-	Description *string `json:"description,omitempty"`
+	Type                 *string `json:"type,omitempty"`
+	Suffixes             *string `json:"suffixes,omitempty"`
+	Description          *string `json:"description,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -142,7 +142,7 @@ func (o *PluginsInnerMimeTypesInner) SetDescription(v string) {
 }
 
 func (o PluginsInnerMimeTypesInner) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -226,5 +226,3 @@ func (v *NullablePluginsInnerMimeTypesInner) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

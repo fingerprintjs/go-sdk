@@ -1,7 +1,7 @@
 /*
 Server API
 
-Fingerprint Server API allows you to get, search, and update Events in a server environment. It can be used for data exports, decision-making, and data analysis scenarios. Server API is intended for server-side usage, it's not intended to be used from the client side, whether it's a browser or a mobile device. 
+Fingerprint Server API allows you to get, search, and update Events in a server environment. It can be used for data exports, decision-making, and data analysis scenarios. Server API is intended for server-side usage, it's not intended to be used from the client side, whether it's a browser or a mobile device.
 
 API version: 4
 Contact: support@fingerprint.com
@@ -24,12 +24,12 @@ type SupplementaryIDHighRecall struct {
 	// String of 20 characters that uniquely identifies the visitor's browser or mobile device.
 	VisitorId string `json:"visitor_id"`
 	// Attribute represents if a visitor had been identified before.
-	VisitorFound bool `json:"visitor_found"`
-	Confidence *IdentificationConfidence `json:"confidence,omitempty"`
-	// Unix epoch time milliseconds timestamp indicating the time at which this ID was first seen. example: `1758069706642` - Corresponding to Wed Sep 17 2025 00:41:46 GMT+0000 
+	VisitorFound bool                      `json:"visitor_found"`
+	Confidence   *IdentificationConfidence `json:"confidence,omitempty"`
+	// Unix epoch time milliseconds timestamp indicating the time at which this ID was first seen. example: `1758069706642` - Corresponding to Wed Sep 17 2025 00:41:46 GMT+0000
 	FirstSeenAt *int64 `json:"first_seen_at,omitempty"`
-	// Unix epoch time milliseconds timestamp indicating the time at which this ID was last seen. example: `1758069706642` - Corresponding to Wed Sep 17 2025 00:41:46 GMT+0000 
-	LastSeenAt *int64 `json:"last_seen_at,omitempty"`
+	// Unix epoch time milliseconds timestamp indicating the time at which this ID was last seen. example: `1758069706642` - Corresponding to Wed Sep 17 2025 00:41:46 GMT+0000
+	LastSeenAt           *int64 `json:"last_seen_at,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -199,7 +199,7 @@ func (o *SupplementaryIDHighRecall) SetLastSeenAt(v int64) {
 }
 
 func (o SupplementaryIDHighRecall) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -241,10 +241,10 @@ func (o *SupplementaryIDHighRecall) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -309,5 +309,3 @@ func (v *NullableSupplementaryIDHighRecall) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-
