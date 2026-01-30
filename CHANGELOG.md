@@ -1,5 +1,11 @@
 # Fingerprint Pro Server Go SDK
 
+## 8.0.0-test.1
+
+### Patch Changes
+
+- Fixes the module path, now it ends with "/v8" ([7350137](https://github.com/fingerprintjs/go-sdk/commit/7350137f01bbdfd87471148ae7727ed0e4f809e8))
+
 ## 8.0.0-test.0
 
 ### Major Changes
