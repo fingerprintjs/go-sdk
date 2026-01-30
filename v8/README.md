@@ -87,7 +87,7 @@ func main() {
 		fmt.Printf("Got response with Identification: %v", event.Identification)
 	}
 
-	req := client.NewSearchEventsRequest(context.Background()).
+    req := client.NewSearchEventsRequest(context.Background()).
         // Suspect can be set by using `UpdateEvent` method
 		Suspect(true).
 		PaginationKey("1740815825085").
@@ -134,7 +134,7 @@ func main() {
 
 ## Sealed results
 
-This SDK provides utility methods for decoding [sealed results](https://dev.fingerprint.com/docs/sealed-client-results).
+This SDK provides utility methods for decoding [sealed results](https://docs.fingerprint.com/docs/sealed-client-results).
 Use below code to unseal results:
 ```go
 package main
@@ -179,11 +179,11 @@ func main() {
 }
 ```
 
-To learn more, refer to example located in [example/sealedResults.go](./example/sealedResults.go).
+To learn more, refer to example located in [example/sealedResults.go](../example/sealedResults.go).
 
 ## Webhook signing
 
-This SDK provides utility method for verifying the HMAC signature of the incoming [webhook](https://dev.fingerprint.com/docs/webhooks) request.
+This SDK provides utility method for verifying the HMAC signature of the incoming [webhook](https://docs.fingerprint.com/docs/webhooks) request.
 
 Use below code to verify signature:
 ```go
@@ -211,7 +211,7 @@ func main() {
 }
 ```
 
-To learn more, refer to example located in [example/webhookSignature.go](./example/webhookSignature.go).
+To learn more, refer to example located in [example/webhookSignature.go](../example/webhookSignature.go).
 
 ## Documentation for API Endpoints
 
@@ -277,36 +277,29 @@ Class | Method | HTTP request | Description
 ## Documentation For Authorization
 
 
-Authentication schemes defined for the API:
-    ### bearerAuth
+## ApiKeyHeader
 
-            - **Type**: HTTP Bearer token authentication
+- **Type**: HTTP Bearer token authentication
+- **API key parameter name**: Authorization
+- **Location**: HTTP header
 
-            Example
+## Documentation for sealed results
 
-            ```go
-            auth := context.WithValue(context.Background(), fingerprint.ContextAccessToken, "BEARER_TOKEN_STRING")
-            r, err := client.Service.Operation(auth, args)
-            ```
+- [SealedResults](docs/SealedResults.md)
+- [DecryptionKey](docs/DecryptionKey.md)
 
+## Documentation for webhooks
 
-## Documentation for Utility Methods
-
-Due to the fact that model structure members are all pointers, this package contains
-a number of utility functions to easily obtain pointers to values of basic types.
-Each of these functions takes a value of the given basic type and returns a pointer to it:
-
-* `PtrBool`
-* `PtrInt`
-* `PtrInt32`
-* `PtrInt64`
-* `PtrFloat`
-* `PtrFloat32`
-* `PtrFloat64`
-* `PtrString`
-* `PtrTime`
+- [DecryptionKey](docs/Webhook.md)
 
 ## Author
 
 support@fingerprint.com
 
+## Support and feedback
+
+To report problems, ask questions, or provide feedback, please use [Issues](https://github.com/fingerprintjs/go-sdk/issues). If you need private support, you can email us at [oss-support@fingerprint.com](mailto:oss-support@fingerprint.com).
+
+## License
+
+This project is licensed under the [MIT license](https://github.com/fingerprintjs/go-sdk/blob/main/LICENSE).
