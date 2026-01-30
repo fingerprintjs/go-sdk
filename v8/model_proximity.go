@@ -1,7 +1,7 @@
 /*
 Server API
 
-Fingerprint Server API allows you to get, search, and update Events in a server environment. It can be used for data exports, decision-making, and data analysis scenarios. Server API is intended for server-side usage, it's not intended to be used from the client side, whether it's a browser or a mobile device.
+Fingerprint Server API allows you to get, search, and update Events in a server environment. It can be used for data exports, decision-making, and data analysis scenarios. Server API is intended for server-side usage, it's not intended to be used from the client side, whether it's a browser or a mobile device. 
 
 API version: 4
 Contact: support@fingerprint.com
@@ -19,14 +19,14 @@ import (
 // checks if the Proximity type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &Proximity{}
 
-// Proximity Proximity ID represents a fixed geographical zone in a discrete global grid within which the device is observed.
+// Proximity Proximity ID represents a fixed geographical zone in a discrete global grid within which the device is observed. 
 type Proximity struct {
-	// A stable privacy-preserving identifier for a given proximity zone.
+	// A stable privacy-preserving identifier for a given proximity zone. 
 	Id string `json:"id"`
-	// The radius of the proximity zone’s precision level, in meters.
+	// The radius of the proximity zone’s precision level, in meters. 
 	PrecisionRadius int32 `json:"precision_radius"`
-	// A value between `0` and `1` representing the likelihood that the true device location lies within the mapped proximity zone.   * Scores closer to `1` indicate high confidence that the location is inside the mapped proximity zone.   * Scores closer to `0` indicate lower confidence, suggesting the true location may fall in an adjacent zone.
-	Confidence           float32 `json:"confidence"`
+	// A value between `0` and `1` representing the likelihood that the true device location lies within the mapped proximity zone.   * Scores closer to `1` indicate high confidence that the location is inside the mapped proximity zone.   * Scores closer to `0` indicate lower confidence, suggesting the true location may fall in an adjacent zone. 
+	Confidence float32 `json:"confidence"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -125,7 +125,7 @@ func (o *Proximity) SetConfidence(v float32) {
 }
 
 func (o Proximity) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -160,10 +160,10 @@ func (o *Proximity) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err
+		return err;
 	}
 
-	for _, requiredProperty := range requiredProperties {
+	for _, requiredProperty := range(requiredProperties) {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -226,3 +226,5 @@ func (v *NullableProximity) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

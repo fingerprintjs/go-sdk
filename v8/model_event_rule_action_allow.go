@@ -1,7 +1,7 @@
 /*
 Server API
 
-Fingerprint Server API allows you to get, search, and update Events in a server environment. It can be used for data exports, decision-making, and data analysis scenarios. Server API is intended for server-side usage, it's not intended to be used from the client side, whether it's a browser or a mobile device.
+Fingerprint Server API allows you to get, search, and update Events in a server environment. It can be used for data exports, decision-making, and data analysis scenarios. Server API is intended for server-side usage, it's not intended to be used from the client side, whether it's a browser or a mobile device. 
 
 API version: 4
 Contact: support@fingerprint.com
@@ -21,9 +21,9 @@ var _ MappedNullable = &EventRuleActionAllow{}
 
 // EventRuleActionAllow Informs the client that the request should be forwarded to the origin with optional request header modifications.
 type EventRuleActionAllow struct {
-	Type                       RuleActionType              `json:"type"`
+	Type RuleActionType `json:"type"`
 	RequestHeaderModifications *RequestHeaderModifications `json:"request_header_modifications,omitempty"`
-	AdditionalProperties       map[string]interface{}
+	AdditionalProperties map[string]interface{}
 }
 
 type _EventRuleActionAllow EventRuleActionAllow
@@ -103,7 +103,7 @@ func (o *EventRuleActionAllow) SetRequestHeaderModifications(v RequestHeaderModi
 }
 
 func (o EventRuleActionAllow) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -137,10 +137,10 @@ func (o *EventRuleActionAllow) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err
+		return err;
 	}
 
-	for _, requiredProperty := range requiredProperties {
+	for _, requiredProperty := range(requiredProperties) {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -202,3 +202,5 @@ func (v *NullableEventRuleActionAllow) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

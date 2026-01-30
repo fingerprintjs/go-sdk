@@ -1,7 +1,7 @@
 /*
 Server API
 
-Fingerprint Server API allows you to get, search, and update Events in a server environment. It can be used for data exports, decision-making, and data analysis scenarios. Server API is intended for server-side usage, it's not intended to be used from the client side, whether it's a browser or a mobile device.
+Fingerprint Server API allows you to get, search, and update Events in a server environment. It can be used for data exports, decision-making, and data analysis scenarios. Server API is intended for server-side usage, it's not intended to be used from the client side, whether it's a browser or a mobile device. 
 
 API version: 4
 Contact: support@fingerprint.com
@@ -21,15 +21,15 @@ var _ MappedNullable = &Emoji{}
 // Emoji Bounding box metrics describing how the emoji glyph renders.
 type Emoji struct {
 	// Font family reported by the browser when drawing the emoji.
-	Font                 *string  `json:"font,omitempty"`
-	Width                *float64 `json:"width,omitempty"`
-	Height               *float64 `json:"height,omitempty"`
-	Top                  *float64 `json:"top,omitempty"`
-	Bottom               *float64 `json:"bottom,omitempty"`
-	Left                 *float64 `json:"left,omitempty"`
-	Right                *float64 `json:"right,omitempty"`
-	X                    *float64 `json:"x,omitempty"`
-	Y                    *float64 `json:"y,omitempty"`
+	Font *string `json:"font,omitempty"`
+	Width *float64 `json:"width,omitempty"`
+	Height *float64 `json:"height,omitempty"`
+	Top *float64 `json:"top,omitempty"`
+	Bottom *float64 `json:"bottom,omitempty"`
+	Left *float64 `json:"left,omitempty"`
+	Right *float64 `json:"right,omitempty"`
+	X *float64 `json:"x,omitempty"`
+	Y *float64 `json:"y,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -341,7 +341,7 @@ func (o *Emoji) SetY(v float64) {
 }
 
 func (o Emoji) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -449,3 +449,5 @@ func (v *NullableEmoji) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+
