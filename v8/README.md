@@ -15,8 +15,6 @@
     <a href="https://discord.gg/39EpE2neBg"><img src="https://img.shields.io/discord/852099967190433792?style=logo&label=Discord&logo=Discord&logoColor=white" alt="Discord server"></a>
 </p>
 
-# todo RETRYAFTER
-
 # Fingerprint Server Go SDK
 [Fingerprint](https://fingerprint.com/) is a device intelligence platform offering industry-leading accuracy.
 Fingerprint Server API allows you to search, update, and delete identification events in a server environment. It can be used for data exports, decision-making, and data analysis scenarios. Server API is intended for server-side usage, it's not intended to be used from the client side, whether it's a browser or a mobile device.
@@ -71,8 +69,8 @@ func main() {
 	if err != nil {
 		if errResp, ok := fingerprint.AsErrorResponse(err); ok {
 			switch errResp.Error.Code {
-			case fingerprint.ErrorCodeToo_many_requests:
-				log.Fatalf("Too many requests, retry after %d seconds", errResp.Error.AdditionalProperties.RetryAfter())
+			case fingerprint.ErrorCodeEvent_not_found:
+				log.Fatalf("Event not found")
 			default:
 				log.Printf("Error %s: %v", errResp.Error.Code, errResp)
 				log.Fatal(err)
