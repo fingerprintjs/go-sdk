@@ -1,7 +1,7 @@
 /*
 Server API
 
-Fingerprint Server API allows you to get, search, and update Events in a server environment. It can be used for data exports, decision-making, and data analysis scenarios. Server API is intended for server-side usage, it's not intended to be used from the client side, whether it's a browser or a mobile device. 
+Fingerprint Server API allows you to get, search, and update Events in a server environment. It can be used for data exports, decision-making, and data analysis scenarios. Server API is intended for server-side usage, it's not intended to be used from the client side, whether it's a browser or a mobile device.
 
 API version: 4
 Contact: support@fingerprint.com
@@ -18,15 +18,15 @@ import (
 // checks if the FontPreferences type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &FontPreferences{}
 
-// FontPreferences Baseline measurement of canonical fonts rendered on the device. Numeric width metrics, in CSS pixels, for the canonical fonts collected by the agent. 
+// FontPreferences Baseline measurement of canonical fonts rendered on the device. Numeric width metrics, in CSS pixels, for the canonical fonts collected by the agent.
 type FontPreferences struct {
-	Default *float64 `json:"default,omitempty"`
-	Serif *float64 `json:"serif,omitempty"`
-	Sans *float64 `json:"sans,omitempty"`
-	Mono *float64 `json:"mono,omitempty"`
-	Apple *float64 `json:"apple,omitempty"`
-	Min *float64 `json:"min,omitempty"`
-	System *float64 `json:"system,omitempty"`
+	Default              *float64 `json:"default,omitempty"`
+	Serif                *float64 `json:"serif,omitempty"`
+	Sans                 *float64 `json:"sans,omitempty"`
+	Mono                 *float64 `json:"mono,omitempty"`
+	Apple                *float64 `json:"apple,omitempty"`
+	Min                  *float64 `json:"min,omitempty"`
+	System               *float64 `json:"system,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -274,7 +274,7 @@ func (o *FontPreferences) SetSystem(v float64) {
 }
 
 func (o FontPreferences) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -374,5 +374,3 @@ func (v *NullableFontPreferences) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-
