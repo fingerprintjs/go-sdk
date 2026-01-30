@@ -83,6 +83,7 @@ func TestApiFunctional(t *testing.T) {
 			assert.Len(t, events.Events, 2)
 
 			nextEvents, _, err := client.SearchEvents(client.NewSearchEventsRequest(context.Background()).
+				Limit(2).
 				Start(start).
 				End(end).
 				PaginationKey(*events.PaginationKey),
