@@ -2,7 +2,7 @@ generatorName: go
 outputDir: /local/sdk
 
 gitUserId: fingerprintjs
-gitRepoId: go-sdk
+gitRepoId: go-sdk/v8
 
 globalProperties:
   apiTests: false
