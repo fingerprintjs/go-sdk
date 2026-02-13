@@ -31,6 +31,11 @@ func main() {
 	}
 
 	if response.RuleAction != nil {
-		fmt.Printf("Got response with RuleAction: %v \n", response.RuleAction.AdditionalProperties["type"])
+		fmt.Printf("Got response with RuleAction: %v \n", response.RuleAction)
+		if response.RuleAction.Type == fingerprint.RuleActionTypeAllow {
+			fmt.Println("action is allowed")
+		} else {
+			fmt.Println("action is blocked")
+		}
 	}
 }
