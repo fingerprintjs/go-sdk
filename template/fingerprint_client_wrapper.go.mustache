@@ -69,13 +69,28 @@ func (c *Client) withAPIKey(ctx context.Context) context.Context {
 	return context.WithValue(ctx, ContextAccessToken, c.apiKey)
 }
 
+type GetEventOption func(request *ApiGetEventRequest)
+
+func WithRulesetID(rulesetID string) GetEventOption {
+	return func(request *ApiGetEventRequest) {
+		*request = request.RulesetId(rulesetID)
+	}
+}
+
 /*
 GetEvent Get an event by event ID. See FingerprintAPIService.GetEvent for details.
 */
-func (c *Client) GetEvent(ctx context.Context, eventId string) (*Event, *http.Response, error) {
+func (c *Client) GetEvent(ctx context.Context, eventID string, opts ...GetEventOption) (*Event, *http.Response, error) {
 	ctx = c.withRegion(ctx)
 	ctx = c.withAPIKey(ctx)
-	return c.api.FingerprintAPI.GetEvent(ctx, eventId).Execute()
+
+	req := c.api.FingerprintAPI.GetEvent(ctx, eventID)
+
+	for _, opt := range opts {
+		opt(&req)
+	}
+
+	return req.Execute()
 }
 
 /*

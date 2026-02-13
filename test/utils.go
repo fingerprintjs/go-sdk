@@ -13,7 +13,7 @@ import (
 
 func assertAuthorizationHeader(t *testing.T, r *http.Request, expectedKey string) {
 	apiKey := r.Header.Get("Authorization")
-	assert.Equal(t, apiKey, "Bearer " + expectedKey)
+	assert.Equal(t, apiKey, "Bearer "+expectedKey)
 }
 
 func assertErrorResponse(t *testing.T, expectedStatusCode int, expectedErrorResponse fingerprint.ErrorResponse, res *http.Response, err error) {

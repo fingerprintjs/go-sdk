@@ -425,6 +425,7 @@ func (r ApiSearchEventsRequest) IpAddress(ipAddress string) ApiSearchEventsReque
 	return r
 }
 
+// Filter events by the ASN associated with the event&#39;s IP address. This corresponds to the &#x60;ip_info.(v4|v6).asn&#x60; property in the response.
 func (r ApiSearchEventsRequest) Asn(asn string) ApiSearchEventsRequest {
 	r.asn = &asn
 	return r

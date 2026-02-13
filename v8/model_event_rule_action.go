@@ -26,7 +26,15 @@ type EventRuleAction struct {
 	// The ID of the rule that matched the identification event.
 	RuleId *string `json:"rule_id,omitempty"`
 	// The expression of the rule that matched the identification event.
-	RuleExpression       *string `json:"rule_expression,omitempty"`
+	RuleExpression             *string                     `json:"rule_expression,omitempty"`
+	Type                       RuleActionType              `json:"type"`
+	RequestHeaderModifications *RequestHeaderModifications `json:"request_header_modifications,omitempty"`
+	// A valid HTTP status code.
+	StatusCode *int32 `json:"status_code,omitempty"`
+	// A list of headers to send.
+	Headers []RuleActionHeaderField `json:"headers,omitempty"`
+	// The response body to send to the client.
+	Body                 *string `json:"body,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -36,9 +44,10 @@ type _EventRuleAction EventRuleAction
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewEventRuleAction(rulesetId string) *EventRuleAction {
+func NewEventRuleAction(rulesetId string, type_ RuleActionType) *EventRuleAction {
 	this := EventRuleAction{}
 	this.RulesetId = rulesetId
+	this.Type = type_
 	return &this
 }
 
@@ -138,6 +147,158 @@ func (o *EventRuleAction) SetRuleExpression(v string) {
 	o.RuleExpression = &v
 }
 
+// GetType returns the Type field value
+func (o *EventRuleAction) GetType() RuleActionType {
+	if o == nil {
+		var ret RuleActionType
+		return ret
+	}
+
+	return o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value
+// and a boolean to check if the value has been set.
+func (o *EventRuleAction) GetTypeOk() (*RuleActionType, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Type, true
+}
+
+// SetType sets field value
+func (o *EventRuleAction) SetType(v RuleActionType) {
+	o.Type = v
+}
+
+// GetRequestHeaderModifications returns the RequestHeaderModifications field value if set, zero value otherwise.
+func (o *EventRuleAction) GetRequestHeaderModifications() RequestHeaderModifications {
+	if o == nil || IsNil(o.RequestHeaderModifications) {
+		var ret RequestHeaderModifications
+		return ret
+	}
+	return *o.RequestHeaderModifications
+}
+
+// GetRequestHeaderModificationsOk returns a tuple with the RequestHeaderModifications field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *EventRuleAction) GetRequestHeaderModificationsOk() (*RequestHeaderModifications, bool) {
+	if o == nil || IsNil(o.RequestHeaderModifications) {
+		return nil, false
+	}
+	return o.RequestHeaderModifications, true
+}
+
+// HasRequestHeaderModifications returns a boolean if a field has been set.
+func (o *EventRuleAction) HasRequestHeaderModifications() bool {
+	if o != nil && !IsNil(o.RequestHeaderModifications) {
+		return true
+	}
+
+	return false
+}
+
+// SetRequestHeaderModifications gets a reference to the given RequestHeaderModifications and assigns it to the RequestHeaderModifications field.
+func (o *EventRuleAction) SetRequestHeaderModifications(v RequestHeaderModifications) {
+	o.RequestHeaderModifications = &v
+}
+
+// GetStatusCode returns the StatusCode field value if set, zero value otherwise.
+func (o *EventRuleAction) GetStatusCode() int32 {
+	if o == nil || IsNil(o.StatusCode) {
+		var ret int32
+		return ret
+	}
+	return *o.StatusCode
+}
+
+// GetStatusCodeOk returns a tuple with the StatusCode field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *EventRuleAction) GetStatusCodeOk() (*int32, bool) {
+	if o == nil || IsNil(o.StatusCode) {
+		return nil, false
+	}
+	return o.StatusCode, true
+}
+
+// HasStatusCode returns a boolean if a field has been set.
+func (o *EventRuleAction) HasStatusCode() bool {
+	if o != nil && !IsNil(o.StatusCode) {
+		return true
+	}
+
+	return false
+}
+
+// SetStatusCode gets a reference to the given int32 and assigns it to the StatusCode field.
+func (o *EventRuleAction) SetStatusCode(v int32) {
+	o.StatusCode = &v
+}
+
+// GetHeaders returns the Headers field value if set, zero value otherwise.
+func (o *EventRuleAction) GetHeaders() []RuleActionHeaderField {
+	if o == nil || IsNil(o.Headers) {
+		var ret []RuleActionHeaderField
+		return ret
+	}
+	return o.Headers
+}
+
+// GetHeadersOk returns a tuple with the Headers field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *EventRuleAction) GetHeadersOk() ([]RuleActionHeaderField, bool) {
+	if o == nil || IsNil(o.Headers) {
+		return nil, false
+	}
+	return o.Headers, true
+}
+
+// HasHeaders returns a boolean if a field has been set.
+func (o *EventRuleAction) HasHeaders() bool {
+	if o != nil && !IsNil(o.Headers) {
+		return true
+	}
+
+	return false
+}
+
+// SetHeaders gets a reference to the given []RuleActionHeaderField and assigns it to the Headers field.
+func (o *EventRuleAction) SetHeaders(v []RuleActionHeaderField) {
+	o.Headers = v
+}
+
+// GetBody returns the Body field value if set, zero value otherwise.
+func (o *EventRuleAction) GetBody() string {
+	if o == nil || IsNil(o.Body) {
+		var ret string
+		return ret
+	}
+	return *o.Body
+}
+
+// GetBodyOk returns a tuple with the Body field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *EventRuleAction) GetBodyOk() (*string, bool) {
+	if o == nil || IsNil(o.Body) {
+		return nil, false
+	}
+	return o.Body, true
+}
+
+// HasBody returns a boolean if a field has been set.
+func (o *EventRuleAction) HasBody() bool {
+	if o != nil && !IsNil(o.Body) {
+		return true
+	}
+
+	return false
+}
+
+// SetBody gets a reference to the given string and assigns it to the Body field.
+func (o *EventRuleAction) SetBody(v string) {
+	o.Body = &v
+}
+
 func (o EventRuleAction) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -155,6 +316,19 @@ func (o EventRuleAction) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.RuleExpression) {
 		toSerialize["rule_expression"] = o.RuleExpression
 	}
+	toSerialize["type"] = o.Type
+	if !IsNil(o.RequestHeaderModifications) {
+		toSerialize["request_header_modifications"] = o.RequestHeaderModifications
+	}
+	if !IsNil(o.StatusCode) {
+		toSerialize["status_code"] = o.StatusCode
+	}
+	if !IsNil(o.Headers) {
+		toSerialize["headers"] = o.Headers
+	}
+	if !IsNil(o.Body) {
+		toSerialize["body"] = o.Body
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -169,6 +343,7 @@ func (o *EventRuleAction) UnmarshalJSON(data []byte) (err error) {
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"ruleset_id",
+		"type",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -201,6 +376,11 @@ func (o *EventRuleAction) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "ruleset_id")
 		delete(additionalProperties, "rule_id")
 		delete(additionalProperties, "rule_expression")
+		delete(additionalProperties, "type")
+		delete(additionalProperties, "request_header_modifications")
+		delete(additionalProperties, "status_code")
+		delete(additionalProperties, "headers")
+		delete(additionalProperties, "body")
 		o.AdditionalProperties = additionalProperties
 	}
 

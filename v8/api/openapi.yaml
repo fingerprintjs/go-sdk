@@ -247,14 +247,14 @@ paths:
         schema:
           type: string
         style: form
-      - explode: true
+      - description: |
+          Filter events by the ASN associated with the event's IP address.
+          This corresponds to the `ip_info.(v4|v6).asn` property in the response.
+        explode: true
         in: query
         name: asn
         required: false
         schema:
-          description: |
-            Filter events by the ASN associated with the event's IP address.
-            This corresponds to the `ip_info.(v4|v6).asn` property in the response.
           type: string
         style: form
       - description: |
@@ -833,7 +833,6 @@ components:
       - visitor_found
       - visitor_id
     Tags:
-      additionalProperties: true
       description: A customer-provided value or an object that was sent with the identification
         request or updated later.
       type: object
@@ -1178,6 +1177,9 @@ components:
       - block
       type: string
     RuleActionHeaderField:
+      example:
+        name: name
+        value: value
       properties:
         name:
           description: The header field name.
@@ -1191,6 +1193,20 @@ components:
     RequestHeaderModifications:
       description: "The set of header modifications to apply, in the following order:\
         \ remove, set, append."
+      example:
+        set:
+        - name: name
+          value: value
+        - name: name
+          value: value
+        remove:
+        - remove
+        - remove
+        append:
+        - name: name
+          value: value
+        - name: name
+          value: value
       properties:
         remove:
           description: The list of headers to remove.
@@ -1250,8 +1266,30 @@ components:
         \ is specified."
       example:
         rule_id: rule_id
+        headers:
+        - name: name
+          value: value
+        - name: name
+          value: value
         rule_expression: rule_expression
+        status_code: 0
         ruleset_id: ruleset_id
+        request_header_modifications:
+          set:
+          - name: name
+            value: value
+          - name: name
+            value: value
+          remove:
+          - remove
+          - remove
+          append:
+          - name: name
+            value: value
+          - name: name
+            value: value
+        type: allow
+        body: body
       properties:
         ruleset_id:
           description: The ID of the evaluated ruleset.
@@ -1263,8 +1301,24 @@ components:
           description: The expression of the rule that matched the identification
             event.
           type: string
+        type:
+          $ref: "#/components/schemas/RuleActionType"
+        request_header_modifications:
+          $ref: "#/components/schemas/RequestHeaderModifications"
+        status_code:
+          description: A valid HTTP status code.
+          type: integer
+        headers:
+          description: A list of headers to send.
+          items:
+            $ref: "#/components/schemas/RuleActionHeaderField"
+          type: array
+        body:
+          description: The response body to send to the client.
+          type: string
       required:
       - ruleset_id
+      - type
     SuspectScore:
       description: |
         Suspect Score is an easy way to integrate Smart Signals into your fraud protection work flow.  It is a weighted representation of all Smart Signals present in the payload that helps identify suspicious activity. The value range is [0; S] where S is sum of all Smart Signals weights.  See more details here: https://dev.fingerprint.com/docs/suspect-score
@@ -1757,8 +1811,30 @@ components:
         timestamp: ""
         rule_action:
           rule_id: rule_id
+          headers:
+          - name: name
+            value: value
+          - name: name
+            value: value
           rule_expression: rule_expression
+          status_code: 0
           ruleset_id: ruleset_id
+          request_header_modifications:
+            set:
+            - name: name
+              value: value
+            - name: name
+              value: value
+            remove:
+            - remove
+            - remove
+            append:
+            - name: name
+              value: value
+            - name: name
+              value: value
+          type: allow
+          body: body
         root_apps: ""
         jailbroken: ""
         suspect: ""
@@ -2153,14 +2229,12 @@ components:
       example:
         suspect: true
         linked_id: linked_id
-        tags:
-          key: ""
+        tags: "{}"
       properties:
         linked_id:
           description: Linked Id value to assign to the existing event
           type: string
         tags:
-          additionalProperties: true
           description: A customer-provided value or an object that was sent with the
             identification request or updated later.
           type: object
@@ -2213,8 +2287,30 @@ components:
           timestamp: ""
           rule_action:
             rule_id: rule_id
+            headers:
+            - name: name
+              value: value
+            - name: name
+              value: value
             rule_expression: rule_expression
+            status_code: 0
             ruleset_id: ruleset_id
+            request_header_modifications:
+              set:
+              - name: name
+                value: value
+              - name: name
+                value: value
+              remove:
+              - remove
+              - remove
+              append:
+              - name: name
+                value: value
+              - name: name
+                value: value
+            type: allow
+            body: body
           root_apps: ""
           jailbroken: ""
           suspect: ""
@@ -2266,8 +2362,30 @@ components:
           timestamp: ""
           rule_action:
             rule_id: rule_id
+            headers:
+            - name: name
+              value: value
+            - name: name
+              value: value
             rule_expression: rule_expression
+            status_code: 0
             ruleset_id: ruleset_id
+            request_header_modifications:
+              set:
+              - name: name
+                value: value
+              - name: name
+                value: value
+              remove:
+              - remove
+              - remove
+              append:
+              - name: name
+                value: value
+              - name: name
+                value: value
+            type: allow
+            body: body
           root_apps: ""
           jailbroken: ""
           suspect: ""
