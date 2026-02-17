@@ -31,11 +31,18 @@ func main() {
 	}
 
 	if response.RuleAction != nil {
-		fmt.Printf("Got response with RuleAction: %v \n", response.RuleAction)
-		if response.RuleAction.Type == fingerprint.RuleActionTypeAllow {
-			fmt.Println("action is allowed")
+		if response.RuleAction.EventRuleActionAllow != nil {
+			fmt.Printf("action is allow, request header modifications to set %v, to  append %v, to remove %v\n",
+				response.RuleAction.EventRuleActionAllow.RequestHeaderModifications.Set,
+				response.RuleAction.EventRuleActionAllow.RequestHeaderModifications.Append,
+				response.RuleAction.EventRuleActionAllow.RequestHeaderModifications.Remove)
+		} else if response.RuleAction.EventRuleActionBlock != nil {
+			fmt.Printf("action is block. Body %s statusCode: %d headers: %v\n",
+				*response.RuleAction.EventRuleActionBlock.Body,
+				*response.RuleAction.EventRuleActionBlock.StatusCode,
+				response.RuleAction.EventRuleActionBlock.Headers)
 		} else {
-			fmt.Println("action is blocked")
+			fmt.Println("action is unknown (should not happen)")
 		}
 	}
 }
