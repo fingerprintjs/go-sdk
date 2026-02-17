@@ -16,375 +16,105 @@ import (
 	"fmt"
 )
 
-// checks if the EventRuleAction type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &EventRuleAction{}
-
-// EventRuleAction Describes the action the client should take, according to the rule in the ruleset that matched the event. When getting an event by event ID, the rule_action will only be included when the ruleset_id query parameter is specified.
+// EventRuleAction - Describes the action the client should take, according to the rule in the ruleset that matched the event. When getting an event by event ID, the rule_action will only be included when the ruleset_id query parameter is specified.
 type EventRuleAction struct {
-	// The ID of the evaluated ruleset.
-	RulesetId string `json:"ruleset_id"`
-	// The ID of the rule that matched the identification event.
-	RuleId *string `json:"rule_id,omitempty"`
-	// The expression of the rule that matched the identification event.
-	RuleExpression             *string                     `json:"rule_expression,omitempty"`
-	Type                       RuleActionType              `json:"type"`
-	RequestHeaderModifications *RequestHeaderModifications `json:"request_header_modifications,omitempty"`
-	// A valid HTTP status code.
-	StatusCode *int32 `json:"status_code,omitempty"`
-	// A list of headers to send.
-	Headers []RuleActionHeaderField `json:"headers,omitempty"`
-	// The response body to send to the client.
-	Body                 *string `json:"body,omitempty"`
-	AdditionalProperties map[string]interface{}
+	EventRuleActionAllow *EventRuleActionAllow
+	EventRuleActionBlock *EventRuleActionBlock
 }
 
-type _EventRuleAction EventRuleAction
-
-// NewEventRuleAction instantiates a new EventRuleAction object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewEventRuleAction(rulesetId string, type_ RuleActionType) *EventRuleAction {
-	this := EventRuleAction{}
-	this.RulesetId = rulesetId
-	this.Type = type_
-	return &this
-}
-
-// NewEventRuleActionWithDefaults instantiates a new EventRuleAction object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewEventRuleActionWithDefaults() *EventRuleAction {
-	this := EventRuleAction{}
-	return &this
-}
-
-// GetRulesetId returns the RulesetId field value
-func (o *EventRuleAction) GetRulesetId() string {
-	if o == nil {
-		var ret string
-		return ret
+// EventRuleActionAllowAsEventRuleAction is a convenience function that returns EventRuleActionAllow wrapped in EventRuleAction
+func EventRuleActionAllowAsEventRuleAction(v *EventRuleActionAllow) EventRuleAction {
+	return EventRuleAction{
+		EventRuleActionAllow: v,
 	}
-
-	return o.RulesetId
 }
 
-// GetRulesetIdOk returns a tuple with the RulesetId field value
-// and a boolean to check if the value has been set.
-func (o *EventRuleAction) GetRulesetIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
+// EventRuleActionBlockAsEventRuleAction is a convenience function that returns EventRuleActionBlock wrapped in EventRuleAction
+func EventRuleActionBlockAsEventRuleAction(v *EventRuleActionBlock) EventRuleAction {
+	return EventRuleAction{
+		EventRuleActionBlock: v,
 	}
-	return &o.RulesetId, true
 }
 
-// SetRulesetId sets field value
-func (o *EventRuleAction) SetRulesetId(v string) {
-	o.RulesetId = v
-}
-
-// GetRuleId returns the RuleId field value if set, zero value otherwise.
-func (o *EventRuleAction) GetRuleId() string {
-	if o == nil || IsNil(o.RuleId) {
-		var ret string
-		return ret
-	}
-	return *o.RuleId
-}
-
-// GetRuleIdOk returns a tuple with the RuleId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *EventRuleAction) GetRuleIdOk() (*string, bool) {
-	if o == nil || IsNil(o.RuleId) {
-		return nil, false
-	}
-	return o.RuleId, true
-}
-
-// HasRuleId returns a boolean if a field has been set.
-func (o *EventRuleAction) HasRuleId() bool {
-	if o != nil && !IsNil(o.RuleId) {
-		return true
-	}
-
-	return false
-}
-
-// SetRuleId gets a reference to the given string and assigns it to the RuleId field.
-func (o *EventRuleAction) SetRuleId(v string) {
-	o.RuleId = &v
-}
-
-// GetRuleExpression returns the RuleExpression field value if set, zero value otherwise.
-func (o *EventRuleAction) GetRuleExpression() string {
-	if o == nil || IsNil(o.RuleExpression) {
-		var ret string
-		return ret
-	}
-	return *o.RuleExpression
-}
-
-// GetRuleExpressionOk returns a tuple with the RuleExpression field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *EventRuleAction) GetRuleExpressionOk() (*string, bool) {
-	if o == nil || IsNil(o.RuleExpression) {
-		return nil, false
-	}
-	return o.RuleExpression, true
-}
-
-// HasRuleExpression returns a boolean if a field has been set.
-func (o *EventRuleAction) HasRuleExpression() bool {
-	if o != nil && !IsNil(o.RuleExpression) {
-		return true
-	}
-
-	return false
-}
-
-// SetRuleExpression gets a reference to the given string and assigns it to the RuleExpression field.
-func (o *EventRuleAction) SetRuleExpression(v string) {
-	o.RuleExpression = &v
-}
-
-// GetType returns the Type field value
-func (o *EventRuleAction) GetType() RuleActionType {
-	if o == nil {
-		var ret RuleActionType
-		return ret
-	}
-
-	return o.Type
-}
-
-// GetTypeOk returns a tuple with the Type field value
-// and a boolean to check if the value has been set.
-func (o *EventRuleAction) GetTypeOk() (*RuleActionType, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Type, true
-}
-
-// SetType sets field value
-func (o *EventRuleAction) SetType(v RuleActionType) {
-	o.Type = v
-}
-
-// GetRequestHeaderModifications returns the RequestHeaderModifications field value if set, zero value otherwise.
-func (o *EventRuleAction) GetRequestHeaderModifications() RequestHeaderModifications {
-	if o == nil || IsNil(o.RequestHeaderModifications) {
-		var ret RequestHeaderModifications
-		return ret
-	}
-	return *o.RequestHeaderModifications
-}
-
-// GetRequestHeaderModificationsOk returns a tuple with the RequestHeaderModifications field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *EventRuleAction) GetRequestHeaderModificationsOk() (*RequestHeaderModifications, bool) {
-	if o == nil || IsNil(o.RequestHeaderModifications) {
-		return nil, false
-	}
-	return o.RequestHeaderModifications, true
-}
-
-// HasRequestHeaderModifications returns a boolean if a field has been set.
-func (o *EventRuleAction) HasRequestHeaderModifications() bool {
-	if o != nil && !IsNil(o.RequestHeaderModifications) {
-		return true
-	}
-
-	return false
-}
-
-// SetRequestHeaderModifications gets a reference to the given RequestHeaderModifications and assigns it to the RequestHeaderModifications field.
-func (o *EventRuleAction) SetRequestHeaderModifications(v RequestHeaderModifications) {
-	o.RequestHeaderModifications = &v
-}
-
-// GetStatusCode returns the StatusCode field value if set, zero value otherwise.
-func (o *EventRuleAction) GetStatusCode() int32 {
-	if o == nil || IsNil(o.StatusCode) {
-		var ret int32
-		return ret
-	}
-	return *o.StatusCode
-}
-
-// GetStatusCodeOk returns a tuple with the StatusCode field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *EventRuleAction) GetStatusCodeOk() (*int32, bool) {
-	if o == nil || IsNil(o.StatusCode) {
-		return nil, false
-	}
-	return o.StatusCode, true
-}
-
-// HasStatusCode returns a boolean if a field has been set.
-func (o *EventRuleAction) HasStatusCode() bool {
-	if o != nil && !IsNil(o.StatusCode) {
-		return true
-	}
-
-	return false
-}
-
-// SetStatusCode gets a reference to the given int32 and assigns it to the StatusCode field.
-func (o *EventRuleAction) SetStatusCode(v int32) {
-	o.StatusCode = &v
-}
-
-// GetHeaders returns the Headers field value if set, zero value otherwise.
-func (o *EventRuleAction) GetHeaders() []RuleActionHeaderField {
-	if o == nil || IsNil(o.Headers) {
-		var ret []RuleActionHeaderField
-		return ret
-	}
-	return o.Headers
-}
-
-// GetHeadersOk returns a tuple with the Headers field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *EventRuleAction) GetHeadersOk() ([]RuleActionHeaderField, bool) {
-	if o == nil || IsNil(o.Headers) {
-		return nil, false
-	}
-	return o.Headers, true
-}
-
-// HasHeaders returns a boolean if a field has been set.
-func (o *EventRuleAction) HasHeaders() bool {
-	if o != nil && !IsNil(o.Headers) {
-		return true
-	}
-
-	return false
-}
-
-// SetHeaders gets a reference to the given []RuleActionHeaderField and assigns it to the Headers field.
-func (o *EventRuleAction) SetHeaders(v []RuleActionHeaderField) {
-	o.Headers = v
-}
-
-// GetBody returns the Body field value if set, zero value otherwise.
-func (o *EventRuleAction) GetBody() string {
-	if o == nil || IsNil(o.Body) {
-		var ret string
-		return ret
-	}
-	return *o.Body
-}
-
-// GetBodyOk returns a tuple with the Body field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *EventRuleAction) GetBodyOk() (*string, bool) {
-	if o == nil || IsNil(o.Body) {
-		return nil, false
-	}
-	return o.Body, true
-}
-
-// HasBody returns a boolean if a field has been set.
-func (o *EventRuleAction) HasBody() bool {
-	if o != nil && !IsNil(o.Body) {
-		return true
-	}
-
-	return false
-}
-
-// SetBody gets a reference to the given string and assigns it to the Body field.
-func (o *EventRuleAction) SetBody(v string) {
-	o.Body = &v
-}
-
-func (o EventRuleAction) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+// Unmarshal JSON data into one of the pointers in the struct
+func (dst *EventRuleAction) UnmarshalJSON(data []byte) error {
+	var err error
+	// use discriminator value to speed up the lookup
+	var jsonDict map[string]interface{}
+	err = newStrictDecoder(data).Decode(&jsonDict)
 	if err != nil {
-		return []byte{}, err
-	}
-	return json.Marshal(toSerialize)
-}
-
-func (o EventRuleAction) ToMap() (map[string]interface{}, error) {
-	toSerialize := map[string]interface{}{}
-	toSerialize["ruleset_id"] = o.RulesetId
-	if !IsNil(o.RuleId) {
-		toSerialize["rule_id"] = o.RuleId
-	}
-	if !IsNil(o.RuleExpression) {
-		toSerialize["rule_expression"] = o.RuleExpression
-	}
-	toSerialize["type"] = o.Type
-	if !IsNil(o.RequestHeaderModifications) {
-		toSerialize["request_header_modifications"] = o.RequestHeaderModifications
-	}
-	if !IsNil(o.StatusCode) {
-		toSerialize["status_code"] = o.StatusCode
-	}
-	if !IsNil(o.Headers) {
-		toSerialize["headers"] = o.Headers
-	}
-	if !IsNil(o.Body) {
-		toSerialize["body"] = o.Body
+		return fmt.Errorf("failed to unmarshal JSON into map for the discriminator lookup")
 	}
 
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
-	return toSerialize, nil
-}
-
-func (o *EventRuleAction) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"ruleset_id",
-		"type",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err
-	}
-
-	for _, requiredProperty := range requiredProperties {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
+	// check if the discriminator value is 'allow'
+	if jsonDict["type"] == "allow" {
+		// try to unmarshal JSON data into EventRuleActionAllow
+		err = json.Unmarshal(data, &dst.EventRuleActionAllow)
+		if err == nil {
+			return nil // data stored in dst.EventRuleActionAllow, return on the first match
+		} else {
+			dst.EventRuleActionAllow = nil
+			return fmt.Errorf("failed to unmarshal EventRuleAction as EventRuleActionAllow: %s", err.Error())
 		}
 	}
 
-	varEventRuleAction := _EventRuleAction{}
-
-	err = json.Unmarshal(data, &varEventRuleAction)
-
-	if err != nil {
-		return err
+	// check if the discriminator value is 'block'
+	if jsonDict["type"] == "block" {
+		// try to unmarshal JSON data into EventRuleActionBlock
+		err = json.Unmarshal(data, &dst.EventRuleActionBlock)
+		if err == nil {
+			return nil // data stored in dst.EventRuleActionBlock, return on the first match
+		} else {
+			dst.EventRuleActionBlock = nil
+			return fmt.Errorf("failed to unmarshal EventRuleAction as EventRuleActionBlock: %s", err.Error())
+		}
 	}
 
-	*o = EventRuleAction(varEventRuleAction)
+	return nil
+}
 
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "ruleset_id")
-		delete(additionalProperties, "rule_id")
-		delete(additionalProperties, "rule_expression")
-		delete(additionalProperties, "type")
-		delete(additionalProperties, "request_header_modifications")
-		delete(additionalProperties, "status_code")
-		delete(additionalProperties, "headers")
-		delete(additionalProperties, "body")
-		o.AdditionalProperties = additionalProperties
+// Marshal data from the first non-nil pointers in the struct to JSON
+func (src EventRuleAction) MarshalJSON() ([]byte, error) {
+	if src.EventRuleActionAllow != nil {
+		return json.Marshal(&src.EventRuleActionAllow)
 	}
 
-	return err
+	if src.EventRuleActionBlock != nil {
+		return json.Marshal(&src.EventRuleActionBlock)
+	}
+
+	return nil, nil // no data in oneOf schemas
+}
+
+// Get the actual instance
+func (obj *EventRuleAction) GetActualInstance() interface{} {
+	if obj == nil {
+		return nil
+	}
+	if obj.EventRuleActionAllow != nil {
+		return obj.EventRuleActionAllow
+	}
+
+	if obj.EventRuleActionBlock != nil {
+		return obj.EventRuleActionBlock
+	}
+
+	// all schemas are nil
+	return nil
+}
+
+// Get the actual instance value
+func (obj EventRuleAction) GetActualInstanceValue() interface{} {
+	if obj.EventRuleActionAllow != nil {
+		return *obj.EventRuleActionAllow
+	}
+
+	if obj.EventRuleActionBlock != nil {
+		return *obj.EventRuleActionBlock
+	}
+
+	// all schemas are nil
+	return nil
 }
 
 type NullableEventRuleAction struct {

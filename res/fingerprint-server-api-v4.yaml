@@ -1449,7 +1449,6 @@ components:
         parameter is specified.
       required:
         - ruleset_id
-        - type
       properties:
         ruleset_id:
           $ref: '#/components/schemas/RulesetId'
@@ -1457,22 +1456,14 @@ components:
           $ref: '#/components/schemas/RuleId'
         rule_expression:
           $ref: '#/components/schemas/RuleExpression'
-        type:
-          $ref: '#/components/schemas/RuleActionType'
-          enum:
-            - allow
-            - block
-        request_header_modifications:
-          $ref: '#/components/schemas/RequestHeaderModifications'
-        status_code:
-          $ref: '#/components/schemas/StatusCode'
-        headers:
-          type: array
-          description: A list of headers to send.
-          items:
-            $ref: '#/components/schemas/RuleActionHeaderField'
-        body:
-          $ref: '#/components/schemas/RuleActionBody'
+      oneOf:
+        - $ref: '#/components/schemas/EventRuleActionAllow'
+        - $ref: '#/components/schemas/EventRuleActionBlock'
+      discriminator:
+        propertyName: type
+        mapping:
+          allow: '#/components/schemas/EventRuleActionAllow'
+          block: '#/components/schemas/EventRuleActionBlock'
     SuspectScore:
       type: integer
       description: >

@@ -1177,9 +1177,6 @@ components:
       - block
       type: string
     RuleActionHeaderField:
-      example:
-        name: name
-        value: value
       properties:
         name:
           description: The header field name.
@@ -1193,20 +1190,6 @@ components:
     RequestHeaderModifications:
       description: "The set of header modifications to apply, in the following order:\
         \ remove, set, append."
-      example:
-        set:
-        - name: name
-          value: value
-        - name: name
-          value: value
-        remove:
-        - remove
-        - remove
-        append:
-        - name: name
-          value: value
-        - name: name
-          value: value
       properties:
         remove:
           description: The list of headers to remove.
@@ -1264,32 +1247,18 @@ components:
         \ rule in the ruleset that matched the event. When getting an event by event\
         \ ID, the rule_action will only be included when the ruleset_id query parameter\
         \ is specified."
+      discriminator:
+        mapping:
+          allow: "#/components/schemas/EventRuleActionAllow"
+          block: "#/components/schemas/EventRuleActionBlock"
+        propertyName: type
       example:
         rule_id: rule_id
-        headers:
-        - name: name
-          value: value
-        - name: name
-          value: value
         rule_expression: rule_expression
-        status_code: 0
         ruleset_id: ruleset_id
-        request_header_modifications:
-          set:
-          - name: name
-            value: value
-          - name: name
-            value: value
-          remove:
-          - remove
-          - remove
-          append:
-          - name: name
-            value: value
-          - name: name
-            value: value
-        type: allow
-        body: body
+      oneOf:
+      - $ref: "#/components/schemas/EventRuleActionAllow"
+      - $ref: "#/components/schemas/EventRuleActionBlock"
       properties:
         ruleset_id:
           description: The ID of the evaluated ruleset.
@@ -1301,24 +1270,8 @@ components:
           description: The expression of the rule that matched the identification
             event.
           type: string
-        type:
-          $ref: "#/components/schemas/RuleActionType"
-        request_header_modifications:
-          $ref: "#/components/schemas/RequestHeaderModifications"
-        status_code:
-          description: A valid HTTP status code.
-          type: integer
-        headers:
-          description: A list of headers to send.
-          items:
-            $ref: "#/components/schemas/RuleActionHeaderField"
-          type: array
-        body:
-          description: The response body to send to the client.
-          type: string
       required:
       - ruleset_id
-      - type
     SuspectScore:
       description: |
         Suspect Score is an easy way to integrate Smart Signals into your fraud protection work flow.  It is a weighted representation of all Smart Signals present in the payload that helps identify suspicious activity. The value range is [0; S] where S is sum of all Smart Signals weights.  See more details here: https://dev.fingerprint.com/docs/suspect-score
@@ -1811,30 +1764,8 @@ components:
         timestamp: ""
         rule_action:
           rule_id: rule_id
-          headers:
-          - name: name
-            value: value
-          - name: name
-            value: value
           rule_expression: rule_expression
-          status_code: 0
           ruleset_id: ruleset_id
-          request_header_modifications:
-            set:
-            - name: name
-              value: value
-            - name: name
-              value: value
-            remove:
-            - remove
-            - remove
-            append:
-            - name: name
-              value: value
-            - name: name
-              value: value
-          type: allow
-          body: body
         root_apps: ""
         jailbroken: ""
         suspect: ""
@@ -2287,30 +2218,8 @@ components:
           timestamp: ""
           rule_action:
             rule_id: rule_id
-            headers:
-            - name: name
-              value: value
-            - name: name
-              value: value
             rule_expression: rule_expression
-            status_code: 0
             ruleset_id: ruleset_id
-            request_header_modifications:
-              set:
-              - name: name
-                value: value
-              - name: name
-                value: value
-              remove:
-              - remove
-              - remove
-              append:
-              - name: name
-                value: value
-              - name: name
-                value: value
-            type: allow
-            body: body
           root_apps: ""
           jailbroken: ""
           suspect: ""
@@ -2362,30 +2271,8 @@ components:
           timestamp: ""
           rule_action:
             rule_id: rule_id
-            headers:
-            - name: name
-              value: value
-            - name: name
-              value: value
             rule_expression: rule_expression
-            status_code: 0
             ruleset_id: ruleset_id
-            request_header_modifications:
-              set:
-              - name: name
-                value: value
-              - name: name
-                value: value
-              remove:
-              - remove
-              - remove
-              append:
-              - name: name
-                value: value
-              - name: name
-                value: value
-            type: allow
-            body: body
           root_apps: ""
           jailbroken: ""
           suspect: ""
