@@ -11,6 +11,7 @@ globalProperties:
 additionalProperties:
   packageName: fingerprint
   disallowAdditionalPropertiesIfNotPresent: false
+  useOneOfDiscriminatorLookup: true
 
 files:
   fingerprint_api_error.go.mustache:
