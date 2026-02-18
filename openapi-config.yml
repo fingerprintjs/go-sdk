@@ -13,6 +13,8 @@ additionalProperties:
   disallowAdditionalPropertiesIfNotPresent: false
   useOneOfDiscriminatorLookup: true
 
+enablePostProcessFile: false
+
 files:
   fingerprint_api_error.go.mustache:
     destinationFilename: api_error.go
