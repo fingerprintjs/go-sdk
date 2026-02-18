@@ -12,7 +12,7 @@ prepare_directory(){
 }
 
 run_generator() {
-  docker run --rm -v "${PWD}:/local" openapitools/openapi-generator-cli:v7.19.0 generate \
+  docker run --rm -u "$(id -u):$(id -g)" -v "${PWD}:/local" openapitools/openapi-generator-cli:v7.19.0 generate \
       -c /local/openapi-config.yml \
       -i /local/res/fingerprint-server-api-v4.yaml \
       -t /local/template \
