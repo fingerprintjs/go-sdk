@@ -21,7 +21,4 @@ run_generator() {
 
 prepare_directory
 run_generator
-
-if [[ $1 != "--no-gofmt" ]]; then
-  gofmt -w .
-fi
+gofmt -w .
