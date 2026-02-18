@@ -32,10 +32,13 @@ func main() {
 
 	if response.RuleAction != nil {
 		if response.RuleAction.EventRuleActionAllow != nil {
-			fmt.Printf("action is allow, request header modifications to set %v, to  append %v, to remove %v\n",
-				response.RuleAction.EventRuleActionAllow.RequestHeaderModifications.Set,
-				response.RuleAction.EventRuleActionAllow.RequestHeaderModifications.Append,
-				response.RuleAction.EventRuleActionAllow.RequestHeaderModifications.Remove)
+			fmt.Println("action is allow")
+			if response.RuleAction.EventRuleActionAllow.RequestHeaderModifications != nil {
+				fmt.Printf("request header modifications to set %v, to append %v, to remove %v\n",
+					response.RuleAction.EventRuleActionAllow.RequestHeaderModifications.Set,
+					response.RuleAction.EventRuleActionAllow.RequestHeaderModifications.Append,
+					response.RuleAction.EventRuleActionAllow.RequestHeaderModifications.Remove)
+			}
 		} else if response.RuleAction.EventRuleActionBlock != nil {
 			fmt.Printf("action is block. Body %s statusCode: %d headers: %v\n",
 				*response.RuleAction.EventRuleActionBlock.Body,
