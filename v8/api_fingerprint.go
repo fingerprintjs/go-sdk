@@ -357,7 +357,7 @@ type ApiSearchEventsRequest struct {
 	limit             *int32
 	paginationKey     *string
 	visitorId         *string
-	bot               *string
+	bot               *SearchEventsBot
 	ipAddress         *string
 	asn               *string
 	linkedId          *string
@@ -381,14 +381,14 @@ type ApiSearchEventsRequest struct {
 	clonedApp         *bool
 	emulator          *bool
 	rootApps          *bool
-	vpnConfidence     *string
+	vpnConfidence     *SearchEventsVpnConfidence
 	minSuspectScore   *float32
 	developerTools    *bool
 	locationSpoofing  *bool
 	mitmAttack        *bool
 	proxy             *bool
 	sdkVersion        *string
-	sdkPlatform       *string
+	sdkPlatform       *SearchEventsSdkPlatform
 	environment       *[]string
 	proximityId       *string
 	totalHits         *int64
@@ -401,7 +401,7 @@ func (r ApiSearchEventsRequest) Limit(limit int32) ApiSearchEventsRequest {
 	return r
 }
 
-// Use &#x60;pagination_key&#x60; to get the next page of results.  When more results are available (e.g., you requested up to 100 results for your query using &#x60;limit&#x60;, but there are more than 100 events total matching your request), the &#x60;pagination_key&#x60; field is added to the response. The key corresponds to the &#x60;timestamp&#x60; of the last returned event. In the following request, use that value in the &#x60;pagination_key&#x60; parameter to get the next page of results:  1. First request, returning most recent 200 events: &#x60;GET api-base-url/events?limit&#x3D;100&#x60; 2. Use &#x60;response.pagination_key&#x60; to get the next page of results: &#x60;GET api-base-url/events?limit&#x3D;100&amp;pagination_key&#x3D;1740815825085&#x60;
+// Use &#x60;pagination_key&#x60; to get the next page of results.  When more results are available (e.g., you requested up to 100 results for your query using &#x60;limit&#x60;, but there are more than 100 events total matching your request), the &#x60;pagination_key&#x60; field is added to the response. The pagination key is an arbitrary string that should not be interpreted in any way and should be passed as-is. In the following request, use that value in the &#x60;pagination_key&#x60; parameter to get the next page of results:  1. First request, returning most recent 200 events: &#x60;GET api-base-url/events?limit&#x3D;100&#x60; 2. Use &#x60;response.pagination_key&#x60; to get the next page of results: &#x60;GET api-base-url/events?limit&#x3D;100&amp;pagination_key&#x3D;1740815825085&#x60;
 func (r ApiSearchEventsRequest) PaginationKey(paginationKey string) ApiSearchEventsRequest {
 	r.paginationKey = &paginationKey
 	return r
@@ -414,7 +414,7 @@ func (r ApiSearchEventsRequest) VisitorId(visitorId string) ApiSearchEventsReque
 }
 
 // Filter events by the Bot Detection result, specifically:   &#x60;all&#x60; - events where any kind of bot was detected.   &#x60;good&#x60; - events where a good bot was detected.   &#x60;bad&#x60; - events where a bad bot was detected.   &#x60;none&#x60; - events where no bot was detected. &gt; Note: When using this parameter, only events with the &#x60;botd.bot&#x60; property set to a valid value are returned. Events without a &#x60;botd&#x60; Smart Signal result are left out of the response.
-func (r ApiSearchEventsRequest) Bot(bot string) ApiSearchEventsRequest {
+func (r ApiSearchEventsRequest) Bot(bot SearchEventsBot) ApiSearchEventsRequest {
 	r.bot = &bot
 	return r
 }
@@ -558,7 +558,7 @@ func (r ApiSearchEventsRequest) RootApps(rootApps bool) ApiSearchEventsRequest {
 }
 
 // Filter events by VPN Detection result confidence level. &#x60;high&#x60; - events with high VPN Detection confidence. &#x60;medium&#x60; - events with medium VPN Detection confidence. &#x60;low&#x60; - events with low VPN Detection confidence. &gt; Note: When using this parameter, only events with the &#x60;vpn.confidence&#x60; property set to a valid value are returned. Events without a &#x60;vpn&#x60; Smart Signal result are left out of the response.
-func (r ApiSearchEventsRequest) VpnConfidence(vpnConfidence string) ApiSearchEventsRequest {
+func (r ApiSearchEventsRequest) VpnConfidence(vpnConfidence SearchEventsVpnConfidence) ApiSearchEventsRequest {
 	r.vpnConfidence = &vpnConfidence
 	return r
 }
@@ -600,7 +600,7 @@ func (r ApiSearchEventsRequest) SdkVersion(sdkVersion string) ApiSearchEventsReq
 }
 
 // Filter events by the SDK Platform associated with the identification event (&#x60;sdk.platform&#x60; property) . &#x60;js&#x60; - Javascript agent (Web). &#x60;ios&#x60; - Apple iOS based devices. &#x60;android&#x60; - Android based devices.
-func (r ApiSearchEventsRequest) SdkPlatform(sdkPlatform string) ApiSearchEventsRequest {
+func (r ApiSearchEventsRequest) SdkPlatform(sdkPlatform SearchEventsSdkPlatform) ApiSearchEventsRequest {
 	r.sdkPlatform = &sdkPlatform
 	return r
 }
