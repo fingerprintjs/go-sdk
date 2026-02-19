@@ -201,7 +201,7 @@ func TestSearchEvents(t *testing.T) {
 		var (
 			limit             int32    = 2
 			visitorId         string   = "XIkiQhRyp7edU9SA0jBb"
-			bot               string   = "good"
+			bot                        = fingerprint.SearchEventsBotGood
 			ipAddress         string   = "127.0.0.1"
 			asn               string   = "ASN 20"
 			linkedId          string   = "linked_id"
@@ -225,14 +225,14 @@ func TestSearchEvents(t *testing.T) {
 			clonedApp         bool     = false
 			emulator          bool     = false
 			rootApps          bool     = false
-			vpnConfidence     string   = "high"
+			vpnConfidence              = fingerprint.SearchEventsVpnConfidenceHigh
 			minSuspectScore   float32  = 85.5
 			developerTools    bool     = false
 			locationSpoofing  bool     = true
 			mitmAttack        bool     = false
 			proxy             bool     = false
 			sdkVersion        string   = "testSdkVersion"
-			sdkPlatform       string   = "testSdkPlatform"
+			sdkPlatform                = fingerprint.SearchEventsSdkPlatformJs
 			environment       []string = []string{"env1", "env2"}
 			proximityId       string   = "testProximityId"
 			totalHits         int64    = 10
