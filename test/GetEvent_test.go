@@ -163,4 +163,40 @@ func TestGetEvent(t *testing.T) {
 		assert.NotNil(t, event)
 		assert.Equal(t, *event, mockResponse)
 	})
+
+	t.Run("Returns event with ruleset evaluation with unexpected type", func(t *testing.T) {
+		rawJSON, err := os.ReadFile("mocks/get_event_200_with_ruleset_extra_rule_action.json")
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		eventID := "123"
+		rulesetID := "some_ruleset_id"
+
+		ts := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			w.Header().Set("Content-Type", "application/json")
+			_, err := w.Write(rawJSON)
+			if err != nil {
+				t.Fatalf("failed to write mock response: %v", err)
+			}
+		}))
+
+		defer ts.Close()
+
+		client := fingerprint.New(fingerprint.WithAPIKey("api_key"), fingerprint.WithBaseURL(ts.URL))
+		event, _, err := client.GetEvent(context.Background(), eventID, fingerprint.WithRulesetID(rulesetID))
+
+		assert.Nil(t, err)
+		assert.NotNil(t, event)
+
+		var originalEvent fingerprint.Event
+		err = json.Unmarshal(rawJSON, &originalEvent)
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		assert.Equal(t, &originalEvent, event)
+		assert.Nil(t, event.RuleAction.EventRuleActionAllow)
+		assert.Nil(t, event.RuleAction.EventRuleActionBlock)
+	})
 }
