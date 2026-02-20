@@ -47,7 +47,7 @@ func main() {
 				*response.RuleAction.EventRuleActionBlock.StatusCode,
 				response.RuleAction.EventRuleActionBlock.Headers)
 		} else {
-			fmt.Println("action is unknown (should not happen)")
+			fmt.Println("action is unexpected (please make sure library is at the latest version)")
 		}
 	}
 }
