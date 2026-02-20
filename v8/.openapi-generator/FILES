@@ -43,10 +43,12 @@ docs/RuleActionHeaderField.md
 docs/RuleActionType.md
 docs/SDK.md
 docs/SealedResults.md
+docs/SearchEventsBot.md
+docs/SearchEventsSdkPlatform.md
+docs/SearchEventsVpnConfidence.md
 docs/SupplementaryIDHighRecall.md
 docs/TamperingDetails.md
 docs/TouchSupport.md
-docs/TriggeredByInner.md
 docs/Velocity.md
 docs/VelocityData.md
 docs/VpnConfidence.md
@@ -91,10 +93,12 @@ model_request_header_modifications.go
 model_rule_action_header_field.go
 model_rule_action_type.go
 model_sdk.go
+model_search_events_bot.go
+model_search_events_sdk_platform.go
+model_search_events_vpn_confidence.go
 model_supplementary_id_high_recall.go
 model_tampering_details.go
 model_touch_support.go
-model_triggered_by_inner.go
 model_velocity.go
 model_velocity_data.go
 model_vpn_confidence.go

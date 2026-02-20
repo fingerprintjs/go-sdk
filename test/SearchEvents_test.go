@@ -122,7 +122,7 @@ func TestSearchEvents(t *testing.T) {
 			assert.Equal(t, "5", query.Get("start"), "start")
 			assert.Equal(t, "10", query.Get("end"), "end")
 			assert.Equal(t, "testSdkVersion", query.Get("sdk_version"), "sdkVersion")
-			assert.Equal(t, "testSdkPlatform", query.Get("sdk_platform"), "sdkPlatform")
+			assert.Equal(t, string(fingerprint.SearchEventsSdkPlatformJs), query.Get("sdk_platform"), "sdkPlatform")
 			assert.Equal(t, []string{"env1", "env2"}, r.URL.Query()["environment"], "environment")
 			assert.Equal(t, "testProximityId", query.Get("proximity_id"), "proximityId")
 			assert.Equal(t, "10", query.Get("total_hits"), "totalHits")
@@ -201,7 +201,7 @@ func TestSearchEvents(t *testing.T) {
 		var (
 			limit             int32    = 2
 			visitorId         string   = "XIkiQhRyp7edU9SA0jBb"
-			bot               string   = "good"
+			bot                        = fingerprint.SearchEventsBotGood
 			ipAddress         string   = "127.0.0.1"
 			asn               string   = "ASN 20"
 			linkedId          string   = "linked_id"
@@ -225,14 +225,14 @@ func TestSearchEvents(t *testing.T) {
 			clonedApp         bool     = false
 			emulator          bool     = false
 			rootApps          bool     = false
-			vpnConfidence     string   = "high"
+			vpnConfidence              = fingerprint.SearchEventsVpnConfidenceHigh
 			minSuspectScore   float32  = 85.5
 			developerTools    bool     = false
 			locationSpoofing  bool     = true
 			mitmAttack        bool     = false
 			proxy             bool     = false
 			sdkVersion        string   = "testSdkVersion"
-			sdkPlatform       string   = "testSdkPlatform"
+			sdkPlatform                = fingerprint.SearchEventsSdkPlatformJs
 			environment       []string = []string{"env1", "env2"}
 			proximityId       string   = "testProximityId"
 			totalHits         int64    = 10

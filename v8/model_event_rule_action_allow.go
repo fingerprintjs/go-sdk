@@ -21,6 +21,12 @@ var _ MappedNullable = &EventRuleActionAllow{}
 
 // EventRuleActionAllow Informs the client that the request should be forwarded to the origin with optional request header modifications.
 type EventRuleActionAllow struct {
+	// The ID of the evaluated ruleset.
+	RulesetId string `json:"ruleset_id"`
+	// The ID of the rule that matched the identification event.
+	RuleId *string `json:"rule_id,omitempty"`
+	// The expression of the rule that matched the identification event.
+	RuleExpression             *string                     `json:"rule_expression,omitempty"`
 	Type                       RuleActionType              `json:"type"`
 	RequestHeaderModifications *RequestHeaderModifications `json:"request_header_modifications,omitempty"`
 	AdditionalProperties       map[string]interface{}
@@ -32,8 +38,9 @@ type _EventRuleActionAllow EventRuleActionAllow
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewEventRuleActionAllow(type_ RuleActionType) *EventRuleActionAllow {
+func NewEventRuleActionAllow(rulesetId string, type_ RuleActionType) *EventRuleActionAllow {
 	this := EventRuleActionAllow{}
+	this.RulesetId = rulesetId
 	this.Type = type_
 	return &this
 }
@@ -44,6 +51,94 @@ func NewEventRuleActionAllow(type_ RuleActionType) *EventRuleActionAllow {
 func NewEventRuleActionAllowWithDefaults() *EventRuleActionAllow {
 	this := EventRuleActionAllow{}
 	return &this
+}
+
+// GetRulesetId returns the RulesetId field value
+func (o *EventRuleActionAllow) GetRulesetId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.RulesetId
+}
+
+// GetRulesetIdOk returns a tuple with the RulesetId field value
+// and a boolean to check if the value has been set.
+func (o *EventRuleActionAllow) GetRulesetIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.RulesetId, true
+}
+
+// SetRulesetId sets field value
+func (o *EventRuleActionAllow) SetRulesetId(v string) {
+	o.RulesetId = v
+}
+
+// GetRuleId returns the RuleId field value if set, zero value otherwise.
+func (o *EventRuleActionAllow) GetRuleId() string {
+	if o == nil || IsNil(o.RuleId) {
+		var ret string
+		return ret
+	}
+	return *o.RuleId
+}
+
+// GetRuleIdOk returns a tuple with the RuleId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *EventRuleActionAllow) GetRuleIdOk() (*string, bool) {
+	if o == nil || IsNil(o.RuleId) {
+		return nil, false
+	}
+	return o.RuleId, true
+}
+
+// HasRuleId returns a boolean if a field has been set.
+func (o *EventRuleActionAllow) HasRuleId() bool {
+	if o != nil && !IsNil(o.RuleId) {
+		return true
+	}
+
+	return false
+}
+
+// SetRuleId gets a reference to the given string and assigns it to the RuleId field.
+func (o *EventRuleActionAllow) SetRuleId(v string) {
+	o.RuleId = &v
+}
+
+// GetRuleExpression returns the RuleExpression field value if set, zero value otherwise.
+func (o *EventRuleActionAllow) GetRuleExpression() string {
+	if o == nil || IsNil(o.RuleExpression) {
+		var ret string
+		return ret
+	}
+	return *o.RuleExpression
+}
+
+// GetRuleExpressionOk returns a tuple with the RuleExpression field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *EventRuleActionAllow) GetRuleExpressionOk() (*string, bool) {
+	if o == nil || IsNil(o.RuleExpression) {
+		return nil, false
+	}
+	return o.RuleExpression, true
+}
+
+// HasRuleExpression returns a boolean if a field has been set.
+func (o *EventRuleActionAllow) HasRuleExpression() bool {
+	if o != nil && !IsNil(o.RuleExpression) {
+		return true
+	}
+
+	return false
+}
+
+// SetRuleExpression gets a reference to the given string and assigns it to the RuleExpression field.
+func (o *EventRuleActionAllow) SetRuleExpression(v string) {
+	o.RuleExpression = &v
 }
 
 // GetType returns the Type field value
@@ -112,6 +207,13 @@ func (o EventRuleActionAllow) MarshalJSON() ([]byte, error) {
 
 func (o EventRuleActionAllow) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	toSerialize["ruleset_id"] = o.RulesetId
+	if !IsNil(o.RuleId) {
+		toSerialize["rule_id"] = o.RuleId
+	}
+	if !IsNil(o.RuleExpression) {
+		toSerialize["rule_expression"] = o.RuleExpression
+	}
 	toSerialize["type"] = o.Type
 	if !IsNil(o.RequestHeaderModifications) {
 		toSerialize["request_header_modifications"] = o.RequestHeaderModifications
@@ -129,6 +231,7 @@ func (o *EventRuleActionAllow) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
+		"ruleset_id",
 		"type",
 	}
 
@@ -159,6 +262,9 @@ func (o *EventRuleActionAllow) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "ruleset_id")
+		delete(additionalProperties, "rule_id")
+		delete(additionalProperties, "rule_expression")
 		delete(additionalProperties, "type")
 		delete(additionalProperties, "request_header_modifications")
 		o.AdditionalProperties = additionalProperties
