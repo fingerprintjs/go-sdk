@@ -122,7 +122,7 @@ func TestSearchEvents(t *testing.T) {
 			assert.Equal(t, "5", query.Get("start"), "start")
 			assert.Equal(t, "10", query.Get("end"), "end")
 			assert.Equal(t, "testSdkVersion", query.Get("sdk_version"), "sdkVersion")
-			assert.Equal(t, "testSdkPlatform", query.Get("sdk_platform"), "sdkPlatform")
+			assert.Equal(t, string(fingerprint.SearchEventsSdkPlatformJs), query.Get("sdk_platform"), "sdkPlatform")
 			assert.Equal(t, []string{"env1", "env2"}, r.URL.Query()["environment"], "environment")
 			assert.Equal(t, "testProximityId", query.Get("proximity_id"), "proximityId")
 			assert.Equal(t, "10", query.Get("total_hits"), "totalHits")
