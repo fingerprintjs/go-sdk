@@ -1,5 +1,11 @@
 # Fingerprint Pro Server Go SDK
 
+## 8.0.0-test.4
+
+### Patch Changes
+
+- Add ruleset evaluation capability to GetEvent ([573f54e](https://github.com/fingerprintjs/go-sdk/commit/573f54e0d07837e4163cd9359d8056725704887d))
+
 ## 8.0.0-test.3
 
 ### Patch Changes
