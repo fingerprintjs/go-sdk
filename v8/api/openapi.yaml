@@ -224,7 +224,7 @@ paths:
             `good` - events where a good bot was detected.
             `bad` - events where a bad bot was detected.
             `none` - events where no bot was detected.
-          > Note: When using this parameter, only events with the `botd.bot` property set to a valid value are returned. Events without a `botd` Smart Signal result are left out of the response.
+          > Note: When using this parameter, only events with the `bot` property set to a valid value are returned. Events without a `bot` Smart Signal result are left out of the response.
         explode: true
         in: query
         name: bot
@@ -816,6 +816,7 @@ components:
       - visitor_found
       - visitor_id
     Tags:
+      additionalProperties: true
       description: A customer-provided value or an object that was sent with the identification
         request or updated later.
       type: object
@@ -2201,12 +2202,14 @@ components:
       example:
         suspect: true
         linked_id: linked_id
-        tags: "{}"
+        tags:
+          key: ""
       properties:
         linked_id:
           description: Linked Id value to assign to the existing event
           type: string
         tags:
+          additionalProperties: true
           description: A customer-provided value or an object that was sent with the
             identification request or updated later.
           type: object
@@ -2381,7 +2384,7 @@ components:
           `good` - events where a good bot was detected.
           `bad` - events where a bad bot was detected.
           `none` - events where no bot was detected.
-        > Note: When using this parameter, only events with the `botd.bot` property set to a valid value are returned. Events without a `botd` Smart Signal result are left out of the response.
+        > Note: When using this parameter, only events with the `bot` property set to a valid value are returned. Events without a `bot` Smart Signal result are left out of the response.
       enum:
       - all
       - good

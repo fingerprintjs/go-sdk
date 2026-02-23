@@ -413,7 +413,7 @@ func (r ApiSearchEventsRequest) VisitorId(visitorId string) ApiSearchEventsReque
 	return r
 }
 
-// Filter events by the Bot Detection result, specifically:   &#x60;all&#x60; - events where any kind of bot was detected.   &#x60;good&#x60; - events where a good bot was detected.   &#x60;bad&#x60; - events where a bad bot was detected.   &#x60;none&#x60; - events where no bot was detected. &gt; Note: When using this parameter, only events with the &#x60;botd.bot&#x60; property set to a valid value are returned. Events without a &#x60;botd&#x60; Smart Signal result are left out of the response.
+// Filter events by the Bot Detection result, specifically:   &#x60;all&#x60; - events where any kind of bot was detected.   &#x60;good&#x60; - events where a good bot was detected.   &#x60;bad&#x60; - events where a bad bot was detected.   &#x60;none&#x60; - events where no bot was detected. &gt; Note: When using this parameter, only events with the &#x60;bot&#x60; property set to a valid value are returned. Events without a &#x60;bot&#x60; Smart Signal result are left out of the response.
 func (r ApiSearchEventsRequest) Bot(bot SearchEventsBot) ApiSearchEventsRequest {
 	r.bot = &bot
 	return r
