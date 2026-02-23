@@ -61,9 +61,9 @@ func main() {
 	)
 
 	// Usually this data will come from your frontend app
-	eventId := "<EVENT_ID>"
-	// Get visits for given visitorId and requestId
-	event, httpRes, err := client.GetEvent(context.Background(), eventId)
+	eventID := "<EVENT_ID>"
+	// Get visits for given visitorID and requestID
+	event, httpRes, err := client.GetEvent(context.Background(), eventID)
 	fmt.Printf("%+v\n", httpRes)
 
 	if err != nil {
@@ -78,7 +78,7 @@ func main() {
 		}
 	}
 
-    fmt.Printf("Got response with visitorId: %s", event.Identification.VisitorId)
+    fmt.Printf("Got response with visitorID: %s", event.Identification.VisitorID)
 
 	// Access identification details
 	if event.Identification != nil {

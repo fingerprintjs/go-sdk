@@ -21,12 +21,12 @@ var _ MappedNullable = &Velocity{}
 // Velocity Sums key data points for a specific `visitor_id`, `ip_address` and `linked_id` at three distinct time intervals: 5 minutes, 1 hour, and 24 hours as follows:   - Number of distinct IP addresses associated to the visitor Id. - Number of distinct linked Ids associated with the visitor Id. - Number of distinct countries associated with the visitor Id. - Number of identification events associated with the visitor Id. - Number of identification events associated with the detected IP address. - Number of distinct IP addresses associated with the provided linked Id. - Number of distinct visitor Ids associated with the provided linked Id.  The `24h` interval of `distinct_ip`, `distinct_linked_id`, `distinct_country`, `distinct_ip_by_linked_id` and `distinct_visitor_id_by_linked_id` will be omitted  if the number of `events` for the visitor Id in the last 24 hours (`events.['24h']`) is higher than 20.000.  All will not necessarily be returned in a response, some may be omitted if the  associated event does not have the required data, such as a linked_id.
 type Velocity struct {
 	DistinctIp                  *VelocityData `json:"distinct_ip,omitempty"`
-	DistinctLinkedId            *VelocityData `json:"distinct_linked_id,omitempty"`
+	DistinctLinkedID            *VelocityData `json:"distinct_linked_id,omitempty"`
 	DistinctCountry             *VelocityData `json:"distinct_country,omitempty"`
 	Events                      *VelocityData `json:"events,omitempty"`
 	IpEvents                    *VelocityData `json:"ip_events,omitempty"`
-	DistinctIpByLinkedId        *VelocityData `json:"distinct_ip_by_linked_id,omitempty"`
-	DistinctVisitorIdByLinkedId *VelocityData `json:"distinct_visitor_id_by_linked_id,omitempty"`
+	DistinctIpByLinkedID        *VelocityData `json:"distinct_ip_by_linked_id,omitempty"`
+	DistinctVisitorIdByLinkedID *VelocityData `json:"distinct_visitor_id_by_linked_id,omitempty"`
 	AdditionalProperties        map[string]interface{}
 }
 
@@ -81,36 +81,36 @@ func (o *Velocity) SetDistinctIp(v VelocityData) {
 	o.DistinctIp = &v
 }
 
-// GetDistinctLinkedId returns the DistinctLinkedId field value if set, zero value otherwise.
-func (o *Velocity) GetDistinctLinkedId() VelocityData {
-	if o == nil || IsNil(o.DistinctLinkedId) {
+// GetDistinctLinkedID returns the DistinctLinkedID field value if set, zero value otherwise.
+func (o *Velocity) GetDistinctLinkedID() VelocityData {
+	if o == nil || IsNil(o.DistinctLinkedID) {
 		var ret VelocityData
 		return ret
 	}
-	return *o.DistinctLinkedId
+	return *o.DistinctLinkedID
 }
 
-// GetDistinctLinkedIdOk returns a tuple with the DistinctLinkedId field value if set, nil otherwise
+// GetDistinctLinkedIdOk returns a tuple with the DistinctLinkedID field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Velocity) GetDistinctLinkedIdOk() (*VelocityData, bool) {
-	if o == nil || IsNil(o.DistinctLinkedId) {
+	if o == nil || IsNil(o.DistinctLinkedID) {
 		return nil, false
 	}
-	return o.DistinctLinkedId, true
+	return o.DistinctLinkedID, true
 }
 
-// HasDistinctLinkedId returns a boolean if a field has been set.
-func (o *Velocity) HasDistinctLinkedId() bool {
-	if o != nil && !IsNil(o.DistinctLinkedId) {
+// HasDistinctLinkedID returns a boolean if a field has been set.
+func (o *Velocity) HasDistinctLinkedID() bool {
+	if o != nil && !IsNil(o.DistinctLinkedID) {
 		return true
 	}
 
 	return false
 }
 
-// SetDistinctLinkedId gets a reference to the given VelocityData and assigns it to the DistinctLinkedId field.
-func (o *Velocity) SetDistinctLinkedId(v VelocityData) {
-	o.DistinctLinkedId = &v
+// SetDistinctLinkedID gets a reference to the given VelocityData and assigns it to the DistinctLinkedID field.
+func (o *Velocity) SetDistinctLinkedID(v VelocityData) {
+	o.DistinctLinkedID = &v
 }
 
 // GetDistinctCountry returns the DistinctCountry field value if set, zero value otherwise.
@@ -209,68 +209,68 @@ func (o *Velocity) SetIpEvents(v VelocityData) {
 	o.IpEvents = &v
 }
 
-// GetDistinctIpByLinkedId returns the DistinctIpByLinkedId field value if set, zero value otherwise.
-func (o *Velocity) GetDistinctIpByLinkedId() VelocityData {
-	if o == nil || IsNil(o.DistinctIpByLinkedId) {
+// GetDistinctIpByLinkedID returns the DistinctIpByLinkedID field value if set, zero value otherwise.
+func (o *Velocity) GetDistinctIpByLinkedID() VelocityData {
+	if o == nil || IsNil(o.DistinctIpByLinkedID) {
 		var ret VelocityData
 		return ret
 	}
-	return *o.DistinctIpByLinkedId
+	return *o.DistinctIpByLinkedID
 }
 
-// GetDistinctIpByLinkedIdOk returns a tuple with the DistinctIpByLinkedId field value if set, nil otherwise
+// GetDistinctIpByLinkedIdOk returns a tuple with the DistinctIpByLinkedID field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Velocity) GetDistinctIpByLinkedIdOk() (*VelocityData, bool) {
-	if o == nil || IsNil(o.DistinctIpByLinkedId) {
+	if o == nil || IsNil(o.DistinctIpByLinkedID) {
 		return nil, false
 	}
-	return o.DistinctIpByLinkedId, true
+	return o.DistinctIpByLinkedID, true
 }
 
-// HasDistinctIpByLinkedId returns a boolean if a field has been set.
-func (o *Velocity) HasDistinctIpByLinkedId() bool {
-	if o != nil && !IsNil(o.DistinctIpByLinkedId) {
+// HasDistinctIpByLinkedID returns a boolean if a field has been set.
+func (o *Velocity) HasDistinctIpByLinkedID() bool {
+	if o != nil && !IsNil(o.DistinctIpByLinkedID) {
 		return true
 	}
 
 	return false
 }
 
-// SetDistinctIpByLinkedId gets a reference to the given VelocityData and assigns it to the DistinctIpByLinkedId field.
-func (o *Velocity) SetDistinctIpByLinkedId(v VelocityData) {
-	o.DistinctIpByLinkedId = &v
+// SetDistinctIpByLinkedID gets a reference to the given VelocityData and assigns it to the DistinctIpByLinkedID field.
+func (o *Velocity) SetDistinctIpByLinkedID(v VelocityData) {
+	o.DistinctIpByLinkedID = &v
 }
 
-// GetDistinctVisitorIdByLinkedId returns the DistinctVisitorIdByLinkedId field value if set, zero value otherwise.
-func (o *Velocity) GetDistinctVisitorIdByLinkedId() VelocityData {
-	if o == nil || IsNil(o.DistinctVisitorIdByLinkedId) {
+// GetDistinctVisitorIdByLinkedID returns the DistinctVisitorIdByLinkedID field value if set, zero value otherwise.
+func (o *Velocity) GetDistinctVisitorIdByLinkedID() VelocityData {
+	if o == nil || IsNil(o.DistinctVisitorIdByLinkedID) {
 		var ret VelocityData
 		return ret
 	}
-	return *o.DistinctVisitorIdByLinkedId
+	return *o.DistinctVisitorIdByLinkedID
 }
 
-// GetDistinctVisitorIdByLinkedIdOk returns a tuple with the DistinctVisitorIdByLinkedId field value if set, nil otherwise
+// GetDistinctVisitorIdByLinkedIdOk returns a tuple with the DistinctVisitorIdByLinkedID field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Velocity) GetDistinctVisitorIdByLinkedIdOk() (*VelocityData, bool) {
-	if o == nil || IsNil(o.DistinctVisitorIdByLinkedId) {
+	if o == nil || IsNil(o.DistinctVisitorIdByLinkedID) {
 		return nil, false
 	}
-	return o.DistinctVisitorIdByLinkedId, true
+	return o.DistinctVisitorIdByLinkedID, true
 }
 
-// HasDistinctVisitorIdByLinkedId returns a boolean if a field has been set.
-func (o *Velocity) HasDistinctVisitorIdByLinkedId() bool {
-	if o != nil && !IsNil(o.DistinctVisitorIdByLinkedId) {
+// HasDistinctVisitorIdByLinkedID returns a boolean if a field has been set.
+func (o *Velocity) HasDistinctVisitorIdByLinkedID() bool {
+	if o != nil && !IsNil(o.DistinctVisitorIdByLinkedID) {
 		return true
 	}
 
 	return false
 }
 
-// SetDistinctVisitorIdByLinkedId gets a reference to the given VelocityData and assigns it to the DistinctVisitorIdByLinkedId field.
-func (o *Velocity) SetDistinctVisitorIdByLinkedId(v VelocityData) {
-	o.DistinctVisitorIdByLinkedId = &v
+// SetDistinctVisitorIdByLinkedID gets a reference to the given VelocityData and assigns it to the DistinctVisitorIdByLinkedID field.
+func (o *Velocity) SetDistinctVisitorIdByLinkedID(v VelocityData) {
+	o.DistinctVisitorIdByLinkedID = &v
 }
 
 func (o Velocity) MarshalJSON() ([]byte, error) {
@@ -286,8 +286,8 @@ func (o Velocity) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.DistinctIp) {
 		toSerialize["distinct_ip"] = o.DistinctIp
 	}
-	if !IsNil(o.DistinctLinkedId) {
-		toSerialize["distinct_linked_id"] = o.DistinctLinkedId
+	if !IsNil(o.DistinctLinkedID) {
+		toSerialize["distinct_linked_id"] = o.DistinctLinkedID
 	}
 	if !IsNil(o.DistinctCountry) {
 		toSerialize["distinct_country"] = o.DistinctCountry
@@ -298,11 +298,11 @@ func (o Velocity) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.IpEvents) {
 		toSerialize["ip_events"] = o.IpEvents
 	}
-	if !IsNil(o.DistinctIpByLinkedId) {
-		toSerialize["distinct_ip_by_linked_id"] = o.DistinctIpByLinkedId
+	if !IsNil(o.DistinctIpByLinkedID) {
+		toSerialize["distinct_ip_by_linked_id"] = o.DistinctIpByLinkedID
 	}
-	if !IsNil(o.DistinctVisitorIdByLinkedId) {
-		toSerialize["distinct_visitor_id_by_linked_id"] = o.DistinctVisitorIdByLinkedId
+	if !IsNil(o.DistinctVisitorIdByLinkedID) {
+		toSerialize["distinct_visitor_id_by_linked_id"] = o.DistinctVisitorIdByLinkedID
 	}
 
 	for key, value := range o.AdditionalProperties {

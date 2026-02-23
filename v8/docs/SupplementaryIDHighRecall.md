@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**VisitorId** | **string** | String of 20 characters that uniquely identifies the visitor&#39;s browser or mobile device. | 
+**VisitorID** | **string** | String of 20 characters that uniquely identifies the visitor&#39;s browser or mobile device. | 
 **VisitorFound** | **bool** | Attribute represents if a visitor had been identified before. | 
 **Confidence** | Pointer to [**IdentificationConfidence**](IdentificationConfidence.md) |  | [optional] 
 **FirstSeenAt** | Pointer to **int64** | Unix epoch time milliseconds timestamp indicating the time at which this ID was first seen. example: &#x60;1758069706642&#x60; - Corresponding to Wed Sep 17 2025 00:41:46 GMT+0000  | [optional] 
@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 
 ### NewSupplementaryIDHighRecall
 
-`func NewSupplementaryIDHighRecall(visitorId string, visitorFound bool, ) *SupplementaryIDHighRecall`
+`func NewSupplementaryIDHighRecall(visitorID string, visitorFound bool, ) *SupplementaryIDHighRecall`
 
 NewSupplementaryIDHighRecall instantiates a new SupplementaryIDHighRecall object
 This constructor will assign default values to properties that have it defined,
@@ -29,24 +29,24 @@ NewSupplementaryIDHighRecallWithDefaults instantiates a new SupplementaryIDHighR
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetVisitorId
+### GetVisitorID
 
-`func (o *SupplementaryIDHighRecall) GetVisitorId() string`
+`func (o *SupplementaryIDHighRecall) GetVisitorID() string`
 
-GetVisitorId returns the VisitorId field if non-nil, zero value otherwise.
+GetVisitorID returns the VisitorID field if non-nil, zero value otherwise.
 
 ### GetVisitorIdOk
 
 `func (o *SupplementaryIDHighRecall) GetVisitorIdOk() (*string, bool)`
 
-GetVisitorIdOk returns a tuple with the VisitorId field if it's non-nil, zero value otherwise
+GetVisitorIdOk returns a tuple with the VisitorID field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetVisitorId
+### SetVisitorID
 
-`func (o *SupplementaryIDHighRecall) SetVisitorId(v string)`
+`func (o *SupplementaryIDHighRecall) SetVisitorID(v string)`
 
-SetVisitorId sets VisitorId field to given value.
+SetVisitorID sets VisitorID field to given value.
 
 
 ### GetVisitorFound

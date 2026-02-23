@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 ## DeleteVisitorData
 
-> DeleteVisitorData(ctx, visitorId).Execute()
+> DeleteVisitorData(ctx, visitorID).Execute()
 
 Delete data by visitor ID
 
@@ -32,11 +32,11 @@ import (
 )
 
 func main() {
-	visitorId := "visitorId_example" // string | The [visitor ID](https://dev.fingerprint.com/reference/get-function#visitorid) you want to delete.
+	visitorID := "visitorId_example" // string | The [visitor ID](https://dev.fingerprint.com/reference/get-function#visitorid) you want to delete.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.FingerprintAPI.DeleteVisitorData(context.Background(), visitorId).Execute()
+	r, err := apiClient.FingerprintAPI.DeleteVisitorData(context.Background(), visitorID).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `FingerprintAPI.DeleteVisitorData``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -50,7 +50,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**visitorId** | **string** | The [visitor ID](https://dev.fingerprint.com/reference/get-function#visitorid) you want to delete. | 
+**visitorID** | **string** | The [visitor ID](https://dev.fingerprint.com/reference/get-function#visitorid) you want to delete. | 
 
 ### Other Parameters
 
@@ -81,7 +81,7 @@ Name | Type | Description  | Notes
 
 ## GetEvent
 
-> Event GetEvent(ctx, eventId).RulesetId(rulesetId).Execute()
+> Event GetEvent(ctx, eventID).RulesetID(rulesetID).Execute()
 
 Get an event by event ID
 
@@ -100,12 +100,12 @@ import (
 )
 
 func main() {
-	eventId := "eventId_example" // string | The unique [identifier](https://dev.fingerprint.com/reference/get-function#requestid) of each identification request (`requestId` can be used in its place).
-	rulesetId := "rulesetId_example" // string | The ID of the ruleset to evaluate against the event, producing the action to take for this event. The resulting action is returned in the `rule_action` attribute of the response.  (optional)
+	eventID := "eventId_example" // string | The unique [identifier](https://dev.fingerprint.com/reference/get-function#requestid) of each identification request (`requestID` can be used in its place).
+	rulesetID := "rulesetId_example" // string | The ID of the ruleset to evaluate against the event, producing the action to take for this event. The resulting action is returned in the `rule_action` attribute of the response.  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.FingerprintAPI.GetEvent(context.Background(), eventId).RulesetId(rulesetId).Execute()
+	resp, r, err := apiClient.FingerprintAPI.GetEvent(context.Background(), eventID).RulesetID(rulesetID).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `FingerprintAPI.GetEvent``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -121,7 +121,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**eventId** | **string** | The unique [identifier](https://dev.fingerprint.com/reference/get-function#requestid) of each identification request (&#x60;requestId&#x60; can be used in its place). | 
+**eventID** | **string** | The unique [identifier](https://dev.fingerprint.com/reference/get-function#requestid) of each identification request (&#x60;requestID&#x60; can be used in its place). | 
 
 ### Other Parameters
 
@@ -131,7 +131,7 @@ Other parameters are passed through a pointer to a apiGetEventRequest struct via
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **rulesetId** | **string** | The ID of the ruleset to evaluate against the event, producing the action to take for this event. The resulting action is returned in the &#x60;rule_action&#x60; attribute of the response.  | 
+ **rulesetID** | **string** | The ID of the ruleset to evaluate against the event, producing the action to take for this event. The resulting action is returned in the &#x60;rule_action&#x60; attribute of the response.  | 
 
 ### Return type
 
@@ -153,7 +153,7 @@ Name | Type | Description  | Notes
 
 ## SearchEvents
 
-> EventSearch SearchEvents(ctx).Limit(limit).PaginationKey(paginationKey).VisitorId(visitorId).Bot(bot).IpAddress(ipAddress).Asn(asn).LinkedId(linkedId).Url(url).BundleId(bundleId).PackageName(packageName).Origin(origin).Start(start).End(end).Reverse(reverse).Suspect(suspect).Vpn(vpn).VirtualMachine(virtualMachine).Tampering(tampering).AntiDetectBrowser(antiDetectBrowser).Incognito(incognito).PrivacySettings(privacySettings).Jailbroken(jailbroken).Frida(frida).FactoryReset(factoryReset).ClonedApp(clonedApp).Emulator(emulator).RootApps(rootApps).VpnConfidence(vpnConfidence).MinSuspectScore(minSuspectScore).DeveloperTools(developerTools).LocationSpoofing(locationSpoofing).MitmAttack(mitmAttack).Proxy(proxy).SdkVersion(sdkVersion).SdkPlatform(sdkPlatform).Environment(environment).ProximityId(proximityId).TotalHits(totalHits).TorNode(torNode).Execute()
+> EventSearch SearchEvents(ctx).Limit(limit).PaginationKey(paginationKey).VisitorID(visitorID).Bot(bot).IpAddress(ipAddress).Asn(asn).LinkedID(linkedID).Url(url).BundleID(bundleID).PackageName(packageName).Origin(origin).Start(start).End(end).Reverse(reverse).Suspect(suspect).Vpn(vpn).VirtualMachine(virtualMachine).Tampering(tampering).AntiDetectBrowser(antiDetectBrowser).Incognito(incognito).PrivacySettings(privacySettings).Jailbroken(jailbroken).Frida(frida).FactoryReset(factoryReset).ClonedApp(clonedApp).Emulator(emulator).RootApps(rootApps).VpnConfidence(vpnConfidence).MinSuspectScore(minSuspectScore).DeveloperTools(developerTools).LocationSpoofing(locationSpoofing).MitmAttack(mitmAttack).Proxy(proxy).SdkVersion(sdkVersion).SdkPlatform(sdkPlatform).Environment(environment).ProximityID(proximityID).TotalHits(totalHits).TorNode(torNode).Execute()
 
 Search events
 
@@ -174,13 +174,13 @@ import (
 func main() {
 	limit := int32(10) // int32 | Limit the number of events returned.  (optional) (default to 10)
 	paginationKey := "paginationKey_example" // string | Use `pagination_key` to get the next page of results.  When more results are available (e.g., you requested up to 100 results for your query using `limit`, but there are more than 100 events total matching your request), the `pagination_key` field is added to the response. The pagination key is an arbitrary string that should not be interpreted in any way and should be passed as-is. In the following request, use that value in the `pagination_key` parameter to get the next page of results:  1. First request, returning most recent 200 events: `GET api-base-url/events?limit=100` 2. Use `response.pagination_key` to get the next page of results: `GET api-base-url/events?limit=100&pagination_key=1740815825085`  (optional)
-	visitorId := "visitorId_example" // string | Unique [visitor identifier](https://dev.fingerprint.com/reference/get-function#visitorid) issued by Fingerprint Identification and all active Smart Signals. Filter for events matching this `visitor_id`.  (optional)
+	visitorID := "visitorId_example" // string | Unique [visitor identifier](https://dev.fingerprint.com/reference/get-function#visitorid) issued by Fingerprint Identification and all active Smart Signals. Filter for events matching this `visitor_id`.  (optional)
 	bot := openapiclient.SearchEventsBot("all") // SearchEventsBot | Filter events by the Bot Detection result, specifically:   `all` - events where any kind of bot was detected.   `good` - events where a good bot was detected.   `bad` - events where a bad bot was detected.   `none` - events where no bot was detected. > Note: When using this parameter, only events with the `bot` property set to a valid value are returned. Events without a `bot` Smart Signal result are left out of the response.  (optional)
 	ipAddress := "ipAddress_example" // string | Filter events by IP address or IP range (if CIDR notation is used). If CIDR notation is not used, a /32 for IPv4 or /128 for IPv6 is assumed. Examples of range based queries: 10.0.0.0/24, 192.168.0.1/32  (optional)
 	asn := "asn_example" // string | Filter events by the ASN associated with the event's IP address. This corresponds to the `ip_info.(v4|v6).asn` property in the response.  (optional)
-	linkedId := "linkedId_example" // string | Filter events by your custom identifier.  You can use [linked Ids](https://dev.fingerprint.com/reference/get-function#linkedid) to associate identification requests with your own identifier, for example, session Id, purchase Id, or transaction Id. You can then use this `linked_id` parameter to retrieve all events associated with your custom identifier.  (optional)
+	linkedID := "linkedId_example" // string | Filter events by your custom identifier.  You can use [linked Ids](https://dev.fingerprint.com/reference/get-function#linkedid) to associate identification requests with your own identifier, for example, session Id, purchase Id, or transaction Id. You can then use this `linked_id` parameter to retrieve all events associated with your custom identifier.  (optional)
 	url := "url_example" // string | Filter events by the URL (`url` property) associated with the event.  (optional)
-	bundleId := "bundleId_example" // string | Filter events by the Bundle ID (iOS) associated with the event.  (optional)
+	bundleID := "bundleId_example" // string | Filter events by the Bundle ID (iOS) associated with the event.  (optional)
 	packageName := "packageName_example" // string | Filter events by the Package Name (Android) associated with the event.  (optional)
 	origin := "origin_example" // string | Filter events by the origin field of the event. This is applicable to web events only (e.g., https://example.com)  (optional)
 	start := int64(789) // int64 | Filter events with a timestamp greater than the start time, in Unix time (milliseconds).  (optional)
@@ -208,13 +208,13 @@ func main() {
 	sdkVersion := "sdkVersion_example" // string | Filter events by a specific SDK version associated with the identification event (`sdk.version` property). Example: `3.11.14`  (optional)
 	sdkPlatform := openapiclient.SearchEventsSdkPlatform("js") // SearchEventsSdkPlatform | Filter events by the SDK Platform associated with the identification event (`sdk.platform` property) . `js` - Javascript agent (Web). `ios` - Apple iOS based devices. `android` - Android based devices.  (optional)
 	environment := []string{"Inner_example"} // []string | Filter for events by providing one or more environment IDs (`environment_id` property).  (optional)
-	proximityId := "proximityId_example" // string | Filter events by the most precise Proximity ID provided by default. > Note: When using this parameter, only events with the `proximity.id` property matching the provided ID are returned. Events without a `proximity` result are left out of the response.  (optional)
+	proximityID := "proximityId_example" // string | Filter events by the most precise Proximity ID provided by default. > Note: When using this parameter, only events with the `proximity.id` property matching the provided ID are returned. Events without a `proximity` result are left out of the response.  (optional)
 	totalHits := int64(789) // int64 | When set, the response will include a `total_hits` property with a count of total query matches across all pages, up to the specified limit.  (optional)
 	torNode := true // bool | Filter events by Tor Node detection result. > Note: When using this parameter, only events with the `tor_node` property set to `true` or `false` are returned. Events without a `tor_node` detection result are left out of the response.  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.FingerprintAPI.SearchEvents(context.Background()).Limit(limit).PaginationKey(paginationKey).VisitorId(visitorId).Bot(bot).IpAddress(ipAddress).Asn(asn).LinkedId(linkedId).Url(url).BundleId(bundleId).PackageName(packageName).Origin(origin).Start(start).End(end).Reverse(reverse).Suspect(suspect).Vpn(vpn).VirtualMachine(virtualMachine).Tampering(tampering).AntiDetectBrowser(antiDetectBrowser).Incognito(incognito).PrivacySettings(privacySettings).Jailbroken(jailbroken).Frida(frida).FactoryReset(factoryReset).ClonedApp(clonedApp).Emulator(emulator).RootApps(rootApps).VpnConfidence(vpnConfidence).MinSuspectScore(minSuspectScore).DeveloperTools(developerTools).LocationSpoofing(locationSpoofing).MitmAttack(mitmAttack).Proxy(proxy).SdkVersion(sdkVersion).SdkPlatform(sdkPlatform).Environment(environment).ProximityId(proximityId).TotalHits(totalHits).TorNode(torNode).Execute()
+	resp, r, err := apiClient.FingerprintAPI.SearchEvents(context.Background()).Limit(limit).PaginationKey(paginationKey).VisitorID(visitorID).Bot(bot).IpAddress(ipAddress).Asn(asn).LinkedID(linkedID).Url(url).BundleID(bundleID).PackageName(packageName).Origin(origin).Start(start).End(end).Reverse(reverse).Suspect(suspect).Vpn(vpn).VirtualMachine(virtualMachine).Tampering(tampering).AntiDetectBrowser(antiDetectBrowser).Incognito(incognito).PrivacySettings(privacySettings).Jailbroken(jailbroken).Frida(frida).FactoryReset(factoryReset).ClonedApp(clonedApp).Emulator(emulator).RootApps(rootApps).VpnConfidence(vpnConfidence).MinSuspectScore(minSuspectScore).DeveloperTools(developerTools).LocationSpoofing(locationSpoofing).MitmAttack(mitmAttack).Proxy(proxy).SdkVersion(sdkVersion).SdkPlatform(sdkPlatform).Environment(environment).ProximityID(proximityID).TotalHits(totalHits).TorNode(torNode).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `FingerprintAPI.SearchEvents``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -237,13 +237,13 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **limit** | **int32** | Limit the number of events returned.  | [default to 10]
  **paginationKey** | **string** | Use &#x60;pagination_key&#x60; to get the next page of results.  When more results are available (e.g., you requested up to 100 results for your query using &#x60;limit&#x60;, but there are more than 100 events total matching your request), the &#x60;pagination_key&#x60; field is added to the response. The pagination key is an arbitrary string that should not be interpreted in any way and should be passed as-is. In the following request, use that value in the &#x60;pagination_key&#x60; parameter to get the next page of results:  1. First request, returning most recent 200 events: &#x60;GET api-base-url/events?limit&#x3D;100&#x60; 2. Use &#x60;response.pagination_key&#x60; to get the next page of results: &#x60;GET api-base-url/events?limit&#x3D;100&amp;pagination_key&#x3D;1740815825085&#x60;  | 
- **visitorId** | **string** | Unique [visitor identifier](https://dev.fingerprint.com/reference/get-function#visitorid) issued by Fingerprint Identification and all active Smart Signals. Filter for events matching this &#x60;visitor_id&#x60;.  | 
+ **visitorID** | **string** | Unique [visitor identifier](https://dev.fingerprint.com/reference/get-function#visitorid) issued by Fingerprint Identification and all active Smart Signals. Filter for events matching this &#x60;visitor_id&#x60;.  | 
  **bot** | [**SearchEventsBot**](SearchEventsBot.md) | Filter events by the Bot Detection result, specifically:   &#x60;all&#x60; - events where any kind of bot was detected.   &#x60;good&#x60; - events where a good bot was detected.   &#x60;bad&#x60; - events where a bad bot was detected.   &#x60;none&#x60; - events where no bot was detected. &gt; Note: When using this parameter, only events with the &#x60;bot&#x60; property set to a valid value are returned. Events without a &#x60;bot&#x60; Smart Signal result are left out of the response.  | 
  **ipAddress** | **string** | Filter events by IP address or IP range (if CIDR notation is used). If CIDR notation is not used, a /32 for IPv4 or /128 for IPv6 is assumed. Examples of range based queries: 10.0.0.0/24, 192.168.0.1/32  | 
  **asn** | **string** | Filter events by the ASN associated with the event&#39;s IP address. This corresponds to the &#x60;ip_info.(v4|v6).asn&#x60; property in the response.  | 
- **linkedId** | **string** | Filter events by your custom identifier.  You can use [linked Ids](https://dev.fingerprint.com/reference/get-function#linkedid) to associate identification requests with your own identifier, for example, session Id, purchase Id, or transaction Id. You can then use this &#x60;linked_id&#x60; parameter to retrieve all events associated with your custom identifier.  | 
+ **linkedID** | **string** | Filter events by your custom identifier.  You can use [linked Ids](https://dev.fingerprint.com/reference/get-function#linkedid) to associate identification requests with your own identifier, for example, session Id, purchase Id, or transaction Id. You can then use this &#x60;linked_id&#x60; parameter to retrieve all events associated with your custom identifier.  | 
  **url** | **string** | Filter events by the URL (&#x60;url&#x60; property) associated with the event.  | 
- **bundleId** | **string** | Filter events by the Bundle ID (iOS) associated with the event.  | 
+ **bundleID** | **string** | Filter events by the Bundle ID (iOS) associated with the event.  | 
  **packageName** | **string** | Filter events by the Package Name (Android) associated with the event.  | 
  **origin** | **string** | Filter events by the origin field of the event. This is applicable to web events only (e.g., https://example.com)  | 
  **start** | **int64** | Filter events with a timestamp greater than the start time, in Unix time (milliseconds).  | 
@@ -271,7 +271,7 @@ Name | Type | Description  | Notes
  **sdkVersion** | **string** | Filter events by a specific SDK version associated with the identification event (&#x60;sdk.version&#x60; property). Example: &#x60;3.11.14&#x60;  | 
  **sdkPlatform** | [**SearchEventsSdkPlatform**](SearchEventsSdkPlatform.md) | Filter events by the SDK Platform associated with the identification event (&#x60;sdk.platform&#x60; property) . &#x60;js&#x60; - Javascript agent (Web). &#x60;ios&#x60; - Apple iOS based devices. &#x60;android&#x60; - Android based devices.  | 
  **environment** | **[]string** | Filter for events by providing one or more environment IDs (&#x60;environment_id&#x60; property).  | 
- **proximityId** | **string** | Filter events by the most precise Proximity ID provided by default. &gt; Note: When using this parameter, only events with the &#x60;proximity.id&#x60; property matching the provided ID are returned. Events without a &#x60;proximity&#x60; result are left out of the response.  | 
+ **proximityID** | **string** | Filter events by the most precise Proximity ID provided by default. &gt; Note: When using this parameter, only events with the &#x60;proximity.id&#x60; property matching the provided ID are returned. Events without a &#x60;proximity&#x60; result are left out of the response.  | 
  **totalHits** | **int64** | When set, the response will include a &#x60;total_hits&#x60; property with a count of total query matches across all pages, up to the specified limit.  | 
  **torNode** | **bool** | Filter events by Tor Node detection result. &gt; Note: When using this parameter, only events with the &#x60;tor_node&#x60; property set to &#x60;true&#x60; or &#x60;false&#x60; are returned. Events without a &#x60;tor_node&#x60; detection result are left out of the response.  | 
 
@@ -295,7 +295,7 @@ Name | Type | Description  | Notes
 
 ## UpdateEvent
 
-> UpdateEvent(ctx, eventId).EventUpdate(eventUpdate).Execute()
+> UpdateEvent(ctx, eventID).EventUpdate(eventUpdate).Execute()
 
 Update an event
 
@@ -314,12 +314,12 @@ import (
 )
 
 func main() {
-	eventId := "eventId_example" // string | The unique event [identifier](https://dev.fingerprint.com/reference/get-function#event_id).
+	eventID := "eventId_example" // string | The unique event [identifier](https://dev.fingerprint.com/reference/get-function#event_id).
 	eventUpdate := *openapiclient.NewEventUpdate() // EventUpdate | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.FingerprintAPI.UpdateEvent(context.Background(), eventId).EventUpdate(eventUpdate).Execute()
+	r, err := apiClient.FingerprintAPI.UpdateEvent(context.Background(), eventID).EventUpdate(eventUpdate).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `FingerprintAPI.UpdateEvent``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -333,7 +333,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**eventId** | **string** | The unique event [identifier](https://dev.fingerprint.com/reference/get-function#event_id). | 
+**eventID** | **string** | The unique event [identifier](https://dev.fingerprint.com/reference/get-function#event_id). | 
 
 ### Other Parameters
 

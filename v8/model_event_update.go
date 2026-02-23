@@ -21,7 +21,7 @@ var _ MappedNullable = &EventUpdate{}
 // EventUpdate struct for EventUpdate
 type EventUpdate struct {
 	// Linked Id value to assign to the existing event
-	LinkedId *string `json:"linked_id,omitempty"`
+	LinkedID *string `json:"linked_id,omitempty"`
 	// A customer-provided value or an object that was sent with the identification request or updated later.
 	Tags map[string]interface{} `json:"tags,omitempty"`
 	// Suspect flag indicating observed suspicious or fraudulent event
@@ -48,36 +48,36 @@ func NewEventUpdateWithDefaults() *EventUpdate {
 	return &this
 }
 
-// GetLinkedId returns the LinkedId field value if set, zero value otherwise.
-func (o *EventUpdate) GetLinkedId() string {
-	if o == nil || IsNil(o.LinkedId) {
+// GetLinkedID returns the LinkedID field value if set, zero value otherwise.
+func (o *EventUpdate) GetLinkedID() string {
+	if o == nil || IsNil(o.LinkedID) {
 		var ret string
 		return ret
 	}
-	return *o.LinkedId
+	return *o.LinkedID
 }
 
-// GetLinkedIdOk returns a tuple with the LinkedId field value if set, nil otherwise
+// GetLinkedIdOk returns a tuple with the LinkedID field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EventUpdate) GetLinkedIdOk() (*string, bool) {
-	if o == nil || IsNil(o.LinkedId) {
+	if o == nil || IsNil(o.LinkedID) {
 		return nil, false
 	}
-	return o.LinkedId, true
+	return o.LinkedID, true
 }
 
-// HasLinkedId returns a boolean if a field has been set.
-func (o *EventUpdate) HasLinkedId() bool {
-	if o != nil && !IsNil(o.LinkedId) {
+// HasLinkedID returns a boolean if a field has been set.
+func (o *EventUpdate) HasLinkedID() bool {
+	if o != nil && !IsNil(o.LinkedID) {
 		return true
 	}
 
 	return false
 }
 
-// SetLinkedId gets a reference to the given string and assigns it to the LinkedId field.
-func (o *EventUpdate) SetLinkedId(v string) {
-	o.LinkedId = &v
+// SetLinkedID gets a reference to the given string and assigns it to the LinkedID field.
+func (o *EventUpdate) SetLinkedID(v string) {
+	o.LinkedID = &v
 }
 
 // GetTags returns the Tags field value if set, zero value otherwise.
@@ -154,8 +154,8 @@ func (o EventUpdate) MarshalJSON() ([]byte, error) {
 
 func (o EventUpdate) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.LinkedId) {
-		toSerialize["linked_id"] = o.LinkedId
+	if !IsNil(o.LinkedID) {
+		toSerialize["linked_id"] = o.LinkedID
 	}
 	if !IsNil(o.Tags) {
 		toSerialize["tags"] = o.Tags

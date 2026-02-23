@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**EventId** | **string** | Unique identifier of the user&#39;s request. The first portion of the event_id is a unix epoch milliseconds timestamp For example: &#x60;1758130560902.8tRtrH&#x60;  | 
+**EventID** | **string** | Unique identifier of the user&#39;s request. The first portion of the event_id is a unix epoch milliseconds timestamp For example: &#x60;1758130560902.8tRtrH&#x60;  | 
 **Timestamp** | **int64** | Timestamp of the event with millisecond precision in Unix time. | 
-**LinkedId** | Pointer to **string** | A customer-provided id that was sent with the request. | [optional] 
-**EnvironmentId** | Pointer to **string** | Environment Id of the event. For example: &#x60;ae_47abaca3db2c7c43&#x60;  | [optional] 
+**LinkedID** | Pointer to **string** | A customer-provided id that was sent with the request. | [optional] 
+**EnvironmentID** | Pointer to **string** | Environment Id of the event. For example: &#x60;ae_47abaca3db2c7c43&#x60;  | [optional] 
 **Suspect** | Pointer to **bool** | Field is &#x60;true&#x60; if you have previously set the &#x60;suspect&#x60; flag for this event using the [Server API Update event endpoint](https://dev.fingerprint.com/reference/updateevent). | [optional] 
 **Sdk** | Pointer to [**SDK**](SDK.md) |  | [optional] 
 **Replayed** | Pointer to **bool** | &#x60;true&#x60; if we determined that this payload was replayed, &#x60;false&#x60; otherwise.  | [optional] 
@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 **SupplementaryIdHighRecall** | Pointer to [**SupplementaryIDHighRecall**](SupplementaryIDHighRecall.md) |  | [optional] 
 **Tags** | Pointer to **map[string]interface{}** | A customer-provided value or an object that was sent with the identification request or updated later. | [optional] 
 **Url** | Pointer to **string** | Page URL from which the request was sent. For example &#x60;https://example.com/&#x60;  | [optional] 
-**BundleId** | Pointer to **string** | Bundle Id of the iOS application integrated with the Fingerprint SDK for the event. For example: &#x60;com.foo.app&#x60;  | [optional] 
+**BundleID** | Pointer to **string** | Bundle Id of the iOS application integrated with the Fingerprint SDK for the event. For example: &#x60;com.foo.app&#x60;  | [optional] 
 **PackageName** | Pointer to **string** | Package name of the Android application integrated with the Fingerprint SDK for the event. For example: &#x60;com.foo.app&#x60;  | [optional] 
 **IpAddress** | Pointer to **string** | IP address of the requesting browser or bot. | [optional] 
 **UserAgent** | Pointer to **string** | User Agent of the client, for example: &#x60;Mozilla/5.0 (Windows NT 6.1; Win64; x64) ....&#x60;  | [optional] 
@@ -59,7 +59,7 @@ Name | Type | Description | Notes
 
 ### NewEvent
 
-`func NewEvent(eventId string, timestamp int64, ) *Event`
+`func NewEvent(eventID string, timestamp int64, ) *Event`
 
 NewEvent instantiates a new Event object
 This constructor will assign default values to properties that have it defined,
@@ -74,24 +74,24 @@ NewEventWithDefaults instantiates a new Event object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetEventId
+### GetEventID
 
-`func (o *Event) GetEventId() string`
+`func (o *Event) GetEventID() string`
 
-GetEventId returns the EventId field if non-nil, zero value otherwise.
+GetEventID returns the EventID field if non-nil, zero value otherwise.
 
 ### GetEventIdOk
 
 `func (o *Event) GetEventIdOk() (*string, bool)`
 
-GetEventIdOk returns a tuple with the EventId field if it's non-nil, zero value otherwise
+GetEventIdOk returns a tuple with the EventID field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetEventId
+### SetEventID
 
-`func (o *Event) SetEventId(v string)`
+`func (o *Event) SetEventID(v string)`
 
-SetEventId sets EventId field to given value.
+SetEventID sets EventID field to given value.
 
 
 ### GetTimestamp
@@ -114,55 +114,55 @@ and a boolean to check if the value has been set.
 SetTimestamp sets Timestamp field to given value.
 
 
-### GetLinkedId
+### GetLinkedID
 
-`func (o *Event) GetLinkedId() string`
+`func (o *Event) GetLinkedID() string`
 
-GetLinkedId returns the LinkedId field if non-nil, zero value otherwise.
+GetLinkedID returns the LinkedID field if non-nil, zero value otherwise.
 
 ### GetLinkedIdOk
 
 `func (o *Event) GetLinkedIdOk() (*string, bool)`
 
-GetLinkedIdOk returns a tuple with the LinkedId field if it's non-nil, zero value otherwise
+GetLinkedIdOk returns a tuple with the LinkedID field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetLinkedId
+### SetLinkedID
 
-`func (o *Event) SetLinkedId(v string)`
+`func (o *Event) SetLinkedID(v string)`
 
-SetLinkedId sets LinkedId field to given value.
+SetLinkedID sets LinkedID field to given value.
 
-### HasLinkedId
+### HasLinkedID
 
-`func (o *Event) HasLinkedId() bool`
+`func (o *Event) HasLinkedID() bool`
 
-HasLinkedId returns a boolean if a field has been set.
+HasLinkedID returns a boolean if a field has been set.
 
-### GetEnvironmentId
+### GetEnvironmentID
 
-`func (o *Event) GetEnvironmentId() string`
+`func (o *Event) GetEnvironmentID() string`
 
-GetEnvironmentId returns the EnvironmentId field if non-nil, zero value otherwise.
+GetEnvironmentID returns the EnvironmentID field if non-nil, zero value otherwise.
 
 ### GetEnvironmentIdOk
 
 `func (o *Event) GetEnvironmentIdOk() (*string, bool)`
 
-GetEnvironmentIdOk returns a tuple with the EnvironmentId field if it's non-nil, zero value otherwise
+GetEnvironmentIdOk returns a tuple with the EnvironmentID field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetEnvironmentId
+### SetEnvironmentID
 
-`func (o *Event) SetEnvironmentId(v string)`
+`func (o *Event) SetEnvironmentID(v string)`
 
-SetEnvironmentId sets EnvironmentId field to given value.
+SetEnvironmentID sets EnvironmentID field to given value.
 
-### HasEnvironmentId
+### HasEnvironmentID
 
-`func (o *Event) HasEnvironmentId() bool`
+`func (o *Event) HasEnvironmentID() bool`
 
-HasEnvironmentId returns a boolean if a field has been set.
+HasEnvironmentID returns a boolean if a field has been set.
 
 ### GetSuspect
 
@@ -339,30 +339,30 @@ SetUrl sets Url field to given value.
 
 HasUrl returns a boolean if a field has been set.
 
-### GetBundleId
+### GetBundleID
 
-`func (o *Event) GetBundleId() string`
+`func (o *Event) GetBundleID() string`
 
-GetBundleId returns the BundleId field if non-nil, zero value otherwise.
+GetBundleID returns the BundleID field if non-nil, zero value otherwise.
 
 ### GetBundleIdOk
 
 `func (o *Event) GetBundleIdOk() (*string, bool)`
 
-GetBundleIdOk returns a tuple with the BundleId field if it's non-nil, zero value otherwise
+GetBundleIdOk returns a tuple with the BundleID field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetBundleId
+### SetBundleID
 
-`func (o *Event) SetBundleId(v string)`
+`func (o *Event) SetBundleID(v string)`
 
-SetBundleId sets BundleId field to given value.
+SetBundleID sets BundleID field to given value.
 
-### HasBundleId
+### HasBundleID
 
-`func (o *Event) HasBundleId() bool`
+`func (o *Event) HasBundleID() bool`
 
-HasBundleId returns a boolean if a field has been set.
+HasBundleID returns a boolean if a field has been set.
 
 ### GetPackageName
 

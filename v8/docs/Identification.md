@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**VisitorId** | **string** | String of 20 characters that uniquely identifies the visitor&#39;s browser or mobile device. | 
+**VisitorID** | **string** | String of 20 characters that uniquely identifies the visitor&#39;s browser or mobile device. | 
 **Confidence** | Pointer to [**IdentificationConfidence**](IdentificationConfidence.md) |  | [optional] 
 **VisitorFound** | **bool** | Attribute represents if a visitor had been identified before. | 
 **FirstSeenAt** | Pointer to **int64** | Unix epoch time milliseconds timestamp indicating the time at which this visitor ID was first seen. example: &#x60;1758069706642&#x60; - Corresponding to Wed Sep 17 2025 00:41:46 GMT+0000  | [optional] 
@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 
 ### NewIdentification
 
-`func NewIdentification(visitorId string, visitorFound bool, ) *Identification`
+`func NewIdentification(visitorID string, visitorFound bool, ) *Identification`
 
 NewIdentification instantiates a new Identification object
 This constructor will assign default values to properties that have it defined,
@@ -29,24 +29,24 @@ NewIdentificationWithDefaults instantiates a new Identification object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetVisitorId
+### GetVisitorID
 
-`func (o *Identification) GetVisitorId() string`
+`func (o *Identification) GetVisitorID() string`
 
-GetVisitorId returns the VisitorId field if non-nil, zero value otherwise.
+GetVisitorID returns the VisitorID field if non-nil, zero value otherwise.
 
 ### GetVisitorIdOk
 
 `func (o *Identification) GetVisitorIdOk() (*string, bool)`
 
-GetVisitorIdOk returns a tuple with the VisitorId field if it's non-nil, zero value otherwise
+GetVisitorIdOk returns a tuple with the VisitorID field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetVisitorId
+### SetVisitorID
 
-`func (o *Identification) SetVisitorId(v string)`
+`func (o *Identification) SetVisitorID(v string)`
 
-SetVisitorId sets VisitorId field to given value.
+SetVisitorID sets VisitorID field to given value.
 
 
 ### GetConfidence

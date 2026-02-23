@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**LinkedId** | Pointer to **string** | Linked Id value to assign to the existing event | [optional] 
+**LinkedID** | Pointer to **string** | Linked Id value to assign to the existing event | [optional] 
 **Tags** | Pointer to **map[string]interface{}** | A customer-provided value or an object that was sent with the identification request or updated later. | [optional] 
 **Suspect** | Pointer to **bool** | Suspect flag indicating observed suspicious or fraudulent event | [optional] 
 
@@ -27,30 +27,30 @@ NewEventUpdateWithDefaults instantiates a new EventUpdate object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetLinkedId
+### GetLinkedID
 
-`func (o *EventUpdate) GetLinkedId() string`
+`func (o *EventUpdate) GetLinkedID() string`
 
-GetLinkedId returns the LinkedId field if non-nil, zero value otherwise.
+GetLinkedID returns the LinkedID field if non-nil, zero value otherwise.
 
 ### GetLinkedIdOk
 
 `func (o *EventUpdate) GetLinkedIdOk() (*string, bool)`
 
-GetLinkedIdOk returns a tuple with the LinkedId field if it's non-nil, zero value otherwise
+GetLinkedIdOk returns a tuple with the LinkedID field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetLinkedId
+### SetLinkedID
 
-`func (o *EventUpdate) SetLinkedId(v string)`
+`func (o *EventUpdate) SetLinkedID(v string)`
 
-SetLinkedId sets LinkedId field to given value.
+SetLinkedID sets LinkedID field to given value.
 
-### HasLinkedId
+### HasLinkedID
 
-`func (o *EventUpdate) HasLinkedId() bool`
+`func (o *EventUpdate) HasLinkedID() bool`
 
-HasLinkedId returns a boolean if a field has been set.
+HasLinkedID returns a boolean if a field has been set.
 
 ### GetTags
 

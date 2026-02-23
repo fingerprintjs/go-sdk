@@ -22,13 +22,13 @@ var _ MappedNullable = &Event{}
 // Event Contains results from Fingerprint Identification and all active Smart Signals.
 type Event struct {
 	// Unique identifier of the user's request. The first portion of the event_id is a unix epoch milliseconds timestamp For example: `1758130560902.8tRtrH`
-	EventId string `json:"event_id"`
+	EventID string `json:"event_id"`
 	// Timestamp of the event with millisecond precision in Unix time.
 	Timestamp int64 `json:"timestamp"`
 	// A customer-provided id that was sent with the request.
-	LinkedId *string `json:"linked_id,omitempty"`
+	LinkedID *string `json:"linked_id,omitempty"`
 	// Environment Id of the event. For example: `ae_47abaca3db2c7c43`
-	EnvironmentId *string `json:"environment_id,omitempty"`
+	EnvironmentID *string `json:"environment_id,omitempty"`
 	// Field is `true` if you have previously set the `suspect` flag for this event using the [Server API Update event endpoint](https://dev.fingerprint.com/reference/updateevent).
 	Suspect *bool `json:"suspect,omitempty"`
 	Sdk     *SDK  `json:"sdk,omitempty"`
@@ -41,7 +41,7 @@ type Event struct {
 	// Page URL from which the request was sent. For example `https://example.com/`
 	Url *string `json:"url,omitempty"`
 	// Bundle Id of the iOS application integrated with the Fingerprint SDK for the event. For example: `com.foo.app`
-	BundleId *string `json:"bundle_id,omitempty"`
+	BundleID *string `json:"bundle_id,omitempty"`
 	// Package name of the Android application integrated with the Fingerprint SDK for the event. For example: `com.foo.app`
 	PackageName *string `json:"package_name,omitempty"`
 	// IP address of the requesting browser or bot.
@@ -113,9 +113,9 @@ type _Event Event
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewEvent(eventId string, timestamp int64) *Event {
+func NewEvent(eventID string, timestamp int64) *Event {
 	this := Event{}
-	this.EventId = eventId
+	this.EventID = eventID
 	this.Timestamp = timestamp
 	return &this
 }
@@ -128,28 +128,28 @@ func NewEventWithDefaults() *Event {
 	return &this
 }
 
-// GetEventId returns the EventId field value
-func (o *Event) GetEventId() string {
+// GetEventID returns the EventID field value
+func (o *Event) GetEventID() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.EventId
+	return o.EventID
 }
 
-// GetEventIdOk returns a tuple with the EventId field value
+// GetEventIdOk returns a tuple with the EventID field value
 // and a boolean to check if the value has been set.
 func (o *Event) GetEventIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.EventId, true
+	return &o.EventID, true
 }
 
-// SetEventId sets field value
-func (o *Event) SetEventId(v string) {
-	o.EventId = v
+// SetEventID sets field value
+func (o *Event) SetEventID(v string) {
+	o.EventID = v
 }
 
 // GetTimestamp returns the Timestamp field value
@@ -176,68 +176,68 @@ func (o *Event) SetTimestamp(v int64) {
 	o.Timestamp = v
 }
 
-// GetLinkedId returns the LinkedId field value if set, zero value otherwise.
-func (o *Event) GetLinkedId() string {
-	if o == nil || IsNil(o.LinkedId) {
+// GetLinkedID returns the LinkedID field value if set, zero value otherwise.
+func (o *Event) GetLinkedID() string {
+	if o == nil || IsNil(o.LinkedID) {
 		var ret string
 		return ret
 	}
-	return *o.LinkedId
+	return *o.LinkedID
 }
 
-// GetLinkedIdOk returns a tuple with the LinkedId field value if set, nil otherwise
+// GetLinkedIdOk returns a tuple with the LinkedID field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Event) GetLinkedIdOk() (*string, bool) {
-	if o == nil || IsNil(o.LinkedId) {
+	if o == nil || IsNil(o.LinkedID) {
 		return nil, false
 	}
-	return o.LinkedId, true
+	return o.LinkedID, true
 }
 
-// HasLinkedId returns a boolean if a field has been set.
-func (o *Event) HasLinkedId() bool {
-	if o != nil && !IsNil(o.LinkedId) {
+// HasLinkedID returns a boolean if a field has been set.
+func (o *Event) HasLinkedID() bool {
+	if o != nil && !IsNil(o.LinkedID) {
 		return true
 	}
 
 	return false
 }
 
-// SetLinkedId gets a reference to the given string and assigns it to the LinkedId field.
-func (o *Event) SetLinkedId(v string) {
-	o.LinkedId = &v
+// SetLinkedID gets a reference to the given string and assigns it to the LinkedID field.
+func (o *Event) SetLinkedID(v string) {
+	o.LinkedID = &v
 }
 
-// GetEnvironmentId returns the EnvironmentId field value if set, zero value otherwise.
-func (o *Event) GetEnvironmentId() string {
-	if o == nil || IsNil(o.EnvironmentId) {
+// GetEnvironmentID returns the EnvironmentID field value if set, zero value otherwise.
+func (o *Event) GetEnvironmentID() string {
+	if o == nil || IsNil(o.EnvironmentID) {
 		var ret string
 		return ret
 	}
-	return *o.EnvironmentId
+	return *o.EnvironmentID
 }
 
-// GetEnvironmentIdOk returns a tuple with the EnvironmentId field value if set, nil otherwise
+// GetEnvironmentIdOk returns a tuple with the EnvironmentID field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Event) GetEnvironmentIdOk() (*string, bool) {
-	if o == nil || IsNil(o.EnvironmentId) {
+	if o == nil || IsNil(o.EnvironmentID) {
 		return nil, false
 	}
-	return o.EnvironmentId, true
+	return o.EnvironmentID, true
 }
 
-// HasEnvironmentId returns a boolean if a field has been set.
-func (o *Event) HasEnvironmentId() bool {
-	if o != nil && !IsNil(o.EnvironmentId) {
+// HasEnvironmentID returns a boolean if a field has been set.
+func (o *Event) HasEnvironmentID() bool {
+	if o != nil && !IsNil(o.EnvironmentID) {
 		return true
 	}
 
 	return false
 }
 
-// SetEnvironmentId gets a reference to the given string and assigns it to the EnvironmentId field.
-func (o *Event) SetEnvironmentId(v string) {
-	o.EnvironmentId = &v
+// SetEnvironmentID gets a reference to the given string and assigns it to the EnvironmentID field.
+func (o *Event) SetEnvironmentID(v string) {
+	o.EnvironmentID = &v
 }
 
 // GetSuspect returns the Suspect field value if set, zero value otherwise.
@@ -464,36 +464,36 @@ func (o *Event) SetUrl(v string) {
 	o.Url = &v
 }
 
-// GetBundleId returns the BundleId field value if set, zero value otherwise.
-func (o *Event) GetBundleId() string {
-	if o == nil || IsNil(o.BundleId) {
+// GetBundleID returns the BundleID field value if set, zero value otherwise.
+func (o *Event) GetBundleID() string {
+	if o == nil || IsNil(o.BundleID) {
 		var ret string
 		return ret
 	}
-	return *o.BundleId
+	return *o.BundleID
 }
 
-// GetBundleIdOk returns a tuple with the BundleId field value if set, nil otherwise
+// GetBundleIdOk returns a tuple with the BundleID field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Event) GetBundleIdOk() (*string, bool) {
-	if o == nil || IsNil(o.BundleId) {
+	if o == nil || IsNil(o.BundleID) {
 		return nil, false
 	}
-	return o.BundleId, true
+	return o.BundleID, true
 }
 
-// HasBundleId returns a boolean if a field has been set.
-func (o *Event) HasBundleId() bool {
-	if o != nil && !IsNil(o.BundleId) {
+// HasBundleID returns a boolean if a field has been set.
+func (o *Event) HasBundleID() bool {
+	if o != nil && !IsNil(o.BundleID) {
 		return true
 	}
 
 	return false
 }
 
-// SetBundleId gets a reference to the given string and assigns it to the BundleId field.
-func (o *Event) SetBundleId(v string) {
-	o.BundleId = &v
+// SetBundleID gets a reference to the given string and assigns it to the BundleID field.
+func (o *Event) SetBundleID(v string) {
+	o.BundleID = &v
 }
 
 // GetPackageName returns the PackageName field value if set, zero value otherwise.
@@ -1722,13 +1722,13 @@ func (o Event) MarshalJSON() ([]byte, error) {
 
 func (o Event) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["event_id"] = o.EventId
+	toSerialize["event_id"] = o.EventID
 	toSerialize["timestamp"] = o.Timestamp
-	if !IsNil(o.LinkedId) {
-		toSerialize["linked_id"] = o.LinkedId
+	if !IsNil(o.LinkedID) {
+		toSerialize["linked_id"] = o.LinkedID
 	}
-	if !IsNil(o.EnvironmentId) {
-		toSerialize["environment_id"] = o.EnvironmentId
+	if !IsNil(o.EnvironmentID) {
+		toSerialize["environment_id"] = o.EnvironmentID
 	}
 	if !IsNil(o.Suspect) {
 		toSerialize["suspect"] = o.Suspect
@@ -1751,8 +1751,8 @@ func (o Event) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Url) {
 		toSerialize["url"] = o.Url
 	}
-	if !IsNil(o.BundleId) {
-		toSerialize["bundle_id"] = o.BundleId
+	if !IsNil(o.BundleID) {
+		toSerialize["bundle_id"] = o.BundleID
 	}
 	if !IsNil(o.PackageName) {
 		toSerialize["package_name"] = o.PackageName

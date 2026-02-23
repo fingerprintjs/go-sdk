@@ -27,11 +27,11 @@ NewProximityWithDefaults instantiates a new Proximity object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetId
+### GetID
 
-`func (o *Proximity) GetId() string`
+`func (o *Proximity) GetID() string`
 
-GetId returns the Id field if non-nil, zero value otherwise.
+GetID returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
@@ -40,11 +40,11 @@ GetId returns the Id field if non-nil, zero value otherwise.
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetId
+### SetID
 
-`func (o *Proximity) SetId(v string)`
+`func (o *Proximity) SetID(v string)`
 
-SetId sets Id field to given value.
+SetID sets Id field to given value.
 
 
 ### GetPrecisionRadius

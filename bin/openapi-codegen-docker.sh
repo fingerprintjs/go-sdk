@@ -24,3 +24,8 @@ run_generator() {
 prepare_directory
 run_generator
 gofmt -w .
+
+# Replace "Id" with "ID" in all generated .go and .md files, skipping links
+find "$SDK_DIR" \( -name "*.go" -o -name "*.md" \) | while read -r file; do
+  perl -i -pe 's/(?<![(\[#\/])([a-z])Id\b/$1ID/g' "$file"
+done

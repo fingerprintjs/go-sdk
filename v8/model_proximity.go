@@ -52,8 +52,8 @@ func NewProximityWithDefaults() *Proximity {
 	return &this
 }
 
-// GetId returns the Id field value
-func (o *Proximity) GetId() string {
+// GetID returns the Id field value
+func (o *Proximity) GetID() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -71,8 +71,8 @@ func (o *Proximity) GetIdOk() (*string, bool) {
 	return &o.Id, true
 }
 
-// SetId sets field value
-func (o *Proximity) SetId(v string) {
+// SetID sets field value
+func (o *Proximity) SetID(v string) {
 	o.Id = v
 }
 

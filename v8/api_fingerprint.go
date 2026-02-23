@@ -27,7 +27,7 @@ type FingerprintAPIService service
 type ApiDeleteVisitorDataRequest struct {
 	ctx        context.Context
 	ApiService *FingerprintAPIService
-	visitorId  string
+	visitorID  string
 }
 
 func (r ApiDeleteVisitorDataRequest) Execute() (*http.Response, error) {
@@ -62,14 +62,14 @@ After requesting to delete a visitor ID,
 Please [contact our support team](https://fingerprint.com/support/) to enable it for you. Otherwise, you will receive a 403.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param visitorId The [visitor ID](https://dev.fingerprint.com/reference/get-function#visitorid) you want to delete.
+	@param visitorID The [visitor ID](https://dev.fingerprint.com/reference/get-function#visitorid) you want to delete.
 	@return ApiDeleteVisitorDataRequest
 */
-func (a *FingerprintAPIService) DeleteVisitorData(ctx context.Context, visitorId string) ApiDeleteVisitorDataRequest {
+func (a *FingerprintAPIService) DeleteVisitorData(ctx context.Context, visitorID string) ApiDeleteVisitorDataRequest {
 	return ApiDeleteVisitorDataRequest{
 		ApiService: a,
 		ctx:        ctx,
-		visitorId:  visitorId,
+		visitorID:  visitorID,
 	}
 }
 
@@ -87,7 +87,7 @@ func (a *FingerprintAPIService) DeleteVisitorDataExecute(r ApiDeleteVisitorDataR
 	}
 
 	localVarPath := localBasePath + "/visitors/{visitor_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"visitor_id"+"}", url.PathEscape(parameterValueToString(r.visitorId, "visitorId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"visitor_id"+"}", url.PathEscape(parameterValueToString(r.visitorID, "visitorID")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -184,13 +184,13 @@ func (a *FingerprintAPIService) DeleteVisitorDataExecute(r ApiDeleteVisitorDataR
 type ApiGetEventRequest struct {
 	ctx        context.Context
 	ApiService *FingerprintAPIService
-	eventId    string
-	rulesetId  *string
+	eventID    string
+	rulesetID  *string
 }
 
 // The ID of the ruleset to evaluate against the event, producing the action to take for this event. The resulting action is returned in the &#x60;rule_action&#x60; attribute of the response.
-func (r ApiGetEventRequest) RulesetId(rulesetId string) ApiGetEventRequest {
-	r.rulesetId = &rulesetId
+func (r ApiGetEventRequest) RulesetID(rulesetID string) ApiGetEventRequest {
+	r.rulesetID = &rulesetID
 	return r
 }
 
@@ -206,14 +206,14 @@ Get a detailed analysis of an individual identification event, including Smart S
 Use `event_id` as the URL path parameter. This API method is scoped to a request, i.e. all returned information is by `event_id`.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param eventId The unique [identifier](https://dev.fingerprint.com/reference/get-function#requestid) of each identification request (`requestId` can be used in its place).
+	@param eventID The unique [identifier](https://dev.fingerprint.com/reference/get-function#requestid) of each identification request (`requestID` can be used in its place).
 	@return ApiGetEventRequest
 */
-func (a *FingerprintAPIService) GetEvent(ctx context.Context, eventId string) ApiGetEventRequest {
+func (a *FingerprintAPIService) GetEvent(ctx context.Context, eventID string) ApiGetEventRequest {
 	return ApiGetEventRequest{
 		ApiService: a,
 		ctx:        ctx,
-		eventId:    eventId,
+		eventID:    eventID,
 	}
 }
 
@@ -234,14 +234,14 @@ func (a *FingerprintAPIService) GetEventExecute(r ApiGetEventRequest) (*Event, *
 	}
 
 	localVarPath := localBasePath + "/events/{event_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"event_id"+"}", url.PathEscape(parameterValueToString(r.eventId, "eventId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"event_id"+"}", url.PathEscape(parameterValueToString(r.eventID, "eventID")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
-	if r.rulesetId != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "ruleset_id", r.rulesetId, "form", "")
+	if r.rulesetID != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "ruleset_id", r.rulesetID, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -356,13 +356,13 @@ type ApiSearchEventsRequest struct {
 	ApiService        *FingerprintAPIService
 	limit             *int32
 	paginationKey     *string
-	visitorId         *string
+	visitorID         *string
 	bot               *SearchEventsBot
 	ipAddress         *string
 	asn               *string
-	linkedId          *string
+	linkedID          *string
 	url               *string
-	bundleId          *string
+	bundleID          *string
 	packageName       *string
 	origin            *string
 	start             *int64
@@ -390,7 +390,7 @@ type ApiSearchEventsRequest struct {
 	sdkVersion        *string
 	sdkPlatform       *SearchEventsSdkPlatform
 	environment       *[]string
-	proximityId       *string
+	proximityID       *string
 	totalHits         *int64
 	torNode           *bool
 }
@@ -408,8 +408,8 @@ func (r ApiSearchEventsRequest) PaginationKey(paginationKey string) ApiSearchEve
 }
 
 // Unique [visitor identifier](https://dev.fingerprint.com/reference/get-function#visitorid) issued by Fingerprint Identification and all active Smart Signals. Filter for events matching this &#x60;visitor_id&#x60;.
-func (r ApiSearchEventsRequest) VisitorId(visitorId string) ApiSearchEventsRequest {
-	r.visitorId = &visitorId
+func (r ApiSearchEventsRequest) VisitorID(visitorID string) ApiSearchEventsRequest {
+	r.visitorID = &visitorID
 	return r
 }
 
@@ -432,8 +432,8 @@ func (r ApiSearchEventsRequest) Asn(asn string) ApiSearchEventsRequest {
 }
 
 // Filter events by your custom identifier.  You can use [linked Ids](https://dev.fingerprint.com/reference/get-function#linkedid) to associate identification requests with your own identifier, for example, session Id, purchase Id, or transaction Id. You can then use this &#x60;linked_id&#x60; parameter to retrieve all events associated with your custom identifier.
-func (r ApiSearchEventsRequest) LinkedId(linkedId string) ApiSearchEventsRequest {
-	r.linkedId = &linkedId
+func (r ApiSearchEventsRequest) LinkedID(linkedID string) ApiSearchEventsRequest {
+	r.linkedID = &linkedID
 	return r
 }
 
@@ -444,8 +444,8 @@ func (r ApiSearchEventsRequest) Url(url string) ApiSearchEventsRequest {
 }
 
 // Filter events by the Bundle ID (iOS) associated with the event.
-func (r ApiSearchEventsRequest) BundleId(bundleId string) ApiSearchEventsRequest {
-	r.bundleId = &bundleId
+func (r ApiSearchEventsRequest) BundleID(bundleID string) ApiSearchEventsRequest {
+	r.bundleID = &bundleID
 	return r
 }
 
@@ -612,8 +612,8 @@ func (r ApiSearchEventsRequest) Environment(environment []string) ApiSearchEvent
 }
 
 // Filter events by the most precise Proximity ID provided by default. &gt; Note: When using this parameter, only events with the &#x60;proximity.id&#x60; property matching the provided ID are returned. Events without a &#x60;proximity&#x60; result are left out of the response.
-func (r ApiSearchEventsRequest) ProximityId(proximityId string) ApiSearchEventsRequest {
-	r.proximityId = &proximityId
+func (r ApiSearchEventsRequest) ProximityID(proximityID string) ApiSearchEventsRequest {
+	r.proximityID = &proximityID
 	return r
 }
 
@@ -700,8 +700,8 @@ func (a *FingerprintAPIService) SearchEventsExecute(r ApiSearchEventsRequest) (*
 	if r.paginationKey != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pagination_key", r.paginationKey, "form", "")
 	}
-	if r.visitorId != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "visitor_id", r.visitorId, "form", "")
+	if r.visitorID != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "visitor_id", r.visitorID, "form", "")
 	}
 	if r.bot != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "bot", r.bot, "form", "")
@@ -712,14 +712,14 @@ func (a *FingerprintAPIService) SearchEventsExecute(r ApiSearchEventsRequest) (*
 	if r.asn != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "asn", r.asn, "form", "")
 	}
-	if r.linkedId != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "linked_id", r.linkedId, "form", "")
+	if r.linkedID != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "linked_id", r.linkedID, "form", "")
 	}
 	if r.url != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "url", r.url, "form", "")
 	}
-	if r.bundleId != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "bundle_id", r.bundleId, "form", "")
+	if r.bundleID != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "bundle_id", r.bundleID, "form", "")
 	}
 	if r.packageName != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "package_name", r.packageName, "form", "")
@@ -810,8 +810,8 @@ func (a *FingerprintAPIService) SearchEventsExecute(r ApiSearchEventsRequest) (*
 			parameterAddToHeaderOrQuery(localVarQueryParams, "environment", t, "form", "multi")
 		}
 	}
-	if r.proximityId != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "proximity_id", r.proximityId, "form", "")
+	if r.proximityID != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "proximity_id", r.proximityID, "form", "")
 	}
 	if r.totalHits != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "total_hits", r.totalHits, "form", "")
@@ -908,7 +908,7 @@ func (a *FingerprintAPIService) SearchEventsExecute(r ApiSearchEventsRequest) (*
 type ApiUpdateEventRequest struct {
 	ctx         context.Context
 	ApiService  *FingerprintAPIService
-	eventId     string
+	eventID     string
 	eventUpdate *EventUpdate
 }
 
@@ -935,14 +935,14 @@ This information might not have been available on the client initially, so the S
 error (HTTP 409 Conflict. The event is not mutable yet.) as the event is fully propagated across our systems. In such a case, simply retry the request.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param eventId The unique event [identifier](https://dev.fingerprint.com/reference/get-function#event_id).
+	@param eventID The unique event [identifier](https://dev.fingerprint.com/reference/get-function#event_id).
 	@return ApiUpdateEventRequest
 */
-func (a *FingerprintAPIService) UpdateEvent(ctx context.Context, eventId string) ApiUpdateEventRequest {
+func (a *FingerprintAPIService) UpdateEvent(ctx context.Context, eventID string) ApiUpdateEventRequest {
 	return ApiUpdateEventRequest{
 		ApiService: a,
 		ctx:        ctx,
-		eventId:    eventId,
+		eventID:    eventID,
 	}
 }
 
@@ -960,7 +960,7 @@ func (a *FingerprintAPIService) UpdateEventExecute(r ApiUpdateEventRequest) (*ht
 	}
 
 	localVarPath := localBasePath + "/events/{event_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"event_id"+"}", url.PathEscape(parameterValueToString(r.eventId, "eventId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"event_id"+"}", url.PathEscape(parameterValueToString(r.eventID, "eventID")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
