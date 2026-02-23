@@ -179,6 +179,7 @@ paths:
       tags:
         - Fingerprint
       operationId: searchEvents
+      x-dotnet-use-request-object: true
       summary: Search events
       description: >
         ## Search
@@ -250,8 +251,9 @@ paths:
             When more results are available (e.g., you requested up to 100
             results for your query using `limit`, but there are more than 100
             events total matching your request), the `pagination_key` field is
-            added to the response. The key corresponds to the `timestamp` of the
-            last returned event. In the following request, use that value in the
+            added to the response. The pagination key is an arbitrary string
+            that should not be interpreted in any way and should be passed
+            as-is. In the following request, use that value in the
             `pagination_key` parameter to get the next page of results:
 
 
@@ -273,20 +275,15 @@ paths:
         - name: bot
           in: query
           schema:
-            type: string
-            enum:
-              - all
-              - good
-              - bad
-              - none
+            $ref: '#/components/schemas/SearchEventsBot'
           description: >
             Filter events by the Bot Detection result, specifically:
               `all` - events where any kind of bot was detected.
               `good` - events where a good bot was detected.
               `bad` - events where a bad bot was detected.
               `none` - events where no bot was detected.
-            > Note: When using this parameter, only events with the `botd.bot`
-            property set to a valid value are returned. Events without a `botd`
+            > Note: When using this parameter, only events with the `bot`
+            property set to a valid value are returned. Events without a `bot`
             Smart Signal result are left out of the response.
         - name: ip_address
           in: query
@@ -302,11 +299,11 @@ paths:
           in: query
           schema:
             type: string
-            description: >
-              Filter events by the ASN associated with the event's IP address.
+          description: >
+            Filter events by the ASN associated with the event's IP address.
 
-              This corresponds to the `ip_info.(v4|v6).asn` property in the
-              response.
+            This corresponds to the `ip_info.(v4|v6).asn` property in the
+            response.
         - name: linked_id
           in: query
           schema:
@@ -507,11 +504,7 @@ paths:
         - name: vpn_confidence
           in: query
           schema:
-            type: string
-            enum:
-              - high,
-              - medium
-              - low
+            $ref: '#/components/schemas/SearchEventsVpnConfidence'
           description: >
             Filter events by VPN Detection result confidence level.
 
@@ -590,11 +583,7 @@ paths:
         - name: sdk_platform
           in: query
           schema:
-            type: string
-            enum:
-              - js
-              - android
-              - ios
+            $ref: '#/components/schemas/SearchEventsSdkPlatform'
           description: >
             Filter events by the SDK Platform associated with the identification
             event (`sdk.platform` property) .
@@ -959,7 +948,6 @@ components:
       description: >-
         A customer-provided value or an object that was sent with the
         identification request or updated later.
-      additionalProperties: true
     Url:
       type: string
       description: >
@@ -1412,7 +1400,6 @@ components:
       properties:
         type:
           $ref: '#/components/schemas/RuleActionType'
-          const: allow
         request_header_modifications:
           $ref: '#/components/schemas/RequestHeaderModifications'
     StatusCode:
@@ -1431,7 +1418,6 @@ components:
       properties:
         type:
           $ref: '#/components/schemas/RuleActionType'
-          const: block
         status_code:
           $ref: '#/components/schemas/StatusCode'
         headers:
@@ -1457,6 +1443,14 @@ components:
           $ref: '#/components/schemas/RuleId'
         rule_expression:
           $ref: '#/components/schemas/RuleExpression'
+      oneOf:
+        - $ref: '#/components/schemas/EventRuleActionAllow'
+        - $ref: '#/components/schemas/EventRuleActionBlock'
+      discriminator:
+        propertyName: type
+        mapping:
+          allow: '#/components/schemas/EventRuleActionAllow'
+          block: '#/components/schemas/EventRuleActionBlock'
     SuspectScore:
       type: integer
       description: >
@@ -2324,7 +2318,6 @@ components:
           description: >-
             A customer-provided value or an object that was sent with the
             identification request or updated later.
-          additionalProperties: true
         suspect:
           type: boolean
           description: Suspect flag indicating observed suspicious or fraudulent event
@@ -2353,3 +2346,52 @@ components:
             This value represents the total number of events matching the search
             query, up to the limit provided in the `total_hits` query parameter.
             Only present if the `total_hits` query parameter was provided.
+    SearchEventsBot:
+      type: string
+      enum:
+        - all
+        - good
+        - bad
+        - none
+      description: >
+        Filter events by the Bot Detection result, specifically:
+          `all` - events where any kind of bot was detected.
+          `good` - events where a good bot was detected.
+          `bad` - events where a bad bot was detected.
+          `none` - events where no bot was detected.
+        > Note: When using this parameter, only events with the `bot` property
+        set to a valid value are returned. Events without a `bot` Smart Signal
+        result are left out of the response.
+    SearchEventsVpnConfidence:
+      type: string
+      enum:
+        - high
+        - medium
+        - low
+      description: >
+        Filter events by VPN Detection result confidence level.
+
+        `high` - events with high VPN Detection confidence.
+
+        `medium` - events with medium VPN Detection confidence.
+
+        `low` - events with low VPN Detection confidence.
+
+        > Note: When using this parameter, only events with the `vpn.confidence`
+        property set to a valid value are returned. Events without a `vpn` Smart
+        Signal result are left out of the response.
+    SearchEventsSdkPlatform:
+      type: string
+      enum:
+        - js
+        - android
+        - ios
+      description: >
+        Filter events by the SDK Platform associated with the identification
+        event (`sdk.platform` property) .
+
+        `js` - Javascript agent (Web).
+
+        `ios` - Apple iOS based devices.
+
+        `android` - Android based devices.

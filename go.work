@@ -1,8 +1,8 @@
-go 1.21
+go 1.24.0
 
 use (
 	./example
 	./functional_test
-	./v8
 	./test
+	./v8
 )
