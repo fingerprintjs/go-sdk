@@ -197,7 +197,7 @@ paths:
       - description: |
           Use `pagination_key` to get the next page of results.
 
-          When more results are available (e.g., you requested up to 100 results for your query using `limit`, but there are more than 100 events total matching your request), the `pagination_key` field is added to the response. The key corresponds to the `timestamp` of the last returned event. In the following request, use that value in the `pagination_key` parameter to get the next page of results:
+          When more results are available (e.g., you requested up to 100 results for your query using `limit`, but there are more than 100 events total matching your request), the `pagination_key` field is added to the response. The pagination key is an arbitrary string that should not be interpreted in any way and should be passed as-is. In the following request, use that value in the `pagination_key` parameter to get the next page of results:
 
           1. First request, returning most recent 200 events: `GET api-base-url/events?limit=100`
           2. Use `response.pagination_key` to get the next page of results: `GET api-base-url/events?limit=100&pagination_key=1740815825085`
@@ -224,18 +224,13 @@ paths:
             `good` - events where a good bot was detected.
             `bad` - events where a bad bot was detected.
             `none` - events where no bot was detected.
-          > Note: When using this parameter, only events with the `botd.bot` property set to a valid value are returned. Events without a `botd` Smart Signal result are left out of the response.
+          > Note: When using this parameter, only events with the `bot` property set to a valid value are returned. Events without a `bot` Smart Signal result are left out of the response.
         explode: true
         in: query
         name: bot
         required: false
         schema:
-          enum:
-          - all
-          - good
-          - bad
-          - none
-          type: string
+          $ref: "#/components/schemas/SearchEventsBot"
         style: form
       - description: |
           Filter events by IP address or IP range (if CIDR notation is used). If CIDR notation is not used, a /32 for IPv4 or /128 for IPv6 is assumed.
@@ -247,14 +242,14 @@ paths:
         schema:
           type: string
         style: form
-      - explode: true
+      - description: |
+          Filter events by the ASN associated with the event's IP address.
+          This corresponds to the `ip_info.(v4|v6).asn` property in the response.
+        explode: true
         in: query
         name: asn
         required: false
         schema:
-          description: |
-            Filter events by the ASN associated with the event's IP address.
-            This corresponds to the `ip_info.(v4|v6).asn` property in the response.
           type: string
         style: form
       - description: |
@@ -474,11 +469,7 @@ paths:
         name: vpn_confidence
         required: false
         schema:
-          enum:
-          - "high,"
-          - medium
-          - low
-          type: string
+          $ref: "#/components/schemas/SearchEventsVpnConfidence"
         style: form
       - description: |
           Filter events with Suspect Score result above a provided minimum threshold.
@@ -550,11 +541,7 @@ paths:
         name: sdk_platform
         required: false
         schema:
-          enum:
-          - js
-          - android
-          - ios
-          type: string
+          $ref: "#/components/schemas/SearchEventsSdkPlatform"
         style: form
       - description: |
           Filter for events by providing one or more environment IDs (`environment_id` property).
@@ -628,6 +615,7 @@ paths:
       summary: Search events
       tags:
       - Fingerprint
+      x-dotnet-use-request-object: true
   /visitors/{visitor_id}:
     delete:
       description: |
@@ -755,11 +743,6 @@ components:
       description: |
         `true` if we determined that this payload was replayed, `false` otherwise.
       type: boolean
-    TriggeredBy:
-      description: The rule(s) associated with triggering the webhook via rule engine.
-      items:
-        $ref: "#/components/schemas/TriggeredBy_inner"
-      type: array
     IdentificationConfidence:
       properties:
         score:
@@ -1178,6 +1161,9 @@ components:
       - block
       type: string
     RuleActionHeaderField:
+      example:
+        name: name
+        value: value
       properties:
         name:
           description: The header field name.
@@ -1191,6 +1177,20 @@ components:
     RequestHeaderModifications:
       description: "The set of header modifications to apply, in the following order:\
         \ remove, set, append."
+      example:
+        set:
+        - name: name
+          value: value
+        - name: name
+          value: value
+        remove:
+        - remove
+        - remove
+        append:
+        - name: name
+          value: value
+        - name: name
+          value: value
       properties:
         remove:
           description: The list of headers to remove.
@@ -1211,12 +1211,43 @@ components:
     EventRuleActionAllow:
       description: Informs the client that the request should be forwarded to the
         origin with optional request header modifications.
+      example:
+        rule_id: rule_id
+        rule_expression: rule_expression
+        ruleset_id: ruleset_id
+        request_header_modifications:
+          set:
+          - name: name
+            value: value
+          - name: name
+            value: value
+          remove:
+          - remove
+          - remove
+          append:
+          - name: name
+            value: value
+          - name: name
+            value: value
+        type: ""
       properties:
+        ruleset_id:
+          description: The ID of the evaluated ruleset.
+          type: string
+        rule_id:
+          description: The ID of the rule that matched the identification event.
+          type: string
+        rule_expression:
+          description: The expression of the rule that matched the identification
+            event.
+          type: string
         type:
-          $ref: "#/components/schemas/RuleActionType"
+          allOf:
+          - $ref: "#/components/schemas/RuleActionType"
         request_header_modifications:
           $ref: "#/components/schemas/RequestHeaderModifications"
       required:
+      - ruleset_id
       - type
     StatusCode:
       description: A valid HTTP status code.
@@ -1228,8 +1259,19 @@ components:
       description: Informs the client the request should be blocked using the response
         described by this rule action.
       properties:
+        ruleset_id:
+          description: The ID of the evaluated ruleset.
+          type: string
+        rule_id:
+          description: The ID of the rule that matched the identification event.
+          type: string
+        rule_expression:
+          description: The expression of the rule that matched the identification
+            event.
+          type: string
         type:
-          $ref: "#/components/schemas/RuleActionType"
+          allOf:
+          - $ref: "#/components/schemas/RuleActionType"
         status_code:
           description: A valid HTTP status code.
           type: integer
@@ -1242,29 +1284,21 @@ components:
           description: The response body to send to the client.
           type: string
       required:
+      - ruleset_id
       - type
     EventRuleAction:
       description: "Describes the action the client should take, according to the\
         \ rule in the ruleset that matched the event. When getting an event by event\
         \ ID, the rule_action will only be included when the ruleset_id query parameter\
         \ is specified."
-      example:
-        rule_id: rule_id
-        rule_expression: rule_expression
-        ruleset_id: ruleset_id
-      properties:
-        ruleset_id:
-          description: The ID of the evaluated ruleset.
-          type: string
-        rule_id:
-          description: The ID of the rule that matched the identification event.
-          type: string
-        rule_expression:
-          description: The expression of the rule that matched the identification
-            event.
-          type: string
-      required:
-      - ruleset_id
+      discriminator:
+        mapping:
+          allow: "#/components/schemas/EventRuleActionAllow"
+          block: "#/components/schemas/EventRuleActionBlock"
+        propertyName: type
+      oneOf:
+      - $ref: "#/components/schemas/EventRuleActionAllow"
+      - $ref: "#/components/schemas/EventRuleActionBlock"
     SuspectScore:
       description: |
         Suspect Score is an easy way to integrate Smart Signals into your fraud protection work flow.  It is a weighted representation of all Smart Signals present in the payload that helps identify suspicious activity. The value range is [0; S] where S is sum of all Smart Signals weights.  See more details here: https://dev.fingerprint.com/docs/suspect-score
@@ -1759,6 +1793,21 @@ components:
           rule_id: rule_id
           rule_expression: rule_expression
           ruleset_id: ruleset_id
+          request_header_modifications:
+            set:
+            - name: name
+              value: value
+            - name: name
+              value: value
+            remove:
+            - remove
+            - remove
+            append:
+            - name: name
+              value: value
+            - name: name
+              value: value
+          type: ""
         root_apps: ""
         jailbroken: ""
         suspect: ""
@@ -2215,6 +2264,21 @@ components:
             rule_id: rule_id
             rule_expression: rule_expression
             ruleset_id: ruleset_id
+            request_header_modifications:
+              set:
+              - name: name
+                value: value
+              - name: name
+                value: value
+              remove:
+              - remove
+              - remove
+              append:
+              - name: name
+                value: value
+              - name: name
+                value: value
+            type: ""
           root_apps: ""
           jailbroken: ""
           suspect: ""
@@ -2268,6 +2332,21 @@ components:
             rule_id: rule_id
             rule_expression: rule_expression
             ruleset_id: ruleset_id
+            request_header_modifications:
+              set:
+              - name: name
+                value: value
+              - name: name
+                value: value
+              remove:
+              - remove
+              - remove
+              append:
+              - name: name
+                value: value
+              - name: name
+                value: value
+            type: ""
           root_apps: ""
           jailbroken: ""
           suspect: ""
@@ -2298,6 +2377,43 @@ components:
           type: integer
       required:
       - events
+    SearchEventsBot:
+      description: |
+        Filter events by the Bot Detection result, specifically:
+          `all` - events where any kind of bot was detected.
+          `good` - events where a good bot was detected.
+          `bad` - events where a bad bot was detected.
+          `none` - events where no bot was detected.
+        > Note: When using this parameter, only events with the `bot` property set to a valid value are returned. Events without a `bot` Smart Signal result are left out of the response.
+      enum:
+      - all
+      - good
+      - bad
+      - none
+      type: string
+    SearchEventsVpnConfidence:
+      description: |
+        Filter events by VPN Detection result confidence level.
+        `high` - events with high VPN Detection confidence.
+        `medium` - events with medium VPN Detection confidence.
+        `low` - events with low VPN Detection confidence.
+        > Note: When using this parameter, only events with the `vpn.confidence` property set to a valid value are returned. Events without a `vpn` Smart Signal result are left out of the response.
+      enum:
+      - high
+      - medium
+      - low
+      type: string
+    SearchEventsSdkPlatform:
+      description: |
+        Filter events by the SDK Platform associated with the identification event (`sdk.platform` property) .
+        `js` - Javascript agent (Web).
+        `ios` - Apple iOS based devices.
+        `android` - Android based devices.
+      enum:
+      - js
+      - android
+      - ios
+      type: string
     Integration_subintegration:
       properties:
         name:
@@ -2307,18 +2423,6 @@ components:
           description: "The version of the specific subintegration, e.g. \"10.21.0\"\
             ."
           type: string
-    TriggeredBy_inner:
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        description:
-          type: string
-      required:
-      - description
-      - id
-      - name
     Geolocation_subdivisions_inner:
       properties:
         iso_code:

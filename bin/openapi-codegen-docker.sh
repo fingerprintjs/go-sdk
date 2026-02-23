@@ -17,6 +17,8 @@ run_generator() {
       -i /local/res/fingerprint-server-api-v4.yaml \
       -t /local/template \
       --additional-properties=packageVersion=$PACKAGE_VERSION
+      # Note: 'packageVersion' is not configured via config file because we need to inject its value at runtime
+      # Please use the config file for all other configuration
 }
 
 prepare_directory

@@ -11,6 +11,7 @@ globalProperties:
 additionalProperties:
   packageName: fingerprint
   disallowAdditionalPropertiesIfNotPresent: false
+  useOneOfDiscriminatorLookup: true
 
 enablePostProcessFile: false
 
