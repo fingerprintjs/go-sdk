@@ -33,11 +33,11 @@ but it doesn't guarantee that properties required by API are set
 
 GetLinkedID returns the LinkedID field if non-nil, zero value otherwise.
 
-### GetLinkedIdOk
+### GetLinkedIDOk
 
-`func (o *EventUpdate) GetLinkedIdOk() (*string, bool)`
+`func (o *EventUpdate) GetLinkedIDOk() (*string, bool)`
 
-GetLinkedIdOk returns a tuple with the LinkedID field if it's non-nil, zero value otherwise
+GetLinkedIDOk returns a tuple with the LinkedID field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLinkedID

@@ -35,11 +35,11 @@ but it doesn't guarantee that properties required by API are set
 
 GetRulesetID returns the RulesetID field if non-nil, zero value otherwise.
 
-### GetRulesetIdOk
+### GetRulesetIDOk
 
-`func (o *EventRuleActionAllow) GetRulesetIdOk() (*string, bool)`
+`func (o *EventRuleActionAllow) GetRulesetIDOk() (*string, bool)`
 
-GetRulesetIdOk returns a tuple with the RulesetID field if it's non-nil, zero value otherwise
+GetRulesetIDOk returns a tuple with the RulesetID field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRulesetID
@@ -55,11 +55,11 @@ SetRulesetID sets RulesetID field to given value.
 
 GetRuleID returns the RuleID field if non-nil, zero value otherwise.
 
-### GetRuleIdOk
+### GetRuleIDOk
 
-`func (o *EventRuleActionAllow) GetRuleIdOk() (*string, bool)`
+`func (o *EventRuleActionAllow) GetRuleIDOk() (*string, bool)`
 
-GetRuleIdOk returns a tuple with the RuleID field if it's non-nil, zero value otherwise
+GetRuleIDOk returns a tuple with the RuleID field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRuleID

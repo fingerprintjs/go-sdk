@@ -62,9 +62,9 @@ func (o *Proximity) GetID() string {
 	return o.Id
 }
 
-// GetIdOk returns a tuple with the Id field value
+// GetIDOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *Proximity) GetIdOk() (*string, bool) {
+func (o *Proximity) GetIDOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}

@@ -57,9 +57,9 @@ func (o *EventUpdate) GetLinkedID() string {
 	return *o.LinkedID
 }
 
-// GetLinkedIdOk returns a tuple with the LinkedID field value if set, nil otherwise
+// GetLinkedIDOk returns a tuple with the LinkedID field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *EventUpdate) GetLinkedIdOk() (*string, bool) {
+func (o *EventUpdate) GetLinkedIDOk() (*string, bool) {
 	if o == nil || IsNil(o.LinkedID) {
 		return nil, false
 	}

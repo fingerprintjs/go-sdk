@@ -64,9 +64,9 @@ func (o *SupplementaryIDHighRecall) GetVisitorID() string {
 	return o.VisitorID
 }
 
-// GetVisitorIdOk returns a tuple with the VisitorID field value
+// GetVisitorIDOk returns a tuple with the VisitorID field value
 // and a boolean to check if the value has been set.
-func (o *SupplementaryIDHighRecall) GetVisitorIdOk() (*string, bool) {
+func (o *SupplementaryIDHighRecall) GetVisitorIDOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}

@@ -32,7 +32,7 @@ import (
 )
 
 func main() {
-	visitorID := "visitorId_example" // string | The [visitor ID](https://dev.fingerprint.com/reference/get-function#visitorid) you want to delete.
+	visitorID := "visitorID_example" // string | The [visitor ID](https://dev.fingerprint.com/reference/get-function#visitorid) you want to delete.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -100,8 +100,8 @@ import (
 )
 
 func main() {
-	eventID := "eventId_example" // string | The unique [identifier](https://dev.fingerprint.com/reference/get-function#requestid) of each identification request (`requestID` can be used in its place).
-	rulesetID := "rulesetId_example" // string | The ID of the ruleset to evaluate against the event, producing the action to take for this event. The resulting action is returned in the `rule_action` attribute of the response.  (optional)
+	eventID := "eventID_example" // string | The unique [identifier](https://dev.fingerprint.com/reference/get-function#requestid) of each identification request (`requestID` can be used in its place).
+	rulesetID := "rulesetID_example" // string | The ID of the ruleset to evaluate against the event, producing the action to take for this event. The resulting action is returned in the `rule_action` attribute of the response.  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -174,13 +174,13 @@ import (
 func main() {
 	limit := int32(10) // int32 | Limit the number of events returned.  (optional) (default to 10)
 	paginationKey := "paginationKey_example" // string | Use `pagination_key` to get the next page of results.  When more results are available (e.g., you requested up to 100 results for your query using `limit`, but there are more than 100 events total matching your request), the `pagination_key` field is added to the response. The pagination key is an arbitrary string that should not be interpreted in any way and should be passed as-is. In the following request, use that value in the `pagination_key` parameter to get the next page of results:  1. First request, returning most recent 200 events: `GET api-base-url/events?limit=100` 2. Use `response.pagination_key` to get the next page of results: `GET api-base-url/events?limit=100&pagination_key=1740815825085`  (optional)
-	visitorID := "visitorId_example" // string | Unique [visitor identifier](https://dev.fingerprint.com/reference/get-function#visitorid) issued by Fingerprint Identification and all active Smart Signals. Filter for events matching this `visitor_id`.  (optional)
+	visitorID := "visitorID_example" // string | Unique [visitor identifier](https://dev.fingerprint.com/reference/get-function#visitorid) issued by Fingerprint Identification and all active Smart Signals. Filter for events matching this `visitor_id`.  (optional)
 	bot := openapiclient.SearchEventsBot("all") // SearchEventsBot | Filter events by the Bot Detection result, specifically:   `all` - events where any kind of bot was detected.   `good` - events where a good bot was detected.   `bad` - events where a bad bot was detected.   `none` - events where no bot was detected. > Note: When using this parameter, only events with the `bot` property set to a valid value are returned. Events without a `bot` Smart Signal result are left out of the response.  (optional)
 	ipAddress := "ipAddress_example" // string | Filter events by IP address or IP range (if CIDR notation is used). If CIDR notation is not used, a /32 for IPv4 or /128 for IPv6 is assumed. Examples of range based queries: 10.0.0.0/24, 192.168.0.1/32  (optional)
 	asn := "asn_example" // string | Filter events by the ASN associated with the event's IP address. This corresponds to the `ip_info.(v4|v6).asn` property in the response.  (optional)
-	linkedID := "linkedId_example" // string | Filter events by your custom identifier.  You can use [linked Ids](https://dev.fingerprint.com/reference/get-function#linkedid) to associate identification requests with your own identifier, for example, session Id, purchase Id, or transaction Id. You can then use this `linked_id` parameter to retrieve all events associated with your custom identifier.  (optional)
+	linkedID := "linkedID_example" // string | Filter events by your custom identifier.  You can use [linked Ids](https://dev.fingerprint.com/reference/get-function#linkedid) to associate identification requests with your own identifier, for example, session Id, purchase Id, or transaction Id. You can then use this `linked_id` parameter to retrieve all events associated with your custom identifier.  (optional)
 	url := "url_example" // string | Filter events by the URL (`url` property) associated with the event.  (optional)
-	bundleID := "bundleId_example" // string | Filter events by the Bundle ID (iOS) associated with the event.  (optional)
+	bundleID := "bundleID_example" // string | Filter events by the Bundle ID (iOS) associated with the event.  (optional)
 	packageName := "packageName_example" // string | Filter events by the Package Name (Android) associated with the event.  (optional)
 	origin := "origin_example" // string | Filter events by the origin field of the event. This is applicable to web events only (e.g., https://example.com)  (optional)
 	start := int64(789) // int64 | Filter events with a timestamp greater than the start time, in Unix time (milliseconds).  (optional)
@@ -208,7 +208,7 @@ func main() {
 	sdkVersion := "sdkVersion_example" // string | Filter events by a specific SDK version associated with the identification event (`sdk.version` property). Example: `3.11.14`  (optional)
 	sdkPlatform := openapiclient.SearchEventsSdkPlatform("js") // SearchEventsSdkPlatform | Filter events by the SDK Platform associated with the identification event (`sdk.platform` property) . `js` - Javascript agent (Web). `ios` - Apple iOS based devices. `android` - Android based devices.  (optional)
 	environment := []string{"Inner_example"} // []string | Filter for events by providing one or more environment IDs (`environment_id` property).  (optional)
-	proximityID := "proximityId_example" // string | Filter events by the most precise Proximity ID provided by default. > Note: When using this parameter, only events with the `proximity.id` property matching the provided ID are returned. Events without a `proximity` result are left out of the response.  (optional)
+	proximityID := "proximityID_example" // string | Filter events by the most precise Proximity ID provided by default. > Note: When using this parameter, only events with the `proximity.id` property matching the provided ID are returned. Events without a `proximity` result are left out of the response.  (optional)
 	totalHits := int64(789) // int64 | When set, the response will include a `total_hits` property with a count of total query matches across all pages, up to the specified limit.  (optional)
 	torNode := true // bool | Filter events by Tor Node detection result. > Note: When using this parameter, only events with the `tor_node` property set to `true` or `false` are returned. Events without a `tor_node` detection result are left out of the response.  (optional)
 
@@ -314,7 +314,7 @@ import (
 )
 
 func main() {
-	eventID := "eventId_example" // string | The unique event [identifier](https://dev.fingerprint.com/reference/get-function#event_id).
+	eventID := "eventID_example" // string | The unique event [identifier](https://dev.fingerprint.com/reference/get-function#event_id).
 	eventUpdate := *openapiclient.NewEventUpdate() // EventUpdate | 
 
 	configuration := openapiclient.NewConfiguration()

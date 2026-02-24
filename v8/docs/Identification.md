@@ -35,11 +35,11 @@ but it doesn't guarantee that properties required by API are set
 
 GetVisitorID returns the VisitorID field if non-nil, zero value otherwise.
 
-### GetVisitorIdOk
+### GetVisitorIDOk
 
-`func (o *Identification) GetVisitorIdOk() (*string, bool)`
+`func (o *Identification) GetVisitorIDOk() (*string, bool)`
 
-GetVisitorIdOk returns a tuple with the VisitorID field if it's non-nil, zero value otherwise
+GetVisitorIDOk returns a tuple with the VisitorID field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetVisitorID

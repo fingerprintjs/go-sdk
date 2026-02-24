@@ -35,7 +35,7 @@ type Event struct {
 	// `true` if we determined that this payload was replayed, `false` otherwise.
 	Replayed                  *bool                      `json:"replayed,omitempty"`
 	Identification            *Identification            `json:"identification,omitempty"`
-	SupplementaryIdHighRecall *SupplementaryIDHighRecall `json:"supplementary_id_high_recall,omitempty"`
+	SupplementaryIDHighRecall *SupplementaryIDHighRecall `json:"supplementary_id_high_recall,omitempty"`
 	// A customer-provided value or an object that was sent with the identification request or updated later.
 	Tags map[string]interface{} `json:"tags,omitempty"`
 	// Page URL from which the request was sent. For example `https://example.com/`
@@ -138,9 +138,9 @@ func (o *Event) GetEventID() string {
 	return o.EventID
 }
 
-// GetEventIdOk returns a tuple with the EventID field value
+// GetEventIDOk returns a tuple with the EventID field value
 // and a boolean to check if the value has been set.
-func (o *Event) GetEventIdOk() (*string, bool) {
+func (o *Event) GetEventIDOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -185,9 +185,9 @@ func (o *Event) GetLinkedID() string {
 	return *o.LinkedID
 }
 
-// GetLinkedIdOk returns a tuple with the LinkedID field value if set, nil otherwise
+// GetLinkedIDOk returns a tuple with the LinkedID field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Event) GetLinkedIdOk() (*string, bool) {
+func (o *Event) GetLinkedIDOk() (*string, bool) {
 	if o == nil || IsNil(o.LinkedID) {
 		return nil, false
 	}
@@ -217,9 +217,9 @@ func (o *Event) GetEnvironmentID() string {
 	return *o.EnvironmentID
 }
 
-// GetEnvironmentIdOk returns a tuple with the EnvironmentID field value if set, nil otherwise
+// GetEnvironmentIDOk returns a tuple with the EnvironmentID field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Event) GetEnvironmentIdOk() (*string, bool) {
+func (o *Event) GetEnvironmentIDOk() (*string, bool) {
 	if o == nil || IsNil(o.EnvironmentID) {
 		return nil, false
 	}
@@ -368,36 +368,36 @@ func (o *Event) SetIdentification(v Identification) {
 	o.Identification = &v
 }
 
-// GetSupplementaryIdHighRecall returns the SupplementaryIdHighRecall field value if set, zero value otherwise.
-func (o *Event) GetSupplementaryIdHighRecall() SupplementaryIDHighRecall {
-	if o == nil || IsNil(o.SupplementaryIdHighRecall) {
+// GetSupplementaryIDHighRecall returns the SupplementaryIDHighRecall field value if set, zero value otherwise.
+func (o *Event) GetSupplementaryIDHighRecall() SupplementaryIDHighRecall {
+	if o == nil || IsNil(o.SupplementaryIDHighRecall) {
 		var ret SupplementaryIDHighRecall
 		return ret
 	}
-	return *o.SupplementaryIdHighRecall
+	return *o.SupplementaryIDHighRecall
 }
 
-// GetSupplementaryIdHighRecallOk returns a tuple with the SupplementaryIdHighRecall field value if set, nil otherwise
+// GetSupplementaryIDHighRecallOk returns a tuple with the SupplementaryIDHighRecall field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Event) GetSupplementaryIdHighRecallOk() (*SupplementaryIDHighRecall, bool) {
-	if o == nil || IsNil(o.SupplementaryIdHighRecall) {
+func (o *Event) GetSupplementaryIDHighRecallOk() (*SupplementaryIDHighRecall, bool) {
+	if o == nil || IsNil(o.SupplementaryIDHighRecall) {
 		return nil, false
 	}
-	return o.SupplementaryIdHighRecall, true
+	return o.SupplementaryIDHighRecall, true
 }
 
-// HasSupplementaryIdHighRecall returns a boolean if a field has been set.
-func (o *Event) HasSupplementaryIdHighRecall() bool {
-	if o != nil && !IsNil(o.SupplementaryIdHighRecall) {
+// HasSupplementaryIDHighRecall returns a boolean if a field has been set.
+func (o *Event) HasSupplementaryIDHighRecall() bool {
+	if o != nil && !IsNil(o.SupplementaryIDHighRecall) {
 		return true
 	}
 
 	return false
 }
 
-// SetSupplementaryIdHighRecall gets a reference to the given SupplementaryIDHighRecall and assigns it to the SupplementaryIdHighRecall field.
-func (o *Event) SetSupplementaryIdHighRecall(v SupplementaryIDHighRecall) {
-	o.SupplementaryIdHighRecall = &v
+// SetSupplementaryIDHighRecall gets a reference to the given SupplementaryIDHighRecall and assigns it to the SupplementaryIDHighRecall field.
+func (o *Event) SetSupplementaryIDHighRecall(v SupplementaryIDHighRecall) {
+	o.SupplementaryIDHighRecall = &v
 }
 
 // GetTags returns the Tags field value if set, zero value otherwise.
@@ -473,9 +473,9 @@ func (o *Event) GetBundleID() string {
 	return *o.BundleID
 }
 
-// GetBundleIdOk returns a tuple with the BundleID field value if set, nil otherwise
+// GetBundleIDOk returns a tuple with the BundleID field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Event) GetBundleIdOk() (*string, bool) {
+func (o *Event) GetBundleIDOk() (*string, bool) {
 	if o == nil || IsNil(o.BundleID) {
 		return nil, false
 	}
@@ -1742,8 +1742,8 @@ func (o Event) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Identification) {
 		toSerialize["identification"] = o.Identification
 	}
-	if !IsNil(o.SupplementaryIdHighRecall) {
-		toSerialize["supplementary_id_high_recall"] = o.SupplementaryIdHighRecall
+	if !IsNil(o.SupplementaryIDHighRecall) {
+		toSerialize["supplementary_id_high_recall"] = o.SupplementaryIDHighRecall
 	}
 	if !IsNil(o.Tags) {
 		toSerialize["tags"] = o.Tags

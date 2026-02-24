@@ -63,9 +63,9 @@ func (o *EventRuleActionAllow) GetRulesetID() string {
 	return o.RulesetID
 }
 
-// GetRulesetIdOk returns a tuple with the RulesetID field value
+// GetRulesetIDOk returns a tuple with the RulesetID field value
 // and a boolean to check if the value has been set.
-func (o *EventRuleActionAllow) GetRulesetIdOk() (*string, bool) {
+func (o *EventRuleActionAllow) GetRulesetIDOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -86,9 +86,9 @@ func (o *EventRuleActionAllow) GetRuleID() string {
 	return *o.RuleID
 }
 
-// GetRuleIdOk returns a tuple with the RuleID field value if set, nil otherwise
+// GetRuleIDOk returns a tuple with the RuleID field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *EventRuleActionAllow) GetRuleIdOk() (*string, bool) {
+func (o *EventRuleActionAllow) GetRuleIDOk() (*string, bool) {
 	if o == nil || IsNil(o.RuleID) {
 		return nil, false
 	}

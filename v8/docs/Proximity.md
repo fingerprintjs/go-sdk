@@ -33,11 +33,11 @@ but it doesn't guarantee that properties required by API are set
 
 GetID returns the Id field if non-nil, zero value otherwise.
 
-### GetIdOk
+### GetIDOk
 
-`func (o *Proximity) GetIdOk() (*string, bool)`
+`func (o *Proximity) GetIDOk() (*string, bool)`
 
-GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+GetIDOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetID

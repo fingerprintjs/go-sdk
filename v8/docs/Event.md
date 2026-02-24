@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **Sdk** | Pointer to [**SDK**](SDK.md) |  | [optional] 
 **Replayed** | Pointer to **bool** | &#x60;true&#x60; if we determined that this payload was replayed, &#x60;false&#x60; otherwise.  | [optional] 
 **Identification** | Pointer to [**Identification**](Identification.md) |  | [optional] 
-**SupplementaryIdHighRecall** | Pointer to [**SupplementaryIDHighRecall**](SupplementaryIDHighRecall.md) |  | [optional] 
+**SupplementaryIDHighRecall** | Pointer to [**SupplementaryIDHighRecall**](SupplementaryIDHighRecall.md) |  | [optional] 
 **Tags** | Pointer to **map[string]interface{}** | A customer-provided value or an object that was sent with the identification request or updated later. | [optional] 
 **Url** | Pointer to **string** | Page URL from which the request was sent. For example &#x60;https://example.com/&#x60;  | [optional] 
 **BundleID** | Pointer to **string** | Bundle Id of the iOS application integrated with the Fingerprint SDK for the event. For example: &#x60;com.foo.app&#x60;  | [optional] 
@@ -80,11 +80,11 @@ but it doesn't guarantee that properties required by API are set
 
 GetEventID returns the EventID field if non-nil, zero value otherwise.
 
-### GetEventIdOk
+### GetEventIDOk
 
-`func (o *Event) GetEventIdOk() (*string, bool)`
+`func (o *Event) GetEventIDOk() (*string, bool)`
 
-GetEventIdOk returns a tuple with the EventID field if it's non-nil, zero value otherwise
+GetEventIDOk returns a tuple with the EventID field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetEventID
@@ -120,11 +120,11 @@ SetTimestamp sets Timestamp field to given value.
 
 GetLinkedID returns the LinkedID field if non-nil, zero value otherwise.
 
-### GetLinkedIdOk
+### GetLinkedIDOk
 
-`func (o *Event) GetLinkedIdOk() (*string, bool)`
+`func (o *Event) GetLinkedIDOk() (*string, bool)`
 
-GetLinkedIdOk returns a tuple with the LinkedID field if it's non-nil, zero value otherwise
+GetLinkedIDOk returns a tuple with the LinkedID field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLinkedID
@@ -145,11 +145,11 @@ HasLinkedID returns a boolean if a field has been set.
 
 GetEnvironmentID returns the EnvironmentID field if non-nil, zero value otherwise.
 
-### GetEnvironmentIdOk
+### GetEnvironmentIDOk
 
-`func (o *Event) GetEnvironmentIdOk() (*string, bool)`
+`func (o *Event) GetEnvironmentIDOk() (*string, bool)`
 
-GetEnvironmentIdOk returns a tuple with the EnvironmentID field if it's non-nil, zero value otherwise
+GetEnvironmentIDOk returns a tuple with the EnvironmentID field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetEnvironmentID
@@ -264,30 +264,30 @@ SetIdentification sets Identification field to given value.
 
 HasIdentification returns a boolean if a field has been set.
 
-### GetSupplementaryIdHighRecall
+### GetSupplementaryIDHighRecall
 
-`func (o *Event) GetSupplementaryIdHighRecall() SupplementaryIDHighRecall`
+`func (o *Event) GetSupplementaryIDHighRecall() SupplementaryIDHighRecall`
 
-GetSupplementaryIdHighRecall returns the SupplementaryIdHighRecall field if non-nil, zero value otherwise.
+GetSupplementaryIDHighRecall returns the SupplementaryIDHighRecall field if non-nil, zero value otherwise.
 
-### GetSupplementaryIdHighRecallOk
+### GetSupplementaryIDHighRecallOk
 
-`func (o *Event) GetSupplementaryIdHighRecallOk() (*SupplementaryIDHighRecall, bool)`
+`func (o *Event) GetSupplementaryIDHighRecallOk() (*SupplementaryIDHighRecall, bool)`
 
-GetSupplementaryIdHighRecallOk returns a tuple with the SupplementaryIdHighRecall field if it's non-nil, zero value otherwise
+GetSupplementaryIDHighRecallOk returns a tuple with the SupplementaryIDHighRecall field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetSupplementaryIdHighRecall
+### SetSupplementaryIDHighRecall
 
-`func (o *Event) SetSupplementaryIdHighRecall(v SupplementaryIDHighRecall)`
+`func (o *Event) SetSupplementaryIDHighRecall(v SupplementaryIDHighRecall)`
 
-SetSupplementaryIdHighRecall sets SupplementaryIdHighRecall field to given value.
+SetSupplementaryIDHighRecall sets SupplementaryIDHighRecall field to given value.
 
-### HasSupplementaryIdHighRecall
+### HasSupplementaryIDHighRecall
 
-`func (o *Event) HasSupplementaryIdHighRecall() bool`
+`func (o *Event) HasSupplementaryIDHighRecall() bool`
 
-HasSupplementaryIdHighRecall returns a boolean if a field has been set.
+HasSupplementaryIDHighRecall returns a boolean if a field has been set.
 
 ### GetTags
 
@@ -345,11 +345,11 @@ HasUrl returns a boolean if a field has been set.
 
 GetBundleID returns the BundleID field if non-nil, zero value otherwise.
 
-### GetBundleIdOk
+### GetBundleIDOk
 
-`func (o *Event) GetBundleIdOk() (*string, bool)`
+`func (o *Event) GetBundleIDOk() (*string, bool)`
 
-GetBundleIdOk returns a tuple with the BundleID field if it's non-nil, zero value otherwise
+GetBundleIDOk returns a tuple with the BundleID field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetBundleID
