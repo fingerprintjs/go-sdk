@@ -36,9 +36,9 @@ func exampleWrongEventId() {
 	godotenv.Load()
 
 	client := fingerprint.New(fingerprint.WithRegion(fingerprint.Region(os.Getenv("REGION"))), fingerprint.WithAPIKey(os.Getenv("FINGERPRINT_API_KEY")))
-	eventId := "wrongEventId"
+	eventID := "wrongEventID"
 
-	_, _, err := client.GetEvent(context.Background(), eventId)
+	_, _, err := client.GetEvent(context.Background(), eventID)
 	if err != nil {
 		if errResp, ok := fingerprint.AsErrorResponse(err); ok {
 			switch errResp.Error.Code {

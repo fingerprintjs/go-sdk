@@ -18,9 +18,9 @@ func main() {
 	client := fingerprint.New(fingerprint.WithRegion(fingerprint.Region(os.Getenv("REGION"))), fingerprint.WithAPIKey(os.Getenv("FINGERPRINT_API_KEY")))
 
 	// Usually this data will come from your frontend app
-	eventId := os.Getenv("EVENT_ID")
+	eventID := os.Getenv("EVENT_ID")
 
-	response, httpRes, err := client.GetEvent(context.Background(), eventId)
+	response, httpRes, err := client.GetEvent(context.Background(), eventID)
 
 	fmt.Printf("%+v\n", httpRes)
 

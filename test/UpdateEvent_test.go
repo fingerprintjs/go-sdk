@@ -15,7 +15,7 @@ import (
 
 var (
 	trueValue     = true
-	linkedIdValue = "linked_id"
+	linkedIDValue = "linked_id"
 )
 
 func TestUpdateEvent(t *testing.T) {
@@ -44,7 +44,7 @@ func TestUpdateEvent(t *testing.T) {
 		client := fingerprint.New(fingerprint.WithAPIKey("api_key"), fingerprint.WithBaseURL(ts.URL))
 
 		res, err := client.UpdateEvent(context.Background(), "123", fingerprint.EventUpdate{
-			LinkedId: &linkedIdValue,
+			LinkedID: &linkedIDValue,
 			Tags:     nil,
 			Suspect:  &trueValue,
 		})
@@ -223,7 +223,7 @@ func TestUpdateEvent(t *testing.T) {
 				client := fingerprint.New(fingerprint.WithAPIKey("api_key"), fingerprint.WithBaseURL(ts.URL))
 
 				res, err := client.UpdateEvent(context.Background(), "123", fingerprint.EventUpdate{
-					LinkedId: &linkedIdValue,
+					LinkedID: &linkedIDValue,
 					Tags:     nil,
 					Suspect:  &trueValue,
 				})
