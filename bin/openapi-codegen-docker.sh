@@ -28,4 +28,9 @@ gofmt -w .
 # Replace "Id" with "ID" in all generated .go and .md files, skipping links
 find "$SDK_DIR" \( -name "*.go" -o -name "*.md" \) | while read -r file; do
   perl -i -pe 's/(?<![(\[#\/])([a-zA-Z])Id(?=[A-Z_\s\W]|$)/$1ID/g' "$file"
+  perl -i -pe 's/Ip(?=[A-Z_\s\W])(?![^)]*\.md\))/IP/g' "$file"
+  perl -i -pe 's/Url(?=[A-Z_\s\W])(?![^)]*\.md\))/URL/g' "$file"
+  perl -i -pe 's/Sdk(?=[A-Z_\s\W])(?![^)]*\.md\))/SDK/g' "$file"
+  perl -i -pe 's/Vpn(?=[A-Z_\s\W])(?![^)]*\.md\))/VPN/g' "$file"
+  perl -i -pe 's/Mitm(?=[A-Z_\s\W])(?![^)]*\.md\))/MITM/g' "$file"
 done

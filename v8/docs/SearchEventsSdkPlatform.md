@@ -1,4 +1,4 @@
-# SearchEventsSdkPlatform
+# SearchEventsSDKPlatform
 
 ## Enum
 

@@ -1,4 +1,4 @@
-# SearchEventsVpnConfidence
+# SearchEventsVPNConfidence
 
 ## Enum
 

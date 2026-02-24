@@ -381,14 +381,14 @@ type ApiSearchEventsRequest struct {
 	clonedApp         *bool
 	emulator          *bool
 	rootApps          *bool
-	vpnConfidence     *SearchEventsVpnConfidence
+	vpnConfidence     *SearchEventsVPNConfidence
 	minSuspectScore   *float32
 	developerTools    *bool
 	locationSpoofing  *bool
 	mitmAttack        *bool
 	proxy             *bool
 	sdkVersion        *string
-	sdkPlatform       *SearchEventsSdkPlatform
+	sdkPlatform       *SearchEventsSDKPlatform
 	environment       *[]string
 	proximityID       *string
 	totalHits         *int64
@@ -420,7 +420,7 @@ func (r ApiSearchEventsRequest) Bot(bot SearchEventsBot) ApiSearchEventsRequest 
 }
 
 // Filter events by IP address or IP range (if CIDR notation is used). If CIDR notation is not used, a /32 for IPv4 or /128 for IPv6 is assumed. Examples of range based queries: 10.0.0.0/24, 192.168.0.1/32
-func (r ApiSearchEventsRequest) IpAddress(ipAddress string) ApiSearchEventsRequest {
+func (r ApiSearchEventsRequest) IPAddress(ipAddress string) ApiSearchEventsRequest {
 	r.ipAddress = &ipAddress
 	return r
 }
@@ -438,7 +438,7 @@ func (r ApiSearchEventsRequest) LinkedID(linkedID string) ApiSearchEventsRequest
 }
 
 // Filter events by the URL (&#x60;url&#x60; property) associated with the event.
-func (r ApiSearchEventsRequest) Url(url string) ApiSearchEventsRequest {
+func (r ApiSearchEventsRequest) URL(url string) ApiSearchEventsRequest {
 	r.url = &url
 	return r
 }
@@ -486,7 +486,7 @@ func (r ApiSearchEventsRequest) Suspect(suspect bool) ApiSearchEventsRequest {
 }
 
 // Filter events by VPN Detection result. &gt; Note: When using this parameter, only events with the &#x60;vpn&#x60; property set to &#x60;true&#x60; or &#x60;false&#x60; are returned. Events without a &#x60;vpn&#x60; Smart Signal result are left out of the response.
-func (r ApiSearchEventsRequest) Vpn(vpn bool) ApiSearchEventsRequest {
+func (r ApiSearchEventsRequest) VPN(vpn bool) ApiSearchEventsRequest {
 	r.vpn = &vpn
 	return r
 }
@@ -558,7 +558,7 @@ func (r ApiSearchEventsRequest) RootApps(rootApps bool) ApiSearchEventsRequest {
 }
 
 // Filter events by VPN Detection result confidence level. &#x60;high&#x60; - events with high VPN Detection confidence. &#x60;medium&#x60; - events with medium VPN Detection confidence. &#x60;low&#x60; - events with low VPN Detection confidence. &gt; Note: When using this parameter, only events with the &#x60;vpn.confidence&#x60; property set to a valid value are returned. Events without a &#x60;vpn&#x60; Smart Signal result are left out of the response.
-func (r ApiSearchEventsRequest) VpnConfidence(vpnConfidence SearchEventsVpnConfidence) ApiSearchEventsRequest {
+func (r ApiSearchEventsRequest) VPNConfidence(vpnConfidence SearchEventsVPNConfidence) ApiSearchEventsRequest {
 	r.vpnConfidence = &vpnConfidence
 	return r
 }
@@ -582,7 +582,7 @@ func (r ApiSearchEventsRequest) LocationSpoofing(locationSpoofing bool) ApiSearc
 }
 
 // Filter events by MITM (Man-in-the-Middle) Attack detection result. &gt; Note: When using this parameter, only events with the &#x60;mitm_attack&#x60; property set to &#x60;true&#x60; or &#x60;false&#x60; are returned. Events without a &#x60;mitm_attack&#x60; Smart Signal result are left out of the response.
-func (r ApiSearchEventsRequest) MitmAttack(mitmAttack bool) ApiSearchEventsRequest {
+func (r ApiSearchEventsRequest) MITMAttack(mitmAttack bool) ApiSearchEventsRequest {
 	r.mitmAttack = &mitmAttack
 	return r
 }
@@ -594,13 +594,13 @@ func (r ApiSearchEventsRequest) Proxy(proxy bool) ApiSearchEventsRequest {
 }
 
 // Filter events by a specific SDK version associated with the identification event (&#x60;sdk.version&#x60; property). Example: &#x60;3.11.14&#x60;
-func (r ApiSearchEventsRequest) SdkVersion(sdkVersion string) ApiSearchEventsRequest {
+func (r ApiSearchEventsRequest) SDKVersion(sdkVersion string) ApiSearchEventsRequest {
 	r.sdkVersion = &sdkVersion
 	return r
 }
 
 // Filter events by the SDK Platform associated with the identification event (&#x60;sdk.platform&#x60; property) . &#x60;js&#x60; - Javascript agent (Web). &#x60;ios&#x60; - Apple iOS based devices. &#x60;android&#x60; - Android based devices.
-func (r ApiSearchEventsRequest) SdkPlatform(sdkPlatform SearchEventsSdkPlatform) ApiSearchEventsRequest {
+func (r ApiSearchEventsRequest) SDKPlatform(sdkPlatform SearchEventsSDKPlatform) ApiSearchEventsRequest {
 	r.sdkPlatform = &sdkPlatform
 	return r
 }

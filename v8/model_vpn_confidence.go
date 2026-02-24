@@ -16,54 +16,54 @@ import (
 	"fmt"
 )
 
-// VpnConfidence A confidence rating for the VPN detection result — \"low\", \"medium\", or \"high\". Depends on the combination of results returned from all VPN detection methods.
-type VpnConfidence string
+// VPNConfidence A confidence rating for the VPN detection result — \"low\", \"medium\", or \"high\". Depends on the combination of results returned from all VPN detection methods.
+type VPNConfidence string
 
-// List of VpnConfidence
+// List of VPNConfidence
 const (
-	VpnConfidenceLow    VpnConfidence = "low"
-	VpnConfidenceMedium VpnConfidence = "medium"
-	VpnConfidenceHigh   VpnConfidence = "high"
+	VPNConfidenceLow    VPNConfidence = "low"
+	VPNConfidenceMedium VPNConfidence = "medium"
+	VPNConfidenceHigh   VPNConfidence = "high"
 )
 
-// All allowed values of VpnConfidence enum
-var AllowedVpnConfidenceEnumValues = []VpnConfidence{
-	VpnConfidenceLow,
-	VpnConfidenceMedium,
-	VpnConfidenceHigh,
+// All allowed values of VPNConfidence enum
+var AllowedVPNConfidenceEnumValues = []VPNConfidence{
+	VPNConfidenceLow,
+	VPNConfidenceMedium,
+	VPNConfidenceHigh,
 }
 
-func (v *VpnConfidence) UnmarshalJSON(src []byte) error {
+func (v *VPNConfidence) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
-	enumTypeValue := VpnConfidence(value)
-	for _, existing := range AllowedVpnConfidenceEnumValues {
+	enumTypeValue := VPNConfidence(value)
+	for _, existing := range AllowedVPNConfidenceEnumValues {
 		if existing == enumTypeValue {
 			*v = enumTypeValue
 			return nil
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid VpnConfidence", value)
+	return fmt.Errorf("%+v is not a valid VPNConfidence", value)
 }
 
-// NewVpnConfidenceFromValue returns a pointer to a valid VpnConfidence
+// NewVPNConfidenceFromValue returns a pointer to a valid VPNConfidence
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewVpnConfidenceFromValue(v string) (*VpnConfidence, error) {
-	ev := VpnConfidence(v)
+func NewVPNConfidenceFromValue(v string) (*VPNConfidence, error) {
+	ev := VPNConfidence(v)
 	if ev.IsValid() {
 		return &ev, nil
 	} else {
-		return nil, fmt.Errorf("invalid value '%v' for VpnConfidence: valid values are %v", v, AllowedVpnConfidenceEnumValues)
+		return nil, fmt.Errorf("invalid value '%v' for VPNConfidence: valid values are %v", v, AllowedVPNConfidenceEnumValues)
 	}
 }
 
 // IsValid return true if the value is valid for the enum, false otherwise
-func (v VpnConfidence) IsValid() bool {
-	for _, existing := range AllowedVpnConfidenceEnumValues {
+func (v VPNConfidence) IsValid() bool {
+	for _, existing := range AllowedVPNConfidenceEnumValues {
 		if existing == v {
 			return true
 		}
@@ -71,43 +71,43 @@ func (v VpnConfidence) IsValid() bool {
 	return false
 }
 
-// Ptr returns reference to VpnConfidence value
-func (v VpnConfidence) Ptr() *VpnConfidence {
+// Ptr returns reference to VPNConfidence value
+func (v VPNConfidence) Ptr() *VPNConfidence {
 	return &v
 }
 
-type NullableVpnConfidence struct {
-	value *VpnConfidence
+type NullableVPNConfidence struct {
+	value *VPNConfidence
 	isSet bool
 }
 
-func (v NullableVpnConfidence) Get() *VpnConfidence {
+func (v NullableVPNConfidence) Get() *VPNConfidence {
 	return v.value
 }
 
-func (v *NullableVpnConfidence) Set(val *VpnConfidence) {
+func (v *NullableVPNConfidence) Set(val *VPNConfidence) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableVpnConfidence) IsSet() bool {
+func (v NullableVPNConfidence) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableVpnConfidence) Unset() {
+func (v *NullableVPNConfidence) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableVpnConfidence(val *VpnConfidence) *NullableVpnConfidence {
-	return &NullableVpnConfidence{value: val, isSet: true}
+func NewNullableVPNConfidence(val *VPNConfidence) *NullableVPNConfidence {
+	return &NullableVPNConfidence{value: val, isSet: true}
 }
 
-func (v NullableVpnConfidence) MarshalJSON() ([]byte, error) {
+func (v NullableVPNConfidence) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableVpnConfidence) UnmarshalJSON(src []byte) error {
+func (v *NullableVPNConfidence) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

@@ -16,54 +16,54 @@ import (
 	"fmt"
 )
 
-// SearchEventsVpnConfidence Filter events by VPN Detection result confidence level. `high` - events with high VPN Detection confidence. `medium` - events with medium VPN Detection confidence. `low` - events with low VPN Detection confidence. > Note: When using this parameter, only events with the `vpn.confidence` property set to a valid value are returned. Events without a `vpn` Smart Signal result are left out of the response.
-type SearchEventsVpnConfidence string
+// SearchEventsVPNConfidence Filter events by VPN Detection result confidence level. `high` - events with high VPN Detection confidence. `medium` - events with medium VPN Detection confidence. `low` - events with low VPN Detection confidence. > Note: When using this parameter, only events with the `vpn.confidence` property set to a valid value are returned. Events without a `vpn` Smart Signal result are left out of the response.
+type SearchEventsVPNConfidence string
 
-// List of SearchEventsVpnConfidence
+// List of SearchEventsVPNConfidence
 const (
-	SearchEventsVpnConfidenceHigh   SearchEventsVpnConfidence = "high"
-	SearchEventsVpnConfidenceMedium SearchEventsVpnConfidence = "medium"
-	SearchEventsVpnConfidenceLow    SearchEventsVpnConfidence = "low"
+	SearchEventsVPNConfidenceHigh   SearchEventsVPNConfidence = "high"
+	SearchEventsVPNConfidenceMedium SearchEventsVPNConfidence = "medium"
+	SearchEventsVPNConfidenceLow    SearchEventsVPNConfidence = "low"
 )
 
-// All allowed values of SearchEventsVpnConfidence enum
-var AllowedSearchEventsVpnConfidenceEnumValues = []SearchEventsVpnConfidence{
-	SearchEventsVpnConfidenceHigh,
-	SearchEventsVpnConfidenceMedium,
-	SearchEventsVpnConfidenceLow,
+// All allowed values of SearchEventsVPNConfidence enum
+var AllowedSearchEventsVPNConfidenceEnumValues = []SearchEventsVPNConfidence{
+	SearchEventsVPNConfidenceHigh,
+	SearchEventsVPNConfidenceMedium,
+	SearchEventsVPNConfidenceLow,
 }
 
-func (v *SearchEventsVpnConfidence) UnmarshalJSON(src []byte) error {
+func (v *SearchEventsVPNConfidence) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
-	enumTypeValue := SearchEventsVpnConfidence(value)
-	for _, existing := range AllowedSearchEventsVpnConfidenceEnumValues {
+	enumTypeValue := SearchEventsVPNConfidence(value)
+	for _, existing := range AllowedSearchEventsVPNConfidenceEnumValues {
 		if existing == enumTypeValue {
 			*v = enumTypeValue
 			return nil
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid SearchEventsVpnConfidence", value)
+	return fmt.Errorf("%+v is not a valid SearchEventsVPNConfidence", value)
 }
 
-// NewSearchEventsVpnConfidenceFromValue returns a pointer to a valid SearchEventsVpnConfidence
+// NewSearchEventsVPNConfidenceFromValue returns a pointer to a valid SearchEventsVPNConfidence
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewSearchEventsVpnConfidenceFromValue(v string) (*SearchEventsVpnConfidence, error) {
-	ev := SearchEventsVpnConfidence(v)
+func NewSearchEventsVPNConfidenceFromValue(v string) (*SearchEventsVPNConfidence, error) {
+	ev := SearchEventsVPNConfidence(v)
 	if ev.IsValid() {
 		return &ev, nil
 	} else {
-		return nil, fmt.Errorf("invalid value '%v' for SearchEventsVpnConfidence: valid values are %v", v, AllowedSearchEventsVpnConfidenceEnumValues)
+		return nil, fmt.Errorf("invalid value '%v' for SearchEventsVPNConfidence: valid values are %v", v, AllowedSearchEventsVPNConfidenceEnumValues)
 	}
 }
 
 // IsValid return true if the value is valid for the enum, false otherwise
-func (v SearchEventsVpnConfidence) IsValid() bool {
-	for _, existing := range AllowedSearchEventsVpnConfidenceEnumValues {
+func (v SearchEventsVPNConfidence) IsValid() bool {
+	for _, existing := range AllowedSearchEventsVPNConfidenceEnumValues {
 		if existing == v {
 			return true
 		}
@@ -71,43 +71,43 @@ func (v SearchEventsVpnConfidence) IsValid() bool {
 	return false
 }
 
-// Ptr returns reference to SearchEventsVpnConfidence value
-func (v SearchEventsVpnConfidence) Ptr() *SearchEventsVpnConfidence {
+// Ptr returns reference to SearchEventsVPNConfidence value
+func (v SearchEventsVPNConfidence) Ptr() *SearchEventsVPNConfidence {
 	return &v
 }
 
-type NullableSearchEventsVpnConfidence struct {
-	value *SearchEventsVpnConfidence
+type NullableSearchEventsVPNConfidence struct {
+	value *SearchEventsVPNConfidence
 	isSet bool
 }
 
-func (v NullableSearchEventsVpnConfidence) Get() *SearchEventsVpnConfidence {
+func (v NullableSearchEventsVPNConfidence) Get() *SearchEventsVPNConfidence {
 	return v.value
 }
 
-func (v *NullableSearchEventsVpnConfidence) Set(val *SearchEventsVpnConfidence) {
+func (v *NullableSearchEventsVPNConfidence) Set(val *SearchEventsVPNConfidence) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableSearchEventsVpnConfidence) IsSet() bool {
+func (v NullableSearchEventsVPNConfidence) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableSearchEventsVpnConfidence) Unset() {
+func (v *NullableSearchEventsVPNConfidence) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableSearchEventsVpnConfidence(val *SearchEventsVpnConfidence) *NullableSearchEventsVpnConfidence {
-	return &NullableSearchEventsVpnConfidence{value: val, isSet: true}
+func NewNullableSearchEventsVPNConfidence(val *SearchEventsVPNConfidence) *NullableSearchEventsVPNConfidence {
+	return &NullableSearchEventsVPNConfidence{value: val, isSet: true}
 }
 
-func (v NullableSearchEventsVpnConfidence) MarshalJSON() ([]byte, error) {
+func (v NullableSearchEventsVPNConfidence) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableSearchEventsVpnConfidence) UnmarshalJSON(src []byte) error {
+func (v *NullableSearchEventsVPNConfidence) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

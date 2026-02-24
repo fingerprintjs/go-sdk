@@ -16,54 +16,54 @@ import (
 	"fmt"
 )
 
-// SearchEventsSdkPlatform Filter events by the SDK Platform associated with the identification event (`sdk.platform` property) . `js` - Javascript agent (Web). `ios` - Apple iOS based devices. `android` - Android based devices.
-type SearchEventsSdkPlatform string
+// SearchEventsSDKPlatform Filter events by the SDK Platform associated with the identification event (`sdk.platform` property) . `js` - Javascript agent (Web). `ios` - Apple iOS based devices. `android` - Android based devices.
+type SearchEventsSDKPlatform string
 
-// List of SearchEventsSdkPlatform
+// List of SearchEventsSDKPlatform
 const (
-	SearchEventsSdkPlatformJs      SearchEventsSdkPlatform = "js"
-	SearchEventsSdkPlatformAndroid SearchEventsSdkPlatform = "android"
-	SearchEventsSdkPlatformIos     SearchEventsSdkPlatform = "ios"
+	SearchEventsSDKPlatformJs      SearchEventsSDKPlatform = "js"
+	SearchEventsSDKPlatformAndroid SearchEventsSDKPlatform = "android"
+	SearchEventsSDKPlatformIos     SearchEventsSDKPlatform = "ios"
 )
 
-// All allowed values of SearchEventsSdkPlatform enum
-var AllowedSearchEventsSdkPlatformEnumValues = []SearchEventsSdkPlatform{
-	SearchEventsSdkPlatformJs,
-	SearchEventsSdkPlatformAndroid,
-	SearchEventsSdkPlatformIos,
+// All allowed values of SearchEventsSDKPlatform enum
+var AllowedSearchEventsSDKPlatformEnumValues = []SearchEventsSDKPlatform{
+	SearchEventsSDKPlatformJs,
+	SearchEventsSDKPlatformAndroid,
+	SearchEventsSDKPlatformIos,
 }
 
-func (v *SearchEventsSdkPlatform) UnmarshalJSON(src []byte) error {
+func (v *SearchEventsSDKPlatform) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
-	enumTypeValue := SearchEventsSdkPlatform(value)
-	for _, existing := range AllowedSearchEventsSdkPlatformEnumValues {
+	enumTypeValue := SearchEventsSDKPlatform(value)
+	for _, existing := range AllowedSearchEventsSDKPlatformEnumValues {
 		if existing == enumTypeValue {
 			*v = enumTypeValue
 			return nil
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid SearchEventsSdkPlatform", value)
+	return fmt.Errorf("%+v is not a valid SearchEventsSDKPlatform", value)
 }
 
-// NewSearchEventsSdkPlatformFromValue returns a pointer to a valid SearchEventsSdkPlatform
+// NewSearchEventsSDKPlatformFromValue returns a pointer to a valid SearchEventsSDKPlatform
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewSearchEventsSdkPlatformFromValue(v string) (*SearchEventsSdkPlatform, error) {
-	ev := SearchEventsSdkPlatform(v)
+func NewSearchEventsSDKPlatformFromValue(v string) (*SearchEventsSDKPlatform, error) {
+	ev := SearchEventsSDKPlatform(v)
 	if ev.IsValid() {
 		return &ev, nil
 	} else {
-		return nil, fmt.Errorf("invalid value '%v' for SearchEventsSdkPlatform: valid values are %v", v, AllowedSearchEventsSdkPlatformEnumValues)
+		return nil, fmt.Errorf("invalid value '%v' for SearchEventsSDKPlatform: valid values are %v", v, AllowedSearchEventsSDKPlatformEnumValues)
 	}
 }
 
 // IsValid return true if the value is valid for the enum, false otherwise
-func (v SearchEventsSdkPlatform) IsValid() bool {
-	for _, existing := range AllowedSearchEventsSdkPlatformEnumValues {
+func (v SearchEventsSDKPlatform) IsValid() bool {
+	for _, existing := range AllowedSearchEventsSDKPlatformEnumValues {
 		if existing == v {
 			return true
 		}
@@ -71,43 +71,43 @@ func (v SearchEventsSdkPlatform) IsValid() bool {
 	return false
 }
 
-// Ptr returns reference to SearchEventsSdkPlatform value
-func (v SearchEventsSdkPlatform) Ptr() *SearchEventsSdkPlatform {
+// Ptr returns reference to SearchEventsSDKPlatform value
+func (v SearchEventsSDKPlatform) Ptr() *SearchEventsSDKPlatform {
 	return &v
 }
 
-type NullableSearchEventsSdkPlatform struct {
-	value *SearchEventsSdkPlatform
+type NullableSearchEventsSDKPlatform struct {
+	value *SearchEventsSDKPlatform
 	isSet bool
 }
 
-func (v NullableSearchEventsSdkPlatform) Get() *SearchEventsSdkPlatform {
+func (v NullableSearchEventsSDKPlatform) Get() *SearchEventsSDKPlatform {
 	return v.value
 }
 
-func (v *NullableSearchEventsSdkPlatform) Set(val *SearchEventsSdkPlatform) {
+func (v *NullableSearchEventsSDKPlatform) Set(val *SearchEventsSDKPlatform) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableSearchEventsSdkPlatform) IsSet() bool {
+func (v NullableSearchEventsSDKPlatform) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableSearchEventsSdkPlatform) Unset() {
+func (v *NullableSearchEventsSDKPlatform) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableSearchEventsSdkPlatform(val *SearchEventsSdkPlatform) *NullableSearchEventsSdkPlatform {
-	return &NullableSearchEventsSdkPlatform{value: val, isSet: true}
+func NewNullableSearchEventsSDKPlatform(val *SearchEventsSDKPlatform) *NullableSearchEventsSDKPlatform {
+	return &NullableSearchEventsSDKPlatform{value: val, isSet: true}
 }
 
-func (v NullableSearchEventsSdkPlatform) MarshalJSON() ([]byte, error) {
+func (v NullableSearchEventsSDKPlatform) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableSearchEventsSdkPlatform) UnmarshalJSON(src []byte) error {
+func (v *NullableSearchEventsSDKPlatform) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

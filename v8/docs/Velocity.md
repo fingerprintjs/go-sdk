@@ -31,30 +31,30 @@ NewVelocityWithDefaults instantiates a new Velocity object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetDistinctIp
+### GetDistinctIP
 
-`func (o *Velocity) GetDistinctIp() VelocityData`
+`func (o *Velocity) GetDistinctIP() VelocityData`
 
-GetDistinctIp returns the DistinctIp field if non-nil, zero value otherwise.
+GetDistinctIP returns the DistinctIP field if non-nil, zero value otherwise.
 
-### GetDistinctIpOk
+### GetDistinctIPOk
 
-`func (o *Velocity) GetDistinctIpOk() (*VelocityData, bool)`
+`func (o *Velocity) GetDistinctIPOk() (*VelocityData, bool)`
 
-GetDistinctIpOk returns a tuple with the DistinctIp field if it's non-nil, zero value otherwise
+GetDistinctIPOk returns a tuple with the DistinctIP field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetDistinctIp
+### SetDistinctIP
 
-`func (o *Velocity) SetDistinctIp(v VelocityData)`
+`func (o *Velocity) SetDistinctIP(v VelocityData)`
 
-SetDistinctIp sets DistinctIp field to given value.
+SetDistinctIP sets DistinctIP field to given value.
 
-### HasDistinctIp
+### HasDistinctIP
 
-`func (o *Velocity) HasDistinctIp() bool`
+`func (o *Velocity) HasDistinctIP() bool`
 
-HasDistinctIp returns a boolean if a field has been set.
+HasDistinctIP returns a boolean if a field has been set.
 
 ### GetDistinctLinkedID
 
@@ -131,55 +131,55 @@ SetEvents sets Events field to given value.
 
 HasEvents returns a boolean if a field has been set.
 
-### GetIpEvents
+### GetIPEvents
 
-`func (o *Velocity) GetIpEvents() VelocityData`
+`func (o *Velocity) GetIPEvents() VelocityData`
 
-GetIpEvents returns the IpEvents field if non-nil, zero value otherwise.
+GetIPEvents returns the IPEvents field if non-nil, zero value otherwise.
 
-### GetIpEventsOk
+### GetIPEventsOk
 
-`func (o *Velocity) GetIpEventsOk() (*VelocityData, bool)`
+`func (o *Velocity) GetIPEventsOk() (*VelocityData, bool)`
 
-GetIpEventsOk returns a tuple with the IpEvents field if it's non-nil, zero value otherwise
+GetIPEventsOk returns a tuple with the IPEvents field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetIpEvents
+### SetIPEvents
 
-`func (o *Velocity) SetIpEvents(v VelocityData)`
+`func (o *Velocity) SetIPEvents(v VelocityData)`
 
-SetIpEvents sets IpEvents field to given value.
+SetIPEvents sets IPEvents field to given value.
 
-### HasIpEvents
+### HasIPEvents
 
-`func (o *Velocity) HasIpEvents() bool`
+`func (o *Velocity) HasIPEvents() bool`
 
-HasIpEvents returns a boolean if a field has been set.
+HasIPEvents returns a boolean if a field has been set.
 
-### GetDistinctIpByLinkedID
+### GetDistinctIPByLinkedID
 
-`func (o *Velocity) GetDistinctIpByLinkedID() VelocityData`
+`func (o *Velocity) GetDistinctIPByLinkedID() VelocityData`
 
-GetDistinctIpByLinkedID returns the DistinctIpByLinkedID field if non-nil, zero value otherwise.
+GetDistinctIPByLinkedID returns the DistinctIPByLinkedID field if non-nil, zero value otherwise.
 
-### GetDistinctIpByLinkedIDOk
+### GetDistinctIPByLinkedIDOk
 
-`func (o *Velocity) GetDistinctIpByLinkedIDOk() (*VelocityData, bool)`
+`func (o *Velocity) GetDistinctIPByLinkedIDOk() (*VelocityData, bool)`
 
-GetDistinctIpByLinkedIDOk returns a tuple with the DistinctIpByLinkedID field if it's non-nil, zero value otherwise
+GetDistinctIPByLinkedIDOk returns a tuple with the DistinctIPByLinkedID field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetDistinctIpByLinkedID
+### SetDistinctIPByLinkedID
 
-`func (o *Velocity) SetDistinctIpByLinkedID(v VelocityData)`
+`func (o *Velocity) SetDistinctIPByLinkedID(v VelocityData)`
 
-SetDistinctIpByLinkedID sets DistinctIpByLinkedID field to given value.
+SetDistinctIPByLinkedID sets DistinctIPByLinkedID field to given value.
 
-### HasDistinctIpByLinkedID
+### HasDistinctIPByLinkedID
 
-`func (o *Velocity) HasDistinctIpByLinkedID() bool`
+`func (o *Velocity) HasDistinctIPByLinkedID() bool`
 
-HasDistinctIpByLinkedID returns a boolean if a field has been set.
+HasDistinctIPByLinkedID returns a boolean if a field has been set.
 
 ### GetDistinctVisitorIDByLinkedID
 
