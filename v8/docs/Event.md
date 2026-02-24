@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **EventID** | **string** | Unique identifier of the user&#39;s request. The first portion of the event_id is a unix epoch milliseconds timestamp For example: &#x60;1758130560902.8tRtrH&#x60;  | 
 **Timestamp** | **int64** | Timestamp of the event with millisecond precision in Unix time. | 
 **LinkedID** | Pointer to **string** | A customer-provided id that was sent with the request. | [optional] 
-**EnvironmentID** | Pointer to **string** | Environment Id of the event. For example: &#x60;ae_47abaca3db2c7c43&#x60;  | [optional] 
+**EnvironmentID** | Pointer to **string** | Environment ID of the event. For example: &#x60;ae_47abaca3db2c7c43&#x60;  | [optional] 
 **Suspect** | Pointer to **bool** | Field is &#x60;true&#x60; if you have previously set the &#x60;suspect&#x60; flag for this event using the [Server API Update event endpoint](https://dev.fingerprint.com/reference/updateevent). | [optional] 
 **SDK** | Pointer to [**SDK**](SDK.md) |  | [optional] 
 **Replayed** | Pointer to **bool** | &#x60;true&#x60; if we determined that this payload was replayed, &#x60;false&#x60; otherwise.  | [optional] 
@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 **SupplementaryIDHighRecall** | Pointer to [**SupplementaryIDHighRecall**](SupplementaryIDHighRecall.md) |  | [optional] 
 **Tags** | Pointer to **map[string]interface{}** | A customer-provided value or an object that was sent with the identification request or updated later. | [optional] 
 **URL** | Pointer to **string** | Page URL from which the request was sent. For example &#x60;https://example.com/&#x60;  | [optional] 
-**BundleID** | Pointer to **string** | Bundle Id of the iOS application integrated with the Fingerprint SDK for the event. For example: &#x60;com.foo.app&#x60;  | [optional] 
+**BundleID** | Pointer to **string** | Bundle ID of the iOS application integrated with the Fingerprint SDK for the event. For example: &#x60;com.foo.app&#x60;  | [optional] 
 **PackageName** | Pointer to **string** | Package name of the Android application integrated with the Fingerprint SDK for the event. For example: &#x60;com.foo.app&#x60;  | [optional] 
 **IPAddress** | Pointer to **string** | IP address of the requesting browser or bot. | [optional] 
 **UserAgent** | Pointer to **string** | User Agent of the client, for example: &#x60;Mozilla/5.0 (Windows NT 6.1; Win64; x64) ....&#x60;  | [optional] 

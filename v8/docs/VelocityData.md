@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Var5Minutes** | **int32** | Count for the last 5 minutes of velocity data, from the time of the event.  | 
 **Var1Hour** | **int32** | Count for the last 1 hour of velocity data, from the time of the event.  | 
-**Var24Hours** | Pointer to **int32** | The &#x60;24_hours&#x60; interval of &#x60;distinct_ip&#x60;, &#x60;distinct_linked_id&#x60;, &#x60;distinct_country&#x60;, &#x60;distinct_ip_by_linked_id&#x60; and &#x60;distinct_visitor_id_by_linked_id&#x60; will be omitted if the number of &#x60;events&#x60; for the visitor Id in the last 24 hours (&#x60;events.[&#39;24_hours&#39;]&#x60;) is higher than 20.000.  | [optional] 
+**Var24Hours** | Pointer to **int32** | The &#x60;24_hours&#x60; interval of &#x60;distinct_ip&#x60;, &#x60;distinct_linked_id&#x60;, &#x60;distinct_country&#x60;, &#x60;distinct_ip_by_linked_id&#x60; and &#x60;distinct_visitor_id_by_linked_id&#x60; will be omitted if the number of &#x60;events&#x60; for the visitor ID in the last 24 hours (&#x60;events.[&#39;24_hours&#39;]&#x60;) is higher than 20.000.  | [optional] 
 
 ## Methods
 

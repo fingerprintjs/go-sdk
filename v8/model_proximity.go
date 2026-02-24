@@ -22,7 +22,7 @@ var _ MappedNullable = &Proximity{}
 // Proximity Proximity ID represents a fixed geographical zone in a discrete global grid within which the device is observed.
 type Proximity struct {
 	// A stable privacy-preserving identifier for a given proximity zone.
-	Id string `json:"id"`
+	ID string `json:"id"`
 	// The radius of the proximity zone’s precision level, in meters.
 	PrecisionRadius int32 `json:"precision_radius"`
 	// A value between `0` and `1` representing the likelihood that the true device location lies within the mapped proximity zone.   * Scores closer to `1` indicate high confidence that the location is inside the mapped proximity zone.   * Scores closer to `0` indicate lower confidence, suggesting the true location may fall in an adjacent zone.
@@ -38,7 +38,7 @@ type _Proximity Proximity
 // will change when the set of required properties is changed
 func NewProximity(id string, precisionRadius int32, confidence float32) *Proximity {
 	this := Proximity{}
-	this.Id = id
+	this.ID = id
 	this.PrecisionRadius = precisionRadius
 	this.Confidence = confidence
 	return &this
@@ -52,28 +52,28 @@ func NewProximityWithDefaults() *Proximity {
 	return &this
 }
 
-// GetID returns the Id field value
+// GetID returns the ID field value
 func (o *Proximity) GetID() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.Id
+	return o.ID
 }
 
-// GetIDOk returns a tuple with the Id field value
+// GetIDOk returns a tuple with the ID field value
 // and a boolean to check if the value has been set.
 func (o *Proximity) GetIDOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Id, true
+	return &o.ID, true
 }
 
 // SetID sets field value
 func (o *Proximity) SetID(v string) {
-	o.Id = v
+	o.ID = v
 }
 
 // GetPrecisionRadius returns the PrecisionRadius field value
@@ -134,7 +134,7 @@ func (o Proximity) MarshalJSON() ([]byte, error) {
 
 func (o Proximity) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["id"] = o.Id
+	toSerialize["id"] = o.ID
 	toSerialize["precision_radius"] = o.PrecisionRadius
 	toSerialize["confidence"] = o.Confidence
 

@@ -27,7 +27,7 @@ type Event struct {
 	Timestamp int64 `json:"timestamp"`
 	// A customer-provided id that was sent with the request.
 	LinkedID *string `json:"linked_id,omitempty"`
-	// Environment Id of the event. For example: `ae_47abaca3db2c7c43`
+	// Environment ID of the event. For example: `ae_47abaca3db2c7c43`
 	EnvironmentID *string `json:"environment_id,omitempty"`
 	// Field is `true` if you have previously set the `suspect` flag for this event using the [Server API Update event endpoint](https://dev.fingerprint.com/reference/updateevent).
 	Suspect *bool `json:"suspect,omitempty"`
@@ -40,7 +40,7 @@ type Event struct {
 	Tags map[string]interface{} `json:"tags,omitempty"`
 	// Page URL from which the request was sent. For example `https://example.com/`
 	URL *string `json:"url,omitempty"`
-	// Bundle Id of the iOS application integrated with the Fingerprint SDK for the event. For example: `com.foo.app`
+	// Bundle ID of the iOS application integrated with the Fingerprint SDK for the event. For example: `com.foo.app`
 	BundleID *string `json:"bundle_id,omitempty"`
 	// Package name of the Android application integrated with the Fingerprint SDK for the event. For example: `com.foo.app`
 	PackageName *string `json:"package_name,omitempty"`

@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **string** | A stable privacy-preserving identifier for a given proximity zone.  | 
+**ID** | **string** | A stable privacy-preserving identifier for a given proximity zone.  | 
 **PrecisionRadius** | **int32** | The radius of the proximity zone’s precision level, in meters.  | 
 **Confidence** | **float32** | A value between &#x60;0&#x60; and &#x60;1&#x60; representing the likelihood that the true device location lies within the mapped proximity zone.   * Scores closer to &#x60;1&#x60; indicate high confidence that the location is inside the mapped proximity zone.   * Scores closer to &#x60;0&#x60; indicate lower confidence, suggesting the true location may fall in an adjacent zone.  | 
 
@@ -31,20 +31,20 @@ but it doesn't guarantee that properties required by API are set
 
 `func (o *Proximity) GetID() string`
 
-GetID returns the Id field if non-nil, zero value otherwise.
+GetID returns the ID field if non-nil, zero value otherwise.
 
 ### GetIDOk
 
 `func (o *Proximity) GetIDOk() (*string, bool)`
 
-GetIDOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+GetIDOk returns a tuple with the ID field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetID
 
 `func (o *Proximity) SetID(v string)`
 
-SetID sets Id field to given value.
+SetID sets ID field to given value.
 
 
 ### GetPrecisionRadius

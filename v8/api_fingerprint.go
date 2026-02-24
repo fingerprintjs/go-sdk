@@ -431,7 +431,7 @@ func (r ApiSearchEventsRequest) Asn(asn string) ApiSearchEventsRequest {
 	return r
 }
 
-// Filter events by your custom identifier.  You can use [linked Ids](https://dev.fingerprint.com/reference/get-function#linkedid) to associate identification requests with your own identifier, for example, session Id, purchase Id, or transaction Id. You can then use this &#x60;linked_id&#x60; parameter to retrieve all events associated with your custom identifier.
+// Filter events by your custom identifier.  You can use [linked Ids](https://dev.fingerprint.com/reference/get-function#linkedid) to associate identification requests with your own identifier, for example, session ID, purchase ID, or transaction ID. You can then use this &#x60;linked_id&#x60; parameter to retrieve all events associated with your custom identifier.
 func (r ApiSearchEventsRequest) LinkedID(linkedID string) ApiSearchEventsRequest {
 	r.linkedID = &linkedID
 	return r
