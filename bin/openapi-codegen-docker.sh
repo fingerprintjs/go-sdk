@@ -23,9 +23,12 @@ run_generator() {
 
 prepare_directory
 run_generator
+
+# Postprocessing
+
 gofmt -w .
 
-# Replace "Id" with "ID" in all generated .go and .md files, skipping links
+# Replace given acronyms, such as Id, Ip, Url, etc. to match recommended casing in GO
 find "$SDK_DIR" \( -name "*.go" -o -name "*.md" \) -print | while read -r file; do
   perl -i -pe 's/(?<![(\[#\/])([a-zA-Z])Id(?=[A-Z_\s\W]|$)/$1ID/g' "$file"
   perl -i -pe 's/(\([^)]*\.md\))|Blocklist/$1 ? $1 : "BlockList"/ge' "$file"
