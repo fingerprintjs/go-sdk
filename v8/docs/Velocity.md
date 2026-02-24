@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**DistinctIp** | Pointer to [**VelocityData**](VelocityData.md) |  | [optional] 
+**DistinctIP** | Pointer to [**VelocityData**](VelocityData.md) |  | [optional] 
 **DistinctLinkedID** | Pointer to [**VelocityData**](VelocityData.md) |  | [optional] 
 **DistinctCountry** | Pointer to [**VelocityData**](VelocityData.md) |  | [optional] 
 **Events** | Pointer to [**VelocityData**](VelocityData.md) |  | [optional] 
-**IpEvents** | Pointer to [**VelocityData**](VelocityData.md) |  | [optional] 
-**DistinctIpByLinkedID** | Pointer to [**VelocityData**](VelocityData.md) |  | [optional] 
+**IPEvents** | Pointer to [**VelocityData**](VelocityData.md) |  | [optional] 
+**DistinctIPByLinkedID** | Pointer to [**VelocityData**](VelocityData.md) |  | [optional] 
 **DistinctVisitorIDByLinkedID** | Pointer to [**VelocityData**](VelocityData.md) |  | [optional] 
 
 ## Methods

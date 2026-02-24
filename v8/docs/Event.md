@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **LinkedID** | Pointer to **string** | A customer-provided id that was sent with the request. | [optional] 
 **EnvironmentID** | Pointer to **string** | Environment Id of the event. For example: &#x60;ae_47abaca3db2c7c43&#x60;  | [optional] 
 **Suspect** | Pointer to **bool** | Field is &#x60;true&#x60; if you have previously set the &#x60;suspect&#x60; flag for this event using the [Server API Update event endpoint](https://dev.fingerprint.com/reference/updateevent). | [optional] 
-**Sdk** | Pointer to [**SDK**](SDK.md) |  | [optional] 
+**SDK** | Pointer to [**SDK**](SDK.md) |  | [optional] 
 **Replayed** | Pointer to **bool** | &#x60;true&#x60; if we determined that this payload was replayed, &#x60;false&#x60; otherwise.  | [optional] 
 **Identification** | Pointer to [**Identification**](Identification.md) |  | [optional] 
 **SupplementaryIDHighRecall** | Pointer to [**SupplementaryIDHighRecall**](SupplementaryIDHighRecall.md) |  | [optional] 
@@ -30,8 +30,8 @@ Name | Type | Description | Notes
 **Emulator** | Pointer to **bool** | Android specific emulator detection. There are 2 values:  * &#x60;true&#x60; - Emulated environment detected (e.g. launch inside of AVD).  * &#x60;false&#x60; - No signs of emulated environment detected or the client is not Android.  | [optional] 
 **FactoryResetTimestamp** | Pointer to **int64** | The time of the most recent factory reset that happened on the **mobile device** is expressed as Unix epoch time. When a factory reset cannot be detected on the mobile device or when the request is initiated from a browser,  this field will correspond to the *epoch* time (i.e 1 Jan 1970 UTC) as a value of 0. See [Factory Reset Detection](https://dev.fingerprint.com/docs/smart-signals-overview#factory-reset-detection) to learn more about this Smart Signal.  | [optional] 
 **Frida** | Pointer to **bool** | [Frida](https://frida.re/docs/) detection for Android and iOS devices. There are 2 values: * &#x60;true&#x60; - Frida detected * &#x60;false&#x60; - No signs of Frida or the client is not a mobile device.  | [optional] 
-**IpBlocklist** | Pointer to [**IPBlockList**](IPBlockList.md) |  | [optional] 
-**IpInfo** | Pointer to [**IPInfo**](IPInfo.md) |  | [optional] 
+**IPBlockList** | Pointer to [**IPBlockList**](IPBlockList.md) |  | [optional] 
+**IPInfo** | Pointer to [**IPInfo**](IPInfo.md) |  | [optional] 
 **Proxy** | Pointer to **bool** | IP address was used by a public proxy provider or belonged to a known recent residential proxy  | [optional] 
 **ProxyConfidence** | Pointer to [**ProxyConfidence**](ProxyConfidence.md) |  | [optional] 
 **ProxyDetails** | Pointer to [**ProxyDetails**](ProxyDetails.md) |  | [optional] 
@@ -48,10 +48,10 @@ Name | Type | Description | Notes
 **Velocity** | Pointer to [**Velocity**](Velocity.md) |  | [optional] 
 **VirtualMachine** | Pointer to **bool** | &#x60;true&#x60; if the request came from a browser running inside a virtual machine (e.g. VMWare), &#x60;false&#x60; otherwise.  | [optional] 
 **VPN** | Pointer to **bool** | VPN or other anonymizing service has been used when sending the request.  | [optional] 
-**VpnConfidence** | Pointer to [**VpnConfidence**](VpnConfidence.md) |  | [optional] 
+**VPNConfidence** | Pointer to [**VPNConfidence**](VpnConfidence.md) |  | [optional] 
 **VPNOriginTimezone** | Pointer to **string** | Local timezone which is used in timezone_mismatch method.  | [optional] 
 **VPNOriginCountry** | Pointer to **string** | Country of the request (only for Android SDK version &gt;&#x3D; 2.4.0, ISO 3166 format or unknown).  | [optional] 
-**VpnMethods** | Pointer to [**VpnMethods**](VpnMethods.md) |  | [optional] 
+**VPNMethods** | Pointer to [**VPNMethods**](VpnMethods.md) |  | [optional] 
 **HighActivityDevice** | Pointer to **bool** | Flag indicating if the request came from a high-activity visitor. | [optional] 
 **RawDeviceAttributes** | Pointer to [**RawDeviceAttributes**](RawDeviceAttributes.md) |  | [optional] 
 
@@ -714,30 +714,30 @@ SetFrida sets Frida field to given value.
 
 HasFrida returns a boolean if a field has been set.
 
-### GetIPBlocklist
+### GetIPBlockList
 
-`func (o *Event) GetIPBlocklist() IPBlockList`
+`func (o *Event) GetIPBlockList() IPBlockList`
 
-GetIPBlocklist returns the IPBlocklist field if non-nil, zero value otherwise.
+GetIPBlockList returns the IPBlockList field if non-nil, zero value otherwise.
 
-### GetIPBlocklistOk
+### GetIPBlockListOk
 
-`func (o *Event) GetIPBlocklistOk() (*IPBlockList, bool)`
+`func (o *Event) GetIPBlockListOk() (*IPBlockList, bool)`
 
-GetIPBlocklistOk returns a tuple with the IPBlocklist field if it's non-nil, zero value otherwise
+GetIPBlockListOk returns a tuple with the IPBlockList field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetIPBlocklist
+### SetIPBlockList
 
-`func (o *Event) SetIPBlocklist(v IPBlockList)`
+`func (o *Event) SetIPBlockList(v IPBlockList)`
 
-SetIPBlocklist sets IPBlocklist field to given value.
+SetIPBlockList sets IPBlockList field to given value.
 
-### HasIPBlocklist
+### HasIPBlockList
 
-`func (o *Event) HasIPBlocklist() bool`
+`func (o *Event) HasIPBlockList() bool`
 
-HasIPBlocklist returns a boolean if a field has been set.
+HasIPBlockList returns a boolean if a field has been set.
 
 ### GetIPInfo
 

@@ -66,7 +66,7 @@ type Event struct {
 	FactoryResetTimestamp *int64 `json:"factory_reset_timestamp,omitempty"`
 	// [Frida](https://frida.re/docs/) detection for Android and iOS devices. There are 2 values: * `true` - Frida detected * `false` - No signs of Frida or the client is not a mobile device.
 	Frida       *bool        `json:"frida,omitempty"`
-	IPBlocklist *IPBlockList `json:"ip_blocklist,omitempty"`
+	IPBlockList *IPBlockList `json:"ip_blocklist,omitempty"`
 	IPInfo      *IPInfo      `json:"ip_info,omitempty"`
 	// IP address was used by a public proxy provider or belonged to a known recent residential proxy
 	Proxy           *bool            `json:"proxy,omitempty"`
@@ -944,36 +944,36 @@ func (o *Event) SetFrida(v bool) {
 	o.Frida = &v
 }
 
-// GetIPBlocklist returns the IPBlocklist field value if set, zero value otherwise.
-func (o *Event) GetIPBlocklist() IPBlockList {
-	if o == nil || IsNil(o.IPBlocklist) {
+// GetIPBlockList returns the IPBlockList field value if set, zero value otherwise.
+func (o *Event) GetIPBlockList() IPBlockList {
+	if o == nil || IsNil(o.IPBlockList) {
 		var ret IPBlockList
 		return ret
 	}
-	return *o.IPBlocklist
+	return *o.IPBlockList
 }
 
-// GetIPBlocklistOk returns a tuple with the IPBlocklist field value if set, nil otherwise
+// GetIPBlockListOk returns a tuple with the IPBlockList field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Event) GetIPBlocklistOk() (*IPBlockList, bool) {
-	if o == nil || IsNil(o.IPBlocklist) {
+func (o *Event) GetIPBlockListOk() (*IPBlockList, bool) {
+	if o == nil || IsNil(o.IPBlockList) {
 		return nil, false
 	}
-	return o.IPBlocklist, true
+	return o.IPBlockList, true
 }
 
-// HasIPBlocklist returns a boolean if a field has been set.
-func (o *Event) HasIPBlocklist() bool {
-	if o != nil && !IsNil(o.IPBlocklist) {
+// HasIPBlockList returns a boolean if a field has been set.
+func (o *Event) HasIPBlockList() bool {
+	if o != nil && !IsNil(o.IPBlockList) {
 		return true
 	}
 
 	return false
 }
 
-// SetIPBlocklist gets a reference to the given IPBlockList and assigns it to the IPBlocklist field.
-func (o *Event) SetIPBlocklist(v IPBlockList) {
-	o.IPBlocklist = &v
+// SetIPBlockList gets a reference to the given IPBlockList and assigns it to the IPBlockList field.
+func (o *Event) SetIPBlockList(v IPBlockList) {
+	o.IPBlockList = &v
 }
 
 // GetIPInfo returns the IPInfo field value if set, zero value otherwise.
@@ -1796,8 +1796,8 @@ func (o Event) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Frida) {
 		toSerialize["frida"] = o.Frida
 	}
-	if !IsNil(o.IPBlocklist) {
-		toSerialize["ip_blocklist"] = o.IPBlocklist
+	if !IsNil(o.IPBlockList) {
+		toSerialize["ip_blocklist"] = o.IPBlockList
 	}
 	if !IsNil(o.IPInfo) {
 		toSerialize["ip_info"] = o.IPInfo

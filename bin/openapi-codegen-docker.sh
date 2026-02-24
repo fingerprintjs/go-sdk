@@ -26,11 +26,12 @@ run_generator
 gofmt -w .
 
 # Replace "Id" with "ID" in all generated .go and .md files, skipping links
-find "$SDK_DIR" \( -name "*.go" -o -name "*.md" \) | while read -r file; do
+find "$SDK_DIR" \( -name "*.go" -o -name "*.md" \) -print | while read -r file; do
   perl -i -pe 's/(?<![(\[#\/])([a-zA-Z])Id(?=[A-Z_\s\W]|$)/$1ID/g' "$file"
-  perl -i -pe 's/Ip(?=[A-Z_\s\W])(?![^)]*\.md\))/IP/g' "$file"
-  perl -i -pe 's/Url(?=[A-Z_\s\W])(?![^)]*\.md\))/URL/g' "$file"
-  perl -i -pe 's/Sdk(?=[A-Z_\s\W])(?![^)]*\.md\))/SDK/g' "$file"
-  perl -i -pe 's/Vpn(?=[A-Z_\s\W])(?![^)]*\.md\))/VPN/g' "$file"
-  perl -i -pe 's/Mitm(?=[A-Z_\s\W])(?![^)]*\.md\))/MITM/g' "$file"
+  perl -i -pe 's/(\([^)]*\.md\))|Blocklist/$1 ? $1 : "BlockList"/ge' "$file"
+  perl -i -pe 's/(\([^)]*\.md\))|Ip(?=[A-Z_\s\W])/$1 ? $1 : "IP"/ge' "$file"
+  perl -i -pe 's/(\([^)]*\.md\))|Url(?=[A-Z_\s\W])/$1 ? $1 : "URL"/ge' "$file"
+  perl -i -pe 's/(\([^)]*\.md\))|Sdk(?=[A-Z_\s\W])/$1 ? $1 : "SDK"/ge' "$file"
+  perl -i -pe 's/(\([^)]*\.md\))|Vpn(?=[A-Z_\s\W])/$1 ? $1 : "VPN"/ge' "$file"
+  perl -i -pe 's/(\([^)]*\.md\))|Mitm(?=[A-Z_\s\W])/$1 ? $1 : "MITM"/ge' "$file"
 done
