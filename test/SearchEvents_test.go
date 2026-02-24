@@ -121,8 +121,8 @@ func TestSearchEvents(t *testing.T) {
 			assert.Equal(t, "https://example.com", query.Get("origin"), "origin")
 			assert.Equal(t, "5", query.Get("start"), "start")
 			assert.Equal(t, "10", query.Get("end"), "end")
-			assert.Equal(t, "testSdkVersion", query.Get("sdk_version"), "sdkVersion")
-			assert.Equal(t, string(fingerprint.SearchEventsSdkPlatformJs), query.Get("sdk_platform"), "sdkPlatform")
+			assert.Equal(t, "testSDKVersion", query.Get("sdk_version"), "sdkVersion")
+			assert.Equal(t, string(fingerprint.SearchEventsSDKPlatformJs), query.Get("sdk_platform"), "sdkPlatform")
 			assert.Equal(t, []string{"env1", "env2"}, r.URL.Query()["environment"], "environment")
 			assert.Equal(t, "testProximityID", query.Get("proximity_id"), "proximityID")
 			assert.Equal(t, "10", query.Get("total_hits"), "totalHits")
@@ -225,14 +225,14 @@ func TestSearchEvents(t *testing.T) {
 			clonedApp         bool     = false
 			emulator          bool     = false
 			rootApps          bool     = false
-			vpnConfidence              = fingerprint.SearchEventsVpnConfidenceHigh
+			vpnConfidence              = fingerprint.SearchEventsVPNConfidenceHigh
 			minSuspectScore   float32  = 85.5
 			developerTools    bool     = false
 			locationSpoofing  bool     = true
 			mitmAttack        bool     = false
 			proxy             bool     = false
-			sdkVersion        string   = "testSdkVersion"
-			sdkPlatform                = fingerprint.SearchEventsSdkPlatformJs
+			sdkVersion        string   = "testSDKVersion"
+			sdkPlatform                = fingerprint.SearchEventsSDKPlatformJs
 			environment       []string = []string{"env1", "env2"}
 			proximityID       string   = "testProximityID"
 			totalHits         int64    = 10
@@ -254,13 +254,13 @@ func TestSearchEvents(t *testing.T) {
 			FactoryReset(factoryReset).
 			Frida(frida).
 			Incognito(incognito).
-			IpAddress(ipAddress).
+			IPAddress(ipAddress).
 			Jailbroken(jailbroken).
 			Limit(limit).
 			LinkedID(linkedID).
 			LocationSpoofing(locationSpoofing).
 			MinSuspectScore(minSuspectScore).
-			MitmAttack(mitmAttack).
+			MITMAttack(mitmAttack).
 			Origin(origin).
 			PackageName(packageName).
 			PrivacySettings(privacySettings).
@@ -268,18 +268,18 @@ func TestSearchEvents(t *testing.T) {
 			Proxy(proxy).
 			Reverse(reverse).
 			RootApps(rootApps).
-			SdkPlatform(sdkPlatform).
-			SdkVersion(sdkVersion).
+			SDKPlatform(sdkPlatform).
+			SDKVersion(sdkVersion).
 			Start(start).
 			Suspect(suspect).
 			Tampering(tampering).
 			TorNode(torNode).
 			TotalHits(totalHits).
-			Url(url).
+			URL(url).
 			VirtualMachine(virtualMachine).
 			VisitorID(visitorID).
-			Vpn(vpn).
-			VpnConfidence(vpnConfidence)
+			VPN(vpn).
+			VPNConfidence(vpnConfidence)
 
 		res, _, err := client.SearchEvents(opts)
 		assert.Nil(t, err)
