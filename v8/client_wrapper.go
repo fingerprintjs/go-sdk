@@ -73,7 +73,7 @@ type GetEventOption func(request *ApiGetEventRequest)
 
 func WithRulesetID(rulesetID string) GetEventOption {
 	return func(request *ApiGetEventRequest) {
-		*request = request.RulesetID(rulesetID)
+		*request = request.RulesetId(rulesetID)
 	}
 }
 
@@ -112,17 +112,17 @@ func (c *Client) SearchEvents(req ApiSearchEventsRequest) (*EventSearch, *http.R
 /*
 UpdateEvent Update an event. See FingerprintAPIService.UpdateEvent for details.
 */
-func (c *Client) UpdateEvent(ctx context.Context, eventID string, eventUpdateReq EventUpdate) (*http.Response, error) {
+func (c *Client) UpdateEvent(ctx context.Context, eventId string, eventUpdateReq EventUpdate) (*http.Response, error) {
 	ctx = c.withRegion(ctx)
 	ctx = c.withAPIKey(ctx)
-	return c.api.FingerprintAPI.UpdateEvent(ctx, eventID).EventUpdate(eventUpdateReq).Execute()
+	return c.api.FingerprintAPI.UpdateEvent(ctx, eventId).EventUpdate(eventUpdateReq).Execute()
 }
 
 /*
 DeleteVisitorData Delete data by visitor ID. See FingerprintAPIService.DeleteVisitorData for details.
 */
-func (c *Client) DeleteVisitorData(ctx context.Context, visitorID string) (*http.Response, error) {
+func (c *Client) DeleteVisitorData(ctx context.Context, visitorId string) (*http.Response, error) {
 	ctx = c.withRegion(ctx)
 	ctx = c.withAPIKey(ctx)
-	return c.api.FingerprintAPI.DeleteVisitorData(ctx, visitorID).Execute()
+	return c.api.FingerprintAPI.DeleteVisitorData(ctx, visitorId).Execute()
 }

@@ -71,7 +71,7 @@ func (v SearchEventsVPNConfidence) IsValid() bool {
 	return false
 }
 
-// Ptr returns reference to SearchEventsVPNConfidence value
+// Ptr returns reference to SearchEventsVpnConfidence value
 func (v SearchEventsVPNConfidence) Ptr() *SearchEventsVPNConfidence {
 	return &v
 }

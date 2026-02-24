@@ -20,7 +20,7 @@ var _ MappedNullable = &EventUpdate{}
 
 // EventUpdate struct for EventUpdate
 type EventUpdate struct {
-	// Linked ID value to assign to the existing event
+	// Linked Id value to assign to the existing event
 	LinkedID *string `json:"linked_id,omitempty"`
 	// A customer-provided value or an object that was sent with the identification request or updated later.
 	Tags map[string]interface{} `json:"tags,omitempty"`

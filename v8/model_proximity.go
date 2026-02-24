@@ -36,9 +36,9 @@ type _Proximity Proximity
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewProximity(id string, precisionRadius int32, confidence float32) *Proximity {
+func NewProximity(iD string, precisionRadius int32, confidence float32) *Proximity {
 	this := Proximity{}
-	this.ID = id
+	this.ID = iD
 	this.PrecisionRadius = precisionRadius
 	this.Confidence = confidence
 	return &this

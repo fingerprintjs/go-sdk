@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 
 ### NewProximity
 
-`func NewProximity(id string, precisionRadius int32, confidence float32, ) *Proximity`
+`func NewProximity(iD string, precisionRadius int32, confidence float32, ) *Proximity`
 
 NewProximity instantiates a new Proximity object
 This constructor will assign default values to properties that have it defined,

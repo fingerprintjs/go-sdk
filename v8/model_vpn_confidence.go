@@ -71,7 +71,7 @@ func (v VPNConfidence) IsValid() bool {
 	return false
 }
 
-// Ptr returns reference to VPNConfidence value
+// Ptr returns reference to VpnConfidence value
 func (v VPNConfidence) Ptr() *VPNConfidence {
 	return &v
 }

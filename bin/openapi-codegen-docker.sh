@@ -21,34 +21,6 @@ run_generator() {
       # Please use the config file for all other configuration
 }
 
-# Replaces given acronyms, such as Id, Ip, Url, etc. to match recommended casing in GO
-change_casing() {
-  INITIALISMS="Id:ID Ip:IP Url:URL Sdk:SDK Vpn:VPN Mitm:MITM"
-  # Replace given acronyms, such as Id, Ip, Url, etc. to match recommended casing in GO
-  find "$SDK_DIR" \( -name "*.go" -o -name "*.md" \) -print | while read -r file; do
-    for pair in $INITIALISMS; do
-      from="${pair%%:*}"
-      to="${pair##*:}"
-
-      # Standalone identifiers (struct fields, params, vars, Id → ID)
-      perl -i -pe "s/(\([^)]*\.md\))|(?<![A-Za-z])\\b$from\\b(?![A-Za-z])/\$1 ? \$1 : \"$to\"/ge" "$file"
-
-      # Leading initialism (IpAddress → IPAddress)
-      perl -i -pe "s/(\([^)]*\.md\))|(?<![A-Za-z])$from(?=[A-Z])/\$1 ? \$1 : \"$to\"/ge" "$file"
-
-      # Compound identifiers (RuleId → RuleID)
-      perl -i -pe "s/(\([^)]*\.md\))|([A-Za-z])$from(?=[A-Z_\\s\\W]|\$)/\$1 ? \$1 : \"\$2$to\"/ge" "$file"
-    done
-
-    # Special-case word normalization
-    perl -i -pe 's/(\([^)]*\.md\))|Blocklist/$1 ? $1 : "BlockList"/ge' "$file"
-  done
-}
-
 prepare_directory
 run_generator
-
-# Postprocessing
-
-change_casing
 gofmt -w .

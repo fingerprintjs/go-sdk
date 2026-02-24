@@ -61,9 +61,9 @@ func main() {
 	)
 
 	// Usually this data will come from your frontend app
-	eventID := "<EVENT_ID>"
-	// Get visits for given visitorID and requestID
-	event, httpRes, err := client.GetEvent(context.Background(), eventID)
+	eventId := "<EVENT_ID>"
+	// Get visits for given visitorId and requestId
+	event, httpRes, err := client.GetEvent(context.Background(), eventId)
 	fmt.Printf("%+v\n", httpRes)
 
 	if err != nil {
@@ -78,7 +78,7 @@ func main() {
 		}
 	}
 
-    fmt.Printf("Got response with visitorID: %s", event.Identification.VisitorID)
+    fmt.Printf("Got response with visitorId: %s", event.Identification.VisitorId)
 
 	// Access identification details
 	if event.Identification != nil {
@@ -262,15 +262,15 @@ Class | Method | HTTP request | Description
  - [RuleActionType](docs/RuleActionType.md)
  - [SDK](docs/SDK.md)
  - [SearchEventsBot](docs/SearchEventsBot.md)
- - [SearchEventsSDKPlatform](docs/SearchEventsSdkPlatform.md)
- - [SearchEventsVPNConfidence](docs/SearchEventsVpnConfidence.md)
+ - [SearchEventsSDKPlatform](docs/SearchEventsSDKPlatform.md)
+ - [SearchEventsVPNConfidence](docs/SearchEventsVPNConfidence.md)
  - [SupplementaryIDHighRecall](docs/SupplementaryIDHighRecall.md)
  - [TamperingDetails](docs/TamperingDetails.md)
  - [TouchSupport](docs/TouchSupport.md)
+ - [VPNConfidence](docs/VPNConfidence.md)
+ - [VPNMethods](docs/VPNMethods.md)
  - [Velocity](docs/Velocity.md)
  - [VelocityData](docs/VelocityData.md)
- - [VPNConfidence](docs/VpnConfidence.md)
- - [VPNMethods](docs/VpnMethods.md)
  - [WebGlBasics](docs/WebGlBasics.md)
  - [WebGlExtensions](docs/WebGlExtensions.md)
 

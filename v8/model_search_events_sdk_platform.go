@@ -71,7 +71,7 @@ func (v SearchEventsSDKPlatform) IsValid() bool {
 	return false
 }
 
-// Ptr returns reference to SearchEventsSDKPlatform value
+// Ptr returns reference to SearchEventsSdkPlatform value
 func (v SearchEventsSDKPlatform) Ptr() *SearchEventsSDKPlatform {
 	return &v
 }

@@ -19,13 +19,13 @@ import (
 // checks if the VelocityData type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &VelocityData{}
 
-// VelocityData Is absent if the velocity data could not be generated for the visitor ID.
+// VelocityData Is absent if the velocity data could not be generated for the visitor Id.
 type VelocityData struct {
 	// Count for the last 5 minutes of velocity data, from the time of the event.
 	Var5Minutes int32 `json:"5_minutes"`
 	// Count for the last 1 hour of velocity data, from the time of the event.
 	Var1Hour int32 `json:"1_hour"`
-	// The `24_hours` interval of `distinct_ip`, `distinct_linked_id`, `distinct_country`, `distinct_ip_by_linked_id` and `distinct_visitor_id_by_linked_id` will be omitted if the number of `events` for the visitor ID in the last 24 hours (`events.['24_hours']`) is higher than 20.000.
+	// The `24_hours` interval of `distinct_ip`, `distinct_linked_id`, `distinct_country`, `distinct_ip_by_linked_id` and `distinct_visitor_id_by_linked_id` will be omitted if the number of `events` for the visitor Id in the last 24 hours (`events.['24_hours']`) is higher than 20.000.
 	Var24Hours           *int32 `json:"24_hours,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
