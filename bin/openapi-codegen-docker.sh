@@ -50,5 +50,5 @@ run_generator
 
 # Postprocessing
 
-gofmt -w .
 change_casing
+gofmt -w .
