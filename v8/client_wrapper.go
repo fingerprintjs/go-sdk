@@ -96,8 +96,8 @@ func (c *Client) GetEvent(ctx context.Context, eventID string, opts ...GetEventO
 /*
 NewSearchEventsRequest Create a search event request. See FingerprintAPIService.SearchEvents for details.
 */
-func (c *Client) NewSearchEventsRequest() ApiSearchEventsRequest {
-	return c.api.FingerprintAPI.SearchEvents()
+func NewSearchEventsRequest() ApiSearchEventsRequest {
+	return ApiSearchEventsRequest{ApiService: nil}
 }
 
 /*
@@ -106,7 +106,7 @@ SearchEvents Send a search event request. See FingerprintAPIService.SearchEvents
 func (c *Client) SearchEvents(ctx context.Context, req ApiSearchEventsRequest) (*EventSearch, *http.Response, error) {
 	ctx = c.withRegion(ctx)
 	ctx = c.withAPIKey(ctx)
-	return req.Execute(ctx)
+	return c.api.FingerprintAPI.SearchEventsExecute(ctx, req)
 }
 
 /*
