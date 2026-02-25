@@ -34,9 +34,9 @@ func (r ApiDeleteVisitorDataRequest) Execute(ctx context.Context) (*http.Respons
 }
 
 /*
-        DeleteVisitorData Delete data by visitor ID
+DeleteVisitorData Delete data by visitor ID
 
-            Request deleting all data associated with the specified visitor ID. This API is useful for compliance with privacy regulations.
+Request deleting all data associated with the specified visitor ID. This API is useful for compliance with privacy regulations.
 
 ### Which data is deleted?
 - Browser (or device) properties
@@ -60,9 +60,8 @@ After requesting to delete a visitor ID,
 ### Interested?
 Please [contact our support team](https://fingerprint.com/support/) to enable it for you. Otherwise, you will receive a 403.
 
-
-            @param visitorId The [visitor ID](https://dev.fingerprint.com/reference/get-function#visitorid) you want to delete.
-        @return ApiDeleteVisitorDataRequest
+	@param visitorId The [visitor ID](https://dev.fingerprint.com/reference/get-function#visitorid) you want to delete.
+	@return ApiDeleteVisitorDataRequest
 */
 func (a *FingerprintAPIService) DeleteVisitorData(visitorId string) ApiDeleteVisitorDataRequest {
 	return ApiDeleteVisitorDataRequest{
@@ -196,15 +195,14 @@ func (r ApiGetEventRequest) Execute(ctx context.Context) (*Event, *http.Response
 }
 
 /*
-        GetEvent Get an event by event ID
+GetEvent Get an event by event ID
 
-            Get a detailed analysis of an individual identification event, including Smart Signals.
+Get a detailed analysis of an individual identification event, including Smart Signals.
 
 Use `event_id` as the URL path parameter. This API method is scoped to a request, i.e. all returned information is by `event_id`.
 
-
-            @param eventId The unique [identifier](https://dev.fingerprint.com/reference/get-function#requestid) of each identification request (`requestId` can be used in its place).
-        @return ApiGetEventRequest
+	@param eventId The unique [identifier](https://dev.fingerprint.com/reference/get-function#requestid) of each identification request (`requestId` can be used in its place).
+	@return ApiGetEventRequest
 */
 func (a *FingerprintAPIService) GetEvent(eventId string) ApiGetEventRequest {
 	return ApiGetEventRequest{
@@ -214,7 +212,9 @@ func (a *FingerprintAPIService) GetEvent(eventId string) ApiGetEventRequest {
 }
 
 // Execute executes the request
-//  @return Event
+//
+//	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+//	@return Event
 func (a *FingerprintAPIService) GetEventExecute(ctx context.Context, r ApiGetEventRequest) (*Event, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -628,9 +628,9 @@ func (r ApiSearchEventsRequest) Execute(ctx context.Context) (*EventSearch, *htt
 }
 
 /*
-        SearchEvents Search events
+SearchEvents Search events
 
-            ## Search
+## Search
 
 The `/v4/events` endpoint provides a convenient way to search for past events based on specific parameters. Typical use cases and queries include:
 
@@ -652,9 +652,7 @@ If you use a secret key that is scoped to an environment, you will only get even
 
 Smart Signals not activated for your workspace or are not included in the response.
 
-
-
-        @return ApiSearchEventsRequest
+	@return ApiSearchEventsRequest
 */
 func (a *FingerprintAPIService) SearchEvents() ApiSearchEventsRequest {
 	return ApiSearchEventsRequest{
@@ -663,7 +661,9 @@ func (a *FingerprintAPIService) SearchEvents() ApiSearchEventsRequest {
 }
 
 // Execute executes the request
-//  @return EventSearch
+//
+//	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+//	@return EventSearch
 func (a *FingerprintAPIService) SearchEventsExecute(ctx context.Context, r ApiSearchEventsRequest) (*EventSearch, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -914,9 +914,9 @@ func (r ApiUpdateEventRequest) Execute(ctx context.Context) (*http.Response, err
 }
 
 /*
-        UpdateEvent Update an event
+UpdateEvent Update an event
 
-            Change information in existing events specified by `event_id` or *flag suspicious events*.
+Change information in existing events specified by `event_id` or *flag suspicious events*.
 
 When an event is created, it can be assigned `linked_id` and `tags` submitted through the JS agent parameters.
 This information might not have been available on the client initially, so the Server API permits updating these attributes after the fact.
@@ -926,9 +926,8 @@ This information might not have been available on the client initially, so the S
 **Warning** Trying to update an event immediately after creation may temporarily result in an
 error (HTTP 409 Conflict. The event is not mutable yet.) as the event is fully propagated across our systems. In such a case, simply retry the request.
 
-
-            @param eventId The unique event [identifier](https://dev.fingerprint.com/reference/get-function#event_id).
-        @return ApiUpdateEventRequest
+	@param eventId The unique event [identifier](https://dev.fingerprint.com/reference/get-function#event_id).
+	@return ApiUpdateEventRequest
 */
 func (a *FingerprintAPIService) UpdateEvent(eventId string) ApiUpdateEventRequest {
 	return ApiUpdateEventRequest{
