@@ -23,10 +23,10 @@ func TestApiFunctional(t *testing.T) {
 
 	end := time.Now().UnixMilli()
 	start := time.Now().AddDate(0, 0, -90).UnixMilli()
-	opts := client.NewSearchEventsRequest(context.Background()).
+	opts := fingerprint.NewSearchEventsRequest().
 		Start(start).
 		End(end)
-	events, _, err := client.SearchEvents(opts)
+	events, _, err := client.SearchEvents(context.Background(), opts)
 	assert.NoError(t, err)
 	assert.NotNil(t, events.Events)
 	testEvent := events.Events[0]
@@ -59,11 +59,11 @@ func TestApiFunctional(t *testing.T) {
 		t.Run("simple search", func(t *testing.T) {
 			end := time.Now().UnixMilli()
 			start := time.Now().AddDate(0, 0, -365).UnixMilli()
-			opts := client.NewSearchEventsRequest(context.Background()).
+			opts := fingerprint.NewSearchEventsRequest().
 				Start(start).
 				End(end).
 				Limit(2)
-			events, _, err := client.SearchEvents(opts)
+			events, _, err := client.SearchEvents(context.Background(), opts)
 			assert.NoError(t, err)
 			assert.NotNil(t, events.Events)
 			assert.Len(t, events.Events, 2)
@@ -73,7 +73,8 @@ func TestApiFunctional(t *testing.T) {
 			end := time.Now().UnixMilli()
 			start := time.Now().AddDate(0, 0, -365).UnixMilli()
 			events, _, err := client.SearchEvents(
-				client.NewSearchEventsRequest(context.Background()).
+				context.Background(),
+				fingerprint.NewSearchEventsRequest().
 					Limit(2).
 					Start(start).
 					End(end))
@@ -82,7 +83,7 @@ func TestApiFunctional(t *testing.T) {
 			assert.NotEmpty(t, events.PaginationKey)
 			assert.Len(t, events.Events, 2)
 
-			nextEvents, _, err := client.SearchEvents(client.NewSearchEventsRequest(context.Background()).
+			nextEvents, _, err := client.SearchEvents(context.Background(), fingerprint.NewSearchEventsRequest().
 				Limit(2).
 				Start(start).
 				End(end).
@@ -98,7 +99,7 @@ func TestApiFunctional(t *testing.T) {
 		t.Run("with old events", func(t *testing.T) {
 			end := time.Now().UnixMilli()
 			start := time.Now().AddDate(0, 0, -365).UnixMilli()
-			events, _, err := client.SearchEvents(client.NewSearchEventsRequest(context.Background()).
+			events, _, err := client.SearchEvents(context.Background(), fingerprint.NewSearchEventsRequest().
 				Start(start).
 				End(end).
 				Limit(2).
