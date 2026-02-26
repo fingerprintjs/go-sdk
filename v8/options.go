@@ -24,6 +24,21 @@ func WithBaseURL(baseURL string) ConfigOption {
 
 func WithHTTPClient(httpClient *http.Client) ConfigOption {
 	return func(c *Client) {
-		c.api.GetConfig().HTTPClient = httpClient
+		if httpClient == nil {
+			return
+		}
+
+		// Perform a shallow copy to modify the transport without modifying the original
+		cloned := *httpClient
+
+		base := httpClient.Transport
+		if base == nil {
+			base = http.DefaultTransport
+		}
+
+		// Wrap the transport with our own
+		cloned.Transport = &sdkIdentTransport{base: base}
+
+		c.api.GetConfig().HTTPClient = &cloned
 	}
 }
