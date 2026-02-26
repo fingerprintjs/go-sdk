@@ -48,10 +48,10 @@ Name | Type | Description | Notes
 **Velocity** | Pointer to [**Velocity**](Velocity.md) |  | [optional] 
 **VirtualMachine** | Pointer to **bool** | &#x60;true&#x60; if the request came from a browser running inside a virtual machine (e.g. VMWare), &#x60;false&#x60; otherwise.  | [optional] 
 **VPN** | Pointer to **bool** | VPN or other anonymizing service has been used when sending the request.  | [optional] 
-**VPNConfidence** | Pointer to [**VPNConfidence**](VpnConfidence.md) |  | [optional] 
+**VPNConfidence** | Pointer to [**VPNConfidence**](VPNConfidence.md) |  | [optional] 
 **VPNOriginTimezone** | Pointer to **string** | Local timezone which is used in timezone_mismatch method.  | [optional] 
 **VPNOriginCountry** | Pointer to **string** | Country of the request (only for Android SDK version &gt;&#x3D; 2.4.0, ISO 3166 format or unknown).  | [optional] 
-**VPNMethods** | Pointer to [**VPNMethods**](VpnMethods.md) |  | [optional] 
+**VPNMethods** | Pointer to [**VPNMethods**](VPNMethods.md) |  | [optional] 
 **HighActivityDevice** | Pointer to **bool** | Flag indicating if the request came from a high-activity visitor. | [optional] 
 **RawDeviceAttributes** | Pointer to [**RawDeviceAttributes**](RawDeviceAttributes.md) |  | [optional] 
 
