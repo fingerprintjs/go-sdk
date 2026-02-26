@@ -38,7 +38,7 @@ func TestSearchEvents(t *testing.T) {
 
 		client := fingerprint.New(fingerprint.WithAPIKey("api_key"), fingerprint.WithBaseURL(ts.URL))
 
-		eventSearch, _, err := client.SearchEvents(client.NewSearchEventsRequest(context.Background()).Limit(2))
+		eventSearch, _, err := client.SearchEvents(context.Background(), fingerprint.NewSearchEventsRequest().Limit(2))
 		assert.Nil(t, err)
 		assert.NotNil(t, eventSearch)
 		assert.Equal(t, mockResponse, *eventSearch)
@@ -84,14 +84,14 @@ func TestSearchEvents(t *testing.T) {
 		reverse := false
 		linkedID := "linked_id"
 		visitorID := "XIkiQhRyp7edU9SA0jBb"
-		opts := client.NewSearchEventsRequest(context.Background()).
+		opts := fingerprint.NewSearchEventsRequest().
 			End(end).
 			Start(start).
 			LinkedID(linkedID).
 			Reverse(reverse).
 			VisitorID(visitorID)
 
-		eventSearch, _, err := client.SearchEvents(opts)
+		eventSearch, _, err := client.SearchEvents(context.Background(), opts)
 		assert.Nil(t, err)
 		assert.NotNil(t, eventSearch)
 		assert.Equal(t, mockResponse, *eventSearch)
@@ -241,7 +241,7 @@ func TestSearchEvents(t *testing.T) {
 
 		client := fingerprint.New(fingerprint.WithAPIKey("api_key"), fingerprint.WithBaseURL(ts.URL))
 
-		opts := client.NewSearchEventsRequest(context.Background()).
+		opts := fingerprint.NewSearchEventsRequest().
 			AntiDetectBrowser(antiDetectBrowser).
 			Asn(asn).
 			Bot(bot).
@@ -281,7 +281,7 @@ func TestSearchEvents(t *testing.T) {
 			VPN(vpn).
 			VPNConfidence(vpnConfidence)
 
-		res, _, err := client.SearchEvents(opts)
+		res, _, err := client.SearchEvents(context.Background(), opts)
 		assert.Nil(t, err)
 		assert.NotNil(t, res)
 		assert.Equal(t, mockResponse, *res)
@@ -321,7 +321,7 @@ func TestSearchEvents(t *testing.T) {
 
 				client := fingerprint.New(fingerprint.WithAPIKey("api_key"), fingerprint.WithBaseURL(ts.URL))
 
-				eventSearch, res, err := client.SearchEvents(client.NewSearchEventsRequest(context.Background()))
+				eventSearch, res, err := client.SearchEvents(context.Background(), fingerprint.NewSearchEventsRequest())
 
 				assert.Nil(t, eventSearch)
 				assertErrorResponse(t, testCase.StatusCode, mockResponse, res, err)

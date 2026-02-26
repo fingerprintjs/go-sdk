@@ -25,13 +25,12 @@ import (
 type FingerprintAPIService service
 
 type ApiDeleteVisitorDataRequest struct {
-	ctx        context.Context
 	ApiService *FingerprintAPIService
 	visitorID  string
 }
 
-func (r ApiDeleteVisitorDataRequest) Execute() (*http.Response, error) {
-	return r.ApiService.DeleteVisitorDataExecute(r)
+func (r ApiDeleteVisitorDataRequest) Execute(ctx context.Context) (*http.Response, error) {
+	return r.ApiService.DeleteVisitorDataExecute(ctx, r)
 }
 
 /*
@@ -61,27 +60,25 @@ After requesting to delete a visitor ID,
 ### Interested?
 Please [contact our support team](https://fingerprint.com/support/) to enable it for you. Otherwise, you will receive a 403.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param visitorID The [visitor ID](https://dev.fingerprint.com/reference/get-function#visitorid) you want to delete.
 	@return ApiDeleteVisitorDataRequest
 */
-func (a *FingerprintAPIService) DeleteVisitorData(ctx context.Context, visitorID string) ApiDeleteVisitorDataRequest {
+func (a *FingerprintAPIService) DeleteVisitorData(visitorID string) ApiDeleteVisitorDataRequest {
 	return ApiDeleteVisitorDataRequest{
 		ApiService: a,
-		ctx:        ctx,
 		visitorID:  visitorID,
 	}
 }
 
 // Execute executes the request
-func (a *FingerprintAPIService) DeleteVisitorDataExecute(r ApiDeleteVisitorDataRequest) (*http.Response, error) {
+func (a *FingerprintAPIService) DeleteVisitorDataExecute(ctx context.Context, r ApiDeleteVisitorDataRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod = http.MethodDelete
 		localVarPostBody   interface{}
 		formFiles          []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FingerprintAPIService.DeleteVisitorData")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(ctx, "FingerprintAPIService.DeleteVisitorData")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -110,7 +107,7 @@ func (a *FingerprintAPIService) DeleteVisitorDataExecute(r ApiDeleteVisitorDataR
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err
 	}
@@ -182,7 +179,6 @@ func (a *FingerprintAPIService) DeleteVisitorDataExecute(r ApiDeleteVisitorDataR
 }
 
 type ApiGetEventRequest struct {
-	ctx        context.Context
 	ApiService *FingerprintAPIService
 	eventID    string
 	rulesetID  *string
@@ -194,8 +190,8 @@ func (r ApiGetEventRequest) RulesetID(rulesetID string) ApiGetEventRequest {
 	return r
 }
 
-func (r ApiGetEventRequest) Execute() (*Event, *http.Response, error) {
-	return r.ApiService.GetEventExecute(r)
+func (r ApiGetEventRequest) Execute(ctx context.Context) (*Event, *http.Response, error) {
+	return r.ApiService.GetEventExecute(ctx, r)
 }
 
 /*
@@ -205,22 +201,21 @@ Get a detailed analysis of an individual identification event, including Smart S
 
 Use `event_id` as the URL path parameter. This API method is scoped to a request, i.e. all returned information is by `event_id`.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param eventID The unique [identifier](https://dev.fingerprint.com/reference/get-function#requestid) of each identification request (`requestId` can be used in its place).
 	@return ApiGetEventRequest
 */
-func (a *FingerprintAPIService) GetEvent(ctx context.Context, eventID string) ApiGetEventRequest {
+func (a *FingerprintAPIService) GetEvent(eventID string) ApiGetEventRequest {
 	return ApiGetEventRequest{
 		ApiService: a,
-		ctx:        ctx,
 		eventID:    eventID,
 	}
 }
 
 // Execute executes the request
 //
+//	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 //	@return Event
-func (a *FingerprintAPIService) GetEventExecute(r ApiGetEventRequest) (*Event, *http.Response, error) {
+func (a *FingerprintAPIService) GetEventExecute(ctx context.Context, r ApiGetEventRequest) (*Event, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -228,7 +223,7 @@ func (a *FingerprintAPIService) GetEventExecute(r ApiGetEventRequest) (*Event, *
 		localVarReturnValue *Event
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FingerprintAPIService.GetEvent")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(ctx, "FingerprintAPIService.GetEvent")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -260,7 +255,7 @@ func (a *FingerprintAPIService) GetEventExecute(r ApiGetEventRequest) (*Event, *
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -352,7 +347,6 @@ func (a *FingerprintAPIService) GetEventExecute(r ApiGetEventRequest) (*Event, *
 }
 
 type ApiSearchEventsRequest struct {
-	ctx               context.Context
 	ApiService        *FingerprintAPIService
 	limit             *int32
 	paginationKey     *string
@@ -629,8 +623,8 @@ func (r ApiSearchEventsRequest) TorNode(torNode bool) ApiSearchEventsRequest {
 	return r
 }
 
-func (r ApiSearchEventsRequest) Execute() (*EventSearch, *http.Response, error) {
-	return r.ApiService.SearchEventsExecute(r)
+func (r ApiSearchEventsRequest) Execute(ctx context.Context) (*EventSearch, *http.Response, error) {
+	return r.ApiService.SearchEventsExecute(ctx, r)
 }
 
 /*
@@ -658,20 +652,19 @@ If you use a secret key that is scoped to an environment, you will only get even
 
 Smart Signals not activated for your workspace or are not included in the response.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiSearchEventsRequest
 */
-func (a *FingerprintAPIService) SearchEvents(ctx context.Context) ApiSearchEventsRequest {
+func (a *FingerprintAPIService) SearchEvents() ApiSearchEventsRequest {
 	return ApiSearchEventsRequest{
 		ApiService: a,
-		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
 //
+//	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 //	@return EventSearch
-func (a *FingerprintAPIService) SearchEventsExecute(r ApiSearchEventsRequest) (*EventSearch, *http.Response, error) {
+func (a *FingerprintAPIService) SearchEventsExecute(ctx context.Context, r ApiSearchEventsRequest) (*EventSearch, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -679,7 +672,7 @@ func (a *FingerprintAPIService) SearchEventsExecute(r ApiSearchEventsRequest) (*
 		localVarReturnValue *EventSearch
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FingerprintAPIService.SearchEvents")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(ctx, "FingerprintAPIService.SearchEvents")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -836,7 +829,7 @@ func (a *FingerprintAPIService) SearchEventsExecute(r ApiSearchEventsRequest) (*
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -906,7 +899,6 @@ func (a *FingerprintAPIService) SearchEventsExecute(r ApiSearchEventsRequest) (*
 }
 
 type ApiUpdateEventRequest struct {
-	ctx         context.Context
 	ApiService  *FingerprintAPIService
 	eventID     string
 	eventUpdate *EventUpdate
@@ -917,8 +909,8 @@ func (r ApiUpdateEventRequest) EventUpdate(eventUpdate EventUpdate) ApiUpdateEve
 	return r
 }
 
-func (r ApiUpdateEventRequest) Execute() (*http.Response, error) {
-	return r.ApiService.UpdateEventExecute(r)
+func (r ApiUpdateEventRequest) Execute(ctx context.Context) (*http.Response, error) {
+	return r.ApiService.UpdateEventExecute(ctx, r)
 }
 
 /*
@@ -934,27 +926,25 @@ This information might not have been available on the client initially, so the S
 **Warning** Trying to update an event immediately after creation may temporarily result in an
 error (HTTP 409 Conflict. The event is not mutable yet.) as the event is fully propagated across our systems. In such a case, simply retry the request.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param eventID The unique event [identifier](https://dev.fingerprint.com/reference/get-function#event_id).
 	@return ApiUpdateEventRequest
 */
-func (a *FingerprintAPIService) UpdateEvent(ctx context.Context, eventID string) ApiUpdateEventRequest {
+func (a *FingerprintAPIService) UpdateEvent(eventID string) ApiUpdateEventRequest {
 	return ApiUpdateEventRequest{
 		ApiService: a,
-		ctx:        ctx,
 		eventID:    eventID,
 	}
 }
 
 // Execute executes the request
-func (a *FingerprintAPIService) UpdateEventExecute(r ApiUpdateEventRequest) (*http.Response, error) {
+func (a *FingerprintAPIService) UpdateEventExecute(ctx context.Context, r ApiUpdateEventRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod = http.MethodPatch
 		localVarPostBody   interface{}
 		formFiles          []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FingerprintAPIService.UpdateEvent")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(ctx, "FingerprintAPIService.UpdateEvent")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -988,7 +978,7 @@ func (a *FingerprintAPIService) UpdateEventExecute(r ApiUpdateEventRequest) (*ht
 	}
 	// body params
 	localVarPostBody = r.eventUpdate
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err
 	}

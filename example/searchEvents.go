@@ -16,9 +16,11 @@ func main() {
 
 	client := fingerprint.New(fingerprint.WithRegion(fingerprint.Region(os.Getenv("REGION"))), fingerprint.WithAPIKey(os.Getenv("FINGERPRINT_API_KEY")))
 
-	req := client.NewSearchEventsRequest(context.Background()).Limit(5).Suspect(false).TotalHits(1000)
-
-	response, httpRes, err := client.SearchEvents(req)
+	req := fingerprint.NewSearchEventsRequest().
+		Limit(5).
+		Suspect(false).
+		TotalHits(1000)
+	response, httpRes, err := client.SearchEvents(context.Background(), req)
 
 	fmt.Printf("%+v\n", httpRes)
 

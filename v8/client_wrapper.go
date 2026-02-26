@@ -84,29 +84,29 @@ func (c *Client) GetEvent(ctx context.Context, eventID string, opts ...GetEventO
 	ctx = c.withRegion(ctx)
 	ctx = c.withAPIKey(ctx)
 
-	req := c.api.FingerprintAPI.GetEvent(ctx, eventID)
+	req := c.api.FingerprintAPI.GetEvent(eventID)
 
 	for _, opt := range opts {
 		opt(&req)
 	}
 
-	return req.Execute()
+	return req.Execute(ctx)
 }
 
 /*
 NewSearchEventsRequest Create a search event request. See FingerprintAPIService.SearchEvents for details.
 */
-func (c *Client) NewSearchEventsRequest(ctx context.Context) ApiSearchEventsRequest {
-	ctx = c.withRegion(ctx)
-	ctx = c.withAPIKey(ctx)
-	return c.api.FingerprintAPI.SearchEvents(ctx)
+func NewSearchEventsRequest() ApiSearchEventsRequest {
+	return ApiSearchEventsRequest{ApiService: nil}
 }
 
 /*
 SearchEvents Send a search event request. See FingerprintAPIService.SearchEvents for details.
 */
-func (c *Client) SearchEvents(req ApiSearchEventsRequest) (*EventSearch, *http.Response, error) {
-	return req.Execute()
+func (c *Client) SearchEvents(ctx context.Context, req ApiSearchEventsRequest) (*EventSearch, *http.Response, error) {
+	ctx = c.withRegion(ctx)
+	ctx = c.withAPIKey(ctx)
+	return c.api.FingerprintAPI.SearchEventsExecute(ctx, req)
 }
 
 /*
@@ -115,7 +115,7 @@ UpdateEvent Update an event. See FingerprintAPIService.UpdateEvent for details.
 func (c *Client) UpdateEvent(ctx context.Context, eventId string, eventUpdateReq EventUpdate) (*http.Response, error) {
 	ctx = c.withRegion(ctx)
 	ctx = c.withAPIKey(ctx)
-	return c.api.FingerprintAPI.UpdateEvent(ctx, eventId).EventUpdate(eventUpdateReq).Execute()
+	return c.api.FingerprintAPI.UpdateEvent(eventId).EventUpdate(eventUpdateReq).Execute(ctx)
 }
 
 /*
@@ -124,5 +124,5 @@ DeleteVisitorData Delete data by visitor ID. See FingerprintAPIService.DeleteVis
 func (c *Client) DeleteVisitorData(ctx context.Context, visitorId string) (*http.Response, error) {
 	ctx = c.withRegion(ctx)
 	ctx = c.withAPIKey(ctx)
-	return c.api.FingerprintAPI.DeleteVisitorData(ctx, visitorId).Execute()
+	return c.api.FingerprintAPI.DeleteVisitorData(visitorId).Execute(ctx)
 }
