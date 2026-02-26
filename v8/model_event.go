@@ -22,30 +22,30 @@ var _ MappedNullable = &Event{}
 // Event Contains results from Fingerprint Identification and all active Smart Signals.
 type Event struct {
 	// Unique identifier of the user's request. The first portion of the event_id is a unix epoch milliseconds timestamp For example: `1758130560902.8tRtrH`
-	EventId string `json:"event_id"`
+	EventID string `json:"event_id"`
 	// Timestamp of the event with millisecond precision in Unix time.
 	Timestamp int64 `json:"timestamp"`
 	// A customer-provided id that was sent with the request.
-	LinkedId *string `json:"linked_id,omitempty"`
+	LinkedID *string `json:"linked_id,omitempty"`
 	// Environment Id of the event. For example: `ae_47abaca3db2c7c43`
-	EnvironmentId *string `json:"environment_id,omitempty"`
+	EnvironmentID *string `json:"environment_id,omitempty"`
 	// Field is `true` if you have previously set the `suspect` flag for this event using the [Server API Update event endpoint](https://dev.fingerprint.com/reference/updateevent).
 	Suspect *bool `json:"suspect,omitempty"`
-	Sdk     *SDK  `json:"sdk,omitempty"`
+	SDK     *SDK  `json:"sdk,omitempty"`
 	// `true` if we determined that this payload was replayed, `false` otherwise.
 	Replayed                  *bool                      `json:"replayed,omitempty"`
 	Identification            *Identification            `json:"identification,omitempty"`
-	SupplementaryIdHighRecall *SupplementaryIDHighRecall `json:"supplementary_id_high_recall,omitempty"`
+	SupplementaryIDHighRecall *SupplementaryIDHighRecall `json:"supplementary_id_high_recall,omitempty"`
 	// A customer-provided value or an object that was sent with the identification request or updated later.
 	Tags map[string]interface{} `json:"tags,omitempty"`
 	// Page URL from which the request was sent. For example `https://example.com/`
-	Url *string `json:"url,omitempty"`
+	URL *string `json:"url,omitempty"`
 	// Bundle Id of the iOS application integrated with the Fingerprint SDK for the event. For example: `com.foo.app`
-	BundleId *string `json:"bundle_id,omitempty"`
+	BundleID *string `json:"bundle_id,omitempty"`
 	// Package name of the Android application integrated with the Fingerprint SDK for the event. For example: `com.foo.app`
 	PackageName *string `json:"package_name,omitempty"`
 	// IP address of the requesting browser or bot.
-	IpAddress *string `json:"ip_address,omitempty"`
+	IPAddress *string `json:"ip_address,omitempty"`
 	// User Agent of the client, for example: `Mozilla/5.0 (Windows NT 6.1; Win64; x64) ....`
 	UserAgent *string `json:"user_agent,omitempty"`
 	// Client Referrer field corresponds to the `document.referrer` field gathered during an identification request. The value is an empty string if the user navigated to the page directly (not through a link, but, for example, by using a bookmark) For example: `https://example.com/blog/my-article`
@@ -66,8 +66,8 @@ type Event struct {
 	FactoryResetTimestamp *int64 `json:"factory_reset_timestamp,omitempty"`
 	// [Frida](https://frida.re/docs/) detection for Android and iOS devices. There are 2 values: * `true` - Frida detected * `false` - No signs of Frida or the client is not a mobile device.
 	Frida       *bool        `json:"frida,omitempty"`
-	IpBlocklist *IPBlockList `json:"ip_blocklist,omitempty"`
-	IpInfo      *IPInfo      `json:"ip_info,omitempty"`
+	IPBlockList *IPBlockList `json:"ip_blocklist,omitempty"`
+	IPInfo      *IPInfo      `json:"ip_info,omitempty"`
 	// IP address was used by a public proxy provider or belonged to a known recent residential proxy
 	Proxy           *bool            `json:"proxy,omitempty"`
 	ProxyConfidence *ProxyConfidence `json:"proxy_confidence,omitempty"`
@@ -79,7 +79,7 @@ type Event struct {
 	// Flag indicating whether the request came from a mobile device with location spoofing enabled.
 	LocationSpoofing *bool `json:"location_spoofing,omitempty"`
 	// * `true` - When requests made from your users' mobile devices to Fingerprint servers have been intercepted and potentially modified.  * `false` - Otherwise or when the request originated from a browser. See [MitM Attack Detection](https://dev.fingerprint.com/docs/smart-signals-reference#mitm-attack-detection) to learn more about this Smart Signal.
-	MitmAttack *bool `json:"mitm_attack,omitempty"`
+	MITMAttack *bool `json:"mitm_attack,omitempty"`
 	// `true` if the request is from a privacy aware browser (e.g. Tor) or from a browser in which fingerprinting is blocked. Otherwise `false`.
 	PrivacySettings *bool `json:"privacy_settings,omitempty"`
 	// Android specific root management apps detection. There are 2 values:  * `true` - Root Management Apps detected (e.g. Magisk). * `false` - No Root Management Apps detected or the client isn't Android.
@@ -94,13 +94,13 @@ type Event struct {
 	// `true` if the request came from a browser running inside a virtual machine (e.g. VMWare), `false` otherwise.
 	VirtualMachine *bool `json:"virtual_machine,omitempty"`
 	// VPN or other anonymizing service has been used when sending the request.
-	Vpn           *bool          `json:"vpn,omitempty"`
-	VpnConfidence *VpnConfidence `json:"vpn_confidence,omitempty"`
+	VPN           *bool          `json:"vpn,omitempty"`
+	VPNConfidence *VPNConfidence `json:"vpn_confidence,omitempty"`
 	// Local timezone which is used in timezone_mismatch method.
-	VpnOriginTimezone *string `json:"vpn_origin_timezone,omitempty"`
+	VPNOriginTimezone *string `json:"vpn_origin_timezone,omitempty"`
 	// Country of the request (only for Android SDK version >= 2.4.0, ISO 3166 format or unknown).
-	VpnOriginCountry *string     `json:"vpn_origin_country,omitempty"`
-	VpnMethods       *VpnMethods `json:"vpn_methods,omitempty"`
+	VPNOriginCountry *string     `json:"vpn_origin_country,omitempty"`
+	VPNMethods       *VPNMethods `json:"vpn_methods,omitempty"`
 	// Flag indicating if the request came from a high-activity visitor.
 	HighActivityDevice   *bool                `json:"high_activity_device,omitempty"`
 	RawDeviceAttributes  *RawDeviceAttributes `json:"raw_device_attributes,omitempty"`
@@ -113,9 +113,9 @@ type _Event Event
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewEvent(eventId string, timestamp int64) *Event {
+func NewEvent(eventID string, timestamp int64) *Event {
 	this := Event{}
-	this.EventId = eventId
+	this.EventID = eventID
 	this.Timestamp = timestamp
 	return &this
 }
@@ -128,28 +128,28 @@ func NewEventWithDefaults() *Event {
 	return &this
 }
 
-// GetEventId returns the EventId field value
-func (o *Event) GetEventId() string {
+// GetEventID returns the EventID field value
+func (o *Event) GetEventID() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.EventId
+	return o.EventID
 }
 
-// GetEventIdOk returns a tuple with the EventId field value
+// GetEventIDOk returns a tuple with the EventID field value
 // and a boolean to check if the value has been set.
-func (o *Event) GetEventIdOk() (*string, bool) {
+func (o *Event) GetEventIDOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.EventId, true
+	return &o.EventID, true
 }
 
-// SetEventId sets field value
-func (o *Event) SetEventId(v string) {
-	o.EventId = v
+// SetEventID sets field value
+func (o *Event) SetEventID(v string) {
+	o.EventID = v
 }
 
 // GetTimestamp returns the Timestamp field value
@@ -176,68 +176,68 @@ func (o *Event) SetTimestamp(v int64) {
 	o.Timestamp = v
 }
 
-// GetLinkedId returns the LinkedId field value if set, zero value otherwise.
-func (o *Event) GetLinkedId() string {
-	if o == nil || IsNil(o.LinkedId) {
+// GetLinkedID returns the LinkedID field value if set, zero value otherwise.
+func (o *Event) GetLinkedID() string {
+	if o == nil || IsNil(o.LinkedID) {
 		var ret string
 		return ret
 	}
-	return *o.LinkedId
+	return *o.LinkedID
 }
 
-// GetLinkedIdOk returns a tuple with the LinkedId field value if set, nil otherwise
+// GetLinkedIDOk returns a tuple with the LinkedID field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Event) GetLinkedIdOk() (*string, bool) {
-	if o == nil || IsNil(o.LinkedId) {
+func (o *Event) GetLinkedIDOk() (*string, bool) {
+	if o == nil || IsNil(o.LinkedID) {
 		return nil, false
 	}
-	return o.LinkedId, true
+	return o.LinkedID, true
 }
 
-// HasLinkedId returns a boolean if a field has been set.
-func (o *Event) HasLinkedId() bool {
-	if o != nil && !IsNil(o.LinkedId) {
+// HasLinkedID returns a boolean if a field has been set.
+func (o *Event) HasLinkedID() bool {
+	if o != nil && !IsNil(o.LinkedID) {
 		return true
 	}
 
 	return false
 }
 
-// SetLinkedId gets a reference to the given string and assigns it to the LinkedId field.
-func (o *Event) SetLinkedId(v string) {
-	o.LinkedId = &v
+// SetLinkedID gets a reference to the given string and assigns it to the LinkedID field.
+func (o *Event) SetLinkedID(v string) {
+	o.LinkedID = &v
 }
 
-// GetEnvironmentId returns the EnvironmentId field value if set, zero value otherwise.
-func (o *Event) GetEnvironmentId() string {
-	if o == nil || IsNil(o.EnvironmentId) {
+// GetEnvironmentID returns the EnvironmentID field value if set, zero value otherwise.
+func (o *Event) GetEnvironmentID() string {
+	if o == nil || IsNil(o.EnvironmentID) {
 		var ret string
 		return ret
 	}
-	return *o.EnvironmentId
+	return *o.EnvironmentID
 }
 
-// GetEnvironmentIdOk returns a tuple with the EnvironmentId field value if set, nil otherwise
+// GetEnvironmentIDOk returns a tuple with the EnvironmentID field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Event) GetEnvironmentIdOk() (*string, bool) {
-	if o == nil || IsNil(o.EnvironmentId) {
+func (o *Event) GetEnvironmentIDOk() (*string, bool) {
+	if o == nil || IsNil(o.EnvironmentID) {
 		return nil, false
 	}
-	return o.EnvironmentId, true
+	return o.EnvironmentID, true
 }
 
-// HasEnvironmentId returns a boolean if a field has been set.
-func (o *Event) HasEnvironmentId() bool {
-	if o != nil && !IsNil(o.EnvironmentId) {
+// HasEnvironmentID returns a boolean if a field has been set.
+func (o *Event) HasEnvironmentID() bool {
+	if o != nil && !IsNil(o.EnvironmentID) {
 		return true
 	}
 
 	return false
 }
 
-// SetEnvironmentId gets a reference to the given string and assigns it to the EnvironmentId field.
-func (o *Event) SetEnvironmentId(v string) {
-	o.EnvironmentId = &v
+// SetEnvironmentID gets a reference to the given string and assigns it to the EnvironmentID field.
+func (o *Event) SetEnvironmentID(v string) {
+	o.EnvironmentID = &v
 }
 
 // GetSuspect returns the Suspect field value if set, zero value otherwise.
@@ -272,36 +272,36 @@ func (o *Event) SetSuspect(v bool) {
 	o.Suspect = &v
 }
 
-// GetSdk returns the Sdk field value if set, zero value otherwise.
-func (o *Event) GetSdk() SDK {
-	if o == nil || IsNil(o.Sdk) {
+// GetSDK returns the SDK field value if set, zero value otherwise.
+func (o *Event) GetSDK() SDK {
+	if o == nil || IsNil(o.SDK) {
 		var ret SDK
 		return ret
 	}
-	return *o.Sdk
+	return *o.SDK
 }
 
-// GetSdkOk returns a tuple with the Sdk field value if set, nil otherwise
+// GetSDKOk returns a tuple with the SDK field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Event) GetSdkOk() (*SDK, bool) {
-	if o == nil || IsNil(o.Sdk) {
+func (o *Event) GetSDKOk() (*SDK, bool) {
+	if o == nil || IsNil(o.SDK) {
 		return nil, false
 	}
-	return o.Sdk, true
+	return o.SDK, true
 }
 
-// HasSdk returns a boolean if a field has been set.
-func (o *Event) HasSdk() bool {
-	if o != nil && !IsNil(o.Sdk) {
+// HasSDK returns a boolean if a field has been set.
+func (o *Event) HasSDK() bool {
+	if o != nil && !IsNil(o.SDK) {
 		return true
 	}
 
 	return false
 }
 
-// SetSdk gets a reference to the given SDK and assigns it to the Sdk field.
-func (o *Event) SetSdk(v SDK) {
-	o.Sdk = &v
+// SetSDK gets a reference to the given SDK and assigns it to the SDK field.
+func (o *Event) SetSDK(v SDK) {
+	o.SDK = &v
 }
 
 // GetReplayed returns the Replayed field value if set, zero value otherwise.
@@ -368,36 +368,36 @@ func (o *Event) SetIdentification(v Identification) {
 	o.Identification = &v
 }
 
-// GetSupplementaryIdHighRecall returns the SupplementaryIdHighRecall field value if set, zero value otherwise.
-func (o *Event) GetSupplementaryIdHighRecall() SupplementaryIDHighRecall {
-	if o == nil || IsNil(o.SupplementaryIdHighRecall) {
+// GetSupplementaryIDHighRecall returns the SupplementaryIDHighRecall field value if set, zero value otherwise.
+func (o *Event) GetSupplementaryIDHighRecall() SupplementaryIDHighRecall {
+	if o == nil || IsNil(o.SupplementaryIDHighRecall) {
 		var ret SupplementaryIDHighRecall
 		return ret
 	}
-	return *o.SupplementaryIdHighRecall
+	return *o.SupplementaryIDHighRecall
 }
 
-// GetSupplementaryIdHighRecallOk returns a tuple with the SupplementaryIdHighRecall field value if set, nil otherwise
+// GetSupplementaryIDHighRecallOk returns a tuple with the SupplementaryIDHighRecall field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Event) GetSupplementaryIdHighRecallOk() (*SupplementaryIDHighRecall, bool) {
-	if o == nil || IsNil(o.SupplementaryIdHighRecall) {
+func (o *Event) GetSupplementaryIDHighRecallOk() (*SupplementaryIDHighRecall, bool) {
+	if o == nil || IsNil(o.SupplementaryIDHighRecall) {
 		return nil, false
 	}
-	return o.SupplementaryIdHighRecall, true
+	return o.SupplementaryIDHighRecall, true
 }
 
-// HasSupplementaryIdHighRecall returns a boolean if a field has been set.
-func (o *Event) HasSupplementaryIdHighRecall() bool {
-	if o != nil && !IsNil(o.SupplementaryIdHighRecall) {
+// HasSupplementaryIDHighRecall returns a boolean if a field has been set.
+func (o *Event) HasSupplementaryIDHighRecall() bool {
+	if o != nil && !IsNil(o.SupplementaryIDHighRecall) {
 		return true
 	}
 
 	return false
 }
 
-// SetSupplementaryIdHighRecall gets a reference to the given SupplementaryIDHighRecall and assigns it to the SupplementaryIdHighRecall field.
-func (o *Event) SetSupplementaryIdHighRecall(v SupplementaryIDHighRecall) {
-	o.SupplementaryIdHighRecall = &v
+// SetSupplementaryIDHighRecall gets a reference to the given SupplementaryIDHighRecall and assigns it to the SupplementaryIDHighRecall field.
+func (o *Event) SetSupplementaryIDHighRecall(v SupplementaryIDHighRecall) {
+	o.SupplementaryIDHighRecall = &v
 }
 
 // GetTags returns the Tags field value if set, zero value otherwise.
@@ -432,68 +432,68 @@ func (o *Event) SetTags(v map[string]interface{}) {
 	o.Tags = v
 }
 
-// GetUrl returns the Url field value if set, zero value otherwise.
-func (o *Event) GetUrl() string {
-	if o == nil || IsNil(o.Url) {
+// GetURL returns the URL field value if set, zero value otherwise.
+func (o *Event) GetURL() string {
+	if o == nil || IsNil(o.URL) {
 		var ret string
 		return ret
 	}
-	return *o.Url
+	return *o.URL
 }
 
-// GetUrlOk returns a tuple with the Url field value if set, nil otherwise
+// GetURLOk returns a tuple with the URL field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Event) GetUrlOk() (*string, bool) {
-	if o == nil || IsNil(o.Url) {
+func (o *Event) GetURLOk() (*string, bool) {
+	if o == nil || IsNil(o.URL) {
 		return nil, false
 	}
-	return o.Url, true
+	return o.URL, true
 }
 
-// HasUrl returns a boolean if a field has been set.
-func (o *Event) HasUrl() bool {
-	if o != nil && !IsNil(o.Url) {
+// HasURL returns a boolean if a field has been set.
+func (o *Event) HasURL() bool {
+	if o != nil && !IsNil(o.URL) {
 		return true
 	}
 
 	return false
 }
 
-// SetUrl gets a reference to the given string and assigns it to the Url field.
-func (o *Event) SetUrl(v string) {
-	o.Url = &v
+// SetURL gets a reference to the given string and assigns it to the URL field.
+func (o *Event) SetURL(v string) {
+	o.URL = &v
 }
 
-// GetBundleId returns the BundleId field value if set, zero value otherwise.
-func (o *Event) GetBundleId() string {
-	if o == nil || IsNil(o.BundleId) {
+// GetBundleID returns the BundleID field value if set, zero value otherwise.
+func (o *Event) GetBundleID() string {
+	if o == nil || IsNil(o.BundleID) {
 		var ret string
 		return ret
 	}
-	return *o.BundleId
+	return *o.BundleID
 }
 
-// GetBundleIdOk returns a tuple with the BundleId field value if set, nil otherwise
+// GetBundleIDOk returns a tuple with the BundleID field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Event) GetBundleIdOk() (*string, bool) {
-	if o == nil || IsNil(o.BundleId) {
+func (o *Event) GetBundleIDOk() (*string, bool) {
+	if o == nil || IsNil(o.BundleID) {
 		return nil, false
 	}
-	return o.BundleId, true
+	return o.BundleID, true
 }
 
-// HasBundleId returns a boolean if a field has been set.
-func (o *Event) HasBundleId() bool {
-	if o != nil && !IsNil(o.BundleId) {
+// HasBundleID returns a boolean if a field has been set.
+func (o *Event) HasBundleID() bool {
+	if o != nil && !IsNil(o.BundleID) {
 		return true
 	}
 
 	return false
 }
 
-// SetBundleId gets a reference to the given string and assigns it to the BundleId field.
-func (o *Event) SetBundleId(v string) {
-	o.BundleId = &v
+// SetBundleID gets a reference to the given string and assigns it to the BundleID field.
+func (o *Event) SetBundleID(v string) {
+	o.BundleID = &v
 }
 
 // GetPackageName returns the PackageName field value if set, zero value otherwise.
@@ -528,36 +528,36 @@ func (o *Event) SetPackageName(v string) {
 	o.PackageName = &v
 }
 
-// GetIpAddress returns the IpAddress field value if set, zero value otherwise.
-func (o *Event) GetIpAddress() string {
-	if o == nil || IsNil(o.IpAddress) {
+// GetIPAddress returns the IPAddress field value if set, zero value otherwise.
+func (o *Event) GetIPAddress() string {
+	if o == nil || IsNil(o.IPAddress) {
 		var ret string
 		return ret
 	}
-	return *o.IpAddress
+	return *o.IPAddress
 }
 
-// GetIpAddressOk returns a tuple with the IpAddress field value if set, nil otherwise
+// GetIPAddressOk returns a tuple with the IPAddress field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Event) GetIpAddressOk() (*string, bool) {
-	if o == nil || IsNil(o.IpAddress) {
+func (o *Event) GetIPAddressOk() (*string, bool) {
+	if o == nil || IsNil(o.IPAddress) {
 		return nil, false
 	}
-	return o.IpAddress, true
+	return o.IPAddress, true
 }
 
-// HasIpAddress returns a boolean if a field has been set.
-func (o *Event) HasIpAddress() bool {
-	if o != nil && !IsNil(o.IpAddress) {
+// HasIPAddress returns a boolean if a field has been set.
+func (o *Event) HasIPAddress() bool {
+	if o != nil && !IsNil(o.IPAddress) {
 		return true
 	}
 
 	return false
 }
 
-// SetIpAddress gets a reference to the given string and assigns it to the IpAddress field.
-func (o *Event) SetIpAddress(v string) {
-	o.IpAddress = &v
+// SetIPAddress gets a reference to the given string and assigns it to the IPAddress field.
+func (o *Event) SetIPAddress(v string) {
+	o.IPAddress = &v
 }
 
 // GetUserAgent returns the UserAgent field value if set, zero value otherwise.
@@ -944,68 +944,68 @@ func (o *Event) SetFrida(v bool) {
 	o.Frida = &v
 }
 
-// GetIpBlocklist returns the IpBlocklist field value if set, zero value otherwise.
-func (o *Event) GetIpBlocklist() IPBlockList {
-	if o == nil || IsNil(o.IpBlocklist) {
+// GetIPBlockList returns the IPBlockList field value if set, zero value otherwise.
+func (o *Event) GetIPBlockList() IPBlockList {
+	if o == nil || IsNil(o.IPBlockList) {
 		var ret IPBlockList
 		return ret
 	}
-	return *o.IpBlocklist
+	return *o.IPBlockList
 }
 
-// GetIpBlocklistOk returns a tuple with the IpBlocklist field value if set, nil otherwise
+// GetIPBlockListOk returns a tuple with the IPBlockList field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Event) GetIpBlocklistOk() (*IPBlockList, bool) {
-	if o == nil || IsNil(o.IpBlocklist) {
+func (o *Event) GetIPBlockListOk() (*IPBlockList, bool) {
+	if o == nil || IsNil(o.IPBlockList) {
 		return nil, false
 	}
-	return o.IpBlocklist, true
+	return o.IPBlockList, true
 }
 
-// HasIpBlocklist returns a boolean if a field has been set.
-func (o *Event) HasIpBlocklist() bool {
-	if o != nil && !IsNil(o.IpBlocklist) {
+// HasIPBlockList returns a boolean if a field has been set.
+func (o *Event) HasIPBlockList() bool {
+	if o != nil && !IsNil(o.IPBlockList) {
 		return true
 	}
 
 	return false
 }
 
-// SetIpBlocklist gets a reference to the given IPBlockList and assigns it to the IpBlocklist field.
-func (o *Event) SetIpBlocklist(v IPBlockList) {
-	o.IpBlocklist = &v
+// SetIPBlockList gets a reference to the given IPBlockList and assigns it to the IPBlockList field.
+func (o *Event) SetIPBlockList(v IPBlockList) {
+	o.IPBlockList = &v
 }
 
-// GetIpInfo returns the IpInfo field value if set, zero value otherwise.
-func (o *Event) GetIpInfo() IPInfo {
-	if o == nil || IsNil(o.IpInfo) {
+// GetIPInfo returns the IPInfo field value if set, zero value otherwise.
+func (o *Event) GetIPInfo() IPInfo {
+	if o == nil || IsNil(o.IPInfo) {
 		var ret IPInfo
 		return ret
 	}
-	return *o.IpInfo
+	return *o.IPInfo
 }
 
-// GetIpInfoOk returns a tuple with the IpInfo field value if set, nil otherwise
+// GetIPInfoOk returns a tuple with the IPInfo field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Event) GetIpInfoOk() (*IPInfo, bool) {
-	if o == nil || IsNil(o.IpInfo) {
+func (o *Event) GetIPInfoOk() (*IPInfo, bool) {
+	if o == nil || IsNil(o.IPInfo) {
 		return nil, false
 	}
-	return o.IpInfo, true
+	return o.IPInfo, true
 }
 
-// HasIpInfo returns a boolean if a field has been set.
-func (o *Event) HasIpInfo() bool {
-	if o != nil && !IsNil(o.IpInfo) {
+// HasIPInfo returns a boolean if a field has been set.
+func (o *Event) HasIPInfo() bool {
+	if o != nil && !IsNil(o.IPInfo) {
 		return true
 	}
 
 	return false
 }
 
-// SetIpInfo gets a reference to the given IPInfo and assigns it to the IpInfo field.
-func (o *Event) SetIpInfo(v IPInfo) {
-	o.IpInfo = &v
+// SetIPInfo gets a reference to the given IPInfo and assigns it to the IPInfo field.
+func (o *Event) SetIPInfo(v IPInfo) {
+	o.IPInfo = &v
 }
 
 // GetProxy returns the Proxy field value if set, zero value otherwise.
@@ -1200,36 +1200,36 @@ func (o *Event) SetLocationSpoofing(v bool) {
 	o.LocationSpoofing = &v
 }
 
-// GetMitmAttack returns the MitmAttack field value if set, zero value otherwise.
-func (o *Event) GetMitmAttack() bool {
-	if o == nil || IsNil(o.MitmAttack) {
+// GetMITMAttack returns the MITMAttack field value if set, zero value otherwise.
+func (o *Event) GetMITMAttack() bool {
+	if o == nil || IsNil(o.MITMAttack) {
 		var ret bool
 		return ret
 	}
-	return *o.MitmAttack
+	return *o.MITMAttack
 }
 
-// GetMitmAttackOk returns a tuple with the MitmAttack field value if set, nil otherwise
+// GetMITMAttackOk returns a tuple with the MITMAttack field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Event) GetMitmAttackOk() (*bool, bool) {
-	if o == nil || IsNil(o.MitmAttack) {
+func (o *Event) GetMITMAttackOk() (*bool, bool) {
+	if o == nil || IsNil(o.MITMAttack) {
 		return nil, false
 	}
-	return o.MitmAttack, true
+	return o.MITMAttack, true
 }
 
-// HasMitmAttack returns a boolean if a field has been set.
-func (o *Event) HasMitmAttack() bool {
-	if o != nil && !IsNil(o.MitmAttack) {
+// HasMITMAttack returns a boolean if a field has been set.
+func (o *Event) HasMITMAttack() bool {
+	if o != nil && !IsNil(o.MITMAttack) {
 		return true
 	}
 
 	return false
 }
 
-// SetMitmAttack gets a reference to the given bool and assigns it to the MitmAttack field.
-func (o *Event) SetMitmAttack(v bool) {
-	o.MitmAttack = &v
+// SetMITMAttack gets a reference to the given bool and assigns it to the MITMAttack field.
+func (o *Event) SetMITMAttack(v bool) {
+	o.MITMAttack = &v
 }
 
 // GetPrivacySettings returns the PrivacySettings field value if set, zero value otherwise.
@@ -1488,164 +1488,164 @@ func (o *Event) SetVirtualMachine(v bool) {
 	o.VirtualMachine = &v
 }
 
-// GetVpn returns the Vpn field value if set, zero value otherwise.
-func (o *Event) GetVpn() bool {
-	if o == nil || IsNil(o.Vpn) {
+// GetVPN returns the VPN field value if set, zero value otherwise.
+func (o *Event) GetVPN() bool {
+	if o == nil || IsNil(o.VPN) {
 		var ret bool
 		return ret
 	}
-	return *o.Vpn
+	return *o.VPN
 }
 
-// GetVpnOk returns a tuple with the Vpn field value if set, nil otherwise
+// GetVPNOk returns a tuple with the VPN field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Event) GetVpnOk() (*bool, bool) {
-	if o == nil || IsNil(o.Vpn) {
+func (o *Event) GetVPNOk() (*bool, bool) {
+	if o == nil || IsNil(o.VPN) {
 		return nil, false
 	}
-	return o.Vpn, true
+	return o.VPN, true
 }
 
-// HasVpn returns a boolean if a field has been set.
-func (o *Event) HasVpn() bool {
-	if o != nil && !IsNil(o.Vpn) {
+// HasVPN returns a boolean if a field has been set.
+func (o *Event) HasVPN() bool {
+	if o != nil && !IsNil(o.VPN) {
 		return true
 	}
 
 	return false
 }
 
-// SetVpn gets a reference to the given bool and assigns it to the Vpn field.
-func (o *Event) SetVpn(v bool) {
-	o.Vpn = &v
+// SetVPN gets a reference to the given bool and assigns it to the VPN field.
+func (o *Event) SetVPN(v bool) {
+	o.VPN = &v
 }
 
-// GetVpnConfidence returns the VpnConfidence field value if set, zero value otherwise.
-func (o *Event) GetVpnConfidence() VpnConfidence {
-	if o == nil || IsNil(o.VpnConfidence) {
-		var ret VpnConfidence
+// GetVPNConfidence returns the VPNConfidence field value if set, zero value otherwise.
+func (o *Event) GetVPNConfidence() VPNConfidence {
+	if o == nil || IsNil(o.VPNConfidence) {
+		var ret VPNConfidence
 		return ret
 	}
-	return *o.VpnConfidence
+	return *o.VPNConfidence
 }
 
-// GetVpnConfidenceOk returns a tuple with the VpnConfidence field value if set, nil otherwise
+// GetVPNConfidenceOk returns a tuple with the VPNConfidence field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Event) GetVpnConfidenceOk() (*VpnConfidence, bool) {
-	if o == nil || IsNil(o.VpnConfidence) {
+func (o *Event) GetVPNConfidenceOk() (*VPNConfidence, bool) {
+	if o == nil || IsNil(o.VPNConfidence) {
 		return nil, false
 	}
-	return o.VpnConfidence, true
+	return o.VPNConfidence, true
 }
 
-// HasVpnConfidence returns a boolean if a field has been set.
-func (o *Event) HasVpnConfidence() bool {
-	if o != nil && !IsNil(o.VpnConfidence) {
+// HasVPNConfidence returns a boolean if a field has been set.
+func (o *Event) HasVPNConfidence() bool {
+	if o != nil && !IsNil(o.VPNConfidence) {
 		return true
 	}
 
 	return false
 }
 
-// SetVpnConfidence gets a reference to the given VpnConfidence and assigns it to the VpnConfidence field.
-func (o *Event) SetVpnConfidence(v VpnConfidence) {
-	o.VpnConfidence = &v
+// SetVPNConfidence gets a reference to the given VPNConfidence and assigns it to the VPNConfidence field.
+func (o *Event) SetVPNConfidence(v VPNConfidence) {
+	o.VPNConfidence = &v
 }
 
-// GetVpnOriginTimezone returns the VpnOriginTimezone field value if set, zero value otherwise.
-func (o *Event) GetVpnOriginTimezone() string {
-	if o == nil || IsNil(o.VpnOriginTimezone) {
+// GetVPNOriginTimezone returns the VPNOriginTimezone field value if set, zero value otherwise.
+func (o *Event) GetVPNOriginTimezone() string {
+	if o == nil || IsNil(o.VPNOriginTimezone) {
 		var ret string
 		return ret
 	}
-	return *o.VpnOriginTimezone
+	return *o.VPNOriginTimezone
 }
 
-// GetVpnOriginTimezoneOk returns a tuple with the VpnOriginTimezone field value if set, nil otherwise
+// GetVPNOriginTimezoneOk returns a tuple with the VPNOriginTimezone field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Event) GetVpnOriginTimezoneOk() (*string, bool) {
-	if o == nil || IsNil(o.VpnOriginTimezone) {
+func (o *Event) GetVPNOriginTimezoneOk() (*string, bool) {
+	if o == nil || IsNil(o.VPNOriginTimezone) {
 		return nil, false
 	}
-	return o.VpnOriginTimezone, true
+	return o.VPNOriginTimezone, true
 }
 
-// HasVpnOriginTimezone returns a boolean if a field has been set.
-func (o *Event) HasVpnOriginTimezone() bool {
-	if o != nil && !IsNil(o.VpnOriginTimezone) {
+// HasVPNOriginTimezone returns a boolean if a field has been set.
+func (o *Event) HasVPNOriginTimezone() bool {
+	if o != nil && !IsNil(o.VPNOriginTimezone) {
 		return true
 	}
 
 	return false
 }
 
-// SetVpnOriginTimezone gets a reference to the given string and assigns it to the VpnOriginTimezone field.
-func (o *Event) SetVpnOriginTimezone(v string) {
-	o.VpnOriginTimezone = &v
+// SetVPNOriginTimezone gets a reference to the given string and assigns it to the VPNOriginTimezone field.
+func (o *Event) SetVPNOriginTimezone(v string) {
+	o.VPNOriginTimezone = &v
 }
 
-// GetVpnOriginCountry returns the VpnOriginCountry field value if set, zero value otherwise.
-func (o *Event) GetVpnOriginCountry() string {
-	if o == nil || IsNil(o.VpnOriginCountry) {
+// GetVPNOriginCountry returns the VPNOriginCountry field value if set, zero value otherwise.
+func (o *Event) GetVPNOriginCountry() string {
+	if o == nil || IsNil(o.VPNOriginCountry) {
 		var ret string
 		return ret
 	}
-	return *o.VpnOriginCountry
+	return *o.VPNOriginCountry
 }
 
-// GetVpnOriginCountryOk returns a tuple with the VpnOriginCountry field value if set, nil otherwise
+// GetVPNOriginCountryOk returns a tuple with the VPNOriginCountry field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Event) GetVpnOriginCountryOk() (*string, bool) {
-	if o == nil || IsNil(o.VpnOriginCountry) {
+func (o *Event) GetVPNOriginCountryOk() (*string, bool) {
+	if o == nil || IsNil(o.VPNOriginCountry) {
 		return nil, false
 	}
-	return o.VpnOriginCountry, true
+	return o.VPNOriginCountry, true
 }
 
-// HasVpnOriginCountry returns a boolean if a field has been set.
-func (o *Event) HasVpnOriginCountry() bool {
-	if o != nil && !IsNil(o.VpnOriginCountry) {
+// HasVPNOriginCountry returns a boolean if a field has been set.
+func (o *Event) HasVPNOriginCountry() bool {
+	if o != nil && !IsNil(o.VPNOriginCountry) {
 		return true
 	}
 
 	return false
 }
 
-// SetVpnOriginCountry gets a reference to the given string and assigns it to the VpnOriginCountry field.
-func (o *Event) SetVpnOriginCountry(v string) {
-	o.VpnOriginCountry = &v
+// SetVPNOriginCountry gets a reference to the given string and assigns it to the VPNOriginCountry field.
+func (o *Event) SetVPNOriginCountry(v string) {
+	o.VPNOriginCountry = &v
 }
 
-// GetVpnMethods returns the VpnMethods field value if set, zero value otherwise.
-func (o *Event) GetVpnMethods() VpnMethods {
-	if o == nil || IsNil(o.VpnMethods) {
-		var ret VpnMethods
+// GetVPNMethods returns the VPNMethods field value if set, zero value otherwise.
+func (o *Event) GetVPNMethods() VPNMethods {
+	if o == nil || IsNil(o.VPNMethods) {
+		var ret VPNMethods
 		return ret
 	}
-	return *o.VpnMethods
+	return *o.VPNMethods
 }
 
-// GetVpnMethodsOk returns a tuple with the VpnMethods field value if set, nil otherwise
+// GetVPNMethodsOk returns a tuple with the VPNMethods field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Event) GetVpnMethodsOk() (*VpnMethods, bool) {
-	if o == nil || IsNil(o.VpnMethods) {
+func (o *Event) GetVPNMethodsOk() (*VPNMethods, bool) {
+	if o == nil || IsNil(o.VPNMethods) {
 		return nil, false
 	}
-	return o.VpnMethods, true
+	return o.VPNMethods, true
 }
 
-// HasVpnMethods returns a boolean if a field has been set.
-func (o *Event) HasVpnMethods() bool {
-	if o != nil && !IsNil(o.VpnMethods) {
+// HasVPNMethods returns a boolean if a field has been set.
+func (o *Event) HasVPNMethods() bool {
+	if o != nil && !IsNil(o.VPNMethods) {
 		return true
 	}
 
 	return false
 }
 
-// SetVpnMethods gets a reference to the given VpnMethods and assigns it to the VpnMethods field.
-func (o *Event) SetVpnMethods(v VpnMethods) {
-	o.VpnMethods = &v
+// SetVPNMethods gets a reference to the given VPNMethods and assigns it to the VPNMethods field.
+func (o *Event) SetVPNMethods(v VPNMethods) {
+	o.VPNMethods = &v
 }
 
 // GetHighActivityDevice returns the HighActivityDevice field value if set, zero value otherwise.
@@ -1722,19 +1722,19 @@ func (o Event) MarshalJSON() ([]byte, error) {
 
 func (o Event) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["event_id"] = o.EventId
+	toSerialize["event_id"] = o.EventID
 	toSerialize["timestamp"] = o.Timestamp
-	if !IsNil(o.LinkedId) {
-		toSerialize["linked_id"] = o.LinkedId
+	if !IsNil(o.LinkedID) {
+		toSerialize["linked_id"] = o.LinkedID
 	}
-	if !IsNil(o.EnvironmentId) {
-		toSerialize["environment_id"] = o.EnvironmentId
+	if !IsNil(o.EnvironmentID) {
+		toSerialize["environment_id"] = o.EnvironmentID
 	}
 	if !IsNil(o.Suspect) {
 		toSerialize["suspect"] = o.Suspect
 	}
-	if !IsNil(o.Sdk) {
-		toSerialize["sdk"] = o.Sdk
+	if !IsNil(o.SDK) {
+		toSerialize["sdk"] = o.SDK
 	}
 	if !IsNil(o.Replayed) {
 		toSerialize["replayed"] = o.Replayed
@@ -1742,23 +1742,23 @@ func (o Event) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Identification) {
 		toSerialize["identification"] = o.Identification
 	}
-	if !IsNil(o.SupplementaryIdHighRecall) {
-		toSerialize["supplementary_id_high_recall"] = o.SupplementaryIdHighRecall
+	if !IsNil(o.SupplementaryIDHighRecall) {
+		toSerialize["supplementary_id_high_recall"] = o.SupplementaryIDHighRecall
 	}
 	if !IsNil(o.Tags) {
 		toSerialize["tags"] = o.Tags
 	}
-	if !IsNil(o.Url) {
-		toSerialize["url"] = o.Url
+	if !IsNil(o.URL) {
+		toSerialize["url"] = o.URL
 	}
-	if !IsNil(o.BundleId) {
-		toSerialize["bundle_id"] = o.BundleId
+	if !IsNil(o.BundleID) {
+		toSerialize["bundle_id"] = o.BundleID
 	}
 	if !IsNil(o.PackageName) {
 		toSerialize["package_name"] = o.PackageName
 	}
-	if !IsNil(o.IpAddress) {
-		toSerialize["ip_address"] = o.IpAddress
+	if !IsNil(o.IPAddress) {
+		toSerialize["ip_address"] = o.IPAddress
 	}
 	if !IsNil(o.UserAgent) {
 		toSerialize["user_agent"] = o.UserAgent
@@ -1796,11 +1796,11 @@ func (o Event) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Frida) {
 		toSerialize["frida"] = o.Frida
 	}
-	if !IsNil(o.IpBlocklist) {
-		toSerialize["ip_blocklist"] = o.IpBlocklist
+	if !IsNil(o.IPBlockList) {
+		toSerialize["ip_blocklist"] = o.IPBlockList
 	}
-	if !IsNil(o.IpInfo) {
-		toSerialize["ip_info"] = o.IpInfo
+	if !IsNil(o.IPInfo) {
+		toSerialize["ip_info"] = o.IPInfo
 	}
 	if !IsNil(o.Proxy) {
 		toSerialize["proxy"] = o.Proxy
@@ -1820,8 +1820,8 @@ func (o Event) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.LocationSpoofing) {
 		toSerialize["location_spoofing"] = o.LocationSpoofing
 	}
-	if !IsNil(o.MitmAttack) {
-		toSerialize["mitm_attack"] = o.MitmAttack
+	if !IsNil(o.MITMAttack) {
+		toSerialize["mitm_attack"] = o.MITMAttack
 	}
 	if !IsNil(o.PrivacySettings) {
 		toSerialize["privacy_settings"] = o.PrivacySettings
@@ -1847,20 +1847,20 @@ func (o Event) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.VirtualMachine) {
 		toSerialize["virtual_machine"] = o.VirtualMachine
 	}
-	if !IsNil(o.Vpn) {
-		toSerialize["vpn"] = o.Vpn
+	if !IsNil(o.VPN) {
+		toSerialize["vpn"] = o.VPN
 	}
-	if !IsNil(o.VpnConfidence) {
-		toSerialize["vpn_confidence"] = o.VpnConfidence
+	if !IsNil(o.VPNConfidence) {
+		toSerialize["vpn_confidence"] = o.VPNConfidence
 	}
-	if !IsNil(o.VpnOriginTimezone) {
-		toSerialize["vpn_origin_timezone"] = o.VpnOriginTimezone
+	if !IsNil(o.VPNOriginTimezone) {
+		toSerialize["vpn_origin_timezone"] = o.VPNOriginTimezone
 	}
-	if !IsNil(o.VpnOriginCountry) {
-		toSerialize["vpn_origin_country"] = o.VpnOriginCountry
+	if !IsNil(o.VPNOriginCountry) {
+		toSerialize["vpn_origin_country"] = o.VPNOriginCountry
 	}
-	if !IsNil(o.VpnMethods) {
-		toSerialize["vpn_methods"] = o.VpnMethods
+	if !IsNil(o.VPNMethods) {
+		toSerialize["vpn_methods"] = o.VPNMethods
 	}
 	if !IsNil(o.HighActivityDevice) {
 		toSerialize["high_activity_device"] = o.HighActivityDevice

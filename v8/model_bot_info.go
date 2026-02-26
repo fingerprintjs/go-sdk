@@ -26,7 +26,7 @@ type BotInfo struct {
 	// The organization or company operating the bot.
 	Provider string `json:"provider"`
 	// The URL of the bot provider's website.
-	ProviderUrl *string `json:"provider_url,omitempty"`
+	ProviderURL *string `json:"provider_url,omitempty"`
 	// The specific name or identifier of the bot.
 	Name string `json:"name"`
 	// The verification status of the bot's identity:  * `verified` - well-known bot with publicly verifiable identity, directed by the bot provider.  * `signed` - bot that signs its platform via Web Bot Auth, directed by the bot provider’s customers.  * `spoofed` - bot that claims a public identity but fails verification.  * `unknown` - bot that does not publish a verifiable identity.
@@ -108,36 +108,36 @@ func (o *BotInfo) SetProvider(v string) {
 	o.Provider = v
 }
 
-// GetProviderUrl returns the ProviderUrl field value if set, zero value otherwise.
-func (o *BotInfo) GetProviderUrl() string {
-	if o == nil || IsNil(o.ProviderUrl) {
+// GetProviderURL returns the ProviderURL field value if set, zero value otherwise.
+func (o *BotInfo) GetProviderURL() string {
+	if o == nil || IsNil(o.ProviderURL) {
 		var ret string
 		return ret
 	}
-	return *o.ProviderUrl
+	return *o.ProviderURL
 }
 
-// GetProviderUrlOk returns a tuple with the ProviderUrl field value if set, nil otherwise
+// GetProviderURLOk returns a tuple with the ProviderURL field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BotInfo) GetProviderUrlOk() (*string, bool) {
-	if o == nil || IsNil(o.ProviderUrl) {
+func (o *BotInfo) GetProviderURLOk() (*string, bool) {
+	if o == nil || IsNil(o.ProviderURL) {
 		return nil, false
 	}
-	return o.ProviderUrl, true
+	return o.ProviderURL, true
 }
 
-// HasProviderUrl returns a boolean if a field has been set.
-func (o *BotInfo) HasProviderUrl() bool {
-	if o != nil && !IsNil(o.ProviderUrl) {
+// HasProviderURL returns a boolean if a field has been set.
+func (o *BotInfo) HasProviderURL() bool {
+	if o != nil && !IsNil(o.ProviderURL) {
 		return true
 	}
 
 	return false
 }
 
-// SetProviderUrl gets a reference to the given string and assigns it to the ProviderUrl field.
-func (o *BotInfo) SetProviderUrl(v string) {
-	o.ProviderUrl = &v
+// SetProviderURL gets a reference to the given string and assigns it to the ProviderURL field.
+func (o *BotInfo) SetProviderURL(v string) {
+	o.ProviderURL = &v
 }
 
 // GetName returns the Name field value
@@ -224,8 +224,8 @@ func (o BotInfo) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["category"] = o.Category
 	toSerialize["provider"] = o.Provider
-	if !IsNil(o.ProviderUrl) {
-		toSerialize["provider_url"] = o.ProviderUrl
+	if !IsNil(o.ProviderURL) {
+		toSerialize["provider_url"] = o.ProviderURL
 	}
 	toSerialize["name"] = o.Name
 	toSerialize["identity"] = o.Identity

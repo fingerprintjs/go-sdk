@@ -32,7 +32,7 @@ func main() {
 
 	if response.Events != nil {
 		for _, event := range response.Events {
-			fmt.Printf("Got response for event: %v \n", event.EventId)
+			fmt.Printf("Got response for event: %v \n", event.EventID)
 		}
 	}
 }

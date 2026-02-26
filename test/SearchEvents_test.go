@@ -82,14 +82,14 @@ func TestSearchEvents(t *testing.T) {
 		var end int64 = 10
 		var start int64 = 5
 		reverse := false
-		linkedId := "linked_id"
-		visitorId := "XIkiQhRyp7edU9SA0jBb"
+		linkedID := "linked_id"
+		visitorID := "XIkiQhRyp7edU9SA0jBb"
 		opts := client.NewSearchEventsRequest(context.Background()).
 			End(end).
 			Start(start).
-			LinkedId(linkedId).
+			LinkedID(linkedID).
 			Reverse(reverse).
-			VisitorId(visitorId)
+			VisitorID(visitorID)
 
 		eventSearch, _, err := client.SearchEvents(opts)
 		assert.Nil(t, err)
@@ -110,21 +110,21 @@ func TestSearchEvents(t *testing.T) {
 			assert.Equal(t, "/events", r.URL.Path)
 
 			assert.Equal(t, "2", query.Get("limit"), "limit")
-			assert.Equal(t, "XIkiQhRyp7edU9SA0jBb", query.Get("visitor_id"), "visitorId")
+			assert.Equal(t, "XIkiQhRyp7edU9SA0jBb", query.Get("visitor_id"), "visitorID")
 			assert.Equal(t, "good", query.Get("bot"), "bot")
 			assert.Equal(t, "127.0.0.1", query.Get("ip_address"), "ipAddress")
 			assert.Equal(t, "ASN 20", query.Get("asn"), "asn")
-			assert.Equal(t, "linked_id", query.Get("linked_id"), "linkedId")
+			assert.Equal(t, "linked_id", query.Get("linked_id"), "linkedID")
 			assert.Equal(t, "https://example.com", query.Get("url"), "url")
-			assert.Equal(t, "bundleId", query.Get("bundle_id"), "bundleId")
+			assert.Equal(t, "bundleID", query.Get("bundle_id"), "bundleID")
 			assert.Equal(t, "com.example.app", query.Get("package_name"), "packageName")
 			assert.Equal(t, "https://example.com", query.Get("origin"), "origin")
 			assert.Equal(t, "5", query.Get("start"), "start")
 			assert.Equal(t, "10", query.Get("end"), "end")
-			assert.Equal(t, "testSdkVersion", query.Get("sdk_version"), "sdkVersion")
-			assert.Equal(t, string(fingerprint.SearchEventsSdkPlatformJs), query.Get("sdk_platform"), "sdkPlatform")
+			assert.Equal(t, "testSDKVersion", query.Get("sdk_version"), "sdkVersion")
+			assert.Equal(t, string(fingerprint.SearchEventsSDKPlatformJs), query.Get("sdk_platform"), "sdkPlatform")
 			assert.Equal(t, []string{"env1", "env2"}, r.URL.Query()["environment"], "environment")
-			assert.Equal(t, "testProximityId", query.Get("proximity_id"), "proximityId")
+			assert.Equal(t, "testProximityID", query.Get("proximity_id"), "proximityID")
 			assert.Equal(t, "10", query.Get("total_hits"), "totalHits")
 			assert.Equal(t, "85.5", query.Get("min_suspect_score"), "minSuspectScore")
 
@@ -200,13 +200,13 @@ func TestSearchEvents(t *testing.T) {
 
 		var (
 			limit             int32    = 2
-			visitorId         string   = "XIkiQhRyp7edU9SA0jBb"
+			visitorID         string   = "XIkiQhRyp7edU9SA0jBb"
 			bot                        = fingerprint.SearchEventsBotGood
 			ipAddress         string   = "127.0.0.1"
 			asn               string   = "ASN 20"
-			linkedId          string   = "linked_id"
+			linkedID          string   = "linked_id"
 			url               string   = "https://example.com"
-			bundleId          string   = "bundleId"
+			bundleID          string   = "bundleID"
 			packageName       string   = "com.example.app"
 			origin            string   = "https://example.com"
 			start             int64    = 5
@@ -225,16 +225,16 @@ func TestSearchEvents(t *testing.T) {
 			clonedApp         bool     = false
 			emulator          bool     = false
 			rootApps          bool     = false
-			vpnConfidence              = fingerprint.SearchEventsVpnConfidenceHigh
+			vpnConfidence              = fingerprint.SearchEventsVPNConfidenceHigh
 			minSuspectScore   float32  = 85.5
 			developerTools    bool     = false
 			locationSpoofing  bool     = true
 			mitmAttack        bool     = false
 			proxy             bool     = false
-			sdkVersion        string   = "testSdkVersion"
-			sdkPlatform                = fingerprint.SearchEventsSdkPlatformJs
+			sdkVersion        string   = "testSDKVersion"
+			sdkPlatform                = fingerprint.SearchEventsSDKPlatformJs
 			environment       []string = []string{"env1", "env2"}
-			proximityId       string   = "testProximityId"
+			proximityID       string   = "testProximityID"
 			totalHits         int64    = 10
 			torNode           bool     = false
 		)
@@ -245,7 +245,7 @@ func TestSearchEvents(t *testing.T) {
 			AntiDetectBrowser(antiDetectBrowser).
 			Asn(asn).
 			Bot(bot).
-			BundleId(bundleId).
+			BundleID(bundleID).
 			ClonedApp(clonedApp).
 			DeveloperTools(developerTools).
 			Emulator(emulator).
@@ -254,32 +254,32 @@ func TestSearchEvents(t *testing.T) {
 			FactoryReset(factoryReset).
 			Frida(frida).
 			Incognito(incognito).
-			IpAddress(ipAddress).
+			IPAddress(ipAddress).
 			Jailbroken(jailbroken).
 			Limit(limit).
-			LinkedId(linkedId).
+			LinkedID(linkedID).
 			LocationSpoofing(locationSpoofing).
 			MinSuspectScore(minSuspectScore).
-			MitmAttack(mitmAttack).
+			MITMAttack(mitmAttack).
 			Origin(origin).
 			PackageName(packageName).
 			PrivacySettings(privacySettings).
-			ProximityId(proximityId).
+			ProximityID(proximityID).
 			Proxy(proxy).
 			Reverse(reverse).
 			RootApps(rootApps).
-			SdkPlatform(sdkPlatform).
-			SdkVersion(sdkVersion).
+			SDKPlatform(sdkPlatform).
+			SDKVersion(sdkVersion).
 			Start(start).
 			Suspect(suspect).
 			Tampering(tampering).
 			TorNode(torNode).
 			TotalHits(totalHits).
-			Url(url).
+			URL(url).
 			VirtualMachine(virtualMachine).
-			VisitorId(visitorId).
-			Vpn(vpn).
-			VpnConfidence(vpnConfidence)
+			VisitorID(visitorID).
+			VPN(vpn).
+			VPNConfidence(vpnConfidence)
 
 		res, _, err := client.SearchEvents(opts)
 		assert.Nil(t, err)

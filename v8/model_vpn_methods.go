@@ -15,15 +15,15 @@ import (
 	"encoding/json"
 )
 
-// checks if the VpnMethods type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &VpnMethods{}
+// checks if the VPNMethods type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &VPNMethods{}
 
-// VpnMethods struct for VpnMethods
-type VpnMethods struct {
+// VPNMethods struct for VPNMethods
+type VPNMethods struct {
 	// The browser timezone doesn't match the timezone inferred from the request IP address.
 	TimezoneMismatch *bool `json:"timezone_mismatch,omitempty"`
 	// Request IP address is owned and used by a public VPN service provider.
-	PublicVpn *bool `json:"public_vpn,omitempty"`
+	PublicVPN *bool `json:"public_vpn,omitempty"`
 	// This method applies to mobile devices only. Indicates the result of additional methods used to detect a VPN in mobile devices.
 	AuxiliaryMobile *bool `json:"auxiliary_mobile,omitempty"`
 	// The browser runs on a different operating system than the operating system inferred from the request network signature.
@@ -33,27 +33,27 @@ type VpnMethods struct {
 	AdditionalProperties map[string]interface{}
 }
 
-type _VpnMethods VpnMethods
+type _VPNMethods VPNMethods
 
-// NewVpnMethods instantiates a new VpnMethods object
+// NewVPNMethods instantiates a new VPNMethods object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewVpnMethods() *VpnMethods {
-	this := VpnMethods{}
+func NewVPNMethods() *VPNMethods {
+	this := VPNMethods{}
 	return &this
 }
 
-// NewVpnMethodsWithDefaults instantiates a new VpnMethods object
+// NewVPNMethodsWithDefaults instantiates a new VPNMethods object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewVpnMethodsWithDefaults() *VpnMethods {
-	this := VpnMethods{}
+func NewVPNMethodsWithDefaults() *VPNMethods {
+	this := VPNMethods{}
 	return &this
 }
 
 // GetTimezoneMismatch returns the TimezoneMismatch field value if set, zero value otherwise.
-func (o *VpnMethods) GetTimezoneMismatch() bool {
+func (o *VPNMethods) GetTimezoneMismatch() bool {
 	if o == nil || IsNil(o.TimezoneMismatch) {
 		var ret bool
 		return ret
@@ -63,7 +63,7 @@ func (o *VpnMethods) GetTimezoneMismatch() bool {
 
 // GetTimezoneMismatchOk returns a tuple with the TimezoneMismatch field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *VpnMethods) GetTimezoneMismatchOk() (*bool, bool) {
+func (o *VPNMethods) GetTimezoneMismatchOk() (*bool, bool) {
 	if o == nil || IsNil(o.TimezoneMismatch) {
 		return nil, false
 	}
@@ -71,7 +71,7 @@ func (o *VpnMethods) GetTimezoneMismatchOk() (*bool, bool) {
 }
 
 // HasTimezoneMismatch returns a boolean if a field has been set.
-func (o *VpnMethods) HasTimezoneMismatch() bool {
+func (o *VPNMethods) HasTimezoneMismatch() bool {
 	if o != nil && !IsNil(o.TimezoneMismatch) {
 		return true
 	}
@@ -80,44 +80,44 @@ func (o *VpnMethods) HasTimezoneMismatch() bool {
 }
 
 // SetTimezoneMismatch gets a reference to the given bool and assigns it to the TimezoneMismatch field.
-func (o *VpnMethods) SetTimezoneMismatch(v bool) {
+func (o *VPNMethods) SetTimezoneMismatch(v bool) {
 	o.TimezoneMismatch = &v
 }
 
-// GetPublicVpn returns the PublicVpn field value if set, zero value otherwise.
-func (o *VpnMethods) GetPublicVpn() bool {
-	if o == nil || IsNil(o.PublicVpn) {
+// GetPublicVPN returns the PublicVPN field value if set, zero value otherwise.
+func (o *VPNMethods) GetPublicVPN() bool {
+	if o == nil || IsNil(o.PublicVPN) {
 		var ret bool
 		return ret
 	}
-	return *o.PublicVpn
+	return *o.PublicVPN
 }
 
-// GetPublicVpnOk returns a tuple with the PublicVpn field value if set, nil otherwise
+// GetPublicVPNOk returns a tuple with the PublicVPN field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *VpnMethods) GetPublicVpnOk() (*bool, bool) {
-	if o == nil || IsNil(o.PublicVpn) {
+func (o *VPNMethods) GetPublicVPNOk() (*bool, bool) {
+	if o == nil || IsNil(o.PublicVPN) {
 		return nil, false
 	}
-	return o.PublicVpn, true
+	return o.PublicVPN, true
 }
 
-// HasPublicVpn returns a boolean if a field has been set.
-func (o *VpnMethods) HasPublicVpn() bool {
-	if o != nil && !IsNil(o.PublicVpn) {
+// HasPublicVPN returns a boolean if a field has been set.
+func (o *VPNMethods) HasPublicVPN() bool {
+	if o != nil && !IsNil(o.PublicVPN) {
 		return true
 	}
 
 	return false
 }
 
-// SetPublicVpn gets a reference to the given bool and assigns it to the PublicVpn field.
-func (o *VpnMethods) SetPublicVpn(v bool) {
-	o.PublicVpn = &v
+// SetPublicVPN gets a reference to the given bool and assigns it to the PublicVPN field.
+func (o *VPNMethods) SetPublicVPN(v bool) {
+	o.PublicVPN = &v
 }
 
 // GetAuxiliaryMobile returns the AuxiliaryMobile field value if set, zero value otherwise.
-func (o *VpnMethods) GetAuxiliaryMobile() bool {
+func (o *VPNMethods) GetAuxiliaryMobile() bool {
 	if o == nil || IsNil(o.AuxiliaryMobile) {
 		var ret bool
 		return ret
@@ -127,7 +127,7 @@ func (o *VpnMethods) GetAuxiliaryMobile() bool {
 
 // GetAuxiliaryMobileOk returns a tuple with the AuxiliaryMobile field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *VpnMethods) GetAuxiliaryMobileOk() (*bool, bool) {
+func (o *VPNMethods) GetAuxiliaryMobileOk() (*bool, bool) {
 	if o == nil || IsNil(o.AuxiliaryMobile) {
 		return nil, false
 	}
@@ -135,7 +135,7 @@ func (o *VpnMethods) GetAuxiliaryMobileOk() (*bool, bool) {
 }
 
 // HasAuxiliaryMobile returns a boolean if a field has been set.
-func (o *VpnMethods) HasAuxiliaryMobile() bool {
+func (o *VPNMethods) HasAuxiliaryMobile() bool {
 	if o != nil && !IsNil(o.AuxiliaryMobile) {
 		return true
 	}
@@ -144,12 +144,12 @@ func (o *VpnMethods) HasAuxiliaryMobile() bool {
 }
 
 // SetAuxiliaryMobile gets a reference to the given bool and assigns it to the AuxiliaryMobile field.
-func (o *VpnMethods) SetAuxiliaryMobile(v bool) {
+func (o *VPNMethods) SetAuxiliaryMobile(v bool) {
 	o.AuxiliaryMobile = &v
 }
 
 // GetOsMismatch returns the OsMismatch field value if set, zero value otherwise.
-func (o *VpnMethods) GetOsMismatch() bool {
+func (o *VPNMethods) GetOsMismatch() bool {
 	if o == nil || IsNil(o.OsMismatch) {
 		var ret bool
 		return ret
@@ -159,7 +159,7 @@ func (o *VpnMethods) GetOsMismatch() bool {
 
 // GetOsMismatchOk returns a tuple with the OsMismatch field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *VpnMethods) GetOsMismatchOk() (*bool, bool) {
+func (o *VPNMethods) GetOsMismatchOk() (*bool, bool) {
 	if o == nil || IsNil(o.OsMismatch) {
 		return nil, false
 	}
@@ -167,7 +167,7 @@ func (o *VpnMethods) GetOsMismatchOk() (*bool, bool) {
 }
 
 // HasOsMismatch returns a boolean if a field has been set.
-func (o *VpnMethods) HasOsMismatch() bool {
+func (o *VPNMethods) HasOsMismatch() bool {
 	if o != nil && !IsNil(o.OsMismatch) {
 		return true
 	}
@@ -176,12 +176,12 @@ func (o *VpnMethods) HasOsMismatch() bool {
 }
 
 // SetOsMismatch gets a reference to the given bool and assigns it to the OsMismatch field.
-func (o *VpnMethods) SetOsMismatch(v bool) {
+func (o *VPNMethods) SetOsMismatch(v bool) {
 	o.OsMismatch = &v
 }
 
 // GetRelay returns the Relay field value if set, zero value otherwise.
-func (o *VpnMethods) GetRelay() bool {
+func (o *VPNMethods) GetRelay() bool {
 	if o == nil || IsNil(o.Relay) {
 		var ret bool
 		return ret
@@ -191,7 +191,7 @@ func (o *VpnMethods) GetRelay() bool {
 
 // GetRelayOk returns a tuple with the Relay field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *VpnMethods) GetRelayOk() (*bool, bool) {
+func (o *VPNMethods) GetRelayOk() (*bool, bool) {
 	if o == nil || IsNil(o.Relay) {
 		return nil, false
 	}
@@ -199,7 +199,7 @@ func (o *VpnMethods) GetRelayOk() (*bool, bool) {
 }
 
 // HasRelay returns a boolean if a field has been set.
-func (o *VpnMethods) HasRelay() bool {
+func (o *VPNMethods) HasRelay() bool {
 	if o != nil && !IsNil(o.Relay) {
 		return true
 	}
@@ -208,11 +208,11 @@ func (o *VpnMethods) HasRelay() bool {
 }
 
 // SetRelay gets a reference to the given bool and assigns it to the Relay field.
-func (o *VpnMethods) SetRelay(v bool) {
+func (o *VPNMethods) SetRelay(v bool) {
 	o.Relay = &v
 }
 
-func (o VpnMethods) MarshalJSON() ([]byte, error) {
+func (o VPNMethods) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -220,13 +220,13 @@ func (o VpnMethods) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o VpnMethods) ToMap() (map[string]interface{}, error) {
+func (o VPNMethods) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.TimezoneMismatch) {
 		toSerialize["timezone_mismatch"] = o.TimezoneMismatch
 	}
-	if !IsNil(o.PublicVpn) {
-		toSerialize["public_vpn"] = o.PublicVpn
+	if !IsNil(o.PublicVPN) {
+		toSerialize["public_vpn"] = o.PublicVPN
 	}
 	if !IsNil(o.AuxiliaryMobile) {
 		toSerialize["auxiliary_mobile"] = o.AuxiliaryMobile
@@ -245,16 +245,16 @@ func (o VpnMethods) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *VpnMethods) UnmarshalJSON(data []byte) (err error) {
-	varVpnMethods := _VpnMethods{}
+func (o *VPNMethods) UnmarshalJSON(data []byte) (err error) {
+	varVPNMethods := _VPNMethods{}
 
-	err = json.Unmarshal(data, &varVpnMethods)
+	err = json.Unmarshal(data, &varVPNMethods)
 
 	if err != nil {
 		return err
 	}
 
-	*o = VpnMethods(varVpnMethods)
+	*o = VPNMethods(varVPNMethods)
 
 	additionalProperties := make(map[string]interface{})
 
@@ -270,38 +270,38 @@ func (o *VpnMethods) UnmarshalJSON(data []byte) (err error) {
 	return err
 }
 
-type NullableVpnMethods struct {
-	value *VpnMethods
+type NullableVPNMethods struct {
+	value *VPNMethods
 	isSet bool
 }
 
-func (v NullableVpnMethods) Get() *VpnMethods {
+func (v NullableVPNMethods) Get() *VPNMethods {
 	return v.value
 }
 
-func (v *NullableVpnMethods) Set(val *VpnMethods) {
+func (v *NullableVPNMethods) Set(val *VPNMethods) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableVpnMethods) IsSet() bool {
+func (v NullableVPNMethods) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableVpnMethods) Unset() {
+func (v *NullableVPNMethods) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableVpnMethods(val *VpnMethods) *NullableVpnMethods {
-	return &NullableVpnMethods{value: val, isSet: true}
+func NewNullableVPNMethods(val *VPNMethods) *NullableVPNMethods {
+	return &NullableVPNMethods{value: val, isSet: true}
 }
 
-func (v NullableVpnMethods) MarshalJSON() ([]byte, error) {
+func (v NullableVPNMethods) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableVpnMethods) UnmarshalJSON(src []byte) error {
+func (v *NullableVPNMethods) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
