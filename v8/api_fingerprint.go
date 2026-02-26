@@ -299,7 +299,7 @@ type ApiGetEventRequest struct {
 	rulesetId  *string
 }
 
-// The ID of the ruleset to evaluate against the event, producing the action to take for this event. The resulting action is returned in the &#x60;rule_action&#x60; attribute of the response.
+// The ID of the ruleset to evaluate against the event, producing the action to take for this event. The resulting action is returned in the `rule_action` attribute of the response.
 func (r ApiGetEventRequest) RulesetId(rulesetId string) ApiGetEventRequest {
 	r.rulesetId = &rulesetId
 	return r
@@ -510,19 +510,19 @@ func (r ApiSearchEventsRequest) Limit(limit int32) ApiSearchEventsRequest {
 	return r
 }
 
-// Use &#x60;pagination_key&#x60; to get the next page of results.  When more results are available (e.g., you requested up to 100 results for your query using &#x60;limit&#x60;, but there are more than 100 events total matching your request), the &#x60;pagination_key&#x60; field is added to the response. The pagination key is an arbitrary string that should not be interpreted in any way and should be passed as-is. In the following request, use that value in the &#x60;pagination_key&#x60; parameter to get the next page of results:  1. First request, returning most recent 200 events: &#x60;GET api-base-url/events?limit&#x3D;100&#x60; 2. Use &#x60;response.pagination_key&#x60; to get the next page of results: &#x60;GET api-base-url/events?limit&#x3D;100&amp;pagination_key&#x3D;1740815825085&#x60;
+// Use `pagination_key` to get the next page of results.  When more results are available (e.g., you requested up to 100 results for your query using `limit`, but there are more than 100 events total matching your request), the `pagination_key` field is added to the response. The pagination key is an arbitrary string that should not be interpreted in any way and should be passed as-is. In the following request, use that value in the `pagination_key` parameter to get the next page of results:  1. First request, returning most recent 200 events: `GET api-base-url/events?limit=100` 2. Use `response.pagination_key` to get the next page of results: `GET api-base-url/events?limit=100&pagination_key=1740815825085`
 func (r ApiSearchEventsRequest) PaginationKey(paginationKey string) ApiSearchEventsRequest {
 	r.paginationKey = &paginationKey
 	return r
 }
 
-// Unique [visitor identifier](https://dev.fingerprint.com/reference/get-function#visitorid) issued by Fingerprint Identification and all active Smart Signals. Filter for events matching this &#x60;visitor_id&#x60;.
+// Unique [visitor identifier](https://dev.fingerprint.com/reference/get-function#visitorid) issued by Fingerprint Identification and all active Smart Signals. Filter for events matching this `visitor_id`.
 func (r ApiSearchEventsRequest) VisitorId(visitorId string) ApiSearchEventsRequest {
 	r.visitorId = &visitorId
 	return r
 }
 
-// Filter events by the Bot Detection result, specifically:   &#x60;all&#x60; - events where any kind of bot was detected.   &#x60;good&#x60; - events where a good bot was detected.   &#x60;bad&#x60; - events where a bad bot was detected.   &#x60;none&#x60; - events where no bot was detected. &gt; Note: When using this parameter, only events with the &#x60;bot&#x60; property set to a valid value are returned. Events without a &#x60;bot&#x60; Smart Signal result are left out of the response.
+// Filter events by the Bot Detection result, specifically:   `all` - events where any kind of bot was detected.   `good` - events where a good bot was detected.   `bad` - events where a bad bot was detected.   `none` - events where no bot was detected. > Note: When using this parameter, only events with the `bot` property set to a valid value are returned. Events without a `bot` Smart Signal result are left out of the response.
 func (r ApiSearchEventsRequest) Bot(bot SearchEventsBot) ApiSearchEventsRequest {
 	r.bot = &bot
 	return r
@@ -534,19 +534,19 @@ func (r ApiSearchEventsRequest) IpAddress(ipAddress string) ApiSearchEventsReque
 	return r
 }
 
-// Filter events by the ASN associated with the event&#39;s IP address. This corresponds to the &#x60;ip_info.(v4|v6).asn&#x60; property in the response.
+// Filter events by the ASN associated with the event's IP address. This corresponds to the `ip_info.(v4|v6).asn` property in the response.
 func (r ApiSearchEventsRequest) Asn(asn string) ApiSearchEventsRequest {
 	r.asn = &asn
 	return r
 }
 
-// Filter events by your custom identifier.  You can use [linked Ids](https://dev.fingerprint.com/reference/get-function#linkedid) to associate identification requests with your own identifier, for example, session Id, purchase Id, or transaction Id. You can then use this &#x60;linked_id&#x60; parameter to retrieve all events associated with your custom identifier.
+// Filter events by your custom identifier.  You can use [linked Ids](https://dev.fingerprint.com/reference/get-function#linkedid) to associate identification requests with your own identifier, for example, session Id, purchase Id, or transaction Id. You can then use this `linked_id` parameter to retrieve all events associated with your custom identifier.
 func (r ApiSearchEventsRequest) LinkedId(linkedId string) ApiSearchEventsRequest {
 	r.linkedId = &linkedId
 	return r
 }
 
-// Filter events by the URL (&#x60;url&#x60; property) associated with the event.
+// Filter events by the URL (`url` property) associated with the event.
 func (r ApiSearchEventsRequest) Url(url string) ApiSearchEventsRequest {
 	r.url = &url
 	return r
@@ -588,151 +588,151 @@ func (r ApiSearchEventsRequest) Reverse(reverse bool) ApiSearchEventsRequest {
 	return r
 }
 
-// Filter events previously tagged as suspicious via the [Update API](https://dev.fingerprint.com/reference/updateevent). &gt; Note: When using this parameter, only events with the &#x60;suspect&#x60; property explicitly set to &#x60;true&#x60; or &#x60;false&#x60; are returned. Events with undefined &#x60;suspect&#x60; property are left out of the response.
+// Filter events previously tagged as suspicious via the [Update API](https://dev.fingerprint.com/reference/updateevent). > Note: When using this parameter, only events with the `suspect` property explicitly set to `true` or `false` are returned. Events with undefined `suspect` property are left out of the response.
 func (r ApiSearchEventsRequest) Suspect(suspect bool) ApiSearchEventsRequest {
 	r.suspect = &suspect
 	return r
 }
 
-// Filter events by VPN Detection result. &gt; Note: When using this parameter, only events with the &#x60;vpn&#x60; property set to &#x60;true&#x60; or &#x60;false&#x60; are returned. Events without a &#x60;vpn&#x60; Smart Signal result are left out of the response.
+// Filter events by VPN Detection result. > Note: When using this parameter, only events with the `vpn` property set to `true` or `false` are returned. Events without a `vpn` Smart Signal result are left out of the response.
 func (r ApiSearchEventsRequest) Vpn(vpn bool) ApiSearchEventsRequest {
 	r.vpn = &vpn
 	return r
 }
 
-// Filter events by Virtual Machine Detection result. &gt; Note: When using this parameter, only events with the &#x60;virtual_machine&#x60; property set to &#x60;true&#x60; or &#x60;false&#x60; are returned. Events without a &#x60;virtual_machine&#x60; Smart Signal result are left out of the response.
+// Filter events by Virtual Machine Detection result. > Note: When using this parameter, only events with the `virtual_machine` property set to `true` or `false` are returned. Events without a `virtual_machine` Smart Signal result are left out of the response.
 func (r ApiSearchEventsRequest) VirtualMachine(virtualMachine bool) ApiSearchEventsRequest {
 	r.virtualMachine = &virtualMachine
 	return r
 }
 
-// Filter events by Browser Tampering Detection result. &gt; Note: When using this parameter, only events with the &#x60;tampering.result&#x60; property set to &#x60;true&#x60; or &#x60;false&#x60; are returned. Events without a &#x60;tampering&#x60; Smart Signal result are left out of the response.
+// Filter events by Browser Tampering Detection result. > Note: When using this parameter, only events with the `tampering.result` property set to `true` or `false` are returned. Events without a `tampering` Smart Signal result are left out of the response.
 func (r ApiSearchEventsRequest) Tampering(tampering bool) ApiSearchEventsRequest {
 	r.tampering = &tampering
 	return r
 }
 
-// Filter events by Anti-detect Browser Detection result. &gt; Note: When using this parameter, only events with the &#x60;tampering.anti_detect_browser&#x60; property set to &#x60;true&#x60; or &#x60;false&#x60; are returned. Events without a &#x60;tampering&#x60; Smart Signal result are left out of the response.
+// Filter events by Anti-detect Browser Detection result. > Note: When using this parameter, only events with the `tampering.anti_detect_browser` property set to `true` or `false` are returned. Events without a `tampering` Smart Signal result are left out of the response.
 func (r ApiSearchEventsRequest) AntiDetectBrowser(antiDetectBrowser bool) ApiSearchEventsRequest {
 	r.antiDetectBrowser = &antiDetectBrowser
 	return r
 }
 
-// Filter events by Browser Incognito Detection result. &gt; Note: When using this parameter, only events with the &#x60;incognito&#x60; property set to &#x60;true&#x60; or &#x60;false&#x60; are returned. Events without an &#x60;incognito&#x60; Smart Signal result are left out of the response.
+// Filter events by Browser Incognito Detection result. > Note: When using this parameter, only events with the `incognito` property set to `true` or `false` are returned. Events without an `incognito` Smart Signal result are left out of the response.
 func (r ApiSearchEventsRequest) Incognito(incognito bool) ApiSearchEventsRequest {
 	r.incognito = &incognito
 	return r
 }
 
-// Filter events by Privacy Settings Detection result. &gt; Note: When using this parameter, only events with the &#x60;privacy_settings&#x60; property set to &#x60;true&#x60; or &#x60;false&#x60; are returned. Events without a &#x60;privacy_settings&#x60; Smart Signal result are left out of the response.
+// Filter events by Privacy Settings Detection result. > Note: When using this parameter, only events with the `privacy_settings` property set to `true` or `false` are returned. Events without a `privacy_settings` Smart Signal result are left out of the response.
 func (r ApiSearchEventsRequest) PrivacySettings(privacySettings bool) ApiSearchEventsRequest {
 	r.privacySettings = &privacySettings
 	return r
 }
 
-// Filter events by Jailbroken Device Detection result. &gt; Note: When using this parameter, only events with the &#x60;jailbroken&#x60; property set to &#x60;true&#x60; or &#x60;false&#x60; are returned. Events without a &#x60;jailbroken&#x60; Smart Signal result are left out of the response.
+// Filter events by Jailbroken Device Detection result. > Note: When using this parameter, only events with the `jailbroken` property set to `true` or `false` are returned. Events without a `jailbroken` Smart Signal result are left out of the response.
 func (r ApiSearchEventsRequest) Jailbroken(jailbroken bool) ApiSearchEventsRequest {
 	r.jailbroken = &jailbroken
 	return r
 }
 
-// Filter events by Frida Detection result. &gt; Note: When using this parameter, only events with the &#x60;frida&#x60; property set to &#x60;true&#x60; or &#x60;false&#x60; are returned. Events without a &#x60;frida&#x60; Smart Signal result are left out of the response.
+// Filter events by Frida Detection result. > Note: When using this parameter, only events with the `frida` property set to `true` or `false` are returned. Events without a `frida` Smart Signal result are left out of the response.
 func (r ApiSearchEventsRequest) Frida(frida bool) ApiSearchEventsRequest {
 	r.frida = &frida
 	return r
 }
 
-// Filter events by Factory Reset Detection result. &gt; Note: When using this parameter, only events with a &#x60;factory_reset&#x60; time. Events without a &#x60;factory_reset&#x60; Smart Signal result are left out of the response.
+// Filter events by Factory Reset Detection result. > Note: When using this parameter, only events with a `factory_reset` time. Events without a `factory_reset` Smart Signal result are left out of the response.
 func (r ApiSearchEventsRequest) FactoryReset(factoryReset bool) ApiSearchEventsRequest {
 	r.factoryReset = &factoryReset
 	return r
 }
 
-// Filter events by Cloned App Detection result. &gt; Note: When using this parameter, only events with the &#x60;cloned_app&#x60; property set to &#x60;true&#x60; or &#x60;false&#x60; are returned. Events without a &#x60;cloned_app&#x60; Smart Signal result are left out of the response.
+// Filter events by Cloned App Detection result. > Note: When using this parameter, only events with the `cloned_app` property set to `true` or `false` are returned. Events without a `cloned_app` Smart Signal result are left out of the response.
 func (r ApiSearchEventsRequest) ClonedApp(clonedApp bool) ApiSearchEventsRequest {
 	r.clonedApp = &clonedApp
 	return r
 }
 
-// Filter events by Android Emulator Detection result. &gt; Note: When using this parameter, only events with the &#x60;emulator&#x60; property set to &#x60;true&#x60; or &#x60;false&#x60; are returned. Events without an &#x60;emulator&#x60; Smart Signal result are left out of the response.
+// Filter events by Android Emulator Detection result. > Note: When using this parameter, only events with the `emulator` property set to `true` or `false` are returned. Events without an `emulator` Smart Signal result are left out of the response.
 func (r ApiSearchEventsRequest) Emulator(emulator bool) ApiSearchEventsRequest {
 	r.emulator = &emulator
 	return r
 }
 
-// Filter events by Rooted Device Detection result. &gt; Note: When using this parameter, only events with the &#x60;root_apps&#x60; property set to &#x60;true&#x60; or &#x60;false&#x60; are returned. Events without a &#x60;root_apps&#x60; Smart Signal result are left out of the response.
+// Filter events by Rooted Device Detection result. > Note: When using this parameter, only events with the `root_apps` property set to `true` or `false` are returned. Events without a `root_apps` Smart Signal result are left out of the response.
 func (r ApiSearchEventsRequest) RootApps(rootApps bool) ApiSearchEventsRequest {
 	r.rootApps = &rootApps
 	return r
 }
 
-// Filter events by VPN Detection result confidence level. &#x60;high&#x60; - events with high VPN Detection confidence. &#x60;medium&#x60; - events with medium VPN Detection confidence. &#x60;low&#x60; - events with low VPN Detection confidence. &gt; Note: When using this parameter, only events with the &#x60;vpn.confidence&#x60; property set to a valid value are returned. Events without a &#x60;vpn&#x60; Smart Signal result are left out of the response.
+// Filter events by VPN Detection result confidence level. `high` - events with high VPN Detection confidence. `medium` - events with medium VPN Detection confidence. `low` - events with low VPN Detection confidence. > Note: When using this parameter, only events with the `vpn.confidence` property set to a valid value are returned. Events without a `vpn` Smart Signal result are left out of the response.
 func (r ApiSearchEventsRequest) VpnConfidence(vpnConfidence SearchEventsVpnConfidence) ApiSearchEventsRequest {
 	r.vpnConfidence = &vpnConfidence
 	return r
 }
 
-// Filter events with Suspect Score result above a provided minimum threshold. &gt; Note: When using this parameter, only events where the &#x60;suspect_score&#x60; property set to a value exceeding your threshold are returned. Events without a &#x60;suspect_score&#x60; Smart Signal result are left out of the response.
+// Filter events with Suspect Score result above a provided minimum threshold. > Note: When using this parameter, only events where the `suspect_score` property set to a value exceeding your threshold are returned. Events without a `suspect_score` Smart Signal result are left out of the response.
 func (r ApiSearchEventsRequest) MinSuspectScore(minSuspectScore float32) ApiSearchEventsRequest {
 	r.minSuspectScore = &minSuspectScore
 	return r
 }
 
-// Filter events by Developer Tools detection result. &gt; Note: When using this parameter, only events with the &#x60;developer_tools&#x60; property set to &#x60;true&#x60; or &#x60;false&#x60; are returned. Events without a &#x60;developer_tools&#x60; Smart Signal result are left out of the response.
+// Filter events by Developer Tools detection result. > Note: When using this parameter, only events with the `developer_tools` property set to `true` or `false` are returned. Events without a `developer_tools` Smart Signal result are left out of the response.
 func (r ApiSearchEventsRequest) DeveloperTools(developerTools bool) ApiSearchEventsRequest {
 	r.developerTools = &developerTools
 	return r
 }
 
-// Filter events by Location Spoofing detection result. &gt; Note: When using this parameter, only events with the &#x60;location_spoofing&#x60; property set to &#x60;true&#x60; or &#x60;false&#x60; are returned. Events without a &#x60;location_spoofing&#x60; Smart Signal result are left out of the response.
+// Filter events by Location Spoofing detection result. > Note: When using this parameter, only events with the `location_spoofing` property set to `true` or `false` are returned. Events without a `location_spoofing` Smart Signal result are left out of the response.
 func (r ApiSearchEventsRequest) LocationSpoofing(locationSpoofing bool) ApiSearchEventsRequest {
 	r.locationSpoofing = &locationSpoofing
 	return r
 }
 
-// Filter events by MITM (Man-in-the-Middle) Attack detection result. &gt; Note: When using this parameter, only events with the &#x60;mitm_attack&#x60; property set to &#x60;true&#x60; or &#x60;false&#x60; are returned. Events without a &#x60;mitm_attack&#x60; Smart Signal result are left out of the response.
+// Filter events by MITM (Man-in-the-Middle) Attack detection result. > Note: When using this parameter, only events with the `mitm_attack` property set to `true` or `false` are returned. Events without a `mitm_attack` Smart Signal result are left out of the response.
 func (r ApiSearchEventsRequest) MitmAttack(mitmAttack bool) ApiSearchEventsRequest {
 	r.mitmAttack = &mitmAttack
 	return r
 }
 
-// Filter events by Proxy detection result. &gt; Note: When using this parameter, only events with the &#x60;proxy&#x60; property set to &#x60;true&#x60; or &#x60;false&#x60; are returned. Events without a &#x60;proxy&#x60; Smart Signal result are left out of the response.
+// Filter events by Proxy detection result. > Note: When using this parameter, only events with the `proxy` property set to `true` or `false` are returned. Events without a `proxy` Smart Signal result are left out of the response.
 func (r ApiSearchEventsRequest) Proxy(proxy bool) ApiSearchEventsRequest {
 	r.proxy = &proxy
 	return r
 }
 
-// Filter events by a specific SDK version associated with the identification event (&#x60;sdk.version&#x60; property). Example: &#x60;3.11.14&#x60;
+// Filter events by a specific SDK version associated with the identification event (`sdk.version` property). Example: `3.11.14`
 func (r ApiSearchEventsRequest) SdkVersion(sdkVersion string) ApiSearchEventsRequest {
 	r.sdkVersion = &sdkVersion
 	return r
 }
 
-// Filter events by the SDK Platform associated with the identification event (&#x60;sdk.platform&#x60; property) . &#x60;js&#x60; - Javascript agent (Web). &#x60;ios&#x60; - Apple iOS based devices. &#x60;android&#x60; - Android based devices.
+// Filter events by the SDK Platform associated with the identification event (`sdk.platform` property) . `js` - Javascript agent (Web). `ios` - Apple iOS based devices. `android` - Android based devices.
 func (r ApiSearchEventsRequest) SdkPlatform(sdkPlatform SearchEventsSdkPlatform) ApiSearchEventsRequest {
 	r.sdkPlatform = &sdkPlatform
 	return r
 }
 
-// Filter for events by providing one or more environment IDs (&#x60;environment_id&#x60; property).
+// Filter for events by providing one or more environment IDs (`environment_id` property).
 func (r ApiSearchEventsRequest) Environment(environment []string) ApiSearchEventsRequest {
 	r.environment = &environment
 	return r
 }
 
-// Filter events by the most precise Proximity ID provided by default. &gt; Note: When using this parameter, only events with the &#x60;proximity.id&#x60; property matching the provided ID are returned. Events without a &#x60;proximity&#x60; result are left out of the response.
+// Filter events by the most precise Proximity ID provided by default. > Note: When using this parameter, only events with the `proximity.id` property matching the provided ID are returned. Events without a `proximity` result are left out of the response.
 func (r ApiSearchEventsRequest) ProximityId(proximityId string) ApiSearchEventsRequest {
 	r.proximityId = &proximityId
 	return r
 }
 
-// When set, the response will include a &#x60;total_hits&#x60; property with a count of total query matches across all pages, up to the specified limit.
+// When set, the response will include a `total_hits` property with a count of total query matches across all pages, up to the specified limit.
 func (r ApiSearchEventsRequest) TotalHits(totalHits int64) ApiSearchEventsRequest {
 	r.totalHits = &totalHits
 	return r
 }
 
-// Filter events by Tor Node detection result. &gt; Note: When using this parameter, only events with the &#x60;tor_node&#x60; property set to &#x60;true&#x60; or &#x60;false&#x60; are returned. Events without a &#x60;tor_node&#x60; detection result are left out of the response.
+// Filter events by Tor Node detection result. > Note: When using this parameter, only events with the `tor_node` property set to `true` or `false` are returned. Events without a `tor_node` detection result are left out of the response.
 func (r ApiSearchEventsRequest) TorNode(torNode bool) ApiSearchEventsRequest {
 	r.torNode = &torNode
 	return r
