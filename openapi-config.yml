@@ -14,6 +14,44 @@ additionalProperties:
   useOneOfDiscriminatorLookup: true
 
 enablePostProcessFile: false
+  
+modelNameMappings:
+  VpnMethods: VPNMethods
+  VpnConfidence: VPNConfidence
+  SearchEventsSdkPlatform: SearchEventsSDKPlatform
+  SearchEventsVpnConfidence: SearchEventsVPNConfidence
+
+nameMappings:
+  event_id: EventID
+  linked_id: LinkedID
+  environment_id: EnvironmentID
+  sdk: SDK
+  vpn: VPN
+  url: URL
+  supplementary_id_high_recall: SupplementaryIDHighRecall
+  bundle_id: BundleID
+  ip_address: IPAddress
+  ip_blocklist: IPBlockList
+  ip_info: IPInfo
+  mitm_attack: MITMAttack
+  vpn_confidence: VPNConfidence
+  vpn_origin_timezone: VPNOriginTimezone
+  vpn_origin_country: VPNOriginCountry
+  vpn_methods: VPNMethods
+  ruleset_id: RulesetID
+  rule_id: RuleID
+  provider_url: ProviderURL
+  visitor_id: VisitorID
+  id: ID
+  distinct_ip: DistinctIP
+  distinct_linked_id: DistinctLinkedID
+  ip_events: IPEvents
+  distinct_ip_by_linked_id: DistinctIPByLinkedID
+  distinct_visitor_id_by_linked_id: DistinctVisitorIDByLinkedID
+  public_vpn: PublicVPN
+  proximity_id: ProximityID
+  sdk_platform: SDKPlatform
+  sdk_version: SDKVersion
 
 files:
   fingerprint_api_error.go.mustache:

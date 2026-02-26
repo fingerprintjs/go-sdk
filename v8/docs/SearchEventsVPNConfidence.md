@@ -1,13 +1,13 @@
-# SearchEventsSdkPlatform
+# SearchEventsVPNConfidence
 
 ## Enum
 
 
-* `JS` (value: `"js"`)
+* `HIGH` (value: `"high"`)
 
-* `ANDROID` (value: `"android"`)
+* `MEDIUM` (value: `"medium"`)
 
-* `IOS` (value: `"ios"`)
+* `LOW` (value: `"low"`)
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -4,20 +4,20 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**EventId** | **string** | Unique identifier of the user&#39;s request. The first portion of the event_id is a unix epoch milliseconds timestamp For example: &#x60;1758130560902.8tRtrH&#x60;  | 
+**EventID** | **string** | Unique identifier of the user&#39;s request. The first portion of the event_id is a unix epoch milliseconds timestamp For example: &#x60;1758130560902.8tRtrH&#x60;  | 
 **Timestamp** | **int64** | Timestamp of the event with millisecond precision in Unix time. | 
-**LinkedId** | Pointer to **string** | A customer-provided id that was sent with the request. | [optional] 
-**EnvironmentId** | Pointer to **string** | Environment Id of the event. For example: &#x60;ae_47abaca3db2c7c43&#x60;  | [optional] 
+**LinkedID** | Pointer to **string** | A customer-provided id that was sent with the request. | [optional] 
+**EnvironmentID** | Pointer to **string** | Environment Id of the event. For example: &#x60;ae_47abaca3db2c7c43&#x60;  | [optional] 
 **Suspect** | Pointer to **bool** | Field is &#x60;true&#x60; if you have previously set the &#x60;suspect&#x60; flag for this event using the [Server API Update event endpoint](https://dev.fingerprint.com/reference/updateevent). | [optional] 
-**Sdk** | Pointer to [**SDK**](SDK.md) |  | [optional] 
+**SDK** | Pointer to [**SDK**](SDK.md) |  | [optional] 
 **Replayed** | Pointer to **bool** | &#x60;true&#x60; if we determined that this payload was replayed, &#x60;false&#x60; otherwise.  | [optional] 
 **Identification** | Pointer to [**Identification**](Identification.md) |  | [optional] 
-**SupplementaryIdHighRecall** | Pointer to [**SupplementaryIDHighRecall**](SupplementaryIDHighRecall.md) |  | [optional] 
+**SupplementaryIDHighRecall** | Pointer to [**SupplementaryIDHighRecall**](SupplementaryIDHighRecall.md) |  | [optional] 
 **Tags** | Pointer to **map[string]interface{}** | A customer-provided value or an object that was sent with the identification request or updated later. | [optional] 
-**Url** | Pointer to **string** | Page URL from which the request was sent. For example &#x60;https://example.com/&#x60;  | [optional] 
-**BundleId** | Pointer to **string** | Bundle Id of the iOS application integrated with the Fingerprint SDK for the event. For example: &#x60;com.foo.app&#x60;  | [optional] 
+**URL** | Pointer to **string** | Page URL from which the request was sent. For example &#x60;https://example.com/&#x60;  | [optional] 
+**BundleID** | Pointer to **string** | Bundle Id of the iOS application integrated with the Fingerprint SDK for the event. For example: &#x60;com.foo.app&#x60;  | [optional] 
 **PackageName** | Pointer to **string** | Package name of the Android application integrated with the Fingerprint SDK for the event. For example: &#x60;com.foo.app&#x60;  | [optional] 
-**IpAddress** | Pointer to **string** | IP address of the requesting browser or bot. | [optional] 
+**IPAddress** | Pointer to **string** | IP address of the requesting browser or bot. | [optional] 
 **UserAgent** | Pointer to **string** | User Agent of the client, for example: &#x60;Mozilla/5.0 (Windows NT 6.1; Win64; x64) ....&#x60;  | [optional] 
 **ClientReferrer** | Pointer to **string** | Client Referrer field corresponds to the &#x60;document.referrer&#x60; field gathered during an identification request. The value is an empty string if the user navigated to the page directly (not through a link, but, for example, by using a bookmark) For example: &#x60;https://example.com/blog/my-article&#x60;  | [optional] 
 **BrowserDetails** | Pointer to [**BrowserDetails**](BrowserDetails.md) |  | [optional] 
@@ -30,15 +30,15 @@ Name | Type | Description | Notes
 **Emulator** | Pointer to **bool** | Android specific emulator detection. There are 2 values:  * &#x60;true&#x60; - Emulated environment detected (e.g. launch inside of AVD).  * &#x60;false&#x60; - No signs of emulated environment detected or the client is not Android.  | [optional] 
 **FactoryResetTimestamp** | Pointer to **int64** | The time of the most recent factory reset that happened on the **mobile device** is expressed as Unix epoch time. When a factory reset cannot be detected on the mobile device or when the request is initiated from a browser,  this field will correspond to the *epoch* time (i.e 1 Jan 1970 UTC) as a value of 0. See [Factory Reset Detection](https://dev.fingerprint.com/docs/smart-signals-overview#factory-reset-detection) to learn more about this Smart Signal.  | [optional] 
 **Frida** | Pointer to **bool** | [Frida](https://frida.re/docs/) detection for Android and iOS devices. There are 2 values: * &#x60;true&#x60; - Frida detected * &#x60;false&#x60; - No signs of Frida or the client is not a mobile device.  | [optional] 
-**IpBlocklist** | Pointer to [**IPBlockList**](IPBlockList.md) |  | [optional] 
-**IpInfo** | Pointer to [**IPInfo**](IPInfo.md) |  | [optional] 
+**IPBlockList** | Pointer to [**IPBlockList**](IPBlockList.md) |  | [optional] 
+**IPInfo** | Pointer to [**IPInfo**](IPInfo.md) |  | [optional] 
 **Proxy** | Pointer to **bool** | IP address was used by a public proxy provider or belonged to a known recent residential proxy  | [optional] 
 **ProxyConfidence** | Pointer to [**ProxyConfidence**](ProxyConfidence.md) |  | [optional] 
 **ProxyDetails** | Pointer to [**ProxyDetails**](ProxyDetails.md) |  | [optional] 
 **Incognito** | Pointer to **bool** | &#x60;true&#x60; if we detected incognito mode used in the browser, &#x60;false&#x60; otherwise.  | [optional] 
 **Jailbroken** | Pointer to **bool** | iOS specific jailbreak detection. There are 2 values:  * &#x60;true&#x60; - Jailbreak detected. * &#x60;false&#x60; - No signs of jailbreak or the client is not iOS.  | [optional] 
 **LocationSpoofing** | Pointer to **bool** | Flag indicating whether the request came from a mobile device with location spoofing enabled. | [optional] 
-**MitmAttack** | Pointer to **bool** | * &#x60;true&#x60; - When requests made from your users&#39; mobile devices to Fingerprint servers have been intercepted and potentially modified.  * &#x60;false&#x60; - Otherwise or when the request originated from a browser. See [MitM Attack Detection](https://dev.fingerprint.com/docs/smart-signals-reference#mitm-attack-detection) to learn more about this Smart Signal.  | [optional] 
+**MITMAttack** | Pointer to **bool** | * &#x60;true&#x60; - When requests made from your users&#39; mobile devices to Fingerprint servers have been intercepted and potentially modified.  * &#x60;false&#x60; - Otherwise or when the request originated from a browser. See [MitM Attack Detection](https://dev.fingerprint.com/docs/smart-signals-reference#mitm-attack-detection) to learn more about this Smart Signal.  | [optional] 
 **PrivacySettings** | Pointer to **bool** | &#x60;true&#x60; if the request is from a privacy aware browser (e.g. Tor) or from a browser in which fingerprinting is blocked. Otherwise &#x60;false&#x60;.  | [optional] 
 **RootApps** | Pointer to **bool** | Android specific root management apps detection. There are 2 values:  * &#x60;true&#x60; - Root Management Apps detected (e.g. Magisk). * &#x60;false&#x60; - No Root Management Apps detected or the client isn&#39;t Android.  | [optional] 
 **RuleAction** | Pointer to [**EventRuleAction**](EventRuleAction.md) |  | [optional] 
@@ -47,11 +47,11 @@ Name | Type | Description | Notes
 **TamperingDetails** | Pointer to [**TamperingDetails**](TamperingDetails.md) |  | [optional] 
 **Velocity** | Pointer to [**Velocity**](Velocity.md) |  | [optional] 
 **VirtualMachine** | Pointer to **bool** | &#x60;true&#x60; if the request came from a browser running inside a virtual machine (e.g. VMWare), &#x60;false&#x60; otherwise.  | [optional] 
-**Vpn** | Pointer to **bool** | VPN or other anonymizing service has been used when sending the request.  | [optional] 
-**VpnConfidence** | Pointer to [**VpnConfidence**](VpnConfidence.md) |  | [optional] 
-**VpnOriginTimezone** | Pointer to **string** | Local timezone which is used in timezone_mismatch method.  | [optional] 
-**VpnOriginCountry** | Pointer to **string** | Country of the request (only for Android SDK version &gt;&#x3D; 2.4.0, ISO 3166 format or unknown).  | [optional] 
-**VpnMethods** | Pointer to [**VpnMethods**](VpnMethods.md) |  | [optional] 
+**VPN** | Pointer to **bool** | VPN or other anonymizing service has been used when sending the request.  | [optional] 
+**VPNConfidence** | Pointer to [**VPNConfidence**](VPNConfidence.md) |  | [optional] 
+**VPNOriginTimezone** | Pointer to **string** | Local timezone which is used in timezone_mismatch method.  | [optional] 
+**VPNOriginCountry** | Pointer to **string** | Country of the request (only for Android SDK version &gt;&#x3D; 2.4.0, ISO 3166 format or unknown).  | [optional] 
+**VPNMethods** | Pointer to [**VPNMethods**](VPNMethods.md) |  | [optional] 
 **HighActivityDevice** | Pointer to **bool** | Flag indicating if the request came from a high-activity visitor. | [optional] 
 **RawDeviceAttributes** | Pointer to [**RawDeviceAttributes**](RawDeviceAttributes.md) |  | [optional] 
 
@@ -59,7 +59,7 @@ Name | Type | Description | Notes
 
 ### NewEvent
 
-`func NewEvent(eventId string, timestamp int64, ) *Event`
+`func NewEvent(eventID string, timestamp int64, ) *Event`
 
 NewEvent instantiates a new Event object
 This constructor will assign default values to properties that have it defined,
@@ -74,24 +74,24 @@ NewEventWithDefaults instantiates a new Event object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetEventId
+### GetEventID
 
-`func (o *Event) GetEventId() string`
+`func (o *Event) GetEventID() string`
 
-GetEventId returns the EventId field if non-nil, zero value otherwise.
+GetEventID returns the EventID field if non-nil, zero value otherwise.
 
-### GetEventIdOk
+### GetEventIDOk
 
-`func (o *Event) GetEventIdOk() (*string, bool)`
+`func (o *Event) GetEventIDOk() (*string, bool)`
 
-GetEventIdOk returns a tuple with the EventId field if it's non-nil, zero value otherwise
+GetEventIDOk returns a tuple with the EventID field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetEventId
+### SetEventID
 
-`func (o *Event) SetEventId(v string)`
+`func (o *Event) SetEventID(v string)`
 
-SetEventId sets EventId field to given value.
+SetEventID sets EventID field to given value.
 
 
 ### GetTimestamp
@@ -114,55 +114,55 @@ and a boolean to check if the value has been set.
 SetTimestamp sets Timestamp field to given value.
 
 
-### GetLinkedId
+### GetLinkedID
 
-`func (o *Event) GetLinkedId() string`
+`func (o *Event) GetLinkedID() string`
 
-GetLinkedId returns the LinkedId field if non-nil, zero value otherwise.
+GetLinkedID returns the LinkedID field if non-nil, zero value otherwise.
 
-### GetLinkedIdOk
+### GetLinkedIDOk
 
-`func (o *Event) GetLinkedIdOk() (*string, bool)`
+`func (o *Event) GetLinkedIDOk() (*string, bool)`
 
-GetLinkedIdOk returns a tuple with the LinkedId field if it's non-nil, zero value otherwise
+GetLinkedIDOk returns a tuple with the LinkedID field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetLinkedId
+### SetLinkedID
 
-`func (o *Event) SetLinkedId(v string)`
+`func (o *Event) SetLinkedID(v string)`
 
-SetLinkedId sets LinkedId field to given value.
+SetLinkedID sets LinkedID field to given value.
 
-### HasLinkedId
+### HasLinkedID
 
-`func (o *Event) HasLinkedId() bool`
+`func (o *Event) HasLinkedID() bool`
 
-HasLinkedId returns a boolean if a field has been set.
+HasLinkedID returns a boolean if a field has been set.
 
-### GetEnvironmentId
+### GetEnvironmentID
 
-`func (o *Event) GetEnvironmentId() string`
+`func (o *Event) GetEnvironmentID() string`
 
-GetEnvironmentId returns the EnvironmentId field if non-nil, zero value otherwise.
+GetEnvironmentID returns the EnvironmentID field if non-nil, zero value otherwise.
 
-### GetEnvironmentIdOk
+### GetEnvironmentIDOk
 
-`func (o *Event) GetEnvironmentIdOk() (*string, bool)`
+`func (o *Event) GetEnvironmentIDOk() (*string, bool)`
 
-GetEnvironmentIdOk returns a tuple with the EnvironmentId field if it's non-nil, zero value otherwise
+GetEnvironmentIDOk returns a tuple with the EnvironmentID field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetEnvironmentId
+### SetEnvironmentID
 
-`func (o *Event) SetEnvironmentId(v string)`
+`func (o *Event) SetEnvironmentID(v string)`
 
-SetEnvironmentId sets EnvironmentId field to given value.
+SetEnvironmentID sets EnvironmentID field to given value.
 
-### HasEnvironmentId
+### HasEnvironmentID
 
-`func (o *Event) HasEnvironmentId() bool`
+`func (o *Event) HasEnvironmentID() bool`
 
-HasEnvironmentId returns a boolean if a field has been set.
+HasEnvironmentID returns a boolean if a field has been set.
 
 ### GetSuspect
 
@@ -189,30 +189,30 @@ SetSuspect sets Suspect field to given value.
 
 HasSuspect returns a boolean if a field has been set.
 
-### GetSdk
+### GetSDK
 
-`func (o *Event) GetSdk() SDK`
+`func (o *Event) GetSDK() SDK`
 
-GetSdk returns the Sdk field if non-nil, zero value otherwise.
+GetSDK returns the SDK field if non-nil, zero value otherwise.
 
-### GetSdkOk
+### GetSDKOk
 
-`func (o *Event) GetSdkOk() (*SDK, bool)`
+`func (o *Event) GetSDKOk() (*SDK, bool)`
 
-GetSdkOk returns a tuple with the Sdk field if it's non-nil, zero value otherwise
+GetSDKOk returns a tuple with the SDK field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetSdk
+### SetSDK
 
-`func (o *Event) SetSdk(v SDK)`
+`func (o *Event) SetSDK(v SDK)`
 
-SetSdk sets Sdk field to given value.
+SetSDK sets SDK field to given value.
 
-### HasSdk
+### HasSDK
 
-`func (o *Event) HasSdk() bool`
+`func (o *Event) HasSDK() bool`
 
-HasSdk returns a boolean if a field has been set.
+HasSDK returns a boolean if a field has been set.
 
 ### GetReplayed
 
@@ -264,30 +264,30 @@ SetIdentification sets Identification field to given value.
 
 HasIdentification returns a boolean if a field has been set.
 
-### GetSupplementaryIdHighRecall
+### GetSupplementaryIDHighRecall
 
-`func (o *Event) GetSupplementaryIdHighRecall() SupplementaryIDHighRecall`
+`func (o *Event) GetSupplementaryIDHighRecall() SupplementaryIDHighRecall`
 
-GetSupplementaryIdHighRecall returns the SupplementaryIdHighRecall field if non-nil, zero value otherwise.
+GetSupplementaryIDHighRecall returns the SupplementaryIDHighRecall field if non-nil, zero value otherwise.
 
-### GetSupplementaryIdHighRecallOk
+### GetSupplementaryIDHighRecallOk
 
-`func (o *Event) GetSupplementaryIdHighRecallOk() (*SupplementaryIDHighRecall, bool)`
+`func (o *Event) GetSupplementaryIDHighRecallOk() (*SupplementaryIDHighRecall, bool)`
 
-GetSupplementaryIdHighRecallOk returns a tuple with the SupplementaryIdHighRecall field if it's non-nil, zero value otherwise
+GetSupplementaryIDHighRecallOk returns a tuple with the SupplementaryIDHighRecall field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetSupplementaryIdHighRecall
+### SetSupplementaryIDHighRecall
 
-`func (o *Event) SetSupplementaryIdHighRecall(v SupplementaryIDHighRecall)`
+`func (o *Event) SetSupplementaryIDHighRecall(v SupplementaryIDHighRecall)`
 
-SetSupplementaryIdHighRecall sets SupplementaryIdHighRecall field to given value.
+SetSupplementaryIDHighRecall sets SupplementaryIDHighRecall field to given value.
 
-### HasSupplementaryIdHighRecall
+### HasSupplementaryIDHighRecall
 
-`func (o *Event) HasSupplementaryIdHighRecall() bool`
+`func (o *Event) HasSupplementaryIDHighRecall() bool`
 
-HasSupplementaryIdHighRecall returns a boolean if a field has been set.
+HasSupplementaryIDHighRecall returns a boolean if a field has been set.
 
 ### GetTags
 
@@ -314,55 +314,55 @@ SetTags sets Tags field to given value.
 
 HasTags returns a boolean if a field has been set.
 
-### GetUrl
+### GetURL
 
-`func (o *Event) GetUrl() string`
+`func (o *Event) GetURL() string`
 
-GetUrl returns the Url field if non-nil, zero value otherwise.
+GetURL returns the URL field if non-nil, zero value otherwise.
 
-### GetUrlOk
+### GetURLOk
 
-`func (o *Event) GetUrlOk() (*string, bool)`
+`func (o *Event) GetURLOk() (*string, bool)`
 
-GetUrlOk returns a tuple with the Url field if it's non-nil, zero value otherwise
+GetURLOk returns a tuple with the URL field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetUrl
+### SetURL
 
-`func (o *Event) SetUrl(v string)`
+`func (o *Event) SetURL(v string)`
 
-SetUrl sets Url field to given value.
+SetURL sets URL field to given value.
 
-### HasUrl
+### HasURL
 
-`func (o *Event) HasUrl() bool`
+`func (o *Event) HasURL() bool`
 
-HasUrl returns a boolean if a field has been set.
+HasURL returns a boolean if a field has been set.
 
-### GetBundleId
+### GetBundleID
 
-`func (o *Event) GetBundleId() string`
+`func (o *Event) GetBundleID() string`
 
-GetBundleId returns the BundleId field if non-nil, zero value otherwise.
+GetBundleID returns the BundleID field if non-nil, zero value otherwise.
 
-### GetBundleIdOk
+### GetBundleIDOk
 
-`func (o *Event) GetBundleIdOk() (*string, bool)`
+`func (o *Event) GetBundleIDOk() (*string, bool)`
 
-GetBundleIdOk returns a tuple with the BundleId field if it's non-nil, zero value otherwise
+GetBundleIDOk returns a tuple with the BundleID field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetBundleId
+### SetBundleID
 
-`func (o *Event) SetBundleId(v string)`
+`func (o *Event) SetBundleID(v string)`
 
-SetBundleId sets BundleId field to given value.
+SetBundleID sets BundleID field to given value.
 
-### HasBundleId
+### HasBundleID
 
-`func (o *Event) HasBundleId() bool`
+`func (o *Event) HasBundleID() bool`
 
-HasBundleId returns a boolean if a field has been set.
+HasBundleID returns a boolean if a field has been set.
 
 ### GetPackageName
 
@@ -389,30 +389,30 @@ SetPackageName sets PackageName field to given value.
 
 HasPackageName returns a boolean if a field has been set.
 
-### GetIpAddress
+### GetIPAddress
 
-`func (o *Event) GetIpAddress() string`
+`func (o *Event) GetIPAddress() string`
 
-GetIpAddress returns the IpAddress field if non-nil, zero value otherwise.
+GetIPAddress returns the IPAddress field if non-nil, zero value otherwise.
 
-### GetIpAddressOk
+### GetIPAddressOk
 
-`func (o *Event) GetIpAddressOk() (*string, bool)`
+`func (o *Event) GetIPAddressOk() (*string, bool)`
 
-GetIpAddressOk returns a tuple with the IpAddress field if it's non-nil, zero value otherwise
+GetIPAddressOk returns a tuple with the IPAddress field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetIpAddress
+### SetIPAddress
 
-`func (o *Event) SetIpAddress(v string)`
+`func (o *Event) SetIPAddress(v string)`
 
-SetIpAddress sets IpAddress field to given value.
+SetIPAddress sets IPAddress field to given value.
 
-### HasIpAddress
+### HasIPAddress
 
-`func (o *Event) HasIpAddress() bool`
+`func (o *Event) HasIPAddress() bool`
 
-HasIpAddress returns a boolean if a field has been set.
+HasIPAddress returns a boolean if a field has been set.
 
 ### GetUserAgent
 
@@ -714,55 +714,55 @@ SetFrida sets Frida field to given value.
 
 HasFrida returns a boolean if a field has been set.
 
-### GetIpBlocklist
+### GetIPBlockList
 
-`func (o *Event) GetIpBlocklist() IPBlockList`
+`func (o *Event) GetIPBlockList() IPBlockList`
 
-GetIpBlocklist returns the IpBlocklist field if non-nil, zero value otherwise.
+GetIPBlockList returns the IPBlockList field if non-nil, zero value otherwise.
 
-### GetIpBlocklistOk
+### GetIPBlockListOk
 
-`func (o *Event) GetIpBlocklistOk() (*IPBlockList, bool)`
+`func (o *Event) GetIPBlockListOk() (*IPBlockList, bool)`
 
-GetIpBlocklistOk returns a tuple with the IpBlocklist field if it's non-nil, zero value otherwise
+GetIPBlockListOk returns a tuple with the IPBlockList field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetIpBlocklist
+### SetIPBlockList
 
-`func (o *Event) SetIpBlocklist(v IPBlockList)`
+`func (o *Event) SetIPBlockList(v IPBlockList)`
 
-SetIpBlocklist sets IpBlocklist field to given value.
+SetIPBlockList sets IPBlockList field to given value.
 
-### HasIpBlocklist
+### HasIPBlockList
 
-`func (o *Event) HasIpBlocklist() bool`
+`func (o *Event) HasIPBlockList() bool`
 
-HasIpBlocklist returns a boolean if a field has been set.
+HasIPBlockList returns a boolean if a field has been set.
 
-### GetIpInfo
+### GetIPInfo
 
-`func (o *Event) GetIpInfo() IPInfo`
+`func (o *Event) GetIPInfo() IPInfo`
 
-GetIpInfo returns the IpInfo field if non-nil, zero value otherwise.
+GetIPInfo returns the IPInfo field if non-nil, zero value otherwise.
 
-### GetIpInfoOk
+### GetIPInfoOk
 
-`func (o *Event) GetIpInfoOk() (*IPInfo, bool)`
+`func (o *Event) GetIPInfoOk() (*IPInfo, bool)`
 
-GetIpInfoOk returns a tuple with the IpInfo field if it's non-nil, zero value otherwise
+GetIPInfoOk returns a tuple with the IPInfo field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetIpInfo
+### SetIPInfo
 
-`func (o *Event) SetIpInfo(v IPInfo)`
+`func (o *Event) SetIPInfo(v IPInfo)`
 
-SetIpInfo sets IpInfo field to given value.
+SetIPInfo sets IPInfo field to given value.
 
-### HasIpInfo
+### HasIPInfo
 
-`func (o *Event) HasIpInfo() bool`
+`func (o *Event) HasIPInfo() bool`
 
-HasIpInfo returns a boolean if a field has been set.
+HasIPInfo returns a boolean if a field has been set.
 
 ### GetProxy
 
@@ -914,30 +914,30 @@ SetLocationSpoofing sets LocationSpoofing field to given value.
 
 HasLocationSpoofing returns a boolean if a field has been set.
 
-### GetMitmAttack
+### GetMITMAttack
 
-`func (o *Event) GetMitmAttack() bool`
+`func (o *Event) GetMITMAttack() bool`
 
-GetMitmAttack returns the MitmAttack field if non-nil, zero value otherwise.
+GetMITMAttack returns the MITMAttack field if non-nil, zero value otherwise.
 
-### GetMitmAttackOk
+### GetMITMAttackOk
 
-`func (o *Event) GetMitmAttackOk() (*bool, bool)`
+`func (o *Event) GetMITMAttackOk() (*bool, bool)`
 
-GetMitmAttackOk returns a tuple with the MitmAttack field if it's non-nil, zero value otherwise
+GetMITMAttackOk returns a tuple with the MITMAttack field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetMitmAttack
+### SetMITMAttack
 
-`func (o *Event) SetMitmAttack(v bool)`
+`func (o *Event) SetMITMAttack(v bool)`
 
-SetMitmAttack sets MitmAttack field to given value.
+SetMITMAttack sets MITMAttack field to given value.
 
-### HasMitmAttack
+### HasMITMAttack
 
-`func (o *Event) HasMitmAttack() bool`
+`func (o *Event) HasMITMAttack() bool`
 
-HasMitmAttack returns a boolean if a field has been set.
+HasMITMAttack returns a boolean if a field has been set.
 
 ### GetPrivacySettings
 
@@ -1139,130 +1139,130 @@ SetVirtualMachine sets VirtualMachine field to given value.
 
 HasVirtualMachine returns a boolean if a field has been set.
 
-### GetVpn
+### GetVPN
 
-`func (o *Event) GetVpn() bool`
+`func (o *Event) GetVPN() bool`
 
-GetVpn returns the Vpn field if non-nil, zero value otherwise.
+GetVPN returns the VPN field if non-nil, zero value otherwise.
 
-### GetVpnOk
+### GetVPNOk
 
-`func (o *Event) GetVpnOk() (*bool, bool)`
+`func (o *Event) GetVPNOk() (*bool, bool)`
 
-GetVpnOk returns a tuple with the Vpn field if it's non-nil, zero value otherwise
+GetVPNOk returns a tuple with the VPN field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetVpn
+### SetVPN
 
-`func (o *Event) SetVpn(v bool)`
+`func (o *Event) SetVPN(v bool)`
 
-SetVpn sets Vpn field to given value.
+SetVPN sets VPN field to given value.
 
-### HasVpn
+### HasVPN
 
-`func (o *Event) HasVpn() bool`
+`func (o *Event) HasVPN() bool`
 
-HasVpn returns a boolean if a field has been set.
+HasVPN returns a boolean if a field has been set.
 
-### GetVpnConfidence
+### GetVPNConfidence
 
-`func (o *Event) GetVpnConfidence() VpnConfidence`
+`func (o *Event) GetVPNConfidence() VPNConfidence`
 
-GetVpnConfidence returns the VpnConfidence field if non-nil, zero value otherwise.
+GetVPNConfidence returns the VPNConfidence field if non-nil, zero value otherwise.
 
-### GetVpnConfidenceOk
+### GetVPNConfidenceOk
 
-`func (o *Event) GetVpnConfidenceOk() (*VpnConfidence, bool)`
+`func (o *Event) GetVPNConfidenceOk() (*VPNConfidence, bool)`
 
-GetVpnConfidenceOk returns a tuple with the VpnConfidence field if it's non-nil, zero value otherwise
+GetVPNConfidenceOk returns a tuple with the VPNConfidence field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetVpnConfidence
+### SetVPNConfidence
 
-`func (o *Event) SetVpnConfidence(v VpnConfidence)`
+`func (o *Event) SetVPNConfidence(v VPNConfidence)`
 
-SetVpnConfidence sets VpnConfidence field to given value.
+SetVPNConfidence sets VPNConfidence field to given value.
 
-### HasVpnConfidence
+### HasVPNConfidence
 
-`func (o *Event) HasVpnConfidence() bool`
+`func (o *Event) HasVPNConfidence() bool`
 
-HasVpnConfidence returns a boolean if a field has been set.
+HasVPNConfidence returns a boolean if a field has been set.
 
-### GetVpnOriginTimezone
+### GetVPNOriginTimezone
 
-`func (o *Event) GetVpnOriginTimezone() string`
+`func (o *Event) GetVPNOriginTimezone() string`
 
-GetVpnOriginTimezone returns the VpnOriginTimezone field if non-nil, zero value otherwise.
+GetVPNOriginTimezone returns the VPNOriginTimezone field if non-nil, zero value otherwise.
 
-### GetVpnOriginTimezoneOk
+### GetVPNOriginTimezoneOk
 
-`func (o *Event) GetVpnOriginTimezoneOk() (*string, bool)`
+`func (o *Event) GetVPNOriginTimezoneOk() (*string, bool)`
 
-GetVpnOriginTimezoneOk returns a tuple with the VpnOriginTimezone field if it's non-nil, zero value otherwise
+GetVPNOriginTimezoneOk returns a tuple with the VPNOriginTimezone field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetVpnOriginTimezone
+### SetVPNOriginTimezone
 
-`func (o *Event) SetVpnOriginTimezone(v string)`
+`func (o *Event) SetVPNOriginTimezone(v string)`
 
-SetVpnOriginTimezone sets VpnOriginTimezone field to given value.
+SetVPNOriginTimezone sets VPNOriginTimezone field to given value.
 
-### HasVpnOriginTimezone
+### HasVPNOriginTimezone
 
-`func (o *Event) HasVpnOriginTimezone() bool`
+`func (o *Event) HasVPNOriginTimezone() bool`
 
-HasVpnOriginTimezone returns a boolean if a field has been set.
+HasVPNOriginTimezone returns a boolean if a field has been set.
 
-### GetVpnOriginCountry
+### GetVPNOriginCountry
 
-`func (o *Event) GetVpnOriginCountry() string`
+`func (o *Event) GetVPNOriginCountry() string`
 
-GetVpnOriginCountry returns the VpnOriginCountry field if non-nil, zero value otherwise.
+GetVPNOriginCountry returns the VPNOriginCountry field if non-nil, zero value otherwise.
 
-### GetVpnOriginCountryOk
+### GetVPNOriginCountryOk
 
-`func (o *Event) GetVpnOriginCountryOk() (*string, bool)`
+`func (o *Event) GetVPNOriginCountryOk() (*string, bool)`
 
-GetVpnOriginCountryOk returns a tuple with the VpnOriginCountry field if it's non-nil, zero value otherwise
+GetVPNOriginCountryOk returns a tuple with the VPNOriginCountry field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetVpnOriginCountry
+### SetVPNOriginCountry
 
-`func (o *Event) SetVpnOriginCountry(v string)`
+`func (o *Event) SetVPNOriginCountry(v string)`
 
-SetVpnOriginCountry sets VpnOriginCountry field to given value.
+SetVPNOriginCountry sets VPNOriginCountry field to given value.
 
-### HasVpnOriginCountry
+### HasVPNOriginCountry
 
-`func (o *Event) HasVpnOriginCountry() bool`
+`func (o *Event) HasVPNOriginCountry() bool`
 
-HasVpnOriginCountry returns a boolean if a field has been set.
+HasVPNOriginCountry returns a boolean if a field has been set.
 
-### GetVpnMethods
+### GetVPNMethods
 
-`func (o *Event) GetVpnMethods() VpnMethods`
+`func (o *Event) GetVPNMethods() VPNMethods`
 
-GetVpnMethods returns the VpnMethods field if non-nil, zero value otherwise.
+GetVPNMethods returns the VPNMethods field if non-nil, zero value otherwise.
 
-### GetVpnMethodsOk
+### GetVPNMethodsOk
 
-`func (o *Event) GetVpnMethodsOk() (*VpnMethods, bool)`
+`func (o *Event) GetVPNMethodsOk() (*VPNMethods, bool)`
 
-GetVpnMethodsOk returns a tuple with the VpnMethods field if it's non-nil, zero value otherwise
+GetVPNMethodsOk returns a tuple with the VPNMethods field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetVpnMethods
+### SetVPNMethods
 
-`func (o *Event) SetVpnMethods(v VpnMethods)`
+`func (o *Event) SetVPNMethods(v VPNMethods)`
 
-SetVpnMethods sets VpnMethods field to given value.
+SetVPNMethods sets VPNMethods field to given value.
 
-### HasVpnMethods
+### HasVPNMethods
 
-`func (o *Event) HasVpnMethods() bool`
+`func (o *Event) HasVPNMethods() bool`
 
-HasVpnMethods returns a boolean if a field has been set.
+HasVPNMethods returns a boolean if a field has been set.
 
 ### GetHighActivityDevice
 

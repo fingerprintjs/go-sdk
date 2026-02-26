@@ -22,7 +22,7 @@ var _ MappedNullable = &SupplementaryIDHighRecall{}
 // SupplementaryIDHighRecall A supplementary browser identifier that prioritizes coverage over precision. The High Recall ID algorithm matches more generously, i.e., this identifier will remain the same even when there are subtle differences between two requests. This algorithm does not create as many new visitor IDs as the standard algorithms do, but there could be an increase in false-positive identification.
 type SupplementaryIDHighRecall struct {
 	// String of 20 characters that uniquely identifies the visitor's browser or mobile device.
-	VisitorId string `json:"visitor_id"`
+	VisitorID string `json:"visitor_id"`
 	// Attribute represents if a visitor had been identified before.
 	VisitorFound bool                      `json:"visitor_found"`
 	Confidence   *IdentificationConfidence `json:"confidence,omitempty"`
@@ -39,9 +39,9 @@ type _SupplementaryIDHighRecall SupplementaryIDHighRecall
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSupplementaryIDHighRecall(visitorId string, visitorFound bool) *SupplementaryIDHighRecall {
+func NewSupplementaryIDHighRecall(visitorID string, visitorFound bool) *SupplementaryIDHighRecall {
 	this := SupplementaryIDHighRecall{}
-	this.VisitorId = visitorId
+	this.VisitorID = visitorID
 	this.VisitorFound = visitorFound
 	return &this
 }
@@ -54,28 +54,28 @@ func NewSupplementaryIDHighRecallWithDefaults() *SupplementaryIDHighRecall {
 	return &this
 }
 
-// GetVisitorId returns the VisitorId field value
-func (o *SupplementaryIDHighRecall) GetVisitorId() string {
+// GetVisitorID returns the VisitorID field value
+func (o *SupplementaryIDHighRecall) GetVisitorID() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.VisitorId
+	return o.VisitorID
 }
 
-// GetVisitorIdOk returns a tuple with the VisitorId field value
+// GetVisitorIDOk returns a tuple with the VisitorID field value
 // and a boolean to check if the value has been set.
-func (o *SupplementaryIDHighRecall) GetVisitorIdOk() (*string, bool) {
+func (o *SupplementaryIDHighRecall) GetVisitorIDOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.VisitorId, true
+	return &o.VisitorID, true
 }
 
-// SetVisitorId sets field value
-func (o *SupplementaryIDHighRecall) SetVisitorId(v string) {
-	o.VisitorId = v
+// SetVisitorID sets field value
+func (o *SupplementaryIDHighRecall) SetVisitorID(v string) {
+	o.VisitorID = v
 }
 
 // GetVisitorFound returns the VisitorFound field value
@@ -208,7 +208,7 @@ func (o SupplementaryIDHighRecall) MarshalJSON() ([]byte, error) {
 
 func (o SupplementaryIDHighRecall) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["visitor_id"] = o.VisitorId
+	toSerialize["visitor_id"] = o.VisitorID
 	toSerialize["visitor_found"] = o.VisitorFound
 	if !IsNil(o.Confidence) {
 		toSerialize["confidence"] = o.Confidence

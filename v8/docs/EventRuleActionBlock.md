@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**RulesetId** | **string** | The ID of the evaluated ruleset. | 
-**RuleId** | Pointer to **string** | The ID of the rule that matched the identification event. | [optional] 
+**RulesetID** | **string** | The ID of the evaluated ruleset. | 
+**RuleID** | Pointer to **string** | The ID of the rule that matched the identification event. | [optional] 
 **RuleExpression** | Pointer to **string** | The expression of the rule that matched the identification event. | [optional] 
 **Type** | [**RuleActionType**](RuleActionType.md) |  | 
 **StatusCode** | Pointer to **int32** | A valid HTTP status code. | [optional] 
@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 
 ### NewEventRuleActionBlock
 
-`func NewEventRuleActionBlock(rulesetId string, type_ RuleActionType, ) *EventRuleActionBlock`
+`func NewEventRuleActionBlock(rulesetID string, type_ RuleActionType, ) *EventRuleActionBlock`
 
 NewEventRuleActionBlock instantiates a new EventRuleActionBlock object
 This constructor will assign default values to properties that have it defined,
@@ -31,50 +31,50 @@ NewEventRuleActionBlockWithDefaults instantiates a new EventRuleActionBlock obje
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetRulesetId
+### GetRulesetID
 
-`func (o *EventRuleActionBlock) GetRulesetId() string`
+`func (o *EventRuleActionBlock) GetRulesetID() string`
 
-GetRulesetId returns the RulesetId field if non-nil, zero value otherwise.
+GetRulesetID returns the RulesetID field if non-nil, zero value otherwise.
 
-### GetRulesetIdOk
+### GetRulesetIDOk
 
-`func (o *EventRuleActionBlock) GetRulesetIdOk() (*string, bool)`
+`func (o *EventRuleActionBlock) GetRulesetIDOk() (*string, bool)`
 
-GetRulesetIdOk returns a tuple with the RulesetId field if it's non-nil, zero value otherwise
+GetRulesetIDOk returns a tuple with the RulesetID field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetRulesetId
+### SetRulesetID
 
-`func (o *EventRuleActionBlock) SetRulesetId(v string)`
+`func (o *EventRuleActionBlock) SetRulesetID(v string)`
 
-SetRulesetId sets RulesetId field to given value.
+SetRulesetID sets RulesetID field to given value.
 
 
-### GetRuleId
+### GetRuleID
 
-`func (o *EventRuleActionBlock) GetRuleId() string`
+`func (o *EventRuleActionBlock) GetRuleID() string`
 
-GetRuleId returns the RuleId field if non-nil, zero value otherwise.
+GetRuleID returns the RuleID field if non-nil, zero value otherwise.
 
-### GetRuleIdOk
+### GetRuleIDOk
 
-`func (o *EventRuleActionBlock) GetRuleIdOk() (*string, bool)`
+`func (o *EventRuleActionBlock) GetRuleIDOk() (*string, bool)`
 
-GetRuleIdOk returns a tuple with the RuleId field if it's non-nil, zero value otherwise
+GetRuleIDOk returns a tuple with the RuleID field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetRuleId
+### SetRuleID
 
-`func (o *EventRuleActionBlock) SetRuleId(v string)`
+`func (o *EventRuleActionBlock) SetRuleID(v string)`
 
-SetRuleId sets RuleId field to given value.
+SetRuleID sets RuleID field to given value.
 
-### HasRuleId
+### HasRuleID
 
-`func (o *EventRuleActionBlock) HasRuleId() bool`
+`func (o *EventRuleActionBlock) HasRuleID() bool`
 
-HasRuleId returns a boolean if a field has been set.
+HasRuleID returns a boolean if a field has been set.
 
 ### GetRuleExpression
 

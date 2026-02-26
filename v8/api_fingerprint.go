@@ -26,7 +26,7 @@ type FingerprintAPIService service
 
 type ApiDeleteVisitorDataRequest struct {
 	ApiService *FingerprintAPIService
-	visitorId  string
+	visitorID  string
 }
 
 func (r ApiDeleteVisitorDataRequest) Execute(ctx context.Context) (*http.Response, error) {
@@ -60,13 +60,13 @@ After requesting to delete a visitor ID,
 ### Interested?
 Please [contact our support team](https://fingerprint.com/support/) to enable it for you. Otherwise, you will receive a 403.
 
-	@param visitorId The [visitor ID](https://dev.fingerprint.com/reference/get-function#visitorid) you want to delete.
+	@param visitorID The [visitor ID](https://dev.fingerprint.com/reference/get-function#visitorid) you want to delete.
 	@return ApiDeleteVisitorDataRequest
 */
-func (a *FingerprintAPIService) DeleteVisitorData(visitorId string) ApiDeleteVisitorDataRequest {
+func (a *FingerprintAPIService) DeleteVisitorData(visitorID string) ApiDeleteVisitorDataRequest {
 	return ApiDeleteVisitorDataRequest{
 		ApiService: a,
-		visitorId:  visitorId,
+		visitorID:  visitorID,
 	}
 }
 
@@ -84,7 +84,7 @@ func (a *FingerprintAPIService) DeleteVisitorDataExecute(ctx context.Context, r 
 	}
 
 	localVarPath := localBasePath + "/visitors/{visitor_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"visitor_id"+"}", url.PathEscape(parameterValueToString(r.visitorId, "visitorId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"visitor_id"+"}", url.PathEscape(parameterValueToString(r.visitorID, "visitorID")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -180,13 +180,13 @@ func (a *FingerprintAPIService) DeleteVisitorDataExecute(ctx context.Context, r 
 
 type ApiGetEventRequest struct {
 	ApiService *FingerprintAPIService
-	eventId    string
-	rulesetId  *string
+	eventID    string
+	rulesetID  *string
 }
 
 // The ID of the ruleset to evaluate against the event, producing the action to take for this event. The resulting action is returned in the &#x60;rule_action&#x60; attribute of the response.
-func (r ApiGetEventRequest) RulesetId(rulesetId string) ApiGetEventRequest {
-	r.rulesetId = &rulesetId
+func (r ApiGetEventRequest) RulesetID(rulesetID string) ApiGetEventRequest {
+	r.rulesetID = &rulesetID
 	return r
 }
 
@@ -201,13 +201,13 @@ Get a detailed analysis of an individual identification event, including Smart S
 
 Use `event_id` as the URL path parameter. This API method is scoped to a request, i.e. all returned information is by `event_id`.
 
-	@param eventId The unique [identifier](https://dev.fingerprint.com/reference/get-function#requestid) of each identification request (`requestId` can be used in its place).
+	@param eventID The unique [identifier](https://dev.fingerprint.com/reference/get-function#requestid) of each identification request (`requestId` can be used in its place).
 	@return ApiGetEventRequest
 */
-func (a *FingerprintAPIService) GetEvent(eventId string) ApiGetEventRequest {
+func (a *FingerprintAPIService) GetEvent(eventID string) ApiGetEventRequest {
 	return ApiGetEventRequest{
 		ApiService: a,
-		eventId:    eventId,
+		eventID:    eventID,
 	}
 }
 
@@ -229,14 +229,14 @@ func (a *FingerprintAPIService) GetEventExecute(ctx context.Context, r ApiGetEve
 	}
 
 	localVarPath := localBasePath + "/events/{event_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"event_id"+"}", url.PathEscape(parameterValueToString(r.eventId, "eventId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"event_id"+"}", url.PathEscape(parameterValueToString(r.eventID, "eventID")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
-	if r.rulesetId != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "ruleset_id", r.rulesetId, "form", "")
+	if r.rulesetID != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "ruleset_id", r.rulesetID, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -350,20 +350,20 @@ type ApiSearchEventsRequest struct {
 	ApiService        *FingerprintAPIService
 	limit             *int32
 	paginationKey     *string
-	visitorId         *string
+	visitorID         *string
 	bot               *SearchEventsBot
-	ipAddress         *string
+	iPAddress         *string
 	asn               *string
-	linkedId          *string
-	url               *string
-	bundleId          *string
+	linkedID          *string
+	uRL               *string
+	bundleID          *string
 	packageName       *string
 	origin            *string
 	start             *int64
 	end               *int64
 	reverse           *bool
 	suspect           *bool
-	vpn               *bool
+	vPN               *bool
 	virtualMachine    *bool
 	tampering         *bool
 	antiDetectBrowser *bool
@@ -375,16 +375,16 @@ type ApiSearchEventsRequest struct {
 	clonedApp         *bool
 	emulator          *bool
 	rootApps          *bool
-	vpnConfidence     *SearchEventsVpnConfidence
+	vPNConfidence     *SearchEventsVPNConfidence
 	minSuspectScore   *float32
 	developerTools    *bool
 	locationSpoofing  *bool
-	mitmAttack        *bool
+	mITMAttack        *bool
 	proxy             *bool
-	sdkVersion        *string
-	sdkPlatform       *SearchEventsSdkPlatform
+	sDKVersion        *string
+	sDKPlatform       *SearchEventsSDKPlatform
 	environment       *[]string
-	proximityId       *string
+	proximityID       *string
 	totalHits         *int64
 	torNode           *bool
 }
@@ -402,8 +402,8 @@ func (r ApiSearchEventsRequest) PaginationKey(paginationKey string) ApiSearchEve
 }
 
 // Unique [visitor identifier](https://dev.fingerprint.com/reference/get-function#visitorid) issued by Fingerprint Identification and all active Smart Signals. Filter for events matching this &#x60;visitor_id&#x60;.
-func (r ApiSearchEventsRequest) VisitorId(visitorId string) ApiSearchEventsRequest {
-	r.visitorId = &visitorId
+func (r ApiSearchEventsRequest) VisitorID(visitorID string) ApiSearchEventsRequest {
+	r.visitorID = &visitorID
 	return r
 }
 
@@ -414,8 +414,8 @@ func (r ApiSearchEventsRequest) Bot(bot SearchEventsBot) ApiSearchEventsRequest 
 }
 
 // Filter events by IP address or IP range (if CIDR notation is used). If CIDR notation is not used, a /32 for IPv4 or /128 for IPv6 is assumed. Examples of range based queries: 10.0.0.0/24, 192.168.0.1/32
-func (r ApiSearchEventsRequest) IpAddress(ipAddress string) ApiSearchEventsRequest {
-	r.ipAddress = &ipAddress
+func (r ApiSearchEventsRequest) IPAddress(iPAddress string) ApiSearchEventsRequest {
+	r.iPAddress = &iPAddress
 	return r
 }
 
@@ -426,20 +426,20 @@ func (r ApiSearchEventsRequest) Asn(asn string) ApiSearchEventsRequest {
 }
 
 // Filter events by your custom identifier.  You can use [linked Ids](https://dev.fingerprint.com/reference/get-function#linkedid) to associate identification requests with your own identifier, for example, session Id, purchase Id, or transaction Id. You can then use this &#x60;linked_id&#x60; parameter to retrieve all events associated with your custom identifier.
-func (r ApiSearchEventsRequest) LinkedId(linkedId string) ApiSearchEventsRequest {
-	r.linkedId = &linkedId
+func (r ApiSearchEventsRequest) LinkedID(linkedID string) ApiSearchEventsRequest {
+	r.linkedID = &linkedID
 	return r
 }
 
 // Filter events by the URL (&#x60;url&#x60; property) associated with the event.
-func (r ApiSearchEventsRequest) Url(url string) ApiSearchEventsRequest {
-	r.url = &url
+func (r ApiSearchEventsRequest) URL(uRL string) ApiSearchEventsRequest {
+	r.uRL = &uRL
 	return r
 }
 
 // Filter events by the Bundle ID (iOS) associated with the event.
-func (r ApiSearchEventsRequest) BundleId(bundleId string) ApiSearchEventsRequest {
-	r.bundleId = &bundleId
+func (r ApiSearchEventsRequest) BundleID(bundleID string) ApiSearchEventsRequest {
+	r.bundleID = &bundleID
 	return r
 }
 
@@ -480,8 +480,8 @@ func (r ApiSearchEventsRequest) Suspect(suspect bool) ApiSearchEventsRequest {
 }
 
 // Filter events by VPN Detection result. &gt; Note: When using this parameter, only events with the &#x60;vpn&#x60; property set to &#x60;true&#x60; or &#x60;false&#x60; are returned. Events without a &#x60;vpn&#x60; Smart Signal result are left out of the response.
-func (r ApiSearchEventsRequest) Vpn(vpn bool) ApiSearchEventsRequest {
-	r.vpn = &vpn
+func (r ApiSearchEventsRequest) VPN(vPN bool) ApiSearchEventsRequest {
+	r.vPN = &vPN
 	return r
 }
 
@@ -552,8 +552,8 @@ func (r ApiSearchEventsRequest) RootApps(rootApps bool) ApiSearchEventsRequest {
 }
 
 // Filter events by VPN Detection result confidence level. &#x60;high&#x60; - events with high VPN Detection confidence. &#x60;medium&#x60; - events with medium VPN Detection confidence. &#x60;low&#x60; - events with low VPN Detection confidence. &gt; Note: When using this parameter, only events with the &#x60;vpn.confidence&#x60; property set to a valid value are returned. Events without a &#x60;vpn&#x60; Smart Signal result are left out of the response.
-func (r ApiSearchEventsRequest) VpnConfidence(vpnConfidence SearchEventsVpnConfidence) ApiSearchEventsRequest {
-	r.vpnConfidence = &vpnConfidence
+func (r ApiSearchEventsRequest) VPNConfidence(vPNConfidence SearchEventsVPNConfidence) ApiSearchEventsRequest {
+	r.vPNConfidence = &vPNConfidence
 	return r
 }
 
@@ -576,8 +576,8 @@ func (r ApiSearchEventsRequest) LocationSpoofing(locationSpoofing bool) ApiSearc
 }
 
 // Filter events by MITM (Man-in-the-Middle) Attack detection result. &gt; Note: When using this parameter, only events with the &#x60;mitm_attack&#x60; property set to &#x60;true&#x60; or &#x60;false&#x60; are returned. Events without a &#x60;mitm_attack&#x60; Smart Signal result are left out of the response.
-func (r ApiSearchEventsRequest) MitmAttack(mitmAttack bool) ApiSearchEventsRequest {
-	r.mitmAttack = &mitmAttack
+func (r ApiSearchEventsRequest) MITMAttack(mITMAttack bool) ApiSearchEventsRequest {
+	r.mITMAttack = &mITMAttack
 	return r
 }
 
@@ -588,14 +588,14 @@ func (r ApiSearchEventsRequest) Proxy(proxy bool) ApiSearchEventsRequest {
 }
 
 // Filter events by a specific SDK version associated with the identification event (&#x60;sdk.version&#x60; property). Example: &#x60;3.11.14&#x60;
-func (r ApiSearchEventsRequest) SdkVersion(sdkVersion string) ApiSearchEventsRequest {
-	r.sdkVersion = &sdkVersion
+func (r ApiSearchEventsRequest) SDKVersion(sDKVersion string) ApiSearchEventsRequest {
+	r.sDKVersion = &sDKVersion
 	return r
 }
 
 // Filter events by the SDK Platform associated with the identification event (&#x60;sdk.platform&#x60; property) . &#x60;js&#x60; - Javascript agent (Web). &#x60;ios&#x60; - Apple iOS based devices. &#x60;android&#x60; - Android based devices.
-func (r ApiSearchEventsRequest) SdkPlatform(sdkPlatform SearchEventsSdkPlatform) ApiSearchEventsRequest {
-	r.sdkPlatform = &sdkPlatform
+func (r ApiSearchEventsRequest) SDKPlatform(sDKPlatform SearchEventsSDKPlatform) ApiSearchEventsRequest {
+	r.sDKPlatform = &sDKPlatform
 	return r
 }
 
@@ -606,8 +606,8 @@ func (r ApiSearchEventsRequest) Environment(environment []string) ApiSearchEvent
 }
 
 // Filter events by the most precise Proximity ID provided by default. &gt; Note: When using this parameter, only events with the &#x60;proximity.id&#x60; property matching the provided ID are returned. Events without a &#x60;proximity&#x60; result are left out of the response.
-func (r ApiSearchEventsRequest) ProximityId(proximityId string) ApiSearchEventsRequest {
-	r.proximityId = &proximityId
+func (r ApiSearchEventsRequest) ProximityID(proximityID string) ApiSearchEventsRequest {
+	r.proximityID = &proximityID
 	return r
 }
 
@@ -693,26 +693,26 @@ func (a *FingerprintAPIService) SearchEventsExecute(ctx context.Context, r ApiSe
 	if r.paginationKey != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pagination_key", r.paginationKey, "form", "")
 	}
-	if r.visitorId != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "visitor_id", r.visitorId, "form", "")
+	if r.visitorID != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "visitor_id", r.visitorID, "form", "")
 	}
 	if r.bot != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "bot", r.bot, "form", "")
 	}
-	if r.ipAddress != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "ip_address", r.ipAddress, "form", "")
+	if r.iPAddress != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "ip_address", r.iPAddress, "form", "")
 	}
 	if r.asn != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "asn", r.asn, "form", "")
 	}
-	if r.linkedId != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "linked_id", r.linkedId, "form", "")
+	if r.linkedID != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "linked_id", r.linkedID, "form", "")
 	}
-	if r.url != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "url", r.url, "form", "")
+	if r.uRL != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "url", r.uRL, "form", "")
 	}
-	if r.bundleId != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "bundle_id", r.bundleId, "form", "")
+	if r.bundleID != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "bundle_id", r.bundleID, "form", "")
 	}
 	if r.packageName != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "package_name", r.packageName, "form", "")
@@ -732,8 +732,8 @@ func (a *FingerprintAPIService) SearchEventsExecute(ctx context.Context, r ApiSe
 	if r.suspect != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "suspect", r.suspect, "form", "")
 	}
-	if r.vpn != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "vpn", r.vpn, "form", "")
+	if r.vPN != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "vpn", r.vPN, "form", "")
 	}
 	if r.virtualMachine != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "virtual_machine", r.virtualMachine, "form", "")
@@ -768,8 +768,8 @@ func (a *FingerprintAPIService) SearchEventsExecute(ctx context.Context, r ApiSe
 	if r.rootApps != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "root_apps", r.rootApps, "form", "")
 	}
-	if r.vpnConfidence != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "vpn_confidence", r.vpnConfidence, "form", "")
+	if r.vPNConfidence != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "vpn_confidence", r.vPNConfidence, "form", "")
 	}
 	if r.minSuspectScore != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "min_suspect_score", r.minSuspectScore, "form", "")
@@ -780,17 +780,17 @@ func (a *FingerprintAPIService) SearchEventsExecute(ctx context.Context, r ApiSe
 	if r.locationSpoofing != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "location_spoofing", r.locationSpoofing, "form", "")
 	}
-	if r.mitmAttack != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "mitm_attack", r.mitmAttack, "form", "")
+	if r.mITMAttack != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "mitm_attack", r.mITMAttack, "form", "")
 	}
 	if r.proxy != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "proxy", r.proxy, "form", "")
 	}
-	if r.sdkVersion != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "sdk_version", r.sdkVersion, "form", "")
+	if r.sDKVersion != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "sdk_version", r.sDKVersion, "form", "")
 	}
-	if r.sdkPlatform != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "sdk_platform", r.sdkPlatform, "form", "")
+	if r.sDKPlatform != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "sdk_platform", r.sDKPlatform, "form", "")
 	}
 	if r.environment != nil {
 		t := *r.environment
@@ -803,8 +803,8 @@ func (a *FingerprintAPIService) SearchEventsExecute(ctx context.Context, r ApiSe
 			parameterAddToHeaderOrQuery(localVarQueryParams, "environment", t, "form", "multi")
 		}
 	}
-	if r.proximityId != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "proximity_id", r.proximityId, "form", "")
+	if r.proximityID != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "proximity_id", r.proximityID, "form", "")
 	}
 	if r.totalHits != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "total_hits", r.totalHits, "form", "")
@@ -900,7 +900,7 @@ func (a *FingerprintAPIService) SearchEventsExecute(ctx context.Context, r ApiSe
 
 type ApiUpdateEventRequest struct {
 	ApiService  *FingerprintAPIService
-	eventId     string
+	eventID     string
 	eventUpdate *EventUpdate
 }
 
@@ -926,13 +926,13 @@ This information might not have been available on the client initially, so the S
 **Warning** Trying to update an event immediately after creation may temporarily result in an
 error (HTTP 409 Conflict. The event is not mutable yet.) as the event is fully propagated across our systems. In such a case, simply retry the request.
 
-	@param eventId The unique event [identifier](https://dev.fingerprint.com/reference/get-function#event_id).
+	@param eventID The unique event [identifier](https://dev.fingerprint.com/reference/get-function#event_id).
 	@return ApiUpdateEventRequest
 */
-func (a *FingerprintAPIService) UpdateEvent(eventId string) ApiUpdateEventRequest {
+func (a *FingerprintAPIService) UpdateEvent(eventID string) ApiUpdateEventRequest {
 	return ApiUpdateEventRequest{
 		ApiService: a,
-		eventId:    eventId,
+		eventID:    eventID,
 	}
 }
 
@@ -950,7 +950,7 @@ func (a *FingerprintAPIService) UpdateEventExecute(ctx context.Context, r ApiUpd
 	}
 
 	localVarPath := localBasePath + "/events/{event_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"event_id"+"}", url.PathEscape(parameterValueToString(r.eventId, "eventId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"event_id"+"}", url.PathEscape(parameterValueToString(r.eventID, "eventID")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

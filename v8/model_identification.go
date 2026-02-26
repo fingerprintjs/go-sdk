@@ -22,7 +22,7 @@ var _ MappedNullable = &Identification{}
 // Identification struct for Identification
 type Identification struct {
 	// String of 20 characters that uniquely identifies the visitor's browser or mobile device.
-	VisitorId  string                    `json:"visitor_id"`
+	VisitorID  string                    `json:"visitor_id"`
 	Confidence *IdentificationConfidence `json:"confidence,omitempty"`
 	// Attribute represents if a visitor had been identified before.
 	VisitorFound bool `json:"visitor_found"`
@@ -39,9 +39,9 @@ type _Identification Identification
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewIdentification(visitorId string, visitorFound bool) *Identification {
+func NewIdentification(visitorID string, visitorFound bool) *Identification {
 	this := Identification{}
-	this.VisitorId = visitorId
+	this.VisitorID = visitorID
 	this.VisitorFound = visitorFound
 	return &this
 }
@@ -54,28 +54,28 @@ func NewIdentificationWithDefaults() *Identification {
 	return &this
 }
 
-// GetVisitorId returns the VisitorId field value
-func (o *Identification) GetVisitorId() string {
+// GetVisitorID returns the VisitorID field value
+func (o *Identification) GetVisitorID() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.VisitorId
+	return o.VisitorID
 }
 
-// GetVisitorIdOk returns a tuple with the VisitorId field value
+// GetVisitorIDOk returns a tuple with the VisitorID field value
 // and a boolean to check if the value has been set.
-func (o *Identification) GetVisitorIdOk() (*string, bool) {
+func (o *Identification) GetVisitorIDOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.VisitorId, true
+	return &o.VisitorID, true
 }
 
-// SetVisitorId sets field value
-func (o *Identification) SetVisitorId(v string) {
-	o.VisitorId = v
+// SetVisitorID sets field value
+func (o *Identification) SetVisitorID(v string) {
+	o.VisitorID = v
 }
 
 // GetConfidence returns the Confidence field value if set, zero value otherwise.
@@ -208,7 +208,7 @@ func (o Identification) MarshalJSON() ([]byte, error) {
 
 func (o Identification) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["visitor_id"] = o.VisitorId
+	toSerialize["visitor_id"] = o.VisitorID
 	if !IsNil(o.Confidence) {
 		toSerialize["confidence"] = o.Confidence
 	}
