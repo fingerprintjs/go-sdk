@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | Pointer to **string** | The name of the specific integration, e.g. \&quot;fingerprint-pro-react\&quot;. | [optional] 
-**Version** | Pointer to **string** | The version of the specific integration, e.g. \&quot;3.11.10\&quot;. | [optional] 
+**Name** | Pointer to **string** | The name of the specific integration, e.g. \"fingerprint-pro-react\". | [optional] 
+**Version** | Pointer to **string** | The version of the specific integration, e.g. \"3.11.10\". | [optional] 
 **Subintegration** | Pointer to [**IntegrationSubintegration**](IntegrationSubintegration.md) |  | [optional] 
 
 ## Methods
