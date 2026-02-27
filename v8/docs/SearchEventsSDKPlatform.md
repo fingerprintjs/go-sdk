@@ -1,13 +1,13 @@
-# VpnConfidence
+# SearchEventsSDKPlatform
 
 ## Enum
 
 
-* `LOW` (value: `"low"`)
+* `JS` (value: `"js"`)
 
-* `MEDIUM` (value: `"medium"`)
+* `ANDROID` (value: `"android"`)
 
-* `HIGH` (value: `"high"`)
+* `IOS` (value: `"ios"`)
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -30,16 +30,16 @@ func TestApiFunctional(t *testing.T) {
 	assert.NoError(t, err)
 	assert.NotNil(t, events.Events)
 	testEvent := events.Events[0]
-	eventId := testEvent.EventId
-	visitorId := testEvent.Identification.VisitorId
+	eventId := testEvent.EventID
+	visitorId := testEvent.Identification.VisitorID
 
 	t.Run("GetEvent", func(t *testing.T) {
 		t.Run("with valid event", func(t *testing.T) {
 			event, _, err := client.GetEvent(context.Background(), eventId)
 
 			assert.NoError(t, err)
-			assert.Equal(t, eventId, event.EventId)
-			assert.Equal(t, visitorId, event.Identification.VisitorId)
+			assert.Equal(t, eventId, event.EventID)
+			assert.Equal(t, visitorId, event.Identification.VisitorID)
 		})
 
 		t.Run("error 404", func(t *testing.T) {
@@ -92,8 +92,8 @@ func TestApiFunctional(t *testing.T) {
 			assert.NoError(t, err)
 			assert.NotNil(t, nextEvents)
 			assert.Len(t, nextEvents.Events, 2)
-			assert.NotEqual(t, events.Events[0].EventId, nextEvents.Events[0].EventId)
-			assert.NotEqual(t, events.Events[1].EventId, nextEvents.Events[1].EventId)
+			assert.NotEqual(t, events.Events[0].EventID, nextEvents.Events[0].EventID)
+			assert.NotEqual(t, events.Events[1].EventID, nextEvents.Events[1].EventID)
 		})
 
 		t.Run("with old events", func(t *testing.T) {
@@ -113,10 +113,10 @@ func TestApiFunctional(t *testing.T) {
 			oldEvent := events.Events[0]
 
 			// Try to get old events to check if they still could be deserialized
-			oldGetEvent, _, err := client.GetEvent(context.Background(), oldEvent.EventId)
+			oldGetEvent, _, err := client.GetEvent(context.Background(), oldEvent.EventID)
 			assert.NoError(t, err)
 			assert.NotNil(t, oldGetEvent)
-			assert.Equal(t, oldEvent.EventId, oldGetEvent.EventId)
+			assert.Equal(t, oldEvent.EventID, oldGetEvent.EventID)
 		})
 	})
 }

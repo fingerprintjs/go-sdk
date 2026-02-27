@@ -73,7 +73,7 @@ type GetEventOption func(request *ApiGetEventRequest)
 
 func WithRulesetID(rulesetID string) GetEventOption {
 	return func(request *ApiGetEventRequest) {
-		*request = request.RulesetId(rulesetID)
+		*request = request.RulesetID(rulesetID)
 	}
 }
 
