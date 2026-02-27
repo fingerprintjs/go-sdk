@@ -37,7 +37,7 @@ We follow the [Go support policy](https://go.dev/doc/devel/release) and support 
 
 1. Get the package from GitHub:
 ```shell
-go get "github.com/fingerprintjs/go-sdk"
+go get "github.com/fingerprintjs/go-sdk/v8"
 ```
 
 2. Import and use the library:
@@ -48,7 +48,7 @@ package main
 import (
 	"context"
 	"fmt"
-    "github.com/fingerprintjs/go-sdk"
+    "github.com/fingerprintjs/go-sdk/v8"
 	"log"
 )
 
@@ -120,7 +120,7 @@ If your subscription is in region other than US, you need to change the region i
 ```go
 
 import (
-    "github.com/fingerprintjs/go-sdk"
+    "github.com/fingerprintjs/go-sdk/v8"
 )
 
 func main() {
@@ -141,7 +141,7 @@ package main
 import (
 	"encoding/base64"
 	"fmt"
-    "github.com/fingerprintjs/go-sdk"
+    "github.com/fingerprintjs/go-sdk/v8"
 	"os"
 )
 
@@ -189,7 +189,7 @@ Use below code to verify signature:
 package main
 
 import (
-    "github.com/fingerprintjs/go-sdk"
+    "github.com/fingerprintjs/go-sdk/v8"
 )
 
 func main() {
