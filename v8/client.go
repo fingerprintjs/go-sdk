@@ -49,7 +49,7 @@ type APIClient struct {
 
 	// API Services
 
-	FingerprintAPI *FingerprintAPIService
+	FingerprintAPI FingerprintAPI
 }
 
 type service struct {
