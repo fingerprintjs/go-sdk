@@ -51,8 +51,8 @@ type FingerprintAPI interface {
 	Please [contact our support team](https://fingerprint.com/support/) to enable it for you. Otherwise, you will receive a 403.
 
 
-		@param visitorID The [visitor ID](https://dev.fingerprint.com/reference/get-function#visitorid) you want to delete.
-		@return ApiDeleteVisitorDataRequest
+		visitorID The [visitor ID](https://dev.fingerprint.com/reference/get-function#visitorid) you want to delete.
+		Returns ApiDeleteVisitorDataRequest
 	*/
 	DeleteVisitorData(visitorID string) ApiDeleteVisitorDataRequest
 
@@ -67,14 +67,14 @@ type FingerprintAPI interface {
 	Use `event_id` as the URL path parameter. This API method is scoped to a request, i.e. all returned information is by `event_id`.
 
 
-		@param eventID The unique [identifier](https://dev.fingerprint.com/reference/get-function#requestid) of each identification request (`requestId` can be used in its place).
-		@return ApiGetEventRequest
+		eventID The unique [identifier](https://dev.fingerprint.com/reference/get-function#requestid) of each identification request (`requestId` can be used in its place).
+		Returns ApiGetEventRequest
 	*/
 	GetEvent(eventID string) ApiGetEventRequest
 
 	// GetEventExecute executes the request
-	//  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	//  @return Event
+	//  ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	//  Returns Event
 	GetEventExecute(ctx context.Context, r ApiGetEventRequest) (*Event, *http.Response, error)
 
 	/*
@@ -104,13 +104,13 @@ type FingerprintAPI interface {
 
 
 
-		@return ApiSearchEventsRequest
+		Returns ApiSearchEventsRequest
 	*/
 	SearchEvents() ApiSearchEventsRequest
 
 	// SearchEventsExecute executes the request
-	//  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	//  @return EventSearch
+	//  ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	//  Returns EventSearch
 	SearchEventsExecute(ctx context.Context, r ApiSearchEventsRequest) (*EventSearch, *http.Response, error)
 
 	/*
@@ -127,8 +127,8 @@ type FingerprintAPI interface {
 	error (HTTP 409 Conflict. The event is not mutable yet.) as the event is fully propagated across our systems. In such a case, simply retry the request.
 
 
-		@param eventID The unique event [identifier](https://dev.fingerprint.com/reference/get-function#event_id).
-		@return ApiUpdateEventRequest
+		eventID The unique event [identifier](https://dev.fingerprint.com/reference/get-function#event_id).
+		Returns ApiUpdateEventRequest
 	*/
 	UpdateEvent(eventID string) ApiUpdateEventRequest
 
@@ -175,8 +175,8 @@ After requesting to delete a visitor ID,
 ### Interested?
 Please [contact our support team](https://fingerprint.com/support/) to enable it for you. Otherwise, you will receive a 403.
 
-	@param visitorID The [visitor ID](https://dev.fingerprint.com/reference/get-function#visitorid) you want to delete.
-	@return ApiDeleteVisitorDataRequest
+	visitorID The [visitor ID](https://dev.fingerprint.com/reference/get-function#visitorid) you want to delete.
+	Returns ApiDeleteVisitorDataRequest
 */
 func (a *FingerprintAPIService) DeleteVisitorData(visitorID string) ApiDeleteVisitorDataRequest {
 	return ApiDeleteVisitorDataRequest{
@@ -316,8 +316,8 @@ Get a detailed analysis of an individual identification event, including Smart S
 
 Use `event_id` as the URL path parameter. This API method is scoped to a request, i.e. all returned information is by `event_id`.
 
-	@param eventID The unique [identifier](https://dev.fingerprint.com/reference/get-function#requestid) of each identification request (`requestId` can be used in its place).
-	@return ApiGetEventRequest
+	eventID The unique [identifier](https://dev.fingerprint.com/reference/get-function#requestid) of each identification request (`requestId` can be used in its place).
+	Returns ApiGetEventRequest
 */
 func (a *FingerprintAPIService) GetEvent(eventID string) ApiGetEventRequest {
 	return ApiGetEventRequest{
@@ -328,8 +328,8 @@ func (a *FingerprintAPIService) GetEvent(eventID string) ApiGetEventRequest {
 
 // Execute executes the request
 //
-//	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-//	@return Event
+//	ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+//	Returns Event
 func (a *FingerprintAPIService) GetEventExecute(ctx context.Context, r ApiGetEventRequest) (*Event, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -767,7 +767,7 @@ If you use a secret key that is scoped to an environment, you will only get even
 
 Smart Signals not activated for your workspace or are not included in the response.
 
-	@return ApiSearchEventsRequest
+	Returns ApiSearchEventsRequest
 */
 func (a *FingerprintAPIService) SearchEvents() ApiSearchEventsRequest {
 	return ApiSearchEventsRequest{
@@ -777,8 +777,8 @@ func (a *FingerprintAPIService) SearchEvents() ApiSearchEventsRequest {
 
 // Execute executes the request
 //
-//	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-//	@return EventSearch
+//	ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+//	Returns EventSearch
 func (a *FingerprintAPIService) SearchEventsExecute(ctx context.Context, r ApiSearchEventsRequest) (*EventSearch, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -1041,8 +1041,8 @@ This information might not have been available on the client initially, so the S
 **Warning** Trying to update an event immediately after creation may temporarily result in an
 error (HTTP 409 Conflict. The event is not mutable yet.) as the event is fully propagated across our systems. In such a case, simply retry the request.
 
-	@param eventID The unique event [identifier](https://dev.fingerprint.com/reference/get-function#event_id).
-	@return ApiUpdateEventRequest
+	eventID The unique event [identifier](https://dev.fingerprint.com/reference/get-function#event_id).
+	Returns ApiUpdateEventRequest
 */
 func (a *FingerprintAPIService) UpdateEvent(eventID string) ApiUpdateEventRequest {
 	return ApiUpdateEventRequest{
