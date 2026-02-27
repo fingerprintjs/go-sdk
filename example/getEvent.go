@@ -18,9 +18,9 @@ func main() {
 	client := fingerprint.New(fingerprint.WithRegion(fingerprint.Region(os.Getenv("REGION"))), fingerprint.WithAPIKey(os.Getenv("FINGERPRINT_API_KEY")))
 
 	// Usually this data will come from your frontend app
-	eventId := os.Getenv("EVENT_ID")
+	eventID := os.Getenv("EVENT_ID")
 
-	response, httpRes, err := client.GetEvent(context.Background(), eventId)
+	response, httpRes, err := client.GetEvent(context.Background(), eventID)
 
 	fmt.Printf("%+v\n", httpRes)
 
@@ -42,8 +42,8 @@ func main() {
 		fmt.Printf("Got response with Emulator: %v \n", response.Emulator)
 	}
 
-	if response.IpInfo != nil {
-		fmt.Printf("Got response with IpInfo: %v \n", response.IpInfo)
+	if response.IPInfo != nil {
+		fmt.Printf("Got response with IPInfo: %v \n", response.IPInfo)
 	}
 
 	if response.Incognito != nil {
@@ -70,8 +70,8 @@ func main() {
 		fmt.Printf("Got response with Frida: %v \n", response.Frida)
 	}
 
-	if response.IpBlocklist != nil {
-		fmt.Printf("Got response with IpBlocklist: %v \n", response.IpBlocklist)
+	if response.IPBlockList != nil {
+		fmt.Printf("Got response with IPBlockList: %v \n", response.IPBlockList)
 	}
 
 	if response.PrivacySettings != nil {
@@ -82,8 +82,8 @@ func main() {
 		fmt.Printf("Got response with VirtualMachine: %v \n", response.VirtualMachine)
 	}
 
-	if response.Vpn != nil {
-		fmt.Printf("Got response with Vpn: %v \n", response.Vpn)
+	if response.VPN != nil {
+		fmt.Printf("Got response with VPN: %v \n", response.VPN)
 	}
 
 	if response.Proxy != nil {

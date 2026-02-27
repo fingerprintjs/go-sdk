@@ -25,8 +25,8 @@ type {{classname}} interface {
 	{{/notes}}
 
 	{{#pathParams}}
-	@param {{paramName}}{{#description}} {{{.}}}{{/description}}{{/pathParams}}
-	@return {{#structPrefix}}{{&classname}}{{/structPrefix}}{{^structPrefix}}Api{{/structPrefix}}{{operationId}}Request
+	{{paramName}}{{#description}} {{{.}}}{{/description}}{{/pathParams}}
+	Returns {{#structPrefix}}{{&classname}}{{/structPrefix}}{{^structPrefix}}Api{{/structPrefix}}{{operationId}}Request
 	{{#isDeprecated}}
 
 	Deprecated
@@ -35,8 +35,8 @@ type {{classname}} interface {
 	{{{nickname}}}({{#pathParams}}{{paramName}} {{{dataType}}}{{#hasMore}}, {{/hasMore}}{{/pathParams}}) {{#structPrefix}}{{&classname}}{{/structPrefix}}{{^structPrefix}}Api{{/structPrefix}}{{operationId}}Request
 
 	// {{nickname}}Execute executes the request{{#returnType}}
-	//  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	//  @return {{{.}}}{{/returnType}}
+	//  ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	//  Returns {{{.}}}{{/returnType}}
 	{{#isDeprecated}}
 	// Deprecated
 	{{/isDeprecated}}
@@ -87,8 +87,8 @@ func (r {{#structPrefix}}{{&classname}}{{/structPrefix}}{{^structPrefix}}Api{{/s
 {{/notes}}
 
  {{#pathParams}}
- @param {{paramName}}{{#description}} {{{.}}}{{/description}}{{/pathParams}}
- @return {{#structPrefix}}{{&classname}}{{/structPrefix}}{{^structPrefix}}Api{{/structPrefix}}{{operationId}}Request
+ {{paramName}}{{#description}} {{{.}}}{{/description}}{{/pathParams}}
+ Returns {{#structPrefix}}{{&classname}}{{/structPrefix}}{{^structPrefix}}Api{{/structPrefix}}{{operationId}}Request
 {{#isDeprecated}}
 
 Deprecated
@@ -104,8 +104,8 @@ func (a *{{{classname}}}Service) {{{nickname}}}({{#pathParams}}{{paramName}} {{{
 }
 
 // Execute executes the request{{#returnType}}
-//  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-//  @return {{{.}}}{{/returnType}}
+//  ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+//  Returns {{{.}}}{{/returnType}}
 {{#isDeprecated}}
 // Deprecated
 {{/isDeprecated}}

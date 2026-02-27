@@ -21,10 +21,10 @@ func main() {
 		"key": "value",
 	}
 	suspect := false
-	linkedId := "new_linked_id"
+	linkedID := "new_linked_id"
 	req := fingerprint.EventUpdate{
 		Suspect:  &suspect,
-		LinkedId: &linkedId,
+		LinkedID: &linkedID,
 		Tags:     tags,
 	}
 
