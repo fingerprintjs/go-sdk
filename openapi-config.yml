@@ -1,7 +1,7 @@
 generatorName: go
 outputDir: /local
 
-gitUserId: fingerprintjs
+gitUserId: TheUnderScorer
 gitRepoId: go-sdk
 
 globalProperties:

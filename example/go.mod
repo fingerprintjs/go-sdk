@@ -1,4 +1,4 @@
-module github.com/fingerprintjs/go-sdk/example
+module github.com/TheUnderScorer/go-sdk/example
 
 go 1.21
 

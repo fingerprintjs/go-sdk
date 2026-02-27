@@ -6,7 +6,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/fingerprintjs/go-sdk"
+	"github.com/TheUnderScorer/go-sdk"
 	"github.com/joho/godotenv"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

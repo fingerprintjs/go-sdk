@@ -8,7 +8,7 @@ info:
     Server API is intended for server-side usage, it's not intended to be used from the client side, whether it's a browser or a mobile device.
   license:
     name: MIT
-    url: https://github.com/fingerprintjs/fingerprint-pro-server-api-openapi/blob/main/LICENSE
+    url: https://github.com/TheUnderScorer/fingerprint-pro-server-api-openapi/blob/main/LICENSE
   title: Server API
   version: "4"
 servers:

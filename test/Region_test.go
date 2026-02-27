@@ -8,7 +8,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/fingerprintjs/go-sdk"
+	"github.com/TheUnderScorer/go-sdk"
 	"github.com/stretchr/testify/assert"
 )
 

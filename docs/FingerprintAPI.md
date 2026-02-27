@@ -28,7 +28,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/fingerprintjs/go-sdk"
+	openapiclient "github.com/TheUnderScorer/go-sdk"
 )
 
 func main() {
@@ -96,7 +96,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/fingerprintjs/go-sdk"
+	openapiclient "github.com/TheUnderScorer/go-sdk"
 )
 
 func main() {
@@ -168,7 +168,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/fingerprintjs/go-sdk"
+	openapiclient "github.com/TheUnderScorer/go-sdk"
 )
 
 func main() {
@@ -310,7 +310,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/fingerprintjs/go-sdk"
+	openapiclient "github.com/TheUnderScorer/go-sdk"
 )
 
 func main() {

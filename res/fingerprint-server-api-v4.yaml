@@ -15,7 +15,7 @@ info:
   license:
     name: MIT
     url: >-
-      https://github.com/fingerprintjs/fingerprint-pro-server-api-openapi/blob/main/LICENSE
+      https://github.com/TheUnderScorer/fingerprint-pro-server-api-openapi/blob/main/LICENSE
 tags:
   - name: Fingerprint
     description: >-

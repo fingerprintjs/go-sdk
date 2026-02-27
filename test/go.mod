@@ -1,4 +1,4 @@
-module github.com/fingerprintjs/go-sdk/test
+module github.com/TheUnderScorer/go-sdk/test
 
 go 1.21
 

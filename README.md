@@ -8,9 +8,9 @@
     </a>
 </p>
 <p align="center">
-    <a href="https://github.com/fingerprintjs/fingerprint-pro-server-api-go-sdk/actions/workflows/release.yml"><img src="https://github.com/fingerprintjs/fingerprint-pro-server-api-go-sdk/actions/workflows/release.yml/badge.svg" alt="CI badge" /></a>
-    <a href="https://github.com/fingerprintjs/fingerprint-pro-server-api-go-sdk/actions/workflows/tests.yml"><img src="https://github.com/fingerprintjs/fingerprint-pro-server-api-go-sdk/actions/workflows/tests.yml/badge.svg" alt="CI badge" /></a>
-    <a href="https://github.com/fingerprintjs/fingerprint-pro-server-api-go-sdk/actions/workflows/functional_tests.yml"><img src="https://github.com/fingerprintjs/fingerprint-pro-server-api-go-sdk/actions/workflows/functional_tests.yml/badge.svg" alt="CI badge" /></a>
+    <a href="https://github.com/TheUnderScorer/fingerprint-pro-server-api-go-sdk/actions/workflows/release.yml"><img src="https://github.com/TheUnderScorer/fingerprint-pro-server-api-go-sdk/actions/workflows/release.yml/badge.svg" alt="CI badge" /></a>
+    <a href="https://github.com/TheUnderScorer/fingerprint-pro-server-api-go-sdk/actions/workflows/tests.yml"><img src="https://github.com/TheUnderScorer/fingerprint-pro-server-api-go-sdk/actions/workflows/tests.yml/badge.svg" alt="CI badge" /></a>
+    <a href="https://github.com/TheUnderScorer/fingerprint-pro-server-api-go-sdk/actions/workflows/functional_tests.yml"><img src="https://github.com/TheUnderScorer/fingerprint-pro-server-api-go-sdk/actions/workflows/functional_tests.yml/badge.svg" alt="CI badge" /></a>
     <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/:license-mit-blue.svg?style=flat"/></a>
     <a href="https://discord.gg/39EpE2neBg"><img src="https://img.shields.io/discord/852099967190433792?style=logo&label=Discord&logo=Discord&logoColor=white" alt="Discord server"></a>
 </p>
@@ -37,7 +37,7 @@ We follow the [Go support policy](https://go.dev/doc/devel/release) and support 
 
 1. Get the package from GitHub:
 ```shell
-go get "github.com/fingerprintjs/go-sdk"
+go get "github.com/TheUnderScorer/go-sdk"
 ```
 
 2. Import and use the library:
@@ -48,7 +48,7 @@ package main
 import (
 	"context"
 	"fmt"
-    "github.com/fingerprintjs/go-sdk"
+    "github.com/TheUnderScorer/go-sdk"
 	"log"
 )
 
@@ -120,7 +120,7 @@ If your subscription is in region other than US, you need to change the region i
 ```go
 
 import (
-    "github.com/fingerprintjs/go-sdk"
+    "github.com/TheUnderScorer/go-sdk"
 )
 
 func main() {
@@ -141,7 +141,7 @@ package main
 import (
 	"encoding/base64"
 	"fmt"
-    "github.com/fingerprintjs/go-sdk"
+    "github.com/TheUnderScorer/go-sdk"
 	"os"
 )
 
@@ -189,7 +189,7 @@ Use below code to verify signature:
 package main
 
 import (
-    "github.com/fingerprintjs/go-sdk"
+    "github.com/TheUnderScorer/go-sdk"
 )
 
 func main() {
@@ -296,8 +296,8 @@ support@fingerprint.com
 
 ## Support and feedback
 
-To report problems, ask questions, or provide feedback, please use [Issues](https://github.com/fingerprintjs/go-sdk/issues). If you need private support, you can email us at [oss-support@fingerprint.com](mailto:oss-support@fingerprint.com).
+To report problems, ask questions, or provide feedback, please use [Issues](https://github.com/TheUnderScorer/go-sdk/issues). If you need private support, you can email us at [oss-support@fingerprint.com](mailto:oss-support@fingerprint.com).
 
 ## License
 
-This project is licensed under the [MIT license](https://github.com/fingerprintjs/go-sdk/blob/main/LICENSE).
+This project is licensed under the [MIT license](https://github.com/TheUnderScorer/go-sdk/blob/main/LICENSE).

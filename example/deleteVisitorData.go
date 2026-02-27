@@ -6,7 +6,7 @@ import (
 	"log"
 	"os"
 
-	"github.com/fingerprintjs/go-sdk"
+	"github.com/TheUnderScorer/go-sdk"
 	"github.com/joho/godotenv"
 )
 

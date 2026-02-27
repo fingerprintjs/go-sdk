@@ -1,4 +1,4 @@
-module github.com/fingerprintjs/fingerprint-pro-server-api-go-sdk/functionaltest
+module github.com/TheUnderScorer/fingerprint-pro-server-api-go-sdk/functionaltest
 
 go 1.21
 
