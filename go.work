@@ -3,6 +3,6 @@ go 1.21
 use (
 	./example
 	./functional_test
-	./v8
+	./
 	./test
 )
