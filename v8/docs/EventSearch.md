@@ -5,8 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Events** | [**[]Event**](Event.md) |  | 
-**PaginationKey** | Pointer to **string** | Use this value in the &#x60;pagination_key&#x60; parameter to request the next page of search results. | [optional] 
-**TotalHits** | Pointer to **int64** | This value represents the total number of events matching the search query, up to the limit provided in the &#x60;total_hits&#x60; query parameter. Only present if the &#x60;total_hits&#x60; query parameter was provided. | [optional] 
+**PaginationKey** | Pointer to **string** | Use this value in the `pagination_key` parameter to request the next page of search results. | [optional] 
+**TotalHits** | Pointer to **int64** | This value represents the total number of events matching the search query, up to the limit provided in the `total_hits` query parameter. Only present if the `total_hits` query parameter was provided. | [optional] 
 
 ## Methods
 
@@ -99,5 +99,4 @@ HasTotalHits returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
 

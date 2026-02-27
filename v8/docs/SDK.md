@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Platform** | **string** | Platform of the SDK used for the identification request. | 
-**Version** | **string** | Version string of the SDK used for the identification request. For example: &#x60;\&quot;3.12.1\&quot;&#x60;  | 
+**Version** | **string** | Version string of the SDK used for the identification request. For example: `\"3.12.1\"`  | 
 **Integrations** | Pointer to [**[]Integration**](Integration.md) |  | [optional] 
 
 ## Methods
@@ -94,5 +94,4 @@ HasIntegrations returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
 

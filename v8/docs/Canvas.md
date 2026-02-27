@@ -5,8 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Winding** | Pointer to **bool** |  | [optional] 
-**Geometry** | Pointer to **string** | Hash of geometry rendering output or &#x60;unsupported&#x60; markers. | [optional] 
-**Text** | Pointer to **string** | Hash of text rendering output or &#x60;unsupported&#x60; markers. | [optional] 
+**Geometry** | Pointer to **string** | Hash of geometry rendering output or `unsupported` markers. | [optional] 
+**Text** | Pointer to **string** | Hash of text rendering output or `unsupported` markers. | [optional] 
 
 ## Methods
 
@@ -104,5 +104,4 @@ HasText returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
 
