@@ -8,7 +8,7 @@ import (
 	"reflect"
 	"testing"
 
-	fingerprint "github.com/fingerprintjs/go-sdk/v8"
+	fingerprint "github.com/fingerprintjs/go-sdk"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
