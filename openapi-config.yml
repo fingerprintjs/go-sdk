@@ -1,5 +1,5 @@
 generatorName: go
-outputDir: /local/internal
+outputDir: /local
 
 gitUserId: fingerprintjs
 gitRepoId: go-sdk/v8
