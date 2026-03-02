@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | Pointer to **string** | The name of the specific subintegration, e.g. \&quot;preact\&quot;. | [optional] 
-**Version** | Pointer to **string** | The version of the specific subintegration, e.g. \&quot;10.21.0\&quot;. | [optional] 
+**Name** | Pointer to **string** | The name of the specific subintegration, e.g. \"preact\". | [optional] 
+**Version** | Pointer to **string** | The version of the specific subintegration, e.g. \"10.21.0\". | [optional] 
 
 ## Methods
 
