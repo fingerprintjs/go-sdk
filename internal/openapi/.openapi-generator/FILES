@@ -1,13 +1,8 @@
-../../api_error.go
 ../../docs/DecryptionKey.md
 ../../docs/SealedResults.md
 ../../docs/Webhook.md
-../../fingerprint.go
 ../../models.go
-../../options.go
-../../region.go
-../../sealed.go
-../../webhook.go
+../../version.go
 README.md
 api/openapi.yaml
 api_fingerprint.go

@@ -8,8 +8,6 @@ import (
 	"github.com/fingerprintjs/go-sdk/v8/internal/openapi"
 )
 
-const Version = "8.0.0-test.4"
-
 var IntegrationInfo = fmt.Sprintf(`fingerprint-pro-server-go-sdk/%s`, Version)
 
 type sdkIdentTransport struct {
