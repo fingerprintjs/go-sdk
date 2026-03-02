@@ -1,534 +1,534 @@
 package fingerprint
 
 import (
-	"github.com/fingerprintjs/go-sdk/v8/internal"
+	"github.com/fingerprintjs/go-sdk/v8/internal/openapi"
 )
 
-type BotInfo = internal.BotInfo
+type BotInfo = openapi.BotInfo
 
-var NewBotInfo = internal.NewBotInfo
+var NewBotInfo = openapi.NewBotInfo
 
-var NewBotInfoWithDefaults = internal.NewBotInfoWithDefaults
+var NewBotInfoWithDefaults = openapi.NewBotInfoWithDefaults
 
-type NullableBotInfo = internal.NullableBotInfo
+type NullableBotInfo = openapi.NullableBotInfo
 
-var NewNullableBotInfo = internal.NewNullableBotInfo
+var NewNullableBotInfo = openapi.NewNullableBotInfo
 
-type BotResult = internal.BotResult
+type BotResult = openapi.BotResult
 
 const (
-	BotResultBad          = internal.BotResultBad
-	BotResultGood         = internal.BotResultGood
-	BotResultNot_detected = internal.BotResultNot_detected
+	BotResultBad          = openapi.BotResultBad
+	BotResultGood         = openapi.BotResultGood
+	BotResultNot_detected = openapi.BotResultNot_detected
 )
 
-var AllowedBotResultEnumValues = internal.AllowedBotResultEnumValues
+var AllowedBotResultEnumValues = openapi.AllowedBotResultEnumValues
 
-var NewBotResultFromValue = internal.NewBotResultFromValue
+var NewBotResultFromValue = openapi.NewBotResultFromValue
 
-type NullableBotResult = internal.NullableBotResult
+type NullableBotResult = openapi.NullableBotResult
 
-var NewNullableBotResult = internal.NewNullableBotResult
+var NewNullableBotResult = openapi.NewNullableBotResult
 
-type BrowserDetails = internal.BrowserDetails
+type BrowserDetails = openapi.BrowserDetails
 
-var NewBrowserDetails = internal.NewBrowserDetails
+var NewBrowserDetails = openapi.NewBrowserDetails
 
-var NewBrowserDetailsWithDefaults = internal.NewBrowserDetailsWithDefaults
+var NewBrowserDetailsWithDefaults = openapi.NewBrowserDetailsWithDefaults
 
-type NullableBrowserDetails = internal.NullableBrowserDetails
+type NullableBrowserDetails = openapi.NullableBrowserDetails
 
-var NewNullableBrowserDetails = internal.NewNullableBrowserDetails
+var NewNullableBrowserDetails = openapi.NewNullableBrowserDetails
 
-type Canvas = internal.Canvas
+type Canvas = openapi.Canvas
 
-var NewCanvas = internal.NewCanvas
+var NewCanvas = openapi.NewCanvas
 
-var NewCanvasWithDefaults = internal.NewCanvasWithDefaults
+var NewCanvasWithDefaults = openapi.NewCanvasWithDefaults
 
-type NullableCanvas = internal.NullableCanvas
+type NullableCanvas = openapi.NullableCanvas
 
-var NewNullableCanvas = internal.NewNullableCanvas
+var NewNullableCanvas = openapi.NewNullableCanvas
 
-type Emoji = internal.Emoji
+type Emoji = openapi.Emoji
 
-var NewEmoji = internal.NewEmoji
+var NewEmoji = openapi.NewEmoji
 
-var NewEmojiWithDefaults = internal.NewEmojiWithDefaults
+var NewEmojiWithDefaults = openapi.NewEmojiWithDefaults
 
-type NullableEmoji = internal.NullableEmoji
+type NullableEmoji = openapi.NullableEmoji
 
-var NewNullableEmoji = internal.NewNullableEmoji
+var NewNullableEmoji = openapi.NewNullableEmoji
 
-type Error = internal.Error
+type Error = openapi.Error
 
-var NewError = internal.NewError
+var NewError = openapi.NewError
 
-var NewErrorWithDefaults = internal.NewErrorWithDefaults
+var NewErrorWithDefaults = openapi.NewErrorWithDefaults
 
-type NullableError = internal.NullableError
+type NullableError = openapi.NullableError
 
-var NewNullableError = internal.NewNullableError
+var NewNullableError = openapi.NewNullableError
 
-type ErrorCode = internal.ErrorCode
+type ErrorCode = openapi.ErrorCode
 
 const (
-	ErrorCodeRequest_cannot_be_parsed = internal.ErrorCodeRequest_cannot_be_parsed
-	ErrorCodeSecret_api_key_required  = internal.ErrorCodeSecret_api_key_required
-	ErrorCodeSecret_api_key_not_found = internal.ErrorCodeSecret_api_key_not_found
-	ErrorCodePublic_api_key_required  = internal.ErrorCodePublic_api_key_required
-	ErrorCodePublic_api_key_not_found = internal.ErrorCodePublic_api_key_not_found
-	ErrorCodeSubscription_not_active  = internal.ErrorCodeSubscription_not_active
-	ErrorCodeWrong_region             = internal.ErrorCodeWrong_region
-	ErrorCodeFeature_not_enabled      = internal.ErrorCodeFeature_not_enabled
-	ErrorCodeRequest_not_found        = internal.ErrorCodeRequest_not_found
-	ErrorCodeVisitor_not_found        = internal.ErrorCodeVisitor_not_found
-	ErrorCodeToo_many_requests        = internal.ErrorCodeToo_many_requests
-	ErrorCodeState_not_ready          = internal.ErrorCodeState_not_ready
-	ErrorCodeFailed                   = internal.ErrorCodeFailed
-	ErrorCodeEvent_not_found          = internal.ErrorCodeEvent_not_found
-	ErrorCodeMissing_module           = internal.ErrorCodeMissing_module
-	ErrorCodePayload_too_large        = internal.ErrorCodePayload_too_large
-	ErrorCodeService_unavailable      = internal.ErrorCodeService_unavailable
-	ErrorCodeRuleset_not_found        = internal.ErrorCodeRuleset_not_found
+	ErrorCodeRequest_cannot_be_parsed = openapi.ErrorCodeRequest_cannot_be_parsed
+	ErrorCodeSecret_api_key_required  = openapi.ErrorCodeSecret_api_key_required
+	ErrorCodeSecret_api_key_not_found = openapi.ErrorCodeSecret_api_key_not_found
+	ErrorCodePublic_api_key_required  = openapi.ErrorCodePublic_api_key_required
+	ErrorCodePublic_api_key_not_found = openapi.ErrorCodePublic_api_key_not_found
+	ErrorCodeSubscription_not_active  = openapi.ErrorCodeSubscription_not_active
+	ErrorCodeWrong_region             = openapi.ErrorCodeWrong_region
+	ErrorCodeFeature_not_enabled      = openapi.ErrorCodeFeature_not_enabled
+	ErrorCodeRequest_not_found        = openapi.ErrorCodeRequest_not_found
+	ErrorCodeVisitor_not_found        = openapi.ErrorCodeVisitor_not_found
+	ErrorCodeToo_many_requests        = openapi.ErrorCodeToo_many_requests
+	ErrorCodeState_not_ready          = openapi.ErrorCodeState_not_ready
+	ErrorCodeFailed                   = openapi.ErrorCodeFailed
+	ErrorCodeEvent_not_found          = openapi.ErrorCodeEvent_not_found
+	ErrorCodeMissing_module           = openapi.ErrorCodeMissing_module
+	ErrorCodePayload_too_large        = openapi.ErrorCodePayload_too_large
+	ErrorCodeService_unavailable      = openapi.ErrorCodeService_unavailable
+	ErrorCodeRuleset_not_found        = openapi.ErrorCodeRuleset_not_found
 )
 
-var AllowedErrorCodeEnumValues = internal.AllowedErrorCodeEnumValues
+var AllowedErrorCodeEnumValues = openapi.AllowedErrorCodeEnumValues
 
-var NewErrorCodeFromValue = internal.NewErrorCodeFromValue
+var NewErrorCodeFromValue = openapi.NewErrorCodeFromValue
 
-type NullableErrorCode = internal.NullableErrorCode
+type NullableErrorCode = openapi.NullableErrorCode
 
-var NewNullableErrorCode = internal.NewNullableErrorCode
+var NewNullableErrorCode = openapi.NewNullableErrorCode
 
-type ErrorResponse = internal.ErrorResponse
+type ErrorResponse = openapi.ErrorResponse
 
-var NewErrorResponse = internal.NewErrorResponse
+var NewErrorResponse = openapi.NewErrorResponse
 
-var NewErrorResponseWithDefaults = internal.NewErrorResponseWithDefaults
+var NewErrorResponseWithDefaults = openapi.NewErrorResponseWithDefaults
 
-type NullableErrorResponse = internal.NullableErrorResponse
+type NullableErrorResponse = openapi.NullableErrorResponse
 
-var NewNullableErrorResponse = internal.NewNullableErrorResponse
+var NewNullableErrorResponse = openapi.NewNullableErrorResponse
 
-type Event = internal.Event
+type Event = openapi.Event
 
-var NewEvent = internal.NewEvent
+var NewEvent = openapi.NewEvent
 
-var NewEventWithDefaults = internal.NewEventWithDefaults
+var NewEventWithDefaults = openapi.NewEventWithDefaults
 
-type NullableEvent = internal.NullableEvent
+type NullableEvent = openapi.NullableEvent
 
-var NewNullableEvent = internal.NewNullableEvent
+var NewNullableEvent = openapi.NewNullableEvent
 
-type EventRuleAction = internal.EventRuleAction
+type EventRuleAction = openapi.EventRuleAction
 
-type NullableEventRuleAction = internal.NullableEventRuleAction
+type NullableEventRuleAction = openapi.NullableEventRuleAction
 
-var NewNullableEventRuleAction = internal.NewNullableEventRuleAction
+var NewNullableEventRuleAction = openapi.NewNullableEventRuleAction
 
-type EventRuleActionAllow = internal.EventRuleActionAllow
+type EventRuleActionAllow = openapi.EventRuleActionAllow
 
-var NewEventRuleActionAllow = internal.NewEventRuleActionAllow
+var NewEventRuleActionAllow = openapi.NewEventRuleActionAllow
 
-var NewEventRuleActionAllowWithDefaults = internal.NewEventRuleActionAllowWithDefaults
+var NewEventRuleActionAllowWithDefaults = openapi.NewEventRuleActionAllowWithDefaults
 
-type NullableEventRuleActionAllow = internal.NullableEventRuleActionAllow
+type NullableEventRuleActionAllow = openapi.NullableEventRuleActionAllow
 
-var NewNullableEventRuleActionAllow = internal.NewNullableEventRuleActionAllow
+var NewNullableEventRuleActionAllow = openapi.NewNullableEventRuleActionAllow
 
-type EventRuleActionBlock = internal.EventRuleActionBlock
+type EventRuleActionBlock = openapi.EventRuleActionBlock
 
-var NewEventRuleActionBlock = internal.NewEventRuleActionBlock
+var NewEventRuleActionBlock = openapi.NewEventRuleActionBlock
 
-var NewEventRuleActionBlockWithDefaults = internal.NewEventRuleActionBlockWithDefaults
+var NewEventRuleActionBlockWithDefaults = openapi.NewEventRuleActionBlockWithDefaults
 
-type NullableEventRuleActionBlock = internal.NullableEventRuleActionBlock
+type NullableEventRuleActionBlock = openapi.NullableEventRuleActionBlock
 
-var NewNullableEventRuleActionBlock = internal.NewNullableEventRuleActionBlock
+var NewNullableEventRuleActionBlock = openapi.NewNullableEventRuleActionBlock
 
-type EventSearch = internal.EventSearch
+type EventSearch = openapi.EventSearch
 
-var NewEventSearch = internal.NewEventSearch
+var NewEventSearch = openapi.NewEventSearch
 
-var NewEventSearchWithDefaults = internal.NewEventSearchWithDefaults
+var NewEventSearchWithDefaults = openapi.NewEventSearchWithDefaults
 
-type NullableEventSearch = internal.NullableEventSearch
+type NullableEventSearch = openapi.NullableEventSearch
 
-var NewNullableEventSearch = internal.NewNullableEventSearch
+var NewNullableEventSearch = openapi.NewNullableEventSearch
 
-type EventUpdate = internal.EventUpdate
+type EventUpdate = openapi.EventUpdate
 
-var NewEventUpdate = internal.NewEventUpdate
+var NewEventUpdate = openapi.NewEventUpdate
 
-var NewEventUpdateWithDefaults = internal.NewEventUpdateWithDefaults
+var NewEventUpdateWithDefaults = openapi.NewEventUpdateWithDefaults
 
-type NullableEventUpdate = internal.NullableEventUpdate
+type NullableEventUpdate = openapi.NullableEventUpdate
 
-var NewNullableEventUpdate = internal.NewNullableEventUpdate
+var NewNullableEventUpdate = openapi.NewNullableEventUpdate
 
-type FontPreferences = internal.FontPreferences
+type FontPreferences = openapi.FontPreferences
 
-var NewFontPreferences = internal.NewFontPreferences
+var NewFontPreferences = openapi.NewFontPreferences
 
-var NewFontPreferencesWithDefaults = internal.NewFontPreferencesWithDefaults
+var NewFontPreferencesWithDefaults = openapi.NewFontPreferencesWithDefaults
 
-type NullableFontPreferences = internal.NullableFontPreferences
+type NullableFontPreferences = openapi.NullableFontPreferences
 
-var NewNullableFontPreferences = internal.NewNullableFontPreferences
+var NewNullableFontPreferences = openapi.NewNullableFontPreferences
 
-type Geolocation = internal.Geolocation
+type Geolocation = openapi.Geolocation
 
-var NewGeolocation = internal.NewGeolocation
+var NewGeolocation = openapi.NewGeolocation
 
-var NewGeolocationWithDefaults = internal.NewGeolocationWithDefaults
+var NewGeolocationWithDefaults = openapi.NewGeolocationWithDefaults
 
-type NullableGeolocation = internal.NullableGeolocation
+type NullableGeolocation = openapi.NullableGeolocation
 
-var NewNullableGeolocation = internal.NewNullableGeolocation
+var NewNullableGeolocation = openapi.NewNullableGeolocation
 
-type GeolocationSubdivisionsInner = internal.GeolocationSubdivisionsInner
+type GeolocationSubdivisionsInner = openapi.GeolocationSubdivisionsInner
 
-var NewGeolocationSubdivisionsInner = internal.NewGeolocationSubdivisionsInner
+var NewGeolocationSubdivisionsInner = openapi.NewGeolocationSubdivisionsInner
 
-var NewGeolocationSubdivisionsInnerWithDefaults = internal.NewGeolocationSubdivisionsInnerWithDefaults
+var NewGeolocationSubdivisionsInnerWithDefaults = openapi.NewGeolocationSubdivisionsInnerWithDefaults
 
-type NullableGeolocationSubdivisionsInner = internal.NullableGeolocationSubdivisionsInner
+type NullableGeolocationSubdivisionsInner = openapi.NullableGeolocationSubdivisionsInner
 
-var NewNullableGeolocationSubdivisionsInner = internal.NewNullableGeolocationSubdivisionsInner
+var NewNullableGeolocationSubdivisionsInner = openapi.NewNullableGeolocationSubdivisionsInner
 
-type IPBlockList = internal.IPBlockList
+type IPBlockList = openapi.IPBlockList
 
-var NewIPBlockList = internal.NewIPBlockList
+var NewIPBlockList = openapi.NewIPBlockList
 
-var NewIPBlockListWithDefaults = internal.NewIPBlockListWithDefaults
+var NewIPBlockListWithDefaults = openapi.NewIPBlockListWithDefaults
 
-type NullableIPBlockList = internal.NullableIPBlockList
+type NullableIPBlockList = openapi.NullableIPBlockList
 
-var NewNullableIPBlockList = internal.NewNullableIPBlockList
+var NewNullableIPBlockList = openapi.NewNullableIPBlockList
 
-type IPInfo = internal.IPInfo
+type IPInfo = openapi.IPInfo
 
-var NewIPInfo = internal.NewIPInfo
+var NewIPInfo = openapi.NewIPInfo
 
-var NewIPInfoWithDefaults = internal.NewIPInfoWithDefaults
+var NewIPInfoWithDefaults = openapi.NewIPInfoWithDefaults
 
-type NullableIPInfo = internal.NullableIPInfo
+type NullableIPInfo = openapi.NullableIPInfo
 
-var NewNullableIPInfo = internal.NewNullableIPInfo
+var NewNullableIPInfo = openapi.NewNullableIPInfo
 
-type IPInfoV4 = internal.IPInfoV4
+type IPInfoV4 = openapi.IPInfoV4
 
-var NewIPInfoV4 = internal.NewIPInfoV4
+var NewIPInfoV4 = openapi.NewIPInfoV4
 
-var NewIPInfoV4WithDefaults = internal.NewIPInfoV4WithDefaults
+var NewIPInfoV4WithDefaults = openapi.NewIPInfoV4WithDefaults
 
-type NullableIPInfoV4 = internal.NullableIPInfoV4
+type NullableIPInfoV4 = openapi.NullableIPInfoV4
 
-var NewNullableIPInfoV4 = internal.NewNullableIPInfoV4
+var NewNullableIPInfoV4 = openapi.NewNullableIPInfoV4
 
-type IPInfoV6 = internal.IPInfoV6
+type IPInfoV6 = openapi.IPInfoV6
 
-var NewIPInfoV6 = internal.NewIPInfoV6
+var NewIPInfoV6 = openapi.NewIPInfoV6
 
-var NewIPInfoV6WithDefaults = internal.NewIPInfoV6WithDefaults
+var NewIPInfoV6WithDefaults = openapi.NewIPInfoV6WithDefaults
 
-type NullableIPInfoV6 = internal.NullableIPInfoV6
+type NullableIPInfoV6 = openapi.NullableIPInfoV6
 
-var NewNullableIPInfoV6 = internal.NewNullableIPInfoV6
+var NewNullableIPInfoV6 = openapi.NewNullableIPInfoV6
 
-type Identification = internal.Identification
+type Identification = openapi.Identification
 
-var NewIdentification = internal.NewIdentification
+var NewIdentification = openapi.NewIdentification
 
-var NewIdentificationWithDefaults = internal.NewIdentificationWithDefaults
+var NewIdentificationWithDefaults = openapi.NewIdentificationWithDefaults
 
-type NullableIdentification = internal.NullableIdentification
+type NullableIdentification = openapi.NullableIdentification
 
-var NewNullableIdentification = internal.NewNullableIdentification
+var NewNullableIdentification = openapi.NewNullableIdentification
 
-type IdentificationConfidence = internal.IdentificationConfidence
+type IdentificationConfidence = openapi.IdentificationConfidence
 
-var NewIdentificationConfidence = internal.NewIdentificationConfidence
+var NewIdentificationConfidence = openapi.NewIdentificationConfidence
 
-var NewIdentificationConfidenceWithDefaults = internal.NewIdentificationConfidenceWithDefaults
+var NewIdentificationConfidenceWithDefaults = openapi.NewIdentificationConfidenceWithDefaults
 
-type NullableIdentificationConfidence = internal.NullableIdentificationConfidence
+type NullableIdentificationConfidence = openapi.NullableIdentificationConfidence
 
-var NewNullableIdentificationConfidence = internal.NewNullableIdentificationConfidence
+var NewNullableIdentificationConfidence = openapi.NewNullableIdentificationConfidence
 
-type Integration = internal.Integration
+type Integration = openapi.Integration
 
-var NewIntegration = internal.NewIntegration
+var NewIntegration = openapi.NewIntegration
 
-var NewIntegrationWithDefaults = internal.NewIntegrationWithDefaults
+var NewIntegrationWithDefaults = openapi.NewIntegrationWithDefaults
 
-type NullableIntegration = internal.NullableIntegration
+type NullableIntegration = openapi.NullableIntegration
 
-var NewNullableIntegration = internal.NewNullableIntegration
+var NewNullableIntegration = openapi.NewNullableIntegration
 
-type IntegrationSubintegration = internal.IntegrationSubintegration
+type IntegrationSubintegration = openapi.IntegrationSubintegration
 
-var NewIntegrationSubintegration = internal.NewIntegrationSubintegration
+var NewIntegrationSubintegration = openapi.NewIntegrationSubintegration
 
-var NewIntegrationSubintegrationWithDefaults = internal.NewIntegrationSubintegrationWithDefaults
+var NewIntegrationSubintegrationWithDefaults = openapi.NewIntegrationSubintegrationWithDefaults
 
-type NullableIntegrationSubintegration = internal.NullableIntegrationSubintegration
+type NullableIntegrationSubintegration = openapi.NullableIntegrationSubintegration
 
-var NewNullableIntegrationSubintegration = internal.NewNullableIntegrationSubintegration
+var NewNullableIntegrationSubintegration = openapi.NewNullableIntegrationSubintegration
 
-type PluginsInner = internal.PluginsInner
+type PluginsInner = openapi.PluginsInner
 
-var NewPluginsInner = internal.NewPluginsInner
+var NewPluginsInner = openapi.NewPluginsInner
 
-var NewPluginsInnerWithDefaults = internal.NewPluginsInnerWithDefaults
+var NewPluginsInnerWithDefaults = openapi.NewPluginsInnerWithDefaults
 
-type NullablePluginsInner = internal.NullablePluginsInner
+type NullablePluginsInner = openapi.NullablePluginsInner
 
-var NewNullablePluginsInner = internal.NewNullablePluginsInner
+var NewNullablePluginsInner = openapi.NewNullablePluginsInner
 
-type PluginsInnerMimeTypesInner = internal.PluginsInnerMimeTypesInner
+type PluginsInnerMimeTypesInner = openapi.PluginsInnerMimeTypesInner
 
-var NewPluginsInnerMimeTypesInner = internal.NewPluginsInnerMimeTypesInner
+var NewPluginsInnerMimeTypesInner = openapi.NewPluginsInnerMimeTypesInner
 
-var NewPluginsInnerMimeTypesInnerWithDefaults = internal.NewPluginsInnerMimeTypesInnerWithDefaults
+var NewPluginsInnerMimeTypesInnerWithDefaults = openapi.NewPluginsInnerMimeTypesInnerWithDefaults
 
-type NullablePluginsInnerMimeTypesInner = internal.NullablePluginsInnerMimeTypesInner
+type NullablePluginsInnerMimeTypesInner = openapi.NullablePluginsInnerMimeTypesInner
 
-var NewNullablePluginsInnerMimeTypesInner = internal.NewNullablePluginsInnerMimeTypesInner
+var NewNullablePluginsInnerMimeTypesInner = openapi.NewNullablePluginsInnerMimeTypesInner
 
-type Proximity = internal.Proximity
+type Proximity = openapi.Proximity
 
-var NewProximity = internal.NewProximity
+var NewProximity = openapi.NewProximity
 
-var NewProximityWithDefaults = internal.NewProximityWithDefaults
+var NewProximityWithDefaults = openapi.NewProximityWithDefaults
 
-type NullableProximity = internal.NullableProximity
+type NullableProximity = openapi.NullableProximity
 
-var NewNullableProximity = internal.NewNullableProximity
+var NewNullableProximity = openapi.NewNullableProximity
 
-type ProxyConfidence = internal.ProxyConfidence
+type ProxyConfidence = openapi.ProxyConfidence
 
 const (
-	ProxyConfidenceLow    = internal.ProxyConfidenceLow
-	ProxyConfidenceMedium = internal.ProxyConfidenceMedium
-	ProxyConfidenceHigh   = internal.ProxyConfidenceHigh
+	ProxyConfidenceLow    = openapi.ProxyConfidenceLow
+	ProxyConfidenceMedium = openapi.ProxyConfidenceMedium
+	ProxyConfidenceHigh   = openapi.ProxyConfidenceHigh
 )
 
-var AllowedProxyConfidenceEnumValues = internal.AllowedProxyConfidenceEnumValues
+var AllowedProxyConfidenceEnumValues = openapi.AllowedProxyConfidenceEnumValues
 
-var NewProxyConfidenceFromValue = internal.NewProxyConfidenceFromValue
+var NewProxyConfidenceFromValue = openapi.NewProxyConfidenceFromValue
 
-type NullableProxyConfidence = internal.NullableProxyConfidence
+type NullableProxyConfidence = openapi.NullableProxyConfidence
 
-var NewNullableProxyConfidence = internal.NewNullableProxyConfidence
+var NewNullableProxyConfidence = openapi.NewNullableProxyConfidence
 
-type ProxyDetails = internal.ProxyDetails
+type ProxyDetails = openapi.ProxyDetails
 
-var NewProxyDetails = internal.NewProxyDetails
+var NewProxyDetails = openapi.NewProxyDetails
 
-var NewProxyDetailsWithDefaults = internal.NewProxyDetailsWithDefaults
+var NewProxyDetailsWithDefaults = openapi.NewProxyDetailsWithDefaults
 
-type NullableProxyDetails = internal.NullableProxyDetails
+type NullableProxyDetails = openapi.NullableProxyDetails
 
-var NewNullableProxyDetails = internal.NewNullableProxyDetails
+var NewNullableProxyDetails = openapi.NewNullableProxyDetails
 
-type RawDeviceAttributes = internal.RawDeviceAttributes
+type RawDeviceAttributes = openapi.RawDeviceAttributes
 
-var NewRawDeviceAttributes = internal.NewRawDeviceAttributes
+var NewRawDeviceAttributes = openapi.NewRawDeviceAttributes
 
-var NewRawDeviceAttributesWithDefaults = internal.NewRawDeviceAttributesWithDefaults
+var NewRawDeviceAttributesWithDefaults = openapi.NewRawDeviceAttributesWithDefaults
 
-type NullableRawDeviceAttributes = internal.NullableRawDeviceAttributes
+type NullableRawDeviceAttributes = openapi.NullableRawDeviceAttributes
 
-var NewNullableRawDeviceAttributes = internal.NewNullableRawDeviceAttributes
+var NewNullableRawDeviceAttributes = openapi.NewNullableRawDeviceAttributes
 
-type RequestHeaderModifications = internal.RequestHeaderModifications
+type RequestHeaderModifications = openapi.RequestHeaderModifications
 
-var NewRequestHeaderModifications = internal.NewRequestHeaderModifications
+var NewRequestHeaderModifications = openapi.NewRequestHeaderModifications
 
-var NewRequestHeaderModificationsWithDefaults = internal.NewRequestHeaderModificationsWithDefaults
+var NewRequestHeaderModificationsWithDefaults = openapi.NewRequestHeaderModificationsWithDefaults
 
-type NullableRequestHeaderModifications = internal.NullableRequestHeaderModifications
+type NullableRequestHeaderModifications = openapi.NullableRequestHeaderModifications
 
-var NewNullableRequestHeaderModifications = internal.NewNullableRequestHeaderModifications
+var NewNullableRequestHeaderModifications = openapi.NewNullableRequestHeaderModifications
 
-type RuleActionHeaderField = internal.RuleActionHeaderField
+type RuleActionHeaderField = openapi.RuleActionHeaderField
 
-var NewRuleActionHeaderField = internal.NewRuleActionHeaderField
+var NewRuleActionHeaderField = openapi.NewRuleActionHeaderField
 
-var NewRuleActionHeaderFieldWithDefaults = internal.NewRuleActionHeaderFieldWithDefaults
+var NewRuleActionHeaderFieldWithDefaults = openapi.NewRuleActionHeaderFieldWithDefaults
 
-type NullableRuleActionHeaderField = internal.NullableRuleActionHeaderField
+type NullableRuleActionHeaderField = openapi.NullableRuleActionHeaderField
 
-var NewNullableRuleActionHeaderField = internal.NewNullableRuleActionHeaderField
+var NewNullableRuleActionHeaderField = openapi.NewNullableRuleActionHeaderField
 
-type RuleActionType = internal.RuleActionType
+type RuleActionType = openapi.RuleActionType
 
 const (
-	RuleActionTypeAllow = internal.RuleActionTypeAllow
-	RuleActionTypeBlock = internal.RuleActionTypeBlock
+	RuleActionTypeAllow = openapi.RuleActionTypeAllow
+	RuleActionTypeBlock = openapi.RuleActionTypeBlock
 )
 
-var AllowedRuleActionTypeEnumValues = internal.AllowedRuleActionTypeEnumValues
+var AllowedRuleActionTypeEnumValues = openapi.AllowedRuleActionTypeEnumValues
 
-var NewRuleActionTypeFromValue = internal.NewRuleActionTypeFromValue
+var NewRuleActionTypeFromValue = openapi.NewRuleActionTypeFromValue
 
-type NullableRuleActionType = internal.NullableRuleActionType
+type NullableRuleActionType = openapi.NullableRuleActionType
 
-var NewNullableRuleActionType = internal.NewNullableRuleActionType
+var NewNullableRuleActionType = openapi.NewNullableRuleActionType
 
-type SDK = internal.SDK
+type SDK = openapi.SDK
 
-var NewSDK = internal.NewSDK
+var NewSDK = openapi.NewSDK
 
-var NewSDKWithDefaults = internal.NewSDKWithDefaults
+var NewSDKWithDefaults = openapi.NewSDKWithDefaults
 
-type NullableSDK = internal.NullableSDK
+type NullableSDK = openapi.NullableSDK
 
-var NewNullableSDK = internal.NewNullableSDK
+var NewNullableSDK = openapi.NewNullableSDK
 
-type SearchEventsBot = internal.SearchEventsBot
+type SearchEventsBot = openapi.SearchEventsBot
 
 const (
-	SearchEventsBotAll  = internal.SearchEventsBotAll
-	SearchEventsBotGood = internal.SearchEventsBotGood
-	SearchEventsBotBad  = internal.SearchEventsBotBad
-	SearchEventsBotNone = internal.SearchEventsBotNone
+	SearchEventsBotAll  = openapi.SearchEventsBotAll
+	SearchEventsBotGood = openapi.SearchEventsBotGood
+	SearchEventsBotBad  = openapi.SearchEventsBotBad
+	SearchEventsBotNone = openapi.SearchEventsBotNone
 )
 
-var AllowedSearchEventsBotEnumValues = internal.AllowedSearchEventsBotEnumValues
+var AllowedSearchEventsBotEnumValues = openapi.AllowedSearchEventsBotEnumValues
 
-var NewSearchEventsBotFromValue = internal.NewSearchEventsBotFromValue
+var NewSearchEventsBotFromValue = openapi.NewSearchEventsBotFromValue
 
-type NullableSearchEventsBot = internal.NullableSearchEventsBot
+type NullableSearchEventsBot = openapi.NullableSearchEventsBot
 
-var NewNullableSearchEventsBot = internal.NewNullableSearchEventsBot
+var NewNullableSearchEventsBot = openapi.NewNullableSearchEventsBot
 
-type SearchEventsSDKPlatform = internal.SearchEventsSDKPlatform
+type SearchEventsSDKPlatform = openapi.SearchEventsSDKPlatform
 
 const (
-	SearchEventsSDKPlatformJs      = internal.SearchEventsSDKPlatformJs
-	SearchEventsSDKPlatformAndroid = internal.SearchEventsSDKPlatformAndroid
-	SearchEventsSDKPlatformIos     = internal.SearchEventsSDKPlatformIos
+	SearchEventsSDKPlatformJs      = openapi.SearchEventsSDKPlatformJs
+	SearchEventsSDKPlatformAndroid = openapi.SearchEventsSDKPlatformAndroid
+	SearchEventsSDKPlatformIos     = openapi.SearchEventsSDKPlatformIos
 )
 
-var AllowedSearchEventsSDKPlatformEnumValues = internal.AllowedSearchEventsSDKPlatformEnumValues
+var AllowedSearchEventsSDKPlatformEnumValues = openapi.AllowedSearchEventsSDKPlatformEnumValues
 
-var NewSearchEventsSDKPlatformFromValue = internal.NewSearchEventsSDKPlatformFromValue
+var NewSearchEventsSDKPlatformFromValue = openapi.NewSearchEventsSDKPlatformFromValue
 
-type NullableSearchEventsSDKPlatform = internal.NullableSearchEventsSDKPlatform
+type NullableSearchEventsSDKPlatform = openapi.NullableSearchEventsSDKPlatform
 
-var NewNullableSearchEventsSDKPlatform = internal.NewNullableSearchEventsSDKPlatform
+var NewNullableSearchEventsSDKPlatform = openapi.NewNullableSearchEventsSDKPlatform
 
-type SearchEventsVPNConfidence = internal.SearchEventsVPNConfidence
+type SearchEventsVPNConfidence = openapi.SearchEventsVPNConfidence
 
 const (
-	SearchEventsVPNConfidenceHigh   = internal.SearchEventsVPNConfidenceHigh
-	SearchEventsVPNConfidenceMedium = internal.SearchEventsVPNConfidenceMedium
-	SearchEventsVPNConfidenceLow    = internal.SearchEventsVPNConfidenceLow
+	SearchEventsVPNConfidenceHigh   = openapi.SearchEventsVPNConfidenceHigh
+	SearchEventsVPNConfidenceMedium = openapi.SearchEventsVPNConfidenceMedium
+	SearchEventsVPNConfidenceLow    = openapi.SearchEventsVPNConfidenceLow
 )
 
-var AllowedSearchEventsVPNConfidenceEnumValues = internal.AllowedSearchEventsVPNConfidenceEnumValues
+var AllowedSearchEventsVPNConfidenceEnumValues = openapi.AllowedSearchEventsVPNConfidenceEnumValues
 
-var NewSearchEventsVPNConfidenceFromValue = internal.NewSearchEventsVPNConfidenceFromValue
+var NewSearchEventsVPNConfidenceFromValue = openapi.NewSearchEventsVPNConfidenceFromValue
 
-type NullableSearchEventsVPNConfidence = internal.NullableSearchEventsVPNConfidence
+type NullableSearchEventsVPNConfidence = openapi.NullableSearchEventsVPNConfidence
 
-var NewNullableSearchEventsVPNConfidence = internal.NewNullableSearchEventsVPNConfidence
+var NewNullableSearchEventsVPNConfidence = openapi.NewNullableSearchEventsVPNConfidence
 
-type SupplementaryIDHighRecall = internal.SupplementaryIDHighRecall
+type SupplementaryIDHighRecall = openapi.SupplementaryIDHighRecall
 
-var NewSupplementaryIDHighRecall = internal.NewSupplementaryIDHighRecall
+var NewSupplementaryIDHighRecall = openapi.NewSupplementaryIDHighRecall
 
-var NewSupplementaryIDHighRecallWithDefaults = internal.NewSupplementaryIDHighRecallWithDefaults
+var NewSupplementaryIDHighRecallWithDefaults = openapi.NewSupplementaryIDHighRecallWithDefaults
 
-type NullableSupplementaryIDHighRecall = internal.NullableSupplementaryIDHighRecall
+type NullableSupplementaryIDHighRecall = openapi.NullableSupplementaryIDHighRecall
 
-var NewNullableSupplementaryIDHighRecall = internal.NewNullableSupplementaryIDHighRecall
+var NewNullableSupplementaryIDHighRecall = openapi.NewNullableSupplementaryIDHighRecall
 
-type TamperingDetails = internal.TamperingDetails
+type TamperingDetails = openapi.TamperingDetails
 
-var NewTamperingDetails = internal.NewTamperingDetails
+var NewTamperingDetails = openapi.NewTamperingDetails
 
-var NewTamperingDetailsWithDefaults = internal.NewTamperingDetailsWithDefaults
+var NewTamperingDetailsWithDefaults = openapi.NewTamperingDetailsWithDefaults
 
-type NullableTamperingDetails = internal.NullableTamperingDetails
+type NullableTamperingDetails = openapi.NullableTamperingDetails
 
-var NewNullableTamperingDetails = internal.NewNullableTamperingDetails
+var NewNullableTamperingDetails = openapi.NewNullableTamperingDetails
 
-type TouchSupport = internal.TouchSupport
+type TouchSupport = openapi.TouchSupport
 
-var NewTouchSupport = internal.NewTouchSupport
+var NewTouchSupport = openapi.NewTouchSupport
 
-var NewTouchSupportWithDefaults = internal.NewTouchSupportWithDefaults
+var NewTouchSupportWithDefaults = openapi.NewTouchSupportWithDefaults
 
-type NullableTouchSupport = internal.NullableTouchSupport
+type NullableTouchSupport = openapi.NullableTouchSupport
 
-var NewNullableTouchSupport = internal.NewNullableTouchSupport
+var NewNullableTouchSupport = openapi.NewNullableTouchSupport
 
-type VPNConfidence = internal.VPNConfidence
+type VPNConfidence = openapi.VPNConfidence
 
 const (
-	VPNConfidenceLow    = internal.VPNConfidenceLow
-	VPNConfidenceMedium = internal.VPNConfidenceMedium
-	VPNConfidenceHigh   = internal.VPNConfidenceHigh
+	VPNConfidenceLow    = openapi.VPNConfidenceLow
+	VPNConfidenceMedium = openapi.VPNConfidenceMedium
+	VPNConfidenceHigh   = openapi.VPNConfidenceHigh
 )
 
-var AllowedVPNConfidenceEnumValues = internal.AllowedVPNConfidenceEnumValues
+var AllowedVPNConfidenceEnumValues = openapi.AllowedVPNConfidenceEnumValues
 
-var NewVPNConfidenceFromValue = internal.NewVPNConfidenceFromValue
+var NewVPNConfidenceFromValue = openapi.NewVPNConfidenceFromValue
 
-type NullableVPNConfidence = internal.NullableVPNConfidence
+type NullableVPNConfidence = openapi.NullableVPNConfidence
 
-var NewNullableVPNConfidence = internal.NewNullableVPNConfidence
+var NewNullableVPNConfidence = openapi.NewNullableVPNConfidence
 
-type VPNMethods = internal.VPNMethods
+type VPNMethods = openapi.VPNMethods
 
-var NewVPNMethods = internal.NewVPNMethods
+var NewVPNMethods = openapi.NewVPNMethods
 
-var NewVPNMethodsWithDefaults = internal.NewVPNMethodsWithDefaults
+var NewVPNMethodsWithDefaults = openapi.NewVPNMethodsWithDefaults
 
-type NullableVPNMethods = internal.NullableVPNMethods
+type NullableVPNMethods = openapi.NullableVPNMethods
 
-var NewNullableVPNMethods = internal.NewNullableVPNMethods
+var NewNullableVPNMethods = openapi.NewNullableVPNMethods
 
-type Velocity = internal.Velocity
+type Velocity = openapi.Velocity
 
-var NewVelocity = internal.NewVelocity
+var NewVelocity = openapi.NewVelocity
 
-var NewVelocityWithDefaults = internal.NewVelocityWithDefaults
+var NewVelocityWithDefaults = openapi.NewVelocityWithDefaults
 
-type NullableVelocity = internal.NullableVelocity
+type NullableVelocity = openapi.NullableVelocity
 
-var NewNullableVelocity = internal.NewNullableVelocity
+var NewNullableVelocity = openapi.NewNullableVelocity
 
-type VelocityData = internal.VelocityData
+type VelocityData = openapi.VelocityData
 
-var NewVelocityData = internal.NewVelocityData
+var NewVelocityData = openapi.NewVelocityData
 
-var NewVelocityDataWithDefaults = internal.NewVelocityDataWithDefaults
+var NewVelocityDataWithDefaults = openapi.NewVelocityDataWithDefaults
 
-type NullableVelocityData = internal.NullableVelocityData
+type NullableVelocityData = openapi.NullableVelocityData
 
-var NewNullableVelocityData = internal.NewNullableVelocityData
+var NewNullableVelocityData = openapi.NewNullableVelocityData
 
-type WebGlBasics = internal.WebGlBasics
+type WebGlBasics = openapi.WebGlBasics
 
-var NewWebGlBasics = internal.NewWebGlBasics
+var NewWebGlBasics = openapi.NewWebGlBasics
 
-var NewWebGlBasicsWithDefaults = internal.NewWebGlBasicsWithDefaults
+var NewWebGlBasicsWithDefaults = openapi.NewWebGlBasicsWithDefaults
 
-type NullableWebGlBasics = internal.NullableWebGlBasics
+type NullableWebGlBasics = openapi.NullableWebGlBasics
 
-var NewNullableWebGlBasics = internal.NewNullableWebGlBasics
+var NewNullableWebGlBasics = openapi.NewNullableWebGlBasics
 
-type WebGlExtensions = internal.WebGlExtensions
+type WebGlExtensions = openapi.WebGlExtensions
 
-var NewWebGlExtensions = internal.NewWebGlExtensions
+var NewWebGlExtensions = openapi.NewWebGlExtensions
 
-var NewWebGlExtensionsWithDefaults = internal.NewWebGlExtensionsWithDefaults
+var NewWebGlExtensionsWithDefaults = openapi.NewWebGlExtensionsWithDefaults
 
-type NullableWebGlExtensions = internal.NullableWebGlExtensions
+type NullableWebGlExtensions = openapi.NullableWebGlExtensions
 
-var NewNullableWebGlExtensions = internal.NewNullableWebGlExtensions
+var NewNullableWebGlExtensions = openapi.NewNullableWebGlExtensions

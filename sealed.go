@@ -11,7 +11,7 @@ import (
 	"io"
 	"strings"
 
-	"github.com/fingerprintjs/go-sdk/v8/internal"
+	"github.com/fingerprintjs/go-sdk/v8/internal/openapi"
 )
 
 type Algorithm string
@@ -38,14 +38,14 @@ type DecryptionKey struct {
 // The will try to decrypt the result with each key until it succeeds.
 // In case if all keys fail, AggregatedUnsealError is returned with error details for each key.
 // To learn more about sealed results visit: https://dev.fingerprint.com/docs/sealed-client-results
-func UnsealEventsResponse(sealed []byte, keys []DecryptionKey) (*internal.Event, error) {
+func UnsealEventsResponse(sealed []byte, keys []DecryptionKey) (*openapi.Event, error) {
 	unsealed, err := Unseal(sealed, keys)
 
 	if err != nil {
 		return nil, err
 	}
 
-	var eventResponse internal.Event
+	var eventResponse openapi.Event
 
 	err = json.Unmarshal(unsealed, &eventResponse)
 

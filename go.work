@@ -4,6 +4,5 @@ use (
 	./example
 	./functional_test
 	./
-	./internal
 	./test
 )

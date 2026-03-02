@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
-    "{{gitHost}}/{{gitUserId}}/{{gitRepoId}}{{#isGoSubmodule}}/{{packageName}}{{/isGoSubmodule}}/internal"
+    "{{gitHost}}/{{gitUserId}}/{{gitRepoId}}{{#isGoSubmodule}}/{{packageName}}{{/isGoSubmodule}}/internal/openapi"
 )
 
 const Version = "8.0.0-test.4"
@@ -26,20 +26,20 @@ func (t *sdkIdentTransport) RoundTrip(req *http.Request) (*http.Response, error)
 }
 
 type Client struct {
-	api     *internal.APIClient
+	api     *openapi.APIClient
 	region  Region
 	apiKey  string
 	baseURL string
 }
 
 func New(opts ...ConfigOption) *Client {
-	cfg := internal.NewConfiguration()
+	cfg := openapi.NewConfiguration()
 	httpClient := &http.Client{
 		Transport: &sdkIdentTransport{base: http.DefaultTransport},
 	}
 	cfg.HTTPClient = httpClient
 	c := &Client{
-		api:    internal.NewAPIClient(cfg),
+		api:    openapi.NewAPIClient(cfg),
 		region: RegionUS,
 	}
 
@@ -48,7 +48,7 @@ func New(opts ...ConfigOption) *Client {
 	}
 
 	if c.baseURL != "" {
-		cfg.Servers = internal.ServerConfigurations{
+		cfg.Servers = openapi.ServerConfigurations{
 			{URL: c.baseURL},
 		}
 	}
@@ -57,24 +57,24 @@ func New(opts ...ConfigOption) *Client {
 }
 
 func (c *Client) withRegion(ctx context.Context) context.Context {
-	if ctx.Value(internal.ContextServerIndex) != nil {
+	if ctx.Value(openapi.ContextServerIndex) != nil {
 		return ctx
 	}
 	return WithRegionContext(ctx, c.api.GetConfig(), c.region)
 }
 
 func (c *Client) withAPIKey(ctx context.Context) context.Context {
-	if ctx.Value(internal.ContextAccessToken) != nil {
+	if ctx.Value(openapi.ContextAccessToken) != nil {
 		return ctx
 	}
 
-	return context.WithValue(ctx, internal.ContextAccessToken, c.apiKey)
+	return context.WithValue(ctx, openapi.ContextAccessToken, c.apiKey)
 }
 
-type GetEventOption func(request *internal.ApiGetEventRequest)
+type GetEventOption func(request *openapi.ApiGetEventRequest)
 
 func WithRulesetID(rulesetID string) GetEventOption {
-	return func(request *internal.ApiGetEventRequest) {
+	return func(request *openapi.ApiGetEventRequest) {
 		*request = request.RulesetID(rulesetID)
 	}
 }
@@ -82,7 +82,7 @@ func WithRulesetID(rulesetID string) GetEventOption {
 /*
 GetEvent Get an event by event ID. See FingerprintAPIService.GetEvent for details.
 */
-func (c *Client) GetEvent(ctx context.Context, eventID string, opts ...GetEventOption) (*internal.Event, *http.Response, error) {
+func (c *Client) GetEvent(ctx context.Context, eventID string, opts ...GetEventOption) (*openapi.Event, *http.Response, error) {
 	ctx = c.withRegion(ctx)
 	ctx = c.withAPIKey(ctx)
 
@@ -98,14 +98,14 @@ func (c *Client) GetEvent(ctx context.Context, eventID string, opts ...GetEventO
 /*
 NewSearchEventsRequest Create a search event request. See FingerprintAPIService.SearchEvents for details.
 */
-func NewSearchEventsRequest() internal.ApiSearchEventsRequest {
-	return internal.ApiSearchEventsRequest{ApiService: nil}
+func NewSearchEventsRequest() openapi.ApiSearchEventsRequest {
+	return openapi.ApiSearchEventsRequest{ApiService: nil}
 }
 
 /*
 SearchEvents Send a search event request. See FingerprintAPIService.SearchEvents for details.
 */
-func (c *Client) SearchEvents(ctx context.Context, req internal.ApiSearchEventsRequest) (*internal.EventSearch, *http.Response, error) {
+func (c *Client) SearchEvents(ctx context.Context, req openapi.ApiSearchEventsRequest) (*openapi.EventSearch, *http.Response, error) {
 	ctx = c.withRegion(ctx)
 	ctx = c.withAPIKey(ctx)
 	return c.api.FingerprintAPI.SearchEventsExecute(ctx, req)
@@ -114,7 +114,7 @@ func (c *Client) SearchEvents(ctx context.Context, req internal.ApiSearchEventsR
 /*
 UpdateEvent Update an event. See FingerprintAPIService.UpdateEvent for details.
 */
-func (c *Client) UpdateEvent(ctx context.Context, eventId string, eventUpdateReq internal.EventUpdate) (*http.Response, error) {
+func (c *Client) UpdateEvent(ctx context.Context, eventId string, eventUpdateReq openapi.EventUpdate) (*http.Response, error) {
 	ctx = c.withRegion(ctx)
 	ctx = c.withAPIKey(ctx)
 	return c.api.FingerprintAPI.UpdateEvent(eventId).EventUpdate(eventUpdateReq).Execute(ctx)
