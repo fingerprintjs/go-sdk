@@ -48,3 +48,9 @@ func WithFingerprintAPI(fingerprintAPI FingerprintAPI) ConfigOption {
 		c.api.FingerprintAPI = fingerprintAPI
 	}
 }
+
+func WithDebug(debug bool) ConfigOption {
+	return func(c *Client) {
+		c.api.GetConfig().Debug = debug
+	}
+}
