@@ -1,0 +1,39 @@
+package fingerprint
+
+import (
+	"{{gitHost}}/{{gitUserId}}/{{gitRepoId}}{{#isGoSubmodule}}/{{packageName}}{{/isGoSubmodule}}/internal"
+)
+
+{{#models}}
+{{#model}}
+type {{classname}} = internal.{{classname}}
+{{#isEnum}}
+
+const (
+{{#allowableValues}}
+{{#enumVars}}
+	{{classname}}{{#lambda.titlecase}}{{#lambda.lowercase}}{{name}}{{/lambda.lowercase}}{{/lambda.titlecase}} = internal.{{classname}}{{#lambda.titlecase}}{{#lambda.lowercase}}{{name}}{{/lambda.lowercase}}{{/lambda.titlecase}}
+{{/enumVars}}
+{{/allowableValues}}
+)
+
+var Allowed{{classname}}EnumValues = internal.Allowed{{classname}}EnumValues
+
+var New{{classname}}FromValue = internal.New{{classname}}FromValue
+{{/isEnum}}
+{{^isEnum}}
+{{^oneOf}}
+{{^anyOf}}
+
+var New{{classname}} = internal.New{{classname}}
+
+var New{{classname}}WithDefaults = internal.New{{classname}}WithDefaults
+{{/anyOf}}
+{{/oneOf}}
+{{/isEnum}}
+
+type Nullable{{classname}} = internal.Nullable{{classname}}
+
+var NewNullable{{classname}} = internal.NewNullable{{classname}}
+{{/model}}
+{{/models}}

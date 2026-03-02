@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
-    "{{gitHost}}/{{gitUserId}}/{{gitRepoId}}{{#isGoSubmodule}}/{{packageName}}{{/isGoSubmodule}}/internal"
+	"github.com/fingerprintjs/go-sdk/v8/internal"
 )
 
 const Version = "8.0.0-test.4"
@@ -128,4 +128,3 @@ func (c *Client) DeleteVisitorData(ctx context.Context, visitorId string) (*http
 	ctx = c.withAPIKey(ctx)
 	return c.api.FingerprintAPI.DeleteVisitorData(visitorId).Execute(ctx)
 }
-

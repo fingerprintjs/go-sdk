@@ -1,18 +1,22 @@
-package {{packageName}}
+package fingerprint
 
-import "errors"
+import (
+	"errors"
 
-func AsErrorResponse(err error) (*ErrorResponse, bool) {
+    "{{gitHost}}/{{gitUserId}}/{{gitRepoId}}{{#isGoSubmodule}}/{{packageName}}{{/isGoSubmodule}}/internal"
+)
+
+func AsErrorResponse(err error) (*internal.ErrorResponse, bool) {
 	if err == nil {
 		return nil, false
 	}
 
-	var apiErr *GenericOpenAPIError
+	var apiErr *internal.GenericOpenAPIError
 	if !errors.As(err, &apiErr) {
 		return nil, false
 	}
 
-	v, ok := apiErr.Model().(ErrorResponse)
+	v, ok := apiErr.Model().(internal.ErrorResponse)
 	if !ok {
 		return nil, false
 	}

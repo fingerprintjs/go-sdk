@@ -2,7 +2,15 @@
 
 set -e
 
+SDK_DIR="internal"
 PACKAGE_VERSION=$(node -p "require('./package.json').version")
+
+prepare_directory(){
+  rm -rf $SDK_DIR
+  rm -rf docs
+  mkdir -p $SDK_DIR
+  cp .openapi-generator-ignore $SDK_DIR
+}
 
 cleanup() {
   LIST_FILE=".openapi-generator/FILES"
@@ -41,6 +49,22 @@ run_generator() {
       # Please use the config file for all other configuration
 }
 
-cleanup
+move_docs() {
+  # Move generated docs to the root directory
+  if [ -d "internal/docs" ]; then
+      mkdir -p docs
+      mv internal/docs/* docs/
+      rm -rf internal/docs
+      git add docs/
+  fi
+  
+  # Move generated README to the root directory
+  if [ -f "internal/README.md" ]; then
+      mv internal/README.md README.md
+  fi
+}
+
+prepare_directory
 run_generator
+move_docs
 gofmt -w .
