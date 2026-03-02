@@ -42,3 +42,9 @@ func WithHTTPClient(httpClient *http.Client) ConfigOption {
 		c.api.GetConfig().HTTPClient = &cloned
 	}
 }
+
+func WithFingerprintAPI(fingerprintAPI FingerprintAPI) ConfigOption {
+	return func(c *Client) {
+		c.api.FingerprintAPI = fingerprintAPI
+	}
+}
