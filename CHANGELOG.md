@@ -1,5 +1,11 @@
 # Fingerprint Pro Server Go SDK
 
+## 8.0.0-test.5
+
+### Minor Changes
+
+- Move generated code to `internal` directory ([f29aacc](https://github.com/fingerprintjs/go-sdk/commit/f29aaccb16673ab07968832d3c1fd0db4b69703a))
+
 ## 8.0.0-test.4
 
 ### Patch Changes
