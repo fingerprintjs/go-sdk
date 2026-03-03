@@ -1,0 +1,40 @@
+{{>partial_header}}
+package fingerprint
+
+import (
+	"{{gitHost}}/{{gitUserId}}/{{gitRepoId}}{{#isGoSubmodule}}/{{packageName}}{{/isGoSubmodule}}/internal/openapi"
+)
+
+{{#models}}
+{{#model}}
+type {{classname}} = openapi.{{classname}}
+{{#isEnum}}
+
+const (
+{{#allowableValues}}
+{{#enumVars}}
+	{{classname}}{{#lambda.titlecase}}{{#lambda.lowercase}}{{name}}{{/lambda.lowercase}}{{/lambda.titlecase}} = openapi.{{classname}}{{#lambda.titlecase}}{{#lambda.lowercase}}{{name}}{{/lambda.lowercase}}{{/lambda.titlecase}}
+{{/enumVars}}
+{{/allowableValues}}
+)
+
+var Allowed{{classname}}EnumValues = openapi.Allowed{{classname}}EnumValues
+
+var New{{classname}}FromValue = openapi.New{{classname}}FromValue
+{{/isEnum}}
+{{^isEnum}}
+{{^oneOf}}
+{{^anyOf}}
+
+var New{{classname}} = openapi.New{{classname}}
+
+var New{{classname}}WithDefaults = openapi.New{{classname}}WithDefaults
+{{/anyOf}}
+{{/oneOf}}
+{{/isEnum}}
+
+type Nullable{{classname}} = openapi.Nullable{{classname}}
+
+var NewNullable{{classname}} = openapi.NewNullable{{classname}}
+{{/model}}
+{{/models}}
