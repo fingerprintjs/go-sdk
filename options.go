@@ -1,6 +1,8 @@
 package fingerprint
 
-import "net/http"
+import (
+	"net/http"
+)
 
 type ConfigOption func(*Client)
 
@@ -43,7 +45,7 @@ func WithHTTPClient(httpClient *http.Client) ConfigOption {
 	}
 }
 
-func WithFingerprintAPI(fingerprintAPI FingerprintAPI) ConfigOption {
+func WithFingerprintAPI(fingerprintAPI API) ConfigOption {
 	return func(c *Client) {
 		c.api.FingerprintAPI = fingerprintAPI
 	}
