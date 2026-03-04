@@ -6,6 +6,7 @@ import (
 	"github.com/fingerprintjs/go-sdk/v8/internal/openapi"
 )
 
+// AsErrorResponse attempts to convert an error to an [openapi.ErrorResponse] and returns a boolean indicating success.
 func AsErrorResponse(err error) (*openapi.ErrorResponse, bool) {
 	if err == nil {
 		return nil, false
