@@ -10,7 +10,7 @@ import (
 
 type API = openapi.FingerprintAPI
 
-var IntegrationInfo = fmt.Sprintf(`fingerprint-pro-server-go-sdk/%s`, Version)
+var integrationInfo = fmt.Sprintf(`fingerprint-pro-server-go-sdk/%s`, Version)
 
 type sdkIdentTransport struct {
 	base http.RoundTripper
@@ -19,12 +19,13 @@ type sdkIdentTransport struct {
 func (t *sdkIdentTransport) RoundTrip(req *http.Request) (*http.Response, error) {
 	clonedReq := req.Clone(req.Context())
 	query := clonedReq.URL.Query()
-	query.Add("ii", IntegrationInfo)
+	query.Add("ii", integrationInfo)
 	clonedReq.URL.RawQuery = query.Encode()
 
 	return t.base.RoundTrip(clonedReq)
 }
 
+// Client is the main client for interacting with the Fingerprint API.
 type Client struct {
 	api     *openapi.APIClient
 	region  Region
@@ -32,6 +33,7 @@ type Client struct {
 	baseURL string
 }
 
+// New creates a new Fingerprint API client with the given configuration options.
 func New(opts ...ConfigOption) *Client {
 	cfg := openapi.NewConfiguration()
 	httpClient := &http.Client{
@@ -71,17 +73,17 @@ func (c *Client) withAPIKey(ctx context.Context) context.Context {
 	return context.WithValue(ctx, openapi.ContextAccessToken, c.apiKey)
 }
 
+// GetEventOption is a functional option for configuring [Client.GetEvent] requests.
 type GetEventOption func(request *openapi.ApiGetEventRequest)
 
+// WithRulesetID sets the ruleset ID for the [Client.GetEvent] request.
 func WithRulesetID(rulesetID string) GetEventOption {
 	return func(request *openapi.ApiGetEventRequest) {
 		*request = request.RulesetID(rulesetID)
 	}
 }
 
-/*
-GetEvent Get an event by event ID. See FingerprintAPIService.GetEvent for details.
-*/
+// GetEvent retrieves an event by event ID. See [openapi.FingerprintAPI.GetEvent] for details.
 func (c *Client) GetEvent(ctx context.Context, eventID string, opts ...GetEventOption) (*openapi.Event, *http.Response, error) {
 	ctx = c.withRegion(ctx)
 	ctx = c.withAPIKey(ctx)
@@ -95,34 +97,26 @@ func (c *Client) GetEvent(ctx context.Context, eventID string, opts ...GetEventO
 	return req.Execute(ctx)
 }
 
-/*
-NewSearchEventsRequest Create a search event request. See FingerprintAPIService.SearchEvents for details.
-*/
+// NewSearchEventsRequest creates a search event request. See [openapi.FingerprintAPI.SearchEvents] for details.
 func NewSearchEventsRequest() openapi.ApiSearchEventsRequest {
 	return openapi.ApiSearchEventsRequest{ApiService: nil}
 }
 
-/*
-SearchEvents Send a search event request. See FingerprintAPIService.SearchEvents for details.
-*/
+// SearchEvents sends a search event request. See [openapi.FingerprintAPI.SearchEvents] for details.
 func (c *Client) SearchEvents(ctx context.Context, req openapi.ApiSearchEventsRequest) (*openapi.EventSearch, *http.Response, error) {
 	ctx = c.withRegion(ctx)
 	ctx = c.withAPIKey(ctx)
 	return c.api.FingerprintAPI.SearchEventsExecute(ctx, req)
 }
 
-/*
-UpdateEvent Update an event. See FingerprintAPIService.UpdateEvent for details.
-*/
+// UpdateEvent updates an event. See [openapi.FingerprintAPI.UpdateEvent] for details.
 func (c *Client) UpdateEvent(ctx context.Context, eventId string, eventUpdateReq openapi.EventUpdate) (*http.Response, error) {
 	ctx = c.withRegion(ctx)
 	ctx = c.withAPIKey(ctx)
 	return c.api.FingerprintAPI.UpdateEvent(eventId).EventUpdate(eventUpdateReq).Execute(ctx)
 }
 
-/*
-DeleteVisitorData Delete data by visitor ID. See FingerprintAPIService.DeleteVisitorData for details.
-*/
+// DeleteVisitorData deletes data by visitor ID. See [openapi.FingerprintAPI.DeleteVisitorData] for details.
 func (c *Client) DeleteVisitorData(ctx context.Context, visitorId string) (*http.Response, error) {
 	ctx = c.withRegion(ctx)
 	ctx = c.withAPIKey(ctx)
