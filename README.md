@@ -180,7 +180,7 @@ func main() {
 
 ```
 
-To learn more, refer to example located in [example/sealedResults.go](../example/sealedResults.go).
+To learn more, refer to example located in [example/sealedResults.go](example/sealedResults.go).
 
 ## Webhook signing
 
@@ -212,7 +212,7 @@ func main() {
 }
 ```
 
-To learn more, refer to example located in [example/webhookSignature.go](../example/webhookSignature.go).
+To learn more, refer to example located in [example/webhookSignature.go](example/webhookSignature.go).
 
 ## Documentation for API Endpoints
 
