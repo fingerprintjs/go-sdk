@@ -6,10 +6,10 @@ SDK_DIR="internal/openapi"
 PACKAGE_VERSION=$(node -p "require('./package.json').version")
 
 prepare_directory(){
-  rm -rf $SDK_DIR
+  rm -rf "$SDK_DIR"
   rm -rf docs
-  mkdir -p $SDK_DIR
-  cp .openapi-generator-ignore $SDK_DIR
+  mkdir -p "$SDK_DIR"
+  cp .openapi-generator-ignore "$SDK_DIR"
 }
 
 cleanup() {
@@ -28,7 +28,7 @@ cleanup() {
       if [[ -e "$filepath" ]]; then
           rm "$filepath"
           if [[ $? -eq 0 ]]; then
-              echo "Successfully removed: $filepath"
+              echo "Successfully removed: '$filepath'"
           else
               echo "Failed to remove: $filepath"
           fi
@@ -44,23 +44,22 @@ run_generator() {
       -c /local/openapi-config.yml \
       -i /local/res/fingerprint-server-api-v4.yaml \
       -t /local/template \
-      --additional-properties=packageVersion=$PACKAGE_VERSION
+      --additional-properties=packageVersion="$PACKAGE_VERSION"
       # Note: 'packageVersion' is not configured via config file because we need to inject its value at runtime
       # Please use the config file for all other configuration
 }
 
 move_docs() {
   # Move generated docs to the root directory
-  if [ -d "internal/openapi/docs" ]; then
+  if [ -d "$SDK_DIR/docs" ]; then
       mkdir -p docs
-      mv internal/openapi/docs/* docs/
-      rm -rf internal/openapi/docs
-      git add docs/
+      mv "$SDK_DIR"/docs/* docs/
+      rm -rf "$SDK_DIR/docs"
   fi
   
   # Move generated README to the root directory
-  if [ -f "internal/openapi/README.md" ]; then
-      mv internal/openapi/README.md README.md
+  if [ -f "$SDK_DIR/README.md" ]; then
+      mv "$SDK_DIR/README.md" README.md
   fi
 }
 
