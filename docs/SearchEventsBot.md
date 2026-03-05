@@ -3,13 +3,13 @@
 ## Enum
 
 
-* `ALL` (value: `"all"`)
+* `All` (value: `"all"`)
 
-* `GOOD` (value: `"good"`)
+* `Good` (value: `"good"`)
 
-* `BAD` (value: `"bad"`)
+* `Bad` (value: `"bad"`)
 
-* `NONE` (value: `"none"`)
+* `None` (value: `"none"`)
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

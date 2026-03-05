@@ -19,9 +19,9 @@ type BotInfo = openapi.BotInfo
 type BotResult = openapi.BotResult
 
 const (
-	BotResultBad          = openapi.BotResultBad
-	BotResultGood         = openapi.BotResultGood
-	BotResultNot_detected = openapi.BotResultNot_detected
+	BotResultBad         = openapi.BotResultBad
+	BotResultGood        = openapi.BotResultGood
+	BotResultNotDetected = openapi.BotResultNotDetected
 )
 
 type BrowserDetails = openapi.BrowserDetails
@@ -31,24 +31,24 @@ type Error = openapi.Error
 type ErrorCode = openapi.ErrorCode
 
 const (
-	ErrorCodeRequest_cannot_be_parsed = openapi.ErrorCodeRequest_cannot_be_parsed
-	ErrorCodeSecret_api_key_required  = openapi.ErrorCodeSecret_api_key_required
-	ErrorCodeSecret_api_key_not_found = openapi.ErrorCodeSecret_api_key_not_found
-	ErrorCodePublic_api_key_required  = openapi.ErrorCodePublic_api_key_required
-	ErrorCodePublic_api_key_not_found = openapi.ErrorCodePublic_api_key_not_found
-	ErrorCodeSubscription_not_active  = openapi.ErrorCodeSubscription_not_active
-	ErrorCodeWrong_region             = openapi.ErrorCodeWrong_region
-	ErrorCodeFeature_not_enabled      = openapi.ErrorCodeFeature_not_enabled
-	ErrorCodeRequest_not_found        = openapi.ErrorCodeRequest_not_found
-	ErrorCodeVisitor_not_found        = openapi.ErrorCodeVisitor_not_found
-	ErrorCodeToo_many_requests        = openapi.ErrorCodeToo_many_requests
-	ErrorCodeState_not_ready          = openapi.ErrorCodeState_not_ready
-	ErrorCodeFailed                   = openapi.ErrorCodeFailed
-	ErrorCodeEvent_not_found          = openapi.ErrorCodeEvent_not_found
-	ErrorCodeMissing_module           = openapi.ErrorCodeMissing_module
-	ErrorCodePayload_too_large        = openapi.ErrorCodePayload_too_large
-	ErrorCodeService_unavailable      = openapi.ErrorCodeService_unavailable
-	ErrorCodeRuleset_not_found        = openapi.ErrorCodeRuleset_not_found
+	ErrorCodeRequestCannotBeParsed = openapi.ErrorCodeRequestCannotBeParsed
+	ErrorCodeSecretAPIKeyRequired  = openapi.ErrorCodeSecretAPIKeyRequired
+	ErrorCodeSecretAPIKeyNotFound  = openapi.ErrorCodeSecretAPIKeyNotFound
+	ErrorCodePublicAPIKeyRequired  = openapi.ErrorCodePublicAPIKeyRequired
+	ErrorCodePublicAPIKeyNotFound  = openapi.ErrorCodePublicAPIKeyNotFound
+	ErrorCodeSubscriptionNotActive = openapi.ErrorCodeSubscriptionNotActive
+	ErrorCodeWrongRegion           = openapi.ErrorCodeWrongRegion
+	ErrorCodeFeatureNotEnabled     = openapi.ErrorCodeFeatureNotEnabled
+	ErrorCodeRequestNotFound       = openapi.ErrorCodeRequestNotFound
+	ErrorCodeVisitorNotFound       = openapi.ErrorCodeVisitorNotFound
+	ErrorCodeTooManyRequests       = openapi.ErrorCodeTooManyRequests
+	ErrorCodeStateNotReady         = openapi.ErrorCodeStateNotReady
+	ErrorCodeFailed                = openapi.ErrorCodeFailed
+	ErrorCodeEventNotFound         = openapi.ErrorCodeEventNotFound
+	ErrorCodeMissingModule         = openapi.ErrorCodeMissingModule
+	ErrorCodePayloadTooLarge       = openapi.ErrorCodePayloadTooLarge
+	ErrorCodeServiceUnavailable    = openapi.ErrorCodeServiceUnavailable
+	ErrorCodeRulesetNotFound       = openapi.ErrorCodeRulesetNotFound
 )
 
 type ErrorResponse = openapi.ErrorResponse

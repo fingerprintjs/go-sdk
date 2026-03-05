@@ -3,11 +3,11 @@
 ## Enum
 
 
-* `LOW` (value: `"low"`)
+* `Low` (value: `"low"`)
 
-* `MEDIUM` (value: `"medium"`)
+* `Medium` (value: `"medium"`)
 
-* `HIGH` (value: `"high"`)
+* `High` (value: `"high"`)
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

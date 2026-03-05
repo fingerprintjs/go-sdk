@@ -17,9 +17,9 @@ func exampleWrongAPIKey() {
 	if err != nil {
 		if errResp, ok := fingerprint.AsErrorResponse(err); ok {
 			switch errResp.Error.Code {
-			case fingerprint.ErrorCodeEvent_not_found:
+			case fingerprint.ErrorCodeEventNotFound:
 				fmt.Println("event not found")
-			case fingerprint.ErrorCodeSecret_api_key_not_found:
+			case fingerprint.ErrorCodeSecretAPIKeyNotFound:
 				fmt.Println("secret api key not found")
 			default:
 				fmt.Printf("unexpected error: %s\n", errResp.Error.Message)
@@ -42,9 +42,9 @@ func exampleWrongEventId() {
 	if err != nil {
 		if errResp, ok := fingerprint.AsErrorResponse(err); ok {
 			switch errResp.Error.Code {
-			case fingerprint.ErrorCodeEvent_not_found:
+			case fingerprint.ErrorCodeEventNotFound:
 				fmt.Println("event not found")
-			case fingerprint.ErrorCodeSecret_api_key_not_found:
+			case fingerprint.ErrorCodeSecretAPIKeyNotFound:
 				fmt.Println("secret api key not found")
 			default:
 				fmt.Printf("unexpected error: %s\n", errResp.Error.Message)
