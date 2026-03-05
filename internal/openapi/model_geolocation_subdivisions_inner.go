@@ -28,73 +28,6 @@ type GeolocationSubdivisionsInner struct {
 
 type _GeolocationSubdivisionsInner GeolocationSubdivisionsInner
 
-// NewGeolocationSubdivisionsInner instantiates a new GeolocationSubdivisionsInner object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewGeolocationSubdivisionsInner(isoCode string, name string) *GeolocationSubdivisionsInner {
-	this := GeolocationSubdivisionsInner{}
-	this.IsoCode = isoCode
-	this.Name = name
-	return &this
-}
-
-// NewGeolocationSubdivisionsInnerWithDefaults instantiates a new GeolocationSubdivisionsInner object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewGeolocationSubdivisionsInnerWithDefaults() *GeolocationSubdivisionsInner {
-	this := GeolocationSubdivisionsInner{}
-	return &this
-}
-
-// GetIsoCode returns the IsoCode field value
-func (o *GeolocationSubdivisionsInner) GetIsoCode() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.IsoCode
-}
-
-// GetIsoCodeOk returns a tuple with the IsoCode field value
-// and a boolean to check if the value has been set.
-func (o *GeolocationSubdivisionsInner) GetIsoCodeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.IsoCode, true
-}
-
-// SetIsoCode sets field value
-func (o *GeolocationSubdivisionsInner) SetIsoCode(v string) {
-	o.IsoCode = v
-}
-
-// GetName returns the Name field value
-func (o *GeolocationSubdivisionsInner) GetName() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Name
-}
-
-// GetNameOk returns a tuple with the Name field value
-// and a boolean to check if the value has been set.
-func (o *GeolocationSubdivisionsInner) GetNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Name, true
-}
-
-// SetName sets field value
-func (o *GeolocationSubdivisionsInner) SetName(v string) {
-	o.Name = v
-}
-
 func (o GeolocationSubdivisionsInner) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -157,40 +90,4 @@ func (o *GeolocationSubdivisionsInner) UnmarshalJSON(data []byte) (err error) {
 	}
 
 	return err
-}
-
-type NullableGeolocationSubdivisionsInner struct {
-	value *GeolocationSubdivisionsInner
-	isSet bool
-}
-
-func (v NullableGeolocationSubdivisionsInner) Get() *GeolocationSubdivisionsInner {
-	return v.value
-}
-
-func (v *NullableGeolocationSubdivisionsInner) Set(val *GeolocationSubdivisionsInner) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableGeolocationSubdivisionsInner) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableGeolocationSubdivisionsInner) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableGeolocationSubdivisionsInner(val *GeolocationSubdivisionsInner) *NullableGeolocationSubdivisionsInner {
-	return &NullableGeolocationSubdivisionsInner{value: val, isSet: true}
-}
-
-func (v NullableGeolocationSubdivisionsInner) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableGeolocationSubdivisionsInner) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
 }
