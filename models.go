@@ -419,9 +419,9 @@ var NewNullableSearchEventsBot = openapi.NewNullableSearchEventsBot
 type SearchEventsSDKPlatform = openapi.SearchEventsSDKPlatform
 
 const (
-	SearchEventsSDKPlatformJs      = openapi.SearchEventsSDKPlatformJs
+	SearchEventsSDKPlatformJS      = openapi.SearchEventsSDKPlatformJS
 	SearchEventsSDKPlatformAndroid = openapi.SearchEventsSDKPlatformAndroid
-	SearchEventsSDKPlatformIos     = openapi.SearchEventsSDKPlatformIos
+	SearchEventsSDKPlatformIOS     = openapi.SearchEventsSDKPlatformIOS
 )
 
 var AllowedSearchEventsSDKPlatformEnumValues = openapi.AllowedSearchEventsSDKPlatformEnumValues

@@ -21,16 +21,16 @@ type SearchEventsSDKPlatform string
 
 // List of SearchEventsSDKPlatform
 const (
-	SearchEventsSDKPlatformJs      SearchEventsSDKPlatform = "js"
+	SearchEventsSDKPlatformJS      SearchEventsSDKPlatform = "js"
 	SearchEventsSDKPlatformAndroid SearchEventsSDKPlatform = "android"
-	SearchEventsSDKPlatformIos     SearchEventsSDKPlatform = "ios"
+	SearchEventsSDKPlatformIOS     SearchEventsSDKPlatform = "ios"
 )
 
 // All allowed values of SearchEventsSDKPlatform enum
 var AllowedSearchEventsSDKPlatformEnumValues = []SearchEventsSDKPlatform{
-	SearchEventsSDKPlatformJs,
+	SearchEventsSDKPlatformJS,
 	SearchEventsSDKPlatformAndroid,
-	SearchEventsSDKPlatformIos,
+	SearchEventsSDKPlatformIOS,
 }
 
 func (v *SearchEventsSDKPlatform) UnmarshalJSON(src []byte) error {
