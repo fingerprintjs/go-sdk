@@ -191,7 +191,7 @@ WithRulesetID sets the ruleset used to evaluate the event
 
 [**Event**](Event.md)
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to top]](#fingerprintapi-client) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
@@ -373,7 +373,7 @@ Name | Type | Description  | Notes
 
 [**EventSearch**](EventSearch.md)
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to top]](#fingerprintapi-client) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
@@ -436,7 +436,7 @@ Name | Type | Description
 
  (empty response body)
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to top]](#fingerprintapi-client) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
@@ -494,7 +494,7 @@ Name | Type | Description  | Notes
 
  (empty response body)
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to top]](#fingerprintapi-client) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
