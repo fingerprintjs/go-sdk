@@ -73,8 +73,6 @@ package main
 import (
 	"context"
 	"fmt"
-	"log"
-	"os"
 
 	"github.com/fingerprintjs/go-sdk/v8"
 )
@@ -131,7 +129,6 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-	"log"
 	"os"
 
 	"github.com/fingerprintjs/go-sdk/v8"
@@ -456,7 +453,6 @@ package main
 import (
 	"context"
 	"fmt"
-	"log"
 	"os"
 
 	"github.com/fingerprintjs/go-sdk/v8"
