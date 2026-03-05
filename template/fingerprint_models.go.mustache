@@ -18,23 +18,6 @@ const (
 {{/allowableValues}}
 )
 
-var Allowed{{classname}}EnumValues = openapi.Allowed{{classname}}EnumValues
-
-var New{{classname}}FromValue = openapi.New{{classname}}FromValue
 {{/isEnum}}
-{{^isEnum}}
-{{^oneOf}}
-{{^anyOf}}
-
-var New{{classname}} = openapi.New{{classname}}
-
-var New{{classname}}WithDefaults = openapi.New{{classname}}WithDefaults
-{{/anyOf}}
-{{/oneOf}}
-{{/isEnum}}
-
-type Nullable{{classname}} = openapi.Nullable{{classname}}
-
-var NewNullable{{classname}} = openapi.NewNullable{{classname}}
 {{/model}}
 {{/models}}
