@@ -78,7 +78,7 @@ func TestUpdateEvent(t *testing.T) {
 
 		client := fingerprint.New(fingerprint.WithAPIKey("api_key"), fingerprint.WithBaseURL(ts.URL))
 
-		res, err := client.UpdateEvent(context.Background(), "123", *fingerprint.NewEventUpdate())
+		res, err := client.UpdateEvent(context.Background(), "123", fingerprint.EventUpdate{})
 
 		assert.Nil(t, err)
 		assert.NotNil(t, res)
