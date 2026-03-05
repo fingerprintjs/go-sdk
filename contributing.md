@@ -23,8 +23,8 @@ Run `sh ./bin/openapi-codegen-docker.sh` to run openapi-generator. It only requi
 All generated code will be under [internal](/internal) directory and unexported. If there is a new API that needs to be exported, implement them in [fingerprint.go](fingerprint.go) file. All models should be re-exported thanks to [models.go](models.go) file.
 
 Below files are root files that are generated using custom templates:
-- [models.go](models.go) - generated with `/template/fingerprint_models.go.mustache`
-- [version.go](version.go) - generated with `/template/fingerprint_version.go.mustache`
+- [models.go](models.go) - generated with `template/fingerprint_models.go.mustache`
+- [version.go](version.go) - generated with `template/fingerprint_version.go.mustache`
 
 Majority of the code generator options can be found in the [openapi-config.yml](openapi-config.yml) file, including custom template configurations mentioned above. 
 
@@ -34,7 +34,13 @@ Run `sh ./bin/sync.sh` to download the latest Fingerprint OpenAPI schema.
 
 Project configuration like `version` can be found in the [package.json](package.json) file.
 
-### Running tests
+## Docs generation
+
+Majority of the docs are auto-generated, with one exception, [docs/FingerprintAPI.md](docs/FingerprintAPI.md) file. This file is generated using the corresponding template file, [template/fingerprint_api_doc.md.mustache](template/fingerprint_api_doc.md.mustache) and this template file is mostly manually written. Please make sure to keep this file up-to-date for future updates. 
+
+Some methods could really use auto generating from the schema, like `SearchEvents` function because it has a lot of query parameters. OpenAPI generator actually generates an API doc for all methods by default, we deliberately prevent it from generating it. Temporarily modify this behavior by removing the mention of `docs/FingerprintAPI.md` in the [.openapi-generator-ignore](.openapi-generator-ignore) file, and copy/paste the parts you need.
+
+## Running tests
 
 Tests are located in [test](/test) and [functional_test](/functional_test) directories.
 
@@ -64,6 +70,6 @@ go run getEvent.go
 go run getVisits.go
 ```
 
-### How to publish
+## How to publish
 
 We use [changesets](https://github.com/changesets/changesets) for handling release notes. If there are relevant changes, please add them to changeset via `pnpm exec changeset`. You need to run `pnpm install` before doing so.
