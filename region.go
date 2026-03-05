@@ -20,7 +20,7 @@ var regionBaseURLs = map[Region]string{
 	RegionAsia: "https://ap.api.fpjs.io/v4",
 }
 
-func WithRegionContext(ctx context.Context, cfg *openapi.Configuration, region Region) context.Context {
+func withRegionContext(ctx context.Context, cfg *openapi.Configuration, region Region) context.Context {
 	baseURL, ok := regionBaseURLs[region]
 	if !ok {
 		// invalid region is passed
