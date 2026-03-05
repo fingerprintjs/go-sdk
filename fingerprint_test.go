@@ -27,7 +27,53 @@ func ExampleClient_GetEvent() {
 	if response.Identification != nil {
 		stringResponse, _ := json.Marshal(response.Identification)
 		fmt.Printf("Got response with Identification: %s \n", string(stringResponse))
+	}
+}
 
+func ExampleClient_GetEvent_With_Ruleset() {
+	client := fingerprint.New(fingerprint.WithAPIKey("SECRET_API_KEY"))
+
+	eventID := "eventID_example"
+	rulesetID := "rulesetID_example"
+
+	response, httpRes, err := client.GetEvent(context.Background(), eventID, fingerprint.WithRulesetID(rulesetID))
+
+	fmt.Printf("Response from `GetEvent`: %v\n", httpRes)
+
+	if errResp, ok := fingerprint.AsErrorResponse(err); ok {
+		switch errResp.Error.Code {
+		case fingerprint.ErrorCodeEvent_not_found:
+			fmt.Println("event not found")
+		case fingerprint.ErrorCodeSecret_api_key_not_found:
+			fmt.Println("secret api key not found")
+		case fingerprint.ErrorCodeRuleset_not_found:
+			fmt.Println("ruleset not found")
+		default:
+			fmt.Printf("unexpected error: %s\n", errResp.Error.Message)
+		}
+	} else {
+		fmt.Printf("other error occurred: %v\n", err.Error())
+	}
+
+	if response.RuleAction != nil {
+		if response.RuleAction.EventRuleActionAllow != nil {
+			fmt.Printf("action is allow, rule id: %s, rule expression: %s\n", *response.RuleAction.EventRuleActionAllow.RuleID, *response.RuleAction.EventRuleActionAllow.RuleExpression)
+			if response.RuleAction.EventRuleActionAllow.RequestHeaderModifications != nil {
+				fmt.Printf("request header modifications to set %v, to append %v, to remove %v\n",
+					response.RuleAction.EventRuleActionAllow.RequestHeaderModifications.Set,
+					response.RuleAction.EventRuleActionAllow.RequestHeaderModifications.Append,
+					response.RuleAction.EventRuleActionAllow.RequestHeaderModifications.Remove)
+			}
+		} else if response.RuleAction.EventRuleActionBlock != nil {
+			fmt.Printf("action is block. rule id: %s, rule expression: %s, body %s statusCode: %d headers: %v\n",
+				*response.RuleAction.EventRuleActionBlock.RuleID,
+				*response.RuleAction.EventRuleActionBlock.RuleExpression,
+				*response.RuleAction.EventRuleActionBlock.Body,
+				*response.RuleAction.EventRuleActionBlock.StatusCode,
+				response.RuleAction.EventRuleActionBlock.Headers)
+		} else {
+			fmt.Println("action is unexpected (please make sure library is at the latest version)")
+		}
 	}
 }
 
@@ -121,7 +167,6 @@ func ExampleClient_SearchEvents() {
 	}
 	// response from `SearchEvents`: EventSearch
 	fmt.Fprintf(os.Stdout, "Response from `SearchEvents`: %v\n", resp)
-
 }
 
 func ExampleClient_UpdateEvent() {
