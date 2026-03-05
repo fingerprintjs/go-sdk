@@ -1,4 +1,5 @@
 ../../docs/DecryptionKey.md
+../../docs/FingerprintAPIClient.md
 ../../docs/SealedResults.md
 ../../docs/Webhook.md
 ../../models.go
@@ -22,7 +23,6 @@ docs/EventRuleActionAllow.md
 docs/EventRuleActionBlock.md
 docs/EventSearch.md
 docs/EventUpdate.md
-docs/FingerprintAPI.md
 docs/FontPreferences.md
 docs/Geolocation.md
 docs/GeolocationSubdivisionsInner.md

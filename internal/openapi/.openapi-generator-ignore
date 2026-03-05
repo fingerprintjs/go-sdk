@@ -30,3 +30,4 @@
 git_push.sh
 go.sum
 go.mod
+docs/FingerprintAPI.md
