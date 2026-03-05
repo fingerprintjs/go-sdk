@@ -62,7 +62,7 @@ func (c *Client) withRegion(ctx context.Context) context.Context {
 	if ctx.Value(openapi.ContextServerIndex) != nil {
 		return ctx
 	}
-	return WithRegionContext(ctx, c.api.GetConfig(), c.region)
+	return withRegionContext(ctx, c.api.GetConfig(), c.region)
 }
 
 func (c *Client) withAPIKey(ctx context.Context) context.Context {
