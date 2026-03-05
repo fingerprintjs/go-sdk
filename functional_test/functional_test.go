@@ -37,7 +37,7 @@ func TestApiFunctional(t *testing.T) {
 		t.Run("with valid event", func(t *testing.T) {
 			event, _, err := client.GetEvent(context.Background(), eventId)
 
-			assert.NoError(t, err)
+			require.NoError(t, err)
 			assert.Equal(t, eventId, event.EventID)
 			assert.Equal(t, visitorId, event.Identification.VisitorID)
 		})
@@ -64,7 +64,7 @@ func TestApiFunctional(t *testing.T) {
 				End(end).
 				Limit(2)
 			events, _, err := client.SearchEvents(context.Background(), opts)
-			assert.NoError(t, err)
+			require.NoError(t, err)
 			assert.NotNil(t, events.Events)
 			assert.Len(t, events.Events, 2)
 		})
@@ -78,7 +78,7 @@ func TestApiFunctional(t *testing.T) {
 					Limit(2).
 					Start(start).
 					End(end))
-			assert.NoError(t, err)
+			require.NoError(t, err)
 			assert.NotNil(t, events.Events)
 			assert.NotEmpty(t, events.PaginationKey)
 			assert.Len(t, events.Events, 2)
@@ -89,7 +89,7 @@ func TestApiFunctional(t *testing.T) {
 				End(end).
 				PaginationKey(*events.PaginationKey),
 			)
-			assert.NoError(t, err)
+			require.NoError(t, err)
 			assert.NotNil(t, nextEvents)
 			assert.Len(t, nextEvents.Events, 2)
 			assert.NotEqual(t, events.Events[0].EventID, nextEvents.Events[0].EventID)
@@ -106,7 +106,7 @@ func TestApiFunctional(t *testing.T) {
 				Reverse(true),
 			)
 
-			assert.NoError(t, err)
+			require.NoError(t, err)
 			assert.NotNil(t, events.Events)
 			assert.Len(t, events.Events, 2)
 
