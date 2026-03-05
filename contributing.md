@@ -34,12 +34,6 @@ Run `sh ./bin/sync.sh` to download the latest Fingerprint OpenAPI schema.
 
 Project configuration like `version` can be found in the [package.json](package.json) file.
 
-## Docs generation
-
-Majority of the docs are auto-generated, with one exception, [docs/FingerprintAPI.md](docs/FingerprintAPI.md) file. This file is generated using the corresponding template file, [template/fingerprint_api_doc.md.mustache](template/fingerprint_api_doc.md.mustache) and this template file is mostly manually written. Please make sure to keep this file up-to-date for future updates. 
-
-Some methods could really use auto generating from the schema, like `SearchEvents` function because it has a lot of query parameters. OpenAPI generator actually generates an API doc for all methods by default, we deliberately prevent it from generating it. Temporarily modify this behavior by removing the mention of `docs/FingerprintAPI.md` in the [.openapi-generator-ignore](.openapi-generator-ignore) file, and copy/paste the parts you need.
-
 ## Running tests
 
 Tests are located in [test](/test) and [functional_test](/functional_test) directories.

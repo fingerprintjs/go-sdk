@@ -64,7 +64,5 @@ files:
     destinationFilename: ../../docs/DecryptionKey.md
   fingerprint_Webhook.md.mustache:
     destinationFilename: ../../docs/Webhook.md
-  fingerprint_api_doc.md.mustache:
-    destinationFilename: ../../docs/FingerprintAPIClient.md
   fingerprint_models.go.mustache:
     destinationFilename: ../../models.go
