@@ -51,7 +51,7 @@ func TestApiFunctional(t *testing.T) {
 			errorResponse, ok := fingerprint.AsErrorResponse(err)
 			require.True(t, ok)
 
-			assert.Equal(t, fingerprint.ErrorCodeEvent_not_found, errorResponse.Error.Code)
+			assert.Equal(t, fingerprint.ErrorCodeEventNotFound, errorResponse.Error.Code)
 		})
 	})
 
