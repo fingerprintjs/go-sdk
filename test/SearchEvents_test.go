@@ -122,7 +122,7 @@ func TestSearchEvents(t *testing.T) {
 			assert.Equal(t, "5", query.Get("start"), "start")
 			assert.Equal(t, "10", query.Get("end"), "end")
 			assert.Equal(t, "testSDKVersion", query.Get("sdk_version"), "sdkVersion")
-			assert.Equal(t, string(fingerprint.SearchEventsSDKPlatformJs), query.Get("sdk_platform"), "sdkPlatform")
+			assert.Equal(t, string(fingerprint.SearchEventsSDKPlatformJS), query.Get("sdk_platform"), "sdkPlatform")
 			assert.Equal(t, []string{"env1", "env2"}, r.URL.Query()["environment"], "environment")
 			assert.Equal(t, "testProximityID", query.Get("proximity_id"), "proximityID")
 			assert.Equal(t, "10", query.Get("total_hits"), "totalHits")
@@ -232,7 +232,7 @@ func TestSearchEvents(t *testing.T) {
 			mitmAttack        bool     = false
 			proxy             bool     = false
 			sdkVersion        string   = "testSDKVersion"
-			sdkPlatform                = fingerprint.SearchEventsSDKPlatformJs
+			sdkPlatform                = fingerprint.SearchEventsSDKPlatformJS
 			environment       []string = []string{"env1", "env2"}
 			proximityID       string   = "testProximityID"
 			totalHits         int64    = 10
