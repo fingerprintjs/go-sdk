@@ -46,64 +46,65 @@ go get "github.com/fingerprintjs/go-sdk/v8"
 package main
 
 import (
-	"context"
-	"fmt"
+    "context"
+    "fmt"
     "github.com/fingerprintjs/go-sdk/v8"
-	"log"
+    "log"
 )
 
 func main() {
-	client := fingerprint.New(
+    client := fingerprint.New(
         // Configure authorization, in our case with API Key
         fingerprint.WithAPIKey("SECRET_API_KEY"),
         // You can also use fingerprint.RegionUS or fingerprint.RegionAsia. Default one is fingerprint.RegionUS
-		fingerprint.WithRegion(fingerprint.RegionEU),
-	)
-
-	// Usually this data will come from your frontend app
-	eventId := "<EVENT_ID>"
-	// Get visits for given visitorId and requestId
-	event, httpRes, err := client.GetEvent(context.Background(), eventId)
-	fmt.Printf("%+v\n", httpRes)
-
-	if err != nil {
-		if errResp, ok := fingerprint.AsErrorResponse(err); ok {
-			switch errResp.Error.Code {
-			case fingerprint.ErrorCodeEvent_not_found:
-				log.Fatalf("Event not found")
-			default:
-				log.Printf("Error %s: %v", errResp.Error.Code, errResp)
-				log.Fatal(err)
-			}
-		}
-	}
-
-    fmt.Printf("Got response with visitorId: %s", event.Identification.VisitorId)
-
-	// Access identification details
-	if event.Identification != nil {
-		fmt.Printf("Got response with Identification: %v", event.Identification)
-	}
-
-    req := client.NewSearchEventsRequest(context.Background()).
+        fingerprint.WithRegion(fingerprint.RegionEU),
+    )
+    
+    // Usually this data will come from your frontend app
+    eventID := "<EVENT_ID>"
+    // Get visits for given visitorId and requestId
+    event, httpRes, err := client.GetEvent(context.Background(), eventID)
+    fmt.Printf("%+v\n", httpRes)
+    
+    if err != nil {
+        if errResp, ok := fingerprint.AsErrorResponse(err); ok {
+            switch errResp.Error.Code {
+            case fingerprint.ErrorCodeEvent_not_found:
+                log.Fatalf("Event not found")
+            default:
+                log.Printf("Error %s: %v", errResp.Error.Code, errResp)
+                log.Fatal(err)
+            }
+        }
+    }
+    
+    fmt.Printf("Got response with visitorId: %s", event.Identification.VisitorID)
+    
+    // Access identification details
+    if event.Identification != nil {
+        fmt.Printf("Got response with Identification: %v", event.Identification)
+    }
+    
+    req := fingerprint.NewSearchEventsRequest().
         // Suspect can be set by using `UpdateEvent` method
-		Suspect(true).
+        Suspect(true).
         Limit(10)
-
+    
     // Search for 10 events with suspect=true
-    searchEventsResult, httpRes, err := client.SearchEvents(req)
-	if err != nil {
+    searchEventsResult, httpRes, err := client.SearchEvents(context.TODO(), req)
+    if err != nil {
         if errResp, ok := fingerprint.AsErrorResponse(err); ok {
             log.Printf("Error %s: %v", errResp.Error.Code, errResp)
         }
-
+    
         log.Fatal(err)
-	}
-
-	if searchEventsResult.Events != nil {
-		fmt.Printf("Got response with Events: %v \n", searchEventsResult.Events)
-	}
+    }
+    
+    if searchEventsResult.Events != nil {
+        fmt.Printf("Got response with Events: %v \n", searchEventsResult.Events)
+    }
 }
+
 ```
 
 > **Note**
@@ -139,19 +140,19 @@ Use below code to unseal results:
 package main
 
 import (
-	"encoding/base64"
-	"fmt"
+    "encoding/base64"
+    "fmt"
     "github.com/fingerprintjs/go-sdk/v8"
-	"os"
+    "os"
 )
 
 // Utility function to decode base64 string
 func base64Decode(input string) []byte {
-	output, err := base64.StdEncoding.DecodeString(input)
-	if err != nil {
-		log.Fatal(err)
-	}
-	return output
+    output, err := base64.StdEncoding.DecodeString(input)
+    if err != nil {
+        log.Fatal(err)
+    }
+    return output
 }
 
 func main() {
@@ -159,26 +160,27 @@ func main() {
     sealedResult := base64Decode(os.Getenv("BASE64_SEALED_RESULT"))
     // Base64 encoded key generated in the dashboard.
     key := base64Decode(os.Getenv("BASE64_SEALED_RESULT_KEY"))
-
-	keys := []fingerprint.DecryptionKey{
-		// You can provide more than one key to support key rotation. The SDK will try to decrypt the result with each key.
-		{
-			Key:       key,
-			Algorithm: fingerprint.AlgorithmAES256GCM,
-		},
-	}
-	unsealedResponse, err := fingerprint.UnsealEventsResponse(sealedResult, keys)
-
-	if err != nil {
-		panic(err)
-	}
-
-	// Do something with unsealed response, e.g: send it back to the frontend.
-	fmt.Println(unsealedResponse)
+    
+    keys := []fingerprint.DecryptionKey{
+        // You can provide more than one key to support key rotation. The SDK will try to decrypt the result with each key.
+        {
+            Key:       key,
+            Algorithm: fingerprint.AlgorithmAES256GCM,
+        },
+    }
+    unsealedResponse, err := fingerprint.UnsealEventsResponse(sealedResult, keys)
+    
+    if err != nil {
+        panic(err)
+    }
+    
+    // Do something with unsealed response, e.g: send it back to the frontend.
+    fmt.Println(unsealedResponse)
 }
+
 ```
 
-To learn more, refer to example located in [example/sealedResults.go](../example/sealedResults.go).
+To learn more, refer to example located in [example/sealedResults.go](example/sealedResults.go).
 
 ## Webhook signing
 
@@ -210,7 +212,7 @@ func main() {
 }
 ```
 
-To learn more, refer to example located in [example/webhookSignature.go](../example/webhookSignature.go).
+To learn more, refer to example located in [example/webhookSignature.go](example/webhookSignature.go).
 
 ## Documentation for API Endpoints
 
