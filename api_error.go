@@ -7,7 +7,7 @@ import (
 )
 
 // AsErrorResponse attempts to convert an error to an [openapi.ErrorResponse] and returns a boolean indicating success.
-func AsErrorResponse(err error) (*openapi.ErrorResponse, bool) {
+func AsErrorResponse(err error) (*ErrorResponse, bool) {
 	if err == nil {
 		return nil, false
 	}

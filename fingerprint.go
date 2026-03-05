@@ -84,7 +84,7 @@ func WithRulesetID(rulesetID string) GetEventOption {
 }
 
 // GetEvent retrieves an event by event ID. See [openapi.FingerprintAPI.GetEvent] for details.
-func (c *Client) GetEvent(ctx context.Context, eventID string, opts ...GetEventOption) (*openapi.Event, *http.Response, error) {
+func (c *Client) GetEvent(ctx context.Context, eventID string, opts ...GetEventOption) (*Event, *http.Response, error) {
 	ctx = c.withRegion(ctx)
 	ctx = c.withAPIKey(ctx)
 
@@ -97,20 +97,22 @@ func (c *Client) GetEvent(ctx context.Context, eventID string, opts ...GetEventO
 	return req.Execute(ctx)
 }
 
+type SearchEventRequest = openapi.ApiSearchEventsRequest
+
 // NewSearchEventsRequest creates a search event request. See [openapi.FingerprintAPI.SearchEvents] for details.
-func NewSearchEventsRequest() openapi.ApiSearchEventsRequest {
-	return openapi.ApiSearchEventsRequest{ApiService: nil}
+func NewSearchEventsRequest() SearchEventRequest {
+	return SearchEventRequest{ApiService: nil}
 }
 
 // SearchEvents sends a search event request. See [openapi.FingerprintAPI.SearchEvents] for details.
-func (c *Client) SearchEvents(ctx context.Context, req openapi.ApiSearchEventsRequest) (*openapi.EventSearch, *http.Response, error) {
+func (c *Client) SearchEvents(ctx context.Context, req SearchEventRequest) (*EventSearch, *http.Response, error) {
 	ctx = c.withRegion(ctx)
 	ctx = c.withAPIKey(ctx)
 	return c.api.FingerprintAPI.SearchEventsExecute(ctx, req)
 }
 
 // UpdateEvent updates an event. See [openapi.FingerprintAPI.UpdateEvent] for details.
-func (c *Client) UpdateEvent(ctx context.Context, eventId string, eventUpdateReq openapi.EventUpdate) (*http.Response, error) {
+func (c *Client) UpdateEvent(ctx context.Context, eventId string, eventUpdateReq EventUpdate) (*http.Response, error) {
 	ctx = c.withRegion(ctx)
 	ctx = c.withAPIKey(ctx)
 	return c.api.FingerprintAPI.UpdateEvent(eventId).EventUpdate(eventUpdateReq).Execute(ctx)
