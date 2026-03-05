@@ -118,6 +118,7 @@ func NewSearchEventsRequest() SearchEventRequest {
 }
 
 // SearchEvents sends a search event request to retrieve a list of events matching the specified criteria.
+// To build the request, use [NewSearchEventsRequest].
 // See [openapi.FingerprintAPI.SearchEvents] for details.
 //
 // Parameters:
