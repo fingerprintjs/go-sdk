@@ -214,17 +214,20 @@ func main() {
 
 To learn more, refer to example located in [example/webhookSignature.go](example/webhookSignature.go).
 
+## Documentation for creating a FingerprintAPIClient
+
+Refer to [**FingerprintAPI Client**](docs/FingerprintAPIClient.md).
+
 ## Documentation for API Endpoints
 
 All URIs are relative to *https://api.fpjs.io/v4*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*FingerprintAPI* | [**DeleteVisitorData**](docs/FingerprintAPI.md#deletevisitordata) | **Delete** /visitors/{visitor_id} | Delete data by visitor ID
-*FingerprintAPI* | [**GetEvent**](docs/FingerprintAPI.md#getevent) | **Get** /events/{event_id} | Get an event by event ID
-*FingerprintAPI* | [**SearchEvents**](docs/FingerprintAPI.md#searchevents) | **Get** /events | Search events
-*FingerprintAPI* | [**UpdateEvent**](docs/FingerprintAPI.md#updateevent) | **Patch** /events/{event_id} | Update an event
-
+*FingerprintAPI* | [**GetEvent**](docs/FingerprintAPIClient.md#getevent) | **Get** /events/{event_id} | Get an event by event ID
+*FingerprintAPI* | [**SearchEvents**](docs/FingerprintAPIClient.md#searchevents) | **Get** /events | Search events
+*FingerprintAPI* | [**UpdateEvent**](docs/FingerprintAPIClient.md#updateevent) | **Patch** /events/{event_id} | Update an event
+*FingerprintAPI* | [**DeleteVisitorData**](docs/FingerprintAPIClient.md#deletevisitordata) | **Delete** /visitors/{visitor_id} | Delete data by visitor ID
 
 ## Documentation For Models
 
