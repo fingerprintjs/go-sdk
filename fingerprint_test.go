@@ -4,7 +4,6 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-	"os"
 
 	fingerprint "github.com/fingerprintjs/go-sdk/v8"
 )
@@ -13,11 +12,13 @@ func ExampleClient_GetEvent() {
 	eventID := "eventID_example"
 	client := fingerprint.New(fingerprint.WithAPIKey("SECRET_API_KEY"))
 
-	response, r, err := client.GetEvent(context.Background(), eventID)
+	response, httpRes, err := client.GetEvent(context.TODO(), eventID)
+
+	fmt.Printf("HTTP Response from `GetEvent`: %v\n", httpRes)
 
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `GetEvent`: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+		fmt.Printf("Error when calling `GetEvent`: %v\n", err)
+		fmt.Printf("Full HTTP response: %v\n", httpRes)
 	}
 
 	if response.Bot != nil {
@@ -36,9 +37,9 @@ func ExampleClient_GetEvent_With_Ruleset() {
 	eventID := "eventID_example"
 	rulesetID := "rulesetID_example"
 
-	response, httpRes, err := client.GetEvent(context.Background(), eventID, fingerprint.WithRulesetID(rulesetID))
+	response, httpRes, err := client.GetEvent(context.TODO(), eventID, fingerprint.WithRulesetID(rulesetID))
 
-	fmt.Printf("Response from `GetEvent`: %v\n", httpRes)
+	fmt.Printf("HTTP Response from `GetEvent`: %v\n", httpRes)
 
 	if errResp, ok := fingerprint.AsErrorResponse(err); ok {
 		switch errResp.Error.Code {
@@ -78,7 +79,6 @@ func ExampleClient_GetEvent_With_Ruleset() {
 }
 
 func ExampleClient_SearchEvents() {
-
 	limit := int32(10)                                         // int32 | Limit the number of events returned.  (optional) (default to 10)
 	paginationKey := "paginationKey_example"                   // string | Use `pagination_key` to get the next page of results.  When more results are available (e.g., you requested up to 100 results for your query using `limit`, but there are more than 100 events total matching your request), the `pagination_key` field is added to the response. The pagination key is an arbitrary string that should not be interpreted in any way and should be passed as-is. In the following request, use that value in the `pagination_key` parameter to get the next page of results:  1. First request, returning most recent 200 events: `GET api-base-url/events?limit=100` 2. Use `response.pagination_key` to get the next page of results: `GET api-base-url/events?limit=100&pagination_key=1740815825085`  (optional)
 	visitorID := "visitorID_example"                           // string | Unique [visitor identifier](https://dev.fingerprint.com/reference/get-function#visitorid) issued by Fingerprint Identification and all active Smart Signals. Filter for events matching this `visitor_id`.  (optional)
@@ -160,13 +160,25 @@ func ExampleClient_SearchEvents() {
 		ProximityID(proximityID).
 		TotalHits(totalHits).
 		TorNode(torNode)
-	resp, r, err := client.SearchEvents(context.Background(), searchReq)
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `SearchEvents`: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	resp, httpRes, err := client.SearchEvents(context.TODO(), searchReq)
+
+	fmt.Printf("Response from `SearchEvents`: %v\n", resp)
+	fmt.Printf("HTTP Response from `SearchEvents`: %v\n", httpRes)
+
+	if errResp, ok := fingerprint.AsErrorResponse(err); ok {
+		switch errResp.Error.Code {
+		case fingerprint.ErrorCodeEvent_not_found:
+			fmt.Println("event not found")
+		case fingerprint.ErrorCodeSecret_api_key_not_found:
+			fmt.Println("secret api key not found")
+		case fingerprint.ErrorCodeState_not_ready:
+			fmt.Println("event is not ready yet for update, please try again later")
+		default:
+			fmt.Printf("unexpected error: %s\n", errResp.Error.Message)
+		}
+	} else {
+		fmt.Printf("other error occurred: %v\n", err.Error())
 	}
-	// response from `SearchEvents`: EventSearch
-	fmt.Fprintf(os.Stdout, "Response from `SearchEvents`: %v\n", resp)
 }
 
 func ExampleClient_UpdateEvent() {
@@ -184,10 +196,23 @@ func ExampleClient_UpdateEvent() {
 	eventID := "eventID_example" // string | The unique event [identifier](https://dev.fingerprint.com/reference/get-function#event_id).
 
 	client := fingerprint.New(fingerprint.WithAPIKey("SECRET_API_KEY"))
-	r, err := client.UpdateEvent(context.Background(), eventID, eventUpdateReq)
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `UpdateEvent`: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	httpRes, err := client.UpdateEvent(context.TODO(), eventID, eventUpdateReq)
+
+	fmt.Printf("HTTP Response from `UpdateEvent`: %v\n", httpRes)
+
+	if errResp, ok := fingerprint.AsErrorResponse(err); ok {
+		switch errResp.Error.Code {
+		case fingerprint.ErrorCodeEvent_not_found:
+			fmt.Println("event not found")
+		case fingerprint.ErrorCodeSecret_api_key_not_found:
+			fmt.Println("secret api key not found")
+		case fingerprint.ErrorCodeState_not_ready:
+			fmt.Println("event is not ready yet for update, please try again later")
+		default:
+			fmt.Printf("unexpected error: %s\n", errResp.Error.Message)
+		}
+	} else {
+		fmt.Printf("other error occurred: %v\n", err.Error())
 	}
 }
 
@@ -197,10 +222,22 @@ func ExampleClient_DeleteVisitorData() {
 	client := fingerprint.New(fingerprint.WithAPIKey("SECRET_API_KEY"))
 
 	// Delete visitor data. If you are interested in using this API, please contact our support team (https://fingerprint.com/support/) to activate it for you
-	r, err := client.DeleteVisitorData(context.Background(), visitorID)
+	httpRes, err := client.DeleteVisitorData(context.TODO(), visitorID)
 
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `DeleteVisitorData`: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	fmt.Printf("HTTP Response from `DeleteVisitorData`: %v\n", httpRes)
+
+	if errResp, ok := fingerprint.AsErrorResponse(err); ok {
+		switch errResp.Error.Code {
+		case fingerprint.ErrorCodeEvent_not_found:
+			fmt.Println("event not found")
+		case fingerprint.ErrorCodeSecret_api_key_not_found:
+			fmt.Println("secret api key not found")
+		case fingerprint.ErrorCodeVisitor_not_found:
+			fmt.Println("visitor not found")
+		default:
+			fmt.Printf("unexpected error: %s\n", errResp.Error.Message)
+		}
+	} else {
+		fmt.Printf("other error occurred: %v\n", err.Error())
 	}
 }
