@@ -13,7 +13,7 @@ type {{classname}} = openapi.{{classname}}
 const (
 {{#allowableValues}}
 {{#enumVars}}
-	{{classname}}{{#lambda.titlecase}}{{#lambda.lowercase}}{{name}}{{/lambda.lowercase}}{{/lambda.titlecase}} = openapi.{{classname}}{{#lambda.titlecase}}{{#lambda.lowercase}}{{name}}{{/lambda.lowercase}}{{/lambda.titlecase}}
+	{{classname}}{{#lambda.pascalcase}}{{#lambda.lowercase}}{{name}}{{/lambda.lowercase}}{{/lambda.pascalcase}} = openapi.{{classname}}{{#lambda.pascalcase}}{{#lambda.lowercase}}{{name}}{{/lambda.lowercase}}{{/lambda.pascalcase}}
 {{/enumVars}}
 {{/allowableValues}}
 )

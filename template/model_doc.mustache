@@ -88,7 +88,7 @@ Convenience method to wrap this instance of {{classname}} in {{{.}}}
 ## Enum
 
 {{#allowableValues}}{{#enumVars}}
-* `{{name}}` (value: `{{{value}}}`)
+* `{{#lambda.pascalcase}}{{#lambda.lowercase}}{{name}}{{/lambda.lowercase}}{{/lambda.pascalcase}}` (value: `{{{value}}}`)
 {{/enumVars}}{{/allowableValues}}
 {{/isEnum}}
 

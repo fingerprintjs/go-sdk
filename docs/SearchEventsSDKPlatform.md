@@ -3,11 +3,11 @@
 ## Enum
 
 
-* `JS` (value: `"js"`)
+* `Js` (value: `"js"`)
 
-* `ANDROID` (value: `"android"`)
+* `Android` (value: `"android"`)
 
-* `IOS` (value: `"ios"`)
+* `Ios` (value: `"ios"`)
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

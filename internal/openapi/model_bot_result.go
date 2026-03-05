@@ -21,16 +21,16 @@ type BotResult string
 
 // List of BotResult
 const (
-	BotResultBad          BotResult = "bad"
-	BotResultGood         BotResult = "good"
-	BotResultNot_detected BotResult = "not_detected"
+	BotResultBad         BotResult = "bad"
+	BotResultGood        BotResult = "good"
+	BotResultNotDetected BotResult = "not_detected"
 )
 
 // All allowed values of BotResult enum
 var AllowedBotResultEnumValues = []BotResult{
 	BotResultBad,
 	BotResultGood,
-	BotResultNot_detected,
+	BotResultNotDetected,
 }
 
 func (v *BotResult) UnmarshalJSON(src []byte) error {
