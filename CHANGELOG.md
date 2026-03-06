@@ -1,5 +1,11 @@
 # Fingerprint Pro Server Go SDK
 
+## 8.0.0-test.6
+
+### Minor Changes
+
+- Improve project structure, code generation and documentation ([c8c5277](https://github.com/fingerprintjs/go-sdk/commit/c8c52770aeb02b909ccd9841506399fa710c7e59))
+
 ## 8.0.0-test.5
 
 ### Minor Changes
