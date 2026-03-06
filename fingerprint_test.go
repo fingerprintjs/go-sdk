@@ -47,11 +47,11 @@ func ExampleClient_GetEvent_With_Ruleset() {
 
 	if errResp, ok := fingerprint.AsErrorResponse(err); ok {
 		switch errResp.Error.Code {
-		case fingerprint.ErrorCodeEvent_not_found:
+		case fingerprint.ErrorCodeEventNotFound:
 			fmt.Println("event not found")
-		case fingerprint.ErrorCodeSecret_api_key_not_found:
+		case fingerprint.ErrorCodeSecretAPIKeyNotFound:
 			fmt.Println("secret api key not found")
-		case fingerprint.ErrorCodeRuleset_not_found:
+		case fingerprint.ErrorCodeRulesetNotFound:
 			fmt.Println("ruleset not found")
 		default:
 			fmt.Printf("unexpected error: %s\n", errResp.Error.Message)
@@ -117,7 +117,7 @@ func ExampleClient_SearchEvents() {
 	mITMAttack := true                                         // bool | Filter events by MITM (Man-in-the-Middle) Attack detection result. > Note: When using this parameter, only events with the `mitm_attack` property set to `true` or `false` are returned. Events without a `mitm_attack` Smart Signal result are left out of the response.  (optional)
 	proxy := true                                              // bool | Filter events by Proxy detection result. > Note: When using this parameter, only events with the `proxy` property set to `true` or `false` are returned. Events without a `proxy` Smart Signal result are left out of the response.  (optional)
 	sDKVersion := "sDKVersion_example"                         // string | Filter events by a specific SDK version associated with the identification event (`sdk.version` property). Example: `3.11.14`  (optional)
-	sDKPlatform := fingerprint.SearchEventsSDKPlatformJs       // SearchEventsSDKPlatform | Filter events by the SDK Platform associated with the identification event (`sdk.platform` property) . `js` - Javascript agent (Web). `ios` - Apple iOS based devices. `android` - Android based devices.  (optional)
+	sDKPlatform := fingerprint.SearchEventsSDKPlatformJS       // SearchEventsSDKPlatform | Filter events by the SDK Platform associated with the identification event (`sdk.platform` property) . `js` - Javascript agent (Web). `ios` - Apple iOS based devices. `android` - Android based devices.  (optional)
 	environment := []string{"Inner_example"}                   // []string | Filter for events by providing one or more environment IDs (`environment_id` property).  (optional)
 	proximityID := "proximityID_example"                       // string | Filter events by the most precise Proximity ID provided by default. > Note: When using this parameter, only events with the `proximity.id` property matching the provided ID are returned. Events without a `proximity` result are left out of the response.  (optional)
 	totalHits := int64(789)                                    // int64 | When set, the response will include a `total_hits` property with a count of total query matches across all pages, up to the specified limit.  (optional)
@@ -171,11 +171,11 @@ func ExampleClient_SearchEvents() {
 
 	if errResp, ok := fingerprint.AsErrorResponse(err); ok {
 		switch errResp.Error.Code {
-		case fingerprint.ErrorCodeEvent_not_found:
+		case fingerprint.ErrorCodeEventNotFound:
 			fmt.Println("event not found")
-		case fingerprint.ErrorCodeSecret_api_key_not_found:
+		case fingerprint.ErrorCodeSecretAPIKeyNotFound:
 			fmt.Println("secret api key not found")
-		case fingerprint.ErrorCodeState_not_ready:
+		case fingerprint.ErrorCodeStateNotReady:
 			fmt.Println("event is not ready yet for update, please try again later")
 		default:
 			fmt.Printf("unexpected error: %s\n", errResp.Error.Message)
@@ -206,11 +206,11 @@ func ExampleClient_UpdateEvent() {
 
 	if errResp, ok := fingerprint.AsErrorResponse(err); ok {
 		switch errResp.Error.Code {
-		case fingerprint.ErrorCodeEvent_not_found:
+		case fingerprint.ErrorCodeEventNotFound:
 			fmt.Println("event not found")
-		case fingerprint.ErrorCodeSecret_api_key_not_found:
+		case fingerprint.ErrorCodeSecretAPIKeyNotFound:
 			fmt.Println("secret api key not found")
-		case fingerprint.ErrorCodeState_not_ready:
+		case fingerprint.ErrorCodeStateNotReady:
 			fmt.Println("event is not ready yet for update, please try again later")
 		default:
 			fmt.Printf("unexpected error: %s\n", errResp.Error.Message)
@@ -232,11 +232,11 @@ func ExampleClient_DeleteVisitorData() {
 
 	if errResp, ok := fingerprint.AsErrorResponse(err); ok {
 		switch errResp.Error.Code {
-		case fingerprint.ErrorCodeEvent_not_found:
+		case fingerprint.ErrorCodeEventNotFound:
 			fmt.Println("event not found")
-		case fingerprint.ErrorCodeSecret_api_key_not_found:
+		case fingerprint.ErrorCodeSecretAPIKeyNotFound:
 			fmt.Println("secret api key not found")
-		case fingerprint.ErrorCodeVisitor_not_found:
+		case fingerprint.ErrorCodeVisitorNotFound:
 			fmt.Println("visitor not found")
 		default:
 			fmt.Printf("unexpected error: %s\n", errResp.Error.Message)

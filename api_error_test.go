@@ -14,7 +14,7 @@ func ExampleAsErrorResponse() {
 
 	if fpErr, ok := fingerprint.AsErrorResponse(err); ok {
 		switch fpErr.Error.Code {
-		case fingerprint.ErrorCodeEvent_not_found:
+		case fingerprint.ErrorCodeEventNotFound:
 			fmt.Println("event not found")
 		}
 	}
