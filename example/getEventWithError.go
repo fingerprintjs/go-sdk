@@ -25,7 +25,7 @@ func exampleWrongAPIKey() {
 				fmt.Printf("unexpected error: %s\n", errResp.Error.Message)
 			}
 		} else {
-			fmt.Printf("other error occured: %v\n", err.Error())
+			fmt.Printf("other error occurred: %v\n", err.Error())
 		}
 	}
 }

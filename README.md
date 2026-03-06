@@ -8,9 +8,9 @@
     </a>
 </p>
 <p align="center">
-    <a href="https://github.com/fingerprintjs/fingerprint-pro-server-api-go-sdk/actions/workflows/release.yml"><img src="https://github.com/fingerprintjs/fingerprint-pro-server-api-go-sdk/actions/workflows/release.yml/badge.svg" alt="CI badge" /></a>
-    <a href="https://github.com/fingerprintjs/fingerprint-pro-server-api-go-sdk/actions/workflows/tests.yml"><img src="https://github.com/fingerprintjs/fingerprint-pro-server-api-go-sdk/actions/workflows/tests.yml/badge.svg" alt="CI badge" /></a>
-    <a href="https://github.com/fingerprintjs/fingerprint-pro-server-api-go-sdk/actions/workflows/functional_tests.yml"><img src="https://github.com/fingerprintjs/fingerprint-pro-server-api-go-sdk/actions/workflows/functional_tests.yml/badge.svg" alt="CI badge" /></a>
+    <a href="https://github.com/fingerprintjs/go-sdk/actions/workflows/release.yml"><img src="https://github.com/fingerprintjs/go-sdk/actions/workflows/release.yml/badge.svg" alt="CI badge" /></a>
+    <a href="https://github.com/fingerprintjs/go-sdk/actions/workflows/tests.yml"><img src="https://github.com/fingerprintjs/go-sdk/actions/workflows/tests.yml/badge.svg" alt="CI badge" /></a>
+    <a href="https://github.com/fingerprintjs/go-sdk/actions/workflows/functional_tests.yml"><img src="https://github.com/fingerprintjs/go-sdk/actions/workflows/functional_tests.yml/badge.svg" alt="CI badge" /></a>
     <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/:license-mit-blue.svg?style=flat"/></a>
     <a href="https://discord.gg/39EpE2neBg"><img src="https://img.shields.io/discord/852099967190433792?style=logo&label=Discord&logo=Discord&logoColor=white" alt="Discord server"></a>
 </p>
@@ -143,6 +143,7 @@ import (
     "encoding/base64"
     "fmt"
     "github.com/fingerprintjs/go-sdk/v8"
+    "log"
     "os"
 )
 
@@ -220,11 +221,10 @@ All URIs are relative to *https://api.fpjs.io/v4*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*FingerprintAPI* | [**DeleteVisitorData**](docs/FingerprintAPI.md#deletevisitordata) | **Delete** /visitors/{visitor_id} | Delete data by visitor ID
-*FingerprintAPI* | [**GetEvent**](docs/FingerprintAPI.md#getevent) | **Get** /events/{event_id} | Get an event by event ID
-*FingerprintAPI* | [**SearchEvents**](docs/FingerprintAPI.md#searchevents) | **Get** /events | Search events
-*FingerprintAPI* | [**UpdateEvent**](docs/FingerprintAPI.md#updateevent) | **Patch** /events/{event_id} | Update an event
-
+*FingerprintAPI* | [**GetEvent**](https://pkg.go.dev/github.com/fingerprintjs/go-sdk/v8#Client.GetEvent) | **Get** /events/{event_id} | Get an event by event ID
+*FingerprintAPI* | [**SearchEvents**](https://pkg.go.dev/github.com/fingerprintjs/go-sdk/v8#Client.SearchEvents) | **Get** /events | Search events
+*FingerprintAPI* | [**UpdateEvent**](https://pkg.go.dev/github.com/fingerprintjs/go-sdk/v8#Client.UpdateEvent) | **Patch** /events/{event_id} | Update an event
+*FingerprintAPI* | [**DeleteVisitorData**](https://pkg.go.dev/github.com/fingerprintjs/go-sdk/v8#Client.DeleteVisitorData) | **Delete** /visitors/{visitor_id} | Delete data by visitor ID
 
 ## Documentation For Models
 
