@@ -123,8 +123,6 @@ func TestApiFunctional(t *testing.T) {
 	})
 }
 
-
-
 // Verify that Fingerprint API interactions can be mocked by SDK users in their own unit tests.
 func TestMockFingerprintApi(t *testing.T) {
 	mockAPI := MockFingerprintAPI{}
@@ -137,8 +135,7 @@ func TestMockFingerprintApi(t *testing.T) {
 	mockAPI.On("GetEvent", mock.Anything).Return()
 	mockAPI.On("GetEventExecute", mock.Anything, mock.Anything).Return(&mockResp, &http.Response{StatusCode: 200}, nil)
 
-
-	event, httpResp, err := client.GetEvent(context.Background(), "test-event-id");
+	event, httpResp, err := client.GetEvent(context.Background(), "test-event-id")
 	require.Nil(t, err)
 	require.Equal(t, &mockResp, event)
 	require.Equal(t, 200, httpResp.StatusCode)
