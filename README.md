@@ -214,10 +214,6 @@ func main() {
 
 To learn more, refer to example located in [example/webhookSignature.go](example/webhookSignature.go).
 
-## Documentation for creating a FingerprintAPIClient
-
-Refer to [**FingerprintAPI Client**](docs/FingerprintAPIClient.md).
-
 ## Documentation for API Endpoints
 
 All URIs are relative to *https://api.fpjs.io/v4*
