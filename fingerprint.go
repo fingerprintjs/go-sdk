@@ -9,6 +9,10 @@ import (
 )
 
 type API = openapi.FingerprintAPI
+type APIDeleteVisitorDataRequest = openapi.ApiDeleteVisitorDataRequest
+type APIGetEventRequest = openapi.ApiGetEventRequest
+type APISearchEventsRequest = openapi.ApiSearchEventsRequest
+type APIUpdateEventRequest = openapi.ApiUpdateEventRequest
 
 var integrationInfo = fmt.Sprintf(`fingerprint-pro-server-go-sdk/%s`, Version)
 
