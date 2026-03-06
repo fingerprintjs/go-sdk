@@ -9,6 +9,10 @@ import (
 )
 
 type API = openapi.FingerprintAPI
+type APIDeleteVisitorDataRequest = openapi.ApiDeleteVisitorDataRequest
+type APIGetEventRequest = openapi.ApiGetEventRequest
+type APISearchEventsRequest = openapi.ApiSearchEventsRequest
+type APIUpdateEventRequest = openapi.ApiUpdateEventRequest
 
 var integrationInfo = fmt.Sprintf(`fingerprint-pro-server-go-sdk/%s`, Version)
 
@@ -62,7 +66,7 @@ func (c *Client) withRegion(ctx context.Context) context.Context {
 	if ctx.Value(openapi.ContextServerIndex) != nil {
 		return ctx
 	}
-	return WithRegionContext(ctx, c.api.GetConfig(), c.region)
+	return withRegionContext(ctx, c.api.GetConfig(), c.region)
 }
 
 func (c *Client) withAPIKey(ctx context.Context) context.Context {

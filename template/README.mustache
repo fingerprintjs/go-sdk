@@ -75,7 +75,7 @@ func main() {
     if err != nil {
         if errResp, ok := fingerprint.AsErrorResponse(err); ok {
             switch errResp.Error.Code {
-            case fingerprint.ErrorCodeEvent_not_found:
+            case fingerprint.ErrorCodeEventNotFound:
                 log.Fatalf("Event not found")
             default:
                 log.Printf("Error %s: %v", errResp.Error.Code, errResp)

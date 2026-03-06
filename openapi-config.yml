@@ -23,6 +23,14 @@ modelNameMappings:
   SearchEventsSdkPlatform: SearchEventsSDKPlatform
   SearchEventsVpnConfidence: SearchEventsVPNConfidence
 
+enumNameMappings:
+  secret_api_key_required: secret_a_p_i_key_required
+  secret_api_key_not_found: secret_a_p_i_key_not_found
+  public_api_key_required: public_a_p_i_key_required
+  public_api_key_not_found: public_a_p_i_key_not_found
+  js: j_s
+  ios: i_o_s
+
 nameMappings:
   event_id: EventID
   linked_id: LinkedID

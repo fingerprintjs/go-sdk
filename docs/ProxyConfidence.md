@@ -3,11 +3,11 @@
 ## Enum
 
 
-* `LOW` (value: `"low"`)
+* `ProxyConfidenceLow` (value: `"low"`)
 
-* `MEDIUM` (value: `"medium"`)
+* `ProxyConfidenceMedium` (value: `"medium"`)
 
-* `HIGH` (value: `"high"`)
+* `ProxyConfidenceHigh` (value: `"high"`)
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -3,41 +3,41 @@
 ## Enum
 
 
-* `REQUEST_CANNOT_BE_PARSED` (value: `"request_cannot_be_parsed"`)
+* `ErrorCodeRequestCannotBeParsed` (value: `"request_cannot_be_parsed"`)
 
-* `SECRET_API_KEY_REQUIRED` (value: `"secret_api_key_required"`)
+* `ErrorCodeSecretAPIKeyRequired` (value: `"secret_api_key_required"`)
 
-* `SECRET_API_KEY_NOT_FOUND` (value: `"secret_api_key_not_found"`)
+* `ErrorCodeSecretAPIKeyNotFound` (value: `"secret_api_key_not_found"`)
 
-* `PUBLIC_API_KEY_REQUIRED` (value: `"public_api_key_required"`)
+* `ErrorCodePublicAPIKeyRequired` (value: `"public_api_key_required"`)
 
-* `PUBLIC_API_KEY_NOT_FOUND` (value: `"public_api_key_not_found"`)
+* `ErrorCodePublicAPIKeyNotFound` (value: `"public_api_key_not_found"`)
 
-* `SUBSCRIPTION_NOT_ACTIVE` (value: `"subscription_not_active"`)
+* `ErrorCodeSubscriptionNotActive` (value: `"subscription_not_active"`)
 
-* `WRONG_REGION` (value: `"wrong_region"`)
+* `ErrorCodeWrongRegion` (value: `"wrong_region"`)
 
-* `FEATURE_NOT_ENABLED` (value: `"feature_not_enabled"`)
+* `ErrorCodeFeatureNotEnabled` (value: `"feature_not_enabled"`)
 
-* `REQUEST_NOT_FOUND` (value: `"request_not_found"`)
+* `ErrorCodeRequestNotFound` (value: `"request_not_found"`)
 
-* `VISITOR_NOT_FOUND` (value: `"visitor_not_found"`)
+* `ErrorCodeVisitorNotFound` (value: `"visitor_not_found"`)
 
-* `TOO_MANY_REQUESTS` (value: `"too_many_requests"`)
+* `ErrorCodeTooManyRequests` (value: `"too_many_requests"`)
 
-* `STATE_NOT_READY` (value: `"state_not_ready"`)
+* `ErrorCodeStateNotReady` (value: `"state_not_ready"`)
 
-* `FAILED` (value: `"failed"`)
+* `ErrorCodeFailed` (value: `"failed"`)
 
-* `EVENT_NOT_FOUND` (value: `"event_not_found"`)
+* `ErrorCodeEventNotFound` (value: `"event_not_found"`)
 
-* `MISSING_MODULE` (value: `"missing_module"`)
+* `ErrorCodeMissingModule` (value: `"missing_module"`)
 
-* `PAYLOAD_TOO_LARGE` (value: `"payload_too_large"`)
+* `ErrorCodePayloadTooLarge` (value: `"payload_too_large"`)
 
-* `SERVICE_UNAVAILABLE` (value: `"service_unavailable"`)
+* `ErrorCodeServiceUnavailable` (value: `"service_unavailable"`)
 
-* `RULESET_NOT_FOUND` (value: `"ruleset_not_found"`)
+* `ErrorCodeRulesetNotFound` (value: `"ruleset_not_found"`)
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

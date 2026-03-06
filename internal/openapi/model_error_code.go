@@ -21,46 +21,46 @@ type ErrorCode string
 
 // List of ErrorCode
 const (
-	ErrorCodeRequest_cannot_be_parsed ErrorCode = "request_cannot_be_parsed"
-	ErrorCodeSecret_api_key_required  ErrorCode = "secret_api_key_required"
-	ErrorCodeSecret_api_key_not_found ErrorCode = "secret_api_key_not_found"
-	ErrorCodePublic_api_key_required  ErrorCode = "public_api_key_required"
-	ErrorCodePublic_api_key_not_found ErrorCode = "public_api_key_not_found"
-	ErrorCodeSubscription_not_active  ErrorCode = "subscription_not_active"
-	ErrorCodeWrong_region             ErrorCode = "wrong_region"
-	ErrorCodeFeature_not_enabled      ErrorCode = "feature_not_enabled"
-	ErrorCodeRequest_not_found        ErrorCode = "request_not_found"
-	ErrorCodeVisitor_not_found        ErrorCode = "visitor_not_found"
-	ErrorCodeToo_many_requests        ErrorCode = "too_many_requests"
-	ErrorCodeState_not_ready          ErrorCode = "state_not_ready"
-	ErrorCodeFailed                   ErrorCode = "failed"
-	ErrorCodeEvent_not_found          ErrorCode = "event_not_found"
-	ErrorCodeMissing_module           ErrorCode = "missing_module"
-	ErrorCodePayload_too_large        ErrorCode = "payload_too_large"
-	ErrorCodeService_unavailable      ErrorCode = "service_unavailable"
-	ErrorCodeRuleset_not_found        ErrorCode = "ruleset_not_found"
+	ErrorCodeRequestCannotBeParsed ErrorCode = "request_cannot_be_parsed"
+	ErrorCodeSecretAPIKeyRequired  ErrorCode = "secret_api_key_required"
+	ErrorCodeSecretAPIKeyNotFound  ErrorCode = "secret_api_key_not_found"
+	ErrorCodePublicAPIKeyRequired  ErrorCode = "public_api_key_required"
+	ErrorCodePublicAPIKeyNotFound  ErrorCode = "public_api_key_not_found"
+	ErrorCodeSubscriptionNotActive ErrorCode = "subscription_not_active"
+	ErrorCodeWrongRegion           ErrorCode = "wrong_region"
+	ErrorCodeFeatureNotEnabled     ErrorCode = "feature_not_enabled"
+	ErrorCodeRequestNotFound       ErrorCode = "request_not_found"
+	ErrorCodeVisitorNotFound       ErrorCode = "visitor_not_found"
+	ErrorCodeTooManyRequests       ErrorCode = "too_many_requests"
+	ErrorCodeStateNotReady         ErrorCode = "state_not_ready"
+	ErrorCodeFailed                ErrorCode = "failed"
+	ErrorCodeEventNotFound         ErrorCode = "event_not_found"
+	ErrorCodeMissingModule         ErrorCode = "missing_module"
+	ErrorCodePayloadTooLarge       ErrorCode = "payload_too_large"
+	ErrorCodeServiceUnavailable    ErrorCode = "service_unavailable"
+	ErrorCodeRulesetNotFound       ErrorCode = "ruleset_not_found"
 )
 
 // All allowed values of ErrorCode enum
 var AllowedErrorCodeEnumValues = []ErrorCode{
-	ErrorCodeRequest_cannot_be_parsed,
-	ErrorCodeSecret_api_key_required,
-	ErrorCodeSecret_api_key_not_found,
-	ErrorCodePublic_api_key_required,
-	ErrorCodePublic_api_key_not_found,
-	ErrorCodeSubscription_not_active,
-	ErrorCodeWrong_region,
-	ErrorCodeFeature_not_enabled,
-	ErrorCodeRequest_not_found,
-	ErrorCodeVisitor_not_found,
-	ErrorCodeToo_many_requests,
-	ErrorCodeState_not_ready,
+	ErrorCodeRequestCannotBeParsed,
+	ErrorCodeSecretAPIKeyRequired,
+	ErrorCodeSecretAPIKeyNotFound,
+	ErrorCodePublicAPIKeyRequired,
+	ErrorCodePublicAPIKeyNotFound,
+	ErrorCodeSubscriptionNotActive,
+	ErrorCodeWrongRegion,
+	ErrorCodeFeatureNotEnabled,
+	ErrorCodeRequestNotFound,
+	ErrorCodeVisitorNotFound,
+	ErrorCodeTooManyRequests,
+	ErrorCodeStateNotReady,
 	ErrorCodeFailed,
-	ErrorCodeEvent_not_found,
-	ErrorCodeMissing_module,
-	ErrorCodePayload_too_large,
-	ErrorCodeService_unavailable,
-	ErrorCodeRuleset_not_found,
+	ErrorCodeEventNotFound,
+	ErrorCodeMissingModule,
+	ErrorCodePayloadTooLarge,
+	ErrorCodeServiceUnavailable,
+	ErrorCodeRulesetNotFound,
 }
 
 func (v *ErrorCode) UnmarshalJSON(src []byte) error {
@@ -78,66 +78,4 @@ func (v *ErrorCode) UnmarshalJSON(src []byte) error {
 	}
 
 	return fmt.Errorf("%+v is not a valid ErrorCode", value)
-}
-
-// NewErrorCodeFromValue returns a pointer to a valid ErrorCode
-// for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewErrorCodeFromValue(v string) (*ErrorCode, error) {
-	ev := ErrorCode(v)
-	if ev.IsValid() {
-		return &ev, nil
-	} else {
-		return nil, fmt.Errorf("invalid value '%v' for ErrorCode: valid values are %v", v, AllowedErrorCodeEnumValues)
-	}
-}
-
-// IsValid return true if the value is valid for the enum, false otherwise
-func (v ErrorCode) IsValid() bool {
-	for _, existing := range AllowedErrorCodeEnumValues {
-		if existing == v {
-			return true
-		}
-	}
-	return false
-}
-
-// Ptr returns reference to ErrorCode value
-func (v ErrorCode) Ptr() *ErrorCode {
-	return &v
-}
-
-type NullableErrorCode struct {
-	value *ErrorCode
-	isSet bool
-}
-
-func (v NullableErrorCode) Get() *ErrorCode {
-	return v.value
-}
-
-func (v *NullableErrorCode) Set(val *ErrorCode) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableErrorCode) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableErrorCode) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableErrorCode(val *ErrorCode) *NullableErrorCode {
-	return &NullableErrorCode{value: val, isSet: true}
-}
-
-func (v NullableErrorCode) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableErrorCode) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
 }
