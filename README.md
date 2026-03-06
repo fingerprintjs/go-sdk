@@ -143,6 +143,7 @@ import (
     "encoding/base64"
     "fmt"
     "github.com/fingerprintjs/go-sdk/v8"
+    "log"
     "os"
 )
 
