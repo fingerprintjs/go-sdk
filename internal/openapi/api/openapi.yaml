@@ -25,7 +25,7 @@ tags:
     analysis events or event history of individual visitors.
   externalDocs:
     description: API documentation
-    url: https://dev.fingerprint.com/reference/pro-server-api
+    url: https://docs.fingerprint.com/reference/server-api
   name: Fingerprint
 paths:
   /events/{event_id}:
@@ -36,7 +36,7 @@ paths:
         Use `event_id` as the URL path parameter. This API method is scoped to a request, i.e. all returned information is by `event_id`.
       operationId: getEvent
       parameters:
-      - description: "The unique [identifier](https://dev.fingerprint.com/reference/get-function#requestid)\
+      - description: "The unique [identifier](https://docs.fingerprint.com/reference/js-agent-v4-get-function#event_id)\
           \ of each identification request (`requestId` can be used in its place)."
         explode: false
         in: path
@@ -109,7 +109,7 @@ paths:
         \ the request.\n"
       operationId: updateEvent
       parameters:
-      - description: "The unique event [identifier](https://dev.fingerprint.com/reference/get-function#event_id)."
+      - description: "The unique event [identifier](https://docs.fingerprint.com/reference/js-agent-v4-get-function#event_id)."
         explode: false
         in: path
         name: event_id
@@ -209,7 +209,7 @@ paths:
           type: string
         style: form
       - description: |
-          Unique [visitor identifier](https://dev.fingerprint.com/reference/get-function#visitorid) issued by Fingerprint Identification and all active Smart Signals.
+          Unique [visitor identifier](https://docs.fingerprint.com/reference/js-agent-v4-get-function#visitor_id) issued by Fingerprint Identification and all active Smart Signals.
           Filter for events matching this `visitor_id`.
         explode: true
         in: query
@@ -255,7 +255,7 @@ paths:
       - description: |
           Filter events by your custom identifier.
 
-          You can use [linked Ids](https://dev.fingerprint.com/reference/get-function#linkedid) to associate identification requests with your own identifier, for example, session Id, purchase Id, or transaction Id. You can then use this `linked_id` parameter to retrieve all events associated with your custom identifier.
+          You can use [linked Ids](https://docs.fingerprint.com/reference/js-agent-v4-get-function#linkedid) to associate identification requests with your own identifier, for example, session Id, purchase Id, or transaction Id. You can then use this `linked_id` parameter to retrieve all events associated with your custom identifier.
         explode: true
         in: query
         name: linked_id
@@ -329,7 +329,7 @@ paths:
           type: boolean
         style: form
       - description: |
-          Filter events previously tagged as suspicious via the [Update API](https://dev.fingerprint.com/reference/updateevent).
+          Filter events previously tagged as suspicious via the [Update API](https://docs.fingerprint.com/reference/server-api-v4-update-event).
           > Note: When using this parameter, only events with the `suspect` property explicitly set to `true` or `false` are returned. Events with undefined `suspect` property are left out of the response.
         explode: true
         in: query
@@ -627,10 +627,10 @@ paths:
 
         #### Browser (or device) properties
         - Represents the data that Fingerprint collected from this specific browser (or device) and everything inferred and derived from it.
-        - Upon request to delete, this data is deleted asynchronously (typically within a few minutes) and it will no longer be used to identify this browser (or device) for your [Fingerprint Workspace](https://dev.fingerprint.com/docs/glossary#fingerprint-workspace).
+        - Upon request to delete, this data is deleted asynchronously (typically within a few minutes) and it will no longer be used to identify this browser (or device) for your [Fingerprint Workspace](https://docs.fingerprint.com/docs/glossary#fingerprint-workspace).
 
         #### Identification requests made from this browser (or device)
-        - Fingerprint stores the identification requests made from a browser (or device) for up to 30 (or 90) days depending on your plan. To learn more, see [Data Retention](https://dev.fingerprint.com/docs/regions#data-retention).
+        - Fingerprint stores the identification requests made from a browser (or device) for up to 30 (or 90) days depending on your plan. To learn more, see [Data Retention](https://docs.fingerprint.com/docs/regions#data-retention).
         - Upon request to delete, the identification requests that were made by this browser
           - Within the past 10 days are deleted within 24 hrs.
           - Outside of 10 days are allowed to purge as per your data retention period.
@@ -638,13 +638,13 @@ paths:
         ### Corollary
         After requesting to delete a visitor ID,
         - If the same browser (or device) requests to identify, it will receive a different visitor ID.
-        - If you request [`/v4/events` API](https://dev.fingerprint.com/reference/getevent) with an `event_id` that was made outside of the 10 days, you will still receive a valid response.
+        - If you request [`/v4/events` API](https://docs.fingerprint.com/reference/server-api-v4-get-event) with an `event_id` that was made outside of the 10 days, you will still receive a valid response.
 
         ### Interested?
         Please [contact our support team](https://fingerprint.com/support/) to enable it for you. Otherwise, you will receive a 403.
       operationId: deleteVisitorData
       parameters:
-      - description: "The [visitor ID](https://dev.fingerprint.com/reference/get-function#visitorid)\
+      - description: "The [visitor ID](https://docs.fingerprint.com/reference/js-agent-v4-get-function#visitor_id)\
           \ you want to delete."
         explode: false
         in: path
@@ -704,7 +704,7 @@ components:
       type: string
     Suspect:
       description: "Field is `true` if you have previously set the `suspect` flag\
-        \ for this event using the [Server API Update event endpoint](https://dev.fingerprint.com/reference/updateevent)."
+        \ for this event using the [Server API Update event endpoint](https://docs.fingerprint.com/reference/server-api-v4-update-event)."
       type: boolean
     Integration:
       properties:
@@ -971,7 +971,7 @@ components:
       type: boolean
     FactoryReset:
       description: |
-        The time of the most recent factory reset that happened on the **mobile device** is expressed as Unix epoch time. When a factory reset cannot be detected on the mobile device or when the request is initiated from a browser,  this field will correspond to the *epoch* time (i.e 1 Jan 1970 UTC) as a value of 0. See [Factory Reset Detection](https://dev.fingerprint.com/docs/smart-signals-overview#factory-reset-detection) to learn more about this Smart Signal.
+        The time of the most recent factory reset that happened on the **mobile device** is expressed as Unix epoch time. When a factory reset cannot be detected on the mobile device or when the request is initiated from a browser,  this field will correspond to the *epoch* time (i.e 1 Jan 1970 UTC) as a value of 0. See [Factory Reset Detection](https://docs.fingerprint.com/docs/smart-signals-reference#factory-reset-detection) to learn more about this Smart Signal.
       format: int64
       type: integer
     Frida:
@@ -1133,7 +1133,7 @@ components:
       description: "* `true` - When requests made from your users' mobile devices\
         \ to Fingerprint servers have been intercepted and potentially modified. \n\
         * `false` - Otherwise or when the request originated from a browser.\nSee\
-        \ [MitM Attack Detection](https://dev.fingerprint.com/docs/smart-signals-reference#mitm-attack-detection)\
+        \ [MitM Attack Detection](https://docs.fingerprint.com/docs/smart-signals-reference#mitm-attack-detection)\
         \ to learn more about this Smart Signal.\n"
       type: boolean
     PrivacySettings:
@@ -1301,7 +1301,7 @@ components:
       - $ref: "#/components/schemas/EventRuleActionBlock"
     SuspectScore:
       description: |
-        Suspect Score is an easy way to integrate Smart Signals into your fraud protection work flow.  It is a weighted representation of all Smart Signals present in the payload that helps identify suspicious activity. The value range is [0; S] where S is sum of all Smart Signals weights.  See more details here: https://dev.fingerprint.com/docs/suspect-score
+        Suspect Score is an easy way to integrate Smart Signals into your fraud protection work flow.  It is a weighted representation of all Smart Signals present in the payload that helps identify suspicious activity. The value range is [0; S] where S is sum of all Smart Signals weights.  See more details here: https://docs.fingerprint.com/docs/suspect-score
       type: integer
     Tampering:
       description: |

@@ -34,10 +34,10 @@ type FingerprintAPI interface {
 
 	#### Browser (or device) properties
 	- Represents the data that Fingerprint collected from this specific browser (or device) and everything inferred and derived from it.
-	- Upon request to delete, this data is deleted asynchronously (typically within a few minutes) and it will no longer be used to identify this browser (or device) for your [Fingerprint Workspace](https://dev.fingerprint.com/docs/glossary#fingerprint-workspace).
+	- Upon request to delete, this data is deleted asynchronously (typically within a few minutes) and it will no longer be used to identify this browser (or device) for your [Fingerprint Workspace](https://docs.fingerprint.com/docs/glossary#fingerprint-workspace).
 
 	#### Identification requests made from this browser (or device)
-	- Fingerprint stores the identification requests made from a browser (or device) for up to 30 (or 90) days depending on your plan. To learn more, see [Data Retention](https://dev.fingerprint.com/docs/regions#data-retention).
+	- Fingerprint stores the identification requests made from a browser (or device) for up to 30 (or 90) days depending on your plan. To learn more, see [Data Retention](https://docs.fingerprint.com/docs/regions#data-retention).
 	- Upon request to delete, the identification requests that were made by this browser
 	  - Within the past 10 days are deleted within 24 hrs.
 	  - Outside of 10 days are allowed to purge as per your data retention period.
@@ -45,13 +45,13 @@ type FingerprintAPI interface {
 	### Corollary
 	After requesting to delete a visitor ID,
 	- If the same browser (or device) requests to identify, it will receive a different visitor ID.
-	- If you request [`/v4/events` API](https://dev.fingerprint.com/reference/getevent) with an `event_id` that was made outside of the 10 days, you will still receive a valid response.
+	- If you request [`/v4/events` API](https://docs.fingerprint.com/reference/server-api-v4-get-event) with an `event_id` that was made outside of the 10 days, you will still receive a valid response.
 
 	### Interested?
 	Please [contact our support team](https://fingerprint.com/support/) to enable it for you. Otherwise, you will receive a 403.
 
 
-		visitorID The [visitor ID](https://dev.fingerprint.com/reference/get-function#visitorid) you want to delete.
+		visitorID The [visitor ID](https://docs.fingerprint.com/reference/js-agent-v4-get-function#visitor_id) you want to delete.
 		Returns ApiDeleteVisitorDataRequest
 	*/
 	DeleteVisitorData(visitorID string) ApiDeleteVisitorDataRequest
@@ -67,7 +67,7 @@ type FingerprintAPI interface {
 	Use `event_id` as the URL path parameter. This API method is scoped to a request, i.e. all returned information is by `event_id`.
 
 
-		eventID The unique [identifier](https://dev.fingerprint.com/reference/get-function#requestid) of each identification request (`requestId` can be used in its place).
+		eventID The unique [identifier](https://docs.fingerprint.com/reference/js-agent-v4-get-function#event_id) of each identification request (`requestId` can be used in its place).
 		Returns ApiGetEventRequest
 	*/
 	GetEvent(eventID string) ApiGetEventRequest
@@ -127,7 +127,7 @@ type FingerprintAPI interface {
 	error (HTTP 409 Conflict. The event is not mutable yet.) as the event is fully propagated across our systems. In such a case, simply retry the request.
 
 
-		eventID The unique event [identifier](https://dev.fingerprint.com/reference/get-function#event_id).
+		eventID The unique event [identifier](https://docs.fingerprint.com/reference/js-agent-v4-get-function#event_id).
 		Returns ApiUpdateEventRequest
 	*/
 	UpdateEvent(eventID string) ApiUpdateEventRequest
@@ -159,10 +159,10 @@ Request deleting all data associated with the specified visitor ID. This API is 
 
 #### Browser (or device) properties
 - Represents the data that Fingerprint collected from this specific browser (or device) and everything inferred and derived from it.
-- Upon request to delete, this data is deleted asynchronously (typically within a few minutes) and it will no longer be used to identify this browser (or device) for your [Fingerprint Workspace](https://dev.fingerprint.com/docs/glossary#fingerprint-workspace).
+- Upon request to delete, this data is deleted asynchronously (typically within a few minutes) and it will no longer be used to identify this browser (or device) for your [Fingerprint Workspace](https://docs.fingerprint.com/docs/glossary#fingerprint-workspace).
 
 #### Identification requests made from this browser (or device)
-- Fingerprint stores the identification requests made from a browser (or device) for up to 30 (or 90) days depending on your plan. To learn more, see [Data Retention](https://dev.fingerprint.com/docs/regions#data-retention).
+- Fingerprint stores the identification requests made from a browser (or device) for up to 30 (or 90) days depending on your plan. To learn more, see [Data Retention](https://docs.fingerprint.com/docs/regions#data-retention).
 - Upon request to delete, the identification requests that were made by this browser
   - Within the past 10 days are deleted within 24 hrs.
   - Outside of 10 days are allowed to purge as per your data retention period.
@@ -170,12 +170,12 @@ Request deleting all data associated with the specified visitor ID. This API is 
 ### Corollary
 After requesting to delete a visitor ID,
 - If the same browser (or device) requests to identify, it will receive a different visitor ID.
-- If you request [`/v4/events` API](https://dev.fingerprint.com/reference/getevent) with an `event_id` that was made outside of the 10 days, you will still receive a valid response.
+- If you request [`/v4/events` API](https://docs.fingerprint.com/reference/server-api-v4-get-event) with an `event_id` that was made outside of the 10 days, you will still receive a valid response.
 
 ### Interested?
 Please [contact our support team](https://fingerprint.com/support/) to enable it for you. Otherwise, you will receive a 403.
 
-	visitorID The [visitor ID](https://dev.fingerprint.com/reference/get-function#visitorid) you want to delete.
+	visitorID The [visitor ID](https://docs.fingerprint.com/reference/js-agent-v4-get-function#visitor_id) you want to delete.
 	Returns ApiDeleteVisitorDataRequest
 */
 func (a *FingerprintAPIService) DeleteVisitorData(visitorID string) ApiDeleteVisitorDataRequest {
@@ -316,7 +316,7 @@ Get a detailed analysis of an individual identification event, including Smart S
 
 Use `event_id` as the URL path parameter. This API method is scoped to a request, i.e. all returned information is by `event_id`.
 
-	eventID The unique [identifier](https://dev.fingerprint.com/reference/get-function#requestid) of each identification request (`requestId` can be used in its place).
+	eventID The unique [identifier](https://docs.fingerprint.com/reference/js-agent-v4-get-function#event_id) of each identification request (`requestId` can be used in its place).
 	Returns ApiGetEventRequest
 */
 func (a *FingerprintAPIService) GetEvent(eventID string) ApiGetEventRequest {
@@ -516,7 +516,7 @@ func (r ApiSearchEventsRequest) PaginationKey(paginationKey string) ApiSearchEve
 	return r
 }
 
-// Unique [visitor identifier](https://dev.fingerprint.com/reference/get-function#visitorid) issued by Fingerprint Identification and all active Smart Signals. Filter for events matching this `visitor_id`.
+// Unique [visitor identifier](https://docs.fingerprint.com/reference/js-agent-v4-get-function#visitor_id) issued by Fingerprint Identification and all active Smart Signals. Filter for events matching this `visitor_id`.
 func (r ApiSearchEventsRequest) VisitorID(visitorID string) ApiSearchEventsRequest {
 	r.visitorID = &visitorID
 	return r
@@ -540,7 +540,7 @@ func (r ApiSearchEventsRequest) Asn(asn string) ApiSearchEventsRequest {
 	return r
 }
 
-// Filter events by your custom identifier.  You can use [linked Ids](https://dev.fingerprint.com/reference/get-function#linkedid) to associate identification requests with your own identifier, for example, session Id, purchase Id, or transaction Id. You can then use this `linked_id` parameter to retrieve all events associated with your custom identifier.
+// Filter events by your custom identifier.  You can use [linked Ids](https://docs.fingerprint.com/reference/js-agent-v4-get-function#linkedid) to associate identification requests with your own identifier, for example, session Id, purchase Id, or transaction Id. You can then use this `linked_id` parameter to retrieve all events associated with your custom identifier.
 func (r ApiSearchEventsRequest) LinkedID(linkedID string) ApiSearchEventsRequest {
 	r.linkedID = &linkedID
 	return r
@@ -588,7 +588,7 @@ func (r ApiSearchEventsRequest) Reverse(reverse bool) ApiSearchEventsRequest {
 	return r
 }
 
-// Filter events previously tagged as suspicious via the [Update API](https://dev.fingerprint.com/reference/updateevent). > Note: When using this parameter, only events with the `suspect` property explicitly set to `true` or `false` are returned. Events with undefined `suspect` property are left out of the response.
+// Filter events previously tagged as suspicious via the [Update API](https://docs.fingerprint.com/reference/server-api-v4-update-event). > Note: When using this parameter, only events with the `suspect` property explicitly set to `true` or `false` are returned. Events with undefined `suspect` property are left out of the response.
 func (r ApiSearchEventsRequest) Suspect(suspect bool) ApiSearchEventsRequest {
 	r.suspect = &suspect
 	return r
@@ -1041,7 +1041,7 @@ This information might not have been available on the client initially, so the S
 **Warning** Trying to update an event immediately after creation may temporarily result in an
 error (HTTP 409 Conflict. The event is not mutable yet.) as the event is fully propagated across our systems. In such a case, simply retry the request.
 
-	eventID The unique event [identifier](https://dev.fingerprint.com/reference/get-function#event_id).
+	eventID The unique event [identifier](https://docs.fingerprint.com/reference/js-agent-v4-get-function#event_id).
 	Returns ApiUpdateEventRequest
 */
 func (a *FingerprintAPIService) UpdateEvent(eventID string) ApiUpdateEventRequest {

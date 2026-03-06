@@ -29,7 +29,7 @@ type Event struct {
 	LinkedID *string `json:"linked_id,omitempty"`
 	// Environment Id of the event. For example: `ae_47abaca3db2c7c43`
 	EnvironmentID *string `json:"environment_id,omitempty"`
-	// Field is `true` if you have previously set the `suspect` flag for this event using the [Server API Update event endpoint](https://dev.fingerprint.com/reference/updateevent).
+	// Field is `true` if you have previously set the `suspect` flag for this event using the [Server API Update event endpoint](https://docs.fingerprint.com/reference/server-api-v4-update-event).
 	Suspect *bool `json:"suspect,omitempty"`
 	SDK     *SDK  `json:"sdk,omitempty"`
 	// `true` if we determined that this payload was replayed, `false` otherwise.
@@ -62,7 +62,7 @@ type Event struct {
 	DeveloperTools *bool `json:"developer_tools,omitempty"`
 	// Android specific emulator detection. There are 2 values:  * `true` - Emulated environment detected (e.g. launch inside of AVD).  * `false` - No signs of emulated environment detected or the client is not Android.
 	Emulator *bool `json:"emulator,omitempty"`
-	// The time of the most recent factory reset that happened on the **mobile device** is expressed as Unix epoch time. When a factory reset cannot be detected on the mobile device or when the request is initiated from a browser,  this field will correspond to the *epoch* time (i.e 1 Jan 1970 UTC) as a value of 0. See [Factory Reset Detection](https://dev.fingerprint.com/docs/smart-signals-overview#factory-reset-detection) to learn more about this Smart Signal.
+	// The time of the most recent factory reset that happened on the **mobile device** is expressed as Unix epoch time. When a factory reset cannot be detected on the mobile device or when the request is initiated from a browser,  this field will correspond to the *epoch* time (i.e 1 Jan 1970 UTC) as a value of 0. See [Factory Reset Detection](https://docs.fingerprint.com/docs/smart-signals-reference#factory-reset-detection) to learn more about this Smart Signal.
 	FactoryResetTimestamp *int64 `json:"factory_reset_timestamp,omitempty"`
 	// [Frida](https://frida.re/docs/) detection for Android and iOS devices. There are 2 values: * `true` - Frida detected * `false` - No signs of Frida or the client is not a mobile device.
 	Frida       *bool        `json:"frida,omitempty"`
@@ -78,14 +78,14 @@ type Event struct {
 	Jailbroken *bool `json:"jailbroken,omitempty"`
 	// Flag indicating whether the request came from a mobile device with location spoofing enabled.
 	LocationSpoofing *bool `json:"location_spoofing,omitempty"`
-	// * `true` - When requests made from your users' mobile devices to Fingerprint servers have been intercepted and potentially modified.  * `false` - Otherwise or when the request originated from a browser. See [MitM Attack Detection](https://dev.fingerprint.com/docs/smart-signals-reference#mitm-attack-detection) to learn more about this Smart Signal.
+	// * `true` - When requests made from your users' mobile devices to Fingerprint servers have been intercepted and potentially modified.  * `false` - Otherwise or when the request originated from a browser. See [MitM Attack Detection](https://docs.fingerprint.com/docs/smart-signals-reference#mitm-attack-detection) to learn more about this Smart Signal.
 	MITMAttack *bool `json:"mitm_attack,omitempty"`
 	// `true` if the request is from a privacy aware browser (e.g. Tor) or from a browser in which fingerprinting is blocked. Otherwise `false`.
 	PrivacySettings *bool `json:"privacy_settings,omitempty"`
 	// Android specific root management apps detection. There are 2 values:  * `true` - Root Management Apps detected (e.g. Magisk). * `false` - No Root Management Apps detected or the client isn't Android.
 	RootApps   *bool            `json:"root_apps,omitempty"`
 	RuleAction *EventRuleAction `json:"rule_action,omitempty"`
-	// Suspect Score is an easy way to integrate Smart Signals into your fraud protection work flow.  It is a weighted representation of all Smart Signals present in the payload that helps identify suspicious activity. The value range is [0; S] where S is sum of all Smart Signals weights.  See more details here: https://dev.fingerprint.com/docs/suspect-score
+	// Suspect Score is an easy way to integrate Smart Signals into your fraud protection work flow.  It is a weighted representation of all Smart Signals present in the payload that helps identify suspicious activity. The value range is [0; S] where S is sum of all Smart Signals weights.  See more details here: https://docs.fingerprint.com/docs/suspect-score
 	SuspectScore *int32 `json:"suspect_score,omitempty"`
 	// Flag indicating browser tampering was detected. This happens when either:   * There are inconsistencies in the browser configuration that cross internal tampering thresholds (see `tampering_details.anomaly_score`).   * The browser signature resembles an \"anti-detect\" browser specifically designed to evade fingerprinting (see `tampering_details.anti_detect_browser`).
 	Tampering        *bool             `json:"tampering,omitempty"`
