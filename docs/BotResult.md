@@ -3,11 +3,11 @@
 ## Enum
 
 
-* `Bad` (value: `"bad"`)
+* `BotResultBad` (value: `"bad"`)
 
-* `Good` (value: `"good"`)
+* `BotResultGood` (value: `"good"`)
 
-* `NotDetected` (value: `"not_detected"`)
+* `BotResultNotDetected` (value: `"not_detected"`)
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

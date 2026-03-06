@@ -3,13 +3,13 @@
 ## Enum
 
 
-* `All` (value: `"all"`)
+* `SearchEventsBotAll` (value: `"all"`)
 
-* `Good` (value: `"good"`)
+* `SearchEventsBotGood` (value: `"good"`)
 
-* `Bad` (value: `"bad"`)
+* `SearchEventsBotBad` (value: `"bad"`)
 
-* `None` (value: `"none"`)
+* `SearchEventsBotNone` (value: `"none"`)
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
