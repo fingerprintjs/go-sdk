@@ -8,6 +8,7 @@
     </a>
 </p>
 <p align="center">
+    <a href="https://pkg.go.dev/github.com/fingerprintjs/go-sdk/v8"><img src="https://pkg.go.dev/badge/github.com/fingerprintjs/go-sdk.svg" alt="Go Reference"></a>
     <a href="https://github.com/fingerprintjs/go-sdk/actions/workflows/release.yml"><img src="https://github.com/fingerprintjs/go-sdk/actions/workflows/release.yml/badge.svg" alt="CI badge" /></a>
     <a href="https://github.com/fingerprintjs/go-sdk/actions/workflows/tests.yml"><img src="https://github.com/fingerprintjs/go-sdk/actions/workflows/tests.yml/badge.svg" alt="CI badge" /></a>
     <a href="https://github.com/fingerprintjs/go-sdk/actions/workflows/functional_tests.yml"><img src="https://github.com/fingerprintjs/go-sdk/actions/workflows/functional_tests.yml/badge.svg" alt="CI badge" /></a>
