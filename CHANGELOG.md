@@ -1,5 +1,25 @@
 # Fingerprint Pro Server Go SDK
 
+## 8.0.0
+
+### Major Changes
+
+- Added support for Fingerprint API v4 and removed support for v3 (breaking), along with stability and quality-of-life improvements. See the official migration guide for upgrading from v3 to v4.
+
+  Migration guide: https://docs.fingerprint.com/reference/migrating-from-server-api-v3-to-v4 ([6fc6bad](https://github.com/fingerprintjs/go-sdk/commit/6fc6bad6e8ad07b9ccd674b472ac9be3dcc01a76))
+
+### Minor Changes
+
+- Move generated code to `internal` directory ([f29aacc](https://github.com/fingerprintjs/go-sdk/commit/f29aaccb16673ab07968832d3c1fd0db4b69703a))
+- Improve project structure, code generation and documentation ([c8c5277](https://github.com/fingerprintjs/go-sdk/commit/c8c52770aeb02b909ccd9841506399fa710c7e59))
+
+### Patch Changes
+
+- Fixes the module path, now it ends with "/v8" ([7350137](https://github.com/fingerprintjs/go-sdk/commit/7350137f01bbdfd87471148ae7727ed0e4f809e8))
+- Updated docs and examples ([24f8b2b](https://github.com/fingerprintjs/go-sdk/commit/24f8b2b57f5190cbdfa0db4f31ae6649d108e143))
+- Add ruleset evaluation capability to GetEvent ([573f54e](https://github.com/fingerprintjs/go-sdk/commit/573f54e0d07837e4163cd9359d8056725704887d))
+- Use directory v8 as the module path ([81f829c](https://github.com/fingerprintjs/go-sdk/commit/81f829ced2c57119048db715a8bc4dd4fa2b7506))
+
 ## 8.0.0-test.6
 
 ### Minor Changes
