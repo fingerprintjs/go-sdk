@@ -191,7 +191,7 @@ func TestUpdateEvent(t *testing.T) {
 			StatusCode       int
 			MockResponsePath string
 		}{
-			{404, "mocks/errors/404_request_not_found.json"},
+			{404, "mocks/errors/404_event_not_found.json"},
 			{400, "mocks/errors/400_request_body_invalid.json"},
 			{403, "mocks/errors/403_secret_api_key_required.json"},
 			{409, "mocks/errors/409_state_not_ready.json"},
