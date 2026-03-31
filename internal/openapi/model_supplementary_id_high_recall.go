@@ -19,16 +19,16 @@ import (
 // checks if the SupplementaryIDHighRecall type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &SupplementaryIDHighRecall{}
 
-// SupplementaryIDHighRecall A supplementary browser identifier that prioritizes coverage over precision. The High Recall ID algorithm matches more generously, i.e., this identifier will remain the same even when there are subtle differences between two requests. This algorithm does not create as many new visitor IDs as the standard algorithms do, but there could be an increase in false-positive identification.
+// SupplementaryIDHighRecall The High Recall ID is a supplementary browser identifier designed for use cases that require wider coverage over precision. Compared to the standard visitor ID, the High Recall ID strives to match incoming browsers more generously (rather than precisely) with existing browsers and thus identifies fewer browsers as new. The High Recall ID is best suited for use cases that are sensitive to browsers being identified as new and where mismatched browsers are not detrimental.
 type SupplementaryIDHighRecall struct {
-	// String of 20 characters that uniquely identifies the visitor's browser or mobile device.
+	// The High Recall identifier for the visitor's browser. It is an alphanumeric string with a maximum length of 25 characters.
 	VisitorID string `json:"visitor_id"`
-	// Attribute represents if a visitor had been identified before.
+	// True if this is a returning browser and has been previously identified. Otherwise, false.
 	VisitorFound bool                      `json:"visitor_found"`
 	Confidence   *IdentificationConfidence `json:"confidence,omitempty"`
-	// Unix epoch time milliseconds timestamp indicating the time at which this ID was first seen. example: `1758069706642` - Corresponding to Wed Sep 17 2025 00:41:46 GMT+0000
+	// Unix epoch timestamp (in milliseconds) indicating when the browser was first identified. example: `1758069706642` - Corresponding to Wed Sep 17 2025 00:41:46 GMT+0000
 	FirstSeenAt *int64 `json:"first_seen_at,omitempty"`
-	// Unix epoch time milliseconds timestamp indicating the time at which this ID was last seen. example: `1758069706642` - Corresponding to Wed Sep 17 2025 00:41:46 GMT+0000
+	// Unix epoch timestamp (in milliseconds) corresponding to the most recent visit by this browser. example: `1758069706642` - Corresponding to Wed Sep 17 2025 00:41:46 GMT+0000
 	LastSeenAt           *int64 `json:"last_seen_at,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

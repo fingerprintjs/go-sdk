@@ -62,6 +62,7 @@ nameMappings:
   proximity_id: ProximityID
   sdk_platform: SDKPlatform
   sdk_version: SDKVersion
+  high_recall_id: HighRecallID
 
 files:
   fingerprint_version.go.mustache:

@@ -31,6 +31,7 @@ docs/IPInfoV4.md
 docs/IPInfoV6.md
 docs/Identification.md
 docs/IdentificationConfidence.md
+docs/IncrementalIdentificationStatus.md
 docs/Integration.md
 docs/IntegrationSubintegration.md
 docs/PluginsInner.md
@@ -44,9 +45,11 @@ docs/RuleActionHeaderField.md
 docs/RuleActionType.md
 docs/SDK.md
 docs/SearchEventsBot.md
+docs/SearchEventsIncrementalIdentificationStatus.md
 docs/SearchEventsSDKPlatform.md
 docs/SearchEventsVPNConfidence.md
 docs/SupplementaryIDHighRecall.md
+docs/TamperingConfidence.md
 docs/TamperingDetails.md
 docs/TouchSupport.md
 docs/VPNConfidence.md
@@ -74,6 +77,7 @@ model_geolocation.go
 model_geolocation_subdivisions_inner.go
 model_identification.go
 model_identification_confidence.go
+model_incremental_identification_status.go
 model_integration.go
 model_integration_subintegration.go
 model_ip_block_list.go
@@ -91,9 +95,11 @@ model_rule_action_header_field.go
 model_rule_action_type.go
 model_sdk.go
 model_search_events_bot.go
+model_search_events_incremental_identification_status.go
 model_search_events_sdk_platform.go
 model_search_events_vpn_confidence.go
 model_supplementary_id_high_recall.go
+model_tampering_confidence.go
 model_tampering_details.go
 model_touch_support.go
 model_velocity.go

@@ -19,8 +19,6 @@
 
 * `ErrorCodeFeatureNotEnabled` (value: `"feature_not_enabled"`)
 
-* `ErrorCodeRequestNotFound` (value: `"request_not_found"`)
-
 * `ErrorCodeVisitorNotFound` (value: `"visitor_not_found"`)
 
 * `ErrorCodeTooManyRequests` (value: `"too_many_requests"`)

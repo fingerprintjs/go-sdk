@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **EventID** | **string** | Unique identifier of the user's request. The first portion of the event_id is a unix epoch milliseconds timestamp For example: `1758130560902.8tRtrH`  | 
 **Timestamp** | **int64** | Timestamp of the event with millisecond precision in Unix time. | 
+**IncrementalIdentificationStatus** | Pointer to [**IncrementalIdentificationStatus**](IncrementalIdentificationStatus.md) |  | [optional] 
 **LinkedID** | Pointer to **string** | A customer-provided id that was sent with the request. | [optional] 
 **EnvironmentID** | Pointer to **string** | Environment Id of the event. For example: `ae_47abaca3db2c7c43`  | [optional] 
 **Suspect** | Pointer to **bool** | Field is `true` if you have previously set the `suspect` flag for this event using the [Server API Update event endpoint](https://docs.fingerprint.com/reference/server-api-v4-update-event). | [optional] 
@@ -42,11 +43,15 @@ Name | Type | Description | Notes
 **PrivacySettings** | Pointer to **bool** | `true` if the request is from a privacy aware browser (e.g. Tor) or from a browser in which fingerprinting is blocked. Otherwise `false`.  | [optional] 
 **RootApps** | Pointer to **bool** | Android specific root management apps detection. There are 2 values:  * `true` - Root Management Apps detected (e.g. Magisk). * `false` - No Root Management Apps detected or the client isn't Android.  | [optional] 
 **RuleAction** | Pointer to [**EventRuleAction**](EventRuleAction.md) |  | [optional] 
+**Simulator** | Pointer to **bool** | iOS specific simulator detection. There are 2 values: * `true` - Simulator environment detected. * `false` - No signs of simulator or the client is not iOS.  | [optional] 
 **SuspectScore** | Pointer to **int32** | Suspect Score is an easy way to integrate Smart Signals into your fraud protection work flow.  It is a weighted representation of all Smart Signals present in the payload that helps identify suspicious activity. The value range is [0; S] where S is sum of all Smart Signals weights.  See more details here: https://docs.fingerprint.com/docs/suspect-score  | [optional] 
 **Tampering** | Pointer to **bool** | Flag indicating browser tampering was detected. This happens when either:   * There are inconsistencies in the browser configuration that cross internal tampering thresholds (see `tampering_details.anomaly_score`).   * The browser signature resembles an \"anti-detect\" browser specifically designed to evade fingerprinting (see `tampering_details.anti_detect_browser`).  | [optional] 
+**TamperingConfidence** | Pointer to [**TamperingConfidence**](TamperingConfidence.md) |  | [optional] 
+**TamperingMlScore** | Pointer to **float64** | A score that indicates the models calculated probability that an event is coming from an anti detect browser.   * Values above `0.8` indicate that the request is an anti detect browser based on the ml model   * Values below `0.8` indicate that the request is not an anti detect browser based on the ml model  | [optional] 
 **TamperingDetails** | Pointer to [**TamperingDetails**](TamperingDetails.md) |  | [optional] 
 **Velocity** | Pointer to [**Velocity**](Velocity.md) |  | [optional] 
 **VirtualMachine** | Pointer to **bool** | `true` if the request came from a browser running inside a virtual machine (e.g. VMWare), `false` otherwise.  | [optional] 
+**VirtualMachineMlScore** | Pointer to **float64** | Machine learning–based virtual machine score,  represented as a floating-point value between 0 and 1 (inclusive), with up to three decimal places of precision. A higher score means a higher confidence in the positive `virtual_machine` detection result  | [optional] 
 **VPN** | Pointer to **bool** | VPN or other anonymizing service has been used when sending the request.  | [optional] 
 **VPNConfidence** | Pointer to [**VPNConfidence**](VPNConfidence.md) |  | [optional] 
 **VPNOriginTimezone** | Pointer to **string** | Local timezone which is used in timezone_mismatch method.  | [optional] 

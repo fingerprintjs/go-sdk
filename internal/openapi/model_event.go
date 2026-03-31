@@ -24,7 +24,8 @@ type Event struct {
 	// Unique identifier of the user's request. The first portion of the event_id is a unix epoch milliseconds timestamp For example: `1758130560902.8tRtrH`
 	EventID string `json:"event_id"`
 	// Timestamp of the event with millisecond precision in Unix time.
-	Timestamp int64 `json:"timestamp"`
+	Timestamp                       int64                            `json:"timestamp"`
+	IncrementalIdentificationStatus *IncrementalIdentificationStatus `json:"incremental_identification_status,omitempty"`
 	// A customer-provided id that was sent with the request.
 	LinkedID *string `json:"linked_id,omitempty"`
 	// Environment Id of the event. For example: `ae_47abaca3db2c7c43`
@@ -85,14 +86,21 @@ type Event struct {
 	// Android specific root management apps detection. There are 2 values:  * `true` - Root Management Apps detected (e.g. Magisk). * `false` - No Root Management Apps detected or the client isn't Android.
 	RootApps   *bool            `json:"root_apps,omitempty"`
 	RuleAction *EventRuleAction `json:"rule_action,omitempty"`
+	// iOS specific simulator detection. There are 2 values: * `true` - Simulator environment detected. * `false` - No signs of simulator or the client is not iOS.
+	Simulator *bool `json:"simulator,omitempty"`
 	// Suspect Score is an easy way to integrate Smart Signals into your fraud protection work flow.  It is a weighted representation of all Smart Signals present in the payload that helps identify suspicious activity. The value range is [0; S] where S is sum of all Smart Signals weights.  See more details here: https://docs.fingerprint.com/docs/suspect-score
 	SuspectScore *int32 `json:"suspect_score,omitempty"`
 	// Flag indicating browser tampering was detected. This happens when either:   * There are inconsistencies in the browser configuration that cross internal tampering thresholds (see `tampering_details.anomaly_score`).   * The browser signature resembles an \"anti-detect\" browser specifically designed to evade fingerprinting (see `tampering_details.anti_detect_browser`).
-	Tampering        *bool             `json:"tampering,omitempty"`
+	Tampering           *bool                `json:"tampering,omitempty"`
+	TamperingConfidence *TamperingConfidence `json:"tampering_confidence,omitempty"`
+	// A score that indicates the models calculated probability that an event is coming from an anti detect browser.   * Values above `0.8` indicate that the request is an anti detect browser based on the ml model   * Values below `0.8` indicate that the request is not an anti detect browser based on the ml model
+	TamperingMlScore *float64          `json:"tampering_ml_score,omitempty"`
 	TamperingDetails *TamperingDetails `json:"tampering_details,omitempty"`
 	Velocity         *Velocity         `json:"velocity,omitempty"`
 	// `true` if the request came from a browser running inside a virtual machine (e.g. VMWare), `false` otherwise.
 	VirtualMachine *bool `json:"virtual_machine,omitempty"`
+	// Machine learning–based virtual machine score,  represented as a floating-point value between 0 and 1 (inclusive), with up to three decimal places of precision. A higher score means a higher confidence in the positive `virtual_machine` detection result
+	VirtualMachineMlScore *float64 `json:"virtual_machine_ml_score,omitempty"`
 	// VPN or other anonymizing service has been used when sending the request.
 	VPN           *bool          `json:"vpn,omitempty"`
 	VPNConfidence *VPNConfidence `json:"vpn_confidence,omitempty"`
@@ -121,6 +129,9 @@ func (o Event) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["event_id"] = o.EventID
 	toSerialize["timestamp"] = o.Timestamp
+	if !IsNil(o.IncrementalIdentificationStatus) {
+		toSerialize["incremental_identification_status"] = o.IncrementalIdentificationStatus
+	}
 	if !IsNil(o.LinkedID) {
 		toSerialize["linked_id"] = o.LinkedID
 	}
@@ -229,11 +240,20 @@ func (o Event) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.RuleAction) {
 		toSerialize["rule_action"] = o.RuleAction
 	}
+	if !IsNil(o.Simulator) {
+		toSerialize["simulator"] = o.Simulator
+	}
 	if !IsNil(o.SuspectScore) {
 		toSerialize["suspect_score"] = o.SuspectScore
 	}
 	if !IsNil(o.Tampering) {
 		toSerialize["tampering"] = o.Tampering
+	}
+	if !IsNil(o.TamperingConfidence) {
+		toSerialize["tampering_confidence"] = o.TamperingConfidence
+	}
+	if !IsNil(o.TamperingMlScore) {
+		toSerialize["tampering_ml_score"] = o.TamperingMlScore
 	}
 	if !IsNil(o.TamperingDetails) {
 		toSerialize["tampering_details"] = o.TamperingDetails
@@ -243,6 +263,9 @@ func (o Event) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.VirtualMachine) {
 		toSerialize["virtual_machine"] = o.VirtualMachine
+	}
+	if !IsNil(o.VirtualMachineMlScore) {
+		toSerialize["virtual_machine_ml_score"] = o.VirtualMachineMlScore
 	}
 	if !IsNil(o.VPN) {
 		toSerialize["vpn"] = o.VPN
@@ -311,6 +334,7 @@ func (o *Event) UnmarshalJSON(data []byte) (err error) {
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "event_id")
 		delete(additionalProperties, "timestamp")
+		delete(additionalProperties, "incremental_identification_status")
 		delete(additionalProperties, "linked_id")
 		delete(additionalProperties, "environment_id")
 		delete(additionalProperties, "suspect")
@@ -347,11 +371,15 @@ func (o *Event) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "privacy_settings")
 		delete(additionalProperties, "root_apps")
 		delete(additionalProperties, "rule_action")
+		delete(additionalProperties, "simulator")
 		delete(additionalProperties, "suspect_score")
 		delete(additionalProperties, "tampering")
+		delete(additionalProperties, "tampering_confidence")
+		delete(additionalProperties, "tampering_ml_score")
 		delete(additionalProperties, "tampering_details")
 		delete(additionalProperties, "velocity")
 		delete(additionalProperties, "virtual_machine")
+		delete(additionalProperties, "virtual_machine_ml_score")
 		delete(additionalProperties, "vpn")
 		delete(additionalProperties, "vpn_confidence")
 		delete(additionalProperties, "vpn_origin_timezone")
