@@ -16,7 +16,7 @@ import (
 	"fmt"
 )
 
-// ErrorCode Error code: * `request_cannot_be_parsed` - The query parameters or JSON payload contains some errors   that prevented us from parsing it (wrong type/surpassed limits). * `secret_api_key_required` - secret API key in header is missing or empty. * `secret_api_key_not_found` - No Fingerprint workspace found for specified secret API key. * `public_api_key_required` - public API key in header is missing or empty. * `public_api_key_not_found` - No Fingerprint workspace found for specified public API key. * `subscription_not_active` - Fingerprint workspace is not active. * `wrong_region` - Server and workspace region differ. * `feature_not_enabled` - This feature (for example, Delete API) is not enabled for your workspace. * `request_not_found` - The specified event ID was not found. It never existed, expired, or it has been deleted. * `visitor_not_found` - The specified visitor ID was not found. It never existed or it may have already been deleted. * `too_many_requests` - The limit on secret API key requests per second has been exceeded. * `state_not_ready` - The event specified with event ID is   not ready for updates yet. Try again.   This error happens in rare cases when update API is called immediately   after receiving the event ID on the client. In case you need to send   information right away, we recommend using the JS agent API instead. * `failed` - Internal server error. * `event_not_found` - The specified event ID was not found. It never existed, expired, or it has been deleted. * `missing_module` - The request is invalid because it is missing a required module. * `payload_too_large` - The request payload is too large and cannot be processed. * `service_unavailable` - The service was unable to process the request. * `ruleset_not_found` - The specified ruleset was not found. It never existed or it has been deleted.
+// ErrorCode Error code: * `request_cannot_be_parsed` - The query parameters or JSON payload contains some errors   that prevented us from parsing it (wrong type/surpassed limits). * `secret_api_key_required` - secret API key in header is missing or empty. * `secret_api_key_not_found` - No Fingerprint workspace found for specified secret API key. * `public_api_key_required` - public API key in header is missing or empty. * `public_api_key_not_found` - No Fingerprint workspace found for specified public API key. * `subscription_not_active` - Fingerprint workspace is not active. * `wrong_region` - Server and workspace region differ. * `feature_not_enabled` - This feature (for example, Delete API) is not enabled for your workspace. * `visitor_not_found` - The specified visitor ID was not found. It never existed or it may have already been deleted. * `too_many_requests` - The limit on secret API key requests per second has been exceeded. * `state_not_ready` - The event specified with event ID is   not ready for updates yet. Try again.   This error happens in rare cases when update API is called immediately   after receiving the event ID on the client. In case you need to send   information right away, we recommend using the JS agent API instead. * `failed` - Internal server error. * `event_not_found` - The specified event ID was not found. It never existed, expired, or it has been deleted. * `missing_module` - The request is invalid because it is missing a required module. * `payload_too_large` - The request payload is too large and cannot be processed. * `service_unavailable` - The service was unable to process the request. * `ruleset_not_found` - The specified ruleset was not found. It never existed or it has been deleted.
 type ErrorCode string
 
 // List of ErrorCode
@@ -29,7 +29,6 @@ const (
 	ErrorCodeSubscriptionNotActive ErrorCode = "subscription_not_active"
 	ErrorCodeWrongRegion           ErrorCode = "wrong_region"
 	ErrorCodeFeatureNotEnabled     ErrorCode = "feature_not_enabled"
-	ErrorCodeRequestNotFound       ErrorCode = "request_not_found"
 	ErrorCodeVisitorNotFound       ErrorCode = "visitor_not_found"
 	ErrorCodeTooManyRequests       ErrorCode = "too_many_requests"
 	ErrorCodeStateNotReady         ErrorCode = "state_not_ready"
@@ -51,7 +50,6 @@ var AllowedErrorCodeEnumValues = []ErrorCode{
 	ErrorCodeSubscriptionNotActive,
 	ErrorCodeWrongRegion,
 	ErrorCodeFeatureNotEnabled,
-	ErrorCodeRequestNotFound,
 	ErrorCodeVisitorNotFound,
 	ErrorCodeTooManyRequests,
 	ErrorCodeStateNotReady,

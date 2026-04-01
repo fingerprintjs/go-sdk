@@ -39,7 +39,6 @@ const (
 	ErrorCodeSubscriptionNotActive = openapi.ErrorCodeSubscriptionNotActive
 	ErrorCodeWrongRegion           = openapi.ErrorCodeWrongRegion
 	ErrorCodeFeatureNotEnabled     = openapi.ErrorCodeFeatureNotEnabled
-	ErrorCodeRequestNotFound       = openapi.ErrorCodeRequestNotFound
 	ErrorCodeVisitorNotFound       = openapi.ErrorCodeVisitorNotFound
 	ErrorCodeTooManyRequests       = openapi.ErrorCodeTooManyRequests
 	ErrorCodeStateNotReady         = openapi.ErrorCodeStateNotReady
@@ -67,6 +66,13 @@ type IPInfoV4 = openapi.IPInfoV4
 type IPInfoV6 = openapi.IPInfoV6
 type Identification = openapi.Identification
 type IdentificationConfidence = openapi.IdentificationConfidence
+type IncrementalIdentificationStatus = openapi.IncrementalIdentificationStatus
+
+const (
+	IncrementalIdentificationStatusPartiallyCompleted = openapi.IncrementalIdentificationStatusPartiallyCompleted
+	IncrementalIdentificationStatusCompleted          = openapi.IncrementalIdentificationStatusCompleted
+)
+
 type Integration = openapi.Integration
 type IntegrationSubintegration = openapi.IntegrationSubintegration
 type PluginsInner = openapi.PluginsInner
@@ -101,6 +107,13 @@ const (
 	SearchEventsBotNone = openapi.SearchEventsBotNone
 )
 
+type SearchEventsIncrementalIdentificationStatus = openapi.SearchEventsIncrementalIdentificationStatus
+
+const (
+	SearchEventsIncrementalIdentificationStatusPartiallyCompleted = openapi.SearchEventsIncrementalIdentificationStatusPartiallyCompleted
+	SearchEventsIncrementalIdentificationStatusCompleted          = openapi.SearchEventsIncrementalIdentificationStatusCompleted
+)
+
 type SearchEventsSDKPlatform = openapi.SearchEventsSDKPlatform
 
 const (
@@ -118,6 +131,14 @@ const (
 )
 
 type SupplementaryIDHighRecall = openapi.SupplementaryIDHighRecall
+type TamperingConfidence = openapi.TamperingConfidence
+
+const (
+	TamperingConfidenceLow    = openapi.TamperingConfidenceLow
+	TamperingConfidenceMedium = openapi.TamperingConfidenceMedium
+	TamperingConfidenceHigh   = openapi.TamperingConfidenceHigh
+)
+
 type TamperingDetails = openapi.TamperingDetails
 type TouchSupport = openapi.TouchSupport
 type VPNConfidence = openapi.VPNConfidence

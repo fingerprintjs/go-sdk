@@ -462,46 +462,49 @@ func (a *FingerprintAPIService) GetEventExecute(ctx context.Context, r ApiGetEve
 }
 
 type ApiSearchEventsRequest struct {
-	ApiService        FingerprintAPI
-	limit             *int32
-	paginationKey     *string
-	visitorID         *string
-	bot               *SearchEventsBot
-	iPAddress         *string
-	asn               *string
-	linkedID          *string
-	uRL               *string
-	bundleID          *string
-	packageName       *string
-	origin            *string
-	start             *int64
-	end               *int64
-	reverse           *bool
-	suspect           *bool
-	vPN               *bool
-	virtualMachine    *bool
-	tampering         *bool
-	antiDetectBrowser *bool
-	incognito         *bool
-	privacySettings   *bool
-	jailbroken        *bool
-	frida             *bool
-	factoryReset      *bool
-	clonedApp         *bool
-	emulator          *bool
-	rootApps          *bool
-	vPNConfidence     *SearchEventsVPNConfidence
-	minSuspectScore   *float32
-	developerTools    *bool
-	locationSpoofing  *bool
-	mITMAttack        *bool
-	proxy             *bool
-	sDKVersion        *string
-	sDKPlatform       *SearchEventsSDKPlatform
-	environment       *[]string
-	proximityID       *string
-	totalHits         *int64
-	torNode           *bool
+	ApiService                      FingerprintAPI
+	limit                           *int32
+	paginationKey                   *string
+	visitorID                       *string
+	highRecallID                    *string
+	bot                             *SearchEventsBot
+	iPAddress                       *string
+	asn                             *string
+	linkedID                        *string
+	uRL                             *string
+	bundleID                        *string
+	packageName                     *string
+	origin                          *string
+	start                           *int64
+	end                             *int64
+	reverse                         *bool
+	suspect                         *bool
+	vPN                             *bool
+	virtualMachine                  *bool
+	tampering                       *bool
+	antiDetectBrowser               *bool
+	incognito                       *bool
+	privacySettings                 *bool
+	jailbroken                      *bool
+	frida                           *bool
+	factoryReset                    *bool
+	clonedApp                       *bool
+	emulator                        *bool
+	rootApps                        *bool
+	vPNConfidence                   *SearchEventsVPNConfidence
+	minSuspectScore                 *float32
+	developerTools                  *bool
+	locationSpoofing                *bool
+	mITMAttack                      *bool
+	proxy                           *bool
+	sDKVersion                      *string
+	sDKPlatform                     *SearchEventsSDKPlatform
+	environment                     *[]string
+	proximityID                     *string
+	totalHits                       *int64
+	torNode                         *bool
+	incrementalIdentificationStatus *SearchEventsIncrementalIdentificationStatus
+	simulator                       *bool
 }
 
 // Limit the number of events returned.
@@ -516,9 +519,15 @@ func (r ApiSearchEventsRequest) PaginationKey(paginationKey string) ApiSearchEve
 	return r
 }
 
-// Unique [visitor identifier](https://docs.fingerprint.com/reference/js-agent-v4-get-function#visitor_id) issued by Fingerprint Identification and all active Smart Signals. Filter for events matching this `visitor_id`.
+// Unique [visitor identifier](https://docs.fingerprint.com/reference/js-agent-v4-get-function#visitor_id) issued by Fingerprint Identification and all active Smart Signals.  Filter events by matching Visitor ID (`identification.visitor_id` property).
 func (r ApiSearchEventsRequest) VisitorID(visitorID string) ApiSearchEventsRequest {
 	r.visitorID = &visitorID
+	return r
+}
+
+// The High Recall ID is a supplementary browser identifier designed for use cases that require wider coverage over precision. Compared to the standard visitor ID, the High Recall ID strives to match incoming browsers more generously (rather than precisely) with existing browsers and thus identifies fewer browsers as new. The High Recall ID is best suited for use cases that are sensitive to browsers being identified as new and where mismatched browsers are not detrimental.  Filter events by matching High Recall ID (`supplementary_id_high_recall.visitor_id` property).
+func (r ApiSearchEventsRequest) HighRecallID(highRecallID string) ApiSearchEventsRequest {
+	r.highRecallID = &highRecallID
 	return r
 }
 
@@ -714,7 +723,7 @@ func (r ApiSearchEventsRequest) SDKPlatform(sDKPlatform SearchEventsSDKPlatform)
 	return r
 }
 
-// Filter for events by providing one or more environment IDs (`environment_id` property).
+// Filter for events by providing one or more environment IDs (`environment_id` property).  ### Array syntax To provide multiple environment IDs, use the repeated keys syntax (`environment=env1&environment=env2`). Other notations like comma-separated (`environment=env1,env2`) or bracket notation (`environment[]=env1&environment[]=env2`) are not supported.
 func (r ApiSearchEventsRequest) Environment(environment []string) ApiSearchEventsRequest {
 	r.environment = &environment
 	return r
@@ -735,6 +744,18 @@ func (r ApiSearchEventsRequest) TotalHits(totalHits int64) ApiSearchEventsReques
 // Filter events by Tor Node detection result. > Note: When using this parameter, only events with the `tor_node` property set to `true` or `false` are returned. Events without a `tor_node` detection result are left out of the response.
 func (r ApiSearchEventsRequest) TorNode(torNode bool) ApiSearchEventsRequest {
 	r.torNode = &torNode
+	return r
+}
+
+// Filter events by their incremental identification status (`incremental_identification_status` property). Non incremental identification events are left out of the response.
+func (r ApiSearchEventsRequest) IncrementalIdentificationStatus(incrementalIdentificationStatus SearchEventsIncrementalIdentificationStatus) ApiSearchEventsRequest {
+	r.incrementalIdentificationStatus = &incrementalIdentificationStatus
+	return r
+}
+
+// Filter events by iOS Simulator Detection result.  > Note: When using this parameter, only events with the `simulator` property set to `true` or `false` are returned. Events without a `simulator` Smart Signal result are left out of the response.
+func (r ApiSearchEventsRequest) Simulator(simulator bool) ApiSearchEventsRequest {
+	r.simulator = &simulator
 	return r
 }
 
@@ -810,6 +831,9 @@ func (a *FingerprintAPIService) SearchEventsExecute(ctx context.Context, r ApiSe
 	}
 	if r.visitorID != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "visitor_id", r.visitorID, "form", "")
+	}
+	if r.highRecallID != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "high_recall_id", r.highRecallID, "form", "")
 	}
 	if r.bot != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "bot", r.bot, "form", "")
@@ -926,6 +950,12 @@ func (a *FingerprintAPIService) SearchEventsExecute(ctx context.Context, r ApiSe
 	}
 	if r.torNode != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "tor_node", r.torNode, "form", "")
+	}
+	if r.incrementalIdentificationStatus != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "incremental_identification_status", r.incrementalIdentificationStatus, "form", "")
+	}
+	if r.simulator != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "simulator", r.simulator, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

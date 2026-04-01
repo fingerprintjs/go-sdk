@@ -188,7 +188,16 @@ func TestSearchEvents(t *testing.T) {
 			assert.Equal(t, "false", query.Get("tor_node"), "torNode")
 			assert.True(t, query.Has("tor_node"), "has torNode")
 
-			assert.Len(t, strings.Split(r.URL.RawQuery, "&"), 40, "expected all parameters in query")
+			assert.Equal(t, "testHighRecallID", query.Get("high_recall_id"), "highRecallID")
+			assert.True(t, query.Has("high_recall_id"), "has highRecallID")
+
+			assert.Equal(t, "completed", query.Get("incremental_identification_status"), "incrementalIdentificationStatus")
+			assert.True(t, query.Has("incremental_identification_status"), "has incrementalIdentificationStatus")
+
+			assert.Equal(t, "false", query.Get("simulator"), "simulator")
+			assert.True(t, query.Has("simulator"), "has simulator")
+
+			assert.Len(t, strings.Split(r.URL.RawQuery, "&"), 43, "expected all parameters in query")
 
 			w.Header().Set("Content-Type", "application/json")
 			err := json.NewEncoder(w).Encode(mockResponse)
@@ -199,44 +208,47 @@ func TestSearchEvents(t *testing.T) {
 		defer ts.Close()
 
 		var (
-			limit             int32    = 2
-			visitorID         string   = "XIkiQhRyp7edU9SA0jBb"
-			bot                        = fingerprint.SearchEventsBotGood
-			ipAddress         string   = "127.0.0.1"
-			asn               string   = "ASN 20"
-			linkedID          string   = "linked_id"
-			url               string   = "https://example.com"
-			bundleID          string   = "bundleID"
-			packageName       string   = "com.example.app"
-			origin            string   = "https://example.com"
-			start             int64    = 5
-			end               int64    = 10
-			reverse           bool     = false
-			suspect           bool     = true
-			vpn               bool     = false
-			virtualMachine    bool     = true
-			tampering         bool     = true
-			antiDetectBrowser bool     = false
-			incognito         bool     = true
-			privacySettings   bool     = false
-			jailbroken        bool     = false
-			frida             bool     = false
-			factoryReset      bool     = false
-			clonedApp         bool     = false
-			emulator          bool     = false
-			rootApps          bool     = false
-			vpnConfidence              = fingerprint.SearchEventsVPNConfidenceHigh
-			minSuspectScore   float32  = 85.5
-			developerTools    bool     = false
-			locationSpoofing  bool     = true
-			mitmAttack        bool     = false
-			proxy             bool     = false
-			sdkVersion        string   = "testSDKVersion"
-			sdkPlatform                = fingerprint.SearchEventsSDKPlatformJS
-			environment       []string = []string{"env1", "env2"}
-			proximityID       string   = "testProximityID"
-			totalHits         int64    = 10
-			torNode           bool     = false
+			limit                           int32    = 2
+			visitorID                       string   = "XIkiQhRyp7edU9SA0jBb"
+			bot                                      = fingerprint.SearchEventsBotGood
+			ipAddress                       string   = "127.0.0.1"
+			asn                             string   = "ASN 20"
+			linkedID                        string   = "linked_id"
+			url                             string   = "https://example.com"
+			bundleID                        string   = "bundleID"
+			packageName                     string   = "com.example.app"
+			origin                          string   = "https://example.com"
+			start                           int64    = 5
+			end                             int64    = 10
+			reverse                         bool     = false
+			suspect                         bool     = true
+			vpn                             bool     = false
+			virtualMachine                  bool     = true
+			tampering                       bool     = true
+			antiDetectBrowser               bool     = false
+			incognito                       bool     = true
+			privacySettings                 bool     = false
+			jailbroken                      bool     = false
+			frida                           bool     = false
+			factoryReset                    bool     = false
+			clonedApp                       bool     = false
+			emulator                        bool     = false
+			rootApps                        bool     = false
+			vpnConfidence                            = fingerprint.SearchEventsVPNConfidenceHigh
+			minSuspectScore                 float32  = 85.5
+			developerTools                  bool     = false
+			locationSpoofing                bool     = true
+			mitmAttack                      bool     = false
+			proxy                           bool     = false
+			sdkVersion                      string   = "testSDKVersion"
+			sdkPlatform                              = fingerprint.SearchEventsSDKPlatformJS
+			environment                     []string = []string{"env1", "env2"}
+			proximityID                     string   = "testProximityID"
+			totalHits                       int64    = 10
+			torNode                         bool     = false
+			highRecallID                    string   = "testHighRecallID"
+			incrementalIdentificationStatus          = fingerprint.SearchEventsIncrementalIdentificationStatusCompleted
+			simulator                       bool     = false
 		)
 
 		client := fingerprint.New(fingerprint.WithAPIKey("api_key"), fingerprint.WithBaseURL(ts.URL))
@@ -279,7 +291,10 @@ func TestSearchEvents(t *testing.T) {
 			VirtualMachine(virtualMachine).
 			VisitorID(visitorID).
 			VPN(vpn).
-			VPNConfidence(vpnConfidence)
+			VPNConfidence(vpnConfidence).
+			HighRecallID(highRecallID).
+			IncrementalIdentificationStatus(incrementalIdentificationStatus).
+			Simulator(simulator)
 
 		res, _, err := client.SearchEvents(context.Background(), opts)
 		assert.Nil(t, err)
