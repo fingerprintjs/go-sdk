@@ -1,5 +1,18 @@
 # Fingerprint Pro Server Go SDK
 
+## 8.1.0
+
+### Minor Changes
+
+- Add `Simulator` signal for iOS platform ([f6aa653](https://github.com/fingerprintjs/go-sdk/commit/f6aa6535aa69a7deda1bf5b54fa5c895e126ef1f))
+- Add `VirtualMachineMlScore` field for `VirtualMachine` signal ([f6aa653](https://github.com/fingerprintjs/go-sdk/commit/f6aa6535aa69a7deda1bf5b54fa5c895e126ef1f))
+- Add `highRecallID` and `simulator` fileters for the `SearchEvents` method ([f6aa653](https://github.com/fingerprintjs/go-sdk/commit/f6aa6535aa69a7deda1bf5b54fa5c895e126ef1f))
+- Add `TamperingConfidence` and `TamperingMlScore` fields for `Tampering` smart signal ([f6aa653](https://github.com/fingerprintjs/go-sdk/commit/f6aa6535aa69a7deda1bf5b54fa5c895e126ef1f))
+
+### Patch Changes
+
+- Remove `ErrorCodeRequestNotFound` value from the `ErrorCode` enum ([f6aa653](https://github.com/fingerprintjs/go-sdk/commit/f6aa6535aa69a7deda1bf5b54fa5c895e126ef1f))
+
 ## 8.0.0
 
 ### Major Changes
