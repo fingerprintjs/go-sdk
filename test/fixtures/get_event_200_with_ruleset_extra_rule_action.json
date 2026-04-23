@@ -1,0 +1,52 @@
+{
+  "event_id": "1708102555327.NLOjmg",
+  "timestamp": 1768961882309,
+  "linked_id": "somelinkedId",
+  "environment_id": "ae_15a941a1ca69a984",
+  "suspect": false,
+  "sdk": {
+    "platform": "js",
+    "version": "3.12.6",
+    "integrations": [
+      {
+        "name": "fingerprintjs-pro-cloudflare",
+        "version": "1.6.1-snapshot.0"
+      },
+      {
+        "name": "fingerprintjs-pro-cloudflare",
+        "version": "1.6.1-snapshot.0"
+      }
+    ]
+  },
+  "replayed": false,
+  "identification": {
+    "visitor_id": "Ibk1527CUFmcnjLwIs4A9",
+    "confidence": {
+      "score": 1,
+      "version": "v1.1"
+    },
+    "visitor_found": true,
+    "first_seen_at": 1768961881274,
+    "last_seen_at": 1768961881274
+  },
+  "tags": {
+    "key": "value"
+  },
+  "url": "https://www.example.com/login?hope{this{works[!",
+  "ip_address": "61.127.217.15",
+  "user_agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/124.0.6367.29 Safari/537.36",
+  "browser_details": {
+    "browser_name": "HeadlessChrome",
+    "browser_major_version": "124",
+    "browser_full_version": "124.0.6367",
+    "os": "Linux",
+    "os_version": "",
+    "device": "Other"
+  },
+  "rule_action": {
+    "ruleset_id": "rs_NLOjmgNLOjmgZG",
+    "rule_id": "r_NLOjmgNLOjmgjW",
+    "rule_expression": "browser_details.os == \"Linux\"",
+    "type": "ignore"
+  }
+}

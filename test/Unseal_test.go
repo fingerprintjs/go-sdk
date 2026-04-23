@@ -34,9 +34,9 @@ func TestUnsealEventsResponse(t *testing.T) {
 	invalidKey := base64Decode("p2PA7MGy5tx56cnyJaFZMr96BCFwZeHjZV2EqMvTq54=")  // 53 => 54
 	invalidKey2 := base64Decode("p2PA7MGy5tx56cnyJaFZMr96BCFwZeHjZV2EqMzTq53=") // vTq => zTq
 
-	sealedResult := readSealedResultFromFile("mocks/sealed/get_event_200.txt")
+	sealedResult := readSealedResultFromFile("fixtures/sealed/get_event_200.txt")
 
-	strResponse, err := os.ReadFile("mocks/get_event_200.json")
+	strResponse, err := os.ReadFile("fixtures/get_event_200_sealed_baseline.json")
 	require.Nil(t, err)
 
 	var expectedResponse fingerprint.Event
@@ -100,7 +100,7 @@ func TestUnsealEventsResponse(t *testing.T) {
 	})
 
 	t.Run("with sealed result as broken json", func(t *testing.T) {
-		invalidJsonSealedResult := readSealedResultFromFile("mocks/sealed/invalid_json.txt")
+		invalidJsonSealedResult := readSealedResultFromFile("fixtures/sealed/invalid_json.txt")
 
 		keys := []fingerprint.DecryptionKey{
 			{
@@ -115,7 +115,7 @@ func TestUnsealEventsResponse(t *testing.T) {
 	})
 
 	t.Run("with not compressed result", func(t *testing.T) {
-		sealedResult := readSealedResultFromFile("mocks/sealed/invalid_compression.txt")
+		sealedResult := readSealedResultFromFile("fixtures/sealed/invalid_compression.txt")
 
 		keys := []fingerprint.DecryptionKey{
 			{
@@ -175,7 +175,7 @@ func TestUnsealEventsResponse(t *testing.T) {
 	})
 
 	t.Run("with invalid header", func(t *testing.T) {
-		sealedResult := readSealedResultFromFile("mocks/sealed/invalid_header.txt")
+		sealedResult := readSealedResultFromFile("fixtures/sealed/invalid_header.txt")
 
 		keys := []fingerprint.DecryptionKey{
 			{

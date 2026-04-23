@@ -16,7 +16,7 @@ import (
 
 func TestGetEvent(t *testing.T) {
 	t.Run("Returns event", func(t *testing.T) {
-		mockResponse := GetMockResponse[fingerprint.Event]("mocks/get_event_200.json")
+		mockResponse := GetMockResponse[fingerprint.Event]("mocks/events/get_event_200.json")
 
 		ts := httptest.NewServer(http.HandlerFunc(func(
 			w http.ResponseWriter,
@@ -47,7 +47,7 @@ func TestGetEvent(t *testing.T) {
 	})
 
 	t.Run("Returns event with unexpected fields", func(t *testing.T) {
-		mockResponse := GetMockResponse[fingerprint.Event]("mocks/get_event_200_extra_fields.json")
+		mockResponse := GetMockResponse[fingerprint.Event]("fixtures/get_event_200_extra_fields.json")
 
 		ts := httptest.NewServer(http.HandlerFunc(func(
 			w http.ResponseWriter,
@@ -128,7 +128,7 @@ func TestGetEvent(t *testing.T) {
 	})
 
 	t.Run("Returns response when JSON field type is not matching response schema", func(t *testing.T) {
-		mockMalformedResponse, err := os.ReadFile("mocks/get_event_200_field_type_mismatch.json")
+		mockMalformedResponse, err := os.ReadFile("fixtures/get_event_200_field_type_mismatch.json")
 		if err != nil {
 			log.Fatal(err)
 		}
@@ -157,7 +157,7 @@ func TestGetEvent(t *testing.T) {
 	})
 
 	t.Run("Returns event with ruleset evaluation", func(t *testing.T) {
-		mockResponse := GetMockResponse[fingerprint.Event]("mocks/get_event_200_with_ruleset.json")
+		mockResponse := GetMockResponse[fingerprint.Event]("fixtures/get_event_200_with_ruleset.json")
 		eventID := "123"
 		rulesetID := "some_ruleset_id"
 
@@ -183,7 +183,7 @@ func TestGetEvent(t *testing.T) {
 	})
 
 	t.Run("Returns event with ruleset evaluation with unexpected type", func(t *testing.T) {
-		rawJSON, err := os.ReadFile("mocks/get_event_200_with_ruleset_extra_rule_action.json")
+		rawJSON, err := os.ReadFile("fixtures/get_event_200_with_ruleset_extra_rule_action.json")
 		if err != nil {
 			log.Fatal(err)
 		}
