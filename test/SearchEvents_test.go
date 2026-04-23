@@ -26,7 +26,7 @@ func TestSearchEvents(t *testing.T) {
 
 			assert.Equal(t, "/events", r.URL.Path)
 			assert.Equal(t, "2", r.URL.Query().Get("limit"))
-			assert.Len(t, strings.Split(r.URL.RawQuery, "&"), 3)
+			assert.Len(t, strings.Split(r.URL.RawQuery, "&"), 2)
 
 			w.Header().Set("Content-Type", "application/json")
 			err := json.NewEncoder(w).Encode(mockResponse)
@@ -323,7 +323,7 @@ func TestSearchEvents(t *testing.T) {
 
 					assert.Equal(t, "/events", r.URL.Path)
 					assert.Equal(t, "10", r.URL.Query().Get("limit"))
-					assert.Len(t, strings.Split(r.URL.RawQuery, "&"), 3)
+					assert.Len(t, strings.Split(r.URL.RawQuery, "&"), 2)
 
 					w.Header().Set("Content-Type", "application/json")
 					w.WriteHeader(testCase.StatusCode)

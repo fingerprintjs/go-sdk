@@ -891,10 +891,6 @@ func (a *FingerprintAPIService) SearchEventsExecute(ctx context.Context, r ApiSe
 	}
 	if r.reverse != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "reverse", r.reverse, "form", "")
-	} else {
-		var defaultValue bool = false
-		parameterAddToHeaderOrQuery(localVarQueryParams, "reverse", defaultValue, "form", "")
-		r.reverse = &defaultValue
 	}
 	if r.suspect != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "suspect", r.suspect, "form", "")

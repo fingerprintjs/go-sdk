@@ -345,7 +345,6 @@ paths:
         name: reverse
         required: false
         schema:
-          default: false
           type: boolean
         style: form
       - description: |
