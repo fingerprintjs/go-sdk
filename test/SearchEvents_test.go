@@ -16,7 +16,7 @@ import (
 
 func TestSearchEvents(t *testing.T) {
 	t.Run("Search with just limit", func(t *testing.T) {
-		mockResponse := GetMockResponse[fingerprint.EventSearch]("mocks/get_event_search_200.json")
+		mockResponse := GetMockResponse[fingerprint.EventSearch]("mocks/events/search/get_event_search_200.json")
 
 		ts := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			integrationInfo := r.URL.Query().Get("ii")
@@ -45,7 +45,7 @@ func TestSearchEvents(t *testing.T) {
 	})
 
 	t.Run("Search with partial params", func(t *testing.T) {
-		mockResponse := GetMockResponse[fingerprint.EventSearch]("mocks/get_event_search_200.json")
+		mockResponse := GetMockResponse[fingerprint.EventSearch]("mocks/events/search/get_event_search_200.json")
 
 		ts := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			query := r.URL.Query()
@@ -98,7 +98,7 @@ func TestSearchEvents(t *testing.T) {
 	})
 
 	t.Run("Search with all params", func(t *testing.T) {
-		mockResponse := GetMockResponse[fingerprint.EventSearch]("mocks/get_event_search_200.json")
+		mockResponse := GetMockResponse[fingerprint.EventSearch]("mocks/events/search/get_event_search_200.json")
 
 		ts := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			query := r.URL.Query()

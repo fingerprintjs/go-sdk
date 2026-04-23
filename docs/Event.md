@@ -36,6 +36,7 @@ Name | Type | Description | Notes
 **Proxy** | Pointer to **bool** | IP address was used by a public proxy provider or belonged to a known recent residential proxy  | [optional] 
 **ProxyConfidence** | Pointer to [**ProxyConfidence**](ProxyConfidence.md) |  | [optional] 
 **ProxyDetails** | Pointer to [**ProxyDetails**](ProxyDetails.md) |  | [optional] 
+**ProxyMlScore** | Pointer to **float64** | Machine learning–based proxy score, represented as a floating-point value between 0 and 1 (inclusive), with up to three decimal places of precision. A higher score means a higher confidence in the positive `proxy` detection result  | [optional] 
 **Incognito** | Pointer to **bool** | `true` if we detected incognito mode used in the browser, `false` otherwise.  | [optional] 
 **Jailbroken** | Pointer to **bool** | iOS specific jailbreak detection. There are 2 values:  * `true` - Jailbreak detected. * `false` - No signs of jailbreak or the client is not iOS.  | [optional] 
 **LocationSpoofing** | Pointer to **bool** | Flag indicating whether the request came from a mobile device with location spoofing enabled. | [optional] 
@@ -45,9 +46,9 @@ Name | Type | Description | Notes
 **RuleAction** | Pointer to [**EventRuleAction**](EventRuleAction.md) |  | [optional] 
 **Simulator** | Pointer to **bool** | iOS specific simulator detection. There are 2 values: * `true` - Simulator environment detected. * `false` - No signs of simulator or the client is not iOS.  | [optional] 
 **SuspectScore** | Pointer to **int32** | Suspect Score is an easy way to integrate Smart Signals into your fraud protection work flow.  It is a weighted representation of all Smart Signals present in the payload that helps identify suspicious activity. The value range is [0; S] where S is sum of all Smart Signals weights.  See more details here: https://docs.fingerprint.com/docs/suspect-score  | [optional] 
-**Tampering** | Pointer to **bool** | Flag indicating browser tampering was detected. This happens when either:   * There are inconsistencies in the browser configuration that cross internal tampering thresholds (see `tampering_details.anomaly_score`).   * The browser signature resembles an \"anti-detect\" browser specifically designed to evade fingerprinting (see `tampering_details.anti_detect_browser`).  | [optional] 
+**Tampering** | Pointer to **bool** | The field can be used as a standalone flag for tampering detection. Alternatively, the more granular fields documented below can be used for workflows that require more context. * `true` if tampering is detected through an anomalous browser signature, anti-detect browser detection, or other tampering-related methods * `false` if none of the tampering checks return a positive result  | [optional] 
 **TamperingConfidence** | Pointer to [**TamperingConfidence**](TamperingConfidence.md) |  | [optional] 
-**TamperingMlScore** | Pointer to **float64** | A score that indicates the models calculated probability that an event is coming from an anti detect browser.   * Values above `0.8` indicate that the request is an anti detect browser based on the ml model   * Values below `0.8` indicate that the request is not an anti detect browser based on the ml model  | [optional] 
+**TamperingMlScore** | Pointer to **float64** | The output of this model is captured as tampering_ml_score, a number indicating how likely an event is coming from an anti detect browser. Values close to 1 signify higher confidence and we consider anything above the threshold of 0.8 to be actionable (the result and anti_detect_browser fields conveniently captures that fact)  | [optional] 
 **TamperingDetails** | Pointer to [**TamperingDetails**](TamperingDetails.md) |  | [optional] 
 **Velocity** | Pointer to [**Velocity**](Velocity.md) |  | [optional] 
 **VirtualMachine** | Pointer to **bool** | `true` if the request came from a browser running inside a virtual machine (e.g. VMWare), `false` otherwise.  | [optional] 
@@ -58,6 +59,8 @@ Name | Type | Description | Notes
 **VPNOriginCountry** | Pointer to **string** | Country of the request (only for Android SDK version >= 2.4.0, ISO 3166 format or unknown).  | [optional] 
 **VPNMethods** | Pointer to [**VPNMethods**](VPNMethods.md) |  | [optional] 
 **HighActivityDevice** | Pointer to **bool** | Flag indicating if the request came from a high-activity visitor. | [optional] 
+**RareDevice** | Pointer to **bool** | `true` if the device is considered rare based on its combination of hardware and software attributes.  A device is classified as rare if it falls within the top 99.9 percentile (lowest-frequency segment) of observed traffic,  or if its configuration has not been previously seen (`not_seen`). > This Smart Signal is currently in beta and only available to select customers. If you are interested, please [contact our support team](https://fingerprint.com/support/).  | [optional] 
+**RareDevicePercentileBucket** | Pointer to [**RareDevicePercentileBucket**](RareDevicePercentileBucket.md) |  | [optional] 
 **RawDeviceAttributes** | Pointer to [**RawDeviceAttributes**](RawDeviceAttributes.md) |  | [optional] 
 
 
