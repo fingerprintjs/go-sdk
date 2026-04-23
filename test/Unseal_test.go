@@ -36,7 +36,7 @@ func TestUnsealEventsResponse(t *testing.T) {
 
 	sealedResult := readSealedResultFromFile("fixtures/sealed/get_event_200.txt")
 
-	strResponse, err := os.ReadFile("fixtures/get_event_200_sealed_baseline.json")
+	strResponse, err := os.ReadFile("mocks/events/get_event_200.json")
 	require.Nil(t, err)
 
 	var expectedResponse fingerprint.Event
