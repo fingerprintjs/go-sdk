@@ -1,5 +1,16 @@
 # Fingerprint Pro Server Go SDK
 
+## 8.2.0
+
+### Minor Changes
+
+- **events**: Add Device Rarity Smart Signal ([a5fe5cb](https://github.com/fingerprintjs/go-sdk/commit/a5fe5cb45568e266f1ca3c19db4f3144ff5fbf27))
+- **events**: Add `proxy_ml_score` to `Event` ([a5fe5cb](https://github.com/fingerprintjs/go-sdk/commit/a5fe5cb45568e266f1ca3c19db4f3144ff5fbf27))
+- **events**: Add `font_hash` and `timezone_offset` fields for the `RawDeviceAttributes` ([a5fe5cb](https://github.com/fingerprintjs/go-sdk/commit/a5fe5cb45568e266f1ca3c19db4f3144ff5fbf27))
+- **events**: Enable `raw_device_attributes` for Android devices. Only `device_manufacturer` and `device_model` are currently supported for Android devices. ([a5fe5cb](https://github.com/fingerprintjs/go-sdk/commit/a5fe5cb45568e266f1ca3c19db4f3144ff5fbf27))
+- **events**: Enable `raw_device_attributes` for iOS devices. Only `device_manufacturer`, `device_model`, `hardware_concurrency`, `languages`, and `screen_resolution` are currently supported for iOS devices. ([a5fe5cb](https://github.com/fingerprintjs/go-sdk/commit/a5fe5cb45568e266f1ca3c19db4f3144ff5fbf27))
+- **events**: Add `request_read_timeout` error code ([a5fe5cb](https://github.com/fingerprintjs/go-sdk/commit/a5fe5cb45568e266f1ca3c19db4f3144ff5fbf27))
+
 ## 8.1.0
 
 ### Minor Changes
