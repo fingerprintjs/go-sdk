@@ -73,6 +73,8 @@ type Event struct {
 	Proxy           *bool            `json:"proxy,omitempty"`
 	ProxyConfidence *ProxyConfidence `json:"proxy_confidence,omitempty"`
 	ProxyDetails    *ProxyDetails    `json:"proxy_details,omitempty"`
+	// Machine learning–based proxy score, represented as a floating-point value between 0 and 1 (inclusive), with up to three decimal places of precision. A higher score means a higher confidence in the positive `proxy` detection result
+	ProxyMlScore *float64 `json:"proxy_ml_score,omitempty"`
 	// `true` if we detected incognito mode used in the browser, `false` otherwise.
 	Incognito *bool `json:"incognito,omitempty"`
 	// iOS specific jailbreak detection. There are 2 values:  * `true` - Jailbreak detected. * `false` - No signs of jailbreak or the client is not iOS.
@@ -90,10 +92,10 @@ type Event struct {
 	Simulator *bool `json:"simulator,omitempty"`
 	// Suspect Score is an easy way to integrate Smart Signals into your fraud protection work flow.  It is a weighted representation of all Smart Signals present in the payload that helps identify suspicious activity. The value range is [0; S] where S is sum of all Smart Signals weights.  See more details here: https://docs.fingerprint.com/docs/suspect-score
 	SuspectScore *int32 `json:"suspect_score,omitempty"`
-	// Flag indicating browser tampering was detected. This happens when either:   * There are inconsistencies in the browser configuration that cross internal tampering thresholds (see `tampering_details.anomaly_score`).   * The browser signature resembles an \"anti-detect\" browser specifically designed to evade fingerprinting (see `tampering_details.anti_detect_browser`).
+	// The field can be used as a standalone flag for tampering detection. Alternatively, the more granular fields documented below can be used for workflows that require more context. * `true` if tampering is detected through an anomalous browser signature, anti-detect browser detection, or other tampering-related methods * `false` if none of the tampering checks return a positive result
 	Tampering           *bool                `json:"tampering,omitempty"`
 	TamperingConfidence *TamperingConfidence `json:"tampering_confidence,omitempty"`
-	// A score that indicates the models calculated probability that an event is coming from an anti detect browser.   * Values above `0.8` indicate that the request is an anti detect browser based on the ml model   * Values below `0.8` indicate that the request is not an anti detect browser based on the ml model
+	// The output of this model is captured as tampering_ml_score, a number indicating how likely an event is coming from an anti detect browser. Values close to 1 signify higher confidence and we consider anything above the threshold of 0.8 to be actionable (the result and anti_detect_browser fields conveniently captures that fact)
 	TamperingMlScore *float64          `json:"tampering_ml_score,omitempty"`
 	TamperingDetails *TamperingDetails `json:"tampering_details,omitempty"`
 	Velocity         *Velocity         `json:"velocity,omitempty"`
@@ -110,9 +112,12 @@ type Event struct {
 	VPNOriginCountry *string     `json:"vpn_origin_country,omitempty"`
 	VPNMethods       *VPNMethods `json:"vpn_methods,omitempty"`
 	// Flag indicating if the request came from a high-activity visitor.
-	HighActivityDevice   *bool                `json:"high_activity_device,omitempty"`
-	RawDeviceAttributes  *RawDeviceAttributes `json:"raw_device_attributes,omitempty"`
-	AdditionalProperties map[string]interface{}
+	HighActivityDevice *bool `json:"high_activity_device,omitempty"`
+	// `true` if the device is considered rare based on its combination of hardware and software attributes.  A device is classified as rare if it falls within the top 99.9 percentile (lowest-frequency segment) of observed traffic,  or if its configuration has not been previously seen (`not_seen`). > This Smart Signal is currently in beta and only available to select customers. If you are interested, please [contact our support team](https://fingerprint.com/support/).
+	RareDevice                 *bool                       `json:"rare_device,omitempty"`
+	RareDevicePercentileBucket *RareDevicePercentileBucket `json:"rare_device_percentile_bucket,omitempty"`
+	RawDeviceAttributes        *RawDeviceAttributes        `json:"raw_device_attributes,omitempty"`
+	AdditionalProperties       map[string]interface{}
 }
 
 type _Event Event
@@ -219,6 +224,9 @@ func (o Event) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.ProxyDetails) {
 		toSerialize["proxy_details"] = o.ProxyDetails
 	}
+	if !IsNil(o.ProxyMlScore) {
+		toSerialize["proxy_ml_score"] = o.ProxyMlScore
+	}
 	if !IsNil(o.Incognito) {
 		toSerialize["incognito"] = o.Incognito
 	}
@@ -284,6 +292,12 @@ func (o Event) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.HighActivityDevice) {
 		toSerialize["high_activity_device"] = o.HighActivityDevice
+	}
+	if !IsNil(o.RareDevice) {
+		toSerialize["rare_device"] = o.RareDevice
+	}
+	if !IsNil(o.RareDevicePercentileBucket) {
+		toSerialize["rare_device_percentile_bucket"] = o.RareDevicePercentileBucket
 	}
 	if !IsNil(o.RawDeviceAttributes) {
 		toSerialize["raw_device_attributes"] = o.RawDeviceAttributes
@@ -364,6 +378,7 @@ func (o *Event) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "proxy")
 		delete(additionalProperties, "proxy_confidence")
 		delete(additionalProperties, "proxy_details")
+		delete(additionalProperties, "proxy_ml_score")
 		delete(additionalProperties, "incognito")
 		delete(additionalProperties, "jailbroken")
 		delete(additionalProperties, "location_spoofing")
@@ -386,6 +401,8 @@ func (o *Event) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "vpn_origin_country")
 		delete(additionalProperties, "vpn_methods")
 		delete(additionalProperties, "high_activity_device")
+		delete(additionalProperties, "rare_device")
+		delete(additionalProperties, "rare_device_percentile_bucket")
 		delete(additionalProperties, "raw_device_attributes")
 		o.AdditionalProperties = additionalProperties
 	}

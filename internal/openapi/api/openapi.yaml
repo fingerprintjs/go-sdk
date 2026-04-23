@@ -165,7 +165,12 @@ paths:
         - Searching for events associated with a single `linked_id` within a time range to get all events associated with your internal account identifier.
         - Excluding all bot traffic from the query (`good` and `bad` bots)
 
-        If you don't provide `start` or `end` parameters, the default search range is the **last 7 days**.
+        By default, the API searches events from the last 7 days, sorts them by newest first and returns the last 10 events.
+
+        - Use `start` and `end` to specify the time range of the search.
+        - Use `reverse=true` to sort the results oldest first.
+        - Use `limit` to specify the number of events to return.
+        - Use `pagination_key` to get the next page of results if there are more than `limit` events.
 
         ### Filtering events with the `suspect` flag
 
@@ -181,7 +186,7 @@ paths:
       operationId: searchEvents
       parameters:
       - description: |
-          Limit the number of events returned.
+          Maximum number of events to return. Results are selected from the time range (`start`, `end`), ordered by `reverse`, then truncated to provided `limit` size. So `reverse=true` returns the oldest N=`limit` events, otherwise the newest N=`limit` events.
         explode: true
         in: query
         name: limit
@@ -312,32 +317,35 @@ paths:
           type: string
         style: form
       - description: |
-          Filter events with a timestamp greater than the start time, in Unix time (milliseconds).
+          Include events that happened after this point (with timestamp greater than or equal the provided `start` Unix milliseconds value). Defaults to 7 days ago. Setting `start` does not change `end`'s default of `now` — adjust it separately if needed.
         explode: true
         in: query
         name: start
         required: false
         schema:
+          example: 1767225600000
           format: int64
           type: integer
         style: form
       - description: |
-          Filter events with a timestamp smaller than the end time, in Unix time (milliseconds).
+          Include events that happened before this point (with timestamp less than or equal the provided `end` Unix milliseconds value). Defaults to now. Setting `end` does not change `start`'s default of `7 days ago` — adjust it separately if needed.
         explode: true
         in: query
         name: end
         required: false
         schema:
+          example: 1769903999000
           format: int64
           type: integer
         style: form
       - description: |
-          Sort events in reverse timestamp order.
+          When `true`, sort events oldest first (ascending timestamp order). Default is newest first (descending timestamp order).
         explode: true
         in: query
         name: reverse
         required: false
         schema:
+          default: false
           type: boolean
         style: form
       - description: |
@@ -523,6 +531,31 @@ paths:
         required: false
         schema:
           type: boolean
+        style: form
+      - description: |
+          Filter events by Device Rarity detection result.
+          > Note: When using this parameter, only events with the `rare_device` property set to `true` or `false` are returned. Events without a Device Rarity Smart Signal result are left out of the response.
+        explode: true
+        in: query
+        name: rare_device
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - description: |
+          Filter events by Device Rarity percentile bucket.
+          `<p95` - device configuration is in the bottom 95% (most common).
+          `p95-p99` - device is in the 95th to 99th percentile.
+          `p99-p99.5` - device is in the 99th to 99.5th percentile.
+          `p99.5-p99.9` - device is in the 99.5th to 99.9th percentile.
+          `p99.9+` - device is in the top 0.1% (rarest).
+          `not_seen` - device configuration has never been observed before.
+        explode: true
+        in: query
+        name: rare_device_percentile_bucket
+        required: false
+        schema:
+          $ref: "#/components/schemas/SearchEventsRareDevicePercentileBucket"
         style: form
       - description: |
           Filter events by Proxy detection result.
@@ -1165,6 +1198,13 @@ components:
           type: string
       required:
       - proxy_type
+    ProxyMLScore:
+      description: |
+        Machine learning–based proxy score, represented as a floating-point value between 0 and 1 (inclusive), with up to three decimal places of precision. A higher score means a higher confidence in the positive `proxy` detection result
+      format: double
+      maximum: 1
+      minimum: 0
+      type: number
     Incognito:
       description: |
         `true` if we detected incognito mode used in the browser, `false` otherwise.
@@ -1360,15 +1400,20 @@ components:
       type: integer
     Tampering:
       description: |
-        Flag indicating browser tampering was detected. This happens when either:
-          * There are inconsistencies in the browser configuration that cross internal tampering thresholds (see `tampering_details.anomaly_score`).
-          * The browser signature resembles an "anti-detect" browser specifically designed to evade fingerprinting (see `tampering_details.anti_detect_browser`).
+        The field can be used as a standalone flag for tampering detection. Alternatively, the more granular fields documented below can be used for workflows that require more context.
+        * `true` if tampering is detected through an anomalous browser signature, anti-detect browser detection, or other tampering-related methods
+        * `false` if none of the tampering checks return a positive result
       type: boolean
     TamperingConfidence:
       description: |
-        Confidence level of the tampering detection.
-        If a proxy is not detected, confidence is "high".
-        If it's detected, can be "low", "medium", or "high".
+        The confidence level indicates how certain Fingerprint is that the current request involves browser tampering. This confidence level is determined by evaluating multiple factors, such as heuristic rules, probabilistic anomaly detection, an anti detect browser ml model, and other relevant methods. It is conveyed as a string with possible values such as high, medium, or low
+        In case of tampering: `true`
+        * **High confidence**: heuristic anti detect browser signals and the ml model are triggered, or all of the methods are triggered.
+        * **Medium confidence**: either the ml model triggers alone, the anomaly score triggers alone with or without the heuristic anti detect browser methods trigger.
+        * **Low confidence**: only the heuristic anti detect methods are triggered.
+
+        In case of tampering: `false`
+        * **High confidence:** Strong signals suggest the user is not tampering with their request.
       enum:
       - low
       - medium
@@ -1376,9 +1421,7 @@ components:
       type: string
     TamperingMlScore:
       description: |
-        A score that indicates the models calculated probability that an event is coming from an anti detect browser.
-          * Values above `0.8` indicate that the request is an anti detect browser based on the ml model
-          * Values below `0.8` indicate that the request is not an anti detect browser based on the ml model
+        The output of this model is captured as tampering_ml_score, a number indicating how likely an event is coming from an anti detect browser. Values close to 1 signify higher confidence and we consider anything above the threshold of 0.8 to be actionable (the result and anti_detect_browser fields conveniently captures that fact)
       format: double
       maximum: 1
       minimum: 0
@@ -1387,9 +1430,7 @@ components:
       properties:
         anomaly_score:
           description: |
-            Confidence score (`0.0 - 1.0`) for tampering detection:
-              * Values above `0.5` indicate tampering.
-              * Values below `0.5` indicate genuine browsers.
+            The output of this model is captured as anomaly_score, a statistical score indicating how rare the visitor's browser signature is compared to the overall population. Values close to 1 signify highly anomalous browsers and we consider anything above the threshold of 0.5 to be actionable (the result field conveniently captures that fact).
           format: double
           maximum: 1
           minimum: 0
@@ -1400,7 +1441,12 @@ components:
           - browser
         anti_detect_browser:
           description: |
-            True if the identified browser resembles an "anti-detect" browser, such as Incognition, which attempts to evade identification by manipulating its fingerprint.
+            Detects whether the request shows evidence of anti-detect browser usage.
+            This field may be triggered by:
+            * heuristic detection of known anti-detect browser behavior
+            * machine learning detection of anti-detect browser patterns
+
+            Examples of anti-detect browsers include tools such as AdsPower, DolphinAnty, OctoBrowser, and GoLogin.
           type: boolean
           x-platforms:
           - browser
@@ -1534,6 +1580,24 @@ components:
     HighActivity:
       description: Flag indicating if the request came from a high-activity visitor.
       type: boolean
+    RareDevice:
+      description: |
+        `true` if the device is considered rare based on its combination of hardware and software attributes.  A device is classified as rare if it falls within the top 99.9 percentile (lowest-frequency segment) of observed traffic,  or if its configuration has not been previously seen (`not_seen`).
+        > This Smart Signal is currently in beta and only available to select customers. If you are interested, please [contact our support team](https://fingerprint.com/support/).
+      type: boolean
+    RareDevicePercentileBucket:
+      description: "The rarity percentile bucket of the device, indicating how uncommon\
+        \ the device configuration is compared to all observed devices. \n> This Smart\
+        \ Signal is currently in beta and only available to select customers. If you\
+        \ are interested, please [contact our support team](https://fingerprint.com/support/).\n"
+      enum:
+      - <p95
+      - p95-p99
+      - p99-p99.5
+      - p99.5-p99.9
+      - p99.9+
+      - not_seen
+      type: string
     FontPreferences:
       description: |
         Baseline measurement of canonical fonts rendered on the device. Numeric width metrics, in CSS pixels, for the canonical fonts collected by the agent.
@@ -1621,7 +1685,7 @@ components:
           type: string
     Languages:
       description: |
-        Navigator languages reported by the agent including fallbacks. Each inner array represents ordered language preferences reported by different APIs.
+        Navigator languages reported by the agent including fallbacks. Each inner array represents ordered language preferences reported by different APIs. Available for both browsers and iOS devices
       items:
         items:
           type: string
@@ -1660,7 +1724,8 @@ components:
         shading_language_version:
           type: string
     ScreenResolution:
-      description: Current screen resolution.
+      description: Current screen resolution. Available for both browsers and iOS
+        devices
       items:
         format: int32
         type: integer
@@ -1690,7 +1755,6 @@ components:
     HardwareConcurrency:
       description: Number of logical CPU cores reported by the browser.
       format: int32
-      minimum: 1
       type: integer
     DateTimeLocale:
       description: |
@@ -1734,6 +1798,19 @@ components:
     Math:
       description: Hash of Math APIs used for entropy collection.
       type: string
+    DeviceModel:
+      description: Device model string. Available only for Android and iOS devices.
+      type: string
+    DeviceManufacturer:
+      description: Device manufacturer string. Available only for Android and iOS
+        devices.
+      type: string
+    FontHash:
+      description: Unique identifier for the user’s installed fonts.
+      type: string
+    TimezoneOffset:
+      description: UTC offset in "±HH:MM" format derived from the detected IANA timezone.
+      type: string
     RawDeviceAttributes:
       description: |
         A curated subset of raw browser/device attributes that the API surface exposes. Each property contains a value or object with the data for the collected signal.
@@ -1765,7 +1842,7 @@ components:
           $ref: "#/components/schemas/Canvas"
         languages:
           description: |
-            Navigator languages reported by the agent including fallbacks. Each inner array represents ordered language preferences reported by different APIs.
+            Navigator languages reported by the agent including fallbacks. Each inner array represents ordered language preferences reported by different APIs. Available for both browsers and iOS devices
           items:
             items:
               type: string
@@ -1776,7 +1853,8 @@ components:
         webgl_basics:
           $ref: "#/components/schemas/WebGlBasics"
         screen_resolution:
-          description: Current screen resolution.
+          description: Current screen resolution. Available for both browsers and
+            iOS devices
           items:
             format: int32
             type: integer
@@ -1798,7 +1876,6 @@ components:
         hardware_concurrency:
           description: Number of logical CPU cores reported by the browser.
           format: int32
-          minimum: 1
           type: integer
         date_time_locale:
           description: |
@@ -1842,6 +1919,20 @@ components:
         math:
           description: Hash of Math APIs used for entropy collection.
           type: string
+        device_model:
+          description: Device model string. Available only for Android and iOS devices.
+          type: string
+        device_manufacturer:
+          description: Device manufacturer string. Available only for Android and
+            iOS devices.
+          type: string
+        font_hash:
+          description: Unique identifier for the user’s installed fonts.
+          type: string
+        timezone_offset:
+          description: UTC offset in "±HH:MM" format derived from the detected IANA
+            timezone.
+          type: string
     Event:
       description: Contains results from Fingerprint Identification and all active
         Smart Signals.
@@ -1862,6 +1953,7 @@ components:
         developer_tools: ""
         ip_blocklist: ""
         proxy_confidence: ""
+        rare_device_percentile_bucket: ""
         tags: ""
         emulator: ""
         proxy: ""
@@ -1878,6 +1970,7 @@ components:
         incremental_identification_status: ""
         mitm_attack: ""
         bot_info: ""
+        rare_device: ""
         bot: ""
         supplementary_id_high_recall: ""
         cloned_app: ""
@@ -1913,6 +2006,7 @@ components:
         url: ""
         factory_reset_timestamp: ""
         event_id: ""
+        proxy_ml_score: ""
         vpn: ""
         package_name: ""
         virtual_machine: ""
@@ -2117,6 +2211,11 @@ components:
           - android
           - ios
           - browser
+        proxy_ml_score:
+          allOf:
+          - $ref: "#/components/schemas/ProxyMLScore"
+          x-platforms:
+          - browser
         incognito:
           allOf:
           - $ref: "#/components/schemas/Incognito"
@@ -2249,10 +2348,22 @@ components:
           - android
           - ios
           - browser
+        rare_device:
+          allOf:
+          - $ref: "#/components/schemas/RareDevice"
+          x-platforms:
+          - browser
+        rare_device_percentile_bucket:
+          allOf:
+          - $ref: "#/components/schemas/RareDevicePercentileBucket"
+          x-platforms:
+          - browser
         raw_device_attributes:
           allOf:
           - $ref: "#/components/schemas/RawDeviceAttributes"
           x-platforms:
+          - android
+          - ios
           - browser
       required:
       - event_id
@@ -2262,6 +2373,7 @@ components:
         Error code:
         * `request_cannot_be_parsed` - The query parameters or JSON payload contains some errors
           that prevented us from parsing it (wrong type/surpassed limits).
+        * `request_read_timeout` - The request body could not be read before the connection timed out.
         * `secret_api_key_required` - secret API key in header is missing or empty.
         * `secret_api_key_not_found` - No Fingerprint workspace found for specified secret API key.
         * `public_api_key_required` - public API key in header is missing or empty.
@@ -2284,6 +2396,7 @@ components:
         * `ruleset_not_found` - The specified ruleset was not found. It never existed or it has been deleted.
       enum:
       - request_cannot_be_parsed
+      - request_read_timeout
       - secret_api_key_required
       - secret_api_key_not_found
       - public_api_key_required
@@ -2365,6 +2478,7 @@ components:
           developer_tools: ""
           ip_blocklist: ""
           proxy_confidence: ""
+          rare_device_percentile_bucket: ""
           tags: ""
           emulator: ""
           proxy: ""
@@ -2381,6 +2495,7 @@ components:
           incremental_identification_status: ""
           mitm_attack: ""
           bot_info: ""
+          rare_device: ""
           bot: ""
           supplementary_id_high_recall: ""
           cloned_app: ""
@@ -2416,6 +2531,7 @@ components:
           url: ""
           factory_reset_timestamp: ""
           event_id: ""
+          proxy_ml_score: ""
           vpn: ""
           package_name: ""
           virtual_machine: ""
@@ -2438,6 +2554,7 @@ components:
           developer_tools: ""
           ip_blocklist: ""
           proxy_confidence: ""
+          rare_device_percentile_bucket: ""
           tags: ""
           emulator: ""
           proxy: ""
@@ -2454,6 +2571,7 @@ components:
           incremental_identification_status: ""
           mitm_attack: ""
           bot_info: ""
+          rare_device: ""
           bot: ""
           supplementary_id_high_recall: ""
           cloned_app: ""
@@ -2489,6 +2607,7 @@ components:
           url: ""
           factory_reset_timestamp: ""
           event_id: ""
+          proxy_ml_score: ""
           vpn: ""
           package_name: ""
           virtual_machine: ""
@@ -2537,6 +2656,23 @@ components:
       - high
       - medium
       - low
+      type: string
+    SearchEventsRareDevicePercentileBucket:
+      description: |
+        Filter events by Device Rarity percentile bucket.
+        `<p95` - device configuration is in the bottom 95% (most common).
+        `p95-p99` - device is in the 95th to 99th percentile.
+        `p99-p99.5` - device is in the 99th to 99.5th percentile.
+        `p99.5-p99.9` - device is in the 99.5th to 99.9th percentile.
+        `p99.9+` - device is in the top 0.1% (rarest).
+        `not_seen` - device configuration has never been observed before.
+      enum:
+      - <p95
+      - p95-p99
+      - p99-p99.5
+      - p99.5-p99.9
+      - p99.9+
+      - not_seen
       type: string
     SearchEventsSdkPlatform:
       description: |

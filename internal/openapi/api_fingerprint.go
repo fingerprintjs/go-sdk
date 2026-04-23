@@ -88,7 +88,12 @@ type FingerprintAPI interface {
 	- Searching for events associated with a single `linked_id` within a time range to get all events associated with your internal account identifier.
 	- Excluding all bot traffic from the query (`good` and `bad` bots)
 
-	If you don't provide `start` or `end` parameters, the default search range is the **last 7 days**.
+	By default, the API searches events from the last 7 days, sorts them by newest first and returns the last 10 events.
+
+	- Use `start` and `end` to specify the time range of the search.
+	- Use `reverse=true` to sort the results oldest first.
+	- Use `limit` to specify the number of events to return.
+	- Use `pagination_key` to get the next page of results if there are more than `limit` events.
 
 	### Filtering events with the `suspect` flag
 
@@ -496,6 +501,8 @@ type ApiSearchEventsRequest struct {
 	developerTools                  *bool
 	locationSpoofing                *bool
 	mITMAttack                      *bool
+	rareDevice                      *bool
+	rareDevicePercentileBucket      *SearchEventsRareDevicePercentileBucket
 	proxy                           *bool
 	sDKVersion                      *string
 	sDKPlatform                     *SearchEventsSDKPlatform
@@ -507,7 +514,7 @@ type ApiSearchEventsRequest struct {
 	simulator                       *bool
 }
 
-// Limit the number of events returned.
+// Maximum number of events to return. Results are selected from the time range (`start`, `end`), ordered by `reverse`, then truncated to provided `limit` size. So `reverse=true` returns the oldest N=`limit` events, otherwise the newest N=`limit` events.
 func (r ApiSearchEventsRequest) Limit(limit int32) ApiSearchEventsRequest {
 	r.limit = &limit
 	return r
@@ -579,19 +586,19 @@ func (r ApiSearchEventsRequest) Origin(origin string) ApiSearchEventsRequest {
 	return r
 }
 
-// Filter events with a timestamp greater than the start time, in Unix time (milliseconds).
+// Include events that happened after this point (with timestamp greater than or equal the provided `start` Unix milliseconds value). Defaults to 7 days ago. Setting `start` does not change `end`'s default of `now` — adjust it separately if needed.
 func (r ApiSearchEventsRequest) Start(start int64) ApiSearchEventsRequest {
 	r.start = &start
 	return r
 }
 
-// Filter events with a timestamp smaller than the end time, in Unix time (milliseconds).
+// Include events that happened before this point (with timestamp less than or equal the provided `end` Unix milliseconds value). Defaults to now. Setting `end` does not change `start`'s default of `7 days ago` — adjust it separately if needed.
 func (r ApiSearchEventsRequest) End(end int64) ApiSearchEventsRequest {
 	r.end = &end
 	return r
 }
 
-// Sort events in reverse timestamp order.
+// When `true`, sort events oldest first (ascending timestamp order). Default is newest first (descending timestamp order).
 func (r ApiSearchEventsRequest) Reverse(reverse bool) ApiSearchEventsRequest {
 	r.reverse = &reverse
 	return r
@@ -705,6 +712,18 @@ func (r ApiSearchEventsRequest) MITMAttack(mITMAttack bool) ApiSearchEventsReque
 	return r
 }
 
+// Filter events by Device Rarity detection result. > Note: When using this parameter, only events with the `rare_device` property set to `true` or `false` are returned. Events without a Device Rarity Smart Signal result are left out of the response.
+func (r ApiSearchEventsRequest) RareDevice(rareDevice bool) ApiSearchEventsRequest {
+	r.rareDevice = &rareDevice
+	return r
+}
+
+// Filter events by Device Rarity percentile bucket. `<p95` - device configuration is in the bottom 95% (most common). `p95-p99` - device is in the 95th to 99th percentile. `p99-p99.5` - device is in the 99th to 99.5th percentile. `p99.5-p99.9` - device is in the 99.5th to 99.9th percentile. `p99.9+` - device is in the top 0.1% (rarest). `not_seen` - device configuration has never been observed before.
+func (r ApiSearchEventsRequest) RareDevicePercentileBucket(rareDevicePercentileBucket SearchEventsRareDevicePercentileBucket) ApiSearchEventsRequest {
+	r.rareDevicePercentileBucket = &rareDevicePercentileBucket
+	return r
+}
+
 // Filter events by Proxy detection result. > Note: When using this parameter, only events with the `proxy` property set to `true` or `false` are returned. Events without a `proxy` Smart Signal result are left out of the response.
 func (r ApiSearchEventsRequest) Proxy(proxy bool) ApiSearchEventsRequest {
 	r.proxy = &proxy
@@ -774,7 +793,12 @@ The `/v4/events` endpoint provides a convenient way to search for past events ba
 - Searching for events associated with a single `linked_id` within a time range to get all events associated with your internal account identifier.
 - Excluding all bot traffic from the query (`good` and `bad` bots)
 
-If you don't provide `start` or `end` parameters, the default search range is the **last 7 days**.
+By default, the API searches events from the last 7 days, sorts them by newest first and returns the last 10 events.
+
+- Use `start` and `end` to specify the time range of the search.
+- Use `reverse=true` to sort the results oldest first.
+- Use `limit` to specify the number of events to return.
+- Use `pagination_key` to get the next page of results if there are more than `limit` events.
 
 ### Filtering events with the `suspect` flag
 
@@ -867,6 +891,10 @@ func (a *FingerprintAPIService) SearchEventsExecute(ctx context.Context, r ApiSe
 	}
 	if r.reverse != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "reverse", r.reverse, "form", "")
+	} else {
+		var defaultValue bool = false
+		parameterAddToHeaderOrQuery(localVarQueryParams, "reverse", defaultValue, "form", "")
+		r.reverse = &defaultValue
 	}
 	if r.suspect != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "suspect", r.suspect, "form", "")
@@ -921,6 +949,12 @@ func (a *FingerprintAPIService) SearchEventsExecute(ctx context.Context, r ApiSe
 	}
 	if r.mITMAttack != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "mitm_attack", r.mITMAttack, "form", "")
+	}
+	if r.rareDevice != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "rare_device", r.rareDevice, "form", "")
+	}
+	if r.rareDevicePercentileBucket != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "rare_device_percentile_bucket", r.rareDevicePercentileBucket, "form", "")
 	}
 	if r.proxy != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "proxy", r.proxy, "form", "")

@@ -32,6 +32,7 @@ type ErrorCode = openapi.ErrorCode
 
 const (
 	ErrorCodeRequestCannotBeParsed = openapi.ErrorCodeRequestCannotBeParsed
+	ErrorCodeRequestReadTimeout    = openapi.ErrorCodeRequestReadTimeout
 	ErrorCodeSecretAPIKeyRequired  = openapi.ErrorCodeSecretAPIKeyRequired
 	ErrorCodeSecretAPIKeyNotFound  = openapi.ErrorCodeSecretAPIKeyNotFound
 	ErrorCodePublicAPIKeyRequired  = openapi.ErrorCodePublicAPIKeyRequired
@@ -87,6 +88,17 @@ const (
 )
 
 type ProxyDetails = openapi.ProxyDetails
+type RareDevicePercentileBucket = openapi.RareDevicePercentileBucket
+
+const (
+	RareDevicePercentileBucketP95      = openapi.RareDevicePercentileBucketP95
+	RareDevicePercentileBucketP95P99   = openapi.RareDevicePercentileBucketP95P99
+	RareDevicePercentileBucketP99P995  = openapi.RareDevicePercentileBucketP99P995
+	RareDevicePercentileBucketP995P999 = openapi.RareDevicePercentileBucketP995P999
+	RareDevicePercentileBucketP999     = openapi.RareDevicePercentileBucketP999
+	RareDevicePercentileBucketNotSeen  = openapi.RareDevicePercentileBucketNotSeen
+)
+
 type RawDeviceAttributes = openapi.RawDeviceAttributes
 type RequestHeaderModifications = openapi.RequestHeaderModifications
 type RuleActionHeaderField = openapi.RuleActionHeaderField
@@ -112,6 +124,17 @@ type SearchEventsIncrementalIdentificationStatus = openapi.SearchEventsIncrement
 const (
 	SearchEventsIncrementalIdentificationStatusPartiallyCompleted = openapi.SearchEventsIncrementalIdentificationStatusPartiallyCompleted
 	SearchEventsIncrementalIdentificationStatusCompleted          = openapi.SearchEventsIncrementalIdentificationStatusCompleted
+)
+
+type SearchEventsRareDevicePercentileBucket = openapi.SearchEventsRareDevicePercentileBucket
+
+const (
+	SearchEventsRareDevicePercentileBucketP95      = openapi.SearchEventsRareDevicePercentileBucketP95
+	SearchEventsRareDevicePercentileBucketP95P99   = openapi.SearchEventsRareDevicePercentileBucketP95P99
+	SearchEventsRareDevicePercentileBucketP99P995  = openapi.SearchEventsRareDevicePercentileBucketP99P995
+	SearchEventsRareDevicePercentileBucketP995P999 = openapi.SearchEventsRareDevicePercentileBucketP995P999
+	SearchEventsRareDevicePercentileBucketP999     = openapi.SearchEventsRareDevicePercentileBucketP999
+	SearchEventsRareDevicePercentileBucketNotSeen  = openapi.SearchEventsRareDevicePercentileBucketNotSeen
 )
 
 type SearchEventsSDKPlatform = openapi.SearchEventsSDKPlatform

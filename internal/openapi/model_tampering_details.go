@@ -20,9 +20,9 @@ var _ MappedNullable = &TamperingDetails{}
 
 // TamperingDetails struct for TamperingDetails
 type TamperingDetails struct {
-	// Confidence score (`0.0 - 1.0`) for tampering detection:   * Values above `0.5` indicate tampering.   * Values below `0.5` indicate genuine browsers.
+	// The output of this model is captured as anomaly_score, a statistical score indicating how rare the visitor's browser signature is compared to the overall population. Values close to 1 signify highly anomalous browsers and we consider anything above the threshold of 0.5 to be actionable (the result field conveniently captures that fact).
 	AnomalyScore *float64 `json:"anomaly_score,omitempty"`
-	// True if the identified browser resembles an \"anti-detect\" browser, such as Incognition, which attempts to evade identification by manipulating its fingerprint.
+	// Detects whether the request shows evidence of anti-detect browser usage. This field may be triggered by: * heuristic detection of known anti-detect browser behavior * machine learning detection of anti-detect browser patterns  Examples of anti-detect browsers include tools such as AdsPower, DolphinAnty, OctoBrowser, and GoLogin.
 	AntiDetectBrowser    *bool `json:"anti_detect_browser,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

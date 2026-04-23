@@ -5,6 +5,8 @@
 
 * `ErrorCodeRequestCannotBeParsed` (value: `"request_cannot_be_parsed"`)
 
+* `ErrorCodeRequestReadTimeout` (value: `"request_read_timeout"`)
+
 * `ErrorCodeSecretAPIKeyRequired` (value: `"secret_api_key_required"`)
 
 * `ErrorCodeSecretAPIKeyNotFound` (value: `"secret_api_key_not_found"`)

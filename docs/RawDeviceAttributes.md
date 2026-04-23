@@ -10,10 +10,10 @@ Name | Type | Description | Notes
 **DeviceMemory** | Pointer to **int32** | Rounded amount of RAM (in gigabytes) reported by the browser. | [optional] 
 **Timezone** | Pointer to **string** | Timezone identifier detected on the client. | [optional] 
 **Canvas** | Pointer to [**Canvas**](Canvas.md) |  | [optional] 
-**Languages** | Pointer to **[][]string** | Navigator languages reported by the agent including fallbacks. Each inner array represents ordered language preferences reported by different APIs.  | [optional] 
+**Languages** | Pointer to **[][]string** | Navigator languages reported by the agent including fallbacks. Each inner array represents ordered language preferences reported by different APIs. Available for both browsers and iOS devices  | [optional] 
 **WebglExtensions** | Pointer to [**WebGlExtensions**](WebGlExtensions.md) |  | [optional] 
 **WebglBasics** | Pointer to [**WebGlBasics**](WebGlBasics.md) |  | [optional] 
-**ScreenResolution** | Pointer to **[]int32** | Current screen resolution. | [optional] 
+**ScreenResolution** | Pointer to **[]int32** | Current screen resolution. Available for both browsers and iOS devices | [optional] 
 **TouchSupport** | Pointer to [**TouchSupport**](TouchSupport.md) |  | [optional] 
 **Oscpu** | Pointer to **string** | Navigator `oscpu` string. | [optional] 
 **Architecture** | Pointer to **int32** | Integer representing the CPU architecture exposed by the browser. | [optional] 
@@ -29,6 +29,10 @@ Name | Type | Description | Notes
 **Plugins** | Pointer to [**[]PluginsInner**](PluginsInner.md) | Browser plugins reported by `navigator.plugins`. | [optional] 
 **IndexedDb** | Pointer to **bool** | Whether IndexedDB is available. | [optional] 
 **Math** | Pointer to **string** | Hash of Math APIs used for entropy collection. | [optional] 
+**DeviceModel** | Pointer to **string** | Device model string. Available only for Android and iOS devices. | [optional] 
+**DeviceManufacturer** | Pointer to **string** | Device manufacturer string. Available only for Android and iOS devices. | [optional] 
+**FontHash** | Pointer to **string** | Unique identifier for the user’s installed fonts. | [optional] 
+**TimezoneOffset** | Pointer to **string** | UTC offset in \"±HH:MM\" format derived from the detected IANA timezone. | [optional] 
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

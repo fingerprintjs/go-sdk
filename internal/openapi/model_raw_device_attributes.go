@@ -29,11 +29,11 @@ type RawDeviceAttributes struct {
 	// Timezone identifier detected on the client.
 	Timezone *string `json:"timezone,omitempty"`
 	Canvas   *Canvas `json:"canvas,omitempty"`
-	// Navigator languages reported by the agent including fallbacks. Each inner array represents ordered language preferences reported by different APIs.
+	// Navigator languages reported by the agent including fallbacks. Each inner array represents ordered language preferences reported by different APIs. Available for both browsers and iOS devices
 	Languages       [][]string       `json:"languages,omitempty"`
 	WebglExtensions *WebGlExtensions `json:"webgl_extensions,omitempty"`
 	WebglBasics     *WebGlBasics     `json:"webgl_basics,omitempty"`
-	// Current screen resolution.
+	// Current screen resolution. Available for both browsers and iOS devices
 	ScreenResolution []int32       `json:"screen_resolution,omitempty"`
 	TouchSupport     *TouchSupport `json:"touch_support,omitempty"`
 	// Navigator `oscpu` string.
@@ -63,7 +63,15 @@ type RawDeviceAttributes struct {
 	// Whether IndexedDB is available.
 	IndexedDb *bool `json:"indexed_db,omitempty"`
 	// Hash of Math APIs used for entropy collection.
-	Math                 *string `json:"math,omitempty"`
+	Math *string `json:"math,omitempty"`
+	// Device model string. Available only for Android and iOS devices.
+	DeviceModel *string `json:"device_model,omitempty"`
+	// Device manufacturer string. Available only for Android and iOS devices.
+	DeviceManufacturer *string `json:"device_manufacturer,omitempty"`
+	// Unique identifier for the user’s installed fonts.
+	FontHash *string `json:"font_hash,omitempty"`
+	// UTC offset in \"±HH:MM\" format derived from the detected IANA timezone.
+	TimezoneOffset       *string `json:"timezone_offset,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -154,6 +162,18 @@ func (o RawDeviceAttributes) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Math) {
 		toSerialize["math"] = o.Math
 	}
+	if !IsNil(o.DeviceModel) {
+		toSerialize["device_model"] = o.DeviceModel
+	}
+	if !IsNil(o.DeviceManufacturer) {
+		toSerialize["device_manufacturer"] = o.DeviceManufacturer
+	}
+	if !IsNil(o.FontHash) {
+		toSerialize["font_hash"] = o.FontHash
+	}
+	if !IsNil(o.TimezoneOffset) {
+		toSerialize["timezone_offset"] = o.TimezoneOffset
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -201,6 +221,10 @@ func (o *RawDeviceAttributes) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "plugins")
 		delete(additionalProperties, "indexed_db")
 		delete(additionalProperties, "math")
+		delete(additionalProperties, "device_model")
+		delete(additionalProperties, "device_manufacturer")
+		delete(additionalProperties, "font_hash")
+		delete(additionalProperties, "timezone_offset")
 		o.AdditionalProperties = additionalProperties
 	}
 
