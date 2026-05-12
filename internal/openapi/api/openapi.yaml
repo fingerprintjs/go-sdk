@@ -316,8 +316,10 @@ paths:
         schema:
           type: string
         style: form
-      - description: |
-          Include events that happened after this point (with timestamp greater than or equal the provided `start` Unix milliseconds value). Defaults to 7 days ago. Setting `start` does not change `end`'s default of `now` — adjust it separately if needed.
+      - description: Include events that happened after this point (with timestamp
+          greater than or equal to the provided `start` Unix milliseconds value).
+          Defaults to 7 days ago. Setting `start` does not change the default of `now`
+          for `end`/`end_date_time` — adjust it separately if needed.
         explode: true
         in: query
         name: start
@@ -327,8 +329,26 @@ paths:
           format: int64
           type: integer
         style: form
-      - description: |
-          Include events that happened before this point (with timestamp less than or equal the provided `end` Unix milliseconds value). Defaults to now. Setting `end` does not change `start`'s default of `7 days ago` — adjust it separately if needed.
+        x-parameter-alias: start_date_time
+      - description: Include events that happened after this point (with timestamp
+          greater than or equal to the provided `start_date_time` RFC3339 timestamp).
+          Defaults to 7 days ago. Setting `start_date_time` does not the default of
+          `now` for `end`/`end_date_time` — adjust it separately if needed. This parameter
+          is an alias for `start`.
+        explode: true
+        in: query
+        name: start_date_time
+        required: false
+        schema:
+          example: 2026-01-01T00:00:00Z
+          format: date-time
+          type: string
+        style: form
+        x-aliased-parameter-name: start
+      - description: Include events that happened before this point (with timestamp
+          less than or equal the provided `end` Unix milliseconds value). Defaults
+          to now. Setting `end` does not change the default of `7 days ago` for `start`/`start_date_time`
+          — adjust it separately if needed.
         explode: true
         in: query
         name: end
@@ -338,6 +358,22 @@ paths:
           format: int64
           type: integer
         style: form
+        x-parameter-alias: end_date_time
+      - description: Include events that happened before this point (with timestamp
+          less than or equal the provided `end_date_time` RFC3339 timestamp). Defaults
+          to now. Setting `end_date_time` does not change the default of `7 days ago`
+          for `start`/`start_date_time` — adjust it separately if needed. This parameter
+          is an alias for `end`.
+        explode: true
+        in: query
+        name: end_date_time
+        required: false
+        schema:
+          example: 2026-01-31T23:59:59Z
+          format: date-time
+          type: string
+        style: form
+        x-aliased-parameter-name: end
       - description: |
           When `true`, sort events oldest first (ascending timestamp order). Default is newest first (descending timestamp order).
         explode: true

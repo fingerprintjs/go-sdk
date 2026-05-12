@@ -19,6 +19,7 @@ import (
 	"net/url"
 	"reflect"
 	"strings"
+	"time"
 )
 
 type FingerprintAPI interface {
@@ -481,7 +482,9 @@ type ApiSearchEventsRequest struct {
 	packageName                     *string
 	origin                          *string
 	start                           *int64
+	startDateTime                   *time.Time
 	end                             *int64
+	endDateTime                     *time.Time
 	reverse                         *bool
 	suspect                         *bool
 	vPN                             *bool
@@ -586,15 +589,39 @@ func (r ApiSearchEventsRequest) Origin(origin string) ApiSearchEventsRequest {
 	return r
 }
 
-// Include events that happened after this point (with timestamp greater than or equal the provided `start` Unix milliseconds value). Defaults to 7 days ago. Setting `start` does not change `end`'s default of `now` — adjust it separately if needed.
+// Include events that happened after this point (with timestamp greater than or equal to the provided `start` Unix milliseconds value). Defaults to 7 days ago. Setting `start` does not change the default of `now` for `end`/`end_date_time` — adjust it separately if needed.
+//
+// `Start` is an alias for `StartDateTime`. Invoking `Start` will also clear an existing `StartDateTime` parameter value.
 func (r ApiSearchEventsRequest) Start(start int64) ApiSearchEventsRequest {
 	r.start = &start
+	r.startDateTime = nil
 	return r
 }
 
-// Include events that happened before this point (with timestamp less than or equal the provided `end` Unix milliseconds value). Defaults to now. Setting `end` does not change `start`'s default of `7 days ago` — adjust it separately if needed.
+// Include events that happened after this point (with timestamp greater than or equal to the provided `start_date_time` RFC3339 timestamp). Defaults to 7 days ago. Setting `start_date_time` does not the default of `now` for `end`/`end_date_time` — adjust it separately if needed. This parameter is an alias for `start`.
+//
+// `StartDateTime` is an alias for `Start`. Invoking `StartDateTime` will also clear an existing `Start` parameter value.
+func (r ApiSearchEventsRequest) StartDateTime(startDateTime time.Time) ApiSearchEventsRequest {
+	r.startDateTime = &startDateTime
+	r.start = nil
+	return r
+}
+
+// Include events that happened before this point (with timestamp less than or equal the provided `end` Unix milliseconds value). Defaults to now. Setting `end` does not change the default of `7 days ago` for `start`/`start_date_time` — adjust it separately if needed.
+//
+// `End` is an alias for `EndDateTime`. Invoking `End` will also clear an existing `EndDateTime` parameter value.
 func (r ApiSearchEventsRequest) End(end int64) ApiSearchEventsRequest {
 	r.end = &end
+	r.endDateTime = nil
+	return r
+}
+
+// Include events that happened before this point (with timestamp less than or equal the provided `end_date_time` RFC3339 timestamp). Defaults to now. Setting `end_date_time` does not change the default of `7 days ago` for `start`/`start_date_time` — adjust it separately if needed. This parameter is an alias for `end`.
+//
+// `EndDateTime` is an alias for `End`. Invoking `EndDateTime` will also clear an existing `End` parameter value.
+func (r ApiSearchEventsRequest) EndDateTime(endDateTime time.Time) ApiSearchEventsRequest {
+	r.endDateTime = &endDateTime
+	r.end = nil
 	return r
 }
 
@@ -886,8 +913,14 @@ func (a *FingerprintAPIService) SearchEventsExecute(ctx context.Context, r ApiSe
 	if r.start != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "start", r.start, "form", "")
 	}
+	if r.startDateTime != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "start", r.startDateTime, "form", "")
+	}
 	if r.end != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "end", r.end, "form", "")
+	}
+	if r.endDateTime != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "end", r.endDateTime, "form", "")
 	}
 	if r.reverse != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "reverse", r.reverse, "form", "")
