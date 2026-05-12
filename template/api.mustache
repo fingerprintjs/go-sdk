@@ -229,7 +229,7 @@ func (a *{{{classname}}}Service) {{nickname}}Execute(ctx context.Context, r {{#s
 		}
 	{{/isCollectionFormatMulti}}
 	{{^isCollectionFormatMulti}}
-		parameterAddToHeaderOrQuery(localVarQueryParams, "{{{baseName}}}", r.{{paramName}}, "{{style}}", "{{collectionFormat}}")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "{{#vendorExtensions.x-aliased-parameter-name}}{{vendorExtensions.x-aliased-parameter-name}}{{/vendorExtensions.x-aliased-parameter-name}}{{^vendorExtensions.x-aliased-parameter-name}}{{{baseName}}}{{/vendorExtensions.x-aliased-parameter-name}}", r.{{paramName}}, "{{style}}", "{{collectionFormat}}")
 	{{/isCollectionFormatMulti}}
 	{{#defaultValue}}} else {
 	{{#isArray}}
@@ -332,7 +332,7 @@ func (a *{{{classname}}}Service) {{nickname}}Execute(ctx context.Context, r {{#s
 {{/isModel}}
 {{^isModel}}
 	if r.{{paramName}} != nil {
-		parameterAddToHeaderOrQuery(localVarFormParams, "{{#vendorExtensions.x-aliased-parameter-name}}{{vendorExtensions.x-aliased-parameter-name}}{{/vendorExtensions.x-aliased-parameter-name}}{{^vendorExtensions.x-aliased-parameter-name}}{{{baseName}}}{{/vendorExtensions.x-aliased-parameter-name}}", r.{{paramName}}, "{{style}}", "{{collectionFormat}}")
+		parameterAddToHeaderOrQuery(localVarFormParams, "{{{baseName}}}", r.{{paramName}}, "{{style}}", "{{collectionFormat}}")
 	}
 {{/isModel}}
 {{/required}}
