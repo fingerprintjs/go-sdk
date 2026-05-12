@@ -480,8 +480,8 @@ type ApiSearchEventsRequest struct {
 	bundleID                        *string
 	packageName                     *string
 	origin                          *string
-	start                           *int64
-	end                             *int64
+	start                           *SearchEventsStartParameter
+	end                             *SearchEventsEndParameter
 	reverse                         *bool
 	suspect                         *bool
 	vPN                             *bool
@@ -586,14 +586,14 @@ func (r ApiSearchEventsRequest) Origin(origin string) ApiSearchEventsRequest {
 	return r
 }
 
-// Include events that happened after this point (with timestamp greater than or equal the provided `start` Unix milliseconds value). Defaults to 7 days ago. Setting `start` does not change `end`'s default of `now` — adjust it separately if needed.
-func (r ApiSearchEventsRequest) Start(start int64) ApiSearchEventsRequest {
+// Include events that happened after this point (with timestamp greater than or equal the provided `start` Unix milliseconds value or RFC3339 timestamp). Defaults to 7 days ago. Setting `start` does not change `end`'s default of `now` — adjust it separately if needed.
+func (r ApiSearchEventsRequest) Start(start SearchEventsStartParameter) ApiSearchEventsRequest {
 	r.start = &start
 	return r
 }
 
-// Include events that happened before this point (with timestamp less than or equal the provided `end` Unix milliseconds value). Defaults to now. Setting `end` does not change `start`'s default of `7 days ago` — adjust it separately if needed.
-func (r ApiSearchEventsRequest) End(end int64) ApiSearchEventsRequest {
+// Include events that happened before this point (with timestamp less than or equal the provided `end` Unix milliseconds value or RFC3339 timestamp). Defaults to now. Setting `end` does not change `start`'s default of `7 days ago` — adjust it separately if needed.
+func (r ApiSearchEventsRequest) End(end SearchEventsEndParameter) ApiSearchEventsRequest {
 	r.end = &end
 	return r
 }

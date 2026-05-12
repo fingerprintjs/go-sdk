@@ -119,6 +119,7 @@ const (
 	SearchEventsBotNone = openapi.SearchEventsBotNone
 )
 
+type SearchEventsEndParameter = openapi.SearchEventsEndParameter
 type SearchEventsIncrementalIdentificationStatus = openapi.SearchEventsIncrementalIdentificationStatus
 
 const (
@@ -145,6 +146,7 @@ const (
 	SearchEventsSDKPlatformIOS     = openapi.SearchEventsSDKPlatformIOS
 )
 
+type SearchEventsStartParameter = openapi.SearchEventsStartParameter
 type SearchEventsVPNConfidence = openapi.SearchEventsVPNConfidence
 
 const (

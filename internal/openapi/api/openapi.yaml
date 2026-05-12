@@ -317,26 +317,22 @@ paths:
           type: string
         style: form
       - description: |
-          Include events that happened after this point (with timestamp greater than or equal the provided `start` Unix milliseconds value). Defaults to 7 days ago. Setting `start` does not change `end`'s default of `now` — adjust it separately if needed.
+          Include events that happened after this point (with timestamp greater than or equal the provided `start` Unix milliseconds value or RFC3339 timestamp). Defaults to 7 days ago. Setting `start` does not change `end`'s default of `now` — adjust it separately if needed.
         explode: true
         in: query
         name: start
         required: false
         schema:
-          example: 1767225600000
-          format: int64
-          type: integer
+          $ref: "#/components/schemas/searchEvents_start_parameter"
         style: form
       - description: |
-          Include events that happened before this point (with timestamp less than or equal the provided `end` Unix milliseconds value). Defaults to now. Setting `end` does not change `start`'s default of `7 days ago` — adjust it separately if needed.
+          Include events that happened before this point (with timestamp less than or equal the provided `end` Unix milliseconds value or RFC3339 timestamp). Defaults to now. Setting `end` does not change `start`'s default of `7 days ago` — adjust it separately if needed.
         explode: true
         in: query
         name: end
         required: false
         schema:
-          example: 1769903999000
-          format: int64
-          type: integer
+          $ref: "#/components/schemas/searchEvents_end_parameter"
         style: form
       - description: |
           When `true`, sort events oldest first (ascending timestamp order). Default is newest first (descending timestamp order).
@@ -2691,6 +2687,22 @@ components:
       - partially_completed
       - completed
       type: string
+    searchEvents_start_parameter:
+      oneOf:
+      - example: 1767225600000
+        format: int64
+        type: integer
+      - example: 2026-01-01T00:00:00Z
+        format: date-time
+        type: string
+    searchEvents_end_parameter:
+      oneOf:
+      - example: 1769903999000
+        format: int64
+        type: integer
+      - example: 2026-01-31T23:59:59Z
+        format: date-time
+        type: string
     Integration_subintegration:
       properties:
         name:
