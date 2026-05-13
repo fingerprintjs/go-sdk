@@ -64,12 +64,26 @@ type {{#structPrefix}}{{&classname}}{{/structPrefix}}{{^structPrefix}}Api{{/stru
 {{^isPathParam}}
 {{#description}}
 // {{{.}}}
+{{#vendorExtensions.x-aliased-parameter-name}}
+// 
+// `{{vendorExtensions.x-export-param-name}}` is an alias for `{{#lambda.pascalcase}}{{vendorExtensions.x-aliased-parameter-name}}{{/lambda.pascalcase}}`. Invoking `{{vendorExtensions.x-export-param-name}}` will also clear an existing `{{#lambda.pascalcase}}{{vendorExtensions.x-aliased-parameter-name}}{{/lambda.pascalcase}}` parameter value.
+{{/vendorExtensions.x-aliased-parameter-name}}
+{{#vendorExtensions.x-parameter-alias}}
+//
+// `{{vendorExtensions.x-export-param-name}}` is an alias for `{{#lambda.pascalcase}}{{vendorExtensions.x-parameter-alias}}{{/lambda.pascalcase}}`. Invoking `{{vendorExtensions.x-export-param-name}}` will also clear an existing `{{#lambda.pascalcase}}{{vendorExtensions.x-parameter-alias}}{{/lambda.pascalcase}}` parameter value.
+{{/vendorExtensions.x-parameter-alias}}
 {{/description}}
 {{#isDeprecated}}
 // Deprecated
 {{/isDeprecated}}
 func (r {{#structPrefix}}{{&classname}}{{/structPrefix}}{{^structPrefix}}Api{{/structPrefix}}{{operationId}}Request) {{vendorExtensions.x-export-param-name}}({{paramName}} {{{dataType}}}) {{#structPrefix}}{{&classname}}{{/structPrefix}}{{^structPrefix}}Api{{/structPrefix}}{{operationId}}Request {
 	r.{{paramName}} = {{^isFile}}&{{/isFile}}{{paramName}}
+	{{#vendorExtensions.x-aliased-parameter-name}}
+	r.{{#lambda.camelcase}}{{vendorExtensions.x-aliased-parameter-name}}{{/lambda.camelcase}} = nil
+	{{/vendorExtensions.x-aliased-parameter-name}}
+	{{#vendorExtensions.x-parameter-alias}}
+	r.{{#lambda.camelcase}}{{vendorExtensions.x-parameter-alias}}{{/lambda.camelcase}} = nil
+	{{/vendorExtensions.x-parameter-alias}}
 	return r
 }
 
@@ -215,7 +229,7 @@ func (a *{{{classname}}}Service) {{nickname}}Execute(ctx context.Context, r {{#s
 		}
 	{{/isCollectionFormatMulti}}
 	{{^isCollectionFormatMulti}}
-		parameterAddToHeaderOrQuery(localVarQueryParams, "{{{baseName}}}", r.{{paramName}}, "{{style}}", "{{collectionFormat}}")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "{{#vendorExtensions.x-aliased-parameter-name}}{{vendorExtensions.x-aliased-parameter-name}}{{/vendorExtensions.x-aliased-parameter-name}}{{^vendorExtensions.x-aliased-parameter-name}}{{{baseName}}}{{/vendorExtensions.x-aliased-parameter-name}}", r.{{paramName}}, "{{style}}", "{{collectionFormat}}")
 	{{/isCollectionFormatMulti}}
 	{{#defaultValue}}} else {
 	{{#isArray}}
