@@ -19,36 +19,41 @@ import (
 	"net/url"
 	"reflect"
 	"strings"
+	"time"
 )
 
 type FingerprintAPI interface {
 
 	/*
-		DeleteVisitorData Delete data by visitor ID
+		DeleteVisitorData Delete a visitor ID
 
-		Request deleting all data associated with the specified visitor ID. This API is useful for compliance with privacy regulations.
+		Use this API to request the deletion of all data associated with a specific visitor ID.
 
-	### Which data is deleted?
-	- Browser (or device) properties
-	- Identification requests made from this browser (or device)
+	Upon a request to delete data for a visitor ID,
+	- The data collected from the corresponding browser (or device) will be deleted asynchronously, typically within a few minutes. This data will no longer be available to identify this browser (or device). When the same browser (or device) revisits, it will receive a new visitor ID.
+	- The identification events made from this browser (or device) in the past 10 days are typically deleted within 24 hrs.
+	- The identification events made from this browser (or device) outside of the 10 days will be purged as per your [data retention period](https://docs.fingerprint.com/docs/regions#data-retention).
 
-	#### Browser (or device) properties
-	- Represents the data that Fingerprint collected from this specific browser (or device) and everything inferred and derived from it.
-	- Upon request to delete, this data is deleted asynchronously (typically within a few minutes) and it will no longer be used to identify this browser (or device) for your [Fingerprint Workspace](https://docs.fingerprint.com/docs/glossary#fingerprint-workspace).
+	The following timeline illustrates which events are deleted and which remain after a DELETE API request:
+	```
+	Day 1:  First visit from browser A. (Assigned visitor ID: VID1000)
+	Day 2:  Browser A revisits. (Assigned the same visitor ID: VID1000)
+	Day 13: Browser A revisits. (Assigned the same visitor ID: VID1000)
+	Day 14: Delete VID1000
+	Day 15: Browser A re-visits. (Assigned a different visitor ID: VID9999)
+	Day 15: GET /events/day-13 (Returns 404. The event is within the 10 days of deleting VID1000 and will have been deleted)
+	Day 16: GET /events/day-2 (Returns 200. The event is outside of the 10 days of deleting VID1000 and is still available)
+	```
 
-	#### Identification requests made from this browser (or device)
-	- Fingerprint stores the identification requests made from a browser (or device) for up to 30 (or 90) days depending on your plan. To learn more, see [Data Retention](https://docs.fingerprint.com/docs/regions#data-retention).
-	- Upon request to delete, the identification requests that were made by this browser
-	  - Within the past 10 days are deleted within 24 hrs.
-	  - Outside of 10 days are allowed to purge as per your data retention period.
+	### Availability
+	This API is available only for Enterprise plans **upon request**. If you are interested, please [contact our support team](https://fingerprint.com/support/).
 
-	### Corollary
-	After requesting to delete a visitor ID,
-	- If the same browser (or device) requests to identify, it will receive a different visitor ID.
-	- If you request [`/v4/events` API](https://docs.fingerprint.com/reference/server-api-v4-get-event) with an `event_id` that was made outside of the 10 days, you will still receive a valid response.
+	### Rate limits and daily quota
+	The rate limits and daily quota for this API **differ** from those for our other API.
 
-	### Interested?
-	Please [contact our support team](https://fingerprint.com/support/) to enable it for you. Otherwise, you will receive a 403.
+	The maximum number of DELETE requests that can be made in an hour cannot exceed 30 RPH, and the maximum number that can be made in a day cannot exceed 500 RPD.
+
+	You can request an increase to these limits by contacting [our support team](https://fingerprint.com/support/).
 
 
 		visitorID The [visitor ID](https://docs.fingerprint.com/reference/js-agent-v4-get-function#visitor_id) you want to delete.
@@ -154,31 +159,35 @@ func (r ApiDeleteVisitorDataRequest) Execute(ctx context.Context) (*http.Respons
 }
 
 /*
-DeleteVisitorData Delete data by visitor ID
+DeleteVisitorData Delete a visitor ID
 
-Request deleting all data associated with the specified visitor ID. This API is useful for compliance with privacy regulations.
+Use this API to request the deletion of all data associated with a specific visitor ID.
 
-### Which data is deleted?
-- Browser (or device) properties
-- Identification requests made from this browser (or device)
+Upon a request to delete data for a visitor ID,
+- The data collected from the corresponding browser (or device) will be deleted asynchronously, typically within a few minutes. This data will no longer be available to identify this browser (or device). When the same browser (or device) revisits, it will receive a new visitor ID.
+- The identification events made from this browser (or device) in the past 10 days are typically deleted within 24 hrs.
+- The identification events made from this browser (or device) outside of the 10 days will be purged as per your [data retention period](https://docs.fingerprint.com/docs/regions#data-retention).
 
-#### Browser (or device) properties
-- Represents the data that Fingerprint collected from this specific browser (or device) and everything inferred and derived from it.
-- Upon request to delete, this data is deleted asynchronously (typically within a few minutes) and it will no longer be used to identify this browser (or device) for your [Fingerprint Workspace](https://docs.fingerprint.com/docs/glossary#fingerprint-workspace).
+The following timeline illustrates which events are deleted and which remain after a DELETE API request:
+```
+Day 1:  First visit from browser A. (Assigned visitor ID: VID1000)
+Day 2:  Browser A revisits. (Assigned the same visitor ID: VID1000)
+Day 13: Browser A revisits. (Assigned the same visitor ID: VID1000)
+Day 14: Delete VID1000
+Day 15: Browser A re-visits. (Assigned a different visitor ID: VID9999)
+Day 15: GET /events/day-13 (Returns 404. The event is within the 10 days of deleting VID1000 and will have been deleted)
+Day 16: GET /events/day-2 (Returns 200. The event is outside of the 10 days of deleting VID1000 and is still available)
+```
 
-#### Identification requests made from this browser (or device)
-- Fingerprint stores the identification requests made from a browser (or device) for up to 30 (or 90) days depending on your plan. To learn more, see [Data Retention](https://docs.fingerprint.com/docs/regions#data-retention).
-- Upon request to delete, the identification requests that were made by this browser
-  - Within the past 10 days are deleted within 24 hrs.
-  - Outside of 10 days are allowed to purge as per your data retention period.
+### Availability
+This API is available only for Enterprise plans **upon request**. If you are interested, please [contact our support team](https://fingerprint.com/support/).
 
-### Corollary
-After requesting to delete a visitor ID,
-- If the same browser (or device) requests to identify, it will receive a different visitor ID.
-- If you request [`/v4/events` API](https://docs.fingerprint.com/reference/server-api-v4-get-event) with an `event_id` that was made outside of the 10 days, you will still receive a valid response.
+### Rate limits and daily quota
+The rate limits and daily quota for this API **differ** from those for our other API.
 
-### Interested?
-Please [contact our support team](https://fingerprint.com/support/) to enable it for you. Otherwise, you will receive a 403.
+The maximum number of DELETE requests that can be made in an hour cannot exceed 30 RPH, and the maximum number that can be made in a day cannot exceed 500 RPD.
+
+You can request an increase to these limits by contacting [our support team](https://fingerprint.com/support/).
 
 	visitorID The [visitor ID](https://docs.fingerprint.com/reference/js-agent-v4-get-function#visitor_id) you want to delete.
 	Returns ApiDeleteVisitorDataRequest
@@ -473,6 +482,12 @@ type ApiSearchEventsRequest struct {
 	visitorID                       *string
 	highRecallID                    *string
 	bot                             *SearchEventsBot
+	botInfo                         *SearchEventsBotInfo
+	botInfoCategory                 *[]BotInfoCategory
+	botInfoIdentity                 *[]BotInfoIdentity
+	botInfoConfidence               *[]BotInfoConfidence
+	botInfoProvider                 *[]string
+	botInfoName                     *[]string
 	iPAddress                       *string
 	asn                             *string
 	linkedID                        *string
@@ -481,7 +496,9 @@ type ApiSearchEventsRequest struct {
 	packageName                     *string
 	origin                          *string
 	start                           *int64
+	startDateTime                   *time.Time
 	end                             *int64
+	endDateTime                     *time.Time
 	reverse                         *bool
 	suspect                         *bool
 	vPN                             *bool
@@ -520,7 +537,7 @@ func (r ApiSearchEventsRequest) Limit(limit int32) ApiSearchEventsRequest {
 	return r
 }
 
-// Use `pagination_key` to get the next page of results.  When more results are available (e.g., you requested up to 100 results for your query using `limit`, but there are more than 100 events total matching your request), the `pagination_key` field is added to the response. The pagination key is an arbitrary string that should not be interpreted in any way and should be passed as-is. In the following request, use that value in the `pagination_key` parameter to get the next page of results:  1. First request, returning most recent 200 events: `GET api-base-url/events?limit=100` 2. Use `response.pagination_key` to get the next page of results: `GET api-base-url/events?limit=100&pagination_key=1740815825085`
+// Use `pagination_key` to get the next page of results.  When more results are available (e.g., you requested up to 100 results for your query using `limit`, but there are more than 100 events total matching your request), the `pagination_key` field is added to the response. The pagination key is an arbitrary string that should not be interpreted in any way and should be passed as-is. In the following request, use that value in the `pagination_key` parameter to get the next page of results:  1. First request, returning most recent 100 events: `GET api-base-url/events?limit=100` 2. Use `response.pagination_key` to get the next page of results: `GET api-base-url/events?limit=100&pagination_key=1740815825085`
 func (r ApiSearchEventsRequest) PaginationKey(paginationKey string) ApiSearchEventsRequest {
 	r.paginationKey = &paginationKey
 	return r
@@ -541,6 +558,42 @@ func (r ApiSearchEventsRequest) HighRecallID(highRecallID string) ApiSearchEvent
 // Filter events by the Bot Detection result, specifically:   `all` - events where any kind of bot was detected.   `good` - events where a good bot was detected.   `bad` - events where a bad bot was detected.   `none` - events where no bot was detected. > Note: When using this parameter, only events with the `bot` property set to a valid value are returned. Events without a `bot` Smart Signal result are left out of the response.
 func (r ApiSearchEventsRequest) Bot(bot SearchEventsBot) ApiSearchEventsRequest {
 	r.bot = &bot
+	return r
+}
+
+// Filter events by their Bot Info result, specifically:   - `all` - events where any kind of bot was detected.   - `none` - events where no bot was detected.
+func (r ApiSearchEventsRequest) BotInfo(botInfo SearchEventsBotInfo) ApiSearchEventsRequest {
+	r.botInfo = &botInfo
+	return r
+}
+
+// Filter events by their Bot Info Category.  Multiple categories can be provided using the repeated keys syntax. For example, `bot_info_category=ai_agent&bot_info_category=ai_assistant`, will match events with a Bot Info Category of `ai_agent` or `ai_assistant`. Other notations like comma-separated or bracket notation are not supported.
+func (r ApiSearchEventsRequest) BotInfoCategory(botInfoCategory []BotInfoCategory) ApiSearchEventsRequest {
+	r.botInfoCategory = &botInfoCategory
+	return r
+}
+
+// Filter events by their Bot Info Identity type.  Multiple identity types can be provided using the repeated keys syntax. For example, `bot_info_identity=verified&bot_info_identity=signed`, will match events with a Bot Info Identity of `verified` or `signed`. Other notations like comma-separated or bracket notation are not supported.
+func (r ApiSearchEventsRequest) BotInfoIdentity(botInfoIdentity []BotInfoIdentity) ApiSearchEventsRequest {
+	r.botInfoIdentity = &botInfoIdentity
+	return r
+}
+
+// Filter events by their Bot Info Confidence.  Multiple confidences can be provided using the repeated keys syntax. For example, `bot_info_confidence=high&bot_info_confidence=medium`, will match events with a Bot Info Confidence of `high` or `medium`. Other notations like comma-separated or bracket notation are not supported.
+func (r ApiSearchEventsRequest) BotInfoConfidence(botInfoConfidence []BotInfoConfidence) ApiSearchEventsRequest {
+	r.botInfoConfidence = &botInfoConfidence
+	return r
+}
+
+// Filter events by their Bot Info Provider. The provider must match exactly, partial or wildcard matching is not supported.  Multiple Providers can be provided using the repeated keys syntax. For example, `bot_info_provider=OpenAI&bot_info_provider=AWS`, will match events with a Bot Info Provider of `OpenAI` or `AWS`. Other notations like comma-separated or bracket notation are not supported.
+func (r ApiSearchEventsRequest) BotInfoProvider(botInfoProvider []string) ApiSearchEventsRequest {
+	r.botInfoProvider = &botInfoProvider
+	return r
+}
+
+// Filter events by their Bot Info Name. The name must match exactly, partial or wildcard matching is not supported.  Multiple Names can be provided using the repeated keys syntax. For example, `bot_info_name=ChatGPT%20Agent&bot_info_name=Bedrock%20AgentCore`, will match events with a Bot Info Name of `ChatGPT Agent` or `Bedrock AgentCore`. Other notations like comma-separated or bracket notation are not supported.
+func (r ApiSearchEventsRequest) BotInfoName(botInfoName []string) ApiSearchEventsRequest {
+	r.botInfoName = &botInfoName
 	return r
 }
 
@@ -586,19 +639,43 @@ func (r ApiSearchEventsRequest) Origin(origin string) ApiSearchEventsRequest {
 	return r
 }
 
-// Include events that happened after this point (with timestamp greater than or equal the provided `start` Unix milliseconds value). Defaults to 7 days ago. Setting `start` does not change `end`'s default of `now` — adjust it separately if needed.
+// Include events that happened after this point (with timestamp greater than or equal to the provided `start` Unix milliseconds value). Defaults to 7 days ago. Setting `start` does not change the default of `now` for `end`/`end_date_time` — adjust it separately if needed.
+//
+// `Start` is an alias for `StartDateTime`. Invoking `Start` will also clear an existing `StartDateTime` parameter value.
 func (r ApiSearchEventsRequest) Start(start int64) ApiSearchEventsRequest {
 	r.start = &start
+	r.startDateTime = nil
 	return r
 }
 
-// Include events that happened before this point (with timestamp less than or equal the provided `end` Unix milliseconds value). Defaults to now. Setting `end` does not change `start`'s default of `7 days ago` — adjust it separately if needed.
+// Include events that happened after this point (with timestamp greater than or equal to the provided `start_date_time` RFC3339 timestamp). Defaults to 7 days ago. Setting `start_date_time` does not the default of `now` for `end`/`end_date_time` — adjust it separately if needed. This parameter is an alias for `start`.
+//
+// `StartDateTime` is an alias for `Start`. Invoking `StartDateTime` will also clear an existing `Start` parameter value.
+func (r ApiSearchEventsRequest) StartDateTime(startDateTime time.Time) ApiSearchEventsRequest {
+	r.startDateTime = &startDateTime
+	r.start = nil
+	return r
+}
+
+// Include events that happened before this point (with timestamp less than or equal the provided `end` Unix milliseconds value). Defaults to now. Setting `end` does not change the default of `7 days ago` for `start`/`start_date_time` — adjust it separately if needed.
+//
+// `End` is an alias for `EndDateTime`. Invoking `End` will also clear an existing `EndDateTime` parameter value.
 func (r ApiSearchEventsRequest) End(end int64) ApiSearchEventsRequest {
 	r.end = &end
+	r.endDateTime = nil
 	return r
 }
 
-// When `true`, sort events oldest first (ascending timestamp order). Default is newest first (descending timestamp order).
+// Include events that happened before this point (with timestamp less than or equal the provided `end_date_time` RFC3339 timestamp). Defaults to now. Setting `end_date_time` does not change the default of `7 days ago` for `start`/`start_date_time` — adjust it separately if needed. This parameter is an alias for `end`.
+//
+// `EndDateTime` is an alias for `End`. Invoking `EndDateTime` will also clear an existing `End` parameter value.
+func (r ApiSearchEventsRequest) EndDateTime(endDateTime time.Time) ApiSearchEventsRequest {
+	r.endDateTime = &endDateTime
+	r.end = nil
+	return r
+}
+
+// When `true`, sort events oldest first (ascending timestamp order). Defaults to `false` (newest first, descending timestamp order).
 func (r ApiSearchEventsRequest) Reverse(reverse bool) ApiSearchEventsRequest {
 	r.reverse = &reverse
 	return r
@@ -712,13 +789,13 @@ func (r ApiSearchEventsRequest) MITMAttack(mITMAttack bool) ApiSearchEventsReque
 	return r
 }
 
-// Filter events by Device Rarity detection result. > Note: When using this parameter, only events with the `rare_device` property set to `true` or `false` are returned. Events without a Device Rarity Smart Signal result are left out of the response.
+// Filter events by Device Rarity detection result. > Note: When using this parameter, only events with the `rare_device` property set to `true` or `false` are returned. Events without a Device Rarity Smart Signal result are left out of the response.  > This Smart Signal is currently in beta and only available to select customers. If you are interested, please [contact our support team](https://fingerprint.com/support/).
 func (r ApiSearchEventsRequest) RareDevice(rareDevice bool) ApiSearchEventsRequest {
 	r.rareDevice = &rareDevice
 	return r
 }
 
-// Filter events by Device Rarity percentile bucket. `<p95` - device configuration is in the bottom 95% (most common). `p95-p99` - device is in the 95th to 99th percentile. `p99-p99.5` - device is in the 99th to 99.5th percentile. `p99.5-p99.9` - device is in the 99.5th to 99.9th percentile. `p99.9+` - device is in the top 0.1% (rarest). `not_seen` - device configuration has never been observed before.
+// Filter events by Device Rarity percentile bucket. `<p95` - device configuration is in the bottom 95% (most common). `p95-p99` - device is in the 95th to 99th percentile. `p99-p99.5` - device is in the 99th to 99.5th percentile. `p99.5-p99.9` - device is in the 99.5th to 99.9th percentile. `p99.9+` - device is in the top 0.1% (rarest). `not_seen` - device configuration has never been observed before.  > This Smart Signal is currently in beta and only available to select customers. If you are interested, please [contact our support team](https://fingerprint.com/support/).
 func (r ApiSearchEventsRequest) RareDevicePercentileBucket(rareDevicePercentileBucket SearchEventsRareDevicePercentileBucket) ApiSearchEventsRequest {
 	r.rareDevicePercentileBucket = &rareDevicePercentileBucket
 	return r
@@ -862,6 +939,64 @@ func (a *FingerprintAPIService) SearchEventsExecute(ctx context.Context, r ApiSe
 	if r.bot != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "bot", r.bot, "form", "")
 	}
+	if r.botInfo != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "bot_info", r.botInfo, "form", "")
+	}
+	if r.botInfoCategory != nil {
+		t := *r.botInfoCategory
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "bot_info_category", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "bot_info_category", t, "form", "multi")
+		}
+	}
+	if r.botInfoIdentity != nil {
+		t := *r.botInfoIdentity
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "bot_info_identity", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "bot_info_identity", t, "form", "multi")
+		}
+	}
+	if r.botInfoConfidence != nil {
+		t := *r.botInfoConfidence
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "bot_info_confidence", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "bot_info_confidence", t, "form", "multi")
+		}
+	}
+	if r.botInfoProvider != nil {
+		t := *r.botInfoProvider
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "bot_info_provider", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "bot_info_provider", t, "form", "multi")
+		}
+	}
+	if r.botInfoName != nil {
+		t := *r.botInfoName
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "bot_info_name", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "bot_info_name", t, "form", "multi")
+		}
+	}
 	if r.iPAddress != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "ip_address", r.iPAddress, "form", "")
 	}
@@ -886,8 +1021,14 @@ func (a *FingerprintAPIService) SearchEventsExecute(ctx context.Context, r ApiSe
 	if r.start != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "start", r.start, "form", "")
 	}
+	if r.startDateTime != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "start", r.startDateTime, "form", "")
+	}
 	if r.end != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "end", r.end, "form", "")
+	}
+	if r.endDateTime != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "end", r.endDateTime, "form", "")
 	}
 	if r.reverse != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "reverse", r.reverse, "form", "")

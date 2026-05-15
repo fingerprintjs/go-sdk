@@ -29,7 +29,7 @@ type BotInfo struct {
 	ProviderURL *string `json:"provider_url,omitempty"`
 	// The specific name or identifier of the bot.
 	Name string `json:"name"`
-	// The verification status of the bot's identity:  * `verified` - well-known bot with publicly verifiable identity, directed by the bot provider.  * `signed` - bot that signs its platform via Web Bot Auth, directed by the bot provider’s customers.  * `spoofed` - bot that claims a public identity but fails verification.  * `unknown` - bot that does not publish a verifiable identity.
+	// The verification status of the bot's identity:  * `verified` - well-known bot with publicly verifiable identity, directed by the bot provider.  * `signed` - bot that signs its platform via Web Bot Auth, directed by the bot provider's customers.  * `spoofed` - bot that claims a public identity but fails verification.  * `unknown` - bot that does not publish a verifiable identity.
 	Identity string `json:"identity"`
 	// Confidence level of the bot identification.
 	Confidence           string `json:"confidence"`
