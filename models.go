@@ -16,6 +16,44 @@ import (
 )
 
 type BotInfo = openapi.BotInfo
+type BotInfoCategory = openapi.BotInfoCategory
+
+const (
+	BotInfoCategoryAdvertisingAndMarketing  = openapi.BotInfoCategoryAdvertisingAndMarketing
+	BotInfoCategoryAggregator               = openapi.BotInfoCategoryAggregator
+	BotInfoCategoryAiAgent                  = openapi.BotInfoCategoryAiAgent
+	BotInfoCategoryAiAssistant              = openapi.BotInfoCategoryAiAssistant
+	BotInfoCategoryAiBrowser                = openapi.BotInfoCategoryAiBrowser
+	BotInfoCategoryAiCrawler                = openapi.BotInfoCategoryAiCrawler
+	BotInfoCategoryAiSearch                 = openapi.BotInfoCategoryAiSearch
+	BotInfoCategoryBrowserAutomation        = openapi.BotInfoCategoryBrowserAutomation
+	BotInfoCategoryEcommerce                = openapi.BotInfoCategoryEcommerce
+	BotInfoCategoryMonitoringAndAnalytics   = openapi.BotInfoCategoryMonitoringAndAnalytics
+	BotInfoCategoryOther                    = openapi.BotInfoCategoryOther
+	BotInfoCategoryScraping                 = openapi.BotInfoCategoryScraping
+	BotInfoCategorySecurity                 = openapi.BotInfoCategorySecurity
+	BotInfoCategorySearchEngineCrawler      = openapi.BotInfoCategorySearchEngineCrawler
+	BotInfoCategorySearchEngineOptimization = openapi.BotInfoCategorySearchEngineOptimization
+	BotInfoCategoryUnknown                  = openapi.BotInfoCategoryUnknown
+)
+
+type BotInfoConfidence = openapi.BotInfoConfidence
+
+const (
+	BotInfoConfidenceLow    = openapi.BotInfoConfidenceLow
+	BotInfoConfidenceMedium = openapi.BotInfoConfidenceMedium
+	BotInfoConfidenceHigh   = openapi.BotInfoConfidenceHigh
+)
+
+type BotInfoIdentity = openapi.BotInfoIdentity
+
+const (
+	BotInfoIdentityVerified = openapi.BotInfoIdentityVerified
+	BotInfoIdentitySigned   = openapi.BotInfoIdentitySigned
+	BotInfoIdentitySpoofed  = openapi.BotInfoIdentitySpoofed
+	BotInfoIdentityUnknown  = openapi.BotInfoIdentityUnknown
+)
+
 type BotResult = openapi.BotResult
 
 const (
@@ -76,6 +114,7 @@ const (
 
 type Integration = openapi.Integration
 type IntegrationSubintegration = openapi.IntegrationSubintegration
+type LabelsInner = openapi.LabelsInner
 type PluginsInner = openapi.PluginsInner
 type PluginsInnerMimeTypesInner = openapi.PluginsInnerMimeTypesInner
 type Proximity = openapi.Proximity
@@ -117,6 +156,13 @@ const (
 	SearchEventsBotGood = openapi.SearchEventsBotGood
 	SearchEventsBotBad  = openapi.SearchEventsBotBad
 	SearchEventsBotNone = openapi.SearchEventsBotNone
+)
+
+type SearchEventsBotInfo = openapi.SearchEventsBotInfo
+
+const (
+	SearchEventsBotInfoAll  = openapi.SearchEventsBotInfoAll
+	SearchEventsBotInfoNone = openapi.SearchEventsBotInfoNone
 )
 
 type SearchEventsIncrementalIdentificationStatus = openapi.SearchEventsIncrementalIdentificationStatus
