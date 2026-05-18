@@ -16,7 +16,7 @@ additionalProperties:
 enablePostProcessFile: false
 
 generateInterfaces: true
-  
+
 modelNameMappings:
   VpnMethods: VPNMethods
   VpnConfidence: VPNConfidence
@@ -30,6 +30,11 @@ enumNameMappings:
   public_api_key_not_found: public_a_p_i_key_not_found
   js: j_s
   ios: i_o_s
+  ai_agent: a_i_agent
+  ai_assistant: a_i_assistant
+  ai_browser: a_i_browser
+  ai_crawler: a_i_crawler
+  ai_search: a_i_search
 
 nameMappings:
   event_id: EventID
