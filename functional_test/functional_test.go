@@ -24,7 +24,7 @@ func TestApiFunctional(t *testing.T) {
 	client := fingerprint.New(fingerprint.WithAPIKey(apiKey))
 
 	end := time.Now().UnixMilli()
-	start := time.Now().AddDate(0, 0, -90).UnixMilli()
+	start := time.Now().AddDate(0, 0, -89).UnixMilli()
 	opts := fingerprint.NewSearchEventsRequest().
 		Start(start).
 		End(end)
@@ -60,7 +60,7 @@ func TestApiFunctional(t *testing.T) {
 	t.Run("SearchEvents", func(t *testing.T) {
 		t.Run("simple search", func(t *testing.T) {
 			end := time.Now().UnixMilli()
-			start := time.Now().AddDate(0, 0, -365).UnixMilli()
+			start := time.Now().AddDate(0, 0, -89).UnixMilli()
 			opts := fingerprint.NewSearchEventsRequest().
 				Start(start).
 				End(end).
@@ -73,7 +73,7 @@ func TestApiFunctional(t *testing.T) {
 
 		t.Run("with pagination", func(t *testing.T) {
 			end := time.Now().UnixMilli()
-			start := time.Now().AddDate(0, 0, -365).UnixMilli()
+			start := time.Now().AddDate(0, 0, -89).UnixMilli()
 			events, _, err := client.SearchEvents(
 				context.Background(),
 				fingerprint.NewSearchEventsRequest().
@@ -100,7 +100,7 @@ func TestApiFunctional(t *testing.T) {
 
 		t.Run("with old events", func(t *testing.T) {
 			end := time.Now().UnixMilli()
-			start := time.Now().AddDate(0, 0, -365).UnixMilli()
+			start := time.Now().AddDate(0, 0, -89).UnixMilli()
 			events, _, err := client.SearchEvents(context.Background(), fingerprint.NewSearchEventsRequest().
 				Start(start).
 				End(end).
