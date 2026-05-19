@@ -9,6 +9,9 @@ api_fingerprint.go
 client.go
 configuration.go
 docs/BotInfo.md
+docs/BotInfoCategory.md
+docs/BotInfoConfidence.md
+docs/BotInfoIdentity.md
 docs/BotResult.md
 docs/BrowserDetails.md
 docs/Canvas.md
@@ -34,6 +37,7 @@ docs/IdentificationConfidence.md
 docs/IncrementalIdentificationStatus.md
 docs/Integration.md
 docs/IntegrationSubintegration.md
+docs/LabelsInner.md
 docs/PluginsInner.md
 docs/PluginsInnerMimeTypesInner.md
 docs/Proximity.md
@@ -46,6 +50,7 @@ docs/RuleActionHeaderField.md
 docs/RuleActionType.md
 docs/SDK.md
 docs/SearchEventsBot.md
+docs/SearchEventsBotInfo.md
 docs/SearchEventsIncrementalIdentificationStatus.md
 docs/SearchEventsRareDevicePercentileBucket.md
 docs/SearchEventsSDKPlatform.md
@@ -61,6 +66,9 @@ docs/VelocityData.md
 docs/WebGlBasics.md
 docs/WebGlExtensions.md
 model_bot_info.go
+model_bot_info_category.go
+model_bot_info_confidence.go
+model_bot_info_identity.go
 model_bot_result.go
 model_browser_details.go
 model_canvas.go
@@ -86,6 +94,7 @@ model_ip_block_list.go
 model_ip_info.go
 model_ip_info_v4.go
 model_ip_info_v6.go
+model_labels_inner.go
 model_plugins_inner.go
 model_plugins_inner_mime_types_inner.go
 model_proximity.go
@@ -98,6 +107,7 @@ model_rule_action_header_field.go
 model_rule_action_type.go
 model_sdk.go
 model_search_events_bot.go
+model_search_events_bot_info.go
 model_search_events_incremental_identification_status.go
 model_search_events_rare_device_percentile_bucket.go
 model_search_events_sdk_platform.go

@@ -59,7 +59,7 @@ type Event struct {
 	BotInfo *BotInfo `json:"bot_info,omitempty"`
 	// Android specific cloned application detection. There are 2 values:  * `true` - Presence of app cloners work detected (e.g. fully cloned application found or launch of it inside of a not main working profile detected). * `false` - No signs of cloned application detected or the client is not Android.
 	ClonedApp *bool `json:"cloned_app,omitempty"`
-	// `true` if the browser is Chrome with DevTools open or Firefox with Developer Tools open, `false` otherwise.
+	// `true` if the browser has DevTools open (Chrome, Firefox) or the Android/iOS device has Developer Tools enabled, `false` otherwise.
 	DeveloperTools *bool `json:"developer_tools,omitempty"`
 	// Android specific emulator detection. There are 2 values:  * `true` - Emulated environment detected (e.g. launch inside of AVD).  * `false` - No signs of emulated environment detected or the client is not Android.
 	Emulator *bool `json:"emulator,omitempty"`
@@ -73,7 +73,7 @@ type Event struct {
 	Proxy           *bool            `json:"proxy,omitempty"`
 	ProxyConfidence *ProxyConfidence `json:"proxy_confidence,omitempty"`
 	ProxyDetails    *ProxyDetails    `json:"proxy_details,omitempty"`
-	// Machine learning–based proxy score, represented as a floating-point value between 0 and 1 (inclusive), with up to three decimal places of precision. A higher score means a higher confidence in the positive `proxy` detection result
+	// Machine learning–based proxy score, represented as a floating-point value between 0 and 1 (inclusive), with up to three decimal places of precision. A higher score means a higher confidence in the positive `proxy` detection result. This Smart Signal is currently in beta and only available to select customers. If you are interested, please [contact our support team](https://fingerprint.com/support/).
 	ProxyMlScore *float64 `json:"proxy_ml_score,omitempty"`
 	// `true` if we detected incognito mode used in the browser, `false` otherwise.
 	Incognito *bool `json:"incognito,omitempty"`
@@ -101,7 +101,7 @@ type Event struct {
 	Velocity         *Velocity         `json:"velocity,omitempty"`
 	// `true` if the request came from a browser running inside a virtual machine (e.g. VMWare), `false` otherwise.
 	VirtualMachine *bool `json:"virtual_machine,omitempty"`
-	// Machine learning–based virtual machine score,  represented as a floating-point value between 0 and 1 (inclusive), with up to three decimal places of precision. A higher score means a higher confidence in the positive `virtual_machine` detection result
+	// Machine learning–based virtual machine score, represented as a floating-point value between 0 and 1 (inclusive), with up to three decimal places of precision. A higher score means a higher confidence in the positive `virtual_machine` detection result. This Smart Signal is currently in beta and only available to select customers. If you are interested, please [contact our support team](https://fingerprint.com/support/).
 	VirtualMachineMlScore *float64 `json:"virtual_machine_ml_score,omitempty"`
 	// VPN or other anonymizing service has been used when sending the request.
 	VPN           *bool          `json:"vpn,omitempty"`
@@ -117,7 +117,9 @@ type Event struct {
 	RareDevice                 *bool                       `json:"rare_device,omitempty"`
 	RareDevicePercentileBucket *RareDevicePercentileBucket `json:"rare_device_percentile_bucket,omitempty"`
 	RawDeviceAttributes        *RawDeviceAttributes        `json:"raw_device_attributes,omitempty"`
-	AdditionalProperties       map[string]interface{}
+	// Each label returns a prediction (true or false) for a specific use case (label field) based on a machine learning score. The machine learning score is determined by a model trained on customer data for that use case. This field is in the beta phase and only available to select customers. If you are interested, please [contact our support team](https://fingerprint.com/support/).
+	Labels               []LabelsInner `json:"labels,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _Event Event
@@ -302,6 +304,9 @@ func (o Event) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.RawDeviceAttributes) {
 		toSerialize["raw_device_attributes"] = o.RawDeviceAttributes
 	}
+	if !IsNil(o.Labels) {
+		toSerialize["labels"] = o.Labels
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -404,6 +409,7 @@ func (o *Event) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "rare_device")
 		delete(additionalProperties, "rare_device_percentile_bucket")
 		delete(additionalProperties, "raw_device_attributes")
+		delete(additionalProperties, "labels")
 		o.AdditionalProperties = additionalProperties
 	}
 

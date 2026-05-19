@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Score** | **float64** | The confidence score is a floating-point number between 0 and 1 that represents the probability of accurate identification. | 
-**Version** | Pointer to **string** | The version name of the method used to calculate the Confidence score. This field is only present for customers who opted in to an alternative calculation method. | [optional] 
+**Score** | **float64** | A floating-point number between 0 and 1 that represents the probability of a false-positive identification. For High Recall ID, this value is 0.  | 
+**Version** | Pointer to **string** | The version name of the method used to calculate the confidence score. For High Recall ID, this value is \"Not Supported\".  | [optional] 
 **Comment** | Pointer to **string** |  | [optional] 
 
 
