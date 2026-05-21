@@ -7,8 +7,10 @@ import (
 	"log"
 	"net/http"
 	"net/http/httptest"
+	"strconv"
 	"strings"
 	"testing"
+	"time"
 
 	fingerprint "github.com/fingerprintjs/go-sdk/v8"
 	"github.com/stretchr/testify/assert"
@@ -113,11 +115,11 @@ func TestSearchEvents(t *testing.T) {
 			assert.Equal(t, "XIkiQhRyp7edU9SA0jBb", query.Get("visitor_id"), "visitorID")
 			assert.Equal(t, "good", query.Get("bot"), "bot")
 			assert.Equal(t, "all", query.Get("bot_info"), "botInfo")
-			assert.Equal(t, []string{"ai_search", "ai_assistant"}, r.URL.Query()["bot_info_category"], "botInfoCategory")
-			assert.Equal(t, []string{"spoofed"}, r.URL.Query()["bot_info_identity"], "botInfoIdentity")
-			assert.Equal(t, []string{"low"}, r.URL.Query()["bot_info_confidence"], "botInfoConfidence")
-			assert.Equal(t, []string{"provider1", "provider2"}, r.URL.Query()["bot_info_provider"], "botInfoProvider")
-			assert.Equal(t, []string{"botInfo1", "botInfo2"}, r.URL.Query()["bot_info_name"], "botInfoName")
+			assert.Equal(t, []string{"ai_search", "ai_assistant"}, query["bot_info_category"], "botInfoCategory")
+			assert.Equal(t, []string{"spoofed"}, query["bot_info_identity"], "botInfoIdentity")
+			assert.Equal(t, []string{"low"}, query["bot_info_confidence"], "botInfoConfidence")
+			assert.Equal(t, []string{"provider1", "provider2"}, query["bot_info_provider"], "botInfoProvider")
+			assert.Equal(t, []string{"botInfo1", "botInfo2"}, query["bot_info_name"], "botInfoName")
 			assert.Equal(t, "127.0.0.1", query.Get("ip_address"), "ipAddress")
 			assert.Equal(t, "ASN 20", query.Get("asn"), "asn")
 			assert.Equal(t, "linked_id", query.Get("linked_id"), "linkedID")
@@ -129,7 +131,7 @@ func TestSearchEvents(t *testing.T) {
 			assert.Equal(t, "10", query.Get("end"), "end")
 			assert.Equal(t, "testSDKVersion", query.Get("sdk_version"), "sdkVersion")
 			assert.Equal(t, string(fingerprint.SearchEventsSDKPlatformJS), query.Get("sdk_platform"), "sdkPlatform")
-			assert.Equal(t, []string{"env1", "env2"}, r.URL.Query()["environment"], "environment")
+			assert.Equal(t, []string{"env1", "env2"}, query["environment"], "environment")
 			assert.Equal(t, "testProximityID", query.Get("proximity_id"), "proximityID")
 			assert.Equal(t, "10", query.Get("total_hits"), "totalHits")
 			assert.Equal(t, "85.5", query.Get("min_suspect_score"), "minSuspectScore")
@@ -318,6 +320,79 @@ func TestSearchEvents(t *testing.T) {
 		assert.Nil(t, err)
 		assert.NotNil(t, res)
 		assert.Equal(t, mockResponse, *res)
+	})
+
+	t.Run("start & startDatetime, end & endDatetime tests", func(t *testing.T) {
+		mockResponse := GetMockResponse[fingerprint.EventSearch]("mocks/events/search/get_event_search_200.json")
+
+		queryStartValue := ""
+		queryEndValue := ""
+
+		ts := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			queryStartValue = r.URL.Query().Get("start")
+			queryEndValue = r.URL.Query().Get("end")
+
+			w.Header().Set("Content-Type", "application/json")
+			w.WriteHeader(http.StatusOK)
+			err := json.NewEncoder(w).Encode(mockResponse)
+			if err != nil {
+				log.Fatal(err)
+			}
+		}))
+		defer ts.Close()
+
+		client := fingerprint.New(fingerprint.WithAPIKey("api_key"), fingerprint.WithBaseURL(ts.URL))
+
+		startTimestamp := 1779330342061
+		endTimestamp := 1779393537062
+		startDatetime := time.Date(2026, 5, 21, 2, 25, 42, 63_000_000, time.UTC)
+		endDatetime := time.Date(2026, 5, 22, 1, 11, 11, 64_000_000, time.UTC)
+
+		t.Run("set start then startDatetime, startDatetime is used", func(t *testing.T) {
+			queryStartValue = ""
+			queryEndValue = ""
+			search := fingerprint.NewSearchEventsRequest().
+				Start(int64(startTimestamp)).
+				StartDateTime(startDatetime)
+			response, _, err := client.SearchEvents(context.Background(), search)
+			assert.Nil(t, err)
+			assert.NotNil(t, response)
+			assert.Equal(t, startDatetime.Format(time.RFC3339Nano), queryStartValue)
+		})
+		t.Run("set startDatetime then start, start is used", func(t *testing.T) {
+			queryStartValue = ""
+			queryEndValue = ""
+			search := fingerprint.NewSearchEventsRequest().
+				StartDateTime(startDatetime).
+				Start(int64(startTimestamp))
+			response, _, err := client.SearchEvents(context.Background(), search)
+			assert.Nil(t, err)
+			assert.NotNil(t, response)
+			assert.Equal(t, strconv.Itoa(startTimestamp), queryStartValue)
+		})
+		t.Run("set end then endDatetime, endDatetime is used", func(t *testing.T) {
+			queryStartValue = ""
+			queryEndValue = ""
+			search := fingerprint.NewSearchEventsRequest().
+				End(int64(endTimestamp)).
+				EndDateTime(endDatetime)
+			response, _, err := client.SearchEvents(context.Background(), search)
+			assert.Nil(t, err)
+			assert.NotNil(t, response)
+			assert.Equal(t, endDatetime.Format(time.RFC3339Nano), queryEndValue)
+		})
+		t.Run("set endDatetime then end, end is used", func(t *testing.T) {
+			queryStartValue = ""
+			queryEndValue = ""
+			search := fingerprint.NewSearchEventsRequest().
+				EndDateTime(endDatetime).
+				End(int64(endTimestamp))
+			response, _, err := client.SearchEvents(context.Background(), search)
+			assert.Nil(t, err)
+			assert.NotNil(t, response)
+			assert.Equal(t, strconv.Itoa(endTimestamp), queryEndValue)
+		})
+
 	})
 
 	t.Run("ErrorResponse", func(t *testing.T) {
