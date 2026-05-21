@@ -112,6 +112,12 @@ func TestSearchEvents(t *testing.T) {
 			assert.Equal(t, "2", query.Get("limit"), "limit")
 			assert.Equal(t, "XIkiQhRyp7edU9SA0jBb", query.Get("visitor_id"), "visitorID")
 			assert.Equal(t, "good", query.Get("bot"), "bot")
+			assert.Equal(t, "all", query.Get("bot_info"), "botInfo")
+			assert.Equal(t, []string{"ai_search", "ai_assistant"}, r.URL.Query()["bot_info_category"], "botInfoCategory")
+			assert.Equal(t, []string{"spoofed"}, r.URL.Query()["bot_info_identity"], "botInfoIdentity")
+			assert.Equal(t, []string{"low"}, r.URL.Query()["bot_info_confidence"], "botInfoConfidence")
+			assert.Equal(t, []string{"provider1", "provider2"}, r.URL.Query()["bot_info_provider"], "botInfoProvider")
+			assert.Equal(t, []string{"botInfo1", "botInfo2"}, r.URL.Query()["bot_info_name"], "botInfoName")
 			assert.Equal(t, "127.0.0.1", query.Get("ip_address"), "ipAddress")
 			assert.Equal(t, "ASN 20", query.Get("asn"), "asn")
 			assert.Equal(t, "linked_id", query.Get("linked_id"), "linkedID")
@@ -197,7 +203,7 @@ func TestSearchEvents(t *testing.T) {
 			assert.Equal(t, "false", query.Get("simulator"), "simulator")
 			assert.True(t, query.Has("simulator"), "has simulator")
 
-			assert.Len(t, strings.Split(r.URL.RawQuery, "&"), 43, "expected all parameters in query")
+			assert.Len(t, strings.Split(r.URL.RawQuery, "&"), 52, "expected all parameters in query")
 
 			w.Header().Set("Content-Type", "application/json")
 			err := json.NewEncoder(w).Encode(mockResponse)
@@ -211,6 +217,12 @@ func TestSearchEvents(t *testing.T) {
 			limit                           int32    = 2
 			visitorID                       string   = "XIkiQhRyp7edU9SA0jBb"
 			bot                                      = fingerprint.SearchEventsBotGood
+			botInfo                                  = fingerprint.SearchEventsBotInfoAll
+			botInfoCategory                          = []fingerprint.BotInfoCategory{fingerprint.BotInfoCategoryAISearch, fingerprint.BotInfoCategoryAIAssistant}
+			botInfoIdentity                          = []fingerprint.BotInfoIdentity{fingerprint.BotInfoIdentitySpoofed}
+			botInfoConfidence                        = []fingerprint.BotInfoConfidence{fingerprint.BotInfoConfidenceLow}
+			botInfoProvider                          = []string{"provider1", "provider2"}
+			botInfoName                              = []string{"botInfo1", "botInfo2"}
 			ipAddress                       string   = "127.0.0.1"
 			asn                             string   = "ASN 20"
 			linkedID                        string   = "linked_id"
@@ -257,6 +269,12 @@ func TestSearchEvents(t *testing.T) {
 			AntiDetectBrowser(antiDetectBrowser).
 			Asn(asn).
 			Bot(bot).
+			BotInfo(botInfo).
+			BotInfoCategory(botInfoCategory).
+			BotInfoIdentity(botInfoIdentity).
+			BotInfoConfidence(botInfoConfidence).
+			BotInfoProvider(botInfoProvider).
+			BotInfoName(botInfoName).
 			BundleID(bundleID).
 			ClonedApp(clonedApp).
 			DeveloperTools(developerTools).
