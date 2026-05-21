@@ -230,6 +230,9 @@ Class | Method | HTTP request | Description
 ## Documentation For Models
 
  - [BotInfo](docs/BotInfo.md)
+ - [BotInfoCategory](docs/BotInfoCategory.md)
+ - [BotInfoConfidence](docs/BotInfoConfidence.md)
+ - [BotInfoIdentity](docs/BotInfoIdentity.md)
  - [BotResult](docs/BotResult.md)
  - [BrowserDetails](docs/BrowserDetails.md)
  - [Canvas](docs/Canvas.md)
@@ -255,6 +258,7 @@ Class | Method | HTTP request | Description
  - [IncrementalIdentificationStatus](docs/IncrementalIdentificationStatus.md)
  - [Integration](docs/Integration.md)
  - [IntegrationSubintegration](docs/IntegrationSubintegration.md)
+ - [LabelsInner](docs/LabelsInner.md)
  - [PluginsInner](docs/PluginsInner.md)
  - [PluginsInnerMimeTypesInner](docs/PluginsInnerMimeTypesInner.md)
  - [Proximity](docs/Proximity.md)
@@ -267,6 +271,7 @@ Class | Method | HTTP request | Description
  - [RuleActionType](docs/RuleActionType.md)
  - [SDK](docs/SDK.md)
  - [SearchEventsBot](docs/SearchEventsBot.md)
+ - [SearchEventsBotInfo](docs/SearchEventsBotInfo.md)
  - [SearchEventsIncrementalIdentificationStatus](docs/SearchEventsIncrementalIdentificationStatus.md)
  - [SearchEventsRareDevicePercentileBucket](docs/SearchEventsRareDevicePercentileBucket.md)
  - [SearchEventsSDKPlatform](docs/SearchEventsSDKPlatform.md)
