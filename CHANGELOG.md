@@ -1,5 +1,22 @@
 # Fingerprint Pro Server Go SDK
 
+## 8.3.0
+
+### Minor Changes
+
+- **events-search**: Add `start_date_time` and `end_date_time` RFC3339 timestamp filters ([9646233](https://github.com/fingerprintjs/go-sdk/commit/9646233c507bef8fe8c9d80dd1cbc5e378a6497a))
+- **events**: Add `labels` to `Event` ([9646233](https://github.com/fingerprintjs/go-sdk/commit/9646233c507bef8fe8c9d80dd1cbc5e378a6497a))
+- **events-search**: Add `bot_info` filter parameters ([9646233](https://github.com/fingerprintjs/go-sdk/commit/9646233c507bef8fe8c9d80dd1cbc5e378a6497a))
+- **events-search**: Add `unknown` value to `BotInfoCategory` ([9646233](https://github.com/fingerprintjs/go-sdk/commit/9646233c507bef8fe8c9d80dd1cbc5e378a6497a))
+
+### Patch Changes
+
+- **events**: Clarify availability of proxy and VM ML score signals ([9646233](https://github.com/fingerprintjs/go-sdk/commit/9646233c507bef8fe8c9d80dd1cbc5e378a6497a))
+- **events**: Clarify semantics of `incremental_identification_status` ([9646233](https://github.com/fingerprintjs/go-sdk/commit/9646233c507bef8fe8c9d80dd1cbc5e378a6497a))
+- **visitors**: Clarify rate limits for `deleteVisitorData` operation ([9646233](https://github.com/fingerprintjs/go-sdk/commit/9646233c507bef8fe8c9d80dd1cbc5e378a6497a))
+- **events-search**: Clarify availability of `rare_device` and `rare_device_percentile_bucket` query parameters ([9646233](https://github.com/fingerprintjs/go-sdk/commit/9646233c507bef8fe8c9d80dd1cbc5e378a6497a))
+- **events-search**: Fix `pagination_key` example ([9646233](https://github.com/fingerprintjs/go-sdk/commit/9646233c507bef8fe8c9d80dd1cbc5e378a6497a))
+
 ## 8.3.0-test.0
 
 ### Minor Changes
