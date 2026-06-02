@@ -12,7 +12,7 @@ Contact: support@fingerprint.com
 package fingerprint
 
 import (
-	"github.com/fingerprintjs/go-sdk/v8/internal/openapi"
+	"github.com/fingerprintjs/go-sdk/v8/openapi"
 )
 
 type BotInfo = openapi.BotInfo
