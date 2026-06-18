@@ -157,25 +157,6 @@ func TestMockClientInterface(t *testing.T) {
 	})
 }
 
-// Verify that Fingerprint API interactions can be mocked via the deprecated WithFingerprintAPI.
-func TestMockFingerprintApi(t *testing.T) {
-	mockAPI := MockFingerprintAPI{}
-
-	client := fingerprint.New(fingerprint.WithAPIKey("test-key"), fingerprint.WithFingerprintAPI(&mockAPI))
-
-	mockResp := fingerprint.Event{
-		EventID: "test-event-id",
-	}
-	mockAPI.On("GetEvent", mock.Anything).Return()
-	mockAPI.On("GetEventExecute", mock.Anything, mock.Anything).Return(&mockResp, &http.Response{StatusCode: 200}, nil)
-
-	event, httpResp, err := client.GetEvent(context.Background(), "test-event-id")
-	require.Nil(t, err)
-	require.Equal(t, &mockResp, event)
-	require.Equal(t, 200, httpResp.StatusCode)
-	mockAPI.AssertCalled(t, "GetEventExecute", mock.Anything, mock.Anything)
-}
-
 type mockClientInterface struct {
 	getEventResp *fingerprint.Event
 }
@@ -194,6 +175,25 @@ func (m *mockClientInterface) UpdateEvent(ctx context.Context, eventId string, e
 
 func (m *mockClientInterface) DeleteVisitorData(ctx context.Context, visitorId string) (*http.Response, error) {
 	return &http.Response{StatusCode: 200}, nil
+}
+
+// Verify that Fingerprint API interactions can be mocked via the deprecated WithFingerprintAPI.
+func TestMockFingerprintApi(t *testing.T) {
+	mockAPI := MockFingerprintAPI{}
+
+	client := fingerprint.New(fingerprint.WithAPIKey("test-key"), fingerprint.WithFingerprintAPI(&mockAPI))
+
+	mockResp := fingerprint.Event{
+		EventID: "test-event-id",
+	}
+	mockAPI.On("GetEvent", mock.Anything).Return()
+	mockAPI.On("GetEventExecute", mock.Anything, mock.Anything).Return(&mockResp, &http.Response{StatusCode: 200}, nil)
+
+	event, httpResp, err := client.GetEvent(context.Background(), "test-event-id")
+	require.Nil(t, err)
+	require.Equal(t, &mockResp, event)
+	require.Equal(t, 200, httpResp.StatusCode)
+	mockAPI.AssertCalled(t, "GetEventExecute", mock.Anything, mock.Anything)
 }
 
 type MockFingerprintAPI struct {
