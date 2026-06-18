@@ -123,6 +123,26 @@ func TestApiFunctional(t *testing.T) {
 	})
 }
 
+type mockClientInterface struct {
+	getEventResp *fingerprint.Event
+}
+
+func (m *mockClientInterface) GetEvent(ctx context.Context, eventID string, opts ...fingerprint.GetEventOption) (*fingerprint.Event, *http.Response, error) {
+	return m.getEventResp, &http.Response{StatusCode: 200}, nil
+}
+
+func (m *mockClientInterface) SearchEvents(ctx context.Context, req fingerprint.SearchEventRequest) (*fingerprint.EventSearch, *http.Response, error) {
+	return &fingerprint.EventSearch{}, &http.Response{StatusCode: 200}, nil
+}
+
+func (m *mockClientInterface) UpdateEvent(ctx context.Context, eventId string, eventUpdateReq fingerprint.EventUpdate) (*http.Response, error) {
+	return &http.Response{StatusCode: 200}, nil
+}
+
+func (m *mockClientInterface) DeleteVisitorData(ctx context.Context, visitorId string) (*http.Response, error) {
+	return &http.Response{StatusCode: 200}, nil
+}
+
 // Verify that Fingerprint API interactions can be mocked via WithClientInterface.
 func TestMockClientInterface(t *testing.T) {
 	mockCI := &mockClientInterface{
@@ -155,26 +175,6 @@ func TestMockClientInterface(t *testing.T) {
 		require.Nil(t, err)
 		require.Equal(t, 200, httpResp.StatusCode)
 	})
-}
-
-type mockClientInterface struct {
-	getEventResp *fingerprint.Event
-}
-
-func (m *mockClientInterface) GetEvent(ctx context.Context, eventID string, opts ...fingerprint.GetEventOption) (*fingerprint.Event, *http.Response, error) {
-	return m.getEventResp, &http.Response{StatusCode: 200}, nil
-}
-
-func (m *mockClientInterface) SearchEvents(ctx context.Context, req fingerprint.SearchEventRequest) (*fingerprint.EventSearch, *http.Response, error) {
-	return &fingerprint.EventSearch{}, &http.Response{StatusCode: 200}, nil
-}
-
-func (m *mockClientInterface) UpdateEvent(ctx context.Context, eventId string, eventUpdateReq fingerprint.EventUpdate) (*http.Response, error) {
-	return &http.Response{StatusCode: 200}, nil
-}
-
-func (m *mockClientInterface) DeleteVisitorData(ctx context.Context, visitorId string) (*http.Response, error) {
-	return &http.Response{StatusCode: 200}, nil
 }
 
 // Verify that Fingerprint API interactions can be mocked via the deprecated WithFingerprintAPI.
