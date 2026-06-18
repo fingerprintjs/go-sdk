@@ -101,7 +101,6 @@ func (f FingerprintApiImpl) UpdateEventExecute(ctx context.Context, r openapi.Ap
 	panic("implement me")
 }
 
-// Deprecated: Use ExampleWithClientInterface instead.
 func ExampleWithFingerprintAPI() {
 	_ = fingerprint.New(fingerprint.WithFingerprintAPI(FingerprintApiImpl{}))
 }
