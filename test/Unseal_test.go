@@ -100,7 +100,7 @@ func TestUnsealEventsResponse(t *testing.T) {
 	})
 
 	t.Run("with sealed result as broken json", func(t *testing.T) {
-		invalidJsonSealedResult := readSealedResultFromFile("fixtures/sealed/invalid_json.txt")
+		invalidJSONSealedResult := readSealedResultFromFile("fixtures/sealed/invalid_json.txt")
 
 		keys := []fingerprint.DecryptionKey{
 			{
@@ -108,7 +108,7 @@ func TestUnsealEventsResponse(t *testing.T) {
 				Algorithm: fingerprint.AlgorithmAES256GCM,
 			},
 		}
-		_, err = fingerprint.UnsealEventsResponse(invalidJsonSealedResult, keys)
+		_, err = fingerprint.UnsealEventsResponse(invalidJSONSealedResult, keys)
 		require.NotNil(t, err)
 
 		assert.Equal(t, "unexpected end of JSON input", err.Error())
