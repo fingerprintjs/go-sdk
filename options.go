@@ -51,10 +51,18 @@ func WithHTTPClient(httpClient *http.Client) ConfigOption {
 	}
 }
 
+// Deprecated: Use WithClientInterface instead.
 // WithFingerprintAPI sets a custom Fingerprint API implementation.
 func WithFingerprintAPI(fingerprintAPI API) ConfigOption {
 	return func(c *Client) {
 		c.api.FingerprintAPI = fingerprintAPI
+	}
+}
+
+// WithClientInterface sets a custom ClientInterface implementation.
+func WithClientInterface(ci ClientInterface) ConfigOption {
+	return func(c *Client) {
+		c.clientInterface = ci
 	}
 }
 
