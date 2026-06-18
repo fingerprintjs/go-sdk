@@ -37,6 +37,28 @@ func ExampleWithBaseURL() {
 	_ = fingerprint.New(fingerprint.WithBaseURL("https://example.com"))
 }
 
+type clientInterfaceImpl struct{}
+
+func (c clientInterfaceImpl) GetEvent(ctx context.Context, eventID string, opts ...fingerprint.GetEventOption) (*fingerprint.Event, *http.Response, error) {
+	return nil, nil, nil
+}
+
+func (c clientInterfaceImpl) SearchEvents(ctx context.Context, req fingerprint.SearchEventRequest) (*fingerprint.EventSearch, *http.Response, error) {
+	return nil, nil, nil
+}
+
+func (c clientInterfaceImpl) UpdateEvent(ctx context.Context, eventId string, eventUpdateReq fingerprint.EventUpdate) (*http.Response, error) {
+	return nil, nil
+}
+
+func (c clientInterfaceImpl) DeleteVisitorData(ctx context.Context, visitorId string) (*http.Response, error) {
+	return nil, nil
+}
+
+func ExampleWithClientInterface() {
+	_ = fingerprint.New(fingerprint.WithClientInterface(clientInterfaceImpl{}))
+}
+
 type FingerprintApiImpl struct{}
 
 func (f FingerprintApiImpl) DeleteVisitorData(visitorID string) openapi.ApiDeleteVisitorDataRequest {
