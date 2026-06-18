@@ -6,8 +6,6 @@ import (
 )
 
 // ClientInterface defines the contract for interacting with the Fingerprint API.
-// Implement it to wrap, replace, or decorate the default client — for example
-// to add logging, inject test doubles, or swap implementations.
 // Use WithClientInterface to inject a custom implementation.
 type ClientInterface interface {
 	GetEvent(ctx context.Context, eventID string, opts ...GetEventOption) (*Event, *http.Response, error)
