@@ -123,7 +123,41 @@ func TestApiFunctional(t *testing.T) {
 	})
 }
 
-// Verify that Fingerprint API interactions can be mocked by SDK users in their own unit tests.
+// Verify that Fingerprint API interactions can be mocked via WithClientInterface.
+func TestMockClientInterface(t *testing.T) {
+	mockCI := &mockClientInterface{
+		getEventResp: &fingerprint.Event{EventID: "test-event-id"},
+	}
+	client := fingerprint.New(fingerprint.WithAPIKey("test-key"), fingerprint.WithClientInterface(mockCI))
+
+	t.Run("GetEvent", func(t *testing.T) {
+		event, httpResp, err := client.GetEvent(context.Background(), "test-event-id")
+		require.Nil(t, err)
+		require.Equal(t, mockCI.getEventResp, event)
+		require.Equal(t, 200, httpResp.StatusCode)
+	})
+
+	t.Run("SearchEvents", func(t *testing.T) {
+		result, httpResp, err := client.SearchEvents(context.Background(), fingerprint.NewSearchEventsRequest())
+		require.Nil(t, err)
+		require.NotNil(t, result)
+		require.Equal(t, 200, httpResp.StatusCode)
+	})
+
+	t.Run("UpdateEvent", func(t *testing.T) {
+		httpResp, err := client.UpdateEvent(context.Background(), "test-event-id", fingerprint.EventUpdate{})
+		require.Nil(t, err)
+		require.Equal(t, 200, httpResp.StatusCode)
+	})
+
+	t.Run("DeleteVisitorData", func(t *testing.T) {
+		httpResp, err := client.DeleteVisitorData(context.Background(), "test-visitor-id")
+		require.Nil(t, err)
+		require.Equal(t, 200, httpResp.StatusCode)
+	})
+}
+
+// Verify that Fingerprint API interactions can be mocked via the deprecated WithFingerprintAPI.
 func TestMockFingerprintApi(t *testing.T) {
 	mockAPI := MockFingerprintAPI{}
 
@@ -140,6 +174,26 @@ func TestMockFingerprintApi(t *testing.T) {
 	require.Equal(t, &mockResp, event)
 	require.Equal(t, 200, httpResp.StatusCode)
 	mockAPI.AssertCalled(t, "GetEventExecute", mock.Anything, mock.Anything)
+}
+
+type mockClientInterface struct {
+	getEventResp *fingerprint.Event
+}
+
+func (m *mockClientInterface) GetEvent(ctx context.Context, eventID string, opts ...fingerprint.GetEventOption) (*fingerprint.Event, *http.Response, error) {
+	return m.getEventResp, &http.Response{StatusCode: 200}, nil
+}
+
+func (m *mockClientInterface) SearchEvents(ctx context.Context, req fingerprint.SearchEventRequest) (*fingerprint.EventSearch, *http.Response, error) {
+	return &fingerprint.EventSearch{}, &http.Response{StatusCode: 200}, nil
+}
+
+func (m *mockClientInterface) UpdateEvent(ctx context.Context, eventId string, eventUpdateReq fingerprint.EventUpdate) (*http.Response, error) {
+	return &http.Response{StatusCode: 200}, nil
+}
+
+func (m *mockClientInterface) DeleteVisitorData(ctx context.Context, visitorId string) (*http.Response, error) {
+	return &http.Response{StatusCode: 200}, nil
 }
 
 type MockFingerprintAPI struct {
