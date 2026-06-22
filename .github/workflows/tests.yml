@@ -21,5 +21,7 @@ jobs:
         with:
           go-version: ${{ matrix.go-version }}
       - run: go version
+      - name: Compile examples
+        run: go test
       - name: Run tests
         run: cd test && go test
