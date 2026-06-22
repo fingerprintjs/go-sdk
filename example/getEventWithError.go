@@ -30,8 +30,8 @@ func exampleWrongAPIKey() {
 	}
 }
 
-func exampleWrongEventId() {
-	fmt.Println("Running 'exampleWrongEventId'...")
+func exampleWrongEventID() {
+	fmt.Println("Running 'exampleWrongEventID'...")
 	// Load environment variables
 	godotenv.Load()
 
@@ -57,5 +57,5 @@ func exampleWrongEventId() {
 
 func main() {
 	exampleWrongAPIKey()
-	exampleWrongEventId()
+	exampleWrongEventID()
 }

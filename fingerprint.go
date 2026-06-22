@@ -149,38 +149,38 @@ func (c *Client) SearchEvents(ctx context.Context, req SearchEventRequest) (*Eve
 //
 // Parameters:
 //   - ctx: context for cancellation, deadlines, and authentication.
-//   - eventId: unique [event identifier] to update.
+//   - eventID: unique [event identifier] to update.
 //   - eventUpdateReq: event update payload containing the fields to modify.
 //
 // This method allows you to modify event properties such as suspect status and other metadata.
 //
 // [event identifier]: https://dev.fingerprint.com/reference/get-function#event_id
-func (c *Client) UpdateEvent(ctx context.Context, eventId string, eventUpdateReq EventUpdate) (*http.Response, error) {
+func (c *Client) UpdateEvent(ctx context.Context, eventID string, eventUpdateReq EventUpdate) (*http.Response, error) {
 	if c.clientInterface != nil {
-		return c.clientInterface.UpdateEvent(ctx, eventId, eventUpdateReq)
+		return c.clientInterface.UpdateEvent(ctx, eventID, eventUpdateReq)
 	}
 
 	ctx = c.withRegion(ctx)
 	ctx = c.withAPIKey(ctx)
-	return c.api.FingerprintAPI.UpdateEvent(eventId).EventUpdate(eventUpdateReq).Execute(ctx)
+	return c.api.FingerprintAPI.UpdateEvent(eventID).EventUpdate(eventUpdateReq).Execute(ctx)
 }
 
 // DeleteVisitorData deletes all data associated with a visitor ID. See [openapi.FingerprintAPI.DeleteVisitorData] for details.
 //
 // Parameters:
 //   - ctx: context for cancellation, deadlines, and authentication.
-//   - visitorId: unique [visitor identifier] whose data should be deleted.
+//   - visitorID: unique [visitor identifier] whose data should be deleted.
 //
 // This method permanently removes all events and data associated with the specified visitor.
 // Use with caution as this operation cannot be undone.
 //
 // [visitor identifier]: https://dev.fingerprint.com/reference/get-function#visitor_id
-func (c *Client) DeleteVisitorData(ctx context.Context, visitorId string) (*http.Response, error) {
+func (c *Client) DeleteVisitorData(ctx context.Context, visitorID string) (*http.Response, error) {
 	if c.clientInterface != nil {
-		return c.clientInterface.DeleteVisitorData(ctx, visitorId)
+		return c.clientInterface.DeleteVisitorData(ctx, visitorID)
 	}
 
 	ctx = c.withRegion(ctx)
 	ctx = c.withAPIKey(ctx)
-	return c.api.FingerprintAPI.DeleteVisitorData(visitorId).Execute(ctx)
+	return c.api.FingerprintAPI.DeleteVisitorData(visitorID).Execute(ctx)
 }
