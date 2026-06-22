@@ -35,7 +35,7 @@ func ExampleClient_GetEvent() {
 	}
 }
 
-func ExampleClient_GetEvent_With_Ruleset() {
+func ExampleClient_GetEvent_withRuleset() {
 	client := fingerprint.New(fingerprint.WithAPIKey("SECRET_API_KEY"))
 
 	eventID := "eventID_example"

@@ -31,10 +31,11 @@ func (t *sdkIdentTransport) RoundTrip(req *http.Request) (*http.Response, error)
 
 // Client is the main client for interacting with the Fingerprint API.
 type Client struct {
-	api     *openapi.APIClient
-	region  Region
-	apiKey  string
-	baseURL string
+	api             *openapi.APIClient
+	clientInterface ClientInterface
+	region          Region
+	apiKey          string
+	baseURL         string
 }
 
 // New creates a new Fingerprint API client with the given configuration options.
@@ -99,6 +100,10 @@ func WithRulesetID(rulesetID string) GetEventOption {
 // [event identifier]: https://dev.fingerprint.com/reference/get-function#event_id
 // [example/getEventWithRulesetEvaluation.go]: https://github.com/fingerprintjs/go-sdk/blob/main/example/getEventWithRulesetEvaluation.go
 func (c *Client) GetEvent(ctx context.Context, eventID string, opts ...GetEventOption) (*Event, *http.Response, error) {
+	if c.clientInterface != nil {
+		return c.clientInterface.GetEvent(ctx, eventID, opts...)
+	}
+
 	ctx = c.withRegion(ctx)
 	ctx = c.withAPIKey(ctx)
 
@@ -131,6 +136,10 @@ func NewSearchEventsRequest() SearchEventRequest {
 //
 // Returns a paginated list of events matching the search criteria.
 func (c *Client) SearchEvents(ctx context.Context, req SearchEventRequest) (*EventSearch, *http.Response, error) {
+	if c.clientInterface != nil {
+		return c.clientInterface.SearchEvents(ctx, req)
+	}
+
 	ctx = c.withRegion(ctx)
 	ctx = c.withAPIKey(ctx)
 	return c.api.FingerprintAPI.SearchEventsExecute(ctx, req)
@@ -147,6 +156,10 @@ func (c *Client) SearchEvents(ctx context.Context, req SearchEventRequest) (*Eve
 //
 // [event identifier]: https://dev.fingerprint.com/reference/get-function#event_id
 func (c *Client) UpdateEvent(ctx context.Context, eventId string, eventUpdateReq EventUpdate) (*http.Response, error) {
+	if c.clientInterface != nil {
+		return c.clientInterface.UpdateEvent(ctx, eventId, eventUpdateReq)
+	}
+
 	ctx = c.withRegion(ctx)
 	ctx = c.withAPIKey(ctx)
 	return c.api.FingerprintAPI.UpdateEvent(eventId).EventUpdate(eventUpdateReq).Execute(ctx)
@@ -163,6 +176,10 @@ func (c *Client) UpdateEvent(ctx context.Context, eventId string, eventUpdateReq
 //
 // [visitor identifier]: https://dev.fingerprint.com/reference/get-function#visitor_id
 func (c *Client) DeleteVisitorData(ctx context.Context, visitorId string) (*http.Response, error) {
+	if c.clientInterface != nil {
+		return c.clientInterface.DeleteVisitorData(ctx, visitorId)
+	}
+
 	ctx = c.withRegion(ctx)
 	ctx = c.withAPIKey(ctx)
 	return c.api.FingerprintAPI.DeleteVisitorData(visitorId).Execute(ctx)
