@@ -133,42 +133,6 @@ func main() {
 }
 ```
 
-## Testing
-
-To test code that depends on the Fingerprint SDK, use the `fingerprinttest` package to get a pre-built mock — no mock generation or boilerplate required.
-
-### Installation
-
-```shell
-go get "github.com/fingerprintjs/go-sdk/v8/fingerprinttest"
-```
-
-### Usage
-
-```go
-import (
-    "context"
-    "errors"
-    "testing"
-
-    fingerprint "github.com/fingerprintjs/go-sdk/v8"
-    "github.com/fingerprintjs/go-sdk/v8/fingerprinttest"
-    "github.com/stretchr/testify/assert"
-)
-
-func TestCheckFraud_APIError(t *testing.T) {
-    mock := fingerprinttest.NewMockClient(t)
-    mock.SetGetEventResponse(nil, nil, errors.New("API unavailable"))
-
-    client := fingerprint.New(fingerprint.WithClientInterface(mock))
-
-    _, err := CheckFraud(context.Background(), client, "evt_123")
-    assert.Error(t, err)
-}
-```
-
-`NewMockClient` registers automatic assertion of expected calls at test teardown — no manual `AssertExpectations` needed. Use the returned `*mock.Call` from any setter to chain `.Once()`, `.Times(n)`, or additional matchers.
-
 ## Sealed results
 
 This SDK provides utility methods for decoding [sealed results](https://docs.fingerprint.com/docs/sealed-client-results).
@@ -251,6 +215,42 @@ func main() {
 ```
 
 To learn more, refer to example located in [example/webhookSignature.go](example/webhookSignature.go).
+
+## Testing
+
+To test code that depends on the Fingerprint SDK, use the `fingerprinttest` package to get a pre-built mock — no mock generation or boilerplate required.
+
+### Installation
+
+```shell
+go get "github.com/fingerprintjs/go-sdk/v8/fingerprinttest"
+```
+
+### Usage
+
+```go
+import (
+    "context"
+    "errors"
+    "testing"
+
+    fingerprint "github.com/fingerprintjs/go-sdk/v8"
+    "github.com/fingerprintjs/go-sdk/v8/fingerprinttest"
+    "github.com/stretchr/testify/assert"
+)
+
+func TestCheckFraud_APIError(t *testing.T) {
+    mock := fingerprinttest.NewMockClient(t)
+    mock.SetGetEventResponse(nil, nil, errors.New("API unavailable"))
+
+    client := fingerprint.New(fingerprint.WithClientInterface(mock))
+
+    _, err := CheckFraud(context.Background(), client, "evt_123")
+    assert.Error(t, err)
+}
+```
+
+`NewMockClient` registers automatic assertion of expected calls at test teardown — no manual `AssertExpectations` needed. Use the returned `*mock.Call` from any setter to chain `.Once()`, `.Times(n)`, or additional matchers.
 
 ## Documentation for API Endpoints
 
