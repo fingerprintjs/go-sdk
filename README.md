@@ -250,7 +250,7 @@ func TestCheckFraud_APIError(t *testing.T) {
 }
 ```
 
-`NewMockClient` registers automatic assertion of expected calls at test teardown — no manual `AssertExpectations` needed. Use the returned `*mock.Call` from any setter to chain `.Once()`, `.Times(n)`, or additional matchers.
+`NewMockClient` registers automatic assertion of expected calls at test teardown, so no manual `AssertExpectations` needed. Use the returned `*mock.Call` from any setter to chain `.Once()`, `.Times(n)`, or additional matchers.
 
 ## Documentation for API Endpoints
 

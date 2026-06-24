@@ -9,7 +9,7 @@ import (
 )
 
 // MockClient is a testify/mock-based implementation of fingerprint.ClientInterface.
-// Use NewMockClient to create an instance — it registers automatic assertion of
+// Use NewMockClient to create an instance. It registers automatic assertion of
 // expected calls at test teardown.
 type MockClient struct {
 	mock.Mock
