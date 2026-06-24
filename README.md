@@ -218,39 +218,13 @@ To learn more, refer to example located in [example/webhookSignature.go](example
 
 ## Testing
 
-To test code that depends on the Fingerprint SDK, use the `fingerprinttest` package to get a pre-built mock. No mock generation or boilerplate required.
-
-### Installation
+The [`fingerprinttest`](https://pkg.go.dev/github.com/fingerprintjs/go-sdk/v8/fingerprinttest) package provides a pre-built mock for `ClientInterface` so you can test code that depends on the Fingerprint SDK without making real API calls.
 
 ```shell
 go get "github.com/fingerprintjs/go-sdk/v8/fingerprinttest"
 ```
 
-### Usage
-
-```go
-import (
-    "context"
-    "errors"
-    "testing"
-
-    fingerprint "github.com/fingerprintjs/go-sdk/v8"
-    "github.com/fingerprintjs/go-sdk/v8/fingerprinttest"
-    "github.com/stretchr/testify/assert"
-)
-
-func TestCheckFraud_APIError(t *testing.T) {
-    mock := fingerprinttest.NewMockClient(t)
-    mock.SetGetEventResponse(nil, nil, errors.New("API unavailable"))
-
-    client := fingerprint.New(fingerprint.WithClientInterface(mock))
-
-    _, err := CheckFraud(context.Background(), client, "evt_123")
-    assert.Error(t, err)
-}
-```
-
-`NewMockClient` registers automatic assertion of expected calls at test teardown, so no manual `AssertExpectations` needed. Use the returned `*mock.Call` from any setter to chain `.Once()`, `.Times(n)`, or additional matchers.
+See the [fingerprinttest README](fingerprinttest/README.md) for usage documentation.
 
 ## Documentation for API Endpoints
 

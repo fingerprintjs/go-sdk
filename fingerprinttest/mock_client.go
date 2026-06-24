@@ -33,30 +33,30 @@ var _ fingerprint.ClientInterface = (*MockClient)(nil)
 // GetEvent implements fingerprint.ClientInterface.
 func (m *MockClient) GetEvent(ctx context.Context, eventID string, opts ...fingerprint.GetEventOption) (*fingerprint.Event, *http.Response, error) {
 	args := m.Called(ctx, eventID, opts)
-	event, _ := args.Get(0).(*fingerprint.Event)
-	resp, _ := args.Get(1).(*http.Response)
+	event := args.Get(0).(*fingerprint.Event)
+	resp := args.Get(1).(*http.Response)
 	return event, resp, args.Error(2)
 }
 
 // SearchEvents implements fingerprint.ClientInterface.
 func (m *MockClient) SearchEvents(ctx context.Context, req fingerprint.SearchEventRequest) (*fingerprint.EventSearch, *http.Response, error) {
 	args := m.Called(ctx, req)
-	result, _ := args.Get(0).(*fingerprint.EventSearch)
-	resp, _ := args.Get(1).(*http.Response)
+	result := args.Get(0).(*fingerprint.EventSearch)
+	resp := args.Get(1).(*http.Response)
 	return result, resp, args.Error(2)
 }
 
 // UpdateEvent implements fingerprint.ClientInterface.
 func (m *MockClient) UpdateEvent(ctx context.Context, eventId string, eventUpdateReq fingerprint.EventUpdate) (*http.Response, error) {
 	args := m.Called(ctx, eventId, eventUpdateReq)
-	resp, _ := args.Get(0).(*http.Response)
+	resp := args.Get(0).(*http.Response)
 	return resp, args.Error(1)
 }
 
 // DeleteVisitorData implements fingerprint.ClientInterface.
 func (m *MockClient) DeleteVisitorData(ctx context.Context, visitorId string) (*http.Response, error) {
 	args := m.Called(ctx, visitorId)
-	resp, _ := args.Get(0).(*http.Response)
+	resp := args.Get(0).(*http.Response)
 	return resp, args.Error(1)
 }
 
