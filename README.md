@@ -218,7 +218,7 @@ To learn more, refer to example located in [example/webhookSignature.go](example
 
 ## Testing
 
-To test code that depends on the Fingerprint SDK, use the `fingerprinttest` package to get a pre-built mock — no mock generation or boilerplate required.
+To test code that depends on the Fingerprint SDK, use the `fingerprinttest` package to get a pre-built mock. No mock generation or boilerplate required.
 
 ### Installation
 
