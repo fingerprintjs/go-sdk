@@ -217,4 +217,42 @@ func TestGetEvent(t *testing.T) {
 		assert.Nil(t, event.RuleAction.EventRuleActionAllow)
 		assert.Nil(t, event.RuleAction.EventRuleActionBlock)
 	})
+
+	t.Run("Returns event with unknown proxy_type", func(t *testing.T) {
+		rawJSON, err := os.ReadFile("mocks/events/get_event_200.json")
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		var responseBody map[string]interface{}
+		err = json.Unmarshal(rawJSON, &responseBody)
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		responseBody["proxy_details"].(map[string]interface{})["proxy_type"] = "unknown"
+
+		ts := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			assert.Equal(t, r.URL.Path, "/events/123")
+
+			assertAuthorizationHeader(t, r, "api_key")
+
+			w.Header().Set("Content-Type", "application/json")
+
+			err := json.NewEncoder(w).Encode(responseBody)
+			if err != nil {
+				log.Fatal(err)
+			}
+		}))
+		defer ts.Close()
+
+		client := fingerprint.New(fingerprint.WithAPIKey("api_key"), fingerprint.WithBaseURL(ts.URL))
+
+		event, _, err := client.GetEvent(context.Background(), "123")
+
+		assert.Nil(t, err)
+		assert.NotNil(t, event)
+		assert.NotNil(t, event.ProxyDetails)
+		assert.Equal(t, "unknown", event.ProxyDetails.ProxyType)
+	})
 }
