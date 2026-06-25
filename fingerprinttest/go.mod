@@ -3,7 +3,7 @@ module github.com/fingerprintjs/go-sdk/v8/fingerprinttest
 go 1.21
 
 require (
-	github.com/fingerprintjs/go-sdk/v8 v8.3.0
+	github.com/fingerprintjs/go-sdk/v8 v8.4.0
 	github.com/stretchr/testify v1.11.1
 )
 
