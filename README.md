@@ -216,6 +216,16 @@ func main() {
 
 To learn more, refer to example located in [example/webhookSignature.go](example/webhookSignature.go).
 
+## Testing
+
+The [`fingerprinttest`](https://pkg.go.dev/github.com/fingerprintjs/go-sdk/v8/fingerprinttest) package provides a pre-built mock for `ClientInterface` so you can test code that depends on the Fingerprint SDK without making real API calls.
+
+```shell
+go get "github.com/fingerprintjs/go-sdk/v8/fingerprinttest"
+```
+
+See the [fingerprinttest README](fingerprinttest/README.md) for usage documentation.
+
 ## Documentation for API Endpoints
 
 All URIs are relative to *https://api.fpjs.io/v4*
