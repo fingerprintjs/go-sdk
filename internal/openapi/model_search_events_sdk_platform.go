@@ -13,7 +13,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // SearchEventsSDKPlatform Filter events by the SDK Platform associated with the identification event (`sdk.platform` property) . `js` - Javascript agent (Web). `ios` - Apple iOS based devices. `android` - Android based devices.
@@ -39,13 +38,13 @@ func (v *SearchEventsSDKPlatform) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := SearchEventsSDKPlatform(value)
-	for _, existing := range AllowedSearchEventsSDKPlatformEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
 
-	return fmt.Errorf("%+v is not a valid SearchEventsSDKPlatform", value)
+	// Do not validate the value against the allowed values. The server
+	// API may use new enum values before the SDK supports them
+	// and that scenario must not result in deserialization failures.
+	//
+	// SDK users can limit the enum values they work with by
+	// using the exported AllowedSearchEventsSDKPlatformEnumValues slice.
+	*v = SearchEventsSDKPlatform(value)
+	return nil
 }

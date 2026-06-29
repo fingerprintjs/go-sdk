@@ -13,7 +13,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // BotInfoCategory The type and purpose of the bot.
@@ -65,13 +64,13 @@ func (v *BotInfoCategory) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := BotInfoCategory(value)
-	for _, existing := range AllowedBotInfoCategoryEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
 
-	return fmt.Errorf("%+v is not a valid BotInfoCategory", value)
+	// Do not validate the value against the allowed values. The server
+	// API may use new enum values before the SDK supports them
+	// and that scenario must not result in deserialization failures.
+	//
+	// SDK users can limit the enum values they work with by
+	// using the exported AllowedBotInfoCategoryEnumValues slice.
+	*v = BotInfoCategory(value)
+	return nil
 }

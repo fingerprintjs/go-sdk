@@ -71,6 +71,7 @@ func TestUnsupportedEnumValueDeserialization(t *testing.T) {
 		}
 
 		event := runTest(t, setBotResult)
-		assert.Equal(t, "unknown-value", event.Bot)
+		assert.NotNil(t, event.Bot)
+		assert.Equal(t, "unknown-value", string(*event.Bot))
 	})
 }

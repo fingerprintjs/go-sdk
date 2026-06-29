@@ -13,7 +13,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // BotInfoConfidence Confidence level of the bot identification.
@@ -39,13 +38,13 @@ func (v *BotInfoConfidence) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := BotInfoConfidence(value)
-	for _, existing := range AllowedBotInfoConfidenceEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
 
-	return fmt.Errorf("%+v is not a valid BotInfoConfidence", value)
+	// Do not validate the value against the allowed values. The server
+	// API may use new enum values before the SDK supports them
+	// and that scenario must not result in deserialization failures.
+	//
+	// SDK users can limit the enum values they work with by
+	// using the exported AllowedBotInfoConfidenceEnumValues slice.
+	*v = BotInfoConfidence(value)
+	return nil
 }
