@@ -1,7 +1,7 @@
 /*
 Server API
 
-Fingerprint Server API allows you to get, search, and update Events in a server environment. It can be used for data exports, decision-making, and data analysis scenarios. Server API is intended for server-side usage, it's not intended to be used from the client side, whether it's a browser or a mobile device.
+Fingerprint Server API allows you to get, search, and update Events in a server environment. It can be used for data exports, decision-making, and data analysis scenarios. Server API is intended for server-side usage, it's not intended to be used from the client side, whether it's a browser or a mobile device. The API also supports collection of Automation Intelligence for requests to your server in edge, pre-origin, or middleware contexts.
 
 API version: 4
 Contact: support@fingerprint.com
@@ -170,6 +170,12 @@ type SearchEventsIncrementalIdentificationStatus = openapi.SearchEventsIncrement
 const (
 	SearchEventsIncrementalIdentificationStatusPartiallyCompleted = openapi.SearchEventsIncrementalIdentificationStatusPartiallyCompleted
 	SearchEventsIncrementalIdentificationStatusCompleted          = openapi.SearchEventsIncrementalIdentificationStatusCompleted
+)
+
+type SearchEventsInline = openapi.SearchEventsInline
+
+const (
+	SearchEventsInlineEdge = openapi.SearchEventsInlineEdge
 )
 
 type SearchEventsRareDevicePercentileBucket = openapi.SearchEventsRareDevicePercentileBucket

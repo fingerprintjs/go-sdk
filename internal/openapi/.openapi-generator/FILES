@@ -52,6 +52,7 @@ docs/SDK.md
 docs/SearchEventsBot.md
 docs/SearchEventsBotInfo.md
 docs/SearchEventsIncrementalIdentificationStatus.md
+docs/SearchEventsInline.md
 docs/SearchEventsRareDevicePercentileBucket.md
 docs/SearchEventsSDKPlatform.md
 docs/SearchEventsVPNConfidence.md
@@ -109,6 +110,7 @@ model_sdk.go
 model_search_events_bot.go
 model_search_events_bot_info.go
 model_search_events_incremental_identification_status.go
+model_search_events_inline.go
 model_search_events_rare_device_percentile_bucket.go
 model_search_events_sdk_platform.go
 model_search_events_vpn_confidence.go

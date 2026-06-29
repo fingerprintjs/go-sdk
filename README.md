@@ -283,6 +283,7 @@ Class | Method | HTTP request | Description
  - [SearchEventsBot](docs/SearchEventsBot.md)
  - [SearchEventsBotInfo](docs/SearchEventsBotInfo.md)
  - [SearchEventsIncrementalIdentificationStatus](docs/SearchEventsIncrementalIdentificationStatus.md)
+ - [SearchEventsInline](docs/SearchEventsInline.md)
  - [SearchEventsRareDevicePercentileBucket](docs/SearchEventsRareDevicePercentileBucket.md)
  - [SearchEventsSDKPlatform](docs/SearchEventsSDKPlatform.md)
  - [SearchEventsVPNConfidence](docs/SearchEventsVPNConfidence.md)

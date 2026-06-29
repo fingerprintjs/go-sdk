@@ -1,7 +1,7 @@
 /*
 Server API
 
-Fingerprint Server API allows you to get, search, and update Events in a server environment. It can be used for data exports, decision-making, and data analysis scenarios. Server API is intended for server-side usage, it's not intended to be used from the client side, whether it's a browser or a mobile device.
+Fingerprint Server API allows you to get, search, and update Events in a server environment. It can be used for data exports, decision-making, and data analysis scenarios. Server API is intended for server-side usage, it's not intended to be used from the client side, whether it's a browser or a mobile device. The API also supports collection of Automation Intelligence for requests to your server in edge, pre-origin, or middleware contexts.
 
 API version: 4
 Contact: support@fingerprint.com
@@ -529,15 +529,16 @@ type ApiSearchEventsRequest struct {
 	torNode                         *bool
 	incrementalIdentificationStatus *SearchEventsIncrementalIdentificationStatus
 	simulator                       *bool
+	source                          *[]SearchEventsInline
 }
 
-// Maximum number of events to return. Results are selected from the time range (`start`, `end`), ordered by `reverse`, then truncated to provided `limit` size. So `reverse=true` returns the oldest N=`limit` events, otherwise the newest N=`limit` events.
+// Maximum number of events to return. Defaults to 10 when omitted. Results are selected from the time range (`start`, `end`), ordered by `reverse`, then truncated to provided `limit` size. So `reverse=true` returns the oldest N=`limit` events, otherwise the newest N=`limit` events.
 func (r ApiSearchEventsRequest) Limit(limit int32) ApiSearchEventsRequest {
 	r.limit = &limit
 	return r
 }
 
-// Use `pagination_key` to get the next page of results.  When more results are available (e.g., you requested up to 100 results for your query using `limit`, but there are more than 100 events total matching your request), the `pagination_key` field is added to the response. The pagination key is an arbitrary string that should not be interpreted in any way and should be passed as-is. In the following request, use that value in the `pagination_key` parameter to get the next page of results:  1. First request, returning most recent 100 events: `GET api-base-url/events?limit=100` 2. Use `response.pagination_key` to get the next page of results: `GET api-base-url/events?limit=100&pagination_key=1740815825085`
+// Use `pagination_key` to get the next page of results.  When more results are available (e.g., you requested up to 100 results for your query using `limit`, but there are more than 100 events total matching your request), the `pagination_key` field is added to the response. The pagination key is an arbitrary string that should not be interpreted in any way and should be passed as-is. In the following request, use that value in the `pagination_key` parameter to get the next page of results:  1. First request, returning most recent 100 events: `GET api-base-url/events?limit=100` 2. Use `response.pagination_key` to get the next page of results: `GET api-base-url/events?limit=100&pagination_key=S9rgMMUb4z3X5t5pr_tSgoSZlmyF0O8X7kCV2m981-iY1LmRTjraa1rTk3L-hQExnDWCi0RA-zAIjaVSTNO2AN2eqQWgzT0RjbieMxRfSdkM-HmOhdOgdQvYfPG3vqU1DJKh4Q`
 func (r ApiSearchEventsRequest) PaginationKey(paginationKey string) ApiSearchEventsRequest {
 	r.paginationKey = &paginationKey
 	return r
@@ -855,6 +856,12 @@ func (r ApiSearchEventsRequest) Simulator(simulator bool) ApiSearchEventsRequest
 	return r
 }
 
+// Selects the source of events to search. When omitted, only traditional identification events generated from devices are returned (the default behavior). When set to `edge`, only Automation Intelligence (Edge) events are returned.  > Note: The Automation Intelligence API is in public preview testing phase.  If you encounter any issues, please [contact](https://fingerprint.com/support/) our support team.
+func (r ApiSearchEventsRequest) Source(source []SearchEventsInline) ApiSearchEventsRequest {
+	r.source = &source
+	return r
+}
+
 func (r ApiSearchEventsRequest) Execute(ctx context.Context) (*EventSearch, *http.Response, error) {
 	return r.ApiService.SearchEventsExecute(ctx, r)
 }
@@ -922,10 +929,6 @@ func (a *FingerprintAPIService) SearchEventsExecute(ctx context.Context, r ApiSe
 
 	if r.limit != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
-	} else {
-		var defaultValue int32 = 10
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", defaultValue, "form", "")
-		r.limit = &defaultValue
 	}
 	if r.paginationKey != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pagination_key", r.paginationKey, "form", "")
@@ -1128,6 +1131,17 @@ func (a *FingerprintAPIService) SearchEventsExecute(ctx context.Context, r ApiSe
 	if r.simulator != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "simulator", r.simulator, "form", "")
 	}
+	if r.source != nil {
+		t := *r.source
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "source", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "source", t, "form", "multi")
+		}
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -1179,6 +1193,17 @@ func (a *FingerprintAPIService) SearchEventsExecute(ctx context.Context, r ApiSe
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
 			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {

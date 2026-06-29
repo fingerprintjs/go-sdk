@@ -1,7 +1,7 @@
 /*
 Server API
 
-Fingerprint Server API allows you to get, search, and update Events in a server environment. It can be used for data exports, decision-making, and data analysis scenarios. Server API is intended for server-side usage, it's not intended to be used from the client side, whether it's a browser or a mobile device.
+Fingerprint Server API allows you to get, search, and update Events in a server environment. It can be used for data exports, decision-making, and data analysis scenarios. Server API is intended for server-side usage, it's not intended to be used from the client side, whether it's a browser or a mobile device. The API also supports collection of Automation Intelligence for requests to your server in edge, pre-origin, or middleware contexts.
 
 API version: 4
 Contact: support@fingerprint.com
@@ -21,14 +21,14 @@ var _ MappedNullable = &Event{}
 
 // Event Contains results from Fingerprint Identification and all active Smart Signals.
 type Event struct {
-	// Unique identifier of the user's request. The first portion of the event_id is a unix epoch milliseconds timestamp For example: `1758130560902.8tRtrH`
+	// Unique identifier of the user's request. The first portion of the event_id is a unix epoch milliseconds timestamp.
 	EventID string `json:"event_id"`
 	// Timestamp of the event with millisecond precision in Unix time.
 	Timestamp                       int64                            `json:"timestamp"`
 	IncrementalIdentificationStatus *IncrementalIdentificationStatus `json:"incremental_identification_status,omitempty"`
 	// A customer-provided id that was sent with the request.
 	LinkedID *string `json:"linked_id,omitempty"`
-	// Environment Id of the event. For example: `ae_47abaca3db2c7c43`
+	// Environment Id of the event.
 	EnvironmentID *string `json:"environment_id,omitempty"`
 	// Field is `true` if you have previously set the `suspect` flag for this event using the [Server API Update event endpoint](https://docs.fingerprint.com/reference/server-api-v4-update-event).
 	Suspect *bool `json:"suspect,omitempty"`
@@ -39,17 +39,23 @@ type Event struct {
 	SupplementaryIDHighRecall *SupplementaryIDHighRecall `json:"supplementary_id_high_recall,omitempty"`
 	// A customer-provided value or an object that was sent with the identification request or updated later.
 	Tags map[string]interface{} `json:"tags,omitempty"`
-	// Page URL from which the request was sent. For example `https://example.com/`
+	// Page URL from which the request was sent.
 	URL *string `json:"url,omitempty"`
-	// Bundle Id of the iOS application integrated with the Fingerprint SDK for the event. For example: `com.foo.app`
+	// Bundle Id of the iOS application integrated with the Fingerprint SDK for the event.
 	BundleID *string `json:"bundle_id,omitempty"`
-	// Package name of the Android application integrated with the Fingerprint SDK for the event. For example: `com.foo.app`
+	// Package name of the Android application integrated with the Fingerprint SDK for the event.
 	PackageName *string `json:"package_name,omitempty"`
 	// IP address of the requesting browser or bot.
 	IPAddress *string `json:"ip_address,omitempty"`
-	// User Agent of the client, for example: `Mozilla/5.0 (Windows NT 6.1; Win64; x64) ....`
+	// User Agent of the client.
 	UserAgent *string `json:"user_agent,omitempty"`
-	// Client Referrer field corresponds to the `document.referrer` field gathered during an identification request. The value is an empty string if the user navigated to the page directly (not through a link, but, for example, by using a bookmark) For example: `https://example.com/blog/my-article`
+	// Device model or family extracted from the user agent string. On web, this field is also present inside `browser_details`.
+	Device *string `json:"device,omitempty"`
+	// Operating system family extracted from the user agent string. On web, this field is also present inside `browser_details`.
+	Os *string `json:"os,omitempty"`
+	// Operating system version string extracted from the user agent string. On web, this field is also present inside `browser_details`.
+	OsVersion *string `json:"os_version,omitempty"`
+	// Client Referrer field corresponds to the `document.referrer` field gathered during an identification request. The value is an empty string if the user navigated to the page directly (not through a link, but, for example, by using a bookmark).
 	ClientReferrer *string         `json:"client_referrer,omitempty"`
 	BrowserDetails *BrowserDetails `json:"browser_details,omitempty"`
 	Proximity      *Proximity      `json:"proximity,omitempty"`
@@ -106,6 +112,8 @@ type Event struct {
 	// VPN or other anonymizing service has been used when sending the request.
 	VPN           *bool          `json:"vpn,omitempty"`
 	VPNConfidence *VPNConfidence `json:"vpn_confidence,omitempty"`
+	// Machine learning–based VPN score, represented as a floating-point value between 0 and 1 (inclusive), with up to three decimal places of precision. A higher score means a higher confidence in the positive `vpn` detection result. This Smart Signal is currently in beta and only available to select customers. If you are interested, please [contact our support team](https://fingerprint.com/support/).
+	VpnMlScore *float64 `json:"vpn_ml_score,omitempty"`
 	// Local timezone which is used in timezone_mismatch method.
 	VPNOriginTimezone *string `json:"vpn_origin_timezone,omitempty"`
 	// Country of the request (only for Android SDK version >= 2.4.0, ISO 3166 format or unknown).
@@ -177,6 +185,15 @@ func (o Event) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.UserAgent) {
 		toSerialize["user_agent"] = o.UserAgent
+	}
+	if !IsNil(o.Device) {
+		toSerialize["device"] = o.Device
+	}
+	if !IsNil(o.Os) {
+		toSerialize["os"] = o.Os
+	}
+	if !IsNil(o.OsVersion) {
+		toSerialize["os_version"] = o.OsVersion
 	}
 	if !IsNil(o.ClientReferrer) {
 		toSerialize["client_referrer"] = o.ClientReferrer
@@ -283,6 +300,9 @@ func (o Event) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.VPNConfidence) {
 		toSerialize["vpn_confidence"] = o.VPNConfidence
 	}
+	if !IsNil(o.VpnMlScore) {
+		toSerialize["vpn_ml_score"] = o.VpnMlScore
+	}
 	if !IsNil(o.VPNOriginTimezone) {
 		toSerialize["vpn_origin_timezone"] = o.VPNOriginTimezone
 	}
@@ -367,6 +387,9 @@ func (o *Event) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "package_name")
 		delete(additionalProperties, "ip_address")
 		delete(additionalProperties, "user_agent")
+		delete(additionalProperties, "device")
+		delete(additionalProperties, "os")
+		delete(additionalProperties, "os_version")
 		delete(additionalProperties, "client_referrer")
 		delete(additionalProperties, "browser_details")
 		delete(additionalProperties, "proximity")
@@ -402,6 +425,7 @@ func (o *Event) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "virtual_machine_ml_score")
 		delete(additionalProperties, "vpn")
 		delete(additionalProperties, "vpn_confidence")
+		delete(additionalProperties, "vpn_ml_score")
 		delete(additionalProperties, "vpn_origin_timezone")
 		delete(additionalProperties, "vpn_origin_country")
 		delete(additionalProperties, "vpn_methods")

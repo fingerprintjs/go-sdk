@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Platform** | **string** | Platform of the SDK used for the identification request. | 
-**Version** | **string** | Version string of the SDK used for the identification request. For example: `\"3.12.1\"`  | 
+**Version** | **string** | Version string of the SDK used for the identification request. | 
 **Integrations** | Pointer to [**[]Integration**](Integration.md) |  | [optional] 
 
 
