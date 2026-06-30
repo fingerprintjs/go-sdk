@@ -7,10 +7,10 @@ Name | Type | Description | Notes
 **FontPreferences** | Pointer to [**FontPreferences**](FontPreferences.md) |  | [optional] 
 **Emoji** | Pointer to [**Emoji**](Emoji.md) |  | [optional] 
 **Fonts** | Pointer to **[]string** | List of fonts detected on the device. | [optional] 
-**DeviceMemory** | Pointer to **int32** | Rounded amount of RAM (in gigabytes) reported by the browser. | [optional] 
+**DeviceMemory** | Pointer to **int32** | Rounded amount of RAM in gigabytes. | [optional] 
 **Timezone** | Pointer to **string** | Timezone identifier detected on the client. | [optional] 
 **Canvas** | Pointer to [**Canvas**](Canvas.md) |  | [optional] 
-**Languages** | Pointer to **[][]string** | Navigator languages reported by the agent including fallbacks. Each inner array represents ordered language preferences reported by different APIs. Available for both browsers and iOS devices  | [optional] 
+**Languages** | Pointer to **[][]string** | Navigator languages reported by the agent including fallbacks. Each inner array represents ordered language preferences reported by different APIs. Available for browsers, iOS, and Android devices.  | [optional] 
 **WebglExtensions** | Pointer to [**WebGlExtensions**](WebGlExtensions.md) |  | [optional] 
 **WebglBasics** | Pointer to [**WebGlBasics**](WebGlBasics.md) |  | [optional] 
 **ScreenResolution** | Pointer to **[]int32** | Current screen resolution. Available for both browsers and iOS devices | [optional] 
@@ -33,6 +33,8 @@ Name | Type | Description | Notes
 **DeviceManufacturer** | Pointer to **string** | Device manufacturer string. Available only for Android and iOS devices. | [optional] 
 **FontHash** | Pointer to **string** | Unique identifier for the user’s installed fonts. | [optional] 
 **TimezoneOffset** | Pointer to **string** | UTC offset in \"±HH:MM\" format derived from the detected IANA timezone. | [optional] 
+**BatteryLevel** | Pointer to **int32** | Battery charge level as a percentage (0-100). Available only for Android and iOS devices. | [optional] 
+**BatteryLowPowerMode** | Pointer to **bool** | Whether the device's low power mode is enabled. Available only for Android and iOS devices. | [optional] 
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

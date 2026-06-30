@@ -54,6 +54,7 @@ docs/SearchEventsBotInfo.md
 docs/SearchEventsIncrementalIdentificationStatus.md
 docs/SearchEventsRareDevicePercentileBucket.md
 docs/SearchEventsSDKPlatform.md
+docs/SearchEventsSource.md
 docs/SearchEventsVPNConfidence.md
 docs/SupplementaryIDHighRecall.md
 docs/TamperingConfidence.md
@@ -111,6 +112,7 @@ model_search_events_bot_info.go
 model_search_events_incremental_identification_status.go
 model_search_events_rare_device_percentile_bucket.go
 model_search_events_sdk_platform.go
+model_search_events_source.go
 model_search_events_vpn_confidence.go
 model_supplementary_id_high_recall.go
 model_tampering_confidence.go

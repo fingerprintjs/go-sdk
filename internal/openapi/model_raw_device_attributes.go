@@ -1,7 +1,7 @@
 /*
 Server API
 
-Fingerprint Server API allows you to get, search, and update Events in a server environment. It can be used for data exports, decision-making, and data analysis scenarios. Server API is intended for server-side usage, it's not intended to be used from the client side, whether it's a browser or a mobile device.
+Fingerprint Server API allows you to get, search, and update Events in a server environment. It can be used for data exports, decision-making, and data analysis scenarios. Server API is intended for server-side usage, it's not intended to be used from the client side, whether it's a browser or a mobile device. The API also supports collection of Automation Intelligence for requests to your server in edge, pre-origin, or middleware contexts.
 
 API version: 4
 Contact: support@fingerprint.com
@@ -24,12 +24,12 @@ type RawDeviceAttributes struct {
 	Emoji           *Emoji           `json:"emoji,omitempty"`
 	// List of fonts detected on the device.
 	Fonts []string `json:"fonts,omitempty"`
-	// Rounded amount of RAM (in gigabytes) reported by the browser.
+	// Rounded amount of RAM in gigabytes.
 	DeviceMemory *int32 `json:"device_memory,omitempty"`
 	// Timezone identifier detected on the client.
 	Timezone *string `json:"timezone,omitempty"`
 	Canvas   *Canvas `json:"canvas,omitempty"`
-	// Navigator languages reported by the agent including fallbacks. Each inner array represents ordered language preferences reported by different APIs. Available for both browsers and iOS devices
+	// Navigator languages reported by the agent including fallbacks. Each inner array represents ordered language preferences reported by different APIs. Available for browsers, iOS, and Android devices.
 	Languages       [][]string       `json:"languages,omitempty"`
 	WebglExtensions *WebGlExtensions `json:"webgl_extensions,omitempty"`
 	WebglBasics     *WebGlBasics     `json:"webgl_basics,omitempty"`
@@ -71,7 +71,11 @@ type RawDeviceAttributes struct {
 	// Unique identifier for the user’s installed fonts.
 	FontHash *string `json:"font_hash,omitempty"`
 	// UTC offset in \"±HH:MM\" format derived from the detected IANA timezone.
-	TimezoneOffset       *string `json:"timezone_offset,omitempty"`
+	TimezoneOffset *string `json:"timezone_offset,omitempty"`
+	// Battery charge level as a percentage (0-100). Available only for Android and iOS devices.
+	BatteryLevel *int32 `json:"battery_level,omitempty"`
+	// Whether the device's low power mode is enabled. Available only for Android and iOS devices.
+	BatteryLowPowerMode  *bool `json:"battery_low_power_mode,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -174,6 +178,12 @@ func (o RawDeviceAttributes) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.TimezoneOffset) {
 		toSerialize["timezone_offset"] = o.TimezoneOffset
 	}
+	if !IsNil(o.BatteryLevel) {
+		toSerialize["battery_level"] = o.BatteryLevel
+	}
+	if !IsNil(o.BatteryLowPowerMode) {
+		toSerialize["battery_low_power_mode"] = o.BatteryLowPowerMode
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -225,6 +235,8 @@ func (o *RawDeviceAttributes) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "device_manufacturer")
 		delete(additionalProperties, "font_hash")
 		delete(additionalProperties, "timezone_offset")
+		delete(additionalProperties, "battery_level")
+		delete(additionalProperties, "battery_low_power_mode")
 		o.AdditionalProperties = additionalProperties
 	}
 
