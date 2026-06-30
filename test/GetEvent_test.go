@@ -133,7 +133,7 @@ func TestGetEvent(t *testing.T) {
 		t.Run("Returns ErrorResponse with unsupported error code value", func(t *testing.T) {
 			mockResponse := GetMockResponse[fingerprint.ErrorResponse]("mocks/errors/400_visitor_id_invalid.json")
 			mockResponse.Error.Code = fingerprint.ErrorCode("unknown-value")
-			
+
 			runTest(t, 400, mockResponse)
 		})
 	})
