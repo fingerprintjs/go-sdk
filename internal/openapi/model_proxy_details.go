@@ -1,7 +1,7 @@
 /*
 Server API
 
-Fingerprint Server API allows you to get, search, and update Events in a server environment. It can be used for data exports, decision-making, and data analysis scenarios. Server API is intended for server-side usage, it's not intended to be used from the client side, whether it's a browser or a mobile device.
+Fingerprint Server API allows you to get, search, and update Events in a server environment. It can be used for data exports, decision-making, and data analysis scenarios. Server API is intended for server-side usage, it's not intended to be used from the client side, whether it's a browser or a mobile device. The API also supports collection of Automation Intelligence for requests to your server in edge, pre-origin, or middleware contexts.
 
 API version: 4
 Contact: support@fingerprint.com
@@ -21,7 +21,7 @@ var _ MappedNullable = &ProxyDetails{}
 
 // ProxyDetails Proxy detection details (present if `proxy` is `true`)
 type ProxyDetails struct {
-	// Residential proxies use real user IP addresses to appear as legitimate traffic,  while data center proxies are public proxies hosted in data centers
+	// Proxy type:  * `residential` - proxies that route through residential and telecom IP addresses to appear as legitimate traffic  * `data_center` - proxies which route through data centers  * `unknown` - reported when a proxy is detected solely by the ML model and the IP sources did not determine a specific type
 	ProxyType string `json:"proxy_type"`
 	// Unix millisecond timestamp with hourly resolution of when this IP was last seen as a proxy
 	LastSeenAt *int64 `json:"last_seen_at,omitempty"`
