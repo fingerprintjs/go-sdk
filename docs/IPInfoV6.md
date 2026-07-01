@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **AsnName** | Pointer to **string** |  | [optional] 
 **AsnNetwork** | Pointer to **string** |  | [optional] 
 **AsnType** | Pointer to **string** |  | [optional] 
-**DatacenterResult** | Pointer to **bool** |  | [optional] 
+**DatacenterResult** | Pointer to **bool** | When true, the request originated from a datacenter. | [optional] 
 **DatacenterName** | Pointer to **string** |  | [optional] 
 
 

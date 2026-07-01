@@ -57,8 +57,8 @@ func TestSearchEvents(t *testing.T) {
 			assertAuthorizationHeader(t, r, "api_key")
 
 			assert.Equal(t, "/events", r.URL.Path)
-			assert.Equal(t, "10", query.Get("limit"), "limit")
-			assert.Len(t, strings.Split(r.URL.RawQuery, "&"), 7)
+			assert.False(t, query.Has("limit"), "has limit")
+			assert.Len(t, strings.Split(r.URL.RawQuery, "&"), 6)
 			assert.Equal(t, "", query.Get("suspect"), "suspect")
 			assert.False(t, query.Has("suspect"), "has suspect")
 			assert.Equal(t, "", query.Get("bot"), "bot")
@@ -205,7 +205,9 @@ func TestSearchEvents(t *testing.T) {
 			assert.Equal(t, "false", query.Get("simulator"), "simulator")
 			assert.True(t, query.Has("simulator"), "has simulator")
 
-			assert.Len(t, strings.Split(r.URL.RawQuery, "&"), 52, "expected all parameters in query")
+			assert.Equal(t, []string{"edge"}, query["source"], "source")
+
+			assert.Len(t, strings.Split(r.URL.RawQuery, "&"), 53, "expected all parameters in query")
 
 			w.Header().Set("Content-Type", "application/json")
 			err := json.NewEncoder(w).Encode(mockResponse)
@@ -263,6 +265,7 @@ func TestSearchEvents(t *testing.T) {
 			highRecallID                    string   = "testHighRecallID"
 			incrementalIdentificationStatus          = fingerprint.SearchEventsIncrementalIdentificationStatusCompleted
 			simulator                       bool     = false
+			source                                   = []fingerprint.SearchEventsSource{fingerprint.SearchEventsSourceEdge}
 		)
 
 		client := fingerprint.New(fingerprint.WithAPIKey("api_key"), fingerprint.WithBaseURL(ts.URL))
@@ -314,7 +317,8 @@ func TestSearchEvents(t *testing.T) {
 			VPNConfidence(vpnConfidence).
 			HighRecallID(highRecallID).
 			IncrementalIdentificationStatus(incrementalIdentificationStatus).
-			Simulator(simulator)
+			Simulator(simulator).
+			Source(source)
 
 		res, _, err := client.SearchEvents(context.Background(), opts)
 		assert.Nil(t, err)
@@ -415,8 +419,8 @@ func TestSearchEvents(t *testing.T) {
 					assertAuthorizationHeader(t, r, "api_key")
 
 					assert.Equal(t, "/events", r.URL.Path)
-					assert.Equal(t, "10", r.URL.Query().Get("limit"))
-					assert.Len(t, strings.Split(r.URL.RawQuery, "&"), 2)
+					assert.False(t, r.URL.Query().Has("limit"), "has limit")
+					assert.Len(t, strings.Split(r.URL.RawQuery, "&"), 1)
 
 					w.Header().Set("Content-Type", "application/json")
 					w.WriteHeader(testCase.StatusCode)

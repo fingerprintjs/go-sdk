@@ -15,22 +15,20 @@ import (
 	"encoding/json"
 )
 
-// RuleActionType Describes the action to take with the request.
-type RuleActionType string
+// SearchEventsSource the model 'SearchEventsSource'
+type SearchEventsSource string
 
-// List of RuleActionType
+// List of SearchEventsSource
 const (
-	RuleActionTypeAllow RuleActionType = "allow"
-	RuleActionTypeBlock RuleActionType = "block"
+	SearchEventsSourceEdge SearchEventsSource = "edge"
 )
 
-// All allowed values of RuleActionType enum
-var AllowedRuleActionTypeEnumValues = []RuleActionType{
-	RuleActionTypeAllow,
-	RuleActionTypeBlock,
+// All allowed values of SearchEventsSource enum
+var AllowedSearchEventsSourceEnumValues = []SearchEventsSource{
+	SearchEventsSourceEdge,
 }
 
-func (v *RuleActionType) UnmarshalJSON(src []byte) error {
+func (v *SearchEventsSource) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)
 	if err != nil {
@@ -42,7 +40,7 @@ func (v *RuleActionType) UnmarshalJSON(src []byte) error {
 	// and that scenario must not result in deserialization failures.
 	//
 	// SDK users can limit the enum values they work with by
-	// using the exported AllowedRuleActionTypeEnumValues slice.
-	*v = RuleActionType(value)
+	// using the exported AllowedSearchEventsSourceEnumValues slice.
+	*v = SearchEventsSource(value)
 	return nil
 }
