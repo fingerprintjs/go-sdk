@@ -13,7 +13,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // BotInfoIdentity The verification status of the bot's identity:  * `verified` - well-known bot with publicly verifiable identity, directed by the bot provider.  * `signed` - bot that signs its platform via Web Bot Auth, directed by the bot provider's customers.  * `spoofed` - bot that claims a public identity but fails verification.  * `unknown` - bot that does not publish a verifiable identity.
@@ -41,13 +40,13 @@ func (v *BotInfoIdentity) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := BotInfoIdentity(value)
-	for _, existing := range AllowedBotInfoIdentityEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
 
-	return fmt.Errorf("%+v is not a valid BotInfoIdentity", value)
+	// Do not validate the value against the allowed values. The server
+	// API may use new enum values before the SDK supports them
+	// and that scenario must not result in deserialization failures.
+	//
+	// SDK users can limit the enum values they work with by
+	// using the exported AllowedBotInfoIdentityEnumValues slice.
+	*v = BotInfoIdentity(value)
+	return nil
 }

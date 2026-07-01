@@ -88,6 +88,36 @@ func TestGetEvent(t *testing.T) {
 			{429, "mocks/errors/429_too_many_requests.json"},
 		}
 
+		runTest := func(t *testing.T, statusCode int, mockResponse fingerprint.ErrorResponse) {
+			ts := httptest.NewServer(http.HandlerFunc(func(
+				w http.ResponseWriter,
+				r *http.Request,
+			) {
+				integrationInfo := r.URL.Query().Get("ii")
+				assert.Equal(t, integrationInfo, fmt.Sprintf("fingerprint-pro-server-go-sdk/%s", fingerprint.Version))
+				assert.Equal(t, r.URL.Path, "/events/123")
+
+				assertAuthorizationHeader(t, r, "api_key")
+
+				w.Header().Set("Content-Type", "application/json")
+
+				w.WriteHeader(statusCode)
+
+				err := json.NewEncoder(w).Encode(mockResponse)
+				if err != nil {
+					log.Fatal(err)
+				}
+			}))
+			defer ts.Close()
+
+			client := fingerprint.New(fingerprint.WithAPIKey("api_key"), fingerprint.WithBaseURL(ts.URL))
+
+			event, res, err := client.GetEvent(context.Background(), "123")
+
+			assert.Nil(t, event)
+			assertErrorResponse(t, statusCode, mockResponse, res, err)
+		}
+
 		for _, testCase := range testCases {
 			statusCode := testCase.StatusCode
 			mockPath := testCase.MockResponsePath
@@ -95,36 +125,17 @@ func TestGetEvent(t *testing.T) {
 			t.Run(fmt.Sprintf("Returns ErrorResponse on %d error", statusCode), func(t *testing.T) {
 				mockResponse := GetMockResponse[fingerprint.ErrorResponse](mockPath)
 
-				ts := httptest.NewServer(http.HandlerFunc(func(
-					w http.ResponseWriter,
-					r *http.Request,
-				) {
-					integrationInfo := r.URL.Query().Get("ii")
-					assert.Equal(t, integrationInfo, fmt.Sprintf("fingerprint-pro-server-go-sdk/%s", fingerprint.Version))
-					assert.Equal(t, r.URL.Path, "/events/123")
-
-					assertAuthorizationHeader(t, r, "api_key")
-
-					w.Header().Set("Content-Type", "application/json")
-
-					w.WriteHeader(statusCode)
-
-					err := json.NewEncoder(w).Encode(mockResponse)
-					if err != nil {
-						log.Fatal(err)
-					}
-				}))
-				defer ts.Close()
-
-				client := fingerprint.New(fingerprint.WithAPIKey("api_key"), fingerprint.WithBaseURL(ts.URL))
-
-				event, res, err := client.GetEvent(context.Background(), "123")
-
-				assert.Nil(t, event)
-				assertErrorResponse(t, statusCode, mockResponse, res, err)
+				runTest(t, statusCode, mockResponse)
 			})
 
 		}
+
+		t.Run("Returns ErrorResponse with unsupported error code value", func(t *testing.T) {
+			mockResponse := GetMockResponse[fingerprint.ErrorResponse]("mocks/errors/400_visitor_id_invalid.json")
+			mockResponse.Error.Code = fingerprint.ErrorCode("unknown-value")
+
+			runTest(t, 400, mockResponse)
+		})
 	})
 
 	t.Run("Returns response when JSON field type is not matching response schema", func(t *testing.T) {

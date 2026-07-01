@@ -13,7 +13,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // SearchEventsBotInfo Filter events by their Bot Info result, specifically:   - `all` - events where any kind of bot was detected.   - `none` - events where no bot was detected.
@@ -37,13 +36,13 @@ func (v *SearchEventsBotInfo) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := SearchEventsBotInfo(value)
-	for _, existing := range AllowedSearchEventsBotInfoEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
 
-	return fmt.Errorf("%+v is not a valid SearchEventsBotInfo", value)
+	// Do not validate the value against the allowed values. The server
+	// API may use new enum values before the SDK supports them
+	// and that scenario must not result in deserialization failures.
+	//
+	// SDK users can limit the enum values they work with by
+	// using the exported AllowedSearchEventsBotInfoEnumValues slice.
+	*v = SearchEventsBotInfo(value)
+	return nil
 }

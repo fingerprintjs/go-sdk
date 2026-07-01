@@ -13,7 +13,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // ProxyConfidence Confidence level of the proxy detection. If a proxy is not detected, confidence is \"high\". If it's detected, can be \"low\", \"medium\", or \"high\".
@@ -39,13 +38,13 @@ func (v *ProxyConfidence) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := ProxyConfidence(value)
-	for _, existing := range AllowedProxyConfidenceEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
 
-	return fmt.Errorf("%+v is not a valid ProxyConfidence", value)
+	// Do not validate the value against the allowed values. The server
+	// API may use new enum values before the SDK supports them
+	// and that scenario must not result in deserialization failures.
+	//
+	// SDK users can limit the enum values they work with by
+	// using the exported AllowedProxyConfidenceEnumValues slice.
+	*v = ProxyConfidence(value)
+	return nil
 }

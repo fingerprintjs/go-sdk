@@ -13,7 +13,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // RareDevicePercentileBucket The rarity percentile bucket of the device, indicating how uncommon the device configuration is compared to all observed devices.  > This Smart Signal is currently in beta and only available to select customers. If you are interested, please [contact our support team](https://fingerprint.com/support/).
@@ -45,13 +44,13 @@ func (v *RareDevicePercentileBucket) UnmarshalJSON(src []byte) error {
 	if err != nil {
 		return err
 	}
-	enumTypeValue := RareDevicePercentileBucket(value)
-	for _, existing := range AllowedRareDevicePercentileBucketEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
 
-	return fmt.Errorf("%+v is not a valid RareDevicePercentileBucket", value)
+	// Do not validate the value against the allowed values. The server
+	// API may use new enum values before the SDK supports them
+	// and that scenario must not result in deserialization failures.
+	//
+	// SDK users can limit the enum values they work with by
+	// using the exported AllowedRareDevicePercentileBucketEnumValues slice.
+	*v = RareDevicePercentileBucket(value)
+	return nil
 }

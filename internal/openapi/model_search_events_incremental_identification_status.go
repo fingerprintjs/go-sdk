@@ -13,7 +13,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // SearchEventsIncrementalIdentificationStatus Filter events by their incremental identification status (`incremental_identification_status` property). Non incremental identification events are left out of the response.
@@ -37,13 +36,13 @@ func (v *SearchEventsIncrementalIdentificationStatus) UnmarshalJSON(src []byte) 
 	if err != nil {
 		return err
 	}
-	enumTypeValue := SearchEventsIncrementalIdentificationStatus(value)
-	for _, existing := range AllowedSearchEventsIncrementalIdentificationStatusEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
 
-	return fmt.Errorf("%+v is not a valid SearchEventsIncrementalIdentificationStatus", value)
+	// Do not validate the value against the allowed values. The server
+	// API may use new enum values before the SDK supports them
+	// and that scenario must not result in deserialization failures.
+	//
+	// SDK users can limit the enum values they work with by
+	// using the exported AllowedSearchEventsIncrementalIdentificationStatusEnumValues slice.
+	*v = SearchEventsIncrementalIdentificationStatus(value)
+	return nil
 }
