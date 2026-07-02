@@ -1,15 +1,5 @@
 # Fingerprint Pro Server Go SDK
 
-## 8.4.0
-
-### Minor Changes
-
-- **client-interface**: Add `ClientInterface` and `WithClientInterface` option, allowing custom implementations of the Fingerprint client without needing to implement the low-level API internals required by `WithFingerprintAPI`. `WithFingerprintAPI` is now deprecated in favor of `WithClientInterface`. ([5321de3](https://github.com/fingerprintjs/go-sdk/commit/5321de3f73d37c2be391bb3d11c5a7c996dde284))
-
-### Patch Changes
-
-- Accept unknown enum values gracefully instead of throwing errors during deserialization ([ea6c549](https://github.com/fingerprintjs/go-sdk/commit/ea6c5497f6457dd1fe17f235ebff9b3454300e1b))
-
 ## 8.3.0
 
 ### Minor Changes
