@@ -1,5 +1,16 @@
 # Fingerprint Pro Server Go SDK
 
+## 8.5.0
+
+### Minor Changes
+
+- **events**: Add `device`, `os`, and `os_version` to `Event` ([a38443c](https://github.com/fingerprintjs/go-sdk/commit/a38443c2d930692398cccf0281f2abb1b8faf20f))
+- **events-search**: Add `source` query parameter to filter events by `edge` (Automation Intelligence) source ([a38443c](https://github.com/fingerprintjs/go-sdk/commit/a38443c2d930692398cccf0281f2abb1b8faf20f))
+- **events**: Add `battery_level` and `battery_low_power_mode` to `RawDeviceAttributes` ([a38443c](https://github.com/fingerprintjs/go-sdk/commit/a38443c2d930692398cccf0281f2abb1b8faf20f))
+- **events**: Add `ml_prediction` to `vpn_methods` ([a38443c](https://github.com/fingerprintjs/go-sdk/commit/a38443c2d930692398cccf0281f2abb1b8faf20f))
+- **events**: Add `vpn_ml_score` to `Event` ([a38443c](https://github.com/fingerprintjs/go-sdk/commit/a38443c2d930692398cccf0281f2abb1b8faf20f))
+- **events-search**: Document 404 response for `searchEvents` operation ([a38443c](https://github.com/fingerprintjs/go-sdk/commit/a38443c2d930692398cccf0281f2abb1b8faf20f))
+
 ## 8.4.0
 
 ### Minor Changes
