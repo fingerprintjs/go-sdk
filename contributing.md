@@ -67,3 +67,20 @@ go run getVisits.go
 ## How to publish
 
 We use [changesets](https://github.com/changesets/changesets) for handling release notes. If there are relevant changes, please add them to changeset via `pnpm exec changeset`. You need to run `pnpm install` before doing so.
+
+### Publishing `fingerprinttest`
+
+[fingerprinttest](./fingerprinttest) is its own Go module (separate `go.mod`), so consumers don't have to pull in `testify/mock` unless they actually use `MockClient`. It's versioned independently of the main SDK and isn't wired into the changesets release automation yet, so releasing it currently takes a few manual steps.
+
+Release a new version of `fingerprinttest` whenever `fingerprinttest/mock_client.go` changes. This usually happens because `fingerprint.ClientInterface` gained or changed a method and `MockClient` needs to be updated to match. Since `fingerprinttest/go.mod` references a published go-sdk version, only do this after the corresponding go-sdk release has gone out:
+
+1. Bump the `github.com/fingerprintjs/go-sdk/v8` requirement in [fingerprinttest/go.mod](./fingerprinttest/go.mod) to the released go-sdk version, then run `cd fingerprinttest && go mod tidy`.
+2. Add an entry to [fingerprinttest/CHANGELOG.md](./fingerprinttest/CHANGELOG.md) describing the change and bump the version header (following semver).
+3. Commit the changes and merge them to `main`.
+4. Manually create and push a git tag in the `fingerprinttest/vX.Y.Z` format. This is the tag format Go's module tooling expects for a nested module:
+   ```shell
+   git tag fingerprinttest/v1.1.0
+   git push origin fingerprinttest/v1.1.0
+   ```
+
+This is a short-term manual process. Automating it, for example with a release workflow job, is tracked as future work.
