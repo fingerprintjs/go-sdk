@@ -5,7 +5,7 @@
 ## Installation
 
 ```shell
-go get "github.com/fingerprintjs/go-sdk/v8/fingerprinttest"
+go get "github.com/fingerprintjs/go-sdk/fingerprinttest"
 ```
 
 ## Usage
@@ -17,7 +17,7 @@ import (
     "testing"
 
     fingerprint "github.com/fingerprintjs/go-sdk/v8"
-    "github.com/fingerprintjs/go-sdk/v8/fingerprinttest"
+    "github.com/fingerprintjs/go-sdk/fingerprinttest"
     "github.com/stretchr/testify/assert"
 )
 

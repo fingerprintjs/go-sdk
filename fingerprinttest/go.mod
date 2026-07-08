@@ -1,4 +1,4 @@
-module github.com/fingerprintjs/go-sdk/v8/fingerprinttest
+module github.com/fingerprintjs/go-sdk/fingerprinttest
 
 go 1.21
 
