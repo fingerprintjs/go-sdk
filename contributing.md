@@ -40,6 +40,12 @@ Majority of the code generator options can be found in the [openapi-config.yml](
 
 Run `sh ./bin/sync.sh` to download the latest Fingerprint OpenAPI schema.
 
+### Updating the codegen engine and templates
+
+The generator version is pinned as a Docker image tag in [bin/openapi-codegen-docker.sh](bin/openapi-codegen-docker.sh). To pick up a new openapi-generator release, bump that tag, re-run `sh ./bin/openapi-codegen-docker.sh`, and review the diff for breaking changes to generated code.
+
+Files in [template](./template) are copies of the upstream [Go generator templates](https://github.com/OpenAPITools/openapi-generator/tree/master/modules/openapi-generator/src/main/resources/go), each with local Fingerprint-specific changes on top. When bumping the engine version, diff each template against the upstream template at the new tag and reconcile the upstream changes with our own, the same way you'd resolve a merge conflict. Bump the engine and update the templates in the same change. Using an old template with a new engine, or the other way around, can break code generation without throwing an obvious error.
+
 ### Configuration
 
 Project configuration like `version` can be found in the [package.json](package.json) file.
