@@ -14,8 +14,8 @@ func isValidHmacSignature(signature string, data []byte, secret string) bool {
 	return signature == computedSignature
 }
 
-// IsValidWebhookSignature Verifies the HMAC signature extracted from the "fpjs-event-signature" header of the incoming request. This is a part of the webhook signing process, which is available only for enterprise customers.
-// If you wish to enable it, please contact our support: https://fingerprint.com/support
+// IsValidWebhookSignature Verifies the HMAC signature extracted from the "fpjs-event-signature" header of the incoming request.
+// Fingerprint signs every webhook request with the signing key configured for that webhook; see https://docs.fingerprint.com/docs/webhooks#protecting-your-webhooks to learn more.
 func IsValidWebhookSignature(header string, data []byte, secret string) bool {
 	signatures := strings.Split(header, ",")
 

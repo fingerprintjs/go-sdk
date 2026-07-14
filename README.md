@@ -184,9 +184,35 @@ func main() {
 
 To learn more, refer to example located in [example/sealedResults.go](example/sealedResults.go).
 
-## Webhook signing
+## Webhooks
 
-This SDK provides utility method for verifying the HMAC signature of the incoming [webhook](https://docs.fingerprint.com/docs/webhooks) request.
+### Webhook types
+
+When handling [webhooks](https://docs.fingerprint.com/reference/posteventwebhook) coming from Fingerprint, you can decode the payload directly into the built-in `Event` type:
+
+```go
+package main
+
+import (
+    "encoding/json"
+    "github.com/fingerprintjs/go-sdk/v8"
+    "log"
+)
+
+func main() {
+    // Body of the incoming webhook request.
+    body := []byte("...")
+
+    var event fingerprint.Event
+    if err := json.Unmarshal(body, &event); err != nil {
+        log.Fatal(err)
+    }
+}
+```
+
+### Webhook signature validation
+
+This SDK provides a utility method for verifying the HMAC signature of the incoming [webhook](https://docs.fingerprint.com/docs/webhooks#protecting-your-webhooks) request.
 
 Use below code to verify signature:
 ```go
