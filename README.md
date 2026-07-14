@@ -212,7 +212,7 @@ func main() {
 
 ### Webhook signature validation
 
-This SDK provides a utility method for verifying the HMAC signature of the incoming [webhook](https://docs.fingerprint.com/docs/webhooks#protecting-your-webhooks) request.
+Fingerprint offers [Webhook signatures](https://docs.fingerprint.com/docs/webhooks#protecting-your-webhooks) to verify the authenticity of incoming webhook requests. This SDK provides a utility method for verification.
 
 Use below code to verify signature:
 ```go
