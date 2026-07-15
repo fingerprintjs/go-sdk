@@ -2,7 +2,10 @@ module github.com/fingerprintjs/go-sdk/test
 
 go 1.21
 
-require github.com/stretchr/testify v1.10.0
+require (
+	github.com/fingerprintjs/go-sdk/v8 v8.4.0
+	github.com/stretchr/testify v1.11.1
+)
 
 require (
 	github.com/davecgh/go-spew v1.1.1 // indirect
