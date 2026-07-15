@@ -23,12 +23,13 @@ jobs:
         go-version: ['1.21', '1.22', '1.23', '1.24', '1.25', '1.26']
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           ref: ${{ github.event.pull_request.head.sha }}
-      - uses: actions/setup-go@v5
+      - uses: actions/setup-go@v6
         with:
           go-version: ${{ matrix.go-version }}
+          cache-dependency-path: functional_test/go.sum
       - name: Run functional tests
         run: go test
         working-directory: functional_test
