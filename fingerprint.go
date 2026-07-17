@@ -97,7 +97,7 @@ func WithRulesetID(rulesetID string) GetEventOption {
 // Using Rulesets:
 // Provide a rulesetID query parameter to evaluate the event against a ruleset. To learn more, refer to example located in [example/getEventWithRulesetEvaluation.go].
 //
-// [event identifier]: https://dev.fingerprint.com/reference/get-function#event_id
+// [event identifier]: https://docs.fingerprint.com/reference/js-agent-get-function#event_id
 // [example/getEventWithRulesetEvaluation.go]: https://github.com/fingerprintjs/go-sdk/blob/main/example/getEventWithRulesetEvaluation.go
 func (c *Client) GetEvent(ctx context.Context, eventID string, opts ...GetEventOption) (*Event, *http.Response, error) {
 	if c.clientInterface != nil {
@@ -154,7 +154,7 @@ func (c *Client) SearchEvents(ctx context.Context, req SearchEventRequest) (*Eve
 //
 // This method allows you to modify event properties such as suspect status and other metadata.
 //
-// [event identifier]: https://dev.fingerprint.com/reference/get-function#event_id
+// [event identifier]: https://docs.fingerprint.com/reference/js-agent-get-function#event_id
 func (c *Client) UpdateEvent(ctx context.Context, eventID string, eventUpdateReq EventUpdate) (*http.Response, error) {
 	if c.clientInterface != nil {
 		return c.clientInterface.UpdateEvent(ctx, eventID, eventUpdateReq)
@@ -174,7 +174,7 @@ func (c *Client) UpdateEvent(ctx context.Context, eventID string, eventUpdateReq
 // This method permanently removes all events and data associated with the specified visitor.
 // Use with caution as this operation cannot be undone.
 //
-// [visitor identifier]: https://dev.fingerprint.com/reference/get-function#visitor_id
+// [visitor identifier]: https://docs.fingerprint.com/reference/js-agent-get-function#visitor_id
 func (c *Client) DeleteVisitorData(ctx context.Context, visitorID string) (*http.Response, error) {
 	if c.clientInterface != nil {
 		return c.clientInterface.DeleteVisitorData(ctx, visitorID)
