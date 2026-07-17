@@ -278,6 +278,7 @@ paths:
           items:
             $ref: "#/components/schemas/BotInfoCategory"
           type: array
+          default: null
         style: form
       - description: |
           Filter events by their Bot Info Identity type.
@@ -291,6 +292,7 @@ paths:
           items:
             $ref: "#/components/schemas/BotInfoIdentity"
           type: array
+          default: null
         style: form
       - description: |
           Filter events by their Bot Info Confidence.
@@ -304,6 +306,7 @@ paths:
           items:
             $ref: "#/components/schemas/BotInfoConfidence"
           type: array
+          default: null
         style: form
       - description: |
           Filter events by their Bot Info Provider. The provider must match exactly, partial or wildcard matching is not supported.
@@ -318,6 +321,7 @@ paths:
             example: OpenAI
             type: string
           type: array
+          default: null
         style: form
       - description: |
           Filter events by their Bot Info Name. The name must match exactly, partial or wildcard matching is not supported.
@@ -332,6 +336,7 @@ paths:
             example: ChatGPT-User
             type: string
           type: array
+          default: null
         style: form
       - description: |
           Filter events by IP address or IP range (if CIDR notation is used). If CIDR notation is not used, a /32 for IPv4 or /128 for IPv6 is assumed.
@@ -735,6 +740,7 @@ paths:
             example: ae_47abaca3db2c7c43
             type: string
           type: array
+          default: null
         style: form
       - description: |
           Filter events by the most precise Proximity ID provided by default.
@@ -803,6 +809,7 @@ paths:
             $ref: "#/components/schemas/SearchEventsSource"
           maxItems: 1
           type: array
+          default: null
         style: form
       responses:
         "200":
@@ -1058,6 +1065,7 @@ components:
           items:
             $ref: "#/components/schemas/Geolocation_subdivisions_inner"
           type: array
+          default: null
     IPInfoV4:
       properties:
         address:
@@ -1326,6 +1334,7 @@ components:
           items:
             $ref: "#/components/schemas/Integration"
           type: array
+          default: null
       required:
       - platform
       - version
@@ -1619,14 +1628,14 @@ components:
       description: "The set of header modifications to apply, in the following order:\
         \ remove, set, append."
       example:
+        remove:
+        - remove
+        - remove
         set:
         - name: name
           value: value
         - name: name
           value: value
-        remove:
-        - remove
-        - remove
         append:
         - name: name
           value: value
@@ -1638,39 +1647,42 @@ components:
           items:
             type: string
           type: array
+          default: null
         set:
           description: "The list of headers to set, overwriting any existing headers\
             \ with the same name."
           items:
             $ref: "#/components/schemas/RuleActionHeaderField"
           type: array
+          default: null
         append:
           description: The list of headers to append.
           items:
             $ref: "#/components/schemas/RuleActionHeaderField"
           type: array
+          default: null
     EventRuleActionAllow:
       description: Informs the client that the request should be forwarded to the
         origin with optional request header modifications.
       example:
+        ruleset_id: ruleset_id
         rule_id: rule_id
         rule_expression: rule_expression
-        ruleset_id: ruleset_id
+        type: ""
         request_header_modifications:
+          remove:
+          - remove
+          - remove
           set:
           - name: name
             value: value
           - name: name
             value: value
-          remove:
-          - remove
-          - remove
           append:
           - name: name
             value: value
           - name: name
             value: value
-        type: ""
       properties:
         ruleset_id:
           description: The ID of the evaluated ruleset.
@@ -1721,6 +1733,7 @@ components:
           items:
             $ref: "#/components/schemas/RuleActionHeaderField"
           type: array
+          default: null
         body:
           description: The response body to send to the client.
           type: string
@@ -1959,6 +1972,7 @@ components:
       items:
         type: string
       type: array
+      default: null
     DeviceMemory:
       description: Rounded amount of RAM in gigabytes.
       format: int32
@@ -1985,7 +1999,9 @@ components:
         items:
           type: string
         type: array
+        default: null
       type: array
+      default: null
     WebGlExtensions:
       description: Hashes of WebGL context attributes and extension support.
       properties:
@@ -2003,6 +2019,7 @@ components:
           items:
             type: string
           type: array
+          default: null
     WebGlBasics:
       description: Render and vendor strings reported by the WebGL context.
       properties:
@@ -2027,6 +2044,7 @@ components:
       maxItems: 2
       minItems: 2
       type: array
+      default: null
     TouchSupport:
       description: Browser-reported touch capabilities.
       properties:
@@ -2087,6 +2105,7 @@ components:
       items:
         $ref: "#/components/schemas/Plugins_inner"
       type: array
+      default: null
     IndexedDb:
       description: Whether IndexedDB is available.
       type: boolean
@@ -2130,6 +2149,7 @@ components:
           items:
             type: string
           type: array
+          default: null
         device_memory:
           description: Rounded amount of RAM in gigabytes.
           format: int32
@@ -2147,7 +2167,9 @@ components:
             items:
               type: string
             type: array
+            default: null
           type: array
+          default: null
         webgl_extensions:
           $ref: "#/components/schemas/WebGlExtensions"
         webgl_basics:
@@ -2161,6 +2183,7 @@ components:
           maxItems: 2
           minItems: 2
           type: array
+          default: null
         touch_support:
           $ref: "#/components/schemas/TouchSupport"
         oscpu:
@@ -2213,6 +2236,7 @@ components:
           items:
             $ref: "#/components/schemas/Plugins_inner"
           type: array
+          default: null
         indexed_db:
           description: Whether IndexedDB is available.
           type: boolean
@@ -2250,91 +2274,92 @@ components:
       items:
         $ref: "#/components/schemas/Labels_inner"
       type: array
+      default: null
     Event:
       description: Contains results from Fingerprint Identification and all active
         Smart Signals.
       example:
-        environment_id: ""
-        tampering_details: ""
-        frida: ""
-        incognito: ""
-        client_referrer: ""
-        vpn_methods: ""
-        identification: ""
-        vpn_origin_country: ""
-        browser_details: ""
-        high_activity_device: ""
-        vpn_confidence: ""
-        raw_device_attributes: ""
-        replayed: ""
-        developer_tools: ""
-        ip_blocklist: ""
-        proxy_confidence: ""
-        rare_device_percentile_bucket: ""
-        tags: ""
-        labels: ""
-        emulator: ""
-        proxy: ""
-        tampering_ml_score: ""
-        proximity: ""
-        bundle_id: ""
-        proxy_details: ""
-        privacy_settings: ""
-        suspect_score: ""
-        sdk: ""
-        device: ""
-        vpn_origin_timezone: ""
-        ip_info: ""
-        location_spoofing: ""
-        incremental_identification_status: ""
-        mitm_attack: ""
-        bot_info: ""
-        rare_device: ""
-        bot: ""
-        supplementary_id_high_recall: ""
-        cloned_app: ""
-        bot_type: ""
-        vpn_ml_score: ""
-        tampering_confidence: ""
-        user_agent: ""
+        event_id: ""
         timestamp: ""
-        simulator: ""
+        incremental_identification_status: ""
+        linked_id: ""
+        environment_id: ""
+        suspect: ""
+        sdk: ""
+        replayed: ""
+        identification: ""
+        supplementary_id_high_recall: ""
+        tags: ""
+        url: ""
+        bundle_id: ""
+        package_name: ""
+        ip_address: ""
+        user_agent: ""
+        device: ""
         os: ""
+        os_version: ""
+        client_referrer: ""
+        browser_details: ""
+        proximity: ""
+        bot: ""
+        bot_type: ""
+        bot_info: ""
+        cloned_app: ""
+        developer_tools: ""
+        emulator: ""
+        factory_reset_timestamp: ""
+        frida: ""
+        ip_blocklist: ""
+        ip_info: ""
+        proxy: ""
+        proxy_confidence: ""
+        proxy_details: ""
+        proxy_ml_score: ""
+        incognito: ""
+        jailbroken: ""
+        location_spoofing: ""
+        mitm_attack: ""
+        privacy_settings: ""
+        root_apps: ""
         rule_action:
+          ruleset_id: ruleset_id
           rule_id: rule_id
           rule_expression: rule_expression
-          ruleset_id: ruleset_id
+          type: ""
           request_header_modifications:
+            remove:
+            - remove
+            - remove
             set:
             - name: name
               value: value
             - name: name
               value: value
-            remove:
-            - remove
-            - remove
             append:
             - name: name
               value: value
             - name: name
               value: value
-          type: ""
-        root_apps: ""
-        os_version: ""
-        jailbroken: ""
-        suspect: ""
-        ip_address: ""
+        simulator: ""
+        suspect_score: ""
+        tampering: ""
+        tampering_confidence: ""
+        tampering_ml_score: ""
+        tampering_details: ""
         velocity: ""
-        url: ""
-        factory_reset_timestamp: ""
-        event_id: ""
-        proxy_ml_score: ""
-        vpn: ""
-        package_name: ""
         virtual_machine: ""
         virtual_machine_ml_score: ""
-        tampering: ""
-        linked_id: ""
+        vpn: ""
+        vpn_confidence: ""
+        vpn_ml_score: ""
+        vpn_origin_timezone: ""
+        vpn_origin_country: ""
+        vpn_methods: ""
+        high_activity_device: ""
+        rare_device: ""
+        rare_device_percentile_bucket: ""
+        raw_device_attributes: ""
+        labels: ""
       properties:
         event_id:
           allOf:
@@ -2728,10 +2753,10 @@ components:
       - timestamp
     EventUpdate:
       example:
-        suspect: true
         linked_id: linked_id
         tags:
           key: ""
+        suspect: true
       properties:
         linked_id:
           description: Linked ID value to assign to the existing event
@@ -2749,176 +2774,177 @@ components:
       description: Contains a list of all identification events matching the specified
         search criteria.
       example:
-        total_hits: 0
-        pagination_key: pagination_key
         events:
-        - environment_id: ""
-          tampering_details: ""
-          frida: ""
-          incognito: ""
-          client_referrer: ""
-          vpn_methods: ""
-          identification: ""
-          vpn_origin_country: ""
-          browser_details: ""
-          high_activity_device: ""
-          vpn_confidence: ""
-          raw_device_attributes: ""
-          replayed: ""
-          developer_tools: ""
-          ip_blocklist: ""
-          proxy_confidence: ""
-          rare_device_percentile_bucket: ""
-          tags: ""
-          labels: ""
-          emulator: ""
-          proxy: ""
-          tampering_ml_score: ""
-          proximity: ""
-          bundle_id: ""
-          proxy_details: ""
-          privacy_settings: ""
-          suspect_score: ""
-          sdk: ""
-          device: ""
-          vpn_origin_timezone: ""
-          ip_info: ""
-          location_spoofing: ""
-          incremental_identification_status: ""
-          mitm_attack: ""
-          bot_info: ""
-          rare_device: ""
-          bot: ""
-          supplementary_id_high_recall: ""
-          cloned_app: ""
-          bot_type: ""
-          vpn_ml_score: ""
-          tampering_confidence: ""
-          user_agent: ""
+        - event_id: ""
           timestamp: ""
-          simulator: ""
+          incremental_identification_status: ""
+          linked_id: ""
+          environment_id: ""
+          suspect: ""
+          sdk: ""
+          replayed: ""
+          identification: ""
+          supplementary_id_high_recall: ""
+          tags: ""
+          url: ""
+          bundle_id: ""
+          package_name: ""
+          ip_address: ""
+          user_agent: ""
+          device: ""
           os: ""
+          os_version: ""
+          client_referrer: ""
+          browser_details: ""
+          proximity: ""
+          bot: ""
+          bot_type: ""
+          bot_info: ""
+          cloned_app: ""
+          developer_tools: ""
+          emulator: ""
+          factory_reset_timestamp: ""
+          frida: ""
+          ip_blocklist: ""
+          ip_info: ""
+          proxy: ""
+          proxy_confidence: ""
+          proxy_details: ""
+          proxy_ml_score: ""
+          incognito: ""
+          jailbroken: ""
+          location_spoofing: ""
+          mitm_attack: ""
+          privacy_settings: ""
+          root_apps: ""
           rule_action:
+            ruleset_id: ruleset_id
             rule_id: rule_id
             rule_expression: rule_expression
-            ruleset_id: ruleset_id
+            type: ""
             request_header_modifications:
+              remove:
+              - remove
+              - remove
               set:
               - name: name
                 value: value
               - name: name
                 value: value
-              remove:
-              - remove
-              - remove
               append:
               - name: name
                 value: value
               - name: name
                 value: value
-            type: ""
-          root_apps: ""
-          os_version: ""
-          jailbroken: ""
-          suspect: ""
-          ip_address: ""
+          simulator: ""
+          suspect_score: ""
+          tampering: ""
+          tampering_confidence: ""
+          tampering_ml_score: ""
+          tampering_details: ""
           velocity: ""
-          url: ""
-          factory_reset_timestamp: ""
-          event_id: ""
-          proxy_ml_score: ""
-          vpn: ""
-          package_name: ""
           virtual_machine: ""
           virtual_machine_ml_score: ""
-          tampering: ""
-          linked_id: ""
-        - environment_id: ""
-          tampering_details: ""
-          frida: ""
-          incognito: ""
-          client_referrer: ""
-          vpn_methods: ""
-          identification: ""
-          vpn_origin_country: ""
-          browser_details: ""
-          high_activity_device: ""
+          vpn: ""
           vpn_confidence: ""
-          raw_device_attributes: ""
-          replayed: ""
-          developer_tools: ""
-          ip_blocklist: ""
-          proxy_confidence: ""
-          rare_device_percentile_bucket: ""
-          tags: ""
-          labels: ""
-          emulator: ""
-          proxy: ""
-          tampering_ml_score: ""
-          proximity: ""
-          bundle_id: ""
-          proxy_details: ""
-          privacy_settings: ""
-          suspect_score: ""
-          sdk: ""
-          device: ""
-          vpn_origin_timezone: ""
-          ip_info: ""
-          location_spoofing: ""
-          incremental_identification_status: ""
-          mitm_attack: ""
-          bot_info: ""
-          rare_device: ""
-          bot: ""
-          supplementary_id_high_recall: ""
-          cloned_app: ""
-          bot_type: ""
           vpn_ml_score: ""
-          tampering_confidence: ""
-          user_agent: ""
+          vpn_origin_timezone: ""
+          vpn_origin_country: ""
+          vpn_methods: ""
+          high_activity_device: ""
+          rare_device: ""
+          rare_device_percentile_bucket: ""
+          raw_device_attributes: ""
+          labels: ""
+        - event_id: ""
           timestamp: ""
-          simulator: ""
+          incremental_identification_status: ""
+          linked_id: ""
+          environment_id: ""
+          suspect: ""
+          sdk: ""
+          replayed: ""
+          identification: ""
+          supplementary_id_high_recall: ""
+          tags: ""
+          url: ""
+          bundle_id: ""
+          package_name: ""
+          ip_address: ""
+          user_agent: ""
+          device: ""
           os: ""
+          os_version: ""
+          client_referrer: ""
+          browser_details: ""
+          proximity: ""
+          bot: ""
+          bot_type: ""
+          bot_info: ""
+          cloned_app: ""
+          developer_tools: ""
+          emulator: ""
+          factory_reset_timestamp: ""
+          frida: ""
+          ip_blocklist: ""
+          ip_info: ""
+          proxy: ""
+          proxy_confidence: ""
+          proxy_details: ""
+          proxy_ml_score: ""
+          incognito: ""
+          jailbroken: ""
+          location_spoofing: ""
+          mitm_attack: ""
+          privacy_settings: ""
+          root_apps: ""
           rule_action:
+            ruleset_id: ruleset_id
             rule_id: rule_id
             rule_expression: rule_expression
-            ruleset_id: ruleset_id
+            type: ""
             request_header_modifications:
+              remove:
+              - remove
+              - remove
               set:
               - name: name
                 value: value
               - name: name
                 value: value
-              remove:
-              - remove
-              - remove
               append:
               - name: name
                 value: value
               - name: name
                 value: value
-            type: ""
-          root_apps: ""
-          os_version: ""
-          jailbroken: ""
-          suspect: ""
-          ip_address: ""
+          simulator: ""
+          suspect_score: ""
+          tampering: ""
+          tampering_confidence: ""
+          tampering_ml_score: ""
+          tampering_details: ""
           velocity: ""
-          url: ""
-          factory_reset_timestamp: ""
-          event_id: ""
-          proxy_ml_score: ""
-          vpn: ""
-          package_name: ""
           virtual_machine: ""
           virtual_machine_ml_score: ""
-          tampering: ""
-          linked_id: ""
+          vpn: ""
+          vpn_confidence: ""
+          vpn_ml_score: ""
+          vpn_origin_timezone: ""
+          vpn_origin_country: ""
+          vpn_methods: ""
+          high_activity_device: ""
+          rare_device: ""
+          rare_device_percentile_bucket: ""
+          raw_device_attributes: ""
+          labels: ""
+        pagination_key: pagination_key
+        total_hits: 0
       properties:
         events:
           items:
             $ref: "#/components/schemas/Event"
           type: array
+          default: null
         pagination_key:
           description: Use this value in the `pagination_key` parameter to request
             the next page of search results.
@@ -3042,6 +3068,7 @@ components:
           items:
             $ref: "#/components/schemas/Plugins_inner_mimeTypes_inner"
           type: array
+          default: null
       required:
       - name
     Labels_inner:
