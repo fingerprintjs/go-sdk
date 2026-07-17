@@ -37,7 +37,7 @@ type DecryptionKey struct {
 // UnsealEventsResponse decrypts the sealed response with the provided keys.
 // The will try to decrypt the result with each key until it succeeds.
 // In case if all keys fail, AggregatedUnsealError is returned with error details for each key.
-// To learn more about sealed results visit: https://dev.fingerprint.com/docs/sealed-client-results
+// To learn more about sealed results visit: https://docs.fingerprint.com/docs/sealed-client-results
 func UnsealEventsResponse(sealed []byte, keys []DecryptionKey) (*openapi.Event, error) {
 	unsealed, err := Unseal(sealed, keys)
 
