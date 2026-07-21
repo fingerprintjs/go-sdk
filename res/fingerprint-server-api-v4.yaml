@@ -532,10 +532,10 @@ paths:
             needed.
           schema:
             examples:
-              - 1767225600000
-            example: 1767225600000
-            type: integer
-            format: int64
+              - '2026-01-01T00:00:00Z'
+            example: '2026-01-01T00:00:00Z'
+            type: string
+            format: date-time
           x-parameter-alias: start_date_time
         - name: start_date_time
           in: query
@@ -547,10 +547,10 @@ paths:
             separately if needed. This parameter is an alias for `start`.
           schema:
             examples:
-              - '2026-01-01T00:00:00Z'
-            example: '2026-01-01T00:00:00Z'
-            type: string
-            format: date-time
+              - 1767225600000
+            example: 1767225600000
+            type: integer
+            format: int64
           x-aliased-parameter-name: start
         - name: end
           in: query
@@ -561,10 +561,10 @@ paths:
             for `start`/`start_date_time` — adjust it separately if needed.
           schema:
             examples:
-              - 1769903999000
-            example: 1769903999000
-            type: integer
-            format: int64
+              - '2026-01-31T23:59:59Z'
+            example: '2026-01-31T23:59:59Z'
+            type: string
+            format: date-time
           x-parameter-alias: end_date_time
         - name: end_date_time
           in: query
@@ -576,10 +576,10 @@ paths:
             if needed. This parameter is an alias for `end`.
           schema:
             examples:
-              - '2026-01-31T23:59:59Z'
-            example: '2026-01-31T23:59:59Z'
-            type: string
-            format: date-time
+              - 1769903999000
+            example: 1769903999000
+            type: integer
+            format: int64
           x-aliased-parameter-name: end
         - name: reverse
           in: query
@@ -953,6 +953,11 @@ paths:
             traditional identification events generated from devices are
             returned (the default behavior). When set to `edge`, only Automation
             Intelligence (Edge) events are returned.
+
+
+            To retrieve all events regardless of source, you must make two
+            requests. One with the `source` parameter set to `edge`, and another
+            with the `source` parameter omitted.
 
 
             > Note: The Automation Intelligence API is in public preview testing
@@ -2492,8 +2497,8 @@ components:
       examples:
         - DE
       description: >
-        Country of the request (only for Android SDK version >= 2.4.0, ISO 3166
-        format or unknown).
+        Country of the request (Android SDK version >= 2.4.0, iOS SDK version >=
+        2.9.0, JS agent >= 3.12.9 / 4.0.2), ISO 3166 format or unknown.
     HighActivity:
       type: boolean
       description: Flag indicating if the request came from a high-activity visitor.
@@ -2636,7 +2641,9 @@ components:
       minimum: 0
       examples:
         - 8
-      description: Rounded amount of RAM in gigabytes.
+      description: >-
+        Rounded amount of RAM in gigabytes. Available for browsers, Android, and
+        iOS devices.
     Timezone:
       type: string
       examples:
@@ -2898,8 +2905,13 @@ components:
       examples:
         - 75
       description: >-
-        Battery charge level as a percentage (0-100). Available only for Android
-        and iOS devices.
+        Battery charge level as a percentage (0-100). Available for Android,
+        iOS, and web devices. On web, only available in Chromium-based browsers.
+    BatteryCharging:
+      type: boolean
+      description: >-
+        When `true`, the device is currently charging. Available only for web
+        devices on Chromium-based browsers.
     BatteryLowPowerMode:
       type: boolean
       description: >-
@@ -2973,6 +2985,8 @@ components:
           $ref: '#/components/schemas/TimezoneOffset'
         battery_level:
           $ref: '#/components/schemas/BatteryLevel'
+        battery_charging:
+          $ref: '#/components/schemas/BatteryCharging'
         battery_low_power_mode:
           $ref: '#/components/schemas/BatteryLowPowerMode'
     Labels:
