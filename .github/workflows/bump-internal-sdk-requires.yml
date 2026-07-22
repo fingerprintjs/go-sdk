@@ -11,6 +11,9 @@ on:
         required: true
         type: string
 
+permissions:
+  contents: read
+
 jobs:
   bump-internal-sdk-requires:
     name: 'Bump internal go-sdk requirement'
@@ -28,7 +31,7 @@ jobs:
           go-version: '1.26'
 
       - name: Bump go-sdk requirement in dependent modules
-        run: bin/bump-internal-sdk-requires.sh "${{ env.VERSION }}"
+        run: bin/bump-internal-sdk-requires.sh "$VERSION"
 
       - name: Generate GitHub App token
         id: app-token
