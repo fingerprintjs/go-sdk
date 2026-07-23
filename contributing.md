@@ -90,7 +90,7 @@ We use [changesets](https://github.com/changesets/changesets) for handling relea
 
 Release a new version of `fingerprinttest` whenever `fingerprinttest/mock_client.go` changes. This usually happens because `fingerprint.ClientInterface` gained or changed a method and `MockClient` needs to be updated to match. Since `fingerprinttest/go.mod` references a published go-sdk version, only do this after the corresponding go-sdk release has gone out:
 
-1. Bump the `github.com/fingerprintjs/go-sdk/v8` requirement in [fingerprinttest/go.mod](./fingerprinttest/go.mod) to the released go-sdk version, then run `cd fingerprinttest && go mod tidy`.
+1. Wait for (or merge) the `automated`-labeled PR that [`bump-internal-sdk-requires.yml`](./.github/workflows/bump-internal-sdk-requires.yml) opens after each go-sdk release. It bumps the `github.com/fingerprintjs/go-sdk/v8` requirement in `fingerprinttest/go.mod`, along with the other workspace modules. If it hasn't run yet, trigger it manually via that workflow's `workflow_dispatch` input.
 2. Add an entry to [fingerprinttest/CHANGELOG.md](./fingerprinttest/CHANGELOG.md) describing the change and bump the version header (following semver).
 3. Commit the changes and merge them to `main`.
 4. Manually create and push a git tag in the `fingerprinttest/vX.Y.Z` format. This is the tag format Go's module tooling expects for a nested module:
@@ -99,4 +99,4 @@ Release a new version of `fingerprinttest` whenever `fingerprinttest/mock_client
    git push origin fingerprinttest/v1.1.0
    ```
 
-This is a short-term manual process. Automating it, for example with a release workflow job, is tracked as future work.
+Steps 2-4 are still manual. Automating them, for example with a release workflow job, is tracked as future work.
