@@ -22,7 +22,7 @@ func NewMockClient(t interface {
 	Cleanup(func())
 }) *MockClient {
 	m := &MockClient{}
-	m.Mock.Test(t)
+	m.Test(t)
 	t.Cleanup(func() { m.AssertExpectations(t) })
 	return m
 }
