@@ -13,7 +13,7 @@ import (
 
 func main() {
 	// Load environment variables
-	godotenv.Load()
+	_ = godotenv.Load()
 
 	client := fingerprint.New(fingerprint.WithRegion(fingerprint.Region(os.Getenv("REGION"))), fingerprint.WithAPIKey(os.Getenv("FINGERPRINT_API_KEY")))
 
