@@ -459,6 +459,17 @@ func (a *FingerprintAPIService) GetEventExecute(ctx context.Context, r ApiGetEve
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 504 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -495,10 +506,10 @@ type ApiSearchEventsRequest struct {
 	bundleID                        *string
 	packageName                     *string
 	origin                          *string
-	start                           *int64
-	startDateTime                   *time.Time
-	end                             *int64
-	endDateTime                     *time.Time
+	start                           *time.Time
+	startDateTime                   *int64
+	end                             *time.Time
+	endDateTime                     *int64
 	reverse                         *bool
 	suspect                         *bool
 	vPN                             *bool
@@ -562,7 +573,7 @@ func (r ApiSearchEventsRequest) Bot(bot SearchEventsBot) ApiSearchEventsRequest 
 	return r
 }
 
-// Filter events by their Bot Info result, specifically:   - `all` - events where any kind of bot was detected.   - `none` - events where no bot was detected.
+// Filter events by their Bot Info result, specifically:   - `all` - events where any kind of bot was detected.   - `none` - events where no bot was detected, and no `bot_info` was present.
 func (r ApiSearchEventsRequest) BotInfo(botInfo SearchEventsBotInfo) ApiSearchEventsRequest {
 	r.botInfo = &botInfo
 	return r
@@ -643,7 +654,7 @@ func (r ApiSearchEventsRequest) Origin(origin string) ApiSearchEventsRequest {
 // Include events that happened after this point (with timestamp greater than or equal to the provided `start` Unix milliseconds value). Defaults to 7 days ago. Setting `start` does not change the default of `now` for `end`/`end_date_time` — adjust it separately if needed.
 //
 // `Start` is an alias for `StartDateTime`. Invoking `Start` will also clear an existing `StartDateTime` parameter value.
-func (r ApiSearchEventsRequest) Start(start int64) ApiSearchEventsRequest {
+func (r ApiSearchEventsRequest) Start(start time.Time) ApiSearchEventsRequest {
 	r.start = &start
 	r.startDateTime = nil
 	return r
@@ -652,7 +663,7 @@ func (r ApiSearchEventsRequest) Start(start int64) ApiSearchEventsRequest {
 // Include events that happened after this point (with timestamp greater than or equal to the provided `start_date_time` RFC3339 timestamp). Defaults to 7 days ago. Setting `start_date_time` does not the default of `now` for `end`/`end_date_time` — adjust it separately if needed. This parameter is an alias for `start`.
 //
 // `StartDateTime` is an alias for `Start`. Invoking `StartDateTime` will also clear an existing `Start` parameter value.
-func (r ApiSearchEventsRequest) StartDateTime(startDateTime time.Time) ApiSearchEventsRequest {
+func (r ApiSearchEventsRequest) StartDateTime(startDateTime int64) ApiSearchEventsRequest {
 	r.startDateTime = &startDateTime
 	r.start = nil
 	return r
@@ -661,7 +672,7 @@ func (r ApiSearchEventsRequest) StartDateTime(startDateTime time.Time) ApiSearch
 // Include events that happened before this point (with timestamp less than or equal the provided `end` Unix milliseconds value). Defaults to now. Setting `end` does not change the default of `7 days ago` for `start`/`start_date_time` — adjust it separately if needed.
 //
 // `End` is an alias for `EndDateTime`. Invoking `End` will also clear an existing `EndDateTime` parameter value.
-func (r ApiSearchEventsRequest) End(end int64) ApiSearchEventsRequest {
+func (r ApiSearchEventsRequest) End(end time.Time) ApiSearchEventsRequest {
 	r.end = &end
 	r.endDateTime = nil
 	return r
@@ -670,7 +681,7 @@ func (r ApiSearchEventsRequest) End(end int64) ApiSearchEventsRequest {
 // Include events that happened before this point (with timestamp less than or equal the provided `end_date_time` RFC3339 timestamp). Defaults to now. Setting `end_date_time` does not change the default of `7 days ago` for `start`/`start_date_time` — adjust it separately if needed. This parameter is an alias for `end`.
 //
 // `EndDateTime` is an alias for `End`. Invoking `EndDateTime` will also clear an existing `End` parameter value.
-func (r ApiSearchEventsRequest) EndDateTime(endDateTime time.Time) ApiSearchEventsRequest {
+func (r ApiSearchEventsRequest) EndDateTime(endDateTime int64) ApiSearchEventsRequest {
 	r.endDateTime = &endDateTime
 	r.end = nil
 	return r
@@ -700,13 +711,13 @@ func (r ApiSearchEventsRequest) VirtualMachine(virtualMachine bool) ApiSearchEve
 	return r
 }
 
-// Filter events by Browser Tampering Detection result. > Note: When using this parameter, only events with the `tampering.result` property set to `true` or `false` are returned. Events without a `tampering` Smart Signal result are left out of the response.
+// Filter events by Browser Tampering Detection result. > Note: When using this parameter, only events with the `tampering` property set to `true` or `false` are returned. Events without a `tampering` Smart Signal result are left out of the response.
 func (r ApiSearchEventsRequest) Tampering(tampering bool) ApiSearchEventsRequest {
 	r.tampering = &tampering
 	return r
 }
 
-// Filter events by Anti-detect Browser Detection result. > Note: When using this parameter, only events with the `tampering.anti_detect_browser` property set to `true` or `false` are returned. Events without a `tampering` Smart Signal result are left out of the response.
+// Filter events by Anti-detect Browser Detection result. > Note: When using this parameter, only events with the `tampering_details.anti_detect_browser` property set to `true` or `false` are returned. Events without a `tampering` Smart Signal result are left out of the response.
 func (r ApiSearchEventsRequest) AntiDetectBrowser(antiDetectBrowser bool) ApiSearchEventsRequest {
 	r.antiDetectBrowser = &antiDetectBrowser
 	return r
@@ -736,7 +747,7 @@ func (r ApiSearchEventsRequest) Frida(frida bool) ApiSearchEventsRequest {
 	return r
 }
 
-// Filter events by Factory Reset Detection result. > Note: When using this parameter, only events with a `factory_reset` time. Events without a `factory_reset` Smart Signal result are left out of the response.
+// Filter events by Factory Reset Detection result. > Note: When using this parameter, only events with a `factory_reset_timestamp` property populated are included. Events without a `factory_reset_timestamp` Smart Signal result are left out of the response.
 func (r ApiSearchEventsRequest) FactoryReset(factoryReset bool) ApiSearchEventsRequest {
 	r.factoryReset = &factoryReset
 	return r
@@ -856,7 +867,7 @@ func (r ApiSearchEventsRequest) Simulator(simulator bool) ApiSearchEventsRequest
 	return r
 }
 
-// Selects the source of events to search. When omitted, only traditional identification events generated from devices are returned (the default behavior). When set to `edge`, only Automation Intelligence (Edge) events are returned.  > Note: The Automation Intelligence API is in public preview testing phase.  If you encounter any issues, please [contact](https://fingerprint.com/support/) our support team.
+// Selects the source of events to search. When omitted, only traditional identification events generated from devices are returned (the default behavior). When set to `edge`, only Automation Intelligence (Edge) events are returned.  To retrieve all events regardless of source, you must make two requests. One with the `source` parameter set to `edge`, and another with the `source` parameter omitted.  > Note: The Automation Intelligence API is in public preview testing phase.  If you encounter any issues, please [contact](https://fingerprint.com/support/) our support team.
 func (r ApiSearchEventsRequest) Source(source []SearchEventsSource) ApiSearchEventsRequest {
 	r.source = &source
 	return r
@@ -1214,7 +1225,29 @@ func (a *FingerprintAPIService) SearchEventsExecute(ctx context.Context, r ApiSe
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 500 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 504 {
 			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {

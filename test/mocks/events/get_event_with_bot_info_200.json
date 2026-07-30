@@ -30,21 +30,30 @@
     "last_seen_at": 1708102555327
   },
   "supplementary_id_high_recall": {
-    "visitor_id": "0jnGMkPYXX37DqVa4ZIO3f_hr",
+    "visitor_id": "3HNey93AkBW6CRbxV6xP",
     "visitor_found": true,
     "confidence": {
-      "score": 0,
-      "version": "Not Supported"
+      "score": 0.97,
+      "version": "1.1"
     },
-    "first_seen_at": 1778086556130,
-    "last_seen_at": 1778604975494
+    "first_seen_at": 1708102555327,
+    "last_seen_at": 1708102555327
   },
   "proximity": {
     "id": "w1aTfd4MCvl",
     "precision_radius": 10,
     "confidence": 0.95
   },
-  "bot": "not_detected",
+  "bot": "good",
+  "bot_type": "chatgpt_agent",
+  "bot_info": {
+    "category": "ai_agent",
+    "provider": "OpenAI",
+    "provider_url": "https://openai.com",
+    "name": "ChatGPT Agent",
+    "identity": "signed",
+    "confidence": "high"
+  },
   "root_apps": false,
   "emulator": false,
   "ip_info": {
@@ -131,8 +140,6 @@
   },
   "incognito": false,
   "tampering": false,
-  "tampering_confidence": "high",
-  "tampering_ml_score": 0.3231,
   "tampering_details": {
     "anomaly_score": 0.1955,
     "anti_detect_browser": false
@@ -144,7 +151,6 @@
   "frida": false,
   "privacy_settings": false,
   "virtual_machine": false,
-  "virtual_machine_ml_score": 0.2,
   "location_spoofing": false,
   "velocity": {
     "distinct_ip": {

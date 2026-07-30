@@ -89,13 +89,22 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
-          description: Too Many Requests. The request is throttled.
+          description: |
+            Too Many Requests. The request is throttled.
+            To protect service stability during rare periods of extreme load, we may return HTTP 429 responses with message `too many search requests` even if you are within your assigned rate limits.
         "500":
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
           description: Workspace error.
+        "504":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Gateway Timeout. Search execution exceeded the allowed timeout
+            window.
       summary: Get an event by event ID
       tags:
       - Fingerprint
@@ -258,7 +267,7 @@ paths:
       - description: |
           Filter events by their Bot Info result, specifically:
             - `all` - events where any kind of bot was detected.
-            - `none` - events where no bot was detected.
+            - `none` - events where no bot was detected, and no `bot_info` was present.
         explode: true
         in: query
         name: bot_info
@@ -421,9 +430,9 @@ paths:
         name: start
         required: false
         schema:
-          example: 1767225600000
-          format: int64
-          type: integer
+          example: 2026-01-01T00:00:00Z
+          format: date-time
+          type: string
         style: form
         x-parameter-alias: start_date_time
       - description: Include events that happened after this point (with timestamp
@@ -436,9 +445,9 @@ paths:
         name: start_date_time
         required: false
         schema:
-          example: 2026-01-01T00:00:00Z
-          format: date-time
-          type: string
+          example: 1767225600000
+          format: int64
+          type: integer
         style: form
         x-aliased-parameter-name: start
       - description: Include events that happened before this point (with timestamp
@@ -450,9 +459,9 @@ paths:
         name: end
         required: false
         schema:
-          example: 1769903999000
-          format: int64
-          type: integer
+          example: 2026-01-31T23:59:59Z
+          format: date-time
+          type: string
         style: form
         x-parameter-alias: end_date_time
       - description: Include events that happened before this point (with timestamp
@@ -465,9 +474,9 @@ paths:
         name: end_date_time
         required: false
         schema:
-          example: 2026-01-31T23:59:59Z
-          format: date-time
-          type: string
+          example: 1769903999000
+          format: int64
+          type: integer
         style: form
         x-aliased-parameter-name: end
       - description: |
@@ -511,7 +520,7 @@ paths:
         style: form
       - description: |
           Filter events by Browser Tampering Detection result.
-          > Note: When using this parameter, only events with the `tampering.result` property set to `true` or `false` are returned. Events without a `tampering` Smart Signal result are left out of the response.
+          > Note: When using this parameter, only events with the `tampering` property set to `true` or `false` are returned. Events without a `tampering` Smart Signal result are left out of the response.
         explode: true
         in: query
         name: tampering
@@ -521,7 +530,7 @@ paths:
         style: form
       - description: |
           Filter events by Anti-detect Browser Detection result.
-          > Note: When using this parameter, only events with the `tampering.anti_detect_browser` property set to `true` or `false` are returned. Events without a `tampering` Smart Signal result are left out of the response.
+          > Note: When using this parameter, only events with the `tampering_details.anti_detect_browser` property set to `true` or `false` are returned. Events without a `tampering` Smart Signal result are left out of the response.
         explode: true
         in: query
         name: anti_detect_browser
@@ -571,7 +580,7 @@ paths:
         style: form
       - description: |
           Filter events by Factory Reset Detection result.
-          > Note: When using this parameter, only events with a `factory_reset` time. Events without a `factory_reset` Smart Signal result are left out of the response.
+          > Note: When using this parameter, only events with a `factory_reset_timestamp` property populated are included. Events without a `factory_reset_timestamp` Smart Signal result are left out of the response.
         explode: true
         in: query
         name: factory_reset
@@ -799,6 +808,8 @@ paths:
       - description: |
           Selects the source of events to search. When omitted, only traditional identification events generated from devices are returned (the default behavior). When set to `edge`, only Automation Intelligence (Edge) events are returned.
 
+          To retrieve all events regardless of source, you must make two requests. One with the `source` parameter set to `edge`, and another with the `source` parameter omitted.
+
           > Note: The Automation Intelligence API is in public preview testing phase.  If you encounter any issues, please [contact](https://fingerprint.com/support/) our support team.
         explode: true
         in: query
@@ -838,12 +849,27 @@ paths:
                 $ref: "#/components/schemas/ErrorResponse"
           description: Not found. The requested visitor does not exist in this workspace's
             data.
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: |
+            Too Many Requests. The request is throttled.
+            To protect service stability during rare periods of extreme load, we may return HTTP 429 responses with message `too many search requests` even if you are within your assigned rate limits.
         "500":
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
           description: Workspace error.
+        "504":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Gateway Timeout. Search execution exceeded the allowed timeout
+            window.
       summary: Search events
       tags:
       - Fingerprint
@@ -1507,6 +1533,10 @@ components:
       - confidence
       - id
       - precision_radius
+    ActiveCall:
+      description: |
+        Indicates whether the mobile device had an active call (cellular or VoIP) at the time of the request. Available from SDK 2.16.0+ on iOS and Android.
+      type: boolean
     BotResult:
       description: |
         Bot detection result:
@@ -1829,7 +1859,7 @@ components:
           type: integer
         "24_hours":
           description: |
-            The `24_hours` interval of `distinct_ip`, `distinct_linked_id`, `distinct_country`, `distinct_ip_by_linked_id` and `distinct_visitor_id_by_linked_id` will be omitted if the number of `events` for the visitor Id in the last 24 hours (`events.['24_hours']`) is higher than 20.000.
+            Count for the last 24 hours of velocity data, from the time of the event.
           type: integer
       required:
       - 1_hour
@@ -1843,11 +1873,11 @@ components:
         \ of identification events associated with the visitor Id.\n- Number of identification\
         \ events associated with the detected IP address.\n- Number of distinct IP\
         \ addresses associated with the provided linked Id.\n- Number of distinct\
-        \ visitor Ids associated with the provided linked Id.\n\nThe `24h` interval\
+        \ visitor Ids associated with the provided linked Id.\n\nThe `24_hours` interval\
         \ of `distinct_ip`, `distinct_linked_id`, `distinct_country`,\n`distinct_ip_by_linked_id`\
         \ and `distinct_visitor_id_by_linked_id` will be omitted \nif the number of\
-        \ `events` for the visitor Id in the last 24\nhours (`events.['24h']`) is\
-        \ higher than 20.000.\n\nAll will not necessarily be returned in a response,\
+        \ `events` for the visitor Id in the last 24\nhours (`events.['24_hours']`)\
+        \ is higher than 20.000.\n\nAll will not necessarily be returned in a response,\
         \ some may be omitted if the \nassociated event does not have the required\
         \ data, such as a linked_id.\n"
       properties:
@@ -1889,7 +1919,7 @@ components:
       type: string
     VpnOriginCountry:
       description: |
-        Country of the request (only for Android SDK version >= 2.4.0, ISO 3166 format or unknown).
+        Country of the request (Android SDK version >= 2.4.0, iOS SDK version >= 2.9.0, JS agent >= 3.12.9 / 4.0.2), ISO 3166 format or unknown.
       type: string
     HighActivity:
       description: Flag indicating if the request came from a high-activity visitor.
@@ -1974,7 +2004,8 @@ components:
       type: array
       default: null
     DeviceMemory:
-      description: Rounded amount of RAM in gigabytes.
+      description: "Rounded amount of RAM in gigabytes. Available for browsers, Android,\
+        \ and iOS devices."
       format: int32
       minimum: 0
       type: integer
@@ -2126,16 +2157,23 @@ components:
       description: UTC offset in "±HH:MM" format derived from the detected IANA timezone.
       type: string
     BatteryLevel:
-      description: Battery charge level as a percentage (0-100). Available only for
-        Android and iOS devices.
+      description: "Battery charge level as a percentage (0-100). Available for Android,\
+        \ iOS, and web devices. On web, only available in Chromium-based browsers."
       format: int32
       maximum: 100
       minimum: 0
       type: integer
+    BatteryCharging:
+      description: "When `true`, the device is currently charging. Available only\
+        \ for web devices on Chromium-based browsers."
+      type: boolean
     BatteryLowPowerMode:
       description: Whether the device's low power mode is enabled. Available only
         for Android and iOS devices.
       type: boolean
+    KeyboardLayoutHash:
+      description: Unique identifier for the user's keyboard layout.
+      type: string
     RawDeviceAttributes:
       description: |
         A curated subset of raw browser/device attributes that the API surface exposes. Each property contains a value or object with the data for the collected signal.
@@ -2151,7 +2189,8 @@ components:
           type: array
           default: null
         device_memory:
-          description: Rounded amount of RAM in gigabytes.
+          description: "Rounded amount of RAM in gigabytes. Available for browsers,\
+            \ Android, and iOS devices."
           format: int32
           minimum: 0
           type: integer
@@ -2258,16 +2297,24 @@ components:
             timezone.
           type: string
         battery_level:
-          description: Battery charge level as a percentage (0-100). Available only
-            for Android and iOS devices.
+          description: "Battery charge level as a percentage (0-100). Available for\
+            \ Android, iOS, and web devices. On web, only available in Chromium-based\
+            \ browsers."
           format: int32
           maximum: 100
           minimum: 0
           type: integer
+        battery_charging:
+          description: "When `true`, the device is currently charging. Available only\
+            \ for web devices on Chromium-based browsers."
+          type: boolean
         battery_low_power_mode:
           description: Whether the device's low power mode is enabled. Available only
             for Android and iOS devices.
           type: boolean
+        keyboard_layout_hash:
+          description: Unique identifier for the user's keyboard layout.
+          type: string
     Labels:
       description: |
         Each label returns a prediction (true or false) for a specific use case (label field) based on a machine learning score. The machine learning score is determined by a model trained on customer data for that use case. This field is in the beta phase and only available to select customers. If you are interested, please [contact our support team](https://fingerprint.com/support/).
@@ -2276,8 +2323,11 @@ components:
       type: array
       default: null
     Event:
-      description: Contains results from Fingerprint Identification and all active
-        Smart Signals.
+      description: "Contains results from Fingerprint Identification and all active\
+        \ Smart Signals. Some Smart Signals are only supported for certain device\
+        \ types, these fields will be omitted for events not generated from the supported\
+        \ devices. Consult the [Smart Signals reference](https://docs.fingerprint.com/docs/smart-signals-reference)\
+        \ for more details."
       example:
         event_id: ""
         timestamp: ""
@@ -2301,6 +2351,7 @@ components:
         client_referrer: ""
         browser_details: ""
         proximity: ""
+        active_call: ""
         bot: ""
         bot_type: ""
         bot_info: ""
@@ -2503,6 +2554,12 @@ components:
           - android
           - ios
           - browser
+        active_call:
+          allOf:
+          - $ref: "#/components/schemas/ActiveCall"
+          x-platforms:
+          - android
+          - ios
         bot:
           allOf:
           - $ref: "#/components/schemas/BotResult"
@@ -2797,6 +2854,7 @@ components:
           client_referrer: ""
           browser_details: ""
           proximity: ""
+          active_call: ""
           bot: ""
           bot_type: ""
           bot_info: ""
@@ -2878,6 +2936,7 @@ components:
           client_referrer: ""
           browser_details: ""
           proximity: ""
+          active_call: ""
           bot: ""
           bot_type: ""
           bot_info: ""
@@ -2975,7 +3034,7 @@ components:
       description: |
         Filter events by their Bot Info result, specifically:
           - `all` - events where any kind of bot was detected.
-          - `none` - events where no bot was detected.
+          - `none` - events where no bot was detected, and no `bot_info` was present.
       enum:
       - all
       - none

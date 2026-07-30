@@ -24,7 +24,7 @@ type RawDeviceAttributes struct {
 	Emoji           *Emoji           `json:"emoji,omitempty"`
 	// List of fonts detected on the device.
 	Fonts []string `json:"fonts,omitempty"`
-	// Rounded amount of RAM in gigabytes.
+	// Rounded amount of RAM in gigabytes. Available for browsers, Android, and iOS devices.
 	DeviceMemory *int32 `json:"device_memory,omitempty"`
 	// Timezone identifier detected on the client.
 	Timezone *string `json:"timezone,omitempty"`
@@ -72,10 +72,14 @@ type RawDeviceAttributes struct {
 	FontHash *string `json:"font_hash,omitempty"`
 	// UTC offset in \"±HH:MM\" format derived from the detected IANA timezone.
 	TimezoneOffset *string `json:"timezone_offset,omitempty"`
-	// Battery charge level as a percentage (0-100). Available only for Android and iOS devices.
+	// Battery charge level as a percentage (0-100). Available for Android, iOS, and web devices. On web, only available in Chromium-based browsers.
 	BatteryLevel *int32 `json:"battery_level,omitempty"`
+	// When `true`, the device is currently charging. Available only for web devices on Chromium-based browsers.
+	BatteryCharging *bool `json:"battery_charging,omitempty"`
 	// Whether the device's low power mode is enabled. Available only for Android and iOS devices.
-	BatteryLowPowerMode  *bool `json:"battery_low_power_mode,omitempty"`
+	BatteryLowPowerMode *bool `json:"battery_low_power_mode,omitempty"`
+	// Unique identifier for the user's keyboard layout.
+	KeyboardLayoutHash   *string `json:"keyboard_layout_hash,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -181,8 +185,14 @@ func (o RawDeviceAttributes) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.BatteryLevel) {
 		toSerialize["battery_level"] = o.BatteryLevel
 	}
+	if !IsNil(o.BatteryCharging) {
+		toSerialize["battery_charging"] = o.BatteryCharging
+	}
 	if !IsNil(o.BatteryLowPowerMode) {
 		toSerialize["battery_low_power_mode"] = o.BatteryLowPowerMode
+	}
+	if !IsNil(o.KeyboardLayoutHash) {
+		toSerialize["keyboard_layout_hash"] = o.KeyboardLayoutHash
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -236,7 +246,9 @@ func (o *RawDeviceAttributes) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "font_hash")
 		delete(additionalProperties, "timezone_offset")
 		delete(additionalProperties, "battery_level")
+		delete(additionalProperties, "battery_charging")
 		delete(additionalProperties, "battery_low_power_mode")
+		delete(additionalProperties, "keyboard_layout_hash")
 		o.AdditionalProperties = additionalProperties
 	}
 
