@@ -19,7 +19,7 @@ import (
 // checks if the Event type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &Event{}
 
-// Event Contains results from Fingerprint Identification and all active Smart Signals.
+// Event Contains results from Fingerprint Identification and all active Smart Signals. Some Smart Signals are only supported for certain device types, these fields will be omitted for events not generated from the supported devices. Consult the [Smart Signals reference](https://docs.fingerprint.com/docs/smart-signals-reference) for more details.
 type Event struct {
 	// Unique identifier of the user's request. The first portion of the event_id is a unix epoch milliseconds timestamp.
 	EventID string `json:"event_id"`
@@ -59,7 +59,9 @@ type Event struct {
 	ClientReferrer *string         `json:"client_referrer,omitempty"`
 	BrowserDetails *BrowserDetails `json:"browser_details,omitempty"`
 	Proximity      *Proximity      `json:"proximity,omitempty"`
-	Bot            *BotResult      `json:"bot,omitempty"`
+	// Indicates whether the mobile device had an active call (cellular or VoIP) at the time of the request. Available from SDK 2.16.0+ on iOS and Android.
+	ActiveCall *bool      `json:"active_call,omitempty"`
+	Bot        *BotResult `json:"bot,omitempty"`
 	// Additional classification of the bot type if detected.
 	BotType *string  `json:"bot_type,omitempty"`
 	BotInfo *BotInfo `json:"bot_info,omitempty"`
@@ -116,7 +118,7 @@ type Event struct {
 	VpnMlScore *float64 `json:"vpn_ml_score,omitempty"`
 	// Local timezone which is used in timezone_mismatch method.
 	VPNOriginTimezone *string `json:"vpn_origin_timezone,omitempty"`
-	// Country of the request (only for Android SDK version >= 2.4.0, ISO 3166 format or unknown).
+	// Country of the request (Android SDK version >= 2.4.0, iOS SDK version >= 2.9.0, JS agent >= 3.12.9 / 4.0.2), ISO 3166 format or unknown.
 	VPNOriginCountry *string     `json:"vpn_origin_country,omitempty"`
 	VPNMethods       *VPNMethods `json:"vpn_methods,omitempty"`
 	// Flag indicating if the request came from a high-activity visitor.
@@ -203,6 +205,9 @@ func (o Event) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Proximity) {
 		toSerialize["proximity"] = o.Proximity
+	}
+	if !IsNil(o.ActiveCall) {
+		toSerialize["active_call"] = o.ActiveCall
 	}
 	if !IsNil(o.Bot) {
 		toSerialize["bot"] = o.Bot
@@ -393,6 +398,7 @@ func (o *Event) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "client_referrer")
 		delete(additionalProperties, "browser_details")
 		delete(additionalProperties, "proximity")
+		delete(additionalProperties, "active_call")
 		delete(additionalProperties, "bot")
 		delete(additionalProperties, "bot_type")
 		delete(additionalProperties, "bot_info")
