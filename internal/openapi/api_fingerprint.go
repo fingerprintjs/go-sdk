@@ -213,7 +213,7 @@ func (a *FingerprintAPIService) DeleteVisitorDataExecute(ctx context.Context, r 
 	}
 
 	localVarPath := localBasePath + "/visitors/{visitor_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"visitor_id"+"}", url.PathEscape(parameterValueToString(r.visitorID, "visitorID")), -1)
+	localVarPath = strings.ReplaceAll(localVarPath, "{"+"visitor_id"+"}", url.PathEscape(parameterValueToString(r.visitorID, "visitorID")))
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -247,7 +247,7 @@ func (a *FingerprintAPIService) DeleteVisitorDataExecute(ctx context.Context, r 
 	}
 
 	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
+	_ = localVarHTTPResponse.Body.Close()
 	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
@@ -358,7 +358,7 @@ func (a *FingerprintAPIService) GetEventExecute(ctx context.Context, r ApiGetEve
 	}
 
 	localVarPath := localBasePath + "/events/{event_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"event_id"+"}", url.PathEscape(parameterValueToString(r.eventID, "eventID")), -1)
+	localVarPath = strings.ReplaceAll(localVarPath, "{"+"event_id"+"}", url.PathEscape(parameterValueToString(r.eventID, "eventID")))
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -395,7 +395,7 @@ func (a *FingerprintAPIService) GetEventExecute(ctx context.Context, r ApiGetEve
 	}
 
 	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
+	_ = localVarHTTPResponse.Body.Close()
 	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -1170,7 +1170,7 @@ func (a *FingerprintAPIService) SearchEventsExecute(ctx context.Context, r ApiSe
 	}
 
 	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
+	_ = localVarHTTPResponse.Body.Close()
 	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -1291,7 +1291,7 @@ func (a *FingerprintAPIService) UpdateEventExecute(ctx context.Context, r ApiUpd
 	}
 
 	localVarPath := localBasePath + "/events/{event_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"event_id"+"}", url.PathEscape(parameterValueToString(r.eventID, "eventID")), -1)
+	localVarPath = strings.ReplaceAll(localVarPath, "{"+"event_id"+"}", url.PathEscape(parameterValueToString(r.eventID, "eventID")))
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1330,7 +1330,7 @@ func (a *FingerprintAPIService) UpdateEventExecute(ctx context.Context, r ApiUpd
 	}
 
 	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
+	_ = localVarHTTPResponse.Body.Close()
 	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err

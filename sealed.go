@@ -114,7 +114,7 @@ func decryptAes256gcm(payload, key []byte) ([]byte, error) {
 
 func decompress(compressed []byte) ([]byte, error) {
 	reader := flate.NewReader(bytes.NewReader(compressed))
-	defer reader.Close()
+	defer func() { _ = reader.Close() }()
 
 	decompressed, err := io.ReadAll(reader)
 	if err != nil {

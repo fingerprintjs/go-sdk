@@ -118,7 +118,7 @@ func main() {
 > You can also check examples located in [example](./example) directory.
 > To run the examples:
 > ```shell
-> cd example && FINGERPRINT_API_KEY=SECRET_API_KEY EVENT_ID=EVENT_ID_EXAMPLE go run getEvent.go
+> cd example && FINGERPRINT_API_KEY=SECRET_API_KEY EVENT_ID=EVENT_ID_EXAMPLE go run ./getEvent
 > ```
 > Alternatively, you can define your environment variables inside `example/.env` file and run the examples without passing them as arguments.
 > If your subscription region is not the “Global/US” region, use `REGION=eu` or `REGION=ap` in the line above or in your local `.env` file.
@@ -188,7 +188,7 @@ func main() {
 
 ```
 
-To learn more, refer to example located in [example/sealedResults.go](example/sealedResults.go).
+To learn more, refer to example located in [example/sealedResults/main.go](example/sealedResults/main.go).
 
 ## Webhooks
 
@@ -246,7 +246,7 @@ func main() {
 }
 ```
 
-To learn more, refer to example located in [example/webhookSignature.go](example/webhookSignature.go).
+To learn more, refer to example located in [example/webhookSignature/main.go](example/webhookSignature/main.go).
 
 ## Testing
 

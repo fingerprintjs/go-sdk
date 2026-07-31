@@ -12,27 +12,20 @@ import (
 
 func main() {
 	// Load environment variables
-	godotenv.Load()
+	_ = godotenv.Load()
 
 	client := fingerprint.New(fingerprint.WithRegion(fingerprint.Region(os.Getenv("REGION"))), fingerprint.WithAPIKey(os.Getenv("FINGERPRINT_API_KEY")))
 
 	// Usually this data will come from your frontend app
-	tags := map[string]interface{}{
-		"key": "value",
-	}
-	suspect := false
-	linkedID := "new_linked_id"
-	req := fingerprint.EventUpdate{
-		Suspect:  &suspect,
-		LinkedID: &linkedID,
-		Tags:     tags,
-	}
+	visitorID := os.Getenv("VISITOR_ID")
 
-	httpRes, err := client.UpdateEvent(context.Background(), os.Getenv("EVENT_ID"), req)
+	// Delete visitor data. If you are interested in using this API, please contact our support team (https://fingerprint.com/support/) to activate it for you
+	httpRes, err := client.DeleteVisitorData(context.Background(), visitorID)
 
 	fmt.Printf("%+v\n", httpRes)
 
 	if err != nil {
 		log.Fatalf("Error: %s", err.Error())
 	}
+
 }

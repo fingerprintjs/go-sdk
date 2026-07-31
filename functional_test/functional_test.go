@@ -16,7 +16,7 @@ import (
 
 func TestApiFunctional(t *testing.T) {
 	// Load environment variables
-	godotenv.Load()
+	_ = godotenv.Load()
 
 	apiKey := os.Getenv("FINGERPRINT_API_KEY")
 	require.NotEmpty(t, apiKey)
@@ -262,6 +262,7 @@ func (m *MockFingerprintAPI) UpdateEventExecute(ctx context.Context, r fingerpri
 func TestMockFingerprintApi(t *testing.T) {
 	mockAPI := MockFingerprintAPI{}
 
+	//nolint:staticcheck // intentionally exercises the deprecated option to verify backward compatibility
 	client := fingerprint.New(fingerprint.WithAPIKey("test-key"), fingerprint.WithFingerprintAPI(&mockAPI))
 
 	mockResp := fingerprint.Event{
