@@ -1,5 +1,13 @@
 # Fingerprint Pro Server Go SDK
 
+## 8.5.0
+
+### Minor Changes
+
+- **events**: Add `active_call` smart signal to `Event` ([0294280](https://github.com/fingerprintjs/go-sdk/commit/029428082a662f64bfa5bdc7b3ff6abffe258639))
+- **events**: Add `keyboard_layout_hash` to `RawDeviceAttributes` ([0294280](https://github.com/fingerprintjs/go-sdk/commit/029428082a662f64bfa5bdc7b3ff6abffe258639))
+- **events**: Add `battery_charging` field to `RawDeviceAttributes` ([0294280](https://github.com/fingerprintjs/go-sdk/commit/029428082a662f64bfa5bdc7b3ff6abffe258639))
+
 ## 8.4.0
 
 ### Minor Changes
