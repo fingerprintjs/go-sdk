@@ -25,6 +25,7 @@ type Event struct {
 	EventID string `json:"event_id"`
 	// Timestamp of the event with millisecond precision in Unix time.
 	Timestamp                       int64                            `json:"timestamp"`
+	Source                          *EventSource                     `json:"source,omitempty"`
 	IncrementalIdentificationStatus *IncrementalIdentificationStatus `json:"incremental_identification_status,omitempty"`
 	// A customer-provided id that was sent with the request.
 	LinkedID *string `json:"linked_id,omitempty"`
@@ -146,6 +147,9 @@ func (o Event) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["event_id"] = o.EventID
 	toSerialize["timestamp"] = o.Timestamp
+	if !IsNil(o.Source) {
+		toSerialize["source"] = o.Source
+	}
 	if !IsNil(o.IncrementalIdentificationStatus) {
 		toSerialize["incremental_identification_status"] = o.IncrementalIdentificationStatus
 	}
@@ -378,6 +382,7 @@ func (o *Event) UnmarshalJSON(data []byte) (err error) {
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "event_id")
 		delete(additionalProperties, "timestamp")
+		delete(additionalProperties, "source")
 		delete(additionalProperties, "incremental_identification_status")
 		delete(additionalProperties, "linked_id")
 		delete(additionalProperties, "environment_id")

@@ -24,6 +24,7 @@ docs/EventRuleAction.md
 docs/EventRuleActionAllow.md
 docs/EventRuleActionBlock.md
 docs/EventSearch.md
+docs/EventSource.md
 docs/EventUpdate.md
 docs/FontPreferences.md
 docs/Geolocation.md
@@ -82,6 +83,7 @@ model_event_rule_action.go
 model_event_rule_action_allow.go
 model_event_rule_action_block.go
 model_event_search.go
+model_event_source.go
 model_event_update.go
 model_font_preferences.go
 model_geolocation.go
