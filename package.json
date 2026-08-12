@@ -1,6 +1,6 @@
 {
   "name": "go-sdk",
-  "version": "8.5.0",
+  "version": "8.6.0",
   "private": true,
   "devDependencies": {
     "@changesets/cli": "^2.31.0",

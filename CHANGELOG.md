@@ -1,5 +1,11 @@
 # Fingerprint Pro Server Go SDK
 
+## 8.6.0
+
+### Minor Changes
+
+- Add `source` field to `Event` to identify how the event was generated (`device` or `edge`) ([f206d7a](https://github.com/fingerprintjs/go-sdk/commit/f206d7a91bc6d24aa0bbfdee37e2211aeb7488af))
+
 ## 8.5.0
 
 ### Minor Changes
