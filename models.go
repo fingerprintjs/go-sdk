@@ -95,6 +95,13 @@ type EventRuleAction = openapi.EventRuleAction
 type EventRuleActionAllow = openapi.EventRuleActionAllow
 type EventRuleActionBlock = openapi.EventRuleActionBlock
 type EventSearch = openapi.EventSearch
+type EventSource = openapi.EventSource
+
+const (
+	EventSourceDevice = openapi.EventSourceDevice
+	EventSourceEdge   = openapi.EventSourceEdge
+)
+
 type EventUpdate = openapi.EventUpdate
 type FontPreferences = openapi.FontPreferences
 type Geolocation = openapi.Geolocation
