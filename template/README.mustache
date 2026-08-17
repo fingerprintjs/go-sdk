@@ -24,8 +24,8 @@ Fingerprint Server API allows you to search, update, and delete identification e
 
 | SDK major version | Server API version | Status | End of support |
 |---|---|---|---|
-| v8.x (current) | v4 | Supported | - |
-| v1.x - v7.x | v3 | Deprecated | Not yet finalized, tracked by the [API Deprecation Policy](https://docs.fingerprint.com/reference/api-deprecation-policy) |
+| v8.x (current) | [v4](https://docs.fingerprint.com/reference/server-api) | Supported | - |
+| v1.x - v7.x | [v3](https://docs.fingerprint.com/reference/v3/server-api) | Deprecated | Not yet finalized, tracked by the [API Deprecation Policy](https://docs.fingerprint.com/reference/api-deprecation-policy) |
 
 SDK major versions follow the deprecation timeline of the Server API version they target, independently of when a newer SDK major version is released. Deprecated versions continue to receive security fixes, but no new features. See the [API Deprecation Policy](https://docs.fingerprint.com/reference/api-deprecation-policy) for how the timeline is determined and how you'll be notified before end of support.
 
