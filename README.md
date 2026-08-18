@@ -350,10 +350,6 @@ SDK major versions have their own end-of-support timeline, independent of the Se
 
 Server API v3 support for Go is maintained separately in [fingerprint-pro-server-api-go-sdk](https://github.com/fingerprintjs/fingerprint-pro-server-api-go-sdk), independently of this repo's versioning.
 
-## Author
-
-support@fingerprint.com
-
 ## Support and feedback
 
 To report problems, ask questions, or provide feedback, please use [Issues](https://github.com/fingerprintjs/go-sdk/issues). If you need private support, you can email us at [oss-support@fingerprint.com](mailto:oss-support@fingerprint.com).
