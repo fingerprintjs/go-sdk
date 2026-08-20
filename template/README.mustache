@@ -291,13 +291,10 @@ Class | Method | HTTP request | Description
 
 ## Version support
 
-| SDK major version | Server API version | Status | End of support |
-|---|---|---|---|
-| v8.x (current) | [v4](https://docs.fingerprint.com/reference/server-api) | Supported | - |
-
-SDK major versions have their own end-of-support timeline, independent of the Server API version they target or when a newer SDK major version is released. Deprecation and end-of-support changes are announced in the [CHANGELOG](https://github.com/fingerprintjs/go-sdk/blob/main/CHANGELOG.md).
-
-Server API v3 is deprecated, and so are the Go SDK versions that targeted it (v1.x-v7.x). Those live in the separate [fingerprint-pro-server-api-go-sdk](https://github.com/fingerprintjs/fingerprint-pro-server-api-go-sdk) repo.
+| SDK major version | Server API version | Status | End of support | Notes |
+|---|---|---|---|---|
+| v8.x (current) | [v4](https://docs.fingerprint.com/reference/server-api) | Supported | - | - |
+| v1.x-v7.x | [v3](https://docs.fingerprint.com/reference/v3/server-api) | Deprecated (security fixes only). See the [migration guide](https://docs.fingerprint.com/reference/go-server-sdk#migration-guide-for-go-sdk-v8). | To be decided | Kept in the [old repository](https://github.com/fingerprintjs/fingerprint-pro-server-api-go-sdk) |
 
 ## Support and feedback
 
