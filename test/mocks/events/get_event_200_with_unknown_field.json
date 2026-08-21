@@ -18,7 +18,8 @@
     "browser_full_version": "74.0.3729",
     "os": "Windows",
     "os_version": "7",
-    "device": "Other"
+    "device": "Other",
+    "unknown_sub_field": "unknown_sub_field_value"
   },
   "identification": {
     "visitor_id": "Ibk1527CUFmcnjLwIs4A9",
@@ -314,5 +315,6 @@
       "ml_score": 0.01
     }
   ],
-  "active_call": false
+  "active_call": false,
+  "unknown_field": "unknown_field_value"
 }

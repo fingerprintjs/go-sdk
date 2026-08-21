@@ -79,7 +79,9 @@ type RawDeviceAttributes struct {
 	// Whether the device's low power mode is enabled. Available only for Android and iOS devices.
 	BatteryLowPowerMode *bool `json:"battery_low_power_mode,omitempty"`
 	// Unique identifier for the user's keyboard layout.
-	KeyboardLayoutHash   *string `json:"keyboard_layout_hash,omitempty"`
+	KeyboardLayoutHash *string `json:"keyboard_layout_hash,omitempty"`
+	// Name of the user's configured keyboard layout as a BCP 47-style identifier. Only available in Chromium-based browsers, omitted otherwise.
+	KeyboardLayoutName   *string `json:"keyboard_layout_name,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -194,6 +196,9 @@ func (o RawDeviceAttributes) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.KeyboardLayoutHash) {
 		toSerialize["keyboard_layout_hash"] = o.KeyboardLayoutHash
 	}
+	if !IsNil(o.KeyboardLayoutName) {
+		toSerialize["keyboard_layout_name"] = o.KeyboardLayoutName
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -249,6 +254,7 @@ func (o *RawDeviceAttributes) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "battery_charging")
 		delete(additionalProperties, "battery_low_power_mode")
 		delete(additionalProperties, "keyboard_layout_hash")
+		delete(additionalProperties, "keyboard_layout_name")
 		o.AdditionalProperties = additionalProperties
 	}
 
