@@ -314,5 +314,19 @@
       "ml_score": 0.01
     }
   ],
-  "active_call": false
+  "active_call": false,
+  "rule_action": {
+    "type": "block",
+    "status_code": 403,
+    "headers": [
+      {
+        "name": "Content-Type",
+        "value": "application/json"
+      }
+    ],
+    "body": "{\"title\":\"Forbidden\"}",
+    "ruleset_id": "rs_b1k1blhqpOX3kU",
+    "rule_id": "r_uE0af8497PFAOD",
+    "rule_expression": "bot in [\"bad\"] || incognito"
+  }
 }

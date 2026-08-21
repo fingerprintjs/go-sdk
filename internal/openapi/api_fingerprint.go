@@ -540,6 +540,7 @@ type ApiSearchEventsRequest struct {
 	torNode                         *bool
 	incrementalIdentificationStatus *SearchEventsIncrementalIdentificationStatus
 	simulator                       *bool
+	activeCall                      *bool
 	source                          *[]SearchEventsSource
 }
 
@@ -867,6 +868,12 @@ func (r ApiSearchEventsRequest) Simulator(simulator bool) ApiSearchEventsRequest
 	return r
 }
 
+// Filter events by Active Call Detection result on mobile devices.  > Note: When using this parameter, only events with the `active_call` property set to `true` or `false` are returned. Events without an `active_call` Smart Signal result are left out of the response.
+func (r ApiSearchEventsRequest) ActiveCall(activeCall bool) ApiSearchEventsRequest {
+	r.activeCall = &activeCall
+	return r
+}
+
 // Selects the source of events to search. When omitted, only traditional identification events generated from devices are returned (the default behavior). When set to `edge`, only Automation Intelligence (Edge) events are returned.  To retrieve all events regardless of source, you must make two requests. One with the `source` parameter set to `edge`, and another with the `source` parameter omitted.  > Note: The Automation Intelligence API is in public preview testing phase.  If you encounter any issues, please [contact](https://fingerprint.com/support/) our support team.
 func (r ApiSearchEventsRequest) Source(source []SearchEventsSource) ApiSearchEventsRequest {
 	r.source = &source
@@ -1141,6 +1148,9 @@ func (a *FingerprintAPIService) SearchEventsExecute(ctx context.Context, r ApiSe
 	}
 	if r.simulator != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "simulator", r.simulator, "form", "")
+	}
+	if r.activeCall != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "active_call", r.activeCall, "form", "")
 	}
 	if r.source != nil {
 		t := *r.source
