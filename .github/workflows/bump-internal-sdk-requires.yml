@@ -49,3 +49,4 @@ jobs:
           branch: chore/bump-internal-sdk-v8
           base: main
           labels: automated
+          sign-commits: true
