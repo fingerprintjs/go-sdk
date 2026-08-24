@@ -1,5 +1,12 @@
 # Fingerprint Pro Server Go SDK
 
+## 8.7.0
+
+### Minor Changes
+
+- **events-search**: Add `active_call` filter parameter ([a227e89](https://github.com/fingerprintjs/go-sdk/commit/a227e890a4e83eeccc8ef69abdc4b4661057df3d))
+- Add `keyboard_layout_name` to `RawDeviceAttributes` ([a227e89](https://github.com/fingerprintjs/go-sdk/commit/a227e890a4e83eeccc8ef69abdc4b4661057df3d))
+
 ## 8.6.0
 
 ### Minor Changes
