@@ -32,6 +32,8 @@ func main() {
 		fmt.Printf("Got response with Botd: %v \n", response.Bot)
 	}
 
+	// SPIKE INTER-2457 — COMPILE BREAK. Event has no Identification field.
+	// Use response.EventDevice.Identification after checking EventDevice != nil.
 	if response.Identification != nil {
 		stringResponse, _ := json.Marshal(response.Identification)
 		fmt.Printf("Got response with Identification: %s \n", string(stringResponse))

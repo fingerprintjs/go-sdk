@@ -64,6 +64,8 @@ const (
 
 type BrowserDetails = openapi.BrowserDetails
 type Canvas = openapi.Canvas
+type EdgeRequest = openapi.EdgeRequest
+type EdgeRequestHeadersInner = openapi.EdgeRequestHeadersInner
 type Emoji = openapi.Emoji
 type Error = openapi.Error
 type ErrorCode = openapi.ErrorCode
@@ -90,7 +92,12 @@ const (
 )
 
 type ErrorResponse = openapi.ErrorResponse
+// SPIKE INTER-2457 — BREAKING CHANGE. DO NOT SHIP.
+// Public Event is now the oneOf wrapper (EventDevice / EventEdge pointers).
+// event.Identification no longer compiles. Identification is on EventDevice.
 type Event = openapi.Event
+type EventDevice = openapi.EventDevice
+type EventEdge = openapi.EventEdge
 type EventRuleAction = openapi.EventRuleAction
 type EventRuleActionAllow = openapi.EventRuleActionAllow
 type EventRuleActionBlock = openapi.EventRuleActionBlock

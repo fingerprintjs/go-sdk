@@ -33,6 +33,8 @@ func TestApiFunctional(t *testing.T) {
 	assert.NotNil(t, events.Events)
 	testEvent := events.Events[0]
 	eventId := testEvent.EventID
+	// SPIKE INTER-2457 — COMPILE BREAK. Event has no Identification or EventID.
+	// Those fields are on EventDevice (testEvent.EventDevice.Identification).
 	visitorId := testEvent.Identification.VisitorID
 
 	t.Run("GetEvent", func(t *testing.T) {
@@ -41,6 +43,7 @@ func TestApiFunctional(t *testing.T) {
 
 			require.NoError(t, err)
 			assert.Equal(t, eventId, event.EventID)
+			// SPIKE INTER-2457 — COMPILE BREAK. event.Identification does not exist.
 			assert.Equal(t, visitorId, event.Identification.VisitorID)
 		})
 
