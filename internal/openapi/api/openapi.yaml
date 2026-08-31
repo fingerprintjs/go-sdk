@@ -1150,6 +1150,13 @@ components:
       type: string
     BotInfo:
       description: Extended bot information.
+      example:
+        category: category
+        provider: provider
+        provider_url: provider_url
+        name: name
+        identity: verified
+        confidence: low
       properties:
         category:
           description: |
@@ -1191,6 +1198,22 @@ components:
       - name
       - provider
     Geolocation:
+      example:
+        accuracy_radius: 0
+        latitude: 18.494211295267263
+        longitude: -127.23073270189397
+        postal_code: postal_code
+        timezone: timezone
+        city_name: city_name
+        country_code: country_code
+        country_name: country_name
+        continent_code: continent_code
+        continent_name: continent_name
+        subdivisions:
+        - iso_code: iso_code
+          name: name
+        - iso_code: iso_code
+          name: name
       properties:
         accuracy_radius:
           description: The IP address is likely to be within this radius (in km) of
@@ -1232,6 +1255,30 @@ components:
           type: array
           default: null
     IPInfoV4:
+      example:
+        address: address
+        geolocation:
+          accuracy_radius: 0
+          latitude: 18.494211295267263
+          longitude: -127.23073270189397
+          postal_code: postal_code
+          timezone: timezone
+          city_name: city_name
+          country_code: country_code
+          country_name: country_name
+          continent_code: continent_code
+          continent_name: continent_name
+          subdivisions:
+          - iso_code: iso_code
+            name: name
+          - iso_code: iso_code
+            name: name
+        asn: asn
+        asn_name: asn_name
+        asn_network: asn_network
+        asn_type: asn_type
+        datacenter_result: true
+        datacenter_name: datacenter_name
       properties:
         address:
           format: ipv4
@@ -1254,6 +1301,30 @@ components:
       required:
       - address
     IPInfoV6:
+      example:
+        address: address
+        geolocation:
+          accuracy_radius: 0
+          latitude: 18.494211295267263
+          longitude: -127.23073270189397
+          postal_code: postal_code
+          timezone: timezone
+          city_name: city_name
+          country_code: country_code
+          country_name: country_name
+          continent_code: continent_code
+          continent_name: continent_name
+          subdivisions:
+          - iso_code: iso_code
+            name: name
+          - iso_code: iso_code
+            name: name
+        asn: asn
+        asn_name: asn_name
+        asn_network: asn_network
+        asn_type: asn_type
+        datacenter_result: true
+        datacenter_name: datacenter_name
       properties:
         address:
           format: ipv6
@@ -1278,6 +1349,55 @@ components:
     IPInfo:
       description: Details about the request IP address. Has separate fields for v4
         and v6 IP address versions.
+      example:
+        v4:
+          address: address
+          geolocation:
+            accuracy_radius: 0
+            latitude: 18.494211295267263
+            longitude: -127.23073270189397
+            postal_code: postal_code
+            timezone: timezone
+            city_name: city_name
+            country_code: country_code
+            country_name: country_name
+            continent_code: continent_code
+            continent_name: continent_name
+            subdivisions:
+            - iso_code: iso_code
+              name: name
+            - iso_code: iso_code
+              name: name
+          asn: asn
+          asn_name: asn_name
+          asn_network: asn_network
+          asn_type: asn_type
+          datacenter_result: true
+          datacenter_name: datacenter_name
+        v6:
+          address: address
+          geolocation:
+            accuracy_radius: 0
+            latitude: 18.494211295267263
+            longitude: -127.23073270189397
+            postal_code: postal_code
+            timezone: timezone
+            city_name: city_name
+            country_code: country_code
+            country_name: country_name
+            continent_code: continent_code
+            continent_name: continent_name
+            subdivisions:
+            - iso_code: iso_code
+              name: name
+            - iso_code: iso_code
+              name: name
+          asn: asn
+          asn_name: asn_name
+          asn_network: asn_network
+          asn_type: asn_type
+          datacenter_result: true
+          datacenter_name: datacenter_name
       properties:
         v4:
           $ref: "#/components/schemas/IPInfoV4"
@@ -1297,6 +1417,10 @@ components:
       type: string
     ProxyDetails:
       description: Proxy detection details (present if `proxy` is `true`)
+      example:
+        proxy_type: residential
+        last_seen_at: 5
+        provider: provider
       properties:
         proxy_type:
           description: |
@@ -1335,6 +1459,13 @@ components:
       - high
       type: string
     VpnMethods:
+      example:
+        timezone_mismatch: true
+        public_vpn: true
+        auxiliary_mobile: true
+        os_mismatch: true
+        relay: true
+        ml_prediction: true
       properties:
         timezone_mismatch:
           description: The browser timezone doesn't match the timezone inferred from
@@ -1402,15 +1533,78 @@ components:
         timestamp: ""
         linked_id: ""
         tags: ""
-        url: ""
-        bot_info: ""
-        ip_info: ""
-        proxy: ""
-        proxy_confidence: ""
-        proxy_details: ""
-        vpn: ""
-        vpn_confidence: ""
-        vpn_methods: ""
+        url: url
+        bot_info:
+          category: category
+          provider: provider
+          provider_url: provider_url
+          name: name
+          identity: verified
+          confidence: low
+        ip_info:
+          v4:
+            address: address
+            geolocation:
+              accuracy_radius: 0
+              latitude: 18.494211295267263
+              longitude: -127.23073270189397
+              postal_code: postal_code
+              timezone: timezone
+              city_name: city_name
+              country_code: country_code
+              country_name: country_name
+              continent_code: continent_code
+              continent_name: continent_name
+              subdivisions:
+              - iso_code: iso_code
+                name: name
+              - iso_code: iso_code
+                name: name
+            asn: asn
+            asn_name: asn_name
+            asn_network: asn_network
+            asn_type: asn_type
+            datacenter_result: true
+            datacenter_name: datacenter_name
+          v6:
+            address: address
+            geolocation:
+              accuracy_radius: 0
+              latitude: 18.494211295267263
+              longitude: -127.23073270189397
+              postal_code: postal_code
+              timezone: timezone
+              city_name: city_name
+              country_code: country_code
+              country_name: country_name
+              continent_code: continent_code
+              continent_name: continent_name
+              subdivisions:
+              - iso_code: iso_code
+                name: name
+              - iso_code: iso_code
+                name: name
+            asn: asn
+            asn_name: asn_name
+            asn_network: asn_network
+            asn_type: asn_type
+            datacenter_result: true
+            datacenter_name: datacenter_name
+        proxy: true
+        proxy_confidence: low
+        proxy_details:
+          proxy_type: residential
+          last_seen_at: 5
+          provider: provider
+        vpn: true
+        vpn_confidence: low
+        vpn_methods:
+          timezone_mismatch: true
+          public_vpn: true
+          auxiliary_mobile: true
+          os_mismatch: true
+          relay: true
+          ml_prediction: true
         source: device
       properties:
         event_id:
@@ -1442,64 +1636,28 @@ components:
           - ios
           - browser
         url:
-          allOf:
-          - $ref: "#/components/schemas/Url"
-          x-platforms:
-          - browser
+          description: Page URL from which the request was sent.
+          type: string
         bot_info:
-          allOf:
-          - $ref: "#/components/schemas/BotInfo"
-          x-platforms:
-          - browser
+          $ref: "#/components/schemas/BotInfo"
         ip_info:
-          allOf:
-          - $ref: "#/components/schemas/IPInfo"
-          x-platforms:
-          - android
-          - ios
-          - browser
+          $ref: "#/components/schemas/IPInfo"
         proxy:
-          allOf:
-          - $ref: "#/components/schemas/Proxy"
-          x-platforms:
-          - android
-          - ios
-          - browser
+          description: |
+            IP address was used by a public proxy provider or belonged to a known recent residential proxy
+          type: boolean
         proxy_confidence:
-          allOf:
-          - $ref: "#/components/schemas/ProxyConfidence"
-          x-platforms:
-          - android
-          - ios
-          - browser
+          $ref: "#/components/schemas/ProxyConfidence"
         proxy_details:
-          allOf:
-          - $ref: "#/components/schemas/ProxyDetails"
-          x-platforms:
-          - android
-          - ios
-          - browser
+          $ref: "#/components/schemas/ProxyDetails"
         vpn:
-          allOf:
-          - $ref: "#/components/schemas/Vpn"
-          x-platforms:
-          - android
-          - ios
-          - browser
+          description: |
+            VPN or other anonymizing service has been used when sending the request.
+          type: boolean
         vpn_confidence:
-          allOf:
-          - $ref: "#/components/schemas/VpnConfidence"
-          x-platforms:
-          - android
-          - ios
-          - browser
+          $ref: "#/components/schemas/VpnConfidence"
         vpn_methods:
-          allOf:
-          - $ref: "#/components/schemas/VpnMethods"
-          x-platforms:
-          - android
-          - ios
-          - browser
+          $ref: "#/components/schemas/VpnMethods"
         source:
           $ref: "#/components/schemas/EventSource"
       required:
@@ -2612,7 +2770,7 @@ components:
         vpn: ""
         vpn_confidence: ""
         vpn_methods: ""
-        source: device
+        source: ""
         incremental_identification_status: ""
         environment_id: ""
         suspect: ""
@@ -2771,7 +2929,12 @@ components:
           - ios
           - browser
         source:
-          $ref: "#/components/schemas/EventSource"
+          allOf:
+          - $ref: "#/components/schemas/EventSource"
+          x-platforms:
+          - android
+          - ios
+          - browser
         incremental_identification_status:
           allOf:
           - $ref: "#/components/schemas/IncrementalIdentificationStatus"
@@ -3118,7 +3281,7 @@ components:
           vpn: ""
           vpn_confidence: ""
           vpn_methods: ""
-          source: device
+          source: ""
           incremental_identification_status: ""
           environment_id: ""
           suspect: ""
@@ -3201,7 +3364,7 @@ components:
           vpn: ""
           vpn_confidence: ""
           vpn_methods: ""
-          source: device
+          source: ""
           incremental_identification_status: ""
           environment_id: ""
           suspect: ""
@@ -3385,6 +3548,9 @@ components:
       - name
       - value
     Geolocation_subdivisions_inner:
+      example:
+        iso_code: iso_code
+        name: name
       properties:
         iso_code:
           type: string
