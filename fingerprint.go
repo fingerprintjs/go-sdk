@@ -100,6 +100,8 @@ func WithRulesetID(rulesetID string) GetEventOption {
 // [event identifier]: https://docs.fingerprint.com/reference/js-agent-get-function#event_id
 // [example/getEventWithRulesetEvaluation.go]: https://github.com/fingerprintjs/go-sdk/blob/main/example/getEventWithRulesetEvaluation.go
 func (c *Client) GetEvent(ctx context.Context, eventID string, opts ...GetEventOption) (*Event, *http.Response, error) {
+	// SPIKE INTER-2457 — BREAKING CHANGE. DO NOT SHIP.
+	// *Event is the oneOf wrapper. Callers that do response.Identification fail to compile.
 	if c.clientInterface != nil {
 		return c.clientInterface.GetEvent(ctx, eventID, opts...)
 	}

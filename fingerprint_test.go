@@ -29,6 +29,7 @@ func ExampleClient_GetEvent() {
 		fmt.Printf("Got response with Botd: %v \n", response.Bot)
 	}
 
+	// SPIKE INTER-2457 — COMPILE BREAK. Event has no Identification field.
 	if response.Identification != nil {
 		stringResponse, _ := json.Marshal(response.Identification)
 		fmt.Printf("Got response with Identification: %s \n", string(stringResponse))
