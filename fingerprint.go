@@ -117,6 +117,23 @@ func (c *Client) GetEvent(ctx context.Context, eventID string, opts ...GetEventO
 	return req.Execute(ctx)
 }
 
+// AnalyzeRequestForAutomationIntelligence collects Automation Intelligence via POST `/edge`.
+// This feature is in Public Preview. See [openapi.FingerprintAPI.AnalyzeRequestForAutomationIntelligence] for details.
+//
+// Parameters:
+//   - ctx: context for cancellation, deadlines, and authentication.
+//   - edgeRequest: HTTP request metadata (method, URL, headers, and client IP).
+//
+// Returns an [EventEdge]. At least one of ipv4 or ipv6 is required. Include Authorization and Cookie headers with values redacted to an empty string.
+func (c *Client) AnalyzeRequestForAutomationIntelligence(ctx context.Context, edgeRequest EdgeRequest) (*EventEdge, *http.Response, error) {
+	if c.clientInterface != nil {
+		return c.clientInterface.AnalyzeRequestForAutomationIntelligence(ctx, edgeRequest)
+	}
+	ctx = c.withRegion(ctx)
+	ctx = c.withAPIKey(ctx)
+	return c.api.FingerprintAPI.AnalyzeRequestForAutomationIntelligence().EdgeRequest(edgeRequest).Execute(ctx)
+}
+
 type SearchEventRequest = openapi.ApiSearchEventsRequest
 
 // NewSearchEventsRequest creates a search event request. See [openapi.FingerprintAPI.SearchEvents] for details.

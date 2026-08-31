@@ -43,6 +43,10 @@ func (c clientInterfaceImpl) GetEvent(ctx context.Context, eventID string, opts 
 	return nil, nil, nil
 }
 
+func (c clientInterfaceImpl) AnalyzeRequestForAutomationIntelligence(ctx context.Context, edgeRequest fingerprint.EdgeRequest) (*fingerprint.EventEdge, *http.Response, error) {
+	return nil, nil, nil
+}
+
 func (c clientInterfaceImpl) SearchEvents(ctx context.Context, req fingerprint.SearchEventRequest) (*fingerprint.EventSearch, *http.Response, error) {
 	return nil, nil, nil
 }

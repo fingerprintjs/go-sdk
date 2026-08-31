@@ -131,6 +131,10 @@ func (m *mockClientInterface) GetEvent(ctx context.Context, eventID string, opts
 	return m.getEventResp, &http.Response{StatusCode: 200}, nil
 }
 
+func (m *mockClientInterface) AnalyzeRequestForAutomationIntelligence(ctx context.Context, edgeRequest fingerprint.EdgeRequest) (*fingerprint.EventEdge, *http.Response, error) {
+	return &fingerprint.EventEdge{}, &http.Response{StatusCode: 200}, nil
+}
+
 func (m *mockClientInterface) SearchEvents(ctx context.Context, req fingerprint.SearchEventRequest) (*fingerprint.EventSearch, *http.Response, error) {
 	return &fingerprint.EventSearch{}, &http.Response{StatusCode: 200}, nil
 }
@@ -154,6 +158,13 @@ func TestMockClientInterface(t *testing.T) {
 		event, httpResp, err := client.GetEvent(context.Background(), "test-event-id")
 		require.Nil(t, err)
 		require.Equal(t, mockCI.getEventResp, event)
+		require.Equal(t, 200, httpResp.StatusCode)
+	})
+
+	t.Run("AnalyzeRequestForAutomationIntelligence", func(t *testing.T) {
+		event, httpResp, err := client.AnalyzeRequestForAutomationIntelligence(context.Background(), fingerprint.EdgeRequest{})
+		require.Nil(t, err)
+		require.NotNil(t, event)
 		require.Equal(t, 200, httpResp.StatusCode)
 	})
 
