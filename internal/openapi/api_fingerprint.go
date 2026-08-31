@@ -103,7 +103,7 @@ type FingerprintAPI interface {
 
 	Use `event_id` as the URL path parameter. This API method is scoped to a request, i.e. all returned information is by `event_id`.
 
-	Returns `EventDevice` when `source` is `device`, and `EventEdge` when `source` is `edge`.
+	Use `source` to tell identification events (`device`) from Automation Intelligence events (`edge`).
 
 
 		eventID The unique [identifier](https://docs.fingerprint.com/reference/js-agent-get-function#event_id) of each identification request (`requestId` can be used in its place).
@@ -543,7 +543,7 @@ Get a detailed analysis of an individual event, including Smart Signals.
 
 Use `event_id` as the URL path parameter. This API method is scoped to a request, i.e. all returned information is by `event_id`.
 
-Returns `EventDevice` when `source` is `device`, and `EventEdge` when `source` is `edge`.
+Use `source` to tell identification events (`device`) from Automation Intelligence events (`edge`).
 
 	eventID The unique [identifier](https://docs.fingerprint.com/reference/js-agent-get-function#event_id) of each identification request (`requestId` can be used in its place).
 	Returns ApiGetEventRequest
