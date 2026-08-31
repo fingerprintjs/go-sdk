@@ -29,15 +29,84 @@ tags:
     url: https://docs.fingerprint.com/reference/server-api
   name: Fingerprint
 paths:
+  /edge:
+    post:
+      description: |
+        The Automation Intelligence API gives you the tools to determine whether traffic is legitimate and should be accepted by your application.
+
+        This feature is currently in a Public Preview testing phase. All feedback is welcome! If you encounter any issues, please [contact our support team](https://fingerprint.com/support/).
+
+        The API detects automation tools like AI Agents, AI Assistants, AI Browsers, and other bots. Additionally, it provides IP intelligence like geolocation, residential proxy, VPN and data center detection.
+
+        Automation Intelligence is derived from HTTP request metadata that reaches your server. It does not require the use of a JavaScript client-side agent or mobile SDKs to collect device context.
+
+        The API is fast, with average response times of less than 30ms, making it a great fit for edge, pre-origin or middleware contexts. The API is platform-agnostic and can be used with different CDN providers, cloud platforms, or any server backend.
+
+        Because this API doesn’t require the use of a client-side device collection agent, it doesn’t support device identification via `visitor_id` and a few Smart Signals derived from deep device telemetry.
+
+        ### Event Retrieval
+
+        Events created by the Automation Intelligence API can be fetched via the [`/v4/events/{event_id}`](https://docs.fingerprint.com/reference/server-api-get-event) API using the `event_id` present in the API response.
+
+        Fetch all Automation Intelligence API events via the [`/v4/events?source=edge`](https://docs.fingerprint.com/reference/server-api-search-events#parameter-source) API.
+      operationId: analyzeRequestForAutomationIntelligence
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/EdgeRequest"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/EventEdge"
+          description: OK.
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Bad request. The request payload is not valid.
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Forbidden. Access to this API is denied.
+        "413":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Bad request. The request payload is too large.
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Too Many Requests. The request is throttled.
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Workspace error.
+      summary: Collect Automation Intelligence.
+      tags:
+      - Fingerprint
   /events/{event_id}:
     get:
       description: |
-        Get a detailed analysis of an individual identification event, including Smart Signals.
+        Get a detailed analysis of an individual event, including Smart Signals.
 
         Use `event_id` as the URL path parameter. This API method is scoped to a request, i.e. all returned information is by `event_id`.
+
+        Returns `EventDevice` when `source` is `device`, and `EventEdge` when `source` is `edge`.
       operationId: getEvent
       parameters:
-      - description: "The unique [identifier](https://docs.fingerprint.com/reference/js-agent-v4-get-function#event_id)\
+      - description: "The unique [identifier](https://docs.fingerprint.com/reference/js-agent-get-function#event_id)\
           \ of each identification request (`requestId` can be used in its place)."
         explode: false
         in: path
@@ -121,7 +190,7 @@ paths:
         \ the request.\n"
       operationId: updateEvent
       parameters:
-      - description: "The unique event [identifier](https://docs.fingerprint.com/reference/js-agent-v4-get-function#event_id)."
+      - description: "The unique event [identifier](https://docs.fingerprint.com/reference/js-agent-get-function#event_id)."
         explode: false
         in: path
         name: event_id
@@ -227,7 +296,7 @@ paths:
           type: string
         style: form
       - description: |
-          Unique [visitor identifier](https://docs.fingerprint.com/reference/js-agent-v4-get-function#visitor_id) issued by Fingerprint Identification and all active Smart Signals.
+          Unique [visitor identifier](https://docs.fingerprint.com/reference/js-agent-get-function#visitor_id) issued by Fingerprint Identification and all active Smart Signals.
 
           Filter events by matching Visitor ID (`identification.visitor_id` property).
         explode: true
@@ -372,7 +441,7 @@ paths:
       - description: |
           Filter events by your custom identifier.
 
-          You can use [linked Ids](https://docs.fingerprint.com/reference/js-agent-v4-get-function#linkedid) to associate identification requests with your own identifier, for example, session Id, purchase Id, or transaction Id. You can then use this `linked_id` parameter to retrieve all events associated with your custom identifier.
+          You can use [linked Ids](https://docs.fingerprint.com/reference/js-agent-get-function#linkedid) to associate identification requests with your own identifier, for example, session Id, purchase Id, or transaction Id. You can then use this `linked_id` parameter to retrieve all events associated with your custom identifier.
         explode: true
         in: query
         name: linked_id
@@ -916,7 +985,7 @@ paths:
         \    \n"
       operationId: deleteVisitorData
       parameters:
-      - description: "The [visitor ID](https://docs.fingerprint.com/reference/js-agent-v4-get-function#visitor_id)\
+      - description: "The [visitor ID](https://docs.fingerprint.com/reference/js-agent-get-function#visitor_id)\
           \ you want to delete."
         explode: false
         in: path
@@ -968,6 +1037,65 @@ components:
       description: A customer-provided value or an object that was sent with the identification
         request or updated later.
       type: object
+    EdgeRequest:
+      description: |-
+        HTTP request metadata (including the HTTP method, headers and IP address) sent by you (your server) to the Fingerprint API for IP and bot analysis. To improve accuracy, retain as much of the original semantics of the HTTP request as possible. For example, preserve the order of the request headers and their capitalization.
+        At least one of `ipv4_address` or `ipv6_address` must be provided; a request with neither is rejected with a `400` error. If both IPv4 and IPv6 are provided, IP intelligence will be provided for each address. If an IPv4-mapped IPv6 address is provided in the `ipv6_address` request property, the IP intelligence will be provided in the `ipv4_address` property of the response.
+      example:
+        headers:
+        - name: name
+          value: value
+        - name: name
+          value: value
+        method: method
+        url: https://openapi-generator.tech
+        ipv4_address: ipv4_address
+        ipv6_address: ipv6_address
+        linked_id: linked_id
+        tags:
+          key: ""
+      properties:
+        headers:
+          description: |
+            Ordered header entries from the request made to your server. Each entry represents one header line. If one header name appears as multiple lines, send each as a separate item in the array.
+
+            Headers that contain authentication or session data must still be included, but with with their value set to an empty string. This includes headers like `Authorization` and `Cookie`, but may contain more depending on your specific project, for instance `Proxy-Authenticate` or `X-Api-Key`. Omitting the headers entirely changes the shape of the request and can affect detection. Never forward the real secret values.
+
+            Whenever possible, we recommend preserving header order and capitalization to provide the best accuracy, however it’s not a strict requirement if your runtime does not maintain http header order or canonicalizes header names.
+          items:
+            $ref: "#/components/schemas/EdgeRequest_headers_inner"
+          minItems: 1
+          type: array
+          default: null
+        method:
+          description: "The original HTTP method of the request. If supported in your\
+            \ runtime, preserve the original casing."
+          type: string
+        url:
+          description: "Absolute URL of the request, without a \\#fragment suffix.\
+            \ Only HTTP and HTTPS schemes are supported."
+          format: uri
+          type: string
+        ipv4_address:
+          description: Client IPv4 address observed by your server.
+          format: ipv4
+          type: string
+        ipv6_address:
+          description: Client IPv6 address observed by your server.
+          format: ipv6
+          type: string
+        linked_id:
+          description: A customer-provided id that was sent with the request.
+          type: string
+        tags:
+          additionalProperties: true
+          description: A customer-provided value or an object that was sent with the
+            identification request or updated later.
+          type: object
+      required:
+      - headers
+      - method
+      - url
     EventId:
       description: |
         Unique identifier of the user's request. The first portion of the event_id is a unix epoch milliseconds timestamp.
@@ -976,15 +1104,6 @@ components:
       description: Timestamp of the event with millisecond precision in Unix time.
       format: int64
       type: integer
-    EventSource:
-      description: |
-        Identifies how the event was generated.
-        - `device` - the event was generated by the JS agent or a mobile SDK running on an end-user device.
-        - `edge` - the event was generated by the Automation Intelligence API (`/edge` endpoint), analyzing a request intercepted at the edge.
-      enum:
-      - device
-      - edge
-      type: string
     Url:
       description: Page URL from which the request was sent.
       type: string
@@ -1266,6 +1385,128 @@ components:
           type: boolean
           x-platforms:
           - browser
+    EventSource:
+      description: |
+        Identifies how the event was generated.
+        - `device` - the event was generated by the JS agent or a mobile SDK running on an end-user device.
+        - `edge` - the event was generated by the Automation Intelligence API (`/edge` endpoint), analyzing a request intercepted at the edge.
+      enum:
+      - device
+      - edge
+      type: string
+    EventEdge:
+      description: |
+        IP and bot analysis for an event generated by the Automation Intelligence API (`/edge` endpoint). No client-side collection agent is involved, so Identification (`visitor_id`) and device-telemetry-derived Smart Signals are not available.
+      example:
+        event_id: ""
+        timestamp: ""
+        linked_id: ""
+        tags: ""
+        url: ""
+        bot_info: ""
+        ip_info: ""
+        proxy: ""
+        proxy_confidence: ""
+        proxy_details: ""
+        vpn: ""
+        vpn_confidence: ""
+        vpn_methods: ""
+        source: device
+      properties:
+        event_id:
+          allOf:
+          - $ref: "#/components/schemas/EventId"
+          x-platforms:
+          - android
+          - ios
+          - browser
+        timestamp:
+          allOf:
+          - $ref: "#/components/schemas/Timestamp"
+          x-platforms:
+          - android
+          - ios
+          - browser
+        linked_id:
+          allOf:
+          - $ref: "#/components/schemas/LinkedId"
+          x-platforms:
+          - android
+          - ios
+          - browser
+        tags:
+          allOf:
+          - $ref: "#/components/schemas/Tags"
+          x-platforms:
+          - android
+          - ios
+          - browser
+        url:
+          allOf:
+          - $ref: "#/components/schemas/Url"
+          x-platforms:
+          - browser
+        bot_info:
+          allOf:
+          - $ref: "#/components/schemas/BotInfo"
+          x-platforms:
+          - browser
+        ip_info:
+          allOf:
+          - $ref: "#/components/schemas/IPInfo"
+          x-platforms:
+          - android
+          - ios
+          - browser
+        proxy:
+          allOf:
+          - $ref: "#/components/schemas/Proxy"
+          x-platforms:
+          - android
+          - ios
+          - browser
+        proxy_confidence:
+          allOf:
+          - $ref: "#/components/schemas/ProxyConfidence"
+          x-platforms:
+          - android
+          - ios
+          - browser
+        proxy_details:
+          allOf:
+          - $ref: "#/components/schemas/ProxyDetails"
+          x-platforms:
+          - android
+          - ios
+          - browser
+        vpn:
+          allOf:
+          - $ref: "#/components/schemas/Vpn"
+          x-platforms:
+          - android
+          - ios
+          - browser
+        vpn_confidence:
+          allOf:
+          - $ref: "#/components/schemas/VpnConfidence"
+          x-platforms:
+          - android
+          - ios
+          - browser
+        vpn_methods:
+          allOf:
+          - $ref: "#/components/schemas/VpnMethods"
+          x-platforms:
+          - android
+          - ios
+          - browser
+        source:
+          $ref: "#/components/schemas/EventSource"
+      required:
+      - event_id
+      - ip_info
+      - source
+      - timestamp
     ErrorCode:
       description: |
         Error code:
@@ -1350,7 +1591,7 @@ components:
       type: string
     Suspect:
       description: "Field is `true` if you have previously set the `suspect` flag\
-        \ for this event using the [Server API Update event endpoint](https://docs.fingerprint.com/reference/server-api-v4-update-event)."
+        \ for this event using the [Server API Update event endpoint](https://docs.fingerprint.com/reference/server-api-update-event)."
       type: boolean
     Integration:
       properties:
@@ -2351,25 +2592,34 @@ components:
       type: array
       default: null
     Event:
-      description: "Contains results from Fingerprint Identification and all active\
-        \ Smart Signals. Some Smart Signals are only supported for certain device\
-        \ types, these fields will be omitted for events not generated from the supported\
-        \ devices. Consult the [Smart Signals reference](https://docs.fingerprint.com/docs/smart-signals-reference)\
-        \ for more details."
+      description: |
+        An identification event (`source: device`) or an Automation Intelligence event (`source: edge`).
+
+        Use `source` to tell them apart. Device events include Identification and device-derived Smart Signals. Edge events do not.
+
+        Consult the [Smart Signals reference](https://docs.fingerprint.com/docs/smart-signals-reference) for more details.
       example:
         event_id: ""
         timestamp: ""
-        source: ""
-        incremental_identification_status: ""
         linked_id: ""
+        tags: ""
+        url: ""
+        bot_info: ""
+        ip_info: ""
+        proxy: ""
+        proxy_confidence: ""
+        proxy_details: ""
+        vpn: ""
+        vpn_confidence: ""
+        vpn_methods: ""
+        source: device
+        incremental_identification_status: ""
         environment_id: ""
         suspect: ""
         sdk: ""
         replayed: ""
         identification: ""
         supplementary_id_high_recall: ""
-        tags: ""
-        url: ""
         bundle_id: ""
         package_name: ""
         ip_address: ""
@@ -2383,17 +2633,12 @@ components:
         active_call: ""
         bot: ""
         bot_type: ""
-        bot_info: ""
         cloned_app: ""
         developer_tools: ""
         emulator: ""
         factory_reset_timestamp: ""
         frida: ""
         ip_blocklist: ""
-        ip_info: ""
-        proxy: ""
-        proxy_confidence: ""
-        proxy_details: ""
         proxy_ml_score: ""
         incognito: ""
         jailbroken: ""
@@ -2429,12 +2674,9 @@ components:
         velocity: ""
         virtual_machine: ""
         virtual_machine_ml_score: ""
-        vpn: ""
-        vpn_confidence: ""
         vpn_ml_score: ""
         vpn_origin_timezone: ""
         vpn_origin_country: ""
-        vpn_methods: ""
         high_activity_device: ""
         rare_device: ""
         rare_device_percentile_bucket: ""
@@ -2455,24 +2697,85 @@ components:
           - android
           - ios
           - browser
-        source:
-          allOf:
-          - $ref: "#/components/schemas/EventSource"
-          x-platforms:
-          - android
-          - ios
-          - browser
-        incremental_identification_status:
-          allOf:
-          - $ref: "#/components/schemas/IncrementalIdentificationStatus"
-          x-platforms:
-          - browser
         linked_id:
           allOf:
           - $ref: "#/components/schemas/LinkedId"
           x-platforms:
           - android
           - ios
+          - browser
+        tags:
+          allOf:
+          - $ref: "#/components/schemas/Tags"
+          x-platforms:
+          - android
+          - ios
+          - browser
+        url:
+          allOf:
+          - $ref: "#/components/schemas/Url"
+          x-platforms:
+          - browser
+        bot_info:
+          allOf:
+          - $ref: "#/components/schemas/BotInfo"
+          x-platforms:
+          - browser
+        ip_info:
+          allOf:
+          - $ref: "#/components/schemas/IPInfo"
+          x-platforms:
+          - android
+          - ios
+          - browser
+        proxy:
+          allOf:
+          - $ref: "#/components/schemas/Proxy"
+          x-platforms:
+          - android
+          - ios
+          - browser
+        proxy_confidence:
+          allOf:
+          - $ref: "#/components/schemas/ProxyConfidence"
+          x-platforms:
+          - android
+          - ios
+          - browser
+        proxy_details:
+          allOf:
+          - $ref: "#/components/schemas/ProxyDetails"
+          x-platforms:
+          - android
+          - ios
+          - browser
+        vpn:
+          allOf:
+          - $ref: "#/components/schemas/Vpn"
+          x-platforms:
+          - android
+          - ios
+          - browser
+        vpn_confidence:
+          allOf:
+          - $ref: "#/components/schemas/VpnConfidence"
+          x-platforms:
+          - android
+          - ios
+          - browser
+        vpn_methods:
+          allOf:
+          - $ref: "#/components/schemas/VpnMethods"
+          x-platforms:
+          - android
+          - ios
+          - browser
+        source:
+          $ref: "#/components/schemas/EventSource"
+        incremental_identification_status:
+          allOf:
+          - $ref: "#/components/schemas/IncrementalIdentificationStatus"
+          x-platforms:
           - browser
         environment_id:
           allOf:
@@ -2515,18 +2818,6 @@ components:
           x-platforms:
           - android
           - ios
-          - browser
-        tags:
-          allOf:
-          - $ref: "#/components/schemas/Tags"
-          x-platforms:
-          - android
-          - ios
-          - browser
-        url:
-          allOf:
-          - $ref: "#/components/schemas/Url"
-          x-platforms:
           - browser
         bundle_id:
           allOf:
@@ -2606,11 +2897,6 @@ components:
           - $ref: "#/components/schemas/BotType"
           x-platforms:
           - browser
-        bot_info:
-          allOf:
-          - $ref: "#/components/schemas/BotInfo"
-          x-platforms:
-          - browser
         cloned_app:
           allOf:
           - $ref: "#/components/schemas/ClonedApp"
@@ -2643,34 +2929,6 @@ components:
         ip_blocklist:
           allOf:
           - $ref: "#/components/schemas/IPBlockList"
-          x-platforms:
-          - android
-          - ios
-          - browser
-        ip_info:
-          allOf:
-          - $ref: "#/components/schemas/IPInfo"
-          x-platforms:
-          - android
-          - ios
-          - browser
-        proxy:
-          allOf:
-          - $ref: "#/components/schemas/Proxy"
-          x-platforms:
-          - android
-          - ios
-          - browser
-        proxy_confidence:
-          allOf:
-          - $ref: "#/components/schemas/ProxyConfidence"
-          x-platforms:
-          - android
-          - ios
-          - browser
-        proxy_details:
-          allOf:
-          - $ref: "#/components/schemas/ProxyDetails"
           x-platforms:
           - android
           - ios
@@ -2771,20 +3029,6 @@ components:
           - $ref: "#/components/schemas/VirtualMachineMLScore"
           x-platforms:
           - browser
-        vpn:
-          allOf:
-          - $ref: "#/components/schemas/Vpn"
-          x-platforms:
-          - android
-          - ios
-          - browser
-        vpn_confidence:
-          allOf:
-          - $ref: "#/components/schemas/VpnConfidence"
-          x-platforms:
-          - android
-          - ios
-          - browser
         vpn_ml_score:
           allOf:
           - $ref: "#/components/schemas/VpnMLScore"
@@ -2803,13 +3047,6 @@ components:
           x-platforms:
           - android
           - ios
-        vpn_methods:
-          allOf:
-          - $ref: "#/components/schemas/VpnMethods"
-          x-platforms:
-          - android
-          - ios
-          - browser
         high_activity_device:
           allOf:
           - $ref: "#/components/schemas/HighActivity"
@@ -2870,17 +3107,25 @@ components:
         events:
         - event_id: ""
           timestamp: ""
-          source: ""
-          incremental_identification_status: ""
           linked_id: ""
+          tags: ""
+          url: ""
+          bot_info: ""
+          ip_info: ""
+          proxy: ""
+          proxy_confidence: ""
+          proxy_details: ""
+          vpn: ""
+          vpn_confidence: ""
+          vpn_methods: ""
+          source: device
+          incremental_identification_status: ""
           environment_id: ""
           suspect: ""
           sdk: ""
           replayed: ""
           identification: ""
           supplementary_id_high_recall: ""
-          tags: ""
-          url: ""
           bundle_id: ""
           package_name: ""
           ip_address: ""
@@ -2894,17 +3139,12 @@ components:
           active_call: ""
           bot: ""
           bot_type: ""
-          bot_info: ""
           cloned_app: ""
           developer_tools: ""
           emulator: ""
           factory_reset_timestamp: ""
           frida: ""
           ip_blocklist: ""
-          ip_info: ""
-          proxy: ""
-          proxy_confidence: ""
-          proxy_details: ""
           proxy_ml_score: ""
           incognito: ""
           jailbroken: ""
@@ -2940,12 +3180,9 @@ components:
           velocity: ""
           virtual_machine: ""
           virtual_machine_ml_score: ""
-          vpn: ""
-          vpn_confidence: ""
           vpn_ml_score: ""
           vpn_origin_timezone: ""
           vpn_origin_country: ""
-          vpn_methods: ""
           high_activity_device: ""
           rare_device: ""
           rare_device_percentile_bucket: ""
@@ -2953,17 +3190,25 @@ components:
           labels: ""
         - event_id: ""
           timestamp: ""
-          source: ""
-          incremental_identification_status: ""
           linked_id: ""
+          tags: ""
+          url: ""
+          bot_info: ""
+          ip_info: ""
+          proxy: ""
+          proxy_confidence: ""
+          proxy_details: ""
+          vpn: ""
+          vpn_confidence: ""
+          vpn_methods: ""
+          source: device
+          incremental_identification_status: ""
           environment_id: ""
           suspect: ""
           sdk: ""
           replayed: ""
           identification: ""
           supplementary_id_high_recall: ""
-          tags: ""
-          url: ""
           bundle_id: ""
           package_name: ""
           ip_address: ""
@@ -2977,17 +3222,12 @@ components:
           active_call: ""
           bot: ""
           bot_type: ""
-          bot_info: ""
           cloned_app: ""
           developer_tools: ""
           emulator: ""
           factory_reset_timestamp: ""
           frida: ""
           ip_blocklist: ""
-          ip_info: ""
-          proxy: ""
-          proxy_confidence: ""
-          proxy_details: ""
           proxy_ml_score: ""
           incognito: ""
           jailbroken: ""
@@ -3023,12 +3263,9 @@ components:
           velocity: ""
           virtual_machine: ""
           virtual_machine_ml_score: ""
-          vpn: ""
-          vpn_confidence: ""
           vpn_ml_score: ""
           vpn_origin_timezone: ""
           vpn_origin_country: ""
-          vpn_methods: ""
           high_activity_device: ""
           rare_device: ""
           rare_device_percentile_bucket: ""
@@ -3130,6 +3367,23 @@ components:
       enum:
       - edge
       type: string
+    EdgeRequest_headers_inner:
+      example:
+        name: name
+        value: value
+      properties:
+        name:
+          description: Header name as forwarded by your server. Headers must be valid
+            according to RFC 7230 and will be canonicalized according to RFC 9112.
+          type: string
+        value:
+          description: "Value of a single forwarded header entry. Be careful to preserve\
+            \ the original encoding and escaping. For example, do not double escape\
+            \ quotes."
+          type: string
+      required:
+      - name
+      - value
     Geolocation_subdivisions_inner:
       properties:
         iso_code:

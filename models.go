@@ -64,6 +64,8 @@ const (
 
 type BrowserDetails = openapi.BrowserDetails
 type Canvas = openapi.Canvas
+type EdgeRequest = openapi.EdgeRequest
+type EdgeRequestHeadersInner = openapi.EdgeRequestHeadersInner
 type Emoji = openapi.Emoji
 type Error = openapi.Error
 type ErrorCode = openapi.ErrorCode
@@ -91,6 +93,7 @@ const (
 
 type ErrorResponse = openapi.ErrorResponse
 type Event = openapi.Event
+type EventEdge = openapi.EventEdge
 type EventRuleAction = openapi.EventRuleAction
 type EventRuleActionAllow = openapi.EventRuleActionAllow
 type EventRuleActionBlock = openapi.EventRuleActionBlock

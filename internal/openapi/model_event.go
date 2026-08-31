@@ -19,29 +19,39 @@ import (
 // checks if the Event type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &Event{}
 
-// Event Contains results from Fingerprint Identification and all active Smart Signals. Some Smart Signals are only supported for certain device types, these fields will be omitted for events not generated from the supported devices. Consult the [Smart Signals reference](https://docs.fingerprint.com/docs/smart-signals-reference) for more details.
+// Event An identification event (`source: device`) or an Automation Intelligence event (`source: edge`).  Use `source` to tell them apart. Device events include Identification and device-derived Smart Signals. Edge events do not.  Consult the [Smart Signals reference](https://docs.fingerprint.com/docs/smart-signals-reference) for more details.
 type Event struct {
 	// Unique identifier of the user's request. The first portion of the event_id is a unix epoch milliseconds timestamp.
 	EventID string `json:"event_id"`
 	// Timestamp of the event with millisecond precision in Unix time.
-	Timestamp                       int64                            `json:"timestamp"`
-	Source                          *EventSource                     `json:"source,omitempty"`
-	IncrementalIdentificationStatus *IncrementalIdentificationStatus `json:"incremental_identification_status,omitempty"`
+	Timestamp int64 `json:"timestamp"`
 	// A customer-provided id that was sent with the request.
 	LinkedID *string `json:"linked_id,omitempty"`
+	// A customer-provided value or an object that was sent with the identification request or updated later.
+	Tags map[string]interface{} `json:"tags,omitempty"`
+	// Page URL from which the request was sent.
+	URL     *string  `json:"url,omitempty"`
+	BotInfo *BotInfo `json:"bot_info,omitempty"`
+	IPInfo  *IPInfo  `json:"ip_info,omitempty"`
+	// IP address was used by a public proxy provider or belonged to a known recent residential proxy
+	Proxy           *bool            `json:"proxy,omitempty"`
+	ProxyConfidence *ProxyConfidence `json:"proxy_confidence,omitempty"`
+	ProxyDetails    *ProxyDetails    `json:"proxy_details,omitempty"`
+	// VPN or other anonymizing service has been used when sending the request.
+	VPN                             *bool                            `json:"vpn,omitempty"`
+	VPNConfidence                   *VPNConfidence                   `json:"vpn_confidence,omitempty"`
+	VPNMethods                      *VPNMethods                      `json:"vpn_methods,omitempty"`
+	Source                          *EventSource                     `json:"source,omitempty"`
+	IncrementalIdentificationStatus *IncrementalIdentificationStatus `json:"incremental_identification_status,omitempty"`
 	// Environment Id of the event.
 	EnvironmentID *string `json:"environment_id,omitempty"`
-	// Field is `true` if you have previously set the `suspect` flag for this event using the [Server API Update event endpoint](https://docs.fingerprint.com/reference/server-api-v4-update-event).
+	// Field is `true` if you have previously set the `suspect` flag for this event using the [Server API Update event endpoint](https://docs.fingerprint.com/reference/server-api-update-event).
 	Suspect *bool `json:"suspect,omitempty"`
 	SDK     *SDK  `json:"sdk,omitempty"`
 	// `true` if we determined that this payload was replayed, `false` otherwise.
 	Replayed                  *bool                      `json:"replayed,omitempty"`
 	Identification            *Identification            `json:"identification,omitempty"`
 	SupplementaryIDHighRecall *SupplementaryIDHighRecall `json:"supplementary_id_high_recall,omitempty"`
-	// A customer-provided value or an object that was sent with the identification request or updated later.
-	Tags map[string]interface{} `json:"tags,omitempty"`
-	// Page URL from which the request was sent.
-	URL *string `json:"url,omitempty"`
 	// Bundle Id of the iOS application integrated with the Fingerprint SDK for the event.
 	BundleID *string `json:"bundle_id,omitempty"`
 	// Package name of the Android application integrated with the Fingerprint SDK for the event.
@@ -64,8 +74,7 @@ type Event struct {
 	ActiveCall *bool      `json:"active_call,omitempty"`
 	Bot        *BotResult `json:"bot,omitempty"`
 	// Additional classification of the bot type if detected.
-	BotType *string  `json:"bot_type,omitempty"`
-	BotInfo *BotInfo `json:"bot_info,omitempty"`
+	BotType *string `json:"bot_type,omitempty"`
 	// Android specific cloned application detection. There are 2 values:  * `true` - Presence of app cloners work detected (e.g. fully cloned application found or launch of it inside of a not main working profile detected). * `false` - No signs of cloned application detected or the client is not Android.
 	ClonedApp *bool `json:"cloned_app,omitempty"`
 	// `true` if the browser has DevTools open (Chrome, Firefox) or the Android/iOS device has Developer Tools enabled, `false` otherwise.
@@ -77,11 +86,6 @@ type Event struct {
 	// [Frida](https://frida.re/docs/) detection for Android and iOS devices. There are 2 values: * `true` - Frida detected * `false` - No signs of Frida or the client is not a mobile device.
 	Frida       *bool        `json:"frida,omitempty"`
 	IPBlockList *IPBlockList `json:"ip_blocklist,omitempty"`
-	IPInfo      *IPInfo      `json:"ip_info,omitempty"`
-	// IP address was used by a public proxy provider or belonged to a known recent residential proxy
-	Proxy           *bool            `json:"proxy,omitempty"`
-	ProxyConfidence *ProxyConfidence `json:"proxy_confidence,omitempty"`
-	ProxyDetails    *ProxyDetails    `json:"proxy_details,omitempty"`
 	// Machine learning–based proxy score, represented as a floating-point value between 0 and 1 (inclusive), with up to three decimal places of precision. A higher score means a higher confidence in the positive `proxy` detection result. This Smart Signal is currently in beta and only available to select customers. If you are interested, please [contact our support team](https://fingerprint.com/support/).
 	ProxyMlScore *float64 `json:"proxy_ml_score,omitempty"`
 	// `true` if we detected incognito mode used in the browser, `false` otherwise.
@@ -112,16 +116,12 @@ type Event struct {
 	VirtualMachine *bool `json:"virtual_machine,omitempty"`
 	// Machine learning–based virtual machine score, represented as a floating-point value between 0 and 1 (inclusive), with up to three decimal places of precision. A higher score means a higher confidence in the positive `virtual_machine` detection result. This Smart Signal is currently in beta and only available to select customers. If you are interested, please [contact our support team](https://fingerprint.com/support/).
 	VirtualMachineMlScore *float64 `json:"virtual_machine_ml_score,omitempty"`
-	// VPN or other anonymizing service has been used when sending the request.
-	VPN           *bool          `json:"vpn,omitempty"`
-	VPNConfidence *VPNConfidence `json:"vpn_confidence,omitempty"`
 	// Machine learning–based VPN score, represented as a floating-point value between 0 and 1 (inclusive), with up to three decimal places of precision. A higher score means a higher confidence in the positive `vpn` detection result. This Smart Signal is currently in beta and only available to select customers. If you are interested, please [contact our support team](https://fingerprint.com/support/).
 	VpnMlScore *float64 `json:"vpn_ml_score,omitempty"`
 	// Local timezone which is used in timezone_mismatch method.
 	VPNOriginTimezone *string `json:"vpn_origin_timezone,omitempty"`
 	// Country of the request (Android SDK version >= 2.4.0, iOS SDK version >= 2.9.0, JS agent >= 3.12.9 / 4.0.2), ISO 3166 format or unknown.
-	VPNOriginCountry *string     `json:"vpn_origin_country,omitempty"`
-	VPNMethods       *VPNMethods `json:"vpn_methods,omitempty"`
+	VPNOriginCountry *string `json:"vpn_origin_country,omitempty"`
 	// Flag indicating if the request came from a high-activity visitor.
 	HighActivityDevice *bool `json:"high_activity_device,omitempty"`
 	// `true` if the device is considered rare based on its combination of hardware and software attributes.  A device is classified as rare if it falls within the top 99.9 percentile (lowest-frequency segment) of observed traffic,  or if its configuration has not been previously seen (`not_seen`). > This Smart Signal is currently in beta and only available to select customers. If you are interested, please [contact our support team](https://fingerprint.com/support/).
@@ -147,14 +147,44 @@ func (o Event) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["event_id"] = o.EventID
 	toSerialize["timestamp"] = o.Timestamp
+	if !IsNil(o.LinkedID) {
+		toSerialize["linked_id"] = o.LinkedID
+	}
+	if !IsNil(o.Tags) {
+		toSerialize["tags"] = o.Tags
+	}
+	if !IsNil(o.URL) {
+		toSerialize["url"] = o.URL
+	}
+	if !IsNil(o.BotInfo) {
+		toSerialize["bot_info"] = o.BotInfo
+	}
+	if !IsNil(o.IPInfo) {
+		toSerialize["ip_info"] = o.IPInfo
+	}
+	if !IsNil(o.Proxy) {
+		toSerialize["proxy"] = o.Proxy
+	}
+	if !IsNil(o.ProxyConfidence) {
+		toSerialize["proxy_confidence"] = o.ProxyConfidence
+	}
+	if !IsNil(o.ProxyDetails) {
+		toSerialize["proxy_details"] = o.ProxyDetails
+	}
+	if !IsNil(o.VPN) {
+		toSerialize["vpn"] = o.VPN
+	}
+	if !IsNil(o.VPNConfidence) {
+		toSerialize["vpn_confidence"] = o.VPNConfidence
+	}
+	if !IsNil(o.VPNMethods) {
+		toSerialize["vpn_methods"] = o.VPNMethods
+	}
 	if !IsNil(o.Source) {
 		toSerialize["source"] = o.Source
 	}
 	if !IsNil(o.IncrementalIdentificationStatus) {
 		toSerialize["incremental_identification_status"] = o.IncrementalIdentificationStatus
-	}
-	if !IsNil(o.LinkedID) {
-		toSerialize["linked_id"] = o.LinkedID
 	}
 	if !IsNil(o.EnvironmentID) {
 		toSerialize["environment_id"] = o.EnvironmentID
@@ -173,12 +203,6 @@ func (o Event) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.SupplementaryIDHighRecall) {
 		toSerialize["supplementary_id_high_recall"] = o.SupplementaryIDHighRecall
-	}
-	if !IsNil(o.Tags) {
-		toSerialize["tags"] = o.Tags
-	}
-	if !IsNil(o.URL) {
-		toSerialize["url"] = o.URL
 	}
 	if !IsNil(o.BundleID) {
 		toSerialize["bundle_id"] = o.BundleID
@@ -219,9 +243,6 @@ func (o Event) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.BotType) {
 		toSerialize["bot_type"] = o.BotType
 	}
-	if !IsNil(o.BotInfo) {
-		toSerialize["bot_info"] = o.BotInfo
-	}
 	if !IsNil(o.ClonedApp) {
 		toSerialize["cloned_app"] = o.ClonedApp
 	}
@@ -239,18 +260,6 @@ func (o Event) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.IPBlockList) {
 		toSerialize["ip_blocklist"] = o.IPBlockList
-	}
-	if !IsNil(o.IPInfo) {
-		toSerialize["ip_info"] = o.IPInfo
-	}
-	if !IsNil(o.Proxy) {
-		toSerialize["proxy"] = o.Proxy
-	}
-	if !IsNil(o.ProxyConfidence) {
-		toSerialize["proxy_confidence"] = o.ProxyConfidence
-	}
-	if !IsNil(o.ProxyDetails) {
-		toSerialize["proxy_details"] = o.ProxyDetails
 	}
 	if !IsNil(o.ProxyMlScore) {
 		toSerialize["proxy_ml_score"] = o.ProxyMlScore
@@ -303,12 +312,6 @@ func (o Event) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.VirtualMachineMlScore) {
 		toSerialize["virtual_machine_ml_score"] = o.VirtualMachineMlScore
 	}
-	if !IsNil(o.VPN) {
-		toSerialize["vpn"] = o.VPN
-	}
-	if !IsNil(o.VPNConfidence) {
-		toSerialize["vpn_confidence"] = o.VPNConfidence
-	}
 	if !IsNil(o.VpnMlScore) {
 		toSerialize["vpn_ml_score"] = o.VpnMlScore
 	}
@@ -317,9 +320,6 @@ func (o Event) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.VPNOriginCountry) {
 		toSerialize["vpn_origin_country"] = o.VPNOriginCountry
-	}
-	if !IsNil(o.VPNMethods) {
-		toSerialize["vpn_methods"] = o.VPNMethods
 	}
 	if !IsNil(o.HighActivityDevice) {
 		toSerialize["high_activity_device"] = o.HighActivityDevice
@@ -382,17 +382,25 @@ func (o *Event) UnmarshalJSON(data []byte) (err error) {
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "event_id")
 		delete(additionalProperties, "timestamp")
+		delete(additionalProperties, "linked_id")
+		delete(additionalProperties, "tags")
+		delete(additionalProperties, "url")
+		delete(additionalProperties, "bot_info")
+		delete(additionalProperties, "ip_info")
+		delete(additionalProperties, "proxy")
+		delete(additionalProperties, "proxy_confidence")
+		delete(additionalProperties, "proxy_details")
+		delete(additionalProperties, "vpn")
+		delete(additionalProperties, "vpn_confidence")
+		delete(additionalProperties, "vpn_methods")
 		delete(additionalProperties, "source")
 		delete(additionalProperties, "incremental_identification_status")
-		delete(additionalProperties, "linked_id")
 		delete(additionalProperties, "environment_id")
 		delete(additionalProperties, "suspect")
 		delete(additionalProperties, "sdk")
 		delete(additionalProperties, "replayed")
 		delete(additionalProperties, "identification")
 		delete(additionalProperties, "supplementary_id_high_recall")
-		delete(additionalProperties, "tags")
-		delete(additionalProperties, "url")
 		delete(additionalProperties, "bundle_id")
 		delete(additionalProperties, "package_name")
 		delete(additionalProperties, "ip_address")
@@ -406,17 +414,12 @@ func (o *Event) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "active_call")
 		delete(additionalProperties, "bot")
 		delete(additionalProperties, "bot_type")
-		delete(additionalProperties, "bot_info")
 		delete(additionalProperties, "cloned_app")
 		delete(additionalProperties, "developer_tools")
 		delete(additionalProperties, "emulator")
 		delete(additionalProperties, "factory_reset_timestamp")
 		delete(additionalProperties, "frida")
 		delete(additionalProperties, "ip_blocklist")
-		delete(additionalProperties, "ip_info")
-		delete(additionalProperties, "proxy")
-		delete(additionalProperties, "proxy_confidence")
-		delete(additionalProperties, "proxy_details")
 		delete(additionalProperties, "proxy_ml_score")
 		delete(additionalProperties, "incognito")
 		delete(additionalProperties, "jailbroken")
@@ -434,12 +437,9 @@ func (o *Event) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "velocity")
 		delete(additionalProperties, "virtual_machine")
 		delete(additionalProperties, "virtual_machine_ml_score")
-		delete(additionalProperties, "vpn")
-		delete(additionalProperties, "vpn_confidence")
 		delete(additionalProperties, "vpn_ml_score")
 		delete(additionalProperties, "vpn_origin_timezone")
 		delete(additionalProperties, "vpn_origin_country")
-		delete(additionalProperties, "vpn_methods")
 		delete(additionalProperties, "high_activity_device")
 		delete(additionalProperties, "rare_device")
 		delete(additionalProperties, "rare_device_percentile_bucket")
