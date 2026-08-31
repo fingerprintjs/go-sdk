@@ -181,6 +181,27 @@ type MockFingerprintAPI struct {
 	mock.Mock
 }
 
+func (m *MockFingerprintAPI) AnalyzeRequestForAutomationIntelligence() fingerprint.APIAnalyzeRequestForAutomationIntelligenceRequest {
+	args := m.Called()
+	if len(args) > 0 {
+		if req, ok := args.Get(0).(fingerprint.APIAnalyzeRequestForAutomationIntelligenceRequest); ok {
+			return req
+		}
+	}
+
+	return fingerprint.APIAnalyzeRequestForAutomationIntelligenceRequest{
+		ApiService: m,
+	}
+}
+
+func (m *MockFingerprintAPI) AnalyzeRequestForAutomationIntelligenceExecute(ctx context.Context, r fingerprint.APIAnalyzeRequestForAutomationIntelligenceRequest) (*fingerprint.EventEdge, *http.Response, error) {
+	args := m.Called(ctx, r)
+	eventEdge, _ := args.Get(0).(*fingerprint.EventEdge)
+	httpResp, _ := args.Get(1).(*http.Response)
+	err, _ := args.Get(2).(error)
+	return eventEdge, httpResp, err
+}
+
 func (m *MockFingerprintAPI) DeleteVisitorData(visitorId string) fingerprint.APIDeleteVisitorDataRequest {
 	args := m.Called(visitorId)
 	if req, ok := args.Get(0).(fingerprint.APIDeleteVisitorDataRequest); ok {

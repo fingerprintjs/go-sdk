@@ -9,6 +9,7 @@ import (
 )
 
 type API = openapi.FingerprintAPI
+type APIAnalyzeRequestForAutomationIntelligenceRequest = openapi.ApiAnalyzeRequestForAutomationIntelligenceRequest
 type APIDeleteVisitorDataRequest = openapi.ApiDeleteVisitorDataRequest
 type APIGetEventRequest = openapi.ApiGetEventRequest
 type APISearchEventsRequest = openapi.ApiSearchEventsRequest
