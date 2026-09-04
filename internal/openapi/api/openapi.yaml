@@ -1603,7 +1603,7 @@ components:
           os_mismatch: true
           relay: true
           ml_prediction: true
-        source: device
+        source: ""
       properties:
         event_id:
           allOf:
@@ -1657,7 +1657,8 @@ components:
         vpn_methods:
           $ref: "#/components/schemas/VpnMethods"
         source:
-          $ref: "#/components/schemas/EventSource"
+          allOf:
+          - $ref: "#/components/schemas/EventSource"
       required:
       - event_id
       - ip_info
