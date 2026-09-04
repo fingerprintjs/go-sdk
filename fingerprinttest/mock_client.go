@@ -38,6 +38,14 @@ func (m *MockClient) GetEvent(ctx context.Context, eventID string, opts ...finge
 	return event, resp, args.Error(2)
 }
 
+// AnalyzeRequestForAutomationIntelligence implements fingerprint.ClientInterface.
+func (m *MockClient) AnalyzeRequestForAutomationIntelligence(ctx context.Context, edgeRequest fingerprint.EdgeRequest) (*fingerprint.EventEdge, *http.Response, error) {
+	args := m.Called(ctx, edgeRequest)
+	event := args.Get(0).(*fingerprint.EventEdge)
+	resp := args.Get(1).(*http.Response)
+	return event, resp, args.Error(2)
+}
+
 // SearchEvents implements fingerprint.ClientInterface.
 func (m *MockClient) SearchEvents(ctx context.Context, req fingerprint.SearchEventRequest) (*fingerprint.EventSearch, *http.Response, error) {
 	args := m.Called(ctx, req)
@@ -64,6 +72,12 @@ func (m *MockClient) DeleteVisitorData(ctx context.Context, visitorId string) (*
 // Returns the underlying *mock.Call for optional chaining (.Once(), .Times(n), etc.).
 func (m *MockClient) SetGetEventResponse(event *fingerprint.Event, resp *http.Response, err error) *mock.Call {
 	return m.On("GetEvent", mock.Anything, mock.Anything, mock.Anything).Return(event, resp, err)
+}
+
+// SetAnalyzeRequestForAutomationIntelligenceResponse configures the mock to return the given values for any AnalyzeRequestForAutomationIntelligence call.
+// Returns the underlying *mock.Call for optional chaining (.Once(), .Times(n), etc.).
+func (m *MockClient) SetAnalyzeRequestForAutomationIntelligenceResponse(event *fingerprint.EventEdge, resp *http.Response, err error) *mock.Call {
+	return m.On("AnalyzeRequestForAutomationIntelligence", mock.Anything, mock.Anything).Return(event, resp, err)
 }
 
 // SetSearchEventsResponse configures the mock to return the given values for any SearchEvents call.

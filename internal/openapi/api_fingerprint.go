@@ -25,6 +25,38 @@ import (
 type FingerprintAPI interface {
 
 	/*
+		AnalyzeRequestForAutomationIntelligence Collect Automation Intelligence.
+
+		The Automation Intelligence API gives you the tools to determine whether traffic is legitimate and should be accepted by your application.
+
+	This feature is currently in a Public Preview testing phase. All feedback is welcome! If you encounter any issues, please [contact our support team](https://fingerprint.com/support/).
+
+	The API detects automation tools like AI Agents, AI Assistants, AI Browsers, and other bots. Additionally, it provides IP intelligence like geolocation, residential proxy, VPN and data center detection.
+
+	Automation Intelligence is derived from HTTP request metadata that reaches your server. It does not require the use of a JavaScript client-side agent or mobile SDKs to collect device context.
+
+	The API is fast, with average response times of less than 30ms, making it a great fit for edge, pre-origin or middleware contexts. The API is platform-agnostic and can be used with different CDN providers, cloud platforms, or any server backend.
+
+	Because this API doesn’t require the use of a client-side device collection agent, it doesn’t support device identification via `visitor_id` and a few Smart Signals derived from deep device telemetry.
+
+	### Event Retrieval
+
+	Events created by the Automation Intelligence API can be fetched via the [`/v4/events/{event_id}`](https://docs.fingerprint.com/reference/server-api-get-event) API using the `event_id` present in the API response.
+
+	Fetch all Automation Intelligence API events via the [`/v4/events?source=edge`](https://docs.fingerprint.com/reference/server-api-search-events#parameter-source) API.
+
+
+
+		Returns ApiAnalyzeRequestForAutomationIntelligenceRequest
+	*/
+	AnalyzeRequestForAutomationIntelligence() ApiAnalyzeRequestForAutomationIntelligenceRequest
+
+	// AnalyzeRequestForAutomationIntelligenceExecute executes the request
+	//  ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	//  Returns EventEdge
+	AnalyzeRequestForAutomationIntelligenceExecute(ctx context.Context, r ApiAnalyzeRequestForAutomationIntelligenceRequest) (*EventEdge, *http.Response, error)
+
+	/*
 		DeleteVisitorData Delete a visitor ID
 
 		Use this API to request the deletion of all data associated with a specific visitor ID.
@@ -56,7 +88,7 @@ type FingerprintAPI interface {
 	You can request an increase to these limits by contacting [our support team](https://fingerprint.com/support/).
 
 
-		visitorID The [visitor ID](https://docs.fingerprint.com/reference/js-agent-v4-get-function#visitor_id) you want to delete.
+		visitorID The [visitor ID](https://docs.fingerprint.com/reference/js-agent-get-function#visitor_id) you want to delete.
 		Returns ApiDeleteVisitorDataRequest
 	*/
 	DeleteVisitorData(visitorID string) ApiDeleteVisitorDataRequest
@@ -67,12 +99,14 @@ type FingerprintAPI interface {
 	/*
 		GetEvent Get an event by event ID
 
-		Get a detailed analysis of an individual identification event, including Smart Signals.
+		Get a detailed analysis of an individual event, including Smart Signals.
 
 	Use `event_id` as the URL path parameter. This API method is scoped to a request, i.e. all returned information is by `event_id`.
 
+	Use `source` to tell identification events (`device`) from Automation Intelligence events (`edge`).
 
-		eventID The unique [identifier](https://docs.fingerprint.com/reference/js-agent-v4-get-function#event_id) of each identification request (`requestId` can be used in its place).
+
+		eventID The unique [identifier](https://docs.fingerprint.com/reference/js-agent-get-function#event_id) of each identification request (`requestId` can be used in its place).
 		Returns ApiGetEventRequest
 	*/
 	GetEvent(eventID string) ApiGetEventRequest
@@ -137,7 +171,7 @@ type FingerprintAPI interface {
 	error (HTTP 409 Conflict. The event is not mutable yet.) as the event is fully propagated across our systems. In such a case, simply retry the request.
 
 
-		eventID The unique event [identifier](https://docs.fingerprint.com/reference/js-agent-v4-get-function#event_id).
+		eventID The unique event [identifier](https://docs.fingerprint.com/reference/js-agent-get-function#event_id).
 		Returns ApiUpdateEventRequest
 	*/
 	UpdateEvent(eventID string) ApiUpdateEventRequest
@@ -148,6 +182,185 @@ type FingerprintAPI interface {
 
 // FingerprintAPIService FingerprintAPI service
 type FingerprintAPIService service
+
+type ApiAnalyzeRequestForAutomationIntelligenceRequest struct {
+	ApiService  FingerprintAPI
+	edgeRequest *EdgeRequest
+}
+
+func (r ApiAnalyzeRequestForAutomationIntelligenceRequest) EdgeRequest(edgeRequest EdgeRequest) ApiAnalyzeRequestForAutomationIntelligenceRequest {
+	r.edgeRequest = &edgeRequest
+	return r
+}
+
+func (r ApiAnalyzeRequestForAutomationIntelligenceRequest) Execute(ctx context.Context) (*EventEdge, *http.Response, error) {
+	return r.ApiService.AnalyzeRequestForAutomationIntelligenceExecute(ctx, r)
+}
+
+/*
+AnalyzeRequestForAutomationIntelligence Collect Automation Intelligence.
+
+The Automation Intelligence API gives you the tools to determine whether traffic is legitimate and should be accepted by your application.
+
+This feature is currently in a Public Preview testing phase. All feedback is welcome! If you encounter any issues, please [contact our support team](https://fingerprint.com/support/).
+
+The API detects automation tools like AI Agents, AI Assistants, AI Browsers, and other bots. Additionally, it provides IP intelligence like geolocation, residential proxy, VPN and data center detection.
+
+Automation Intelligence is derived from HTTP request metadata that reaches your server. It does not require the use of a JavaScript client-side agent or mobile SDKs to collect device context.
+
+The API is fast, with average response times of less than 30ms, making it a great fit for edge, pre-origin or middleware contexts. The API is platform-agnostic and can be used with different CDN providers, cloud platforms, or any server backend.
+
+Because this API doesn’t require the use of a client-side device collection agent, it doesn’t support device identification via `visitor_id` and a few Smart Signals derived from deep device telemetry.
+
+### Event Retrieval
+
+Events created by the Automation Intelligence API can be fetched via the [`/v4/events/{event_id}`](https://docs.fingerprint.com/reference/server-api-get-event) API using the `event_id` present in the API response.
+
+Fetch all Automation Intelligence API events via the [`/v4/events?source=edge`](https://docs.fingerprint.com/reference/server-api-search-events#parameter-source) API.
+
+	Returns ApiAnalyzeRequestForAutomationIntelligenceRequest
+*/
+func (a *FingerprintAPIService) AnalyzeRequestForAutomationIntelligence() ApiAnalyzeRequestForAutomationIntelligenceRequest {
+	return ApiAnalyzeRequestForAutomationIntelligenceRequest{
+		ApiService: a,
+	}
+}
+
+// Execute executes the request
+//
+//	ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+//	Returns EventEdge
+func (a *FingerprintAPIService) AnalyzeRequestForAutomationIntelligenceExecute(ctx context.Context, r ApiAnalyzeRequestForAutomationIntelligenceRequest) (*EventEdge, *http.Response, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *EventEdge
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(ctx, "FingerprintAPIService.AnalyzeRequestForAutomationIntelligence")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/edge"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.edgeRequest == nil {
+		return localVarReturnValue, nil, reportError("edgeRequest is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.edgeRequest
+	req, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	_ = localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 413 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
 
 type ApiDeleteVisitorDataRequest struct {
 	ApiService FingerprintAPI
@@ -189,7 +402,7 @@ The maximum number of DELETE requests that can be made in an hour cannot exceed 
 
 You can request an increase to these limits by contacting [our support team](https://fingerprint.com/support/).
 
-	visitorID The [visitor ID](https://docs.fingerprint.com/reference/js-agent-v4-get-function#visitor_id) you want to delete.
+	visitorID The [visitor ID](https://docs.fingerprint.com/reference/js-agent-get-function#visitor_id) you want to delete.
 	Returns ApiDeleteVisitorDataRequest
 */
 func (a *FingerprintAPIService) DeleteVisitorData(visitorID string) ApiDeleteVisitorDataRequest {
@@ -326,11 +539,13 @@ func (r ApiGetEventRequest) Execute(ctx context.Context) (*Event, *http.Response
 /*
 GetEvent Get an event by event ID
 
-Get a detailed analysis of an individual identification event, including Smart Signals.
+Get a detailed analysis of an individual event, including Smart Signals.
 
 Use `event_id` as the URL path parameter. This API method is scoped to a request, i.e. all returned information is by `event_id`.
 
-	eventID The unique [identifier](https://docs.fingerprint.com/reference/js-agent-v4-get-function#event_id) of each identification request (`requestId` can be used in its place).
+Use `source` to tell identification events (`device`) from Automation Intelligence events (`edge`).
+
+	eventID The unique [identifier](https://docs.fingerprint.com/reference/js-agent-get-function#event_id) of each identification request (`requestId` can be used in its place).
 	Returns ApiGetEventRequest
 */
 func (a *FingerprintAPIService) GetEvent(eventID string) ApiGetEventRequest {
@@ -556,7 +771,7 @@ func (r ApiSearchEventsRequest) PaginationKey(paginationKey string) ApiSearchEve
 	return r
 }
 
-// Unique [visitor identifier](https://docs.fingerprint.com/reference/js-agent-v4-get-function#visitor_id) issued by Fingerprint Identification and all active Smart Signals.  Filter events by matching Visitor ID (`identification.visitor_id` property).
+// Unique [visitor identifier](https://docs.fingerprint.com/reference/js-agent-get-function#visitor_id) issued by Fingerprint Identification and all active Smart Signals.  Filter events by matching Visitor ID (`identification.visitor_id` property).
 func (r ApiSearchEventsRequest) VisitorID(visitorID string) ApiSearchEventsRequest {
 	r.visitorID = &visitorID
 	return r
@@ -622,7 +837,7 @@ func (r ApiSearchEventsRequest) Asn(asn string) ApiSearchEventsRequest {
 	return r
 }
 
-// Filter events by your custom identifier.  You can use [linked Ids](https://docs.fingerprint.com/reference/js-agent-v4-get-function#linkedid) to associate identification requests with your own identifier, for example, session Id, purchase Id, or transaction Id. You can then use this `linked_id` parameter to retrieve all events associated with your custom identifier.
+// Filter events by your custom identifier.  You can use [linked Ids](https://docs.fingerprint.com/reference/js-agent-get-function#linkedid) to associate identification requests with your own identifier, for example, session Id, purchase Id, or transaction Id. You can then use this `linked_id` parameter to retrieve all events associated with your custom identifier.
 func (r ApiSearchEventsRequest) LinkedID(linkedID string) ApiSearchEventsRequest {
 	r.linkedID = &linkedID
 	return r
@@ -1310,7 +1525,7 @@ This information might not have been available on the client initially, so the S
 **Warning** Trying to update an event immediately after creation may temporarily result in an
 error (HTTP 409 Conflict. The event is not mutable yet.) as the event is fully propagated across our systems. In such a case, simply retry the request.
 
-	eventID The unique event [identifier](https://docs.fingerprint.com/reference/js-agent-v4-get-function#event_id).
+	eventID The unique event [identifier](https://docs.fingerprint.com/reference/js-agent-get-function#event_id).
 	Returns ApiUpdateEventRequest
 */
 func (a *FingerprintAPIService) UpdateEvent(eventID string) ApiUpdateEventRequest {

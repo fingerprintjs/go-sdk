@@ -43,6 +43,10 @@ func (c clientInterfaceImpl) GetEvent(ctx context.Context, eventID string, opts 
 	return nil, nil, nil
 }
 
+func (c clientInterfaceImpl) AnalyzeRequestForAutomationIntelligence(ctx context.Context, edgeRequest fingerprint.EdgeRequest) (*fingerprint.EventEdge, *http.Response, error) {
+	return nil, nil, nil
+}
+
 func (c clientInterfaceImpl) SearchEvents(ctx context.Context, req fingerprint.SearchEventRequest) (*fingerprint.EventSearch, *http.Response, error) {
 	return nil, nil, nil
 }
@@ -60,6 +64,16 @@ func ExampleWithClientInterface() {
 }
 
 type FingerprintApiImpl struct{}
+
+func (f FingerprintApiImpl) AnalyzeRequestForAutomationIntelligence() openapi.ApiAnalyzeRequestForAutomationIntelligenceRequest {
+	//TODO implement me
+	panic("implement me")
+}
+
+func (f FingerprintApiImpl) AnalyzeRequestForAutomationIntelligenceExecute(ctx context.Context, r openapi.ApiAnalyzeRequestForAutomationIntelligenceRequest) (*openapi.EventEdge, *http.Response, error) {
+	//TODO implement me
+	panic("implement me")
+}
 
 func (f FingerprintApiImpl) DeleteVisitorData(visitorID string) openapi.ApiDeleteVisitorDataRequest {
 	//TODO implement me

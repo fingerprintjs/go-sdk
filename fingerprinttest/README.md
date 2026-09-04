@@ -51,6 +51,7 @@ Each method on `ClientInterface` has a corresponding setter that configures the 
 | Setter | Configures |
 |--------|------------|
 | `SetGetEventResponse(event, resp, err)` | `GetEvent` |
+| `SetAnalyzeRequestForAutomationIntelligenceResponse(event, resp, err)` | `AnalyzeRequestForAutomationIntelligence` |
 | `SetSearchEventsResponse(result, resp, err)` | `SearchEvents` |
 | `SetUpdateEventResponse(resp, err)` | `UpdateEvent` |
 | `SetDeleteVisitorDataResponse(resp, err)` | `DeleteVisitorData` |

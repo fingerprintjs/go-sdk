@@ -131,6 +131,10 @@ func (m *mockClientInterface) GetEvent(ctx context.Context, eventID string, opts
 	return m.getEventResp, &http.Response{StatusCode: 200}, nil
 }
 
+func (m *mockClientInterface) AnalyzeRequestForAutomationIntelligence(ctx context.Context, edgeRequest fingerprint.EdgeRequest) (*fingerprint.EventEdge, *http.Response, error) {
+	return &fingerprint.EventEdge{}, &http.Response{StatusCode: 200}, nil
+}
+
 func (m *mockClientInterface) SearchEvents(ctx context.Context, req fingerprint.SearchEventRequest) (*fingerprint.EventSearch, *http.Response, error) {
 	return &fingerprint.EventSearch{}, &http.Response{StatusCode: 200}, nil
 }
@@ -157,6 +161,13 @@ func TestMockClientInterface(t *testing.T) {
 		require.Equal(t, 200, httpResp.StatusCode)
 	})
 
+	t.Run("AnalyzeRequestForAutomationIntelligence", func(t *testing.T) {
+		event, httpResp, err := client.AnalyzeRequestForAutomationIntelligence(context.Background(), fingerprint.EdgeRequest{})
+		require.Nil(t, err)
+		require.NotNil(t, event)
+		require.Equal(t, 200, httpResp.StatusCode)
+	})
+
 	t.Run("SearchEvents", func(t *testing.T) {
 		result, httpResp, err := client.SearchEvents(context.Background(), fingerprint.NewSearchEventsRequest())
 		require.Nil(t, err)
@@ -179,6 +190,27 @@ func TestMockClientInterface(t *testing.T) {
 
 type MockFingerprintAPI struct {
 	mock.Mock
+}
+
+func (m *MockFingerprintAPI) AnalyzeRequestForAutomationIntelligence() fingerprint.APIAnalyzeRequestForAutomationIntelligenceRequest {
+	args := m.Called()
+	if len(args) > 0 {
+		if req, ok := args.Get(0).(fingerprint.APIAnalyzeRequestForAutomationIntelligenceRequest); ok {
+			return req
+		}
+	}
+
+	return fingerprint.APIAnalyzeRequestForAutomationIntelligenceRequest{
+		ApiService: m,
+	}
+}
+
+func (m *MockFingerprintAPI) AnalyzeRequestForAutomationIntelligenceExecute(ctx context.Context, r fingerprint.APIAnalyzeRequestForAutomationIntelligenceRequest) (*fingerprint.EventEdge, *http.Response, error) {
+	args := m.Called(ctx, r)
+	eventEdge, _ := args.Get(0).(*fingerprint.EventEdge)
+	httpResp, _ := args.Get(1).(*http.Response)
+	err, _ := args.Get(2).(error)
+	return eventEdge, httpResp, err
 }
 
 func (m *MockFingerprintAPI) DeleteVisitorData(visitorId string) fingerprint.APIDeleteVisitorDataRequest {

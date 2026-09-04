@@ -258,6 +258,7 @@ All URIs are relative to *https://api.fpjs.io/v4*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
+*FingerprintAPI* | [**AnalyzeRequestForAutomationIntelligence**](https://pkg.go.dev/github.com/fingerprintjs/go-sdk/v8#Client.AnalyzeRequestForAutomationIntelligence) | **Post** /edge | Collect Automation Intelligence
 *FingerprintAPI* | [**GetEvent**](https://pkg.go.dev/github.com/fingerprintjs/go-sdk/v8#Client.GetEvent) | **Get** /events/{event_id} | Get an event by event ID
 *FingerprintAPI* | [**SearchEvents**](https://pkg.go.dev/github.com/fingerprintjs/go-sdk/v8#Client.SearchEvents) | **Get** /events | Search events
 *FingerprintAPI* | [**UpdateEvent**](https://pkg.go.dev/github.com/fingerprintjs/go-sdk/v8#Client.UpdateEvent) | **Patch** /events/{event_id} | Update an event
@@ -272,11 +273,14 @@ Class | Method | HTTP request | Description
  - [BotResult](docs/BotResult.md)
  - [BrowserDetails](docs/BrowserDetails.md)
  - [Canvas](docs/Canvas.md)
+ - [EdgeRequest](docs/EdgeRequest.md)
+ - [EdgeRequestHeadersInner](docs/EdgeRequestHeadersInner.md)
  - [Emoji](docs/Emoji.md)
  - [Error](docs/Error.md)
  - [ErrorCode](docs/ErrorCode.md)
  - [ErrorResponse](docs/ErrorResponse.md)
  - [Event](docs/Event.md)
+ - [EventEdge](docs/EventEdge.md)
  - [EventRuleAction](docs/EventRuleAction.md)
  - [EventRuleActionAllow](docs/EventRuleActionAllow.md)
  - [EventRuleActionBlock](docs/EventRuleActionBlock.md)
