@@ -39,6 +39,10 @@ func EventRuleActionBlockAsEventRuleAction(v *EventRuleActionBlock) EventRuleAct
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *EventRuleAction) UnmarshalJSON(data []byte) error {
 	var err error
+	data, err = maybeHydrateEmptyEventSource("EventRuleAction", data)
+	if err != nil {
+		return err
+	}
 	// use discriminator value to speed up the lookup
 	var jsonDict map[string]interface{}
 	err = newStrictDecoder(data).Decode(&jsonDict)

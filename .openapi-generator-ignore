@@ -31,3 +31,4 @@ git_push.sh
 go.sum
 go.mod
 docs/FingerprintAPI.md
+internal/openapi/event_source.go

@@ -45,24 +45,15 @@ func EventEdgeAsEvent(v *EventEdge) Event {
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *Event) UnmarshalJSON(data []byte) error {
 	var err error
+	data, err = maybeHydrateEmptyEventSource("Event", data)
+	if err != nil {
+		return err
+	}
 	// use discriminator value to speed up the lookup
 	var jsonDict map[string]interface{}
 	err = newStrictDecoder(data).Decode(&jsonDict)
 	if err != nil {
 		return fmt.Errorf("failed to unmarshal JSON into map for the discriminator lookup")
-	}
-
-	// SPIKE INTER-2457 — post-generate edit. Do not ship as-is.
-	// Identification events stored before `source` existed omit the key.
-	// Treat a missing source as device (koala eventsource.HydrateMissing).
-	// Never rewrite source when the key is present, including edge.
-	if _, hasSource := jsonDict["source"]; !hasSource {
-		jsonDict["source"] = "device"
-		patched, patchErr := json.Marshal(jsonDict)
-		if patchErr != nil {
-			return fmt.Errorf("failed to hydrate missing Event source: %s", patchErr.Error())
-		}
-		data = patched
 	}
 
 	// check if the discriminator value is 'device'

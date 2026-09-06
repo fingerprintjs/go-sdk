@@ -39,4 +39,30 @@ func TestEventHydrateMissingSource(t *testing.T) {
 		assert.Nil(t, event.EventEdge)
 		assert.Equal(t, fingerprint.EventSourceDevice, event.EventDevice.Source)
 	})
+
+	t.Run("empty source unmarshals as EventDevice", func(t *testing.T) {
+		var event fingerprint.Event
+		err := json.Unmarshal([]byte(`{"event_id":"d1","timestamp":1,"source":""}`), &event)
+
+		assert.NoError(t, err)
+		assert.NotNil(t, event.EventDevice)
+		assert.Equal(t, fingerprint.EventSourceDevice, event.EventDevice.Source)
+	})
+
+	t.Run("null source unmarshals as EventDevice", func(t *testing.T) {
+		var event fingerprint.Event
+		err := json.Unmarshal([]byte(`{"event_id":"d1","timestamp":1,"source":null}`), &event)
+
+		assert.NoError(t, err)
+		assert.NotNil(t, event.EventDevice)
+		assert.Equal(t, fingerprint.EventSourceDevice, event.EventDevice.Source)
+	})
+
+	t.Run("unknown source fails", func(t *testing.T) {
+		var event fingerprint.Event
+		err := json.Unmarshal([]byte(`{"event_id":"d1","timestamp":1,"source":"webhook"}`), &event)
+
+		assert.Error(t, err)
+		assert.Contains(t, err.Error(), "unknown Event source")
+	})
 }
