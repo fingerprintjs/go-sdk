@@ -52,6 +52,19 @@ func (dst *Event) UnmarshalJSON(data []byte) error {
 		return fmt.Errorf("failed to unmarshal JSON into map for the discriminator lookup")
 	}
 
+	// SPIKE INTER-2457 — post-generate edit. Do not ship as-is.
+	// Identification events stored before `source` existed omit the key.
+	// Treat a missing source as device (koala eventsource.HydrateMissing).
+	// Never rewrite source when the key is present, including edge.
+	if _, hasSource := jsonDict["source"]; !hasSource {
+		jsonDict["source"] = "device"
+		patched, patchErr := json.Marshal(jsonDict)
+		if patchErr != nil {
+			return fmt.Errorf("failed to hydrate missing Event source: %s", patchErr.Error())
+		}
+		data = patched
+	}
+
 	// check if the discriminator value is 'device'
 	if jsonDict["source"] == "device" {
 		// try to unmarshal JSON data into EventDevice
