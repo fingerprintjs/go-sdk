@@ -91,7 +91,8 @@ func WithRulesetID(rulesetID string) GetEventOption {
 // GetEvent retrieves an event by event ID. See [openapi.FingerprintAPI.GetEvent] for details.
 // Parameters:
 //   - ctx: context for cancellation, deadlines, and authentication.
-//   - eventID: unique [event identifier]
+//   - eventID: unique [event identifier]. A value that is not a valid identifier is rejected with
+//     an error before a request is sent.
 //   - opts: Optional functional options that modify the query parameters, it can be used to pass optional ruleset ID to evaluate. Defaults to none.
 //
 // Using Rulesets:
@@ -149,7 +150,8 @@ func (c *Client) SearchEvents(ctx context.Context, req SearchEventRequest) (*Eve
 //
 // Parameters:
 //   - ctx: context for cancellation, deadlines, and authentication.
-//   - eventID: unique [event identifier] to update.
+//   - eventID: unique [event identifier] to update. A value that is not a valid identifier is
+//     rejected with an error before a request is sent.
 //   - eventUpdateReq: event update payload containing the fields to modify.
 //
 // This method allows you to modify event properties such as suspect status and other metadata.
@@ -169,7 +171,8 @@ func (c *Client) UpdateEvent(ctx context.Context, eventID string, eventUpdateReq
 //
 // Parameters:
 //   - ctx: context for cancellation, deadlines, and authentication.
-//   - visitorID: unique [visitor identifier] whose data should be deleted.
+//   - visitorID: unique [visitor identifier] whose data should be deleted. A value that is not a
+//     valid identifier is rejected with an error before a request is sent.
 //
 // This method permanently removes all events and data associated with the specified visitor.
 // Use with caution as this operation cannot be undone.
