@@ -213,7 +213,11 @@ func (a *FingerprintAPIService) DeleteVisitorDataExecute(ctx context.Context, r 
 	}
 
 	localVarPath := localBasePath + "/visitors/{visitor_id}"
-	localVarPath = strings.ReplaceAll(localVarPath, "{"+"visitor_id"+"}", url.PathEscape(parameterValueToString(r.visitorID, "visitorID")))
+	escapedVisitorID := url.PathEscape(parameterValueToString(r.visitorID, "visitorID"))
+	if escapedVisitorID == "." || escapedVisitorID == ".." {
+		return nil, reportError("invalid value for path parameter visitorID")
+	}
+	localVarPath = strings.ReplaceAll(localVarPath, "{"+"visitor_id"+"}", escapedVisitorID)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -358,7 +362,11 @@ func (a *FingerprintAPIService) GetEventExecute(ctx context.Context, r ApiGetEve
 	}
 
 	localVarPath := localBasePath + "/events/{event_id}"
-	localVarPath = strings.ReplaceAll(localVarPath, "{"+"event_id"+"}", url.PathEscape(parameterValueToString(r.eventID, "eventID")))
+	escapedEventID := url.PathEscape(parameterValueToString(r.eventID, "eventID"))
+	if escapedEventID == "." || escapedEventID == ".." {
+		return localVarReturnValue, nil, reportError("invalid value for path parameter eventID")
+	}
+	localVarPath = strings.ReplaceAll(localVarPath, "{"+"event_id"+"}", escapedEventID)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1334,7 +1342,11 @@ func (a *FingerprintAPIService) UpdateEventExecute(ctx context.Context, r ApiUpd
 	}
 
 	localVarPath := localBasePath + "/events/{event_id}"
-	localVarPath = strings.ReplaceAll(localVarPath, "{"+"event_id"+"}", url.PathEscape(parameterValueToString(r.eventID, "eventID")))
+	escapedEventID := url.PathEscape(parameterValueToString(r.eventID, "eventID"))
+	if escapedEventID == "." || escapedEventID == ".." {
+		return nil, reportError("invalid value for path parameter eventID")
+	}
+	localVarPath = strings.ReplaceAll(localVarPath, "{"+"event_id"+"}", escapedEventID)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

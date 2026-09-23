@@ -139,7 +139,11 @@ func (a *{{{classname}}}Service) {{nickname}}Execute(ctx context.Context, r {{#s
 	}
 
 	localVarPath := localBasePath + "{{{path}}}"{{#pathParams}}
-	localVarPath = strings.ReplaceAll(localVarPath, "{"+"{{{baseName}}}"+"}", url.PathEscape(parameterValueToString(r.{{paramName}}, "{{paramName}}"))){{/pathParams}}
+	escaped{{#lambda.pascalcase}}{{paramName}}{{/lambda.pascalcase}} := url.PathEscape(parameterValueToString(r.{{paramName}}, "{{paramName}}"))
+	if escaped{{#lambda.pascalcase}}{{paramName}}{{/lambda.pascalcase}} == "." || escaped{{#lambda.pascalcase}}{{paramName}}{{/lambda.pascalcase}} == ".." {
+		return {{#returnType}}localVarReturnValue, {{/returnType}}nil, reportError("invalid value for path parameter {{paramName}}")
+	}
+	localVarPath = strings.ReplaceAll(localVarPath, "{"+"{{{baseName}}}"+"}", escaped{{#lambda.pascalcase}}{{paramName}}{{/lambda.pascalcase}}){{/pathParams}}
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
