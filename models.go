@@ -64,6 +64,7 @@ const (
 
 type BrowserDetails = openapi.BrowserDetails
 type Canvas = openapi.Canvas
+type DeviceDetails = openapi.DeviceDetails
 type Emoji = openapi.Emoji
 type Error = openapi.Error
 type ErrorCode = openapi.ErrorCode

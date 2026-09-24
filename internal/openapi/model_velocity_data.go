@@ -19,7 +19,7 @@ import (
 // checks if the VelocityData type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &VelocityData{}
 
-// VelocityData Is absent if the velocity data could not be generated for the visitor Id.
+// VelocityData Is absent if the velocity data could not be generated for the visitor ID.
 type VelocityData struct {
 	// Count for the last 5 minutes of velocity data, from the time of the event.
 	Var5Minutes int32 `json:"5_minutes"`

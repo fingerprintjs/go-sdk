@@ -21,8 +21,10 @@ var _ MappedNullable = &LabelsInner{}
 
 // LabelsInner struct for LabelsInner
 type LabelsInner struct {
-	Label                string   `json:"label"`
-	Prediction           *bool    `json:"prediction,omitempty"`
+	// Customer-facing label name defined by the customer.
+	Label      string `json:"label"`
+	Prediction *bool  `json:"prediction,omitempty"`
+	// Raw model score between 0 and 1.
 	MlScore              *float64 `json:"ml_score,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

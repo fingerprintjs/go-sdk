@@ -27,11 +27,11 @@ type Event struct {
 	Timestamp                       int64                            `json:"timestamp"`
 	Source                          *EventSource                     `json:"source,omitempty"`
 	IncrementalIdentificationStatus *IncrementalIdentificationStatus `json:"incremental_identification_status,omitempty"`
-	// A customer-provided id that was sent with the request.
+	// A customer-provided ID that was sent with the request.
 	LinkedID *string `json:"linked_id,omitempty"`
-	// Environment Id of the event.
+	// Environment ID of the event.
 	EnvironmentID *string `json:"environment_id,omitempty"`
-	// Field is `true` if you have previously set the `suspect` flag for this event using the [Server API Update event endpoint](https://docs.fingerprint.com/reference/server-api-v4-update-event).
+	// Field is `true` if you have previously set the `suspect` flag for this event using the [Server API Update event endpoint](https://docs.fingerprint.com/reference/server-api-update-event).
 	Suspect *bool `json:"suspect,omitempty"`
 	SDK     *SDK  `json:"sdk,omitempty"`
 	// `true` if we determined that this payload was replayed, `false` otherwise.
@@ -42,7 +42,7 @@ type Event struct {
 	Tags map[string]interface{} `json:"tags,omitempty"`
 	// Page URL from which the request was sent.
 	URL *string `json:"url,omitempty"`
-	// Bundle Id of the iOS application integrated with the Fingerprint SDK for the event.
+	// Bundle ID of the iOS application integrated with the Fingerprint SDK for the event.
 	BundleID *string `json:"bundle_id,omitempty"`
 	// Package name of the Android application integrated with the Fingerprint SDK for the event.
 	PackageName *string `json:"package_name,omitempty"`
@@ -69,7 +69,8 @@ type Event struct {
 	// Android specific cloned application detection. There are 2 values:  * `true` - Presence of app cloners work detected (e.g. fully cloned application found or launch of it inside of a not main working profile detected). * `false` - No signs of cloned application detected or the client is not Android.
 	ClonedApp *bool `json:"cloned_app,omitempty"`
 	// `true` if the browser has DevTools open (Chrome, Firefox) or the Android/iOS device has Developer Tools enabled, `false` otherwise.
-	DeveloperTools *bool `json:"developer_tools,omitempty"`
+	DeveloperTools *bool          `json:"developer_tools,omitempty"`
+	DeviceDetails  *DeviceDetails `json:"device_details,omitempty"`
 	// Android specific emulator detection. There are 2 values:  * `true` - Emulated environment detected (e.g. launch inside of AVD).  * `false` - No signs of emulated environment detected or the client is not Android.
 	Emulator *bool `json:"emulator,omitempty"`
 	// The time of the most recent factory reset that happened on the **mobile device** is expressed as Unix epoch time. When a factory reset cannot be detected on the mobile device or when the request is initiated from a browser,  this field will correspond to the *epoch* time (i.e 1 Jan 1970 UTC) as a value of 0. See [Factory Reset Detection](https://docs.fingerprint.com/docs/smart-signals-reference#factory-reset-detection) to learn more about this Smart Signal.
@@ -227,6 +228,9 @@ func (o Event) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.DeveloperTools) {
 		toSerialize["developer_tools"] = o.DeveloperTools
+	}
+	if !IsNil(o.DeviceDetails) {
+		toSerialize["device_details"] = o.DeviceDetails
 	}
 	if !IsNil(o.Emulator) {
 		toSerialize["emulator"] = o.Emulator
@@ -409,6 +413,7 @@ func (o *Event) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "bot_info")
 		delete(additionalProperties, "cloned_app")
 		delete(additionalProperties, "developer_tools")
+		delete(additionalProperties, "device_details")
 		delete(additionalProperties, "emulator")
 		delete(additionalProperties, "factory_reset_timestamp")
 		delete(additionalProperties, "frida")

@@ -15,6 +15,7 @@ docs/BotInfoIdentity.md
 docs/BotResult.md
 docs/BrowserDetails.md
 docs/Canvas.md
+docs/DeviceDetails.md
 docs/Emoji.md
 docs/Error.md
 docs/ErrorCode.md
@@ -74,6 +75,7 @@ model_bot_info_identity.go
 model_bot_result.go
 model_browser_details.go
 model_canvas.go
+model_device_details.go
 model_emoji.go
 model_error.go
 model_error_code.go
