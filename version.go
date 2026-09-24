@@ -11,4 +11,4 @@ Contact: support@fingerprint.com
 
 package fingerprint
 
-const Version = "8.7.1"
+const Version = "8.8.0"
