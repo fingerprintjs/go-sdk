@@ -15,7 +15,6 @@ if [[ "${TRACE:-}" != "true" && "${ACTIONS_STEP_DEBUG:-}" != "true" ]]; then
 fi
 
 schemaDestination="./res/fingerprint-server-api-v4.yaml"
-baseDestination="./test/mocks"
 
 mkdir -p "$(dirname "$schemaDestination")"
 
@@ -37,8 +36,10 @@ examples=(
   'errors/429_too_many_requests.json'
 )
 
+exampleBaseDestination="./test/mocks"
+
 for example in "${examples[@]}"; do
-  destinationPath="$baseDestination/$example"
+  destinationPath="$exampleBaseDestination/$example"
   mkdir -p "$(dirname "$destinationPath")"
 
   exampleUrl="$examplesBaseUrl/$example"
