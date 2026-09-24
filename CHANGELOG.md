@@ -1,5 +1,15 @@
 # Fingerprint Pro Server Go SDK
 
+## 8.8.0
+
+### Minor Changes
+
+- **events**: Add `device_details` smart signal to `Event` ([652f673](https://github.com/fingerprintjs/go-sdk/commit/652f673ebcc7155928621fbb57535c19024691ff))
+
+### Patch Changes
+
+- **events**: Fix descriptions to use ID rather than Id. Clarify descriptions for Labels. ([652f673](https://github.com/fingerprintjs/go-sdk/commit/652f673ebcc7155928621fbb57535c19024691ff))
+
 ## 8.7.1
 
 ### Patch Changes
