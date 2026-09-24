@@ -1,5 +1,11 @@
 # Fingerprint Pro Server Go SDK
 
+## 8.7.1
+
+### Patch Changes
+
+- `GetEvent`, `UpdateEvent`, and `DeleteVisitorData` now validate their ID path parameter and return an error without sending a request when the value is not a valid identifier. ([6b42b61](https://github.com/fingerprintjs/go-sdk/commit/6b42b61ccc834f79f9b78f4a7b0f6dd3235a8877))
+
 ## 8.7.0
 
 ### Minor Changes
