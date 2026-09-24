@@ -56,7 +56,7 @@ type FingerprintAPI interface {
 	You can request an increase to these limits by contacting [our support team](https://fingerprint.com/support/).
 
 
-		visitorID The [visitor ID](https://docs.fingerprint.com/reference/js-agent-v4-get-function#visitor_id) you want to delete.
+		visitorID The [visitor ID](https://docs.fingerprint.com/reference/js-agent-get-function#visitor_id) you want to delete.
 		Returns ApiDeleteVisitorDataRequest
 	*/
 	DeleteVisitorData(visitorID string) ApiDeleteVisitorDataRequest
@@ -72,7 +72,7 @@ type FingerprintAPI interface {
 	Use `event_id` as the URL path parameter. This API method is scoped to a request, i.e. all returned information is by `event_id`.
 
 
-		eventID The unique [identifier](https://docs.fingerprint.com/reference/js-agent-v4-get-function#event_id) of each identification request (`requestId` can be used in its place).
+		eventID The unique [identifier](https://docs.fingerprint.com/reference/js-agent-get-function#event_id) of each identification request (`requestId` can be used in its place).
 		Returns ApiGetEventRequest
 	*/
 	GetEvent(eventID string) ApiGetEventRequest
@@ -137,7 +137,7 @@ type FingerprintAPI interface {
 	error (HTTP 409 Conflict. The event is not mutable yet.) as the event is fully propagated across our systems. In such a case, simply retry the request.
 
 
-		eventID The unique event [identifier](https://docs.fingerprint.com/reference/js-agent-v4-get-function#event_id).
+		eventID The unique event [identifier](https://docs.fingerprint.com/reference/js-agent-get-function#event_id).
 		Returns ApiUpdateEventRequest
 	*/
 	UpdateEvent(eventID string) ApiUpdateEventRequest
@@ -189,7 +189,7 @@ The maximum number of DELETE requests that can be made in an hour cannot exceed 
 
 You can request an increase to these limits by contacting [our support team](https://fingerprint.com/support/).
 
-	visitorID The [visitor ID](https://docs.fingerprint.com/reference/js-agent-v4-get-function#visitor_id) you want to delete.
+	visitorID The [visitor ID](https://docs.fingerprint.com/reference/js-agent-get-function#visitor_id) you want to delete.
 	Returns ApiDeleteVisitorDataRequest
 */
 func (a *FingerprintAPIService) DeleteVisitorData(visitorID string) ApiDeleteVisitorDataRequest {
@@ -334,7 +334,7 @@ Get a detailed analysis of an individual identification event, including Smart S
 
 Use `event_id` as the URL path parameter. This API method is scoped to a request, i.e. all returned information is by `event_id`.
 
-	eventID The unique [identifier](https://docs.fingerprint.com/reference/js-agent-v4-get-function#event_id) of each identification request (`requestId` can be used in its place).
+	eventID The unique [identifier](https://docs.fingerprint.com/reference/js-agent-get-function#event_id) of each identification request (`requestId` can be used in its place).
 	Returns ApiGetEventRequest
 */
 func (a *FingerprintAPIService) GetEvent(eventID string) ApiGetEventRequest {
@@ -564,7 +564,7 @@ func (r ApiSearchEventsRequest) PaginationKey(paginationKey string) ApiSearchEve
 	return r
 }
 
-// Unique [visitor identifier](https://docs.fingerprint.com/reference/js-agent-v4-get-function#visitor_id) issued by Fingerprint Identification and all active Smart Signals.  Filter events by matching Visitor ID (`identification.visitor_id` property).
+// Unique [visitor identifier](https://docs.fingerprint.com/reference/js-agent-get-function#visitor_id) issued by Fingerprint Identification and all active Smart Signals.  Filter events by matching Visitor ID (`identification.visitor_id` property).
 func (r ApiSearchEventsRequest) VisitorID(visitorID string) ApiSearchEventsRequest {
 	r.visitorID = &visitorID
 	return r
@@ -630,7 +630,7 @@ func (r ApiSearchEventsRequest) Asn(asn string) ApiSearchEventsRequest {
 	return r
 }
 
-// Filter events by your custom identifier.  You can use [linked Ids](https://docs.fingerprint.com/reference/js-agent-v4-get-function#linkedid) to associate identification requests with your own identifier, for example, session Id, purchase Id, or transaction Id. You can then use this `linked_id` parameter to retrieve all events associated with your custom identifier.
+// Filter events by your custom identifier.  You can use [linked IDs](https://docs.fingerprint.com/reference/js-agent-get-function#linkedid) to associate identification requests with your own identifier, for example, session ID, purchase ID, or transaction ID. You can then use this `linked_id` parameter to retrieve all events associated with your custom identifier.
 func (r ApiSearchEventsRequest) LinkedID(linkedID string) ApiSearchEventsRequest {
 	r.linkedID = &linkedID
 	return r
@@ -1318,7 +1318,7 @@ This information might not have been available on the client initially, so the S
 **Warning** Trying to update an event immediately after creation may temporarily result in an
 error (HTTP 409 Conflict. The event is not mutable yet.) as the event is fully propagated across our systems. In such a case, simply retry the request.
 
-	eventID The unique event [identifier](https://docs.fingerprint.com/reference/js-agent-v4-get-function#event_id).
+	eventID The unique event [identifier](https://docs.fingerprint.com/reference/js-agent-get-function#event_id).
 	Returns ApiUpdateEventRequest
 */
 func (a *FingerprintAPIService) UpdateEvent(eventID string) ApiUpdateEventRequest {

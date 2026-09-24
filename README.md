@@ -272,6 +272,7 @@ Class | Method | HTTP request | Description
  - [BotResult](docs/BotResult.md)
  - [BrowserDetails](docs/BrowserDetails.md)
  - [Canvas](docs/Canvas.md)
+ - [DeviceDetails](docs/DeviceDetails.md)
  - [Emoji](docs/Emoji.md)
  - [Error](docs/Error.md)
  - [ErrorCode](docs/ErrorCode.md)
