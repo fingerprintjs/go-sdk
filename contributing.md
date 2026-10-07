@@ -178,8 +178,6 @@ Pick the bump type that matches the commit type:
 
 If a PR has several user-facing changes, add one changeset for each. When several changesets are released together, the highest bump wins.
 
-A `major` bump also requires changing the module path in `go.mod` and in all imports (for example, from `github.com/fingerprintjs/go-sdk/v8` to `github.com/fingerprintjs/go-sdk/v9`). Include that change in the same PR as the breaking change.
-
 ### Release flow
 
 1. On every PR, a bot comments with a preview of the release notes that the PR's changesets will produce. If the PR has no changesets, the comment reminds you to add one.
