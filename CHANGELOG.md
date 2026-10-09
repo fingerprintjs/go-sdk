@@ -1,5 +1,12 @@
 # Fingerprint Pro Server Go SDK
 
+## 8.9.0-test.0
+
+### Minor Changes
+
+- **events-search**: Add `503` Service Temporarily Unavailable response to the Events Search endpoint ([b67a69e](https://github.com/fingerprintjs/go-sdk/commit/b67a69ec480968adb58f2460384a7a1ce2a70f35))
+- **events**: Add `503` Service Temporarily Unavailable response to the Get Event endpoint ([b67a69e](https://github.com/fingerprintjs/go-sdk/commit/b67a69ec480968adb58f2460384a7a1ce2a70f35))
+
 ## 8.8.0
 
 ### Minor Changes
