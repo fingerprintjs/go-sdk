@@ -131,7 +131,9 @@ type FingerprintAPI interface {
 	When an event is created, it can be assigned `linked_id` and `tags` submitted through the JS agent parameters.
 	This information might not have been available on the client initially, so the Server API permits updating these attributes after the fact.
 
-	**Warning** It's not possible to update events older than one month.
+	**Warning** You can only update events created within the last 10 days. Updating an older event returns HTTP 400 with the message `event is too old to be updated (> 10 days)`, even if your plan retains events for longer.
+
+	**Warning** Events created by the Automation Intelligence API (`POST /edge`) cannot be updated. Updating them returns HTTP 400.
 
 	**Warning** Trying to update an event immediately after creation may temporarily result in an
 	error (HTTP 409 Conflict. The event is not mutable yet.) as the event is fully propagated across our systems. In such a case, simply retry the request.
@@ -559,8 +561,9 @@ type ApiSearchEventsRequest struct {
 	torNode                         *bool
 	incrementalIdentificationStatus *SearchEventsIncrementalIdentificationStatus
 	simulator                       *bool
-	activeCall                      *bool
 	source                          *[]SearchEventsSource
+	activeCall                      *bool
+	compromisedDeviceIntegrity      *bool
 }
 
 // Maximum number of events to return. Defaults to 10 when omitted. Results are selected from the time range (`start`, `end`), ordered by `reverse`, then truncated to provided `limit` size. So `reverse=true` returns the oldest N=`limit` events, otherwise the newest N=`limit` events.
@@ -887,15 +890,21 @@ func (r ApiSearchEventsRequest) Simulator(simulator bool) ApiSearchEventsRequest
 	return r
 }
 
+// Selects the source of events to search. When omitted, only traditional identification events generated from devices are returned (the default behavior). When set to `edge`, only Automation Intelligence (Edge) events are returned.  To retrieve all events regardless of source, you must make two requests. One with the `source` parameter set to `edge`, and another with the `source` parameter omitted.  > Note: The Automation Intelligence API is in public preview testing phase.  If you encounter any issues, please [contact](https://fingerprint.com/support/) our support team.
+func (r ApiSearchEventsRequest) Source(source []SearchEventsSource) ApiSearchEventsRequest {
+	r.source = &source
+	return r
+}
+
 // Filter events by Active Call Detection result on mobile devices.  > Note: When using this parameter, only events with the `active_call` property set to `true` or `false` are returned. Events without an `active_call` Smart Signal result are left out of the response.
 func (r ApiSearchEventsRequest) ActiveCall(activeCall bool) ApiSearchEventsRequest {
 	r.activeCall = &activeCall
 	return r
 }
 
-// Selects the source of events to search. When omitted, only traditional identification events generated from devices are returned (the default behavior). When set to `edge`, only Automation Intelligence (Edge) events are returned.  To retrieve all events regardless of source, you must make two requests. One with the `source` parameter set to `edge`, and another with the `source` parameter omitted.  > Note: The Automation Intelligence API is in public preview testing phase.  If you encounter any issues, please [contact](https://fingerprint.com/support/) our support team.
-func (r ApiSearchEventsRequest) Source(source []SearchEventsSource) ApiSearchEventsRequest {
-	r.source = &source
+// Filter events by Compromised Device Integrity result on Android devices.  > Note: When using this parameter, only events with the `compromised_device_integrity` property set to `true` or `false` are returned. Events without a `compromised_device_integrity` Smart Signal result are left out of the response.
+func (r ApiSearchEventsRequest) CompromisedDeviceIntegrity(compromisedDeviceIntegrity bool) ApiSearchEventsRequest {
+	r.compromisedDeviceIntegrity = &compromisedDeviceIntegrity
 	return r
 }
 
@@ -1168,9 +1177,6 @@ func (a *FingerprintAPIService) SearchEventsExecute(ctx context.Context, r ApiSe
 	if r.simulator != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "simulator", r.simulator, "form", "")
 	}
-	if r.activeCall != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "active_call", r.activeCall, "form", "")
-	}
 	if r.source != nil {
 		t := *r.source
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
@@ -1181,6 +1187,12 @@ func (a *FingerprintAPIService) SearchEventsExecute(ctx context.Context, r ApiSe
 		} else {
 			parameterAddToHeaderOrQuery(localVarQueryParams, "source", t, "form", "multi")
 		}
+	}
+	if r.activeCall != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "active_call", r.activeCall, "form", "")
+	}
+	if r.compromisedDeviceIntegrity != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "compromised_device_integrity", r.compromisedDeviceIntegrity, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -1335,7 +1347,9 @@ Change information in existing events specified by `event_id` or *flag suspiciou
 When an event is created, it can be assigned `linked_id` and `tags` submitted through the JS agent parameters.
 This information might not have been available on the client initially, so the Server API permits updating these attributes after the fact.
 
-**Warning** It's not possible to update events older than one month.
+**Warning** You can only update events created within the last 10 days. Updating an older event returns HTTP 400 with the message `event is too old to be updated (> 10 days)`, even if your plan retains events for longer.
+
+**Warning** Events created by the Automation Intelligence API (`POST /edge`) cannot be updated. Updating them returns HTTP 400.
 
 **Warning** Trying to update an event immediately after creation may temporarily result in an
 error (HTTP 409 Conflict. The event is not mutable yet.) as the event is fully propagated across our systems. In such a case, simply retry the request.
