@@ -119,11 +119,14 @@ paths:
         \ `linked_id` and `tags` submitted through the JS agent parameters. \nThis\
         \ information might not have been available on the client initially, so the\
         \ Server API permits updating these attributes after the fact.\n\n**Warning**\
-        \ It's not possible to update events older than one month. \n\n**Warning**\
-        \ Trying to update an event immediately after creation may temporarily result\
-        \ in an \nerror (HTTP 409 Conflict. The event is not mutable yet.) as the\
-        \ event is fully propagated across our systems. In such a case, simply retry\
-        \ the request.\n"
+        \ You can only update events created within the last 10 days. Updating an\
+        \ older event returns HTTP 400 with the message `event is too old to be updated\
+        \ (> 10 days)`, even if your plan retains events for longer.\n\n**Warning**\
+        \ Events created by the Automation Intelligence API (`POST /edge`) cannot\
+        \ be updated. Updating them returns HTTP 400.\n\n**Warning** Trying to update\
+        \ an event immediately after creation may temporarily result in an \nerror\
+        \ (HTTP 409 Conflict. The event is not mutable yet.) as the event is fully\
+        \ propagated across our systems. In such a case, simply retry the request.\n"
       operationId: updateEvent
       parameters:
       - description: "The unique event [identifier](https://docs.fingerprint.com/reference/js-agent-get-function#event_id)."
@@ -149,7 +152,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
-          description: Bad request. The request payload is not valid.
+          description: "Bad request. The request payload is not valid, the event is\
+            \ older than 10 days, or the event cannot be updated."
         "403":
           content:
             application/json:
@@ -811,17 +815,6 @@ paths:
           type: boolean
         style: form
       - description: |
-          Filter events by Active Call Detection result on mobile devices.
-
-          > Note: When using this parameter, only events with the `active_call` property set to `true` or `false` are returned. Events without an `active_call` Smart Signal result are left out of the response.
-        explode: true
-        in: query
-        name: active_call
-        required: false
-        schema:
-          type: boolean
-        style: form
-      - description: |
           Selects the source of events to search. When omitted, only traditional identification events generated from devices are returned (the default behavior). When set to `edge`, only Automation Intelligence (Edge) events are returned.
 
           To retrieve all events regardless of source, you must make two requests. One with the `source` parameter set to `edge`, and another with the `source` parameter omitted.
@@ -837,6 +830,28 @@ paths:
           maxItems: 1
           type: array
           default: null
+        style: form
+      - description: |
+          Filter events by Active Call Detection result on mobile devices.
+
+          > Note: When using this parameter, only events with the `active_call` property set to `true` or `false` are returned. Events without an `active_call` Smart Signal result are left out of the response.
+        explode: true
+        in: query
+        name: active_call
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - description: |
+          Filter events by Compromised Device Integrity result on Android devices.
+
+          > Note: When using this parameter, only events with the `compromised_device_integrity` property set to `true` or `false` are returned. Events without a `compromised_device_integrity` Smart Signal result are left out of the response.
+        explode: true
+        in: query
+        name: compromised_device_integrity
+        required: false
+        schema:
+          type: boolean
         style: form
       responses:
         "200":
@@ -1587,6 +1602,10 @@ components:
         \ \n* `true` - Presence of app cloners work detected (e.g. fully cloned application\
         \ found or launch of it inside of a not main working profile detected).\n\
         * `false` - No signs of cloned application detected or the client is not Android.\n"
+      type: boolean
+    CompromisedDeviceIntegrity:
+      description: |
+        `true` if the Android device's boot or system integrity is compromised (e.g., an unlocked bootloader or a failed verified boot), so the device cannot be trusted. `false` if no integrity issue was detected. Available from Android SDK 2.6.0+.
       type: boolean
     DeveloperTools:
       description: |
@@ -2421,6 +2440,7 @@ components:
         bot_type: ""
         bot_info: ""
         cloned_app: ""
+        compromised_device_integrity: ""
         developer_tools: ""
         device_details: ""
         emulator: ""
@@ -2651,6 +2671,11 @@ components:
         cloned_app:
           allOf:
           - $ref: "#/components/schemas/ClonedApp"
+          x-platforms:
+          - android
+        compromised_device_integrity:
+          allOf:
+          - $ref: "#/components/schemas/CompromisedDeviceIntegrity"
           x-platforms:
           - android
         developer_tools:
@@ -2940,6 +2965,7 @@ components:
           bot_type: ""
           bot_info: ""
           cloned_app: ""
+          compromised_device_integrity: ""
           developer_tools: ""
           device_details: ""
           emulator: ""
@@ -3024,6 +3050,7 @@ components:
           bot_type: ""
           bot_info: ""
           cloned_app: ""
+          compromised_device_integrity: ""
           developer_tools: ""
           device_details: ""
           emulator: ""

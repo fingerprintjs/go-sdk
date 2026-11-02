@@ -68,6 +68,8 @@ type Event struct {
 	BotInfo *BotInfo `json:"bot_info,omitempty"`
 	// Android specific cloned application detection. There are 2 values:  * `true` - Presence of app cloners work detected (e.g. fully cloned application found or launch of it inside of a not main working profile detected). * `false` - No signs of cloned application detected or the client is not Android.
 	ClonedApp *bool `json:"cloned_app,omitempty"`
+	// `true` if the Android device's boot or system integrity is compromised (e.g., an unlocked bootloader or a failed verified boot), so the device cannot be trusted. `false` if no integrity issue was detected. Available from Android SDK 2.6.0+.
+	CompromisedDeviceIntegrity *bool `json:"compromised_device_integrity,omitempty"`
 	// `true` if the browser has DevTools open (Chrome, Firefox) or the Android/iOS device has Developer Tools enabled, `false` otherwise.
 	DeveloperTools *bool          `json:"developer_tools,omitempty"`
 	DeviceDetails  *DeviceDetails `json:"device_details,omitempty"`
@@ -225,6 +227,9 @@ func (o Event) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.ClonedApp) {
 		toSerialize["cloned_app"] = o.ClonedApp
+	}
+	if !IsNil(o.CompromisedDeviceIntegrity) {
+		toSerialize["compromised_device_integrity"] = o.CompromisedDeviceIntegrity
 	}
 	if !IsNil(o.DeveloperTools) {
 		toSerialize["developer_tools"] = o.DeveloperTools
@@ -412,6 +417,7 @@ func (o *Event) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "bot_type")
 		delete(additionalProperties, "bot_info")
 		delete(additionalProperties, "cloned_app")
+		delete(additionalProperties, "compromised_device_integrity")
 		delete(additionalProperties, "developer_tools")
 		delete(additionalProperties, "device_details")
 		delete(additionalProperties, "emulator")

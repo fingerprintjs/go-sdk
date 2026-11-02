@@ -210,7 +210,10 @@ func TestSearchEvents(t *testing.T) {
 			assert.Equal(t, "true", query.Get("active_call"), "activeCall")
 			assert.True(t, query.Has("active_call"), "has activeCall")
 
-			assert.Len(t, strings.Split(r.URL.RawQuery, "&"), 54, "expected all parameters in query")
+			assert.Equal(t, "true", query.Get("compromised_device_integrity"), "compromisedDeviceIntegrity")
+			assert.True(t, query.Has("compromised_device_integrity"), "has compromisedDeviceIntegrity")
+
+			assert.Len(t, strings.Split(r.URL.RawQuery, "&"), 55, "expected all parameters in query")
 
 			w.Header().Set("Content-Type", "application/json")
 			err := json.NewEncoder(w).Encode(mockResponse)
@@ -270,12 +273,14 @@ func TestSearchEvents(t *testing.T) {
 			simulator                               = false
 			source                                  = []fingerprint.SearchEventsSource{fingerprint.SearchEventsSourceEdge}
 			activeCall                              = true
+			compromisedDeviceIntegrity              = true
 		)
 
 		client := fingerprint.New(fingerprint.WithAPIKey("api_key"), fingerprint.WithBaseURL(ts.URL))
 
 		opts := fingerprint.NewSearchEventsRequest().
 			ActiveCall(activeCall).
+			CompromisedDeviceIntegrity(compromisedDeviceIntegrity).
 			AntiDetectBrowser(antiDetectBrowser).
 			Asn(asn).
 			Bot(bot).
