@@ -1,5 +1,12 @@
 # Fingerprint Pro Server Go SDK
 
+## 8.10.0
+
+### Minor Changes
+
+- **events-search**: Add `compromised_device_integrity` filter query parameter ([ec3e4cd](https://github.com/fingerprintjs/go-sdk/commit/ec3e4cd597e736c3375c0405d9a5a7db1c3fa639))
+- **events**: Add `compromised_device_integrity` to `Event` ([ec3e4cd](https://github.com/fingerprintjs/go-sdk/commit/ec3e4cd597e736c3375c0405d9a5a7db1c3fa639))
+
 ## 8.10.0-test.0
 
 ### Minor Changes
