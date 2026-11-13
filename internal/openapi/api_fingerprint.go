@@ -884,7 +884,7 @@ func (r ApiSearchEventsRequest) IncrementalIdentificationStatus(incrementalIdent
 	return r
 }
 
-// Filter events by iOS Simulator Detection result.  > Note: When using this parameter, only events with the `simulator` property set to `true` or `false` are returned. Events without a `simulator` Smart Signal result are left out of the response.
+// Filter events by the Simulator Detection result (native iOS SDK and Safari on iOS).  > Note: When using this parameter, only events with the `simulator` property set to `true` or `false` are returned. Events without a `simulator` Smart Signal result are left out of the response.
 func (r ApiSearchEventsRequest) Simulator(simulator bool) ApiSearchEventsRequest {
 	r.simulator = &simulator
 	return r
