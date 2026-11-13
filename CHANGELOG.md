@@ -1,5 +1,11 @@
 # Fingerprint Pro Server Go SDK
 
+## 8.10.1
+
+### Patch Changes
+
+- `IsValidWebhookSignature` now compares signatures in constant time. ([47ffce7](https://github.com/fingerprintjs/go-sdk/commit/47ffce77308b31613bcec1bad8d4e89aa5ba56f5))
+
 ## 8.10.0
 
 ### Minor Changes
