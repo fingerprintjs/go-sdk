@@ -11,7 +11,7 @@ func isValidHmacSignature(signature string, data []byte, secret string) bool {
 	h := hmac.New(sha256.New, []byte(secret))
 	h.Write(data)
 	computedSignature := hex.EncodeToString(h.Sum(nil))
-	return signature == computedSignature
+	return hmac.Equal([]byte(signature), []byte(computedSignature))
 }
 
 // IsValidWebhookSignature Verifies the HMAC signature extracted from the "fpjs-event-signature" header of the incoming request.
