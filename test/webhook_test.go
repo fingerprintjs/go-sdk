@@ -50,4 +50,16 @@ func TestIsValidWebhookSignature(t *testing.T) {
 
 		assert.Equal(t, false, isEqual)
 	})
+
+	t.Run("With valid signature after an invalid one", func(t *testing.T) {
+		isEqual := fingerprint.IsValidWebhookSignature("v1=invalid,"+validHeader, []byte(data), secret)
+
+		assert.Equal(t, true, isEqual)
+	})
+
+	t.Run("With truncated signature", func(t *testing.T) {
+		isEqual := fingerprint.IsValidWebhookSignature(validHeader[:len(validHeader)-1], []byte(data), secret)
+
+		assert.Equal(t, false, isEqual)
+	})
 }
