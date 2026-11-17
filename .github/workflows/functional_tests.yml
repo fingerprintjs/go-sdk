@@ -49,6 +49,7 @@ jobs:
   # merged but hasn't shipped yet, rather than a regression in the published package.
   tests-against-released-sdk:
     name: 'Functional tests (released SDK)'
+    needs: seed_events
     runs-on: "ubuntu-latest"
     permissions:
       contents: read
