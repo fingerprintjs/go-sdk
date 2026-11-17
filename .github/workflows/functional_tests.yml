@@ -15,8 +15,17 @@ jobs:
     secrets:
       DD_API_KEY: ${{ secrets.INTEGRATIONS_DATADOG_API_KEY }}
 
+  seed_events:
+    name: 'Seed identification events'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: fingerprintjs/dx-team-toolkit/.github/actions/seed-identification-events@v1
+        with:
+          public-api-key: ${{ secrets.FINGERPRINT_PUBLIC_KEY }}
+
   tests:
     name: Functional tests (GO ${{ matrix.go-version }})
+    needs: seed_events
     runs-on: "ubuntu-latest"
     strategy:
       matrix:
@@ -40,6 +49,7 @@ jobs:
   # merged but hasn't shipped yet, rather than a regression in the published package.
   tests-against-released-sdk:
     name: 'Functional tests (released SDK)'
+    needs: seed_events
     runs-on: "ubuntu-latest"
     permissions:
       contents: read
